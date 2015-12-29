@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/valor-software/valor-software-site#readme",
   "dependencies": {
+    "body-parser": "^1.14.2",
     "express": "^4.13.3"
   }
 }
