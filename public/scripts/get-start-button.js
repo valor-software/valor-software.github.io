@@ -1,4 +1,10 @@
 var form = document.forms["get-in-touch"];
+
+form.onsubmit = function () {
+    validForm(this);
+    return false;
+};
+
 function validForm(f) {
     var isValidName = nameValidation(f.name.value)
     var isValidEmail = emailValidation(f.email.value)
