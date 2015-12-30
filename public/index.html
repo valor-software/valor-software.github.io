@@ -590,19 +590,17 @@
                     <p> Get in touch with us</p>
                 </div>
 
-                <form class="form-horizontal">
+                <form name="get-in-touch" class="form-horizontal" onsubmit="validForm(this);return false">
                     <div class="form-group form-group-lg">
-                        <input class="form-control" type="text" id="formGroupInputLarge"
-                               placeholder="Your Name">
+                        <input type="text" name="name" placeholder="Your Name" class="form-control" id="formGroupInputLarge" />
                     </div>
                     <div class="form-group form-group-sm">
-                        <input class="form-control" type="text" id="formGroupInputSmall"
-                               placeholder="E-mail address">
+                        <input type="text" name="email" placeholder="E-mail address" class="form-control" id="formGroupInputSmall" />
                     </div>
                     <div class="form-group form-group-sm">
-                        <textarea id="formGroupInputMessage" placeholder="Message..."></textarea>
+                        <textarea name="message" placeholder="Message..." id="formGroupInputMessage" ></textarea>
                     </div>
-                    <button id="button-footer">Get start ></button>
+                    <button type="submit" id="button-footer">Get start ></button>
                 </form>
             </div>
             <div class="col-md-6">
@@ -635,6 +633,7 @@
 <script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://getbootstrap.com/assets/js/docs.min.js"></script>
 <script type="text/javascript" src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script type="text/javascript" src="scripts/get-start-button.js"></script>
 <script type="text/javascript">
     //    $(document).ready(function () {
     //        var windowHeight = window.innerHeight;
