@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="asserts/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="asserts/slick/slick-theme.css"/>
     <link rel="stylesheet" type="text/css" href="asserts/css/valor.css">
+    <link rel="stylesheet" type="text/css" href="asserts/css/pop-up-style.css">
 </head>
 <body>
 
@@ -412,12 +413,57 @@
                         industry. Lorem</p>
                 </div>
                 <div>
-                    <button id="button-carriers">Send resume ></button>
+                    <a class="button" href="#popup" id="button-carriers">Send resume ></a>
                 </div>
             </div>
             <div class="col-md-6 carriers-picture">
                 <img class="picture-carriers" src="asserts/images/cariers.png" alt="cariers">
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- popup -->
+
+<div id="popup">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h2>carriers with valor software</h2>
+            <a class="close" href="#">×</a>
+        </div>
+        <div class="popup-form">
+            <form name="resume">
+                <input type="text"
+                       name="your-name"
+                       placeholder="Your Name"
+                       id="your-name-place"/>
+
+                <input type="text" name="your-email"
+                       placeholder="Your E-mail"
+                       id="your-email-place"/>
+
+                <input type="text" name="job-objective"
+                       placeholder="Job Objective"
+                       id="job-objective-place"/>
+
+                <input type="text" name="your-city"
+                       placeholder="Your city"
+                       id="your-city-place"/>
+
+                <textarea name="your message"
+                          placeholder="Message..."
+                          id="your-message-place"
+                          cols="30"
+                          rows="5"></textarea>
+
+                <div class="popup-send-message">
+                    <div class="popup-send-message-description">
+                        <img src="" alt="">
+                        <span>Add Resume (max 50 Mb)</span>
+                    </div>
+                    <button type="submit" class="pop-up-button">Send ></button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -614,13 +660,16 @@
         </div>
     </div>
 </div>
+
+<!-- end footer -->
+
 <div id="box-footer">
-    <div class="container" id="container-footer-end">
-        <div class="row">
-            <div class="col-md-2 pull-right">
+    <div id="container-footer-end">
+        <div>
+            <div>
                 <img src="asserts/images/logo-footer.png" alt="logo-footer" class="pull-right">
             </div>
-            <div class="col-md-8 pull-left">
+            <div class="pull-left">
                 <div id="end-footer">&copy All rights reserved | 2015| Valor Software</div>
             </div>
         </div>
@@ -682,6 +731,11 @@
             }
         ]
     });
+
+    $('#button-carriers').click(function () {
+        $('#popup').addClass('overlay');
+    });
+
     //    });
 
 </script>
