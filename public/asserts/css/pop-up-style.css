@@ -21,7 +21,7 @@
     height: 710px;
     border-radius: 4px;
     background-color: #ecf2f5;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -99,4 +99,14 @@
 
 #popup .popup-send-message button:hover {
     background-color: #ff3434;
+}
+
+#popup .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: -20px;
+    margin-right: -11px;
+    color: #FFF;
+    opacity: 1;
 }

@@ -8,8 +8,8 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="asserts/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="asserts/slick/slick-theme.css"/>
-    <link rel="stylesheet" type="text/css" href="asserts/css/valor.css">
     <link rel="stylesheet" type="text/css" href="asserts/css/pop-up-style.css">
+    <link rel="stylesheet" type="text/css" href="asserts/css/valor.css">
 </head>
 <body>
 
@@ -413,7 +413,7 @@
                         industry. Lorem</p>
                 </div>
                 <div>
-                    <a class="button" href="#popup" id="button-carriers">Send resume ></a>
+                    <a class="button" id="button-carriers">Send resume ></a>
                 </div>
             </div>
             <div class="col-md-6 carriers-picture">
@@ -429,7 +429,6 @@
     <div class="popup-content">
         <div class="popup-header">
             <h2>carriers with valor software</h2>
-            <a class="close" href="#">×</a>
         </div>
         <div class="popup-form">
             <form name="resume">
@@ -465,6 +464,7 @@
                 </div>
             </form>
         </div>
+        <span class="close">×</span>
     </div>
 </div>
 
@@ -638,13 +638,15 @@
 
                 <form name="get-in-touch" class="form-horizontal" onsubmit="validForm(this);return false">
                     <div class="form-group form-group-lg">
-                        <input type="text" name="name" placeholder="Your Name" class="form-control" id="formGroupInputLarge" />
+                        <input type="text" name="name" placeholder="Your Name" class="form-control"
+                               id="formGroupInputLarge"/>
                     </div>
                     <div class="form-group form-group-sm">
-                        <input type="text" name="email" placeholder="E-mail address" class="form-control" id="formGroupInputSmall" />
+                        <input type="text" name="email" placeholder="E-mail address" class="form-control"
+                               id="formGroupInputSmall"/>
                     </div>
                     <div class="form-group form-group-sm">
-                        <textarea name="message" placeholder="Message..." id="formGroupInputMessage" ></textarea>
+                        <textarea name="message" placeholder="Message..." id="formGroupInputMessage"></textarea>
                     </div>
                     <button type="submit" id="button-footer">Get start ></button>
                 </form>
@@ -664,16 +666,8 @@
 <!-- end footer -->
 
 <div id="box-footer">
-    <div id="container-footer-end">
-        <div>
-            <div>
-                <img src="asserts/images/logo-footer.png" alt="logo-footer" class="pull-right">
-            </div>
-            <div class="pull-left">
-                <div id="end-footer">&copy All rights reserved | 2015| Valor Software</div>
-            </div>
-        </div>
-    </div>
+    <p class="copyright">&copy All rights reserved | 2015 | Valor Software</p>
+    <img src="asserts/images/logo-footer.png" alt="logo-footer" class="pull-right">
 </div>
 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -683,61 +677,38 @@
 <script type="text/javascript" src="http://getbootstrap.com/assets/js/docs.min.js"></script>
 <script type="text/javascript" src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 <script type="text/javascript" src="scripts/get-start-button.js"></script>
+
 <script type="text/javascript">
-    //    $(document).ready(function () {
-    //        var windowHeight = window.innerHeight;
-    //
-    //        var $menu = $("#fixed-menu");
-    //
-    //        $(window).scroll(function () {
-    //            if ($(this).scrollTop() > windowHeight + 80 && !($menu.hasClass("showMenu"))) {
-    //                $menu.fadeOut('slow', function () {
-    //                    $(this)
-    //                            .addClass("showMenu")
-    //                            .slideToggle('slow');
-    //
-    //                });
-    //            } else if ($(this).scrollTop() <= windowHeight + 80 && $menu.hasClass("showMenu")) {
-    //                $menu.slideToggle('slow', function () {
-    //                    $(this)
-    //                            .removeClass("showMenu")
-    //                            .slideToggle('slow');
-    //
-    //                });
-    //            }
-    //        });
     $('.slider').slick({
         centerMode: true,
         centerPadding: '0',
         slidesToShow: 5,
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    arrows: false,
-                    centerMode: true,
-                    centerPadding: '0',
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    arrows: false,
-                    centerMode: true,
-                    centerPadding: '0',
-                    slidesToShow: 1
-                }
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                arrows: false,
+                centerMode: true,
+                centerPadding: '0',
+                slidesToShow: 3
             }
-        ]
+        }, {
+            breakpoint: 480,
+            settings: {
+                arrows: false,
+                centerMode: true,
+                centerPadding: '0',
+                slidesToShow: 1
+            }
+        }]
     });
 
     $('#button-carriers').click(function () {
         $('#popup').addClass('overlay');
     });
 
-    //    });
-
+    $('#popup .close').click(function () {
+        $('#popup').removeClass('overlay');
+    });
 </script>
 </body>
 </html>
