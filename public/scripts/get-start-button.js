@@ -46,7 +46,7 @@ function sendFormData(name,email,message){
     var xhr = new XMLHttpRequest();
     var body = { name: name,
         email: email,
-        message: message }
+        message: message };
         //'name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&message=' + encodeURIComponent(message); // Кодирование значений каждого инпута
     xhr.open("POST", '/form/data'); // настроили запрос
     xhr.setRequestHeader('Content-Type', ' application/json')   //Заголовок Content-Type с кодировкой для серв.
@@ -55,7 +55,7 @@ function sendFormData(name,email,message){
             // пишем что будет выполняться при получении ответа с сервера (readyState:4: запрос завершен и ответ готов, status:200: "OK (все хорошо)")
 console.log(xhr)
         }
-    }
+    };
     xhr.send(JSON.stringify(body));
 }
 
