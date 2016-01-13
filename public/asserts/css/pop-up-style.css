@@ -117,7 +117,9 @@
     left: 35px;
     visibility: hidden;
 }
-
+.error-message.message-show{
+    visibility: visible;
+}
 #popup p {
     margin: -30px 0 10px;
 }

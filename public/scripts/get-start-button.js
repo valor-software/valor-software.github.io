@@ -1,10 +1,7 @@
 'use strict';
 (function () {
   var form = document.forms['get-in-touch'];
-  form.onsubmit = function () {
-    validForm(this);
-    return false;
-  };
+  form.onsubmit = validForm;
 
   function validForm(f) {
     var isValidName = nameValidation(f.name.value);
