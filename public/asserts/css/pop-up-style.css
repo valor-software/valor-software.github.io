@@ -115,7 +115,7 @@
     color: #af1c23;
     position: absolute;
     left: 35px;
-    /*visibility: hidden;*/
+    visibility: hidden;
 }
 
 #popup p {
