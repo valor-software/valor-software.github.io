@@ -470,24 +470,33 @@
                        name="name"
                        placeholder="Your Name"
                        id="your-name-place"/>
+                <p class="error-message" id="name-message">Enter correct name</p>
 
-                <input type="text" name="email"
+                <input type="text" name="your-email"
                        placeholder="Your E-mail"
                        id="your-email-place"/>
 
-                <input type="text" name="job"
+                <p class="error-message" id="email-message">Enter correct Email</p>
+
+                <input type="text" name="job-objective"
                        placeholder="Job Objective"
                        id="job-objective-place"/>
 
-                <input type="text" name="city"
+                <p class="error-message" id="job-message">Enter correct job</p>
+
+                <input type="text" name="your-city"
                        placeholder="Your city"
                        id="your-city-place"/>
 
-                <textarea name="message"
+                <p class="error-message" id="city-message">Enter correct City</p>
+
+                <textarea name="your message"
                           placeholder="Message..."
                           id="your-message-place"
                           cols="30"
                           rows="5"></textarea>
+
+                <p class="error-message" id="text-message">Enter min 40 simbols</p>
 
                 <div class="popup-send-message">
                     <div class="popup-send-message-description">
@@ -662,6 +671,7 @@
 </div>
 
 <!-- footer -->
+
 <div class="footer" id="contact">
     <div class="container" id="container-footer">
         <div class="row">
