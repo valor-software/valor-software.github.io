@@ -467,10 +467,9 @@
         <div class="popup-form">
             <form name="resume">
                 <input type="text"
-                       name="your-name"
+                       name="name"
                        placeholder="Your Name"
                        id="your-name-place"/>
-
                 <p class="error-message" id="name-message">Enter correct name</p>
 
                 <input type="text" name="your-email"
@@ -682,7 +681,7 @@
                     <p> Get in touch with us</p>
                 </div>
 
-                <form name="get-in-touch" class="form-horizontal" onsubmit="validForm(this);return false">
+                <form name="get-in-touch" class="form-horizontal">
                     <div class="form-group form-group-lg">
                         <input type="text" name="name" placeholder="Your Name" class="form-control"
                                id="formGroupInputLarge"/>
@@ -696,6 +695,8 @@
                     </div>
                     <button type="submit" id="button-footer">Get start ></button>
                 </form>
+
+                <form name="send-resume"></form>
             </div>
             <div class="col-md-6">
                 <div id="header-footer">
@@ -723,6 +724,7 @@
 <script type="text/javascript" src="http://getbootstrap.com/assets/js/docs.min.js"></script>
 <script type="text/javascript" src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 <script type="text/javascript" src="scripts/get-start-button.js"></script>
+<script type="text/javascript" src="scripts/send-resume.js"></script>
 <script type="text/javascript">
     $('.slider').slick({
         centerMode: true,

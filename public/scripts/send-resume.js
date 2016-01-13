@@ -1,19 +1,20 @@
 'use strict';
 (function () {
-  var form = document.forms['get-in-touch'];
-  form.onsubmit = function () {
+  var formSendResume = document.forms.resume;
+
+  formSendResume.onsubmit = function () {
     validForm(this);
     return false;
   };
-
   function validForm(f) {
     var isValidName = nameValidation(f.name.value);
     var isValidEmail = emailValidation(f.email.value);
+    var isValidJob = jobValidation(f.job.value);
+    var isValidCity = cityValidation(f.city.value);
     var isValidMessage = messageValidation(f.message.value);
-    if (!isValidEmail || !isValidName || !isValidMessage) {
-      return false;
+    if (isValidName && isValidEmail && isValidJob && isValidCity && isValidMessage) {
+      sendFormData(f.name.value, f.email.value, f.job.value, f.city.value, f.message.value);
     }
-    sendFormData(f.name.value, f.email.value, f.message.value);
   }
 
   function nameValidation(valueOfNameField) {
@@ -33,6 +34,22 @@
     return false;
   }
 
+  function jobValidation(valueOfJobField) {
+    if (valueOfJobField.length < 4) {
+      /*todo add popup message:'enter your Job Objective'*/
+      return false;
+    }
+    return true;
+  }
+
+  function cityValidation(valueOfCityField) {
+    if (valueOfCityField.length < 4) {
+      /*todo add popup message:'enter your City*/
+      return false;
+    }
+    return true;
+  }
+
   function messageValidation(valueOfMassageField) {
     if (valueOfMassageField.length < 4) {
       /*todo add popup message:'enter your message more longer'*/
@@ -41,14 +58,16 @@
     return true;
   }
 
-  function sendFormData(name, email, message) {
+  function sendFormData(name, email, job, city, message) {
     var xhr = new XMLHttpRequest();
     var body = {
       name: name,
       email: email,
+      job: job,
+      city: city,
       message: message
     };
-    xhr.open('POST', '/form/data');
+    xhr.open('POST', '/formSendResume/data');
     xhr.setRequestHeader('Content-Type', ' application/json');
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
