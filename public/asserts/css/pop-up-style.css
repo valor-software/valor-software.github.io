@@ -110,3 +110,16 @@
     color: #FFF;
     opacity: 1;
 }
+
+.error-message {
+    color: #af1c23;
+    position: absolute;
+    left: 35px;
+    visibility: hidden;
+}
+
+#popup p {
+    margin: -30px 0 10px;
+}
+
+
