@@ -6,60 +6,60 @@
     e.preventDefault();
     validForm(this);
   };
-  function validForm(f) {
-    var isValidName = nameValidation(f);
-    var isValidEmail = emailValidation(f);
-    var isValidJob = jobValidation(f);
-    var isValidCity = cityValidation(f);
-    var isValidMessage = messageValidation(f);
+  function validForm(form) {
+    var isValidName = nameValidation(form);
+    var isValidEmail = emailValidation(form);
+    var isValidJob = jobValidation(form);
+    var isValidCity = cityValidation(form);
+    var isValidMessage = messageValidation(form);
     if (isValidName && isValidEmail && isValidJob && isValidCity && isValidMessage) {
-      sendFormData(f.name.value, f.email.value, f.job.value, f.city.value, f.message.value);
+      sendFormData(form.name.value, form.email.value, form.job.value, form.city.value, form.message.value);
     }
   }
 
-  function nameValidation(f) {
-    if (f.name.value.length < 4) {
-      f.querySelector('#name-message').classList.add('message-show');
+  function nameValidation(form) {
+    if (form.name.value.length < 4) {
+      form.querySelector('#name-message').classList.add('message-show');
       return false;
     }
-    f.querySelector('#name-message').classList.remove('message-show');
+    form.querySelector('#name-message').classList.remove('message-show');
     return true;
   }
 
-  function emailValidation(f) {
+  function emailValidation(form) {
     var emailPattern = /^\w+\.*\w+@\w+\-*\w+\.\w{2,4}$/i;
-    if (emailPattern.test(f.email.value)) {
-      f.querySelector('#email-message').classList.remove('message-show');
+    if (emailPattern.test(form.email.value)) {
+      form.querySelector('#email-message').classList.remove('message-show');
       return true;
     }
-    f.querySelector('#email-message').classList.add('message-show');
+    form.querySelector('#email-message').classList.add('message-show');
     return false;
   }
 
-  function jobValidation(f) {
-    if (f.job.value.length < 4) {
-      f.querySelector('#job-message').classList.add('message-show');
+  function jobValidation(form) {
+    if (form.job.value.length < 4) {
+      form.querySelector('#job-message').classList.add('message-show');
       return false;
     }
-    f.querySelector('#job-message').classList.remove('message-show');
+    form.querySelector('#job-message').classList.remove('message-show');
     return true;
   }
 
-  function cityValidation(f) {
-    if (f.city.value.length < 4) {
-      f.querySelector('#city-message').classList.add('message-show');
+  function cityValidation(form) {
+    if (form.city.value.length < 4) {
+      form.querySelector('#city-message').classList.add('message-show');
       return false;
     }
-    f.querySelector('#city-message').classList.remove('message-show');
+    form.querySelector('#city-message').classList.remove('message-show');
     return true;
   }
 
-  function messageValidation(f) {
-    if (f.message.value.length < 40) {
-      f.querySelector('#text-message').classList.add('message-show');
+  function messageValidation(form) {
+    if (form.message.value.length < 40) {
+      form.querySelector('#text-message').classList.add('message-show');
       return false;
     }
-    f.querySelector('#text-message').classList.remove('message-show');
+    form.querySelector('#text-message').classList.remove('message-show');
     return true;
   }
 

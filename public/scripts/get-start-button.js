@@ -1,16 +1,19 @@
 'use strict';
 (function () {
   var form = document.forms['get-in-touch'];
-  form.onsubmit = validForm;
+  form.onsubmit = function (e) {
+    e.preventDefault();
+    validForm(this);
+  };
 
-  function validForm(f) {
-    var isValidName = nameValidation(f.name.value);
-    var isValidEmail = emailValidation(f.email.value);
-    var isValidMessage = messageValidation(f.message.value);
+  function validForm(form) {
+    var isValidName = nameValidation(form.name.value);
+    var isValidEmail = emailValidation(form.email.value);
+    var isValidMessage = messageValidation(form.message.value);
     if (!isValidEmail || !isValidName || !isValidMessage) {
       return false;
     }
-    sendFormData(f.name.value, f.email.value, f.message.value);
+    sendFormData(form.name.value, form.email.value, form.message.value);
   }
 
   function nameValidation(valueOfNameField) {
