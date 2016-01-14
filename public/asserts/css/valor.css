@@ -996,12 +996,6 @@ body {
 
 /*fixed menu media*/
 
-@media (min-width: 1200px) {
-    .container {
-        width: 1130px;
-    }
-}
-
 @media (max-width: 1201px) {
     .fixed-nav .container {
         width: 100%;

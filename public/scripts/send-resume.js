@@ -2,59 +2,64 @@
 (function () {
   var formSendResume = document.forms.resume;
 
-  formSendResume.onsubmit = function () {
+  formSendResume.onsubmit = function (e) {
+    e.preventDefault();
     validForm(this);
-    return false;
   };
-  function validForm(f) {
-    var isValidName = nameValidation(f.name.value);
-    var isValidEmail = emailValidation(f.email.value);
-    var isValidJob = jobValidation(f.job.value);
-    var isValidCity = cityValidation(f.city.value);
-    var isValidMessage = messageValidation(f.message.value);
+  function validForm(form) {
+    var isValidName = nameValidation(form);
+    var isValidEmail = emailValidation(form);
+    var isValidJob = jobValidation(form);
+    var isValidCity = cityValidation(form);
+    var isValidMessage = messageValidation(form);
     if (isValidName && isValidEmail && isValidJob && isValidCity && isValidMessage) {
-      sendFormData(f.name.value, f.email.value, f.job.value, f.city.value, f.message.value);
+      sendFormData(form.name.value, form.email.value, form.job.value, form.city.value, form.message.value);
     }
   }
 
-  function nameValidation(valueOfNameField) {
-    if (valueOfNameField.length < 4) {
-      /*todo add popup message:'enter your full name'*/
+  function nameValidation(form) {
+    if (form.name.value.length < 4) {
+      form.querySelector('#name-message').classList.add('message-show');
       return false;
     }
+    form.querySelector('#name-message').classList.remove('message-show');
     return true;
   }
 
-  function emailValidation(valueOfEmailField) {
+  function emailValidation(form) {
     var emailPattern = /^\w+\.*\w+@\w+\-*\w+\.\w{2,4}$/i;
-    if (emailPattern.test(valueOfEmailField)) {
+    if (emailPattern.test(form.email.value)) {
+      form.querySelector('#email-message').classList.remove('message-show');
       return true;
     }
-    /*todo add popup message:'enter your correct e-mail'*/
+    form.querySelector('#email-message').classList.add('message-show');
     return false;
   }
 
-  function jobValidation(valueOfJobField) {
-    if (valueOfJobField.length < 4) {
-      /*todo add popup message:'enter your Job Objective'*/
+  function jobValidation(form) {
+    if (form.job.value.length < 4) {
+      form.querySelector('#job-message').classList.add('message-show');
       return false;
     }
+    form.querySelector('#job-message').classList.remove('message-show');
     return true;
   }
 
-  function cityValidation(valueOfCityField) {
-    if (valueOfCityField.length < 4) {
-      /*todo add popup message:'enter your City*/
+  function cityValidation(form) {
+    if (form.city.value.length < 4) {
+      form.querySelector('#city-message').classList.add('message-show');
       return false;
     }
+    form.querySelector('#city-message').classList.remove('message-show');
     return true;
   }
 
-  function messageValidation(valueOfMassageField) {
-    if (valueOfMassageField.length < 4) {
-      /*todo add popup message:'enter your message more longer'*/
+  function messageValidation(form) {
+    if (form.message.value.length < 40) {
+      form.querySelector('#text-message').classList.add('message-show');
       return false;
     }
+    form.querySelector('#text-message').classList.remove('message-show');
     return true;
   }
 
