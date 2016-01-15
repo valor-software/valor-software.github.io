@@ -195,14 +195,7 @@
     opacity: 1;
 }
 
-.confirm-message {
+.confirm-message-container {
     text-align: center;
     margin-top: 50px;
-    display: none;
-}
-
-.confirm-message-error {
-    text-align: center;
-    margin-top: 50px;
-    display: none;
 }
