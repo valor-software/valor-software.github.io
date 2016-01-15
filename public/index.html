@@ -528,20 +528,6 @@
     </div>
 </div>
 
-<!-- popup confirm send -->
-
-<div id="popup-confirm">
-    <div class="popup-content">
-        <div class="popup-header">
-            <h2>carriers with valor software</h2>
-        </div>
-        <div>
-            <p class="confirm-message">Your resume is sent successfully.</p>
-        </div>
-        <span class="close">×</span>
-    </div>
-</div>
-
 <!-- what people say -->
 
 <div id="what-people-saying">
@@ -720,18 +706,26 @@
                                placeholder="Your Name"
                                class="form-control"
                                id="formGroupInputLarge"/>
+
+                        <p class="error-message-contact" id="error-name-contact">Enter correct name</p>
                     </div>
+
                     <div class="form-group form-group-sm">
                         <input type="text"
                                name="email"
                                placeholder="E-mail address"
                                class="form-control"
                                id="formGroupInputSmall"/>
+
+                        <p class="error-message-contact" id="error-email-contact">Enter correct email</p>
                     </div>
+
                     <div class="form-group form-group-sm">
                         <textarea name="message"
                                   placeholder="Message..."
                                   id="formGroupInputMessage"></textarea>
+
+                        <p class="error-message-contact" id="error-message-contact">Enter min 40 simbol</p>
                     </div>
 
                     <button type="submit" id="button-footer">Get start ></button>
