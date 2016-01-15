@@ -215,7 +215,7 @@
                 unknown printer took a galley of type and scrambled it to make a type specimen
                 book.</p>
 
-            <button class="web-ui-btn" type="button">Start a project ></button>
+            <a class="button all-button" href="#contact" type="button">Start a project ></a>
         </div>
     </div>
 </div>
@@ -241,7 +241,8 @@
                         book.</h3>
                 </div>
                 <div>
-                    <button id="button-mobile-app" type="button">Start a project ></button>
+                    <a class="button all-button" href="#contact" id="button-mobile-app" type="button">Start a project
+                        ></a>
                 </div>
             </div>
         </div>
@@ -266,7 +267,7 @@
                 </div>
 
                 <div>
-                    <button id="button-node" type="button">Start a project</button>
+                    <a class="button all-button" href="#contact" id="button-node" type="button">Start project</a>
                 </div>
             </div>
 
@@ -705,18 +706,26 @@
                                placeholder="Your Name"
                                class="form-control"
                                id="formGroupInputLarge"/>
+
+                        <p class="error-message-contact" id="error-name-contact">Enter correct name</p>
                     </div>
+
                     <div class="form-group form-group-sm">
                         <input type="text"
                                name="email"
                                placeholder="E-mail address"
                                class="form-control"
                                id="formGroupInputSmall"/>
+
+                        <p class="error-message-contact" id="error-email-contact">Enter correct email</p>
                     </div>
+
                     <div class="form-group form-group-sm">
                         <textarea name="message"
                                   placeholder="Message..."
                                   id="formGroupInputMessage"></textarea>
+
+                        <p class="error-message-contact" id="error-message-contact">Enter min 40 simbol</p>
                     </div>
 
                     <button type="submit" id="button-footer">Get start ></button>
