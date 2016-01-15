@@ -528,6 +528,23 @@
     </div>
 </div>
 
+<!-- popup confirm send -->
+
+<div id="popup-confirm">
+    <div class="popup-content-confirm">
+        <div class="popup-header-confirm">
+            <h2>carriers with valor software</h2>
+        </div>
+        <div>
+            <p class="confirm-message">Your resume is sent successfully.</p>
+            <p class="confirm-message-error">Server error</p>
+        </div>
+        <span class="close">×</span>
+    </div>
+</div>
+
+
+
 <!-- what people say -->
 
 <div id="what-people-saying">
@@ -790,6 +807,10 @@
 
     $('#popup .close').click(function () {
         $('#popup').removeClass('overlay');
+    });
+
+    $('#popup-confirm .close').click(function () {
+        $('#popup-confirm').removeClass('overlay');
     });
 </script>
 </body>
