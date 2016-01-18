@@ -15,7 +15,7 @@
 
 <!-- main background -->
 
-<div id="bgImg">
+<div id="header">
 
     <!-- top menu -->
 
@@ -33,14 +33,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div id="logo-vs" class="img-vs">
+                <div id="logo">
                     <img src="asserts/images/logo.png" alt="logotype" class="navbar-img"/>
                 </div>
             </div>
             <nav id="vs-navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav" id="left-menu">
                     <li>
-                        <a href="#about" class="">about</a>
+                        <a href="#about">about</a>
                     </li>
                     <li class="active">
                         <a href="#web-ui">services</a>
@@ -87,7 +87,7 @@
 
 <!-- fixed Menu  -->
 
-<div class="fixed-nav " id="fixed-menu">
+<div class="fixed-nav" id="fixed-menu">
     <div class="container">
         <div class="navbar-header">
             <button class="navbar-toggle collapsed"
@@ -101,8 +101,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div id="logo1-vs" class="img1-vs pull-left">
-                <img src="asserts/images/logo.png" alt="logotype" width="105" height="60"/>
+            <div class="pull-left">
+                <a href="#header" class="logo">
+                    <img src="asserts/images/logo.png" alt="logotype" width="105" height="60"/>
+                </a>
             </div>
         </div>
         <nav id="vs-navbar-fixed" class="collapse navbar-collapse">
@@ -130,7 +132,9 @@
                 </li>
             </ul>
             <div id="gitHub" class="pull-right">
-                <a href="#"><img src="asserts/images/icon-git-hub.png" alt=""/></a>
+                <a href="https://github.com/valor-software" target="_blank">
+                    <img src="asserts/images/icon-git-hub.png" alt="GitHub"/>
+                </a>
             </div>
         </nav>
     </div>
@@ -753,44 +757,10 @@
 </div>
 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="asserts/slick/slick.min.js"></script>
 <script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://getbootstrap.com/assets/js/docs.min.js"></script>
-<script type="text/javascript" src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 <script type="text/javascript" src="scripts/get-start-button.js"></script>
 <script type="text/javascript" src="scripts/send-resume.js"></script>
-<script type="text/javascript">
-    $('.slider').slick({
-        centerMode: true,
-        centerPadding: '0',
-        slidesToShow: 5,
-        responsive: [{
-            breakpoint: 768,
-            settings: {
-                arrows: false,
-                centerMode: true,
-                centerPadding: '0',
-                slidesToShow: 3
-            }
-        }, {
-            breakpoint: 480,
-            settings: {
-                arrows: false,
-                centerMode: true,
-                centerPadding: '0',
-                slidesToShow: 1
-            }
-        }]
-    });
-
-    $('#button-carriers').click(function () {
-        $('#popup').addClass('overlay');
-    });
-
-    $('#popup .close').click(function () {
-        $('#popup').removeClass('overlay');
-    });
-</script>
+<script type="text/javascript" src="scripts/custom.js"></script>
 </body>
 </html>
