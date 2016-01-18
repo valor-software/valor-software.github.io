@@ -7,7 +7,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-#bgImg {
+#header {
     background: url("../images/bg-header.jpg") no-repeat 50% 50%;
     height: 100%;
     background-size: cover;
@@ -87,17 +87,17 @@ body .all-button:hover {
     z-index: 10;
 }
 
-#bgImg > img {
+#header > img {
     width: 100%;
 }
 
 /* Content Main */
 
-#bgImg > div:not(#top-menu) {
+#header > div:not(#top-menu) {
     text-align: center;
 }
 
-#bgImg .slogan {
+#header .slogan {
     position: absolute;
     top: 0;
     left: 0;
@@ -107,7 +107,7 @@ body .all-button:hover {
     height: 263px;
 }
 
-#bgImg .slogan h2 {
+#header .slogan h2 {
     font-size: 60px;
     font-weight: 900;
     color: white;
@@ -116,7 +116,7 @@ body .all-button:hover {
     margin: 0;
 }
 
-#bgImg .slogan p {
+#header .slogan p {
     font-size: 28px;
     font-weight: 500;
     text-transform: capitalize;
@@ -124,14 +124,14 @@ body .all-button:hover {
     margin: 20px 0 0;
 }
 
-#bgImg .next-block {
+#header .next-block {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 46px;
 }
 
-#bgImg .next-block img {
+#header .next-block img {
     width: 45px;
 }
 
@@ -151,6 +151,20 @@ body .all-button:hover {
     width: 100%;
     padding: 0 60px 0 25px;
     text-transform: uppercase;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    -webkit-transition: top .5s ease;
+    -moz-transition: top .5s ease;
+    -ms-transition: top .5s ease;
+    -o-transition: top .5s ease;
+    transition: top .5s ease;
+}
+
+#fixed-menu.fix {
+    top: 0;
+    position: fixed;
 }
 
 #fixed-menu li {
@@ -195,10 +209,6 @@ body .all-button:hover {
     text-transform: uppercase;
 }
 
-#logo1 {
-    margin: 0 32px 0 0;
-}
-
 #fixed-menu a:hover {
     color: #af1c23;
 }
@@ -240,6 +250,10 @@ body .all-button:hover {
 
 .information-about {
     padding-left: 30px;
+}
+
+#about {
+    margin-top: 75px;
 }
 
 #about .about {
@@ -861,7 +875,7 @@ body .all-button:hover {
 /*background image media*/
 
 @media (max-width: 768px) {
-    #bgImg .next-block img {
+    #header .next-block img {
         margin-top: 110px;
     }
 }
@@ -869,7 +883,7 @@ body .all-button:hover {
 /*font size media*/
 
 @media (max-width: 506px) {
-    #bgImg .topic-main-menu .topic2-main-menu,
+    #header .topic-main-menu .topic2-main-menu,
     #about #header-about,
     #web-ui .web-ui-description-title,
     #mobile-application #header-mobile-app,
@@ -939,21 +953,21 @@ body .all-button:hover {
 /*content main media*/
 
 @media (max-width: 768px) {
-    #bgImg .slogan h2 {
+    #header .slogan h2 {
         font-size: 30px;
     }
 
-    #bgImg .slogan p {
+    #header .slogan p {
         font-size: 14px;
     }
 
-    #bgImg,
-    #bgImg .slogan {
+    #header,
+    #header .slogan {
         height: auto !important;
     }
 
-    #bgImg .next-block,
-    #bgImg .slogan,
+    #header .next-block,
+    #header .slogan,
     #top-menu {
         position: relative !important;
     }
@@ -998,7 +1012,7 @@ body .all-button:hover {
         font-size: 10px;
     }
 
-    #logo1-vs {
+    #logo {
         margin-left: 15px;
     }
 
