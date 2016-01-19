@@ -35,6 +35,10 @@ button:focus {
     color: #fff;
 }
 
+#top-menu a:hover {
+    color: #af1c23;
+}
+
 #top-menu .navbar-header {
     position: absolute;
     width: 200px;
@@ -198,13 +202,17 @@ button:focus {
     padding-top: 195px;
 }
 
+#about .image-container img {
+    max-width: 100%;
+}
+
 #about .description-content {
     overflow: hidden;
     margin-top: 65px;
 }
 
 #about .description-content:first-child {
-    margin-top: 0;
+    margin-top: 0 !important;
 }
 
 #about .description-content .description-image {
@@ -241,12 +249,7 @@ button:focus {
 
 #services .service-container {
     background-color: #f0f5f9;
-    border-top: 1px solid #babfc4;
     padding: 110px 0;
-}
-
-#services .service-container:first-child {
-    border-top: 0;
 }
 
 #services .service-container.turned {
@@ -329,10 +332,33 @@ button:focus {
 
 #team {
     background-color: #262424;
+    overflow: hidden;
+    padding-bottom: 120px;
 }
 
-#team .slick-slider {
+#team .row img {
+    width: 100%;
+}
+
+#team .row h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #af1c23;
+    margin: 10px 0;
+}
+
+#team .row p {
+    font-size: 16px;
+    color: #f0f5f9;
     margin: 0;
+}
+
+#team .row:last-child {
+    margin-top: 75px;
+}
+
+#team .col-md-3:hover h3 {
+    text-decoration: underline;
 }
 
 /******** END TEAM ********/
@@ -558,5 +584,335 @@ button:focus {
 @media (min-width: 1420px) {
     .container {
         width: 1400px;
+    }
+}
+
+@media (max-width: 1420px) {
+    #about .description-content {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 1280px) {
+    #career img {
+        margin-top: 0;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 1199px) {
+    #career .career-description {
+        margin: 15px 0;
+    }
+
+    #career h3 {
+        margin: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    #footer .header-section + img {
+        max-width: 100%;
+    }
+
+    #top-menu a {
+        padding: 10px;
+    }
+
+    #fixed-menu #fixed-menu-container .navbar-header {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    #top-menu .navbar-header {
+        position: relative;
+        width: 120px;
+        float: left;
+    }
+
+    #top-menu-container #right-menu {
+        float: left !important;
+    }
+
+    #top-menu a {
+        font-size: 14px;
+        padding: 15px 5px;
+    }
+
+    #top-menu-container {
+        margin-top: 32px;
+        float: left;
+    }
+
+    .header-section h3 {
+        font-size: 45px;
+        padding: 40px 0 0;
+        margin: 0 0 30px;
+    }
+
+    .header-section p {
+        margin: -20px auto 80px;
+    }
+
+    #about .header-section h3 {
+        padding-top: 120px;
+    }
+
+    #fixed-menu #fixed-menu-container .navbar-header {
+        margin-right: 0;
+    }
+
+    #fixed-menu-content a {
+        font-size: 14px;
+        padding: 15px 5px;
+    }
+
+    #services .service-container {
+        padding: 50px 0;
+    }
+
+    #footer .field textarea, #footer .field input {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    #footer .header-section h3 {
+        font-size: 40px;
+    }
+
+    #services .service-description > h3 {
+        margin: 0 0 20px;
+    }
+
+    #services .service-info {
+        margin-top: 20px;
+    }
+
+    #career h3 {
+        font-size: 45px;
+    }
+
+    #about {
+        padding-bottom: 50px;
+    }
+
+    #about .image-container {
+        margin-bottom: 15px;
+    }
+
+    #about .image-container img {
+        width: 100%;
+    }
+
+    #services .service-info h3 {
+        margin: 10px 0;
+    }
+
+    #services .service-image img {
+        width: 100%;
+    }
+
+    #services .service-image,
+    #services .service-description {
+        padding: 0 !important;
+    }
+
+    #services .service-container .row div:first-child {
+        margin-bottom: 15px;
+    }
+
+    #career .career-image {
+        float: none !important;
+    }
+
+    #footer .container .row > div {
+        margin-bottom: 40px;
+    }
+
+    #footer .header-section h3 {
+        padding: 40px 0 0;
+        margin: 0 0 30px;
+    }
+
+    #team .row > div {
+        margin-top: 75px;
+    }
+
+    #team .row > div:nth-child(-n+2) {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    #header {
+        height: auto;
+    }
+
+    #header .slogan {
+        height: 135px;
+        position: static;
+        margin: 35px 0;
+    }
+
+    #header #top-menu-container {
+        border: 0;
+        box-shadow: none;
+    }
+
+    #header #top-menu-container ul {
+        margin: 0;
+    }
+
+    #header #top-menu-container a {
+        text-align: left;
+    }
+
+    #header .arrow-next {
+        position: static;
+    }
+
+    #header .slogan h2 {
+        font-size: 30px;
+        line-height: 50px;
+    }
+
+    #top-menu .navbar-header {
+        width: 100%;
+    }
+
+    #top-menu .navbar-header .logo {
+        width: 100px;
+    }
+
+    #top-menu a {
+        padding: 5px;
+    }
+
+    #top-menu .navbar-toggle .icon-bar {
+        background-color: #fff;
+    }
+
+    #header .slogan p {
+        font-size: 18px;
+        margin: 0;
+        text-transform: capitalize;
+    }
+
+    #services .row {
+        margin: 0;
+    }
+
+    #services .row .col-md-6 {
+        padding: 0;
+    }
+
+    #team .row:last-child,
+    #team .row > div {
+        margin-top: 35px;
+    }
+
+    #team .row > div:nth-child(-n+2) {
+        margin-top: 0;
+    }
+
+    #tools,
+    #references,
+    #team {
+        padding-bottom: 45px;
+    }
+
+    #tools .tools-content a:nth-child(-n+5) {
+        margin-bottom: 45px;
+    }
+
+    .header-section p {
+        margin: -20px auto 45px;
+    }
+
+    #fixed-menu .navbar-toggle .icon-bar {
+        background-color: #262424;
+    }
+
+    #fixed-menu #fixed-menu-container .navbar-header {
+        width: 100%;
+    }
+
+    #fixed-menu .navbar-toggle {
+        margin-top: 13px;
+    }
+
+    #fixed-menu-content a {
+        font-size: 14px;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    #career h3,
+    #footer .header-section h3,
+    #services .service-description > h3,
+    .header-section h3 {
+        font-size: 22px;
+    }
+
+    #about .description-info h3 {
+        margin: 0 0 5px;
+        font-size: 18px;
+    }
+
+    #about .description-info p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    #services .service-description p {
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    #services .service-description > h3 {
+        margin: 0 0 10px;
+    }
+
+    #services .service-container {
+        padding: 25px 0;
+    }
+
+    .header-section h3 {
+        padding: 25px 0 0;
+    }
+
+    .header-section p {
+        font-size: 16px;
+        line-height: 26px;
+        margin: -20px auto 30px;
+    }
+
+    #tools {
+        padding-bottom: 25px;
+    }
+
+    #tools .tools-content a {
+        width: 50%;
+        margin-bottom: 25px !important;
+    }
+
+    #career p {
+        margin: 15px 0;
+        font-size: 16px;
+    }
+
+    #header .slogan {
+        height: 68px;
+    }
+
+    #header .slogan h2 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    #header .slogan p {
+        font-size: 14px;
     }
 }
