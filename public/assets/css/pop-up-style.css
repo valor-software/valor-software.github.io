@@ -111,29 +111,34 @@
     opacity: 1;
 }
 
-.error-message {
+#popup .error-message {
     color: #af1c23;
     position: absolute;
     left: 35px;
     visibility: hidden;
 }
-.error-message.message-show{
+
+#popup .error-message.message-show {
     visibility: visible;
 }
+
 #popup p {
     margin: -30px 0 10px;
 }
+
 /* error message contact menu*/
 
-.error-message-contact {
+#popup .error-message-contact {
     color: #af1c23;
     position: absolute;
     left: 140px;
     visibility: hidden;
 }
-.error-message.message-show{
+
+#popup .error-message.message-show {
     visibility: visible;
 }
+
 /* popup confirm message */
 
 #popup-confirm {
