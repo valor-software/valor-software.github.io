@@ -32,8 +32,7 @@
 .popup-header {
     background-color: #af1c23;
     text-align: center;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    border-radius: 4px 4px 0 0;
 }
 
 .popup-header h2 {
@@ -107,7 +106,7 @@
     right: 0;
     margin-top: -20px;
     margin-right: -11px;
-    color: #FFF;
+    color: #fff;
     opacity: 1;
 }
 
@@ -159,3 +158,47 @@
     display: block;
 }
 
+.popup-content-confirm {
+    width: 460px;
+    height: 200px;
+    border-radius: 4px;
+    background-color: #ecf2f5;
+    position: absolute;
+    font-size: 16px;
+    color: #848586;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.popup-header-confirm {
+    background-color: #af1c23;
+    text-align: center;
+    border-radius: 4px 4px 0 0;
+}
+
+.popup-header-confirm h2 {
+    margin: 0;
+    padding: 25px 0;
+    font-size: 25px;
+    text-transform: uppercase;
+    color: #ecf2f5;
+    font-weight: 900;
+}
+
+#popup-confirm .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: -20px;
+    margin-right: -11px;
+    color: #fff;
+    opacity: 1;
+}
+
+.confirm-message-container {
+    text-align: center;
+    margin-top: 50px;
+}
