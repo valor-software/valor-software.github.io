@@ -49,6 +49,14 @@ function closePopUp() {
     document.getElementById('popup').classList.remove('overlay');
 }
 
+function openPopUpRes() {
+    document.getElementById('popup-confirm').classList.add('overlay');
+}
+
+function closePopUpRes() {
+    document.getElementById('popup-confirm').classList.remove('overlay');
+}
+
 // Link scroll animation
 
 document.getElementById('top-menu-container').addEventListener('click', scrollAnimation);
