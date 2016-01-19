@@ -74,9 +74,17 @@
     };
     xhr.open('POST', '/formSendResume/data');
     xhr.setRequestHeader('Content-Type', ' application/json');
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function (data) {
       if (xhr.readyState === 4 && xhr.status === 200) {
         /*todo add popup message*/
+        console.log(data);
+        var red = data.currentTarget;
+
+        red.response // распарсить и провести проверку на наличие ошибок true /false  и потом отдать ответ в форму
+
+
+
+        if (data.currentTarget) {}
       }
     };
     xhr.send(JSON.stringify(body));
