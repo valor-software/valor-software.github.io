@@ -1,30 +1,3 @@
-// Slider
-
-$(document).ready(function () {
-    $('.slider').slick({
-        centerMode: true,
-        centerPadding: '0',
-        slidesToShow: 5,
-        responsive: [{
-            breakpoint: 768,
-            settings: {
-                arrows: false,
-                centerMode: true,
-                centerPadding: '0',
-                slidesToShow: 3
-            }
-        }, {
-            breakpoint: 480,
-            settings: {
-                arrows: false,
-                centerMode: true,
-                centerPadding: '0',
-                slidesToShow: 1
-            }
-        }]
-    });
-});
-
 // Fix menu
 
 window.addEventListener('scroll', runOnScroll);
@@ -32,7 +5,13 @@ window.addEventListener('scroll', runOnScroll);
 function runOnScroll() {
     var elm = document.getElementById('fixed-menu');
 
-    if (window.pageYOffset >= window.innerHeight) {
+    var startFixedPosition = window.innerHeight;
+
+    if (window.innerWidth <= 767) {
+        startFixedPosition = document.getElementById('header').offsetHeight;
+    }
+
+    if (window.pageYOffset >= startFixedPosition) {
         elm.classList.add('fix');
     } else {
         elm.classList.remove('fix');
