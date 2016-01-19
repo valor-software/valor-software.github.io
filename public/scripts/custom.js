@@ -77,7 +77,7 @@ function scrollAnimation(e) {
     }
 
     if (e.target.parentNode.tagName === 'A') {
-        currentElm = e.target.parentNode
+        currentElm = e.target.parentNode;
     }
 
     if (!currentElm) {

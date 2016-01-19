@@ -9,7 +9,7 @@ module.exports = function (app) {
       to: adminEmail,
       subject: 'Notification from valor-software site',
       text: "Hello. i'm " + mailObj.name + '. ' + mailObj.message
-    }, function (err) {
+    }, function (err, data) {
       res.json({success: !err, msg: [], data: true, error: err});
     });
   });

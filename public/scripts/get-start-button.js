@@ -1,43 +1,46 @@
 'use strict';
 (function () {
-  var form = document.forms['get-in-touch'];
-  form.onsubmit = function (e) {
+  var formGetStart = document.forms['get-in-touch'];
+  formGetStart.onsubmit = function (e) {
     e.preventDefault();
     validForm(this);
   };
 
   function validForm(form) {
-    var isValidName = nameValidation(form.name.value);
-    var isValidEmail = emailValidation(form.email.value);
-    var isValidMessage = messageValidation(form.message.value);
+    var isValidName = nameValidation(form);
+    var isValidEmail = emailValidation(form);
+    var isValidMessage = messageValidation(form);
     if (!isValidEmail || !isValidName || !isValidMessage) {
       return false;
     }
     sendFormData(form.name.value, form.email.value, form.message.value);
   }
 
-  function nameValidation(valueOfNameField) {
-    if (valueOfNameField.length < 4) {
-      /*todo add popup message:'enter your full name'*/
+  function nameValidation(form) {
+    if (form.name.value.length < 4) {
+      form.querySelector('#error-name-contact').classList.add('message-show');
       return false;
     }
+    form.querySelector('#error-name-contact').classList.remove('message-show');
     return true;
   }
 
-  function emailValidation(valueOfEmailField) {
+  function emailValidation(form) {
     var emailPattern = /^\w+\.*\w+@\w+\-*\w+\.\w{2,4}$/i;
-    if (emailPattern.test(valueOfEmailField)) {
+    if (emailPattern.test(form.email.value)) {
+      form.querySelector('#error-email-contact').classList.remove('message-show');
       return true;
     }
-    /*todo add popup message:'enter your correct e-mail'*/
+    form.querySelector('#error-email-contact').classList.add('message-show');
     return false;
   }
 
-  function messageValidation(valueOfMassageField) {
-    if (valueOfMassageField.length < 4) {
-      /*todo add popup message:'enter your message more longer'*/
+  function messageValidation(form) {
+    if (form.message.value.length < 40) {
+      form.querySelector('#error-message-contact').classList.add('message-show');
       return false;
     }
+    form.querySelector('#error-message-contact').classList.remove('message-show');
     return true;
   }
 
@@ -50,9 +53,20 @@
     };
     xhr.open('POST', '/form/data');
     xhr.setRequestHeader('Content-Type', ' application/json');
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function (data) {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        /*todo add popup message*/
+        var res = data.currentTarget.response;
+        res = JSON.parse(res);
+        var mess = 'Your resume success sent';
+        if (!res.success) {
+          mess = 'Server error try again later';
+        }
+
+        console.log(document.querySelector('.confirm-message-container'));
+
+        document.querySelector('.confirm-message-container').innerHTML = mess;
+
+        openPopUpRes();
       }
     };
     xhr.send(JSON.stringify(body));

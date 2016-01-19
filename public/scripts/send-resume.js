@@ -76,15 +76,17 @@
     xhr.setRequestHeader('Content-Type', ' application/json');
     xhr.onreadystatechange = function (data) {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        /*todo add popup message*/
-        console.log(data);
-        var red = data.currentTarget;
+        var res = data.currentTarget.response;
+        res = JSON.parse(res);
+        var mess = 'Your resume success sent';
+        if (!res.success) {
+          mess = 'Server error try again later';
+        }
 
-        red.response // распарсить и провести проверку на наличие ошибок true /false  и потом отдать ответ в форму
+        document.querySelector('.sr').innerHTML = mess;
 
-
-
-        if (data.currentTarget) {}
+        openPopUpRes();
+        closePopUp();
       }
     };
     xhr.send(JSON.stringify(body));
