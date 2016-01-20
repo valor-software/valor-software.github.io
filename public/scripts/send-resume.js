@@ -74,9 +74,19 @@
     };
     xhr.open('POST', '/formSendResume/data');
     xhr.setRequestHeader('Content-Type', ' application/json');
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function (data) {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        /*todo add popup message*/
+        var res = data.currentTarget.response;
+        res = JSON.parse(res);
+        var mess = 'Your resume success sent';
+        if (!res.success) {
+          mess = 'Server error try again later';
+        }
+
+        document.querySelector('.confirm-message-container').innerHTML = mess;
+
+        openPopUpRes();
+        closePopUp();
       }
     };
     xhr.send(JSON.stringify(body));
