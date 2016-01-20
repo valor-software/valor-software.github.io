@@ -916,3 +916,160 @@ button:focus {
         font-size: 14px;
     }
 }
+
+@media (max-width: 480px) {
+    .header-section h3 {
+        font-size: 20px;
+        margin: 0 0 25px;
+    }
+
+    #about .header-section h3 {
+        padding-top: 110px;
+    }
+
+    .image-container img {
+        width: 100%;
+    }
+
+    .description-container {
+        margin-top: 10px;
+    }
+
+    #about .description-info h3 {
+        margin: 5px;
+    }
+
+    #about .description-content {
+        margin-top: 25px;
+    }
+
+    #about .description-info p {
+        font-size: 16px;
+    }
+
+    #services .service-description > h3 {
+        text-align: center;
+        margin: 0 0 25px;
+        font-size: 20px;
+    }
+
+    #services .service-container {
+        padding-top: 25px;
+    }
+
+    #services .service-info {
+        margin-top: 10px;
+    }
+
+    #services .service-info {
+        margin-top: 0;
+    }
+
+    #services .service-container {
+        padding: 25px 0;
+    }
+
+    .turned .service-description {
+        font-size: 20px;
+        margin-top: 25px;
+    }
+
+    .header-section h3 {
+        padding: 25px 0 0;
+    }
+
+    .header-section p {
+        margin: -10px auto 25px;
+        font-size: 16px;
+    }
+
+    .tools-content img {
+        width: 100%;
+    }
+
+    #tools .tools-content a:nth-child(-n+5) {
+        margin-bottom: 25px;
+    }
+
+    #tools .tools-content a {
+        width: 11%;
+        margin: 0 10px 0;
+    }
+
+    #tools {
+        padding-bottom: 75px;
+    }
+
+    #career img {
+        width: 100%
+    }
+
+    #career h3 {
+        font-size: 20px;
+        margin: 25px 0 0;
+        text-align: center;
+    }
+
+    #career p {
+        font-size: 16px;
+        margin: 10px 0 45px;
+    }
+
+    #career button {
+        margin-bottom: 25px;
+        font-size: 16px;
+        padding: 8px 48px;
+    }
+
+    #references .person > p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    #references {
+        padding-bottom: 0;
+    }
+
+    #footer .header-section h3 {
+        font-size: 20px;
+        padding: 25px 0 0;
+        margin: 0 0 25px;
+    }
+
+    #footer .field textarea, #footer .field input {
+        padding: 17px 20px;
+        color: #848586;
+        font-size: 16px;
+        margin: 0;
+        min-width: 265px;
+        border: 1px solid #d3dadd;
+        border-radius: 6px;
+    }
+
+    #footer form button {
+        padding: 8px 44px;
+        font-size: 16px;
+    }
+
+    #footer .container .row > div {
+        margin-bottom: 25px;
+    }
+
+    #footer img {
+        width: 100%;
+    }
+
+    #copyright img {
+        top: -35px;
+        width: 12%;
+    }
+
+    #copyright {
+        color: #f0f5f9;
+        font-size: 12px;
+        text-align: center;
+        border-top: 1px solid #262527;
+        padding: 25px 0 10px;
+    }
+}
+
