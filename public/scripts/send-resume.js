@@ -83,7 +83,7 @@
           mess = 'Server error try again later';
         }
 
-        document.querySelector('.sr').innerHTML = mess;
+        document.querySelector('.confirm-message-container').innerHTML = mess;
 
         openPopUpRes();
         closePopUp();
