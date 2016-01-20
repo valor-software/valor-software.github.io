@@ -10,7 +10,7 @@ module.exports = function (app) {
       subject: 'Resume from' + mailObj.name,
       html: mailObj.name + '<br />' + mailObj.email + '<br />' +
       mailObj.job + '<br />' + mailObj.city + '<br />' + mailObj.message + '<br />'
-    }, function (err, data) {
+    }, function (err) {
       res.json({success: !err, msg: [], data: true, error: err});
     });
   });

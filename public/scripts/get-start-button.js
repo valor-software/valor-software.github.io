@@ -62,8 +62,6 @@
           mess = 'Server error try again later';
         }
 
-        console.log(document.querySelector('.confirm-message-container'));
-
         document.querySelector('.confirm-message-container').innerHTML = mess;
 
         openPopUpRes();
