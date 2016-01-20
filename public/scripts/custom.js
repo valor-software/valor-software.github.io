@@ -26,10 +26,15 @@ function openPopUp() {
 
 function closePopUp() {
     document.getElementById('popup').classList.remove('overlay');
+    document.getElementById('resume').reset();
 }
 
 function closePopUpRes() {
     document.getElementById('popup-confirm').classList.remove('overlay');
+}
+
+function openPopUpRes() {
+    document.getElementById('popup-confirm').classList.add('overlay');
 }
 
 // Link scroll animation
