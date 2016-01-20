@@ -917,10 +917,7 @@ button:focus {
     }
 }
 
-@media (max-width: 320px) {
-    #about {
-        padding-bottom: 25px;
-    }
+@media (max-width: 480px) {
 
     .header-section h3 {
         font-size: 20px;
@@ -940,7 +937,7 @@ button:focus {
     }
 
     #about .description-info h3 {
-        margin: 0 5px;
+        margin: 5px 5px;
     }
 
     #about .description-content {
@@ -962,11 +959,7 @@ button:focus {
     }
 
     #services .service-info {
-        margin-top: 25px;
-    }
-
-    #services .service-info .col-md-6 {
-        margin-bottom: 25px;
+        margin-top: 10px;
     }
 
     #services .crystal-clear {
@@ -1073,7 +1066,7 @@ button:focus {
 
     #copyright img {
         top: -35px;
-        width: 14%;
+        width: 12%;
     }
 
     #copyright {
