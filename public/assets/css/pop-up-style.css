@@ -202,3 +202,47 @@
     text-align: center;
     margin-top: 50px;
 }
+
+/******* Media *******/
+
+@media (max-width: 767px) {
+    .popup-content {
+        width: 280px;
+        height: 440px;
+    }
+
+    .popup-header h2 {
+        font-size: 16px;
+        padding: 13px 0;
+    }
+
+    #popup .popup-form textarea,
+    #popup .popup-form input {
+        font-size: 14px;
+        margin-bottom: 15px;
+        padding: 5px 15px;
+        border-radius: 3px;
+    }
+
+    #popup .popup-send-message button {
+        border-radius: 5px;
+        font-size: 16px;
+        padding: 5px 15px;
+    }
+
+    #popup .popup-send-message .popup-send-message-description {
+        padding-top: 8px;
+    }
+
+    #popup .error-message {
+        color: #af1c23;
+        position: absolute;
+        left: 35px;
+        visibility: hidden;
+        font-size: 12px;
+    }
+
+    #popup p {
+        margin: -15px 0 10px;
+    }
+}
