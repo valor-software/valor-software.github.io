@@ -65,6 +65,7 @@
         document.querySelector('.confirm-message-container').innerHTML = mess;
 
         openPopUpRes();
+        document.getElementById('contact').reset();
       }
     };
     xhr.send(JSON.stringify(body));
