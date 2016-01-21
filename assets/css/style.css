@@ -5,6 +5,8 @@ body {
 
 body {
     font-family: 'Roboto', sans-serif;
+    min-width: 320px;
+
 }
 
 span.text-red {
@@ -231,7 +233,7 @@ button:focus {
 }
 
 #about .description-info h3 {
-    margin: -5px 0 5px;
+    margin: 0 0 5px;
     font-size: 24px;
     color: #262424;
 }
@@ -585,9 +587,7 @@ button:focus {
     .container {
         width: 1400px;
     }
-}
 
-@media (max-width: 1420px) {
     #about .description-content {
         margin-top: 30px;
     }
@@ -597,6 +597,10 @@ button:focus {
     #career img {
         margin-top: 0;
         max-width: 100%;
+    }
+
+    #top-menu a {
+        font-size: 18px;
     }
 }
 
@@ -621,6 +625,10 @@ button:focus {
 
     #fixed-menu #fixed-menu-container .navbar-header {
         margin-right: 0;
+    }
+
+    #top-menu-container {
+        margin-top: 54px;
     }
 }
 
@@ -856,11 +864,6 @@ button:focus {
         font-size: 22px;
     }
 
-    #about .description-info h3 {
-        margin: 0 0 5px;
-        font-size: 18px;
-    }
-
     #about .description-info p {
         font-size: 14px;
         line-height: 22px;
@@ -914,6 +917,10 @@ button:focus {
 
     #header .slogan p {
         font-size: 14px;
+    }
+
+    #copyright {
+        font-size: 16px;
     }
 }
 
@@ -1061,7 +1068,7 @@ button:focus {
 
     #copyright img {
         top: -35px;
-        width: 12%;
+        width: 10%;
     }
 
     #copyright {
