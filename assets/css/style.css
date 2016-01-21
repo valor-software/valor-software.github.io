@@ -602,6 +602,18 @@ button:focus {
     #top-menu a {
         font-size: 18px;
     }
+
+    #fixed-menu-content a {
+        font-size: 18px;
+    }
+
+    #footer .field textarea, #footer .field input {
+        min-width: 420px;
+    }
+
+    #footer .col-md-6 > img {
+        width: 100%;
+    }
 }
 
 @media (max-width: 1199px) {
@@ -612,6 +624,8 @@ button:focus {
     #career h3 {
         margin: 0;
     }
+
+
 }
 
 @media (max-width: 1024px) {
