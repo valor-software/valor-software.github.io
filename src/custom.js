@@ -39,6 +39,16 @@ function openPopUpRes() {
 
 // Link scroll animation
 
+document.getElementById('popup').addEventListener('click', closePopUpMes);
+document.getElementById('popup-confirm').addEventListener('click', closePopUpMes);
+
+function closePopUpMes(e) {
+    if (e.target.id === 'popup' || e.target.id === 'popup-confirm') {
+        closePopUp();
+        closePopUpRes();
+    }
+}
+
 document.getElementById('top-menu-container').addEventListener('click', scrollAnimation);
 document.getElementById('fixed-menu-container').addEventListener('click', scrollAnimation);
 
