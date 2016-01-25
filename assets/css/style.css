@@ -347,6 +347,8 @@ button:focus {
     font-weight: 500;
     color: #af1c23;
     margin: 10px 0;
+    text-transform: none;
+    text-decoration: none;
 }
 
 #team .row p {
@@ -357,10 +359,6 @@ button:focus {
 
 #team .row:last-child {
     margin-top: 75px;
-}
-
-#team .col-md-3:hover h3 {
-    text-decoration: underline;
 }
 
 /******** END TEAM ********/
@@ -376,14 +374,14 @@ button:focus {
     font-weight: 900;
     text-transform: uppercase;
     color: #f0f5f9;
-    margin: 67px 0 0;
+    margin: 30px 0 0;
 }
 
 #career p {
     font-size: 20px;
     color: #f0f5f9;
     padding-right: 50px;
-    margin: 35px 0 45px;
+    margin: 15px 0 15px;
 }
 
 #career button {
@@ -599,6 +597,14 @@ button:focus {
         max-width: 100%;
     }
 
+    #career h3 {
+        font-size: 40px;
+    }
+
+    #career p {
+        font-size: 18px;
+    }
+
     #top-menu a {
         font-size: 18px;
     }
@@ -618,7 +624,7 @@ button:focus {
 
 @media (max-width: 1199px) {
     #career .career-description {
-        margin: 15px 0;
+        margin: 15px 0 0;
     }
 
     #career h3 {
@@ -649,6 +655,10 @@ button:focus {
         position: relative;
         width: 120px;
         float: left;
+    }
+
+    #career .career-description {
+        margin: 15px 0;
     }
 
     #top-menu-container #right-menu {
