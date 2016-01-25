@@ -347,8 +347,6 @@ button:focus {
     font-weight: 500;
     color: #af1c23;
     margin: 10px 0;
-    text-transform: none;
-    text-decoration: none;
 }
 
 #team .row p {
@@ -381,7 +379,7 @@ button:focus {
     font-size: 20px;
     color: #f0f5f9;
     padding-right: 50px;
-    margin: 15px 0 15px;
+    margin: 15px 0;
 }
 
 #career button {
