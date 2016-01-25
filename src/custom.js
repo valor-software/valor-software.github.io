@@ -56,7 +56,7 @@ function scrollAnimation(e) {
         currentElm = e.target;
     }
 
-    if (e.target.parentNode.tagName === 'A') {
+    if (!currentElm && e.target.parentNode.tagName === 'A') {
         currentElm = e.target.parentNode;
     }
 
@@ -66,7 +66,7 @@ function scrollAnimation(e) {
 
     var elmId = currentElm.getAttribute('href');
 
-    if (elmId.indexOf('https') !== -1) {
+    if (!elmId) {
         return;
     }
 
@@ -81,6 +81,14 @@ function scrollAnimation(e) {
         var fixedMenu = document.getElementById('fixed-menu');
 
         endScroll = endScroll - fixedMenu.offsetHeight;
+    }
+
+    if (elmId === 'career') {
+        var careerImg = document.getElementById('career-img');
+        var imgStyle = careerImg.currentStyle || window.getComputedStyle(careerImg);
+        var imgMarginTop = parseInt(imgStyle.marginTop, 10);
+
+        endScroll = endScroll + imgMarginTop;
     }
 
     scrollTo(document.body, endScroll, 1000, function () {
