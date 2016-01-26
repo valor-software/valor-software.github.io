@@ -953,6 +953,26 @@ button:focus {
 }
 
 @media (max-width: 480px) {
+
+    #top-menu .navbar-header {
+        position: absolute;
+        display: none;
+    }
+
+    #header {
+        height: 280px;
+    }
+
+    #header .slogan h2 {
+        font-size: 18px;
+        line-height: 24px;
+        margin: 100px 0 15px;
+    }
+
+    .arrow-next img {
+        display: none;
+    }
+
     .header-section h3 {
         font-size: 20px;
         margin: 0 0 25px;
@@ -971,7 +991,7 @@ button:focus {
     }
 
     #about .description-info h3 {
-        margin: 5px;
+        margin: 0 0 5px;
     }
 
     #about .description-content {
