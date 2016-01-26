@@ -274,7 +274,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 service-image">
-                    <img src="assets/images/web-dev.png" alt="service"/>
+                    <img src="assets/images/web_dev.png" alt="service"/>
                 </div>
                 <div class="col-md-6 service-description">
                     <div class="service-description">
@@ -467,6 +467,10 @@
     <div class="container">
         <div class="header-section">
             <h3>Our team</h3>
+
+            <p>To view detailed information about all Valor Software team please follow this <a
+                    href="https://github.com/orgs/valor-software/people">link</a>
+            </p>
         </div>
 
         <div class="row">
@@ -777,58 +781,52 @@
 </div>
 
 <div id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
+    <div class="red-contact-menu">
+        <div class="container">
+            <div class="row">
                 <div class="header-section">
                     <h3>Get in touch with us</h3>
                 </div>
-
                 <form id="contact" name="get-in-touch">
-                    <div class="field">
-                        <input type="text"
-                               name="name"
-                               placeholder="Your Name"
-                               id="formGroupInputLarge"/>
+                    <div class="col-md-6">
 
-                        <p class="error-message" id="error-name-contact">Invalid name.</p>
+                        <div class="field">
+                            <input type="text"
+                                   name="name"
+                                   placeholder="Your Name"
+                                   id="formGroupInputLarge"/>
+
+                            <p class="error-message" id="error-name-contact">Invalid name.</p>
+                        </div>
+
+                        <div class="field">
+                            <input type="text"
+                                   name="email"
+                                   placeholder="E-mail address"
+                                   id="formGroupInputSmall"/>
+
+                            <p class="error-message" id="error-email-contact">Invalid email.</p>
+                        </div>
+
                     </div>
 
-                    <div class="field">
-                        <input type="text"
-                               name="email"
-                               placeholder="E-mail address"
-                               id="formGroupInputSmall"/>
-
-                        <p class="error-message" id="error-email-contact">Invalid email.</p>
-                    </div>
-
-                    <div class="field">
+                    <div class="col-md-6">
+                        <div class="field">
                         <textarea name="message"
                                   placeholder="Message..."
                                   id="formGroupInputMessage"></textarea>
 
-                        <p class="error-message" id="error-message-contact">Enter min 40 simbol.</p>
+                            <p class="error-message" id="error-message-contact">Enter min 40 simbol.</p>
+                        </div>
+                        <button type="submit">Get start ›</button>
                     </div>
-
-                    <button type="submit">Get start ›</button>
                 </form>
-            </div>
-
-            <div class="col-md-6">
-                <div class="header-section">
-                    <h3>Thanks for Partners</h3>
-                </div>
-
-                <img src="assets/images/partners.png" alt="partners">
             </div>
         </div>
     </div>
-
     <div id="copyright">
-        <div class="container">
+        <div>
             <p>&copy All rights reserved | 2015 | Valor Software</p>
-            <img src="assets/images/logo-footer.png" alt="logo-footer">
         </div>
     </div>
 </div>
