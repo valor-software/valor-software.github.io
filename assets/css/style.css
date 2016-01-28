@@ -561,7 +561,8 @@ button:focus {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    background-color: #af1c03;
+    background-color: #fff;
+    color: #af1c23;
 }
 
 #footer .error-message {
