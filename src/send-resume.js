@@ -72,7 +72,7 @@
       city: city,
       message: message
     };
-    xhr.open('POST', 'https://vs-api.herokuapp.com/api/v1/send/resume');
+    xhr.open('POST', 'https://vs-server.herokuapp.com/api/v1/send/resume');
     xhr.setRequestHeader('Content-Type', ' application/json');
     xhr.onreadystatechange = function (data) {
       if (xhr.readyState === 4 && xhr.status === 200) {
