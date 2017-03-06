@@ -1,0 +1,244 @@
+input, textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  resize: vertical;
+}
+
+.input {
+  height: 50px;
+  box-shadow: none;
+}
+
+.input.ng-invalid.ng-dirty, .input.ng-invalid.ng-touched {
+  border-color: #cd151e;
+}
+
+.input.ng-invalid.ng-dirty:focus, .input.ng-invalid.ng-touched:focus {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(1205, 21, 30, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(205, 21, 30, 0.6);
+}
+
+.input.ng-invalid.ng-dirty.ng-untouched:focus {
+  border-color: #66afe9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form {
+  margin-top: 5px;
+}
+
+.form_contact {
+  margin-top: 12px;
+}
+
+.form-error {
+  font-size: 11px;
+  text-align: left;
+  color: #cd151e;
+  position: relative;
+}
+
+.form-error div {
+  position: absolute;
+  top: 0;
+  left: 1px;
+}
+
+/**Styles for form on contact page **/
+
+#contact-form .field-height {
+  height: 155px;
+}
+
+#contact-form input[type=submit] {
+  float:right;
+}
+
+@media (max-width: 1023px) {
+  #contact-form .send-red-button {
+    width: 225px;
+  }
+}
+
+
+/**Styles for form on vacancies pages **/
+
+
+#vacancy-form .field-height {
+  height: 155px;
+}
+
+@media (max-width: 1023px) {
+  #vacancy-form .send-red-button {
+    width:100%;
+    margin-top: 25px
+  }
+
+  #vacancy-form .form-padding {
+    padding-bottom:10px
+  }
+}
+
+@media (max-width: 1023px) {
+  #vacancy-form .send-red-button {
+    width:100%;
+    margin-top: 25px
+  }
+
+  #vacancy-form .form-padding {
+    padding-bottom:10px
+  }
+}
+
+/**Styles for form on case pages **/
+
+
+
+#case-form .case-container {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#case-form .field-height {
+  height: 120px;
+}
+
+#case-form input[type=submit] {
+  float: right;
+}
+
+@media (max-width: 1023px) {
+  #case-form .send-red-button {
+    width:100%;
+    margin-top: 25px
+  }
+
+  #case-form .form-padding {
+    padding-bottom:80px
+  }
+}
+
+@media (max-width: 768px) {
+  #case-form input[type=submit],#contact-form input[type=submit] {
+    float: none;
+  }
+}
+
+
+
+@media (max-width: 1023px) {
+  #case-form .send-red-button {
+    width:100%;
+    margin-top: 25px
+  }
+
+  #case-form .form-padding {
+    padding-bottom:80px
+  }
+}
+
+
+/**Common styles for all pages **/
+
+
+.shift-right {
+  margin-right: 10px;
+}
+
+.border {
+  background-color: white;
+  border: 1px solid #babfc4;
+  border-radius: 4px;
+}
+
+.placeholder-text {
+  color: #1d1d2b;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 30px;
+}
+
+.drop-container {
+  background-color: #fafcfd;
+  border: 1px dashed #babfc4;
+  border-radius: 4px;
+  height:52px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.drop-container:hover {
+  background-color: #eef5f9;
+  text-decoration: underline;
+}
+
+.drop-container__remove {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  margin-top: -11px;
+  cursor: pointer;
+}
+.drop-container__remove:after,
+.drop-container__remove:before {
+  content: '';
+  width: 2px;
+  height: 22px;
+  background: #cd151e;
+  position: absolute;
+  top: 0;
+  right: 11px;
+}
+.drop-container__remove:after {
+  transform: rotate(45deg);
+}
+
+.drop-container__remove:before {
+  transform: rotate(-45deg);
+}
+
+.drop-container img {
+  width:25px;
+  height:21px;
+  margin-right:10px
+}
+
+.drop-container .text-drop  {
+  font-size: 16px;
+  line-height: 30px;
+  color: #55555c;
+  text-align:left;
+  padding-left:21px;
+  cursor: pointer;
+}
+
+.drop-container .text-drop-mobile  {
+  font-size: 16px;
+  line-height: 30px;
+  color: #55555c;
+}
+
+.drop-container span {
+  color: #cd151e;
+  font-size: 16px;
+  line-height: 50px;
+}
+
+.drop-label {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

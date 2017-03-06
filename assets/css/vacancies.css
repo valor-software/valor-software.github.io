@@ -1,0 +1,75 @@
+vacancies {
+    display: block;
+    overflow: hidden;
+    margin-bottom: -30px;
+}
+
+vacancy-preview {
+    display: block;
+}
+
+.vacancies-link:hover {
+    text-decoration: none;
+}
+
+.vacancies-link:hover .vacancy-preview__link {
+    text-decoration: underline;
+    transition: all .3s;
+}
+
+.vacancies-link:hover .vacancy-rectangle {
+    background-color: #eef5f9;
+    transition: all .3s;
+}
+
+.vacancy-rectangle {
+    width: 325px;
+    max-width: 100%;
+    height: 105px;
+    background-color: #fafcfd;
+    border: 1px solid #babfc4;
+    border-left: 3px solid #55555c;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    transition: all .3s;
+}
+
+.vacancy-preview__title {
+    color: #1d1d2b;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    margin-bottom: 0;
+}
+
+.vacancy-data-container {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.vacancy-preview__link {
+    color: #cd151e;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 30px;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .vacancy-rectangle {
+        width: auto;
+        max-width: 100%;
+
+    }
+    .vacancy-item:last-child .vacancy-rectangle{
+        margin-bottom: 0;
+    }
+    vacancies {
+        margin-bottom: 0;
+    }
+}
