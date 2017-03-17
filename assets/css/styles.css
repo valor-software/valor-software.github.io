@@ -683,6 +683,13 @@ a:focus {
 
 .project__benefits {
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.project__icon-block {
+  flex: 1 0 33%;
+  padding: 0 10px;
 }
 
 .project__btn {
@@ -948,6 +955,9 @@ a:focus {
     -ms-flex: 0 0 33%;
     flex: 0 0 33%;
   }
+  .project__icon-block {
+    flex: 1 0 50%;
+  }
   .project__btn {
     display: none;
   }
@@ -998,6 +1008,10 @@ a:focus {
   .frame__text, .frame__more {
     font-size: 16px;
     line-height: 24px;
+  }
+
+  .project__icon-block {
+    flex: 1 0 100%;
   }
 
   .icon-block {
