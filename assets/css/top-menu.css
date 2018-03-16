@@ -78,7 +78,6 @@ hamburger-menu {
 .introduction__text p {
     font-size: 28px;
     margin: 20px auto 0;
-    text-transform: capitalize;
     max-width: 600px;
     position: relative;
     z-index: 10;
