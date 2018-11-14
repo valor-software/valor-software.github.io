@@ -87,10 +87,6 @@ MIT
 MIT
 MIT
 
-@angular/http@5.2.8
-MIT
-MIT
-
 ngx-bootstrap@2.0.3
 MIT
 The MIT License (MIT)
