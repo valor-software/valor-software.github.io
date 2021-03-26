@@ -63,7 +63,7 @@ import {
   SentenceMatcher,
   MultiHighlightConfig,
 } from "draft-js-multi-inline-highlight";
-</code></pre></div><p>Some important notes:</p><ul role="list"><li><strong>MultiHighlightDecorator</strong> - returns the decorator.</li><li><strong>WordMatcher</strong> and <strong>SentenceMatcher</strong> allow to MultiHighlightDecorator to recognize different kinds of text fragments. They are “word” and “sentence” in our case. You can implement your own <strong>matcher</strong> if you want.</li></ul><ul role="list"><li><strong>MultiHighlightConfig</strong> - allows us to declare what exactly and how it should be highlighted.</li></ul><h3>Configuration</h3><div class="w-embed"><pre><code class="javascript">
+</code></pre></div><p>Some important notes:</p><p><strong>MultiHighlightDecorator</strong> - returns the decorator.</p><p><strong>WordMatcher</strong> and <strong>SentenceMatcher</strong> allow to MultiHighlightDecorator to recognize different kinds of text fragments. They are “word” and “sentence” in our case. You can implement your own <strong>matcher</strong> if you want.</p><p><strong>MultiHighlightConfig</strong> - allows us to declare what exactly and how it should be highlighted.</p><h3>Configuration</h3><div class="w-embed"><pre><code class="javascript">
 const hightlightStyles = {
   yellow: {
     backgroundColor: "yellow",
@@ -95,7 +95,7 @@ const initHighlightConfig: MultiHighlightConfig = {
   ],
   styles: hightlightStyles,
 };
-</code></pre></div><p>The configuration above exactly means the following.</p><ul role="list"><li>There are 3 rules.</li><li>The first one is regarding sentence highlighting. In this case, <strong>yellow</strong> style should be applied for each entrance of the following text <em>"His back begins to ache, but he knows he can bear it</em>."</li><li>The second couple is regarding words highlighting. In this case, <strong>red</strong> style should be applied to the <strong>and</strong> word. Also, <strong>blue</strong> style should be applied for <strong>pulled</strong> and <strong>knows</strong> words.</li></ul><h3>Initialization<br></h3><div class="w-embed"><pre><code class="javascript">
+</code></pre></div><p>The configuration above exactly means the following.</p><ul role="list"><li>There are 3 rules.</li><li>The first one is regarding sentence highlighting. In this case, <strong>yellow</strong> style should be applied for each entrance of the following text <strong>His back begins to ache, but he knows he can bear it.</strong></li><li>The second couple is regarding words highlighting. In this case, <strong>red</strong> style should be applied to the <strong>and</strong> word. Also, <strong>blue</strong> style should be applied for <strong>pulled</strong> and <strong>knows</strong> words.</li></ul><h3>Initialization<br></h3><div class="w-embed"><pre><code class="javascript">
 const [highlightConfig, setHighlightConfig] = useState<multihighlightconfig>(
   initHighlightConfig
 );
