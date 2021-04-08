@@ -48,7 +48,7 @@ const compositeDecorator = new CompositeDecorator([
     component: HandleYellowSpan,
   },
 ]);
-const processedHTML = DraftPasteProcessor.processHTML(‘Hello world!’);
+const processedHTML = DraftPasteProcessor.processHTML('Hello world!');
 const contentState = ContentState.createFromBlockArray(processedHTML);
 const [editorState, setEditorState] = useState(
   EditorState.createWithContent(contentState, compositeDecorator)
@@ -115,7 +115,7 @@ useEffect(() =&gt; {
   }
 }, [highlightConfig]);
 </code> 
-</pre></div><h3>Known issues</h3><p>During this solution development, I discovered several serious issues. The first issue was regarding incorrect behavior when using <a href="https://github.com/draft-js-plugins/draft-js-plugins" target="_blank">@draft-js-plugins/editor</a>. That’s why I used <strong>draft-js</strong> instead. Briefly, my solution does not work properly with the DraftJS plugin system. </p><p>The second known issue is related to incorrect behavior in browsers on mobile phones when a user is editing highlighted text on the fly. </p><p>Both of them are related to <a href="https://github.com/draft-js-plugins/draft-js-plugins">@draft-js-plugins/editor</a>. I hope these issues will be fixed in the future.</p><h3>Shortlist of links you need</h3><p><a href="https://draftjs.org/" target="_blank">- DraftJS editor</a></p><p>- Source code for this <a href="https://www.npmjs.com/package/draft-js-multi-inline-highlight" target="_blank">solution<br>- NPM</a></p><p>- Source code for the <a href="https://github.com/buchslava/draft-js-multi-inline-highlight-demo" target="_blank">demo</a></p><p>- Working <a href="https://buchslava.github.io/draft-js-multi-inline-highlight-demo/" target="_blank">example</a></p><p>- DraftJS <a href="https://github.com/Soreine/draft-js-simpledecorator" target="_blank">Simple Decorator</a><br></p></div><div class="comments w-embed w-script"><div id="disqus_thread"></div>
+</pre></div><h3>Known issues</h3><p>During this solution development, I discovered several serious issues. The first issue was regarding incorrect behavior when using <a href="https://github.com/draft-js-plugins/draft-js-plugins" target="_blank">@draft-js-plugins/editor</a>. That’s why I used <strong>draft-js</strong> instead. Briefly, my solution does not work properly with the DraftJS plugin system. </p><p>The second known issue is related to incorrect behavior in browsers on mobile phones when a user is editing highlighted text on the fly. </p><p>Both of them are related to <a href="https://github.com/draft-js-plugins/draft-js-plugins">@draft-js-plugins/editor</a>. I hope these issues will be fixed in the future.<br>‍</p><h3>Shortlist of links you need</h3><p><a href="https://draftjs.org/" target="_blank">- DraftJS editor</a></p><p>- Source code for this <a href="https://www.npmjs.com/package/draft-js-multi-inline-highlight" target="_blank">solution<br>- NPM</a></p><p>- Source code for the <a href="https://github.com/buchslava/draft-js-multi-inline-highlight-demo" target="_blank">demo</a></p><p>- Working <a href="https://buchslava.github.io/draft-js-multi-inline-highlight-demo/" target="_blank">example</a></p><p>- DraftJS <a href="https://github.com/Soreine/draft-js-simpledecorator" target="_blank">Simple Decorator</a><br></p></div><div class="comments w-embed w-script"><div id="disqus_thread"></div>
 <script>
 
 /**
