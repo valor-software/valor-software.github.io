@@ -23,6 +23,7 @@
     "@tailwindcss/forms": "^0.3.4",
     "@tailwindcss/typography": "^0.4.1",
     "rxjs": "~6.6.0",
+    "tailwind-colors": "^1.1.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
   },

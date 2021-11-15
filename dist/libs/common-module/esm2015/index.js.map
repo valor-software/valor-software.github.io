@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../libs/common-module/src/index.ts"],"names":[],"mappings":"AAAA,cAAc,4BAA4B,CAAC","sourcesContent":["export * from './lib/common-module.module';\n"]}
