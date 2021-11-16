@@ -1,11 +1,10 @@
-<div class="popover" [class.popover_show]="show">
-    <div class="max-w-sm">
-        <div class="relative">
-            <div class="absolute bg-light_grey_bg absolute w-8 h-8 transform rotate-45 -mt-1 ml-32"></div>
-        </div>
-
-        <div class="px-6 py-4">
-                bla bla bla
+<div class="popover py-11 px-10" [class.popover_show]="show">
+    <div class="flex justify-between">
+        <div class="flex" *ngFor="let item of popover_str" changeSrcOnHover>
+                <div>
+                    <img [src]="item.icon">
+                </div>
+            <div></div>
         </div>
     </div>
 </div>
