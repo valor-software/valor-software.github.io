@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/apps",
+    "public": "dist/apps/valor-software-site",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -9,7 +9,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/valor-software-site/index.html"
+        "destination": "/index.html"
       }
     ]
   }

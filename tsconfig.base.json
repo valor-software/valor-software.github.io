@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "common-docs": ["libs/common-docs/src/index.ts"]
+      "@valor-software/common-docs": ["libs/common-docs/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
