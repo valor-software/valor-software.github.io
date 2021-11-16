@@ -4,6 +4,8 @@ import { PopoverComponent } from './common/popover/popover.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { RouterModule } from '@angular/router';
 
+export { PopoverComponent } from './common/popover/popover.component';
+export { TopMenuComponent } from './common/top-menu/top-menu.component';
 
 @NgModule({
   declarations: [
