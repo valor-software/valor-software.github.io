@@ -62,7 +62,7 @@ jobs:
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
-      - run: npx ng build --runner cloud --prod
+      - run: npx ng build --runner --prod
 
   # run linting
   linting:
@@ -74,7 +74,7 @@ jobs:
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - run: npm run lint -- --runner cloud
+      - run: npm run lint -- --runner
 
   # firebase deploy preview
   firebase_preview:
