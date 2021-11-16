@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "common-module": ["libs/common-module/src/index.ts"]
+      "common-docs": ["libs/common-docs/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

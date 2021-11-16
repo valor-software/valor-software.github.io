@@ -2,33 +2,33 @@
   "version": 1,
   "defaultProject": "valor-software-site",
   "projects": {
-    "common-module": {
+    "common-docs": {
       "projectType": "library",
-      "root": "libs/common-module",
-      "sourceRoot": "libs/common-module/src",
+      "root": "libs/common-docs",
+      "sourceRoot": "libs/common-docs/src",
       "prefix": "valor-software-site-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/common-module"],
+          "outputs": ["dist/libs/common-docs"],
           "options": {
-            "project": "libs/common-module/ng-package.json"
+            "project": "libs/common-docs/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/common-module/tsconfig.lib.prod.json"
+              "tsConfig": "libs/common-docs/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/common-module/tsconfig.lib.json"
+              "tsConfig": "libs/common-docs/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/common-module"],
+          "outputs": ["coverage/libs/common-docs"],
           "options": {
-            "jestConfig": "libs/common-module/jest.config.js",
+            "jestConfig": "libs/common-docs/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -36,8 +36,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/common-module/src/**/*.ts",
-              "libs/common-module/src/**/*.html"
+              "libs/common-docs/src/**/*.ts",
+              "libs/common-docs/src/**/*.html"
             ]
           }
         }
@@ -64,7 +64,9 @@
               "apps/valor-software-site/src/favicon.ico",
               "apps/valor-software-site/src/assets"
             ],
-            "styles": ["apps/valor-software-site/src/styles.scss"],
+            "styles": [
+              "apps/valor-software-site/src/assets/styles/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -137,7 +139,7 @@
         }
       },
       "tags": [],
-      "implicitDependencies": ["common-module"]
+      "implicitDependencies": ["common-docs"]
     },
     "valor-software-site-e2e": {
       "root": "apps/valor-software-site-e2e",

@@ -1,0 +1,59 @@
+.btn-pink-border {
+  @apply bg-transparent border-pink text-pink rounded-2xl py-1 px-4;
+  border-width: 1px;
+}
+
+.menu-item {
+  @apply text-header_font_col px-3 py-2 font-medium relative cursor-pointer block;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    background-color: $light_title_col;
+    width: 0;
+    height: 0;
+    left:  0.75rem;
+    bottom: 0;
+    transition: all ease .5s;
+  }
+}
+
+.active-route {
+  @apply font-bold text-light_title_col;
+
+  &:after {
+    width: 1.25rem;
+    height: 0.125rem;
+  }
+}
+
+.popover {
+  @apply hidden absolute bg-light_grey_bg rounded-xl min-w-585;
+  bottom: -5.35rem;
+  left: -5rem;
+
+  &_show {
+    @apply block;
+  }
+}
+
+.light-arrow {
+  &:before {
+    position: absolute;
+    content: url("../img/icons/light-arrow.svg");
+    width: 10px;
+    top: 50%;
+    right: -5px;
+    transform: translateY(-50%);
+    display: block;
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: Work Sans;
+    font-weight: 400;
+    src: url(../fonts/work-sans/WorkSans-Regular.woff) format("woff");
+  }
+}
