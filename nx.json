@@ -15,6 +15,19 @@
     ".eslintrc.json": "*"
   },
   "tasksRunnerOptions": {
+    "cloud": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "e2e"
+        ],
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    },
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
