@@ -15,12 +15,12 @@
                         <a routerLink="/careers" [routerLinkActive]="['active-route']" class="menu-item">Careers</a>
                         <a routerLink="/blog" [routerLinkActive]="['active-route']" class="menu-item">Blog</a>
                     </div>
-                    <menu-popover [show]="showClientsRoute"></menu-popover>
+                    <menu-popover [show]="showClientsRoute" (changeShowClientRoute)="showClientsRoute=$event"></menu-popover>
                 </div>
             </div>
             <div class="hidden sm:block">
                 <div class="flex items-end">
-                    <button type="button" class="btn-pink-border">
+                    <button type="button" class="btn-pink-border" (click)="openModal()">
                         Get in touch
                     </button>
                 </div>
@@ -63,6 +63,5 @@
 <!--        </div>-->
 <!--    </div>-->
 </nav>
-
-<!--<menu-popover *ngIf="showClientsRoute"></menu-popover>-->
+<!--<contact-modal></contact-modal>-->
 

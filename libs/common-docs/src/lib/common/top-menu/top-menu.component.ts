@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ModalService} from "../services/modal.service";
+import {ContactModalComponent} from "../contactModal/contactModal.components";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -8,8 +10,17 @@ import { Component } from '@angular/core';
 export class TopMenuComponent {
     showClientsRoute = false;
 
+    constructor(
+        private modalService: ModalService<ContactModalComponent>
+    ) {
+    }
+
     toggleClientsRoute(value?: boolean) {
         this.showClientsRoute = value !== undefined ? !!value : !this.showClientsRoute;
+    }
+
+    openModal() {
+        this.modalService.open(ContactModalComponent);
     }
 
 }

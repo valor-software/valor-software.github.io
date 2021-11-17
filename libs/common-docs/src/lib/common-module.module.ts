@@ -3,26 +3,24 @@ import { CommonModule } from '@angular/common';
 import { PopoverComponent } from './common/popover/popover.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { RouterModule } from '@angular/router';
-import { ImgHoverDirective } from './common/directives/img-hover.directive'
-import {POPOVER_STRUCTURE} from "./common/tokens/popoverModel.token";
-import {PopoverStructure} from "./common/models/popover.model";
+import { ImgHoverDirective } from './common/directives/img-hover.directive';
+import { ContactModalComponent } from "./common/contactModal/contactModal.components";
+import { ModalService } from "./common/services/modal.service";
+import { ReactiveFormsModule } from "@angular/forms";
 
-export { PopoverComponent } from './common/popover/popover.component';
 export { TopMenuComponent } from './common/top-menu/top-menu.component';
 
 @NgModule({
   declarations: [
     PopoverComponent,
     TopMenuComponent,
-    ImgHoverDirective
+    ImgHoverDirective,
+    ContactModalComponent
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule],
   exports: [
-    PopoverComponent,
     TopMenuComponent
   ],
-  providers: [
-    { provide: POPOVER_STRUCTURE, useValue: PopoverStructure }
-  ]
+  providers: [ModalService]
 })
 export class CommonDocsModule {}

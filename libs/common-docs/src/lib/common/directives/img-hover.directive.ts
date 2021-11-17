@@ -1,6 +1,7 @@
 import { Directive, HostListener, ElementRef } from '@angular/core';
 
 @Directive(
+    // eslint-disable-next-line @angular-eslint/directive-selector
     {selector: '[changeSrcOnHover]'}
 )
 export class ImgHoverDirective {

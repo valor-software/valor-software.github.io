@@ -1,6 +1,10 @@
 .btn-pink-border {
-  @apply bg-transparent border-pink text-pink rounded-2xl py-1 px-4;
+  @apply bg-transparent border-pink text-pink rounded-2xl py-1 px-4 hover:bg-pink hover:text-white;
   border-width: 1px;
+}
+
+.btn-pink {
+  @apply bg-pink text-white rounded-2xl py-1 px-4 hover:bg-hover_pink_btn_col;
 }
 
 .menu-item {
@@ -29,13 +33,35 @@
 }
 
 .popover {
-  @apply hidden absolute bg-light_grey_bg rounded-xl min-w-585;
-  bottom: -5.35rem;
+  @apply hidden absolute bg-light_grey_bg rounded-xl min-w-585 z-10;
   left: -5rem;
+  top: 70px;
 
   &_show {
     @apply block;
   }
+
+  .arrow {
+    @apply absolute bg-light_grey_bg absolute w-8 h-8 transform rotate-45;
+    top: -5px;
+    left: 8.125rem;
+  }
+}
+
+.backdrop {
+  @apply hidden fixed w-full h-full z-0 bg-transparent inset-0;
+
+  &.grey {
+    @apply bg-black opacity-70;
+  }
+
+  &_show {
+    @apply block;
+  }
+}
+
+.contact-modal {
+  @apply fixed w-full h-full inset-0 flex items-center justify-center;
 }
 
 .light-arrow {
@@ -50,6 +76,26 @@
   }
 }
 
+.text-input {
+  @apply p-4 w-full bg-input_col text-white text-base border border-transparent rounded transition-colors focus:border-pink focus:shadow-none focus:ring-0;
+
+  &.ng-invalid.ng-touched.ng-dirty {
+    @apply border-pink;
+  }
+
+  &::placeholder {
+    @apply text-placeholder_col
+  }
+}
+
+.radio-button {
+  @apply w-4 h-4 rounded-full border border-pink bg-transparent shadow-inner_radio_btn transition-colors;
+
+  &.checked {
+    @apply bg-pink;
+  }
+}
+
 @layer base {
   @font-face {
     font-family: Work Sans;
@@ -57,3 +103,5 @@
     src: url(../fonts/work-sans/WorkSans-Regular.woff) format("woff");
   }
 }
+
+
