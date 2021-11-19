@@ -1,14 +1,19 @@
 .btn-pink-border {
-  @apply bg-transparent border-pink text-pink rounded-2xl py-1 px-4 hover:bg-pink hover:text-white;
+  @apply bg-transparent border-pink text-pink rounded-2xl py-1 px-4 hover:bg-pink hover:text-white transition-colors;
   border-width: 1px;
 }
 
 .btn-pink {
-  @apply bg-pink text-white rounded-2xl py-1 px-4 hover:bg-hover_pink_btn_col;
+  @apply bg-pink text-white rounded-2xl py-1 px-4 hover:bg-hover_pink_btn_col transition-colors;
+
+  &[disabled] {
+    @apply opacity-50;
+  }
 }
 
 .menu-item {
-  @apply text-header_font_col px-3 py-2 font-medium relative cursor-pointer block;
+  width: fit-content;
+  @apply text-header_font_col px-3 py-2 font-medium relative cursor-pointer block lg:w-auto;
 
   &:after {
     content: "";
@@ -20,6 +25,15 @@
     left:  0.75rem;
     bottom: 0;
     transition: all ease .5s;
+  }
+}
+
+.adaptive-menu {
+  @apply lg:hidden absolute z-10 w-screen left-m100% text-white bg-grey_bg;
+  transition: all ease .3s;
+
+  &.show {
+    @apply left-0;
   }
 }
 
@@ -48,6 +62,17 @@
   }
 }
 
+.adaptive-popover {
+  transition: all ease-in .3s;
+
+  @apply block opacity-0 pointer-events-none h-0 lg:hidden pl-6;
+
+  &.show {
+    @apply opacity-100 pointer-events-auto h-screen md:h-full ;
+  }
+}
+
+
 .backdrop {
   @apply hidden fixed w-full h-full z-0 bg-transparent inset-0;
 
@@ -61,23 +86,27 @@
 }
 
 .contact-modal {
-  @apply fixed w-full h-full inset-0 flex items-center justify-center;
+  @apply fixed w-full h-full inset-0 flex items-center justify-center ;
 }
 
 .light-arrow {
+  &.route-arrow {
+    &:before {
+      transform: rotate(-90deg) translateX(90%);
+    }
+  }
+
   &:before {
-    position: absolute;
     content: url("../img/icons/light-arrow.svg");
+    @apply absolute block right-m5 transition-all;
     width: 10px;
-    top: 50%;
-    right: -5px;
+    top: 45%;
     transform: translateY(-50%);
-    display: block;
   }
 }
 
 .text-input {
-  @apply p-4 w-full bg-input_col text-white text-base border border-transparent rounded transition-colors focus:border-pink focus:shadow-none focus:ring-0;
+  @apply p-4 w-full bg-input_col text-white text-base border border-transparent rounded   focus:border-pink focus:shadow-none focus:ring-0;
 
   &.ng-invalid.ng-touched.ng-dirty {
     @apply border-pink;
@@ -95,6 +124,46 @@
     @apply bg-pink;
   }
 }
+
+.landing-header {
+  @apply bg-grey_bg;
+  height: calc(100vh - 80px);
+  padding: 126px 108px;
+
+  h1 {
+    font-size: 64px;
+    line-height: 66px;
+  }
+}
+
+.btn-arrow {
+  @apply relative;
+
+  &:after {
+    content: '';
+    @apply absolute block bg-transparent border-b border-r border-white rotate-45 bottom-0;
+    width: 9px;
+    height: 9px;
+  }
+
+  &:before {
+    content: '';
+    @apply block absolute w-px bg-white;
+    height: 14px;
+    bottom: -1px;
+    left: 4px;
+  }
+}
+
+.img-filter {
+  @apply relative;
+
+  &:after {
+    content: '';
+    @apply w-full h-full absolute bg-black opacity-30 inset-0;
+  }
+}
+
 
 @layer base {
   @font-face {

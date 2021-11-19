@@ -1,21 +1,39 @@
-<div class="popover pt-10 px-10" [class.popover_show]="show">
-    <div class="arrow"></div>
-    <div class="flex justify-between flex-wrap">
-        <div class="w-45 cursor-pointer text-light_font_col mb-12" *ngFor="let item of popover_str" changeSrcOnHover>
-            <div class="flex mb-2.5">
-                <div class="flex items-center">
-                    <img [src]="item.icon">
-                    <h3 class="ml-2.5">{{item.title}}</h3>
+<div class="hidden lg:block">
+    <div class="popover pt-10 px-10" [class.popover_show]="show">
+        <div class="arrow"></div>
+        <div class="flex justify-between flex-wrap">
+            <div class="w-45 cursor-pointer text-light_font_col mb-12" *ngFor="let item of popover_str" changeSrcOnHover>
+                <div class="flex mb-2.5">
+                    <div class="flex items-center">
+                        <img [src]="item.icon">
+                        <h3 class="ml-2.5">{{item.title}}</h3>
+                    </div>
+                    <div *ngIf="!item.route" class="bg-yellow_bg_col rounded-2xl px-2 text-dark_font_col text-xs ml-5 self-center">
+                        Coming soon
+                    </div>
                 </div>
-                <div *ngIf="!item.route" class="bg-yellow_bg_col rounded-2xl px-2 text-dark_font_col text-xs ml-5 self-center">
-                    Coming soon
+                <div>
+                    <p class="text-grey_font_col text-sm">{{item.description}}</p>
                 </div>
             </div>
-            <div>
-                <p class="text-grey_font_col text-sm">{{item.description}}</p>
+        </div>
+    </div>
+    <div class="backdrop" [class.backdrop_show]="show" (click)="changeShow(false)"></div>
+</div>
+
+<!--ADAPTIVE MENU-->
+<div class="adaptive-popover" [class.show]="show">
+    <div class="" *ngFor="let item of popover_str">
+        <div class="flex mb-7">
+            <div class="flex items-center">
+                <img [src]="item.icon">
+                <h3 class="ml-2.5">{{item.title}}</h3>
+            </div>
+            <div *ngIf="!item.route" class="bg-yellow_bg_col rounded-2xl px-2 text-dark_font_col text-xs ml-5 self-center">
+                Coming soon
             </div>
         </div>
     </div>
 </div>
-<div class="backdrop" [class.backdrop_show]="show" (click)="changeShow(false)"></div>
+
 

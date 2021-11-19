@@ -41,7 +41,8 @@ module.exports = {
         'workSans': ['Work Sans', 'Roboto', 'Arial', 'sans-serif']
       },
       lineHeight: {
-        '44': '2.6rem'
+        '44': '2.6rem',
+        '66': '4.125rem'
       },
       width: {
         '45': '45%'
@@ -49,15 +50,29 @@ module.exports = {
       fontSize: {
         'base': '1rem',
         'xs': '0.625rem',
-        'large': '2.5rem'
+        'large': '2.5rem',
+        '64': '4rem'
       },
       minWidth: {
         '585': '585px',
         '1110': '1110px',
         '450': '450px'
       },
+      maxWidth: {
+        '200': '200px',
+        '90%': '90%',
+        '1010': '1010px',
+        '700': '700px'
+      },
+      maxHeight: {
+        '700': '700px'
+      },
       boxShadow: {
         inner_radio_btn: 'inset 0 0 0 3px #272727'
+      },
+      inset: {
+        'm5': '-5px',
+        'm100%': '-100%'
       }
     },
   },

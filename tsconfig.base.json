@@ -10,13 +10,24 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@valor-software/common-docs": ["libs/common-docs/src/index.ts"]
+      "@valor-software/common-docs": [
+        "libs/common-docs/src/index.ts"
+      ],
+      "home-page": [
+        "libs/route-pages/home-page/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

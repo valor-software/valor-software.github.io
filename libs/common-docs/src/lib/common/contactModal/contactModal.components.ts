@@ -18,13 +18,13 @@ export class ContactModalComponent {
         files: new FormControl(''),
     });
 
-    formDate = [
+    formData = [
         {
             name: 'type',
             type: 'radio',
             values: [
                 {
-                    value: 'services',
+                    value: 'service',
                     title: 'Services'
                 },
                 {
