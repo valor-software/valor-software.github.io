@@ -35,4 +35,16 @@
     </div>
 </section>
 
+<section class="landing-section">
+    <div class="pb-16"><img src="assets/img/titles/priorities.svg" alt="title technologies"></div>
+    <div class="px-6.75">
+        <div class="bg-grey py-16 px-7 max-w-455 flex justify-between flex-wrap">
+            <div *ngFor="let technology of technologiesList; index as i" class="cursor-pointer border-2 transition-all border-transparent max-w-19% mb-11 p-2.5 flex items-center" [ngClass]="{'active border-pink opacity-100': technology.active, 'mr-7': !checkIndex(i), 'opacity-40': !technology.active}" (click)="sortProjects(technology)">
+                <img [src]="technology.img" alt="" class="">
+            </div>
+        </div>
+        <div></div>
+    </div>
+</section>
+
 

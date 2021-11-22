@@ -5,6 +5,9 @@
 @import 'tailwindcss/utilities';
 @import 'bs_styles';
 
+body, html {
+  @apply bg-grey_bg;
+}
 
 
 

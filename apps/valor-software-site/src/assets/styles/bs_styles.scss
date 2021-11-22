@@ -110,12 +110,6 @@
     transform: rotate(45deg);
     margin: 0;
   }
-
-  //&.route-arrow {
-  //  &:before {
-  //    transform: rotate(-90deg) translateX(90%);
-  //  }
-  //}
 }
 
 .text-input {
@@ -138,19 +132,19 @@
   }
 }
 
-.landing-header {
-  @apply bg-grey_bg;
-  height: calc(100vh - 80px);
-  padding: 126px 108px;
-
-  h1 {
-    font-size: 64px;
-    line-height: 66px;
-  }
-}
+//.landing-header {
+//  @apply bg-grey_bg;
+//  height: calc(100vh - 80px);
+//  padding: 126px 108px;
+//
+//  h1 {
+//    font-size: 64px;
+//    line-height: 66px;
+//  }
+//}
 
 .landing-section {
-  @apply bg-grey_bg pt-16 pb-12;
+  @apply pt-16 pb-12;
 }
 
 .img-filter {
