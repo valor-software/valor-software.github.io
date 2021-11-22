@@ -8,7 +8,7 @@
                         <img [src]="item.icon">
                         <h3 class="ml-2.5">{{item.title}}</h3>
                     </div>
-                    <div *ngIf="!item.route" class="bg-yellow_bg_col rounded-2xl px-2 text-dark_font_col text-xs ml-5 self-center">
+                    <div *ngIf="!item.route" class="bg-yellow_bg_col rounded-2xl text-dark_font_col text-xs ml-5 self-center px-1.5" >
                         Coming soon
                     </div>
                 </div>
@@ -23,11 +23,11 @@
 
 <!--ADAPTIVE MENU-->
 <div class="adaptive-popover" [class.show]="show">
-    <div class="" *ngFor="let item of popover_str">
-        <div class="flex mb-7">
+    <div class="" *ngFor="let item of popover_str; index as i">
+        <div class="flex" [class.mb-7]="i !== popover_str.length-1">
             <div class="flex items-center">
                 <img [src]="item.icon">
-                <h3 class="ml-2.5">{{item.title}}</h3>
+                <h3 class="ml-2.5 text-xl">{{item.title}}</h3>
             </div>
             <div *ngIf="!item.route" class="bg-yellow_bg_col rounded-2xl px-2 text-dark_font_col text-xs ml-5 self-center">
                 Coming soon

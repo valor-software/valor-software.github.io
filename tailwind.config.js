@@ -49,9 +49,10 @@ module.exports = {
       },
       fontSize: {
         'base': '1rem',
-        'xs': '0.625rem',
+        'xs': '0.65rem',
         'large': '2.5rem',
-        '64': '4rem'
+        '64': '4rem',
+        '32': '2rem'
       },
       minWidth: {
         '585': '585px',

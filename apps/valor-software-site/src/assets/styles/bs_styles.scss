@@ -29,7 +29,7 @@
 }
 
 .adaptive-menu {
-  @apply lg:hidden absolute z-10 w-screen left-m100% text-white bg-grey_bg;
+  @apply lg:hidden absolute z-10 w-screen left-m100% text-white bg-grey_bg h-screen text-32;
   transition: all ease .3s;
 
   &.show {
@@ -65,10 +65,10 @@
 .adaptive-popover {
   transition: all ease-in .3s;
 
-  @apply block opacity-0 pointer-events-none h-0 lg:hidden pl-6;
+  @apply opacity-0 block pointer-events-none h-0 lg:hidden pl-6;
 
   &.show {
-    @apply opacity-100 pointer-events-auto h-screen md:h-full ;
+    @apply opacity-100 pointer-events-auto h-full md:h-full ;
   }
 }
 
@@ -89,23 +89,37 @@
 }
 
 .light-arrow {
-  &.route-arrow {
-    &:before {
-      transform: rotate(-90deg) translateX(90%);
-    }
+  width: 7px;
+  height: 7px;
+  margin-left: 8px;
+  margin-bottom: 4px;
+  background-color: transparent;
+  border: 1px solid white;
+  display: inline-block;
+  border-width: 1px 1px 0 0;
+  transform: rotate(135deg);
+  transition: transform ease .3s;
+
+  &.big {
+    width: 15.5px;
+    height: 15.5px;
+    margin-bottom: 8px;
   }
 
-  &:before {
-    content: url("../img/icons/light-arrow.svg");
-    @apply absolute block right-m5 transition-all;
-    width: 10px;
-    top: 45%;
-    transform: translateY(-50%);
+  &.rotate {
+    transform: rotate(45deg);
+    margin: 0;
   }
+
+  //&.route-arrow {
+  //  &:before {
+  //    transform: rotate(-90deg) translateX(90%);
+  //  }
+  //}
 }
 
 .text-input {
-  @apply p-4 w-full bg-input_col text-white text-base border border-transparent rounded   focus:border-pink focus:shadow-none focus:ring-0;
+  @apply p-4 w-full bg-input_col text-white text-base border border-transparent rounded  focus:border-pink focus:shadow-none focus:ring-0;
 
   &.ng-invalid.ng-touched.ng-dirty {
     @apply border-pink;
