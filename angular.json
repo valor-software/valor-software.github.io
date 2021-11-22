@@ -193,7 +193,8 @@
       },
       "tags": [],
       "implicitDependencies": [
-        "common-docs"
+        "common-docs",
+        "route-pages-home-page"
       ]
     },
     "valor-software-site-e2e": {

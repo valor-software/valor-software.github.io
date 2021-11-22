@@ -1,14 +1,38 @@
-<section class="landing-header flex justify-between">
-    <div class="max-w-sm">
-        <h1 class="text-light_title_col text-64 leading-66 mb-12 font-bold">Led <br>by a Google<br>Developer<br>Expert</h1>
-        <p class="leading-normal text-grey_font_col">Valor Software is more than just a software development company. We’re a team of people driven by innovation who pull off the impossible with the blend of the brightest technological minds and edge technologies.</p>
-        <button class="btn-pink flex justify-between items-baseline">
-            Our client’s feedback
-            <div class="btn-arrow"></div>
-        </button>
+<!--<section class="landing-header flex justify-between">-->
+<!--    <div class="max-w-sm">-->
+<!--        <h1 class="text-light_title_col text-64 leading-66 mb-12 font-bold">Led <br>by a Google<br>Developer<br>Expert</h1>-->
+<!--        <p class="leading-normal text-grey_font_col">Valor Software is more than just a software development company. We’re a team of people driven by innovation who pull off the impossible with the blend of the brightest technological minds and edge technologies.</p>-->
+<!--        <button class="btn-pink flex justify-between items-baseline">-->
+<!--            Our client’s feedback-->
+<!--            <div class="btn-arrow"></div>-->
+<!--        </button>-->
+<!--    </div>-->
+<!--    <div class="img-filter" style="height: fit-content;">-->
+<!--        <img src="assets/img/bg-img/boss.jpg" alt="Dmitriy Shekhovtsov photo" class="h-full w-full max-h-700 object-contain">-->
+<!--    </div>-->
+<!--    <div></div>-->
+<!--</section>-->
+<section class="landing-section">
+    <div class="pb-16"><img src="assets/img/titles/priorities.svg" alt="title priorities"></div>
+    <div>
+        <swiper
+                [config]="swiperConfig"
+                class="mySwiper"
+        >
+            <ng-template swiperSlide *ngFor="let slide of slides">
+                <div>
+                    <h3 [innerHTML]="slide.title" class="text-large text-light_title_col leading-44 mb-8"></h3>
+                    <ul class="list-disc text-grey_font_col pl-5">
+                        <li *ngFor="let item of slide.list" >{{item}}</li>
+                    </ul>
+                    <button class="btn-pink flex justify-between items-baseline mt-10">Visit blog <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
+                </div>
+                <div>
+                    <img [src]="slide.imgSource" alt="slide img">
+                </div>
+            </ng-template>
+        </swiper>
     </div>
-    <div class="img-filter" style="height: fit-content;">
-        <img src="assets/img/bg-img/boss.jpg" alt="Dmitriy Shekhovtsov photo" class="h-full w-full max-h-700 object-contain">
-    </div>
-    <div></div>
 </section>
+
+

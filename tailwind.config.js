@@ -73,6 +73,9 @@ module.exports = {
       inset: {
         'm5': '-5px',
         'm100%': '-100%'
+      },
+      borderRadius: {
+        '20': '20px'
       }
     },
   },
