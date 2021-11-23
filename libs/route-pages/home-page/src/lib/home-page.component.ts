@@ -39,82 +39,161 @@ const technologiesList = [
     {
         id: 'angular',
         img: 'assets/img/technologies/angular.png',
-        active: false
+        active: true,
+        disabled: false
     },
     {
         id: 'react',
         img: 'assets/img/technologies/react.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'react_native',
         img: 'assets/img/technologies/react_native.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'ruby',
         img: 'assets/img/technologies/ruby.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'vue',
         img: 'assets/img/technologies/vue.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'nest_js',
         img: 'assets/img/technologies/nest_js.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'python',
         img: 'assets/img/technologies/python.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'go',
         img: 'assets/img/technologies/go.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'ionic',
         img: 'assets/img/technologies/ionic.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'native_script',
         img: 'assets/img/technologies/native_script.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'google',
         img: 'assets/img/technologies/google_cloud.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'firebase',
         img: 'assets/img/technologies/firebase.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'heroku',
         img: 'assets/img/technologies/heroku.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'aws',
         img: 'assets/img/technologies/aws.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'lang',
         img: 'assets/img/technologies/lang.png',
-        active: false
+        active: false,
+        disabled: false
     },
     {
         id: 'js',
         img: 'assets/img/technologies/java_script.png',
-        active: false
+        active: false,
+        disabled: false
+    }
+];
+
+const projectsList = [
+    {
+        labels: ['angular', 'ruby'],
+        name: 'test',
+        img: 'assets/img/projects/project_1.png'
+    },
+    {
+        labels: ['angular', 'firebase'],
+        name: 'test',
+        img: 'assets/img/projects/project_2.png'
+    },
+    {
+        labels: ['angular', 'js'],
+        name: 'test',
+        img: 'assets/img/projects/project_1.png'
+    },
+    {
+        labels: ['angular'],
+        name: 'test',
+        img: 'assets/img/projects/project_2.png'
+    },
+    {
+        labels: ['angular', 'lang'],
+        name: 'test',
+        img: 'assets/img/projects/project_2.png'
+    },
+    {
+        labels: ['lang'],
+        name: 'test_1',
+        img: 'assets/img/projects/project_1.png'
+    },
+    {
+        labels: ['firebase', 'js'],
+        name: 'test_2',
+        img: 'assets/img/projects/project_2.png'
+    },
+    {
+        labels: ['native_script'],
+        name: 'test_3',
+        img: 'assets/img/projects/project_1.png'
+    },
+    {
+        labels: ['google'],
+        name: 'test_4',
+        img: 'assets/img/projects/project_2.png'
+    },
+    {
+        labels: ['react_native'],
+        name: 'test_5',
+        img: 'assets/img/projects/project_1.png'
+    },
+    {
+        labels: ['ruby'],
+        name: 'test_6',
+        img: 'assets/img/projects/project_2.png'
+    },
+    {
+        labels: ['angular'],
+        name: 'test_7',
+        img: 'assets/img/projects/project_1.png'
     }
 ];
 
@@ -148,8 +227,24 @@ export class HomePageComponent {
         }
     };
     technologiesList: typeof technologiesList = technologiesList;
+    projectList = projectsList;
+    sortedProjects?: {labels: string[], name: string, img: string}[];
+    sortedProjectsAmount = 4;
+    showSocial = false;
 
     constructor() {
+        this.sortedProjectsAmount = window.innerWidth >= 768 ? 4 : 2;
+        this.initDisabledTechnologies();
+        this.sortProjects('angular');
+    }
+
+    initDisabledTechnologies() {
+        this.technologiesList.forEach(techno => {
+            const res = this.projectList.find(item => item.labels.includes(techno.id));
+            if (!res) {
+                techno.disabled = true;
+            }
+        });
     }
 
     checkIndex(index: number): boolean {
@@ -157,11 +252,17 @@ export class HomePageComponent {
         return !!(index && !(index % 4));
     }
 
-    sortProjects(technology: {id: string, active: boolean, img: string}): void {
+    setActiveTechnology(id: string): boolean {
         this.technologiesList.map( item => {
-            item.active = false;
+            item.active = !item.disabled && item.id === id;
         });
 
-        technology.active = true;
+        return this.technologiesList.some(item => item.active);
+    }
+
+    sortProjects(id: string): void {
+        if (this.setActiveTechnology(id)) {
+            this.sortedProjects = this.projectList?.filter(item => item.labels.includes(id))?.slice(0, this.sortedProjectsAmount);
+        }
     }
 }

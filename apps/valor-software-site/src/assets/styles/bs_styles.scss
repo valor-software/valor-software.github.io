@@ -4,11 +4,15 @@
 }
 
 .btn-pink {
-  @apply bg-pink text-white rounded-20 px-4 py-2.5 hover:bg-hover_pink_btn_col transition-colors items-center;
+  @apply bg-pink text-white rounded-20 px-4 py-2.5 hover:bg-hover_pink_btn_col transition-colors items-center h-10;
 
   &[disabled] {
     @apply opacity-50;
   }
+}
+
+.container {
+  @apply w-11/12 lg:w-1225 mx-auto;
 }
 
 .menu-item {
@@ -132,17 +136,6 @@
   }
 }
 
-//.landing-header {
-//  @apply bg-grey_bg;
-//  height: calc(100vh - 80px);
-//  padding: 126px 108px;
-//
-//  h1 {
-//    font-size: 64px;
-//    line-height: 66px;
-//  }
-//}
-
 .landing-section {
   @apply pt-16 pb-12;
 }
@@ -161,7 +154,7 @@
 }
 
 .swiper-slide {
-  @apply bg-grey flex justify-between h-auto p-10 items-center;
+  @apply bg-grey flex md:flex-row justify-between h-auto md:p-10 px-4 py-6 items-center flex-col-reverse;
 }
 
 .swiper-pagination {
@@ -188,6 +181,14 @@ h3 {
 
 li::marker {
   padding-right: 0px;
+}
+
+.-rotate-45 {
+  transform: rotate(-45deg);
+}
+
+.h-min-content {
+  height: min-content;
 }
 
 

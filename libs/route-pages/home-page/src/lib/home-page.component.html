@@ -1,19 +1,39 @@
-<!--<section class="landing-header flex justify-between">-->
-<!--    <div class="max-w-sm">-->
-<!--        <h1 class="text-light_title_col text-64 leading-66 mb-12 font-bold">Led <br>by a Google<br>Developer<br>Expert</h1>-->
-<!--        <p class="leading-normal text-grey_font_col">Valor Software is more than just a software development company. We’re a team of people driven by innovation who pull off the impossible with the blend of the brightest technological minds and edge technologies.</p>-->
-<!--        <button class="btn-pink flex justify-between items-baseline">-->
-<!--            Our client’s feedback-->
-<!--            <div class="btn-arrow"></div>-->
-<!--        </button>-->
-<!--    </div>-->
-<!--    <div class="img-filter" style="height: fit-content;">-->
-<!--        <img src="assets/img/bg-img/boss.jpg" alt="Dmitriy Shekhovtsov photo" class="h-full w-full max-h-700 object-contain">-->
-<!--    </div>-->
-<!--    <div></div>-->
-<!--</section>-->
+<section class="landing-section h-screen flex flex-col !py-0">
+    <div class="container flex h-full items-center">
+        <div class="flex justify-items-between">
+            <div class="img-filter flex-grow">
+                <img src="assets/img/bg-img/boss.jpg" alt="Dmitriy Shekhovtsov photo" class="h-full w-full max-h-700 object-contain">
+            </div>
+            <div class="max-w-555 ml-12 flex flex-col justify-between items-start">
+                <h1 class="text-light_title_col text-64 leading-66 mb-12 font-bold">Led by a Google<br>Developer Expert</h1>
+                <p class="leading-normal text-grey_font_col">Valor Software is more than just a software development company. We’re a team of people driven by innovation who pull off the impossible with the blend of the brightest technological minds and edge technologies.</p>
+                <button class="btn-pink flex justify-between items-baseline">Our client’s feedback <img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt=""></button>
+            </div>
+            <div class="flex items-end ml-16">
+                <div class="w-min">
+                    <a href="" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/linkedin.svg" alt="linkedin icon"></a>
+                    <a href="" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/instagram.svg" alt="instagram icon"></a>
+                    <a href="" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/twitter.svg" alt="twitter icon"></a>
+                    <a href="" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" [class.mb-6]="showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/dribble.svg" alt="dribble icon"></a>
+                    <a href="" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.mb-6]="showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/behance.svg" alt="behance icon"></a>
+                    <a href="" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.mb-6]="showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/facebook.svg" alt="facebook icon"></a>
+                    <a href="" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.mb-6]="showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/youtube.svg" alt="youtube icon"></a>
+                    <div class="light-arrow big cursor-pointer" [class.-rotate-45]="showSocial" (click)="showSocial=!showSocial" style="margin-left: 5px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pb-16 flex justify-items-end"><img src="assets/img/titles/priorities.svg" alt="title priorities"></div>
+</section>
+
+
+
+
+
+
+
+
 <section class="landing-section">
-    <div class="pb-16"><img src="assets/img/titles/priorities.svg" alt="title priorities"></div>
     <div>
         <swiper
                 [config]="swiperConfig"
@@ -21,13 +41,13 @@
         >
             <ng-template swiperSlide *ngFor="let slide of slides">
                 <div>
-                    <h3 [innerHTML]="slide.title" class="text-large text-light_title_col leading-44 mb-8"></h3>
+                    <h3 [innerHTML]="slide.title" class="md:text-large text-2xl text-light_title_col leading-44 mb-8"></h3>
                     <ul class="list-disc text-grey_font_col pl-5">
                         <li *ngFor="let item of slide.list" >{{item}}</li>
                     </ul>
-                    <button class="btn-pink flex justify-between items-baseline mt-10">Visit blog <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
+                    <button class="btn-pink flex justify-center md:justify-between items-baseline mt-10 w-full md:w-auto">Visit blog <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
                 </div>
-                <div>
+                <div class="max-w-140 md:max-w-full">
                     <img [src]="slide.imgSource" alt="slide img">
                 </div>
             </ng-template>
@@ -37,13 +57,30 @@
 
 <section class="landing-section">
     <div class="pb-16"><img src="assets/img/titles/priorities.svg" alt="title technologies"></div>
-    <div class="px-6.75">
-        <div class="bg-grey py-16 px-7 max-w-455 flex justify-between flex-wrap">
-            <div *ngFor="let technology of technologiesList; index as i" class="cursor-pointer border-2 transition-all border-transparent max-w-19% mb-11 p-2.5 flex items-center" [ngClass]="{'active border-pink opacity-100': technology.active, 'mr-7': !checkIndex(i), 'opacity-40': !technology.active}" (click)="sortProjects(technology)">
-                <img [src]="technology.img" alt="" class="">
+    <div class="container flex justify-between flex-col lg:flex-row">
+        <div class="lg:bg-grey xl:py-16 xl:px-7 w-full max-w-455 bg-transparent mx-auto lg:mr-8">
+            <div class="flex justify-between flex-wrap items-start">
+                <div *ngFor="let technology of technologiesList; index as i" class="border-2 transition-all border-transparent max-w-19% p-2.5 flex items-center mb-5 lg:mb-9" [ngClass]="{'active border-pink opacity-100': technology.active, 'mr-5 xl:mr-7': !checkIndex(i), 'opacity-40': !technology.active, 'cursor-pointer': !technology.disabled, 'cursor-not-allowed': technology.disabled}" (click)="sortProjects(technology.id)">
+                    <img [src]="technology.img" [alt]="technology.id" class="">
+                </div>
             </div>
+
         </div>
-        <div></div>
+        <div class="lg:max-w-735 w-full flex flex-col justify-between max-w-455 mx-auto">
+            <div class="flex flex-wrap justify-between">
+                <div *ngFor="let project of sortedProjects"  class="lg:w-48% w-full relative  mb-8 cursor-pointer border-grey_bg border-2 hover:border-pink">
+                    <img [src]="project.img" [alt]="project.name" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 flex flex-col justify-end p-6 w-full h-full" [style.background]="'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)'">
+                        <p class="font-bold text-light_title_col text-xl mb-2 text-center lg:text-left">{{project.name}}</p>
+                        <div class="hidden lg:block">
+                            <span *ngFor="let item of project.labels" class="text-light_title_col text-sm px-2 border border-light_title_col rounded-xl mr-2">{{item}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-pink flex justify-between items-baseline mx-auto">Visit portfolio <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
+        </div>
     </div>
 </section>
 
