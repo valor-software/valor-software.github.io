@@ -37,7 +37,7 @@
     <div>
         <swiper
                 [config]="swiperConfig"
-                class="mySwiper"
+                class="pink_swiper"
         >
             <ng-template swiperSlide *ngFor="let slide of slides">
                 <div>
@@ -83,5 +83,43 @@
         </div>
     </div>
 </section>
+<section class="landing-section">
+    <div class="pb-16"><img src="assets/img/titles/priorities.svg" alt="title technologies"></div>
+    <div class="container flex justify-between flex-col flex-wrap lg:flex-row">
+        <div *ngFor="let serv of services" class="lg:w-48% bg-grey py-7 px-12 flex justify-between flex-col-reverse md:flex-row font-bold mb-8 w-full items-center">
+            <p class="text-light_title_col md:text-large block mr-3.5 flex items-center mt-6 md:mt-0 text-xl md:leading-44">{{serv.title}}</p>
+            <img [src]="serv.img" [alt]="serv.title + ' icon'" class="md:max-w-45% max-w-10.5">
+        </div>
+    </div>
+</section>
 
+<section class="landing-section">
+    <div class="pb-16"><img src="assets/img/titles/priorities.svg" alt="title technologies"></div>
+    <div class="container flex justify-between flex-col flex-wrap lg:flex-row">
+        <h3 class="md:text-large text-2xl text-light_title_col leading-44 mb-8 w-full"><span>Proudly</span> contributing<br><span>to</span> open source</h3>
+        <p class="max-w-50% text-grey_font_col">We try to maintain equilibrium between the value we take from open-source and what we give back. So we proudly sponsor promising technologies, contribute with our knowledge to make tools handier, and build open code solutions to ease engineers’ daily routines.</p>
+        <swiper
+                [config]="verticalSwiperConfig"
+                class="verticalSwiper mt-10"
+        >
+            <ng-template swiperSlide *ngFor="let slide of openSourceSlides">
+                <div class="flex justify-between w-full">
+                    <div class="max-w-25% ">
+                        <p>{{slide.title}}</p>
+                        <p>{{slide.description}}</p>
+                        <ul>
+                            <li *ngFor="let item of slide.list">{{item}}</li>
+                        </ul>
+                        <button class="btn-pink flex justify-between items-baseline">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
+                    </div>
+                    <div class="max-w-65%">
+                        <img [src]="slide.img" [alt]="slide.name + 'icon'">
+                        <p>Monthly downloads</p>
+                        <p></p>
+                    </div>
+                </div>
+            </ng-template>
+        </swiper>
+    </div>
+</section>
 

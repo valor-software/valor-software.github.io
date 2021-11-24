@@ -197,6 +197,60 @@ const projectsList = [
     }
 ];
 
+const ServicesModel = [
+    {
+        title: 'Design',
+        img: 'assets/img/bg-img/services_img/services_1.svg'
+    },
+    {
+        title: 'Software Engineering',
+        img: 'assets/img/bg-img/services_img/services_2.svg'
+    },
+    {
+        title: 'Quality Assurance',
+        img: 'assets/img/bg-img/services_img/services_3.svg'
+    },
+    {
+        title: 'DevOps',
+        img: 'assets/img/bg-img/services_img/services_4.svg'
+    },
+    {
+        title: 'Maintenance & Support',
+        img: 'assets/img/bg-img/services_img/services_5.svg'
+    },
+    {
+        title: 'Product Ownership & Project Mgmt.',
+        img: 'assets/img/bg-img/services_img/services_6.svg'
+    }
+];
+
+const OpenSourceSlidesModel = [
+    {
+        title: 'We built ngx-bootstrap library',
+        description: 'Bootstrap components powered by Angular',
+        list: ['Flexibility', 'Tinker-friendly code', 'Thorough documentation', 'Lots of demo'],
+        name: 'ngx-bootstrap',
+        img: 'assets/img/bg-img/open-source/ngx-bootstrap.svg',
+        link: 'https://valor-software.com/ngx-bootstrap/#/'
+    },
+    {
+        title: 'We sponsor NestJS framework',
+        description: 'A progressive Node.js framework for building efficient, reliable, and scalable server-side applications',
+        list: ['Modular architecture', 'Scalability', 'Compatibility with server-side apps', 'Orientation on endpoints'],
+        name: 'NestJS',
+        img: 'assets/img/bg-img/open-source/nestjs.svg',
+        link: 'https://nestjs.com/'
+    },
+    {
+        title: 'We contribute to NativeScript',
+        description: 'Empower JavaScript with native APIs. Liberate your development by using platform APIs directly without leaving your love for JavaScript aside.',
+        list: ['Flexible', 'Regular updates', 'Compatible', 'Inspires animations'],
+        name: 'NativeScript',
+        img: 'assets/img/bg-img/open-source/nativescript.svg',
+        link: 'https://nativescript.org/'
+    }
+];
+
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -226,11 +280,21 @@ export class HomePageComponent {
             },
         }
     };
+    verticalSwiperConfig: SwiperOptions = {
+        direction: 'vertical',
+        slidesPerView: 1,
+        centeredSlides: true,
+        pagination: {
+            clickable: true
+        },
+    };
     technologiesList: typeof technologiesList = technologiesList;
     projectList = projectsList;
     sortedProjects?: {labels: string[], name: string, img: string}[];
     sortedProjectsAmount = 4;
     showSocial = false;
+    services: typeof ServicesModel = ServicesModel;
+    openSourceSlides: typeof OpenSourceSlidesModel = OpenSourceSlidesModel;
 
     constructor() {
         this.sortedProjectsAmount = window.innerWidth >= 768 ? 4 : 2;

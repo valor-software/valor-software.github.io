@@ -8,26 +8,26 @@
         <div>
             <h3 class="font-bold text-light_title_col text-large mb-10 leading-44">We'd love to hear<br>from you!</h3>
             <div class="flex justify-between">
-                <div class="md:min-w-450">
-                    <div [formGroup]="form">
+                <div class="md:min-w-45%0">
+                    <div [formGroup]="form" (change)="showForm()">
                         <p class="text-dar_grey_font_col text-xl mb-6">How can we help you?</p>
                         <div class="flex flex-wrap justify-between mb-8">
-                            <label for="service" class="block w-45 flex text-white items-center cursor-pointer text-base mb-4">
+                            <label for="service" class="block w-45% flex text-white items-center cursor-pointer text-base mb-4">
                                 <input class="opacity-0 w-px h-px" type="radio"  name="type" id="service" formControlName="type" value="service">
                                 <div class="radio-button" [class.checked]="form.value.type === 'service'"></div>
                                 <p class="ml-2.5">Services</p>
                             </label>
-                            <label for="career" class="block w-45 flex text-white items-center cursor-pointer text-base">
+                            <label for="career" class="block w-45% flex text-white items-center cursor-pointer text-base">
                                 <input class="opacity-0 w-px h-px" type="radio"  name="type" id="career" formControlName="type" value="career">
                                 <div class="radio-button" [class.checked]="form.value.type === 'career'"></div>
                                 <p class="ml-2.5">Careers</p>
                             </label>
-                            <label for="partner" class="block w-45 flex text-white items-center cursor-pointer text-base">
+                            <label for="partner" class="block w-45% flex text-white items-center cursor-pointer text-base">
                                 <input class="opacity-0 w-px h-px" type="radio"  name="type" id="partner" formControlName="type" value="partner">
                                 <div class="radio-button" [class.checked]="form.value.type === 'partner'"></div>
                                 <p class="ml-2.5">Partnerships & Sales</p>
                             </label>
-                            <label for="other" class="block w-45 flex text-white items-center cursor-pointer text-base">
+                            <label for="other" class="block w-45% flex text-white items-center cursor-pointer text-base">
                                 <input class="opacity-0 w-px h-px" type="radio"  name="type" id="other" formControlName="type" value="other">
                                 <div class="radio-button" [class.checked]="form.value.type === 'other'"></div>
                                 <p class="ml-2.5">Other</p>
@@ -39,9 +39,15 @@
                         </div>
                         <div class="mb-8">
                             <p class="text-white text-sm mb-2.5">Message</p>
-                            <textarea class="text-input h-36 resize-none" formControlName="email" placeholder="Type here ..."></textarea>
+                            <textarea class="text-input h-36 resize-none" formControlName="message" placeholder="Type here ..."></textarea>
                         </div>
-                        <button class="btn-pink block m-auto" [disabled]="!form.valid">Submit</button>
+<!--                        <div class="input-box">-->
+<!--                            <label for="uploadVR">-->
+<!--add img-->
+<!--                            </label>-->
+<!--                            <input type="file" name="uploadVR" id="uploadVR" (change)="uploadDocuments($event)" multiple/>-->
+<!--                        </div>-->
+                        <button class="btn-pink block m-auto flex" [disabled]="!form.valid" (click)="onSubmit()">Submit</button>
                     </div>
                 </div>
                 <div class="flex flex-col ml-28 text-light_title_col">
