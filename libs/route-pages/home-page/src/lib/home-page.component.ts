@@ -1,5 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ViewChild, ChangeDetectorRef} from '@angular/core';
 import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
+import { SwiperEvents } from 'swiper/types';
+import { SwiperComponent } from "swiper/angular";
 import { NpmStatisticService } from "./getNpmStatistic.service";
 SwiperCore.use([Pagination]);
 
@@ -259,42 +261,42 @@ const feedBack = [
     {
         project: 'CareerBuilder',
         text: 'From the start of our relationship with Valor software we saw a fundamental shift in our development practices. The attitude of fully integrating with the team and behaving as a co-owner of the platform was a refreshing departure from classical off shore. I highly recommend Valor to everyone I talk to.',
-        img: '',
+        img: 'assets/img/feedback/careerBuilder.jpg',
         author: 'Zackary Chapple',
         position: 'Principal Architect'
     },
     {
         project: 'Dollar Street',
         text: 'Thanks "Valor Software" for awesome work! I especially liked your openness and desire to share experience. The best of Valor, is that they never say "It\'simpossible", they always find a good approaches to satisfy the customers.',
-        img: '',
+        img: 'assets/img/feedback/dollarStreet.jpg',
         author: 'Anna Rosling',
         position: 'Mother of Dollar Street'
     },
     {
         project: 'Souqalmal',
         text: 'I really enjoyed working with Dima! He\'s an excellent developer and he really helped us build our new product, using the latest technologies out there. Dima is very knowledgeable and passionate and he\'s also striving to be up to date with the latest developments in his field. He\'s a true JS ninja!',
-        img: '',
+        img: 'assets/img/feedback/soqualmal.jpg',
         author: 'Iraklis Alexopoulos',
         position: 'Tech Team Lead'
     },
-    {
-        project: 'Priceshredder',
-        text: 'Great team to work with over the last 10 months.',
-        img: '',
-        author: 'Basil Sabah',
-        position: 'CEO'
-    },
+    // {
+    //     project: 'Priceshredder',
+    //     text: 'Great team to work with over the last 10 months.',
+    //     img: 'assets/img/feedback/priceshredder.jpg',
+    //     author: 'Basil Sabah',
+    //     position: 'CEO'
+    // },
     {
         project: 'Gapminder Offline',
         text: 'What we can tell you is that Valor Software is very, very knowledgeable and very helpful. We think what sticks out the most is their capacity to find solutions instead of just saying what cannot be done. They know how to develop any feature that we request, and they are very good at user experience. They also know how to communicate with non-tech people. I think that makes them quite special because any client can communicate with them.',
-        img: '',
+        img: 'assets/img/feedback/gapminder.jpg',
         author: 'Ola Rosling',
         position: 'CEO of Gapminder'
     },
     {
         project: 'TablesReady',
         text: 'Dima and team were fantastic to work with - smart, reliable, and familiar with a variety of web technologies. They were quick to pickup new concepts and extremely proactive in developing features.',
-        img: '',
+        img: 'assets/img/feedback/tablesReady.jpg',
         author: 'Robert Shaw',
         position: 'CEO at Table\'s Ready'
     }
@@ -307,12 +309,7 @@ const feedBack = [
     templateUrl: './home-page.component.html'
 })
 export class HomePageComponent {
-    pagination = {
-        clickable: true,
-        renderBullet: function (index: any, className: string) {
-            return `<span class="${className}"> ${index}--- </span>`;
-        },
-    };
+    @ViewChild("swiperRef", { static: false }) swiperRef?: SwiperComponent;
 
     slides: typeof slideModel = slideModel;
     swiperConfig: SwiperOptions = {
@@ -349,8 +346,9 @@ export class HomePageComponent {
         slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 40,
-        navigation: true
-    }
+        loop: true,
+        autoHeight: true
+    };
     technologiesList: typeof technologiesList = technologiesList;
     projectList = projectsList;
     sortedProjects?: {labels: string[], name: string, img: string}[];
@@ -359,9 +357,12 @@ export class HomePageComponent {
     services: typeof ServicesModel = ServicesModel;
     openSourceSlides: typeof OpenSourceSlidesModel = OpenSourceSlidesModel;
     feedBackList: typeof feedBack = feedBack;
+    currentFeedBackIndex = 0;
+    currentFeedBackIndex_2 = 0;
 
     constructor(
-        private npmCounts: NpmStatisticService
+        private npmCounts: NpmStatisticService,
+        private cdr: ChangeDetectorRef
     ) {
         this.sortedProjectsAmount = window.innerWidth >= 768 ? 4 : 2;
         this.initDisabledTechnologies();
@@ -375,10 +376,10 @@ export class HomePageComponent {
                 if (item.name === 'ngx-bootstrap') {
                     item.downloads = res.downloads;
                 }
-            })
+            });
         }, error => {
             console.log('error', error);
-        })
+        });
     }
 
     initDisabledTechnologies() {
@@ -407,5 +408,18 @@ export class HomePageComponent {
         if (this.setActiveTechnology(id)) {
             this.sortedProjects = this.projectList?.filter(item => item.labels.includes(id))?.slice(0, this.sortedProjectsAmount);
         }
+    }
+
+    nextSlide() {
+        this.swiperRef?.swiperRef.slideNext();
+    }
+
+    prevSlide() {
+        this.swiperRef?.swiperRef.slidePrev();
+    }
+
+    showIndex(value: any) {
+        this.currentFeedBackIndex = value.activeIndex;
+        this.cdr.detectChanges();
     }
 }

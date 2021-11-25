@@ -31,7 +31,8 @@ module.exports = {
       dark_font_col: '#1E1C1C',
       input_col: '#343434',
       placeholder_col: '#585858',
-      hover_pink_btn_col: '#C03247'
+      hover_pink_btn_col: '#C03247',
+      feedback_font_col: '#E1E1E1'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -92,7 +93,9 @@ module.exports = {
       width: {
         '1225': '1225px',
         '48%': '48%',
-        '45%': '45%'
+        '45%': '45%',
+        '65%': '65%',
+        '35%': '35%'
       },
       minHeight: {
         '725': '725px'

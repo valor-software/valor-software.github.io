@@ -110,6 +110,14 @@
     margin-bottom: 8px;
   }
 
+  &.grey {
+    border-color: $light_title_col;
+  }
+
+  &.bold {
+    border-width: 2px 2px 0 0;
+  }
+
   &.rotate {
     transform: rotate(45deg);
     margin: 0;
