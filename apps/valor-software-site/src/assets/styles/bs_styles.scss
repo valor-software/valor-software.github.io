@@ -212,7 +212,7 @@ li::marker {
   .swiper-pagination {
     width: 15px;
     flex-grow: 1;
-    @apply relative transform-none inset-0 bg-transparent flex flex-col;
+    @apply relative transform-none inset-0 bg-transparent flex flex-col mr-12;
   }
 
   .swiper-pagination-bullet {
@@ -223,14 +223,16 @@ li::marker {
       @apply bg-light_title_col;
     }
   }
-}
 
-.swiper-vertical > .swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-vertical.swiper-pagination-bullets .swiper-pagination-bullet {
-  margin: 0 0 2px 0;
+  .swiper-vertical > .swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-vertical.swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0 0 2px 0;
 
-  &:last-child {
-    @apply mb-0;
+    &:last-child {
+      @apply mb-0;
+    }
   }
 }
+
+
 
 

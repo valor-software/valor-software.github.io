@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
+import { NpmStatisticService } from "./getNpmStatistic.service";
 SwiperCore.use([Pagination]);
 
 const slideModel = [
@@ -226,28 +227,76 @@ const ServicesModel = [
 
 const OpenSourceSlidesModel = [
     {
-        title: 'We built ngx-bootstrap library',
+        title: 'We built<br> ngx-bootstrap<br> library',
         description: 'Bootstrap components powered by Angular',
         list: ['Flexibility', 'Tinker-friendly code', 'Thorough documentation', 'Lots of demo'],
         name: 'ngx-bootstrap',
         img: 'assets/img/bg-img/open-source/ngx-bootstrap.svg',
-        link: 'https://valor-software.com/ngx-bootstrap/#/'
+        link: 'https://valor-software.com/ngx-bootstrap/#/',
+        downloads: 0
     },
     {
-        title: 'We sponsor NestJS framework',
+        title: 'We sponsor<br>NestJS<br> framework',
         description: 'A progressive Node.js framework for building efficient, reliable, and scalable server-side applications',
         list: ['Modular architecture', 'Scalability', 'Compatibility with server-side apps', 'Orientation on endpoints'],
         name: 'NestJS',
         img: 'assets/img/bg-img/open-source/nestjs.svg',
-        link: 'https://nestjs.com/'
+        link: 'https://nestjs.com/',
+        downloads: 0
     },
     {
-        title: 'We contribute to NativeScript',
+        title: 'We contribute<br>to NativeScript',
         description: 'Empower JavaScript with native APIs. Liberate your development by using platform APIs directly without leaving your love for JavaScript aside.',
         list: ['Flexible', 'Regular updates', 'Compatible', 'Inspires animations'],
         name: 'NativeScript',
         img: 'assets/img/bg-img/open-source/nativescript.svg',
-        link: 'https://nativescript.org/'
+        link: 'https://nativescript.org/partners/',
+        downloads: 0
+    }
+];
+
+const feedBack = [
+    {
+        project: 'CareerBuilder',
+        text: 'From the start of our relationship with Valor software we saw a fundamental shift in our development practices. The attitude of fully integrating with the team and behaving as a co-owner of the platform was a refreshing departure from classical off shore. I highly recommend Valor to everyone I talk to.',
+        img: '',
+        author: 'Zackary Chapple',
+        position: 'Principal Architect'
+    },
+    {
+        project: 'Dollar Street',
+        text: 'Thanks "Valor Software" for awesome work! I especially liked your openness and desire to share experience. The best of Valor, is that they never say "It\'simpossible", they always find a good approaches to satisfy the customers.',
+        img: '',
+        author: 'Anna Rosling',
+        position: 'Mother of Dollar Street'
+    },
+    {
+        project: 'Souqalmal',
+        text: 'I really enjoyed working with Dima! He\'s an excellent developer and he really helped us build our new product, using the latest technologies out there. Dima is very knowledgeable and passionate and he\'s also striving to be up to date with the latest developments in his field. He\'s a true JS ninja!',
+        img: '',
+        author: 'Iraklis Alexopoulos',
+        position: 'Tech Team Lead'
+    },
+    {
+        project: 'Priceshredder',
+        text: 'Great team to work with over the last 10 months.',
+        img: '',
+        author: 'Basil Sabah',
+        position: 'CEO'
+    },
+    {
+        project: 'Gapminder Offline',
+        text: 'What we can tell you is that Valor Software is very, very knowledgeable and very helpful. We think what sticks out the most is their capacity to find solutions instead of just saying what cannot be done. They know how to develop any feature that we request, and they are very good at user experience. They also know how to communicate with non-tech people. I think that makes them quite special because any client can communicate with them.',
+        img: '',
+        author: 'Ola Rosling',
+        position: 'CEO of Gapminder'
+    },
+    {
+        project: 'TablesReady',
+        text: 'Dima and team were fantastic to work with - smart, reliable, and familiar with a variety of web technologies. They were quick to pickup new concepts and extremely proactive in developing features.',
+        img: '',
+        author: 'Robert Shaw',
+        position: 'CEO at Table\'s Ready'
     }
 ];
 
@@ -258,6 +307,13 @@ const OpenSourceSlidesModel = [
     templateUrl: './home-page.component.html'
 })
 export class HomePageComponent {
+    pagination = {
+        clickable: true,
+        renderBullet: function (index: any, className: string) {
+            return `<span class="${className}"> ${index}--- </span>`;
+        },
+    };
+
     slides: typeof slideModel = slideModel;
     swiperConfig: SwiperOptions = {
         slidesPerView: 1,
@@ -284,10 +340,17 @@ export class HomePageComponent {
         direction: 'vertical',
         slidesPerView: 1,
         centeredSlides: true,
+        spaceBetween: 40,
         pagination: {
             clickable: true
         },
     };
+    feedBackCarousel: SwiperOptions = {
+        slidesPerView: 1,
+        centeredSlides: true,
+        spaceBetween: 40,
+        navigation: true
+    }
     technologiesList: typeof technologiesList = technologiesList;
     projectList = projectsList;
     sortedProjects?: {labels: string[], name: string, img: string}[];
@@ -295,11 +358,27 @@ export class HomePageComponent {
     showSocial = false;
     services: typeof ServicesModel = ServicesModel;
     openSourceSlides: typeof OpenSourceSlidesModel = OpenSourceSlidesModel;
+    feedBackList: typeof feedBack = feedBack;
 
-    constructor() {
+    constructor(
+        private npmCounts: NpmStatisticService
+    ) {
         this.sortedProjectsAmount = window.innerWidth >= 768 ? 4 : 2;
         this.initDisabledTechnologies();
         this.sortProjects('angular');
+        this.setNpmStatistic();
+    }
+
+    setNpmStatistic() {
+        this.npmCounts.getPackageDownloads('ngx-bootstrap', 'last-month').subscribe(res => {
+            this.openSourceSlides?.map(item => {
+                if (item.name === 'ngx-bootstrap') {
+                    item.downloads = res.downloads;
+                }
+            })
+        }, error => {
+            console.log('error', error);
+        })
     }
 
     initDisabledTechnologies() {
