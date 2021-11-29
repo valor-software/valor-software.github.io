@@ -1,5 +1,5 @@
 {
-  "name": "common-docs",
+  "name": "@valor-software/common-docs",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.2.0",

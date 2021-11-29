@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ModalService } from "../services/modal.service";
-import { ContactModalComponent } from "../contactModal/contactModal.components";
+import { ModalService } from "./modal.service";
+import { ContactModalComponent } from "./contactModal.components";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector

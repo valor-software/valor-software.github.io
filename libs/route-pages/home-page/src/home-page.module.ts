@@ -4,19 +4,19 @@ import { RouterModule } from "@angular/router";
 import { HomePageComponent } from "./home-page.component";
 import { routes } from "./routes";
 import { SwiperModule } from "swiper/angular";
-// import { ImgHoverDirective } from '@valor-software/common-docs';
+import { CommonDocsModule } from '@valor-software/common-docs';
 
 export { HomePageComponent } from "./home-page.component";
 
 @NgModule({
     declarations: [
         HomePageComponent,
-        // ImgHoverDirective
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        SwiperModule
+        SwiperModule,
+        CommonDocsModule
     ]
 })
 export class HomePageModule { }

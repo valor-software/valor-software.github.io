@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalService } from "../services/modal.service";
+import { ModalService } from "./modal.service";
 import { Subscription } from "rxjs";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SendEmailService } from "./senEmail.service";
