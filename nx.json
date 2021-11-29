@@ -4,8 +4,7 @@
     "defaultBase": "development"
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "packageManager": "npm"
+    "defaultCollection": "@nrwl/angular"
   },
   "implicitDependencies": {
     "angular.json": "*",

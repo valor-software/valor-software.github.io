@@ -450,7 +450,6 @@ export class HomePageComponent {
     }
 
     showIndex(value: any) {
-        console.log(value.activeIndex);
         this.currentFeedBackIndex = value.activeIndex;
         this.cdr.detectChanges();
     }

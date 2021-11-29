@@ -1,6 +1,5 @@
 {
   "version": 1,
-  "defaultProject": "valor-software-site",
   "projects": {
     "common-docs": {
       "projectType": "library",
@@ -42,6 +41,55 @@
             "lintFilePatterns": [
               "libs/common-docs/src/**/*.ts",
               "libs/common-docs/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": [
+        "file-uploader"
+      ]
+    },
+    "file-uploader": {
+      "projectType": "library",
+      "root": "libs/file-uploader",
+      "sourceRoot": "libs/file-uploader/src",
+      "prefix": "valor-software-site-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/file-uploader"
+          ],
+          "options": {
+            "project": "libs/file-uploader/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/file-uploader/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/file-uploader/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/file-uploader"
+          ],
+          "options": {
+            "jestConfig": "libs/file-uploader/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/file-uploader/src/**/*.ts",
+              "libs/file-uploader/src/**/*.html"
             ]
           }
         }
@@ -197,8 +245,7 @@
       },
       "tags": [],
       "implicitDependencies": [
-        "route-pages-home-page",
-        "common-docs"
+        "route-pages-home-page"
       ]
     },
     "valor-software-site-e2e": {

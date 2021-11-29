@@ -21,6 +21,9 @@
       "@valor-software/common-docs": [
         "libs/common-docs/src/index.ts"
       ],
+      "@valor-software/file-uploader": [
+        "libs/file-uploader/src/index.ts"
+      ],
       "@valor-software/home-page": [
         "libs/route-pages/home-page/src/index.ts"
       ]

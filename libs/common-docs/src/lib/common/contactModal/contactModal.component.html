@@ -37,17 +37,12 @@
                             <p class="text-white text-sm mb-2.5">Email</p>
                             <input class="text-input" type="email" formControlName="email" placeholder="Email">
                         </div>
-                        <div class="mb-8">
+                        <div class="mb-10">
                             <p class="text-white text-sm mb-2.5">Message</p>
                             <textarea class="text-input h-36 resize-none" formControlName="message" placeholder="Type here ..."></textarea>
                         </div>
-<!--                        <div class="input-box">-->
-<!--                            <label for="uploadVR">-->
-<!--add img-->
-<!--                            </label>-->
-<!--                            <input type="file" name="uploadVR" id="uploadVR" (change)="uploadDocuments($event)" multiple/>-->
-<!--                        </div>-->
-                        <button class="btn-pink block m-auto flex" [disabled]="!form.valid" (click)="onSubmit()">Submit</button>
+                        <file-uploader></file-uploader>
+                        <button class="btn-pink block m-auto flex mt-6" [disabled]="!form.valid" (click)="onSubmit()">Submit</button>
                     </div>
                 </div>
                 <div class="flex flex-col ml-28 text-light_title_col">

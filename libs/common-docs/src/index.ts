@@ -1,1 +1,1 @@
-export * from './lib/common-docs.module';
+export * from './public_api';
