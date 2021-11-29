@@ -1,5 +1,6 @@
 {
   "version": 1,
+  "defaultProject": "valor-software-site",
   "projects": {
     "common-docs": {
       "projectType": "library",
@@ -58,6 +59,12 @@
           "outputs": [
             "dist/libs/route-pages/home-page"
           ],
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ],
           "options": {
             "project": "libs/route-pages/home-page/ng-package.json"
           },
@@ -91,7 +98,10 @@
           }
         }
       },
-      "tags": []
+      "tags": [],
+      "implicitDependencies": [
+        "common-docs"
+      ]
     },
     "valor-software-site": {
       "projectType": "application",
@@ -103,6 +113,12 @@
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": [
             "{options.outputPath}"
+          ],
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
           ],
           "options": {
             "outputPath": "dist/apps/valor-software-site",
@@ -193,8 +209,8 @@
       },
       "tags": [],
       "implicitDependencies": [
-        "common-docs",
-        "route-pages-home-page"
+        "route-pages-home-page",
+        "common-docs"
       ]
     },
     "valor-software-site-e2e": {

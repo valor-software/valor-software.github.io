@@ -8,7 +8,9 @@ import { ContactModalComponent } from "./common/contactModal/contactModal.compon
 import { ModalService } from "./common/services/modal.service";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+
 export { TopMenuComponent } from './common/top-menu/top-menu.component';
+export { ImgHoverDirective } from './common/directives/img-hover.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ export { TopMenuComponent } from './common/top-menu/top-menu.component';
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule],
   exports: [
-    TopMenuComponent
+    TopMenuComponent,
+    ImgHoverDirective
   ],
   providers: [ModalService]
 })

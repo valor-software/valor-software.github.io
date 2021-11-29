@@ -41,97 +41,129 @@ const slideModel = [
 const technologiesList = [
     {
         id: 'angular',
-        img: 'assets/img/technologies/angular.png',
+        img: 'assets/img/technologies/not_active/angular.png',
+        activeImg: 'assets/img/technologies/active/angular.png',
+        blockedImg: 'assets/img/technologies/blocked/angular.png',
         active: true,
         disabled: false
     },
     {
         id: 'react',
-        img: 'assets/img/technologies/react.png',
+        img: 'assets/img/technologies/not_active/react.png',
+        activeImg: 'assets/img/technologies/active/react.png',
+        blockedImg: 'assets/img/technologies/blocked/react.png',
         active: false,
         disabled: false
     },
     {
         id: 'react_native',
-        img: 'assets/img/technologies/react_native.png',
+        img: 'assets/img/technologies/not_active/react_native.png',
+        activeImg: 'assets/img/technologies/active/react_native.png',
+        blockedImg: 'assets/img/technologies/blocked/react_native.png',
         active: false,
         disabled: false
     },
     {
         id: 'ruby',
-        img: 'assets/img/technologies/ruby.png',
+        img: 'assets/img/technologies/not_active/ruby.png',
+        activeImg: 'assets/img/technologies/active/ruby.png',
+        blockedImg: 'assets/img/technologies/blocked/ruby.png',
         active: false,
         disabled: false
     },
     {
         id: 'vue',
-        img: 'assets/img/technologies/vue.png',
+        img: 'assets/img/technologies/not_active/vue.png',
+        activeImg: 'assets/img/technologies/active/vue.png',
+        blockedImg: 'assets/img/technologies/blocked/vue.png',
         active: false,
         disabled: false
     },
     {
         id: 'nest_js',
-        img: 'assets/img/technologies/nest_js.png',
+        img: 'assets/img/technologies/not_active/nest_js.png',
+        activeImg: 'assets/img/technologies/active/nest_js.png',
+        blockedImg: 'assets/img/technologies/blocked/nest_js.png',
         active: false,
         disabled: false
     },
     {
         id: 'python',
-        img: 'assets/img/technologies/python.png',
+        img: 'assets/img/technologies/not_active/python.png',
+        activeImg: 'assets/img/technologies/active/python.png',
+        blockedImg: 'assets/img/technologies/blocked/python.png',
         active: false,
         disabled: false
     },
     {
         id: 'go',
-        img: 'assets/img/technologies/go.png',
+        img: 'assets/img/technologies/not_active/go.png',
+        activeImg: 'assets/img/technologies/active/go.png',
+        blockedImg: 'assets/img/technologies/blocked/go.png',
         active: false,
         disabled: false
     },
     {
         id: 'ionic',
-        img: 'assets/img/technologies/ionic.png',
+        img: 'assets/img/technologies/not_active/ionic.png',
+        activeImg: 'assets/img/technologies/active/ionic.png',
+        blockedImg: 'assets/img/technologies/blocked/ionic.png',
         active: false,
         disabled: false
     },
     {
         id: 'native_script',
-        img: 'assets/img/technologies/native_script.png',
+        img: 'assets/img/technologies/not_active/native_script.png',
+        activeImg: 'assets/img/technologies/active/native_script.png',
+        blockedImg: 'assets/img/technologies/blocked/native_script.png',
         active: false,
         disabled: false
     },
     {
         id: 'google',
-        img: 'assets/img/technologies/google_cloud.png',
+        img: 'assets/img/technologies/not_active/google_cloud.png',
+        activeImg: 'assets/img/technologies/active/google_cloud.png',
+        blockedImg: 'assets/img/technologies/blocked/google_cloud.png',
         active: false,
         disabled: false
     },
     {
         id: 'firebase',
-        img: 'assets/img/technologies/firebase.png',
+        img: 'assets/img/technologies/not_active/firebase.png',
+        activeImg: 'assets/img/technologies/active/firebase.png',
+        blockedImg: 'assets/img/technologies/blocked/firebase.png',
         active: false,
         disabled: false
     },
     {
         id: 'heroku',
-        img: 'assets/img/technologies/heroku.png',
+        img: 'assets/img/technologies/not_active/heroku.png',
+        activeImg: 'assets/img/technologies/active/heroku.png',
+        blockedImg: 'assets/img/technologies/blocked/heroku.png',
         active: false,
         disabled: false
     },
     {
         id: 'aws',
-        img: 'assets/img/technologies/aws.png',
+        img: 'assets/img/technologies/not_active/aws.png',
+        activeImg: 'assets/img/technologies/active/aws.png',
+        blockedImg: 'assets/img/technologies/blocked/aws.png',
         active: false,
         disabled: false
     },
     {
         id: 'lang',
-        img: 'assets/img/technologies/lang.png',
+        img: 'assets/img/technologies/not_active/lang.png',
+        activeImg: 'assets/img/technologies/active/lang.png',
+        blockedImg: 'assets/img/technologies/blocked/lang.png',
         active: false,
         disabled: false
     },
     {
         id: 'js',
-        img: 'assets/img/technologies/java_script.png',
+        img: 'assets/img/technologies/not_active/java_script.png',
+        activeImg: 'assets/img/technologies/active/java_script.png',
+        blockedImg: 'assets/img/technologies/blocked/java_script.png',
         active: false,
         disabled: false
     }
@@ -358,7 +390,6 @@ export class HomePageComponent {
     openSourceSlides: typeof OpenSourceSlidesModel = OpenSourceSlidesModel;
     feedBackList: typeof feedBack = feedBack;
     currentFeedBackIndex = 0;
-    currentFeedBackIndex_2 = 0;
 
     constructor(
         private npmCounts: NpmStatisticService,
@@ -419,6 +450,7 @@ export class HomePageComponent {
     }
 
     showIndex(value: any) {
+        console.log(value.activeIndex);
         this.currentFeedBackIndex = value.activeIndex;
         this.cdr.detectChanges();
     }

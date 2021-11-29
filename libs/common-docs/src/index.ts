@@ -1,1 +1,1 @@
-export * from './lib/common-module.module';
+export * from './lib/common-docs.module';

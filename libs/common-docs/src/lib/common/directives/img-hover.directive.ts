@@ -1,24 +1,30 @@
-import { Directive, HostListener, ElementRef } from '@angular/core';
+import {Directive, HostListener, ElementRef, Input} from '@angular/core';
 
 @Directive(
     // eslint-disable-next-line @angular-eslint/directive-selector
     {selector: '[changeSrcOnHover]'}
 )
 export class ImgHoverDirective {
+    @Input() activeSrc = '';
+    @Input() defaultSrc = '';
+
     @HostListener('mouseout')
     onMouseLeave() {
-        const src = this.elementRef.nativeElement.getElementsByTagName('img')[0].getAttribute('src').split('_active').join('');
-        this.elementRef.nativeElement.getElementsByTagName('img')[0].setAttribute('src', src);
+        if (!this.defaultSrc) {
+            return;
+        };
+
+        this.elementRef.nativeElement.getElementsByTagName('img')[0].setAttribute('src', this.defaultSrc);
     }
 
     @HostListener('mouseover')
-    onMouseOut() {
-        const src = this.elementRef.nativeElement.getElementsByTagName('img')[0].getAttribute('src').split('.');
-        const resSrc = `${src[0]}_active.${src[1]}`;
-        this.elementRef.nativeElement.getElementsByTagName('img')[0].setAttribute('src', resSrc);
+    onMouseOver() {
+        if (!this.activeSrc) {
+            return;
+        };
+
+        this.elementRef.nativeElement.getElementsByTagName('img')[0].setAttribute('src', this.activeSrc);
     }
 
     constructor(private elementRef: ElementRef) {}
-
-
 }

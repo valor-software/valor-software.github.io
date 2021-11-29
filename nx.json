@@ -1,18 +1,20 @@
 {
   "npmScope": "valor-software-site-base",
   "affected": {
-    "defaultBase": "main"
+    "defaultBase": "development"
   },
   "cli": {
     "defaultCollection": "@nrwl/angular",
     "packageManager": "npm"
   },
   "implicitDependencies": {
+    "angular.json": "*",
     "package.json": {
       "dependencies": "*",
       "devDependencies": "*"
     },
-    ".eslintrc.json": "*"
+    ".eslintrc.json": "*",
+    "nx.json": "*"
   },
   "tasksRunnerOptions": {
     "cloud": {
