@@ -3,7 +3,7 @@ import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
 import { SwiperEvents } from 'swiper/types';
 import { SwiperComponent } from "swiper/angular";
 import { NpmStatisticService } from "./getNpmStatistic.service";
-// SwiperCore.use([Pagination]);
+SwiperCore.use([Pagination]);
 
 const slideModel = [
     {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 import { HomePageComponent } from "./home-page.component";
 import { routes } from "./routes";
 import { SwiperModule } from "swiper/angular";
@@ -19,7 +19,8 @@ export { HomePageComponent } from "./home-page.component";
         SwiperModule,
         CommonDocsModule
     ],
-    providers: [],
-    entryComponents: [HomePageComponent]
+    providers: []
 })
-export class HomePageModule { }
+export class HomePageModule {
+    static routes: Routes = routes;
+}
