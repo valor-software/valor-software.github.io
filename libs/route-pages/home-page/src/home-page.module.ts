@@ -5,6 +5,7 @@ import { HomePageComponent } from "./home-page.component";
 import { routes } from "./routes";
 import { SwiperModule } from "swiper/angular";
 import { CommonDocsModule } from '@valor-software/common-docs';
+import { NpmStatisticService } from './getNpmStatistic.service';
 
 export { HomePageComponent } from "./home-page.component";
 
@@ -17,6 +18,7 @@ export { HomePageComponent } from "./home-page.component";
         RouterModule.forChild(routes),
         SwiperModule,
         CommonDocsModule
-    ]
+    ],
+    providers: [NpmStatisticService]
 })
 export class HomePageModule { }

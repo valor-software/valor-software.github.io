@@ -9,6 +9,7 @@ import { ModalService } from "./modal.service";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploaderModule } from '@valor-software/file-uploader';
+import { SendEmailService } from './senEmail.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,6 @@ import { FileUploaderModule } from '@valor-software/file-uploader';
     ImgHoverDirective,
     PopoverComponent
   ],
-  providers: [ModalService]
+  providers: [ModalService, SendEmailService]
 })
 export class CommonDocsModule {}

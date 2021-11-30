@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'platform',
 })
 export class NpmStatisticService {
 
