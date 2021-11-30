@@ -245,7 +245,8 @@
       },
       "tags": [],
       "implicitDependencies": [
-        "route-pages-home-page"
+        "route-pages-home-page",
+        "common-docs"
       ]
     },
     "valor-software-site-e2e": {
