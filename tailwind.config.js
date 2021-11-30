@@ -51,12 +51,14 @@ module.exports = {
         'xs': '0.65rem',
         'large': '2.5rem',
         '64': '4rem',
-        '32': '2rem'
+        '32': '2rem',
+        'title': '200px'
       },
       minWidth: {
         '585': '585px',
         '1110': '1110px',
-        '450': '450px'
+        '450': '450px',
+        '1000': '1000px'
       },
       maxWidth: {
         '200': '200px',
@@ -75,7 +77,8 @@ module.exports = {
         '30%': '30%'
       },
       maxHeight: {
-        '700': '700px'
+        '700': '700px',
+        '90%': '90%'
       },
       boxShadow: {
         inner_radio_btn: 'inset 0 0 0 3px #272727'
@@ -98,7 +101,8 @@ module.exports = {
         '35%': '35%'
       },
       minHeight: {
-        '725': '725px'
+        '725': '725px',
+        '525': '525px'
       }
     },
   },

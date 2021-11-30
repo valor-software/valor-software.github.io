@@ -10,13 +10,15 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploaderModule } from '@valor-software/file-uploader';
 import { SendEmailService } from './senEmail.service';
+import { ResultModalComponent } from './result-modal.component';
 
 @NgModule({
   declarations: [
     PopoverComponent,
     TopMenuComponent,
     ImgHoverDirective,
-    ContactModalComponent
+    ContactModalComponent,
+    ResultModalComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule],
   exports: [

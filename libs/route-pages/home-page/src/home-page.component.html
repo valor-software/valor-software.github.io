@@ -4,7 +4,7 @@
             <div class="flex flex-col justify-between items-start">
                 <h1 class="text-light_title_col text-64 leading-66 mb-12 font-bold">Led<br> by a Google<br>Developer Expert</h1>
                 <p class="leading-normal text-grey_font_col mb-8">Valor Software is more than just a software development company. We’re a team of people driven by innovation who pull off the impossible with the blend of the brightest technological minds and edge technologies.</p>
-                <button class="btn-pink flex justify-between items-baseline">Our client’s feedback <img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt=""></button>
+                <button class="btn-pink flex justify-between items-baseline" routerLink="." fragment="feedback">Our client’s feedback <img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt=""></button>
             </div>
         </div>
         <div class="img-filter flex-grow">
@@ -26,7 +26,7 @@
 </section>
 
 <section class="landing-section">
-    <div class="pb-16 flex justify-items-end"><img src="assets/img/titles/priorities.svg" alt="title priorities"></div>
+    <h1 class="main-title">Priorities</h1>
     <div>
         <swiper
                 [config]="swiperConfig"
@@ -48,41 +48,41 @@
     </div>
 </section>
 
-<!--<section class="landing-section">-->
-<!--    <div class="pb-16"><img src="assets/img/titles/priorities.svg" alt="title technologies"></div>-->
-<!--    <div class="container flex justify-between flex-col lg:flex-row">-->
-<!--        <div class="lg:bg-grey xl:py-16 xl:px-7 w-full max-w-455 bg-transparent mx-auto lg:mr-8">-->
-<!--            <div class="flex justify-between flex-wrap items-start">-->
-<!--                <div-->
-<!--                        *ngFor="let technology of technologiesList; index as i"-->
-<!--                        class="border-2 transition-all border-transparent max-w-19% p-2.5 flex items-center mb-5 lg:mb-9"-->
-<!--                        [ngClass]="{'active border-pink': technology.active, 'mr-5 xl:mr-7': !checkIndex(i), 'cursor-pointer': !technology.disabled, 'cursor-not-allowed': technology.disabled}" (click)="sortProjects(technology.id)"-->
-<!--                        changeSrcOnHover [defaultSrc]="technology.disabled ? '' : technology.img" [activeSrc]="technology.disabled ? '' : technology.activeImg"-->
-<!--                >-->
-<!--                    <img [src]="technology.disabled ? technology.blockedImg : technology.active ? technology.activeImg : technology.img" [alt]="technology.id" class="">-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--        </div>-->
-<!--        <div class="lg:max-w-735 w-full flex flex-col justify-between max-w-455 mx-auto">-->
-<!--            <div class="flex flex-wrap justify-between">-->
-<!--                <div *ngFor="let project of sortedProjects"  class="lg:w-48% w-full relative  mb-8 cursor-pointer border-grey_bg border-2 hover:border-pink">-->
-<!--                    <img [src]="project.img" [alt]="project.name" class="w-full h-full object-cover">-->
-<!--                    <div class="absolute inset-0 flex flex-col justify-end p-6 w-full h-full" [style.background]="'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)'">-->
-<!--                        <p class="font-bold text-light_title_col text-xl mb-2 text-center lg:text-left">{{project.name}}</p>-->
-<!--                        <div class="hidden lg:block">-->
-<!--                            <span *ngFor="let item of project.labels" class="text-light_title_col text-sm px-2 border border-light_title_col rounded-xl mr-2">{{item}}</span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <button class="btn-pink flex justify-between items-baseline mx-auto">Visit portfolio <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
 <section class="landing-section">
-    <div class="pb-16"><img src="assets/img/titles/priorities.svg" alt="title technologies"></div>
+    <h1 class="main-title">Technology</h1>
+    <div class="container flex justify-between flex-col lg:flex-row">
+        <div class="lg:bg-grey xl:py-16 xl:px-7 w-full max-w-455 bg-transparent mx-auto lg:mr-8">
+            <div class="flex justify-between flex-wrap items-start">
+                <div
+                        *ngFor="let technology of technologiesList; index as i"
+                        class="border-2 transition-all border-transparent max-w-19% p-2.5 flex items-center mb-5 lg:mb-9"
+                        [ngClass]="{'active border-pink': technology.active, 'mr-5 xl:mr-7': !checkIndex(i), 'cursor-pointer': !technology.disabled, 'cursor-not-allowed': technology.disabled}" (click)="sortProjects(technology.id)"
+                        changeSrcOnHover [defaultSrc]="technology.disabled ? '' : technology.img" [activeSrc]="technology.disabled ? '' : technology.activeImg"
+                >
+                    <img [src]="technology.disabled ? technology.blockedImg : technology.active ? technology.activeImg : technology.img" [alt]="technology.id" class="">
+                </div>
+            </div>
+
+        </div>
+        <div class="lg:max-w-735 w-full flex flex-col justify-between max-w-455 mx-auto">
+            <div class="flex flex-wrap justify-between">
+                <div *ngFor="let project of sortedProjects"  class="lg:w-48% w-full relative  mb-8 cursor-pointer border-grey_bg border-2 hover:border-pink">
+                    <img [src]="project.img" [alt]="project.name" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 flex flex-col justify-end p-6 w-full h-full" [style.background]="'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)'">
+                        <p class="font-bold text-light_title_col text-xl mb-2 text-center lg:text-left">{{project.name}}</p>
+                        <div class="hidden lg:block">
+                            <span *ngFor="let item of project.labels" class="text-light_title_col text-sm px-2 border border-light_title_col rounded-xl mr-2">{{item}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-pink flex justify-between items-baseline mx-auto">Visit portfolio <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
+        </div>
+    </div>
+</section>
+<section class="landing-section">
+    <h1 class="main-title">Services</h1>
     <div class="container flex justify-between flex-col flex-wrap lg:flex-row">
         <div *ngFor="let serv of services" class="lg:w-48% bg-grey py-7 px-12 flex justify-between flex-col-reverse md:flex-row font-bold mb-8 w-full items-center">
             <p class="text-light_title_col md:text-large block mr-3.5 flex items-center mt-6 md:mt-0 text-xl md:leading-44">{{serv.title}}</p>
@@ -92,7 +92,7 @@
 </section>
 
 <section class="landing-section">
-    <div class="pb-16"><img src="assets/img/titles/priorities.svg" alt="title technologies"></div>
+    <h1 class="main-title">Open Source</h1>
     <div class="container flex justify-between flex-col flex-wrap lg:flex-row">
         <h3 class="md:text-large text-2xl text-light_title_col leading-44 mb-8 w-full"><span>Proudly</span> contributing<br><span>to</span> open source</h3>
         <p class="max-w-50% text-grey_font_col">We try to maintain equilibrium between the value we take from open-source and what we give back. So we proudly sponsor promising technologies, contribute with our knowledge to make tools handier, and build open code solutions to ease engineers’ daily routines.</p>
@@ -116,7 +116,8 @@
                         <img [src]="slide.img" [alt]="slide.name + 'icon'">
                         <ng-container *ngIf="slide.downloads">
                             <p class="text-xl">Monthly downloads</p>
-                            <p class="text-large">{{slide.downloads | number}}</p>
+                            <p class="text-large" *ngIf="!slide.npmLink">{{slide.downloads | number}}</p>
+                            <p class="text-large cursor-pointer" *ngIf="slide.npmLink"><a [href]="slide.npmLink" target="_blank">{{slide.downloads | number}}</a></p>
                         </ng-container>
                     </div>
                 </div>
@@ -125,21 +126,21 @@
     </div>
 </section>
 
-<section class="landing-section">
-    <div class="pb-16"><img src="assets/img/titles/priorities.svg" alt="title technologies"></div>
+<section class="landing-section" id="feedback">
+    <h1 class="main-title">Feedback</h1>
     <div class="container flex justify-between flex-col flex-wrap lg:flex-row">
-        <swiper [config]="feedBackCarousel" #swiperRef (activeIndexChange)="showIndex($event)">
+        <swiper [config]="feedBackCarousel" #swiperRef (activeIndexChange)="showIndex($event)" style="width: 100%">
             <ng-template swiperSlide *ngFor="let slide of feedBackList">
                 <div class="w-full">
                     <div class="flex justify-between">
                         <div class="w-65% flex flex-col justify-between">
-                            <p class="font-bold text-large text-feedback_font_col leading-44 mb-8">{{slide.text}}</p>
+                            <p class="text-large text-feedback_font_col leading-44 mb-8">{{slide.text}}</p>
                             <div class="w-full flex justify-between">
                                 <p>
                                     <span class="text-xl text-light_title_col">{{slide.author}}</span><br>
                                     <span class="text-grey_font_col">{{slide.position}}</span>
                                 </p>
-                                <p>{{slide.project}}</p>
+<!--                                <p>{{slide.project}}</p>-->
                             </div>
                         </div>
                         <div class="w-35% ml-10 flex items-start">

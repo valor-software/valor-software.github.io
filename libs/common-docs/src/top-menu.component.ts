@@ -13,8 +13,7 @@ export class TopMenuComponent {
 
     constructor(
         private modalService: ModalService<ContactModalComponent>
-    ) {
-    }
+    ) {}
 
     toggleClientsRoute(value?: boolean) {
         this.showClientsRoute = value !== undefined ? !!value : !this.showClientsRoute;

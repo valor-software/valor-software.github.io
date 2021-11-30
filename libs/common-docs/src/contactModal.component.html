@@ -1,14 +1,14 @@
-<div class="contact-modal overflow-y-auto" [class.opacity-100]="state" [class.opacity-0]="!state" style="transition: opacity ease-in .3s">
+<div class="contact-modal overflow-y-hidden max-h-screen" [class.opacity-100]="state" [class.opacity-0]="!state" style="transition: opacity ease-in .3s">
     <div class="backdrop backdrop_show grey" (click)="closeModal()"></div>
 
-    <div class="bg-grey_2727_bg mx-auto rounded z-10 p-8 max-w-90% lg:max-w-1010 absolute top-5 lg:relative lg:top-0 mb-4">
+    <div class="pink-scroll bg-grey_2727_bg mx-auto rounded z-10 p-8 max-w-90% lg:max-w-1010 absolute top-5 lg:relative lg:top-0 mb-4 max-h-90% overflow-y-auto overflow-x-hidden">
         <div class="w-full justify-start flex md:justify-end">
             <img src="assets/img/icons/close.png" alt="close icon" class="cursor-pointer" (click)="closeModal()">
         </div>
-        <div>
+        <div *ngIf="!showSuccess && !showError">
             <h3 class="font-bold text-light_title_col text-large mb-10 leading-44">We'd love to hear<br>from you!</h3>
             <div class="flex justify-between">
-                <div class="md:min-w-45%0">
+                <div class="md:min-w-45% max-w-50%">
                     <div [formGroup]="form">
                         <p class="text-dar_grey_font_col text-xl mb-6">How can we help you?</p>
                         <div class="flex flex-wrap justify-between mb-8">
@@ -37,11 +37,12 @@
                             <p class="text-white text-sm mb-2.5">Email</p>
                             <input class="text-input" type="email" formControlName="email" placeholder="Email">
                         </div>
-                        <div class="mb-10">
+                        <div>
                             <p class="text-white text-sm mb-2.5">Message</p>
                             <textarea class="text-input h-36 resize-none" formControlName="message" placeholder="Type here ..."></textarea>
                         </div>
-                        <file-uploader></file-uploader>
+                        <file-uploader (filesChanged)="addFiles($event)"></file-uploader>
+
                         <button class="btn-pink block m-auto flex mt-6" [disabled]="!form.valid" (click)="onSubmit()">Submit</button>
                     </div>
                 </div>
@@ -55,7 +56,9 @@
                     <img class="max-w-200 mt-10" src="assets/img/bg-img/get_in_touch.svg" alt="get in touch img">
                 </div>
             </div>
+    </div>
+        <div *ngIf="showSuccess || showError" class="w-full mb-4 h-full lg:min-h-525 lg:min-w-1000 flex justify-center items-center">
+            <result-modal [type]="showSuccess ? 'success' : 'error'"></result-modal>
         </div>
     </div>
-    <div></div>
 </div>

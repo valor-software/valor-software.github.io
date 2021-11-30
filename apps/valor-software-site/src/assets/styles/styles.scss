@@ -7,6 +7,25 @@
 
 body, html {
   @apply bg-grey_bg;
+  scroll-behavior: smooth;
+}
+
+.pink-scroll {
+
+  &::-webkit-scrollbar {
+    width: 1px;
+    height: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #E24E63;
+    border-radius: 10%;
+    border: 0px solid transparent;
+  }
 }
 
 

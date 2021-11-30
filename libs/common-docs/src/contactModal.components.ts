@@ -18,6 +18,9 @@ export class ContactModalComponent {
         message: new FormControl('', [Validators.required]),
     });
     data?: FormData;
+    files?: File[];
+    showSuccess = false;
+    showError = false;
 
     formData = [
         {
@@ -69,35 +72,27 @@ export class ContactModalComponent {
         this.modalService.close();
     }
 
-    showForm() {
-        console.log(this.form.value);
-    }
-
     onSubmit() {
         this.sendEmailServ.sendEmail(this.form.value).subscribe(res => {
             this.form.reset();
-            this.closeModal();
+            this.showSuccessModal();
         }, error => {
+            this.showErrorModal();
             console.log(error);
         });
     }
 
-    // uploadDocuments(event: Event) {
-    //     this.data = new FormData();
-    //     const files = (event.target as HTMLInputElement).files;
-    //     if (files?.length) {
-    //         for (const filesKey in files) {
-    //             this.data.append('file', files[filesKey]);
-    //         }
-    //     }
-    //
-    //     this.data.append('email', this.form.get('email')?.value || '');
-    //     this.data.append('message', this.form.get('message')?.value || '');
-    //
-    //
-    //     // this.vhrFormData = new FormData();
-    //     // const file: File = <File>event.target.files[0];
-    //     // this.vhrFormData.append('file', file);
-    //     // this.vhrFormData.append('DocumentType', 'RegistrationDocument');
-    // }
-}
+    addFiles(files: File[] | []) {
+        this.files = files;
+    }
+
+    showSuccessModal() {
+        this.showSuccess = true;
+        this.showError = false;
+    }
+
+    showErrorModal() {
+        this.showSuccess = false;
+        this.showError = true;
+    }
+ }

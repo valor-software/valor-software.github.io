@@ -1,0 +1,17 @@
+<!--<div class="contact-modal overflow-y-auto" [class.opacity-100]="state" [class.opacity-0]="!state" style="transition: opacity ease-in .3s">-->
+<!--    <div class="backdrop backdrop_show grey" (click)="closeModal()"></div>-->
+
+<!--    <div class="bg-grey_2727_bg mx-auto rounded z-10 p-8 max-w-90% lg:min-w-1000 lg:max-w-1010 absolute top-5 lg:relative lg:top-0 mb-4 h-full max-h-525">-->
+<!--        <div class="w-full justify-start flex md:justify-end">-->
+<!--            <img src="assets/img/icons/close.png" alt="close icon" class="cursor-pointer" (click)="closeModal()">-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--    <div></div>-->
+<!--</div>-->
+
+<div class="w-full h-full flex flex-col justify-center items-center text-center">
+    <img [src]="type === 'success' ? 'assets/img/bg-img/success.svg' : 'assets/img/bg-img/error.svg'" alt="">
+    <p class="text-white text-large font-bold mb-4">{{type === 'success' ? 'Success' : 'Something went wrong!'}}</p>
+    <p class="text-white text-xl">{{type === 'success' ? 'Your message has been successfully sent!' : 'We’re sorry for this, please try again later!'}}</p>
+</div>

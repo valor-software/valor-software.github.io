@@ -1,5 +1,7 @@
-import { Component, ViewChild, ChangeDetectorRef} from '@angular/core';
+import {Component, ViewChild, ChangeDetectorRef, AfterViewInit, AfterContentInit} from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
+import { Router } from '@angular/router';
 import { SwiperEvents } from 'swiper/types';
 import { SwiperComponent } from "swiper/angular";
 import { NpmStatisticService } from "./getNpmStatistic.service";
@@ -267,6 +269,7 @@ const OpenSourceSlidesModel = [
         name: 'ngx-bootstrap',
         img: 'assets/img/bg-img/open-source/ngx-bootstrap.svg',
         link: 'https://valor-software.com/ngx-bootstrap/#/',
+        npmLink: 'https://www.npmjs.com/package/ngx-bootstrap',
         downloads: 0
     },
     {
@@ -392,26 +395,31 @@ export class HomePageComponent {
     currentFeedBackIndex = 0;
 
     constructor(
-        // private npmCounts: NpmStatisticService,
-        private cdr: ChangeDetectorRef
+        private npmCounts: NpmStatisticService,
+        private cdr: ChangeDetectorRef,
+        private router: Router,
+        private viewportScroller: ViewportScroller
     ) {
         this.sortedProjectsAmount = window.innerWidth >= 768 ? 4 : 2;
         this.initDisabledTechnologies();
         this.sortProjects('angular');
-        // this.setNpmStatistic();
+        if (this.router.parseUrl(this.router.url).fragment) {
+            this.router.navigate(['.']);
+        }
+        this.setNpmStatistic();
     }
 
-    // setNpmStatistic() {
-    //     this.npmCounts.getPackageDownloads('ngx-bootstrap', 'last-month').subscribe(res => {
-    //         this.openSourceSlides?.map(item => {
-    //             if (item.name === 'ngx-bootstrap') {
-    //                 item.downloads = res.downloads;
-    //             }
-    //         });
-    //     }, error => {
-    //         console.log('error', error);
-    //     });
-    // }
+    setNpmStatistic() {
+        this.npmCounts.getPackageDownloads('ngx-bootstrap', 'last-month').subscribe(res => {
+            this.openSourceSlides?.map(item => {
+                if (item.name === 'ngx-bootstrap') {
+                    item.downloads = res.downloads;
+                }
+            });
+        }, error => {
+            console.log('error', error);
+        });
+    }
 
     initDisabledTechnologies() {
         this.technologiesList.forEach(techno => {
@@ -450,7 +458,7 @@ export class HomePageComponent {
     }
 
     showIndex(value: any) {
-        this.currentFeedBackIndex = value.activeIndex;
+        this.currentFeedBackIndex = value.activeIndex > this.feedBackList.length ? 1 : value.activeIndex < 1 ? this.feedBackList.length : value.activeIndex;
         this.cdr.detectChanges();
     }
 }

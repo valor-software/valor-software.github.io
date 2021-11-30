@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
     templateUrl: './file-uploader.component.html'
 })
 export class FileUploaderComponent {
+    @Output() filesChanged: EventEmitter<File[]> = new EventEmitter<File[]>();
+
     files: File[] = [];
 
     onFileChange(event: Event) {
@@ -26,11 +28,16 @@ export class FileUploaderComponent {
         if (files.length) {
             this.files = files;
         }
-        console.log(this.files);
+        this.filesChanged.emit(this.files);
     }
 
-    showEvent(event: File[]) {
+    addFiles(event: File[]) {
         this.files = event;
-        console.log(this.files);
+        this.filesChanged.emit(this.files);
+    }
+
+    removeFile(file: File) {
+        this.files = this.files.filter(item => item !== file);
+        this.filesChanged.emit(this.files);
     }
 }

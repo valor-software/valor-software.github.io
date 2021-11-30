@@ -1,10 +1,10 @@
-<div>
-    <div *ngIf="files.length">
-        <file *ngFor="let file of files" [file]="file"></file>
+<div class="mt-6">
+    <div *ngIf="files.length" class="flex flex-wrap">
+        <file *ngFor="let file of files" [file]="file" (remove)="removeFile($event)"></file>
     </div>
     <div
             class="relative w-full border-dashed border border-dar_grey_font_col hover:border-pink py-3 flex justify-center items-center text-dar_grey_font_col text-sm rounded"
-            fileDrag (files)="showEvent($event)"
+            fileDrag (files)="addFiles($event)"
             style="transition: all ease .3s"
     >
         <input type="file" multiple (change)="onFileChange($event)" class="opacity-0 absolute inset-0 w-full h-full cursor-pointer"/>

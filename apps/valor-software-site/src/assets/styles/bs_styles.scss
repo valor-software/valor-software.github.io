@@ -11,6 +11,10 @@
   }
 }
 
+.main-title {
+  @apply font-bold text-dark_title_col text-title;
+}
+
 .container {
   @apply w-11/12 lg:w-1225 mx-auto;
 }
