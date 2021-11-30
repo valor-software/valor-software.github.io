@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
 import { AppComponent } from './app.component';
 import { CommonDocsModule } from '@valor-software/common-docs';
-import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,7 @@ import { LocationStrategy, HashLocationStrategy} from '@angular/common';
     RouterModule.forRoot(routes, {useHash: true}),
     CommonDocsModule
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
