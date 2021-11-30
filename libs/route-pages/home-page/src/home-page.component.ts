@@ -392,26 +392,26 @@ export class HomePageComponent {
     currentFeedBackIndex = 0;
 
     constructor(
-        private npmCounts: NpmStatisticService,
+        // private npmCounts: NpmStatisticService,
         private cdr: ChangeDetectorRef
     ) {
         this.sortedProjectsAmount = window.innerWidth >= 768 ? 4 : 2;
         this.initDisabledTechnologies();
         this.sortProjects('angular');
-        this.setNpmStatistic();
+        // this.setNpmStatistic();
     }
 
-    setNpmStatistic() {
-        this.npmCounts.getPackageDownloads('ngx-bootstrap', 'last-month').subscribe(res => {
-            this.openSourceSlides?.map(item => {
-                if (item.name === 'ngx-bootstrap') {
-                    item.downloads = res.downloads;
-                }
-            });
-        }, error => {
-            console.log('error', error);
-        });
-    }
+    // setNpmStatistic() {
+    //     this.npmCounts.getPackageDownloads('ngx-bootstrap', 'last-month').subscribe(res => {
+    //         this.openSourceSlides?.map(item => {
+    //             if (item.name === 'ngx-bootstrap') {
+    //                 item.downloads = res.downloads;
+    //             }
+    //         });
+    //     }, error => {
+    //         console.log('error', error);
+    //     });
+    // }
 
     initDisabledTechnologies() {
         this.technologiesList.forEach(techno => {
