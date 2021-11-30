@@ -19,6 +19,7 @@ export { HomePageComponent } from "./home-page.component";
         SwiperModule,
         CommonDocsModule
     ],
-    providers: []
+    providers: [],
+    entryComponents: [HomePageComponent]
 })
 export class HomePageModule { }
