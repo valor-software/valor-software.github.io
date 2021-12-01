@@ -447,4 +447,12 @@ export class TestComponent {
         this.currentFeedBackIndex = value.activeIndex > this.feedBackList.length ? 1 : value.activeIndex < 1 ? this.feedBackList.length : value.activeIndex;
         this.cdr.detectChanges();
     }
+
+    nextSlide() {
+        this.swiperRef?.swiperRef.slideNext();
+    }
+
+    prevSlide() {
+        this.swiperRef?.swiperRef.slidePrev();
+    }
 }
