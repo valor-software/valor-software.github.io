@@ -344,7 +344,7 @@ const feedBack = [
     templateUrl: './home-page.component.html'
 })
 export class HomePageComponent {
-    // @ViewChild("swiperRef", { static: false }) swiperRef?: SwiperComponent;
+    @ViewChild("swiperRef", { static: false }) swiperRef?: SwiperComponent;
 
     slides: typeof slideModel = slideModel;
     swiperConfig: SwiperOptions = {
@@ -449,13 +449,13 @@ export class HomePageComponent {
         }
     }
 
-    // nextSlide() {
-    //     this.swiperRef?.swiperRef.slideNext();
-    // }
-    //
-    // prevSlide() {
-    //     this.swiperRef?.swiperRef.slidePrev();
-    // }
+    nextSlide() {
+        this.swiperRef?.swiperRef.slideNext();
+    }
+
+    prevSlide() {
+        this.swiperRef?.swiperRef.slidePrev();
+    }
 
     showIndex(value: any) {
         this.currentFeedBackIndex = value.activeIndex > this.feedBackList.length ? 1 : value.activeIndex < 1 ? this.feedBackList.length : value.activeIndex;
