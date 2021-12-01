@@ -448,6 +448,11 @@ export class TestComponent {
         this.cdr.detectChanges();
     }
 
+    checkIndex(index: number): boolean {
+        index++;
+        return !!(index && !(index % 4));
+    }
+
     nextSlide() {
         this.swiperRef?.swiperRef.slideNext();
     }
