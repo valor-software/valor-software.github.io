@@ -344,6 +344,8 @@ const feedBack = [
     templateUrl: './test.component.html'
 })
 export class TestComponent {
+    @ViewChild("swiperRef", { static: false }) swiperRef?: SwiperComponent;
+
     slides: typeof slideModel = slideModel;
     swiperConfig: SwiperOptions = {
         slidesPerView: 1,

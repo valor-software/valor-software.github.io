@@ -1,1 +1,33 @@
-THERE THERE THERE
+<section class="landing-section" id="feedback">
+    <h1 class="main-title">Feedback</h1>
+    <div class="container flex justify-between flex-col flex-wrap lg:flex-row">
+        <swiper [config]="feedBackCarousel" #swiperRef (activeIndexChange)="showIndex($event)" style="width: 100%">
+            <ng-template swiperSlide *ngFor="let slide of feedBackList">
+                <div class="w-full">
+                    <div class="flex justify-between">
+                        <div class="w-65% flex flex-col justify-between">
+                            <p class="text-large text-feedback_font_col leading-44 mb-8">{{slide.text}}</p>
+                            <div class="w-full flex justify-between">
+                                <p>
+                                    <span class="text-xl text-light_title_col">{{slide.author}}</span><br>
+                                    <span class="text-grey_font_col">{{slide.position}}</span>
+                                </p>
+                                <!--                                <p>{{slide.project}}</p>-->
+                            </div>
+                        </div>
+                        <div class="w-35% ml-10 flex items-start">
+                            <img  [src]="slide.img" alt="" class="w-full object-contain" style="max-width: 430px; max-height: 430px">
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </swiper>
+<!--        <div class="flex items-center mt-14">-->
+<!--            <div class="light-arrow big cursor-pointer bold grey" (click)="prevSlide()" style="margin:0; transform: rotate(225deg)"></div>-->
+<!--            <p class="text-light_title_col text-xl mx-5">-->
+<!--                <span>{{currentFeedBackIndex >= 10 ? currentFeedBackIndex : '0' + currentFeedBackIndex}}</span>/<span class="opacity-30">{{feedBackList.length >= 10 ? feedBackList.length : '0' + feedBackList.length}}</span>-->
+<!--            </p>-->
+<!--            <div class="light-arrow big cursor-pointer bold" (click)="nextSlide()" style="margin:0; transform: rotate(45deg)"></div>-->
+<!--        </div>-->
+    </div>
+</section>
