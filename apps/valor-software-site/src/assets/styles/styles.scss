@@ -6,7 +6,7 @@
 @import 'bs_styles';
 
 body, html {
-  @apply bg-grey_bg;
+  @apply bg-grey_bg h-full;
   scroll-behavior: smooth;
 }
 

@@ -12,7 +12,7 @@
 }
 
 .main-title {
-  @apply font-bold text-dark_title_col text-title;
+  @apply font-bold text-dark_title_col text-56 xl:text-title lg:text-150 lg:mb-10 mb-6;
 }
 
 .container {
@@ -149,7 +149,7 @@
 }
 
 .landing-section {
-  @apply pt-16 pb-12;
+  @apply lg:pt-16 lg:pb-12 pb-16;
 }
 
 .img-filter {
@@ -165,7 +165,8 @@
   @apply w-full h-full flex flex-col-reverse;
 
   .swiper-slide {
-    @apply bg-grey flex md:flex-row justify-between h-auto md:p-10 px-4 py-6 items-center flex-col-reverse;
+    @apply bg-grey flex md:flex-row justify-between h-auto lg:p-10 px-4 py-6 items-center flex-col-reverse;
+    height: fit-content;
   }
 
   .swiper-pagination {

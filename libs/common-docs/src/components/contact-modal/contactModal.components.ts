@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ModalService } from "./modal.service";
+import { ModalService } from "../../services/modal.service";
 import { Subscription } from "rxjs";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SendEmailService } from "./senEmail.service";
+import { SendEmailService } from "../../services/senEmail.service";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector

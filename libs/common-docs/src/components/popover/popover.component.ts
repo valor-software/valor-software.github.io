@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PopoverStructure, PopoverStructureType } from "./popover.model";
+import { PopoverStructure, PopoverStructureType } from "../../models/popover.model";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
