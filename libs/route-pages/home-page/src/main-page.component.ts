@@ -340,10 +340,10 @@ const feedBack = [
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'test',
-    templateUrl: './test.component.html'
+    selector: 'main-page',
+    templateUrl: './main-page.component.html'
 })
-export class TestComponent {
+export class MainPageComponent {
     @ViewChild("swiperRef", { static: false }) swiperRef?: SwiperComponent;
 
     slides: typeof slideModel = slideModel;

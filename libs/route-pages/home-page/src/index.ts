@@ -1,2 +1,2 @@
-export * from './home-page.module';
+export * from './main-page.module';
         
