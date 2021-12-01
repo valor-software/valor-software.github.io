@@ -391,4 +391,53 @@ export class TestComponent {
     openSourceSlides: typeof OpenSourceSlidesModel = OpenSourceSlidesModel;
     feedBackList: typeof feedBack = feedBack;
     currentFeedBackIndex = 0;
+
+    constructor(
+        private npmCounts: NpmStatisticService,
+        private cdr: ChangeDetectorRef,
+        private router: Router
+    ) {
+        this.sortedProjectsAmount = window.innerWidth >= 768 ? 4 : 2;
+        this.initDisabledTechnologies();
+        this.sortProjects('angular');
+        if (this.router.parseUrl(this.router.url).fragment) {
+            this.router.navigate(['.']);
+        }
+        this.setNpmStatistic();
+    }
+
+    setNpmStatistic() {
+        this.npmCounts.getPackageDownloads('ngx-bootstrap', 'last-month').subscribe(res => {
+            this.openSourceSlides?.map(item => {
+                if (item.name === 'ngx-bootstrap') {
+                    item.downloads = res.downloads;
+                }
+            });
+        }, error => {
+            console.log('error', error);
+        });
+    }
+
+    initDisabledTechnologies() {
+        this.technologiesList.forEach(techno => {
+            const res = this.projectList.find(item => item.labels.includes(techno.id));
+            if (!res) {
+                techno.disabled = true;
+            }
+        });
+    }
+
+    setActiveTechnology(id: string): boolean {
+        this.technologiesList.map( item => {
+            item.active = !item.disabled && item.id === id;
+        });
+
+        return this.technologiesList.some(item => item.active);
+    }
+
+    sortProjects(id: string): void {
+        if (this.setActiveTechnology(id)) {
+            this.sortedProjects = this.projectList?.filter(item => item.labels.includes(id))?.slice(0, this.sortedProjectsAmount);
+        }
+    }
 }

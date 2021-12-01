@@ -397,8 +397,7 @@ export class HomePageComponent {
     constructor(
         private npmCounts: NpmStatisticService,
         private cdr: ChangeDetectorRef,
-        private router: Router,
-        private viewportScroller: ViewportScroller
+        private router: Router
     ) {
         this.sortedProjectsAmount = window.innerWidth >= 768 ? 4 : 2;
         this.initDisabledTechnologies();
