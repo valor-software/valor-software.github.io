@@ -442,4 +442,9 @@ export class TestComponent {
             this.sortedProjects = this.projectList?.filter(item => item.labels.includes(id))?.slice(0, this.sortedProjectsAmount);
         }
     }
+
+    showIndex(value: any) {
+        this.currentFeedBackIndex = value.activeIndex > this.feedBackList.length ? 1 : value.activeIndex < 1 ? this.feedBackList.length : value.activeIndex;
+        this.cdr.detectChanges();
+    }
 }
