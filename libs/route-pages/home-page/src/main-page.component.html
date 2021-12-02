@@ -16,13 +16,13 @@
                 </div>
                 <div class="lg:flex items-end mb-32 ml-16 hidden">
                     <div class="w-min">
-                        <a href="" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/linkedin.svg" alt="linkedin icon"></a>
-                        <a href="" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/instagram.svg" alt="instagram icon"></a>
-                        <a href="" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/twitter.svg" alt="twitter icon"></a>
-                        <a href="" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" [class.mb-6]="showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/dribble.svg" alt="dribble icon"></a>
-                        <a href="" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.mb-6]="showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/behance.svg" alt="behance icon"></a>
-                        <a href="" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.mb-6]="showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/facebook.svg" alt="facebook icon"></a>
-                        <a href="" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.mb-6]="showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/youtube.svg" alt="youtube icon"></a>
+                        <a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/linkedin.svg" alt="linkedin icon"></a>
+                        <a href="https://www.instagram.com/valor.software/" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/instagram.svg" alt="instagram icon"></a>
+                        <a href="https://twitter.com/ValorSoft" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/twitter.svg" alt="twitter icon"></a>
+                        <a href="https://dribbble.com/valor-labs" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" [class.mb-6]="showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/dribble.svg" alt="dribble icon"></a>
+                        <a href="https://www.behance.net/ValorSoftware" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.mb-6]="showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/behance.svg" alt="behance icon"></a>
+                        <a href="https://www.facebook.com/valorsoftware/" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.mb-6]="showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/facebook.svg" alt="facebook icon"></a>
+                        <a href="https://github.com/valor-software" target="_blank" class="block" [class.opacity-0]="!showSocial" [class.pointer-events-none]="!showSocial" [class.mb-6]="showSocial" [class.h-0]="!showSocial" [class.m-0]="!showSocial" style="transition: opacity ease-in .1s"><img src="assets/img/icons/social/github.svg" alt="youtube icon"></a>
                         <div class="light-arrow big cursor-pointer" [class.-rotate-45]="showSocial" (click)="showSocial=!showSocial" style="margin-left: 5px"></div>
                     </div>
                 </div>
@@ -91,11 +91,8 @@
 </section>
 <section class="landing-section">
     <h1 class="main-title">Services</h1>
-    <div class="container flex justify-between flex-col flex-wrap lg:flex-row">
-        <div *ngFor="let serv of services" class="lg:w-48% bg-grey py-7 px-12 flex justify-between flex-col-reverse md:flex-row font-bold mb-8 w-full items-center">
-            <p class="text-light_title_col md:text-large block mr-3.5 flex items-center mt-6 md:mt-0 text-xl md:leading-44">{{serv.title}}</p>
-            <img [src]="serv.img" [alt]="serv.title + ' icon'" class="md:max-w-45% max-w-10.5">
-        </div>
+    <div class="container">
+        <services-block [preview]="true"></services-block>
     </div>
 </section>
 <section class="landing-section">
@@ -198,9 +195,8 @@
         </div>
     </div>
     <div class="container block lg:hidden">
-        <swiper [config]="swiperConfig"
+        <swiper [config]="feedBackRespConfig"
                 [initialSlide]="0"
-                [autoHeight]="true"
                 class="pink_swiper"
                 style="width: 100%">
             <ng-template swiperSlide *ngFor="let slide of feedBackList">

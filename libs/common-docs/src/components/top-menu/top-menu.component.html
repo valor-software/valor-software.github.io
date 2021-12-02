@@ -1,15 +1,15 @@
 <nav class="bg-grey_bg font-workSans text-base">
     <div class="px-4 xl:px-28">
         <div class="flex items-center justify-between h-16">
-            <div *ngIf="!showBurgerMenu" class="block lg:hidden" (click)="showBurgerMenu = !showBurgerMenu">
+            <div *ngIf="!showBurgerMenu" class="flex-1 lg:flex-auto lg:hidden" (click)="showBurgerMenu = !showBurgerMenu">
                 <img src="assets/img/icons/burger-menu.svg" alt="burger menu icon">
             </div>
-            <div *ngIf="showBurgerMenu" class="block lg:hidden" (click)="showBurgerMenu = !showBurgerMenu">
+            <div *ngIf="showBurgerMenu" class="flex-1 lg:flex-auto lg:hidden" (click)="showBurgerMenu = !showBurgerMenu">
                 <img src="assets/img/icons/close.png" alt="close menu icon">
             </div>
-            <div class="flex items-center">
+            <div class="lg:flex flex-1 lg:flex-auto items-center">
                 <div class="flex-shrink-0">
-                    <a class="cursor-pointer" routerLink=".">
+                    <a class="cursor-pointer block justify-center flex" routerLink=".">
                         <img class="h-6 w-auto sm:h-14" src="/assets/img/valor_img/valor-logo.svg" alt="Workflow">
                     </a>
                 </div>
@@ -18,15 +18,15 @@
                         <a class="menu-item" (click)="toggleClientsRoute()">For clients <div class="light-arrow"></div></a>
                         <a routerLink="/services" [routerLinkActive]="['active-route']" class="menu-item">Services</a>
                         <a routerLink="/portfolio" [routerLinkActive]="['active-route']" class="menu-item">Portfolio</a>
-                        <a routerLink="/careers" [routerLinkActive]="['active-route']" class="menu-item">Careers</a>
+                        <a href="https://valorsoftware.recruitee.com/" target="_blank" class="menu-item">Careers</a>
                         <a routerLink="/blog" [routerLinkActive]="['active-route']" class="menu-item">Blog</a>
                     </div>
                     <menu-popover class="hidden lg:block" [show]="showClientsRoute" (changeShowClientRoute)="showClientsRoute=$event"></menu-popover>
                 </div>
             </div>
-            <div class="block">
-                <div class="flex items-end">
-                    <button type="button" class="btn-pink-border" (click)="openModal()">
+            <div class="lg:block flex-1 lg:flex-auto">
+                <div class="flex items-end justify-end">
+                    <button type="button" class="btn-pink-border text-xs md:text-base" (click)="openModal()">
                         Get in touch
                     </button>
                 </div>
@@ -39,10 +39,10 @@
         <div class="px-2 pt-2 pb-3 space-y-1">
             <a class="menu-item" (click)="toggleClientsRoute()">For clients <div class="light-arrow big" [class.rotate]="showClientsRoute"></div></a>
             <menu-popover class="block lg:hidden !m-0" [show]="showClientsRoute"></menu-popover>
-            <a routerLink="/services" [routerLinkActive]="['active-route']" class="menu-item">Services</a>
-            <a routerLink="/portfolio" [routerLinkActive]="['active-route']" class="menu-item">Portfolio</a>
-            <a routerLink="/careers" [routerLinkActive]="['active-route']" class="menu-item">Careers</a>
-            <a routerLink="/blog" [routerLinkActive]="['active-route']" class="menu-item">Blog</a>
+            <a (click)="showBurgerMenu = false" routerLink="/services" [routerLinkActive]="['active-route']" class="menu-item">Services</a>
+            <a (click)="showBurgerMenu = false" routerLink="/portfolio" [routerLinkActive]="['active-route']" class="menu-item">Portfolio</a>
+            <a (click)="showBurgerMenu = false" routerLink="/careers" [routerLinkActive]="['active-route']" class="menu-item">Careers</a>
+            <a (click)="showBurgerMenu = false" routerLink="/blog" [routerLinkActive]="['active-route']" class="menu-item">Blog</a>
         </div>
     </div>
 </nav>

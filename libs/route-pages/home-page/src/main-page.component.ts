@@ -1,10 +1,8 @@
-import {Component, ViewChild, ChangeDetectorRef, AfterViewInit, AfterContentInit} from '@angular/core';
-import { ViewportScroller } from '@angular/common';
-import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
+import {Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { SwiperEvents } from 'swiper/types';
 import { SwiperComponent } from "swiper/angular";
 import { NpmStatisticService } from "./getNpmStatistic.service";
+import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
 SwiperCore.use([Pagination]);
 
 const slideModel = [
@@ -384,6 +382,16 @@ export class MainPageComponent {
         loop: true,
         autoHeight: true
     };
+    feedBackRespConfig: SwiperOptions = {
+        slidesPerView: 1,
+        centeredSlides: true,
+        spaceBetween: 40,
+        loop: true,
+        autoHeight: true,
+        pagination: {
+            clickable: true
+        }
+    };
     technologiesList: typeof technologiesList = technologiesList;
     projectList = projectsList;
     sortedProjects?: {labels: string[], name: string, img: string}[];
@@ -397,7 +405,7 @@ export class MainPageComponent {
     constructor(
         private npmCounts: NpmStatisticService,
         private cdr: ChangeDetectorRef,
-        private router: Router
+        protected router: Router
     ) {
         this.sortedProjectsAmount = window.innerWidth >= 768 ? 4 : 2;
         this.initDisabledTechnologies();
@@ -459,5 +467,9 @@ export class MainPageComponent {
 
     prevSlide() {
         this.swiperRef?.swiperRef.slidePrev();
+    }
+
+    routeLink(link: string) {
+        this.router.navigate([`/${link}`]);
     }
 }

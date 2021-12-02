@@ -1,0 +1,19 @@
+<div class="flex justify-between flex-col flex-wrap lg:flex-row" *ngIf="preview">
+    <div *ngFor="let serv of servicesList" class="lg:w-48% bg-grey py-7 px-12 flex justify-between flex-col-reverse md:flex-row font-bold mb-8 w-full items-center cursor-pointer" (click)="routeLink('services')">
+        <p class="text-light_title_col md:text-large block mr-3.5 flex items-center mt-6 md:mt-0 text-xl md:leading-44">{{serv.title}}</p>
+        <img [src]="serv.img" [alt]="serv.title + ' icon'" class="md:max-w-45% max-w-10.5">
+    </div>
+</div>
+<ng-container *ngIf="!preview">
+    <div
+            *ngFor="let serv of servicesList; index as i"
+            class="bg-grey lg:py-14 py-7 lg:px-14 px-7 flex justify-between mb-8 w-full items-center flex-col-reverse lg:h-420"
+            [ngClass]="{'md:flex-row-reverse': i%2, 'md:flex-row': !(i%2)}"
+    >
+        <div class="md:w-45%">
+            <p class="font-bold text-light_title_col md:text-large block mr-3.5 text-center md:text-left mt-6 md:mt-0 text-xl md:leading-44 mb-6">{{serv.title}}</p>
+            <p class="text-light_title_col">{{serv.description}}</p>
+        </div>
+        <img [src]="serv.img" [alt]="serv.title + ' icon'" class="min-w-45% max-h-full max-w-10.5">
+    </div>
+</ng-container>

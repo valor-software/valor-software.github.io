@@ -8,8 +8,10 @@
             style="transition: all ease .3s"
     >
         <input type="file" multiple (change)="onFileChange($event)" class="opacity-0 absolute inset-0 w-full h-full cursor-pointer"/>
-        <p class="flex"><img src="assets/img/icons/file-uploader.svg" alt="file uploader icon" class="mr-1">Drop file here to upload or&nbsp;
+        <p class="hidden lg:flex"><img src="assets/img/icons/file-uploader.svg" alt="file uploader icon" class="mr-1">Drop file here to upload or&nbsp;
             <span class="underline"> choose file</span>
         </p>
+
+        <p class="flex lg:hidden"><img src="assets/img/icons/file-uploader.svg" alt="file uploader icon" class="mr-1">Upload a file</p>
     </div>
 </div>
