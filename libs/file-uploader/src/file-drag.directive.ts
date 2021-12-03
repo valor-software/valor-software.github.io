@@ -1,9 +1,8 @@
 import {
     Directive,
-    HostBinding,
     HostListener,
     Output,
-    EventEmitter, ElementRef
+    EventEmitter, ElementRef, Input
 } from "@angular/core";
 
 
@@ -14,9 +13,8 @@ import {
 export class FileDragDirective {
     defaultBorder = 'border-dar_grey_font_col';
     pinkBorder = 'border-pink';
+    @Input() acceptedFiles?: string[];
     @Output() files: EventEmitter<File[]> = new EventEmitter();
-
-    // @HostBinding("style.background") private background = "#eee";
 
     constructor(private elementRef: ElementRef) { }
 
@@ -32,7 +30,6 @@ export class FileDragDirective {
         evt.stopPropagation();
         this.elementRef.nativeElement.classList.remove(this.pinkBorder);
         this.elementRef.nativeElement.classList.add(this.defaultBorder);
-        // this.background = "#eee";
     }
 
     @HostListener('drop', ['$event']) public onDrop(evt: DragEvent) {
@@ -40,7 +37,6 @@ export class FileDragDirective {
         evt.stopPropagation();
         this.elementRef.nativeElement.classList.remove(this.pinkBorder);
         this.elementRef.nativeElement.classList.add(this.defaultBorder);
-        // this.background = '#eee';
 
         const files: File[] = [];
         if (!evt?.dataTransfer?.files.length) {
@@ -49,7 +45,7 @@ export class FileDragDirective {
 
         for (const filesKey in evt.dataTransfer.files) {
             const file = evt.dataTransfer.files[filesKey];
-            if (file.type) {
+            if (file.type && this.checkAllowedExtension(file.name)) {
                 files.push(file);
             }
         }
@@ -57,5 +53,14 @@ export class FileDragDirective {
         if (files.length > 0) {
             this.files.emit(files);
         }
+    }
+
+    checkAllowedExtension(name: string) {
+        if (!this.acceptedFiles?.length) {
+            return true;
+        }
+        const arr = name.split('.');
+        const extension = arr[arr.length-1];
+        return this.acceptedFiles.some(item => item === extension);
     }
 }

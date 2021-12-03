@@ -4,10 +4,10 @@
     </div>
     <div
             class="relative w-full border-dashed border border-dar_grey_font_col hover:border-pink py-3 flex justify-center items-center text-dar_grey_font_col text-sm rounded"
-            fileDrag (files)="addFiles($event)"
+            fileDrag (files)="addFiles($event)" [acceptedFiles]="['pptx', 'pdf', 'csv', 'doc']"
             style="transition: all ease .3s"
     >
-        <input type="file" multiple (change)="onFileChange($event)" class="opacity-0 absolute inset-0 w-full h-full cursor-pointer"/>
+        <input type="file" multiple (change)="onFileChange($event)" class="opacity-0 absolute inset-0 w-full h-full cursor-pointer" accept=".pptx, .pdf, .csv, .doc"/>
         <p class="hidden lg:flex"><img src="assets/img/icons/file-uploader.svg" alt="file uploader icon" class="mr-1">Drop file here to upload or&nbsp;
             <span class="underline"> choose file</span>
         </p>
