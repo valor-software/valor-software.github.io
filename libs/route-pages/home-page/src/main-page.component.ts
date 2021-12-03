@@ -379,8 +379,7 @@ export class MainPageComponent {
         slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 40,
-        loop: true,
-        autoHeight: true
+        loop: true
     };
     feedBackRespConfig: SwiperOptions = {
         slidesPerView: 1,
@@ -414,6 +413,16 @@ export class MainPageComponent {
             this.router.navigate(['.']);
         }
         this.setNpmStatistic();
+
+        // this.npmCounts.getFiles().subscribe(res => {
+        //     console.log(res);
+        // })
+
+        // this.npmCounts.getFile().subscribe((res: any) => {
+        //     console.log(res);
+        //     const file = atob(res?.content);
+        //     console.log(file);
+        // })
     }
 
     setNpmStatistic() {
@@ -441,7 +450,6 @@ export class MainPageComponent {
         this.technologiesList.map( item => {
             item.active = !item.disabled && item.id === id;
         });
-
         return this.technologiesList.some(item => item.active);
     }
 
@@ -468,6 +476,11 @@ export class MainPageComponent {
     prevSlide() {
         this.swiperRef?.swiperRef.slidePrev();
     }
+
+    feedBackRoute() {
+        this.router.navigate(['/'])
+    }
+
 
     routeLink(link: string) {
         this.router.navigate([`/${link}`]);

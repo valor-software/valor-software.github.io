@@ -7,10 +7,11 @@ import {Directive, HostListener, ElementRef, Input} from '@angular/core';
 export class ImgHoverDirective {
     @Input() activeSrc = '';
     @Input() defaultSrc = '';
+    @Input() check?: boolean;
 
     @HostListener('mouseout')
     onMouseLeave() {
-        if (!this.defaultSrc) {
+        if (!this.defaultSrc || this.check) {
             return;
         };
 
@@ -19,7 +20,7 @@ export class ImgHoverDirective {
 
     @HostListener('mouseover')
     onMouseOver() {
-        if (!this.activeSrc) {
+        if (!this.activeSrc || this.check) {
             return;
         };
 

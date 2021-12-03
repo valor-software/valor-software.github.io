@@ -11,7 +11,7 @@ import { CommonDocsModule } from '@valor-software/common-docs';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes, {anchorScrolling: 'enabled', scrollPositionRestoration:"enabled"}),
+    RouterModule.forRoot(routes, {anchorScrolling: 'enabled'}),
     CommonDocsModule
   ],
   providers: [],
