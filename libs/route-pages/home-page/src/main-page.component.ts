@@ -476,13 +476,4 @@ export class MainPageComponent {
     prevSlide() {
         this.swiperRef?.swiperRef.slidePrev();
     }
-
-    feedBackRoute() {
-        this.router.navigate(['/'])
-    }
-
-
-    routeLink(link: string) {
-        this.router.navigate([`/${link}`]);
-    }
 }
