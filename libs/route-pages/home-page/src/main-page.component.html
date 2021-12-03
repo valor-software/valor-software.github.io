@@ -80,7 +80,7 @@
                     <div class="absolute inset-0 flex flex-col justify-end p-6 w-full h-full" [style.background]="'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)'">
                         <p class="font-bold text-light_title_col text-xl mb-2 text-center lg:text-left">{{project.name}}</p>
                         <div class="hidden lg:block">
-                            <span *ngFor="let item of project.labels" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2">{{item}}</span>
+                            <span *ngFor="let item of project.labels" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2 hover:text-grey_bg hover:bg-light_title_col transition-colors">{{item}}</span>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                 <div class="w-full">
                     <div class="flex justify-between">
                         <div class="w-65% flex flex-col justify-between">
-                            <p class="text-large text-feedback_font_col leading-44 mb-8 font-bold">{{slide.text}}</p>
+                            <p class="text-large text-feedback_font_col leading-44 mb-8">{{slide.text}}</p>
                             <div class="w-full flex justify-between">
                                 <p>
                                     <span class="text-xl text-light_title_col">{{slide.author}}</span><br>
