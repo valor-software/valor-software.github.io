@@ -14,10 +14,14 @@
       "es2017",
       "dom"
     ],
+    "types": ["node"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@valor-software/blog": [
+        "libs/route-pages/blog/src/index.ts"
+      ],
       "@valor-software/common-docs": [
         "libs/common-docs/src/index.ts"
       ],

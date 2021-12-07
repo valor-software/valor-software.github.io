@@ -1,0 +1,38 @@
+<div
+        *ngIf="sortList.length && sortLang.length"
+        sortBlogs
+        [activeItem]="activeIndex"
+        [items]="articles"
+        (changedArticles)="updateArticles($event)"
+        class="flex justify-between items-start mb-14"
+>
+    <div class="w-full lg:w-65% ">
+        <h3 class="text-placeholder_col text-24 font-bold mb-6">Domains</h3>
+        <div class="w-full flex flex-wrap items-center">
+            <div *ngFor="let key of sortList" (click)="toggleActiveIndex(key)">
+                <p [class.text-grey_bg]="activeIndex.includes(key)" [class.bg-light_title_col]="activeIndex.includes(key)" class="mb-4 mr-4 cursor-pointer text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2 hover:text-grey_bg hover:bg-light_title_col transition-colors">{{getDomainTitle(key)}}</p>
+            </div>
+            <button (click)="resetAll()" class="text-light_title_col underline mb-4">Reset all</button>
+        </div>
+
+    </div>
+    <div class="w-full lg:w-35% flex flex-wrap items-center">
+        <h3 class="text-placeholder_col text-24 font-bold mb-6">Language</h3>
+        <div class="w-full flex flex-wrap items-center">
+            <div *ngFor="let key of sortLang" (click)="toggleActiveIndex(key)">
+                <p [class.text-grey_bg]="activeIndex.includes(key)" [class.bg-light_title_col]="activeIndex.includes(key)" class="mb-4 mr-4 cursor-pointer text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2 hover:text-grey_bg hover:bg-light_title_col transition-colors">{{getLanguageTitle(key)}}</p>
+            </div>
+        </div>
+    </div>
+    <div>
+    </div>
+</div>
+
+<ng-container *ngIf="sortArticles?.length">
+    <div class="w-full flex flex-wrap justify-between">
+        <ng-container *ngFor="let art of sortArticles">
+                <blog-item class="w-full md:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-item>
+        </ng-container>
+    </div>
+<!--<blog-item class="w-full md:w-45% cursor-pointer" (click)="route('')"></blog-item>-->
+

@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadChildren: () => import('@valor-software/services-page').then(m => m.ServicesPageModule)
   },
   {
+    path: 'blog',
+    loadChildren: () => import('@valor-software/blog').then(m => m.BlogModule)
+  },
+  {
     path: '**',
     redirectTo: '/'
   }

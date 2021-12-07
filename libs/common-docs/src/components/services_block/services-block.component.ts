@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ServicesList } from "./services.model";
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
