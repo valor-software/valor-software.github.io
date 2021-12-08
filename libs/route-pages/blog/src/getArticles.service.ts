@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ArticlesList } from "./articles.list";
 
@@ -21,7 +21,7 @@ export class GetArticlesService {
     }
 
     getPreviewArticle(): Observable<any>[] | undefined {
-        return this.apiArray?.slice(0, 2);
+        return this.apiArray?.slice(0, 4);
     }
 
     getFullListOfArticles(): Observable<any>[] | undefined {

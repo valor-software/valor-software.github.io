@@ -1,1 +1,29 @@
-ARTICLE ARTICLE ARTICLE ARTICLE ARTICLE
+<ng-container *ngIf="article">
+    <section class="landing-section bg-dark_title_col lg:!pb-32">
+        <div class="container flex items-center flex-col">
+            <ng-container *ngIf="changeBreadCrumbTitle?.length">
+                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full"></breadCrumbs>
+            </ng-container>
+            <div class="w-full flex flex-col items-center lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col">
+                <p class="text-20 mb-4">{{article.date | date:'MMMM d, y'}}</p>
+                <p class="text-64 leading-66 mb-14">{{article.title}}</p>
+                <div class="w-70 h-70 rounded-full overflow-hidden mb-4">
+                    <img class="w-full h-full object-cover" [src]="article.authorImg" [alt]="article.author">
+                </div>
+                <p class="text-large mb-4">{{article.author}}</p>
+                <p class="text-20">{{article.position}}</p>
+            </div>
+        </div>
+    </section>
+    <section class="landing-section">
+        <div class="container flex items-center flex-col article-box !max-w-1010" [innerHTML]="checkHTML(article.content)"></div>
+    </section>
+    <section class="landing-section">
+        <div class="container">
+            <h1 class="main-title">More Articles</h1>
+            <blog-preview></blog-preview>
+        </div>
+    </section>
+</ng-container>
+
+

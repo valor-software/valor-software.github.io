@@ -1,6 +1,6 @@
 {
   "title": "ngx-bootstrap v7.0.0 is officially released!",
-  "domains": "['recruitment_pm', 'user_research_design']",
+  "domains": ["recruitment_pm", "user_research_design"],
   "language": "en",
   "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/60fa8f01dac70bb9ea4da278_Ngx-slide-1.png",
   "date": "Fri Jul 23 2021 09:59:45 GMT+0000 (Coordinated Universal Time)",

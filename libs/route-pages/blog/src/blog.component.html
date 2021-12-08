@@ -19,7 +19,7 @@
     <div class="w-full lg:w-35% flex flex-wrap items-center">
         <h3 class="text-placeholder_col text-24 font-bold mb-6">Language</h3>
         <div class="w-full flex flex-wrap items-center">
-            <div *ngFor="let key of sortLang" (click)="toggleActiveIndex(key)">
+            <div *ngFor="let key of sortLang" (click)="toggleLanguage(key)">
                 <p [class.text-grey_bg]="activeIndex.includes(key)" [class.bg-light_title_col]="activeIndex.includes(key)" class="mb-4 mr-4 cursor-pointer text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2 hover:text-grey_bg hover:bg-light_title_col transition-colors">{{getLanguageTitle(key)}}</p>
             </div>
         </div>
@@ -29,10 +29,22 @@
 </div>
 
 <ng-container *ngIf="sortArticles?.length">
-    <div class="w-full flex flex-wrap justify-between">
-        <ng-container *ngFor="let art of sortArticles">
-                <blog-item class="w-full md:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-item>
-        </ng-container>
+    <div class="w-full">
+        <div class="w-full flex flex-wrap justify-between">
+            <ng-container *ngIf="!showAll && checkLength()">
+                <ng-container *ngFor="let art of sortArticles | slice:0:8">
+                    <blog-item class="w-full md:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-item>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="showAll || !checkLength()">
+                <ng-container *ngFor="let art of sortArticles">
+                    <blog-item class="w-full md:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-item>
+                </ng-container>
+            </ng-container>
+        </div>
+
+        <button *ngIf="!showAll && checkLength()" class="btn-pink w-full md:w-auto flex items-baseline justify-center mx-auto" (click)="showAll = true" >Show all articles</button>
     </div>
+</ng-container>
 <!--<blog-item class="w-full md:w-45% cursor-pointer" (click)="route('')"></blog-item>-->
 

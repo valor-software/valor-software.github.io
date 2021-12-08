@@ -3,6 +3,7 @@ import { GetArticlesService } from "./getArticles.service";
 import { forkJoin, Subscription } from "rxjs";
 import { IArticle } from "./articles.list";
 import { Router } from "@angular/router";
+import {ArticlesRouteService} from "./articlesRoute.service";
 
 export const Domains = {
     business_analysis: 'Business Analysis',
@@ -31,10 +32,14 @@ export class BlogComponent implements OnDestroy{
     articles?: IArticle[];
     sortArticles?: IArticle[] = [];
     activeIndex: string[] = ['en'];
+    showAll = false;
+
+
     constructor(
         private router: Router,
         private getArticles: GetArticlesService,
-        private cdr: ChangeDetectorRef
+        private cdr: ChangeDetectorRef,
+        private routeArticle: ArticlesRouteService
     ) {
         this.$articles = forkJoin(this.getArticles.getFullListOfArticles()).subscribe((res: IArticle[] | undefined) => {
             this.articles = res;
@@ -66,11 +71,20 @@ export class BlogComponent implements OnDestroy{
     toggleActiveIndex(key: string) {
         if (this.activeIndex.includes(key)) {
             this.activeIndex = this.activeIndex.filter(item => item !== key);
+            this.showAll = false;
             return;
         }
 
         this.activeIndex = [...this.activeIndex, key];
-        console.log(this.activeIndex);
+        this.showAll = false;
+    }
+
+    toggleLanguage(key: string) {
+        if (!this.activeIndex.includes(key)) {
+            const keys = this.activeIndex.filter(item => item !== 'pt' && item !== 'en');
+            this.activeIndex = [...keys, key];
+        }
+        this.showAll = false;
     }
 
     updateArticles(articles: IArticle[] | []) {
@@ -79,24 +93,16 @@ export class BlogComponent implements OnDestroy{
     }
 
     resetAll() {
-        // const lang = this.activeIndex.includes('pt') ? 'pt' : 'en';
-        this.sortArticles = this.articles;
+        const lang = this.activeIndex.includes('pt') ? 'pt' : 'en';
+        this.activeIndex = [lang];
     }
 
     route(title: string) {
-        let link = title;
-        while(link.match(' ')) {
-            link = link.replace(' ','_');
-            link = link.replace(':','');
-        }
-        this.router.navigate(['blog/article'], {queryParams:{name: link}});
-        // let link = 'Career Path for a Flat-structured Сompany';
-        // while(link.match(' ')) {
-        //     link = link.replace(' ','_');
-        //     link = link.replace(':','');
-        // }
-        // console.log(link);
+        this.routeArticle.route(title);
+    }
 
+    checkLength(): boolean {
+        return !!(this.sortArticles?.length && this.sortArticles?.length > 8);
     }
 
     ngOnDestroy() {

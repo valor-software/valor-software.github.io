@@ -8,6 +8,11 @@ import { BlogComponent } from "./blog.component";
 import { GetArticlesService } from "./getArticles.service";
 import { SortBlogsDirective } from "./sort.directive";
 import { BlogItemComponent } from "./blog-item.component";
+import { CommonDocsModule } from "@valor-software/common-docs";
+import {ArticlesRouteService} from "./articlesRoute.service";
+import { SwiperModule } from "swiper/angular";
+import { BlogPreviewComponent } from './blog-preview.component';
+
 
 @NgModule({
     declarations: [
@@ -15,13 +20,16 @@ import { BlogItemComponent } from "./blog-item.component";
         ArticleComponent,
         BlogComponent,
         SortBlogsDirective,
-        BlogItemComponent
+        BlogItemComponent,
+        BlogPreviewComponent
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
+        CommonDocsModule,
+        SwiperModule
     ],
-    providers: [GetArticlesService]
+    providers: [GetArticlesService, ArticlesRouteService]
 })
 export class BlogModule {
     static routes: Routes = routes;

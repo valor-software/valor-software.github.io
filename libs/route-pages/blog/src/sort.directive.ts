@@ -5,6 +5,7 @@ import {
     EventEmitter, ElementRef, Input, OnChanges, SimpleChanges
 } from "@angular/core";
 import { IArticle } from "./articles.list";
+import {toArray} from "rxjs/operators";
 
 
 @Directive({
@@ -22,19 +23,25 @@ export class SortBlogsDirective {
 
     sortItems(value: string[]) {
         if (!value.length) {
-            this.changedArticles.emit([]);
+            this.changedArticles.emit(this.items);
             return;
         }
 
         const files = new Set<IArticle>();
+        const lang = value.includes('pt') ? 'pt' : 'en';
+        const langFiles: IArticle[] | undefined = this.items?.filter((item: IArticle) => item.language === lang);
+        if (value.length === 1 && langFiles?.length) {
+            langFiles.map(item => files.add(item));
+            this.changedArticles.emit([...files]);
+            return;
+        }
+
         value.map(val => {
-            const filterRes: IArticle | undefined = this.items?.find((item: IArticle) => item.domains.includes(val) || item.language === val);
-            if (filterRes) {
-                files.add(filterRes);
+            const filterRes: IArticle[] | undefined = langFiles?.filter((item: IArticle) => item.domains.includes(val));
+            if (filterRes?.length) {
+                filterRes.map(item => files.add(item));
             }
         });
         this.changedArticles.emit([...files]);
     }
-
-
 }

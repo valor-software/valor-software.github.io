@@ -10,6 +10,7 @@ import { GetArticlesService } from "./getArticles.service";
     templateUrl: './blog-page.component.html'
 })
 export class BlogPageComponent {
+
     constructor(
         private router: Router,
         private http: HttpClient,

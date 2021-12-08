@@ -1,6 +1,7 @@
 {
   "author": "Hussein Al-attar",
-  "domains": "['dev_quality_assurance', 'user_research_design']",
+  "domains": ["dev_quality_assurance", "user_research_design"],
+  "authorImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/60a4c64a51fff6993992acef_Hussain.png",
   "language": "en",
   "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/60c712f3696d0adaf4fdf721_MyTicketsApp_Cover.png",
   "title": "Designing Aggregator App from A to Z – Part 2",

@@ -140,7 +140,10 @@
           }
         }
       },
-      "tags": []
+      "tags": [],
+      "implicitDependencies": [
+        "common-docs"
+      ]
     },
     "route-pages-home-page": {
       "projectType": "library",

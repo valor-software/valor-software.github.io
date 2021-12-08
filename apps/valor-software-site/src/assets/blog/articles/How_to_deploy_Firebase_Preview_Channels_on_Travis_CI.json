@@ -1,6 +1,7 @@
 {
   "title": "How to deploy Firebase Preview Channels on Travis CI",
-  "domains": "['business_analysis', 'user_research_design', 'devops_cloud']",
+  "domains": ["business_analysis", "user_research_design", "devops_cloud"],
+  "authorImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/60ec55b99eacf88af1b82d95_Nikita_Glukhi.png",
   "language": "en",
   "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/60eeac94c338b9c4039ad1c7_Blog.Cover.png",
   "author": "Nikita Glukhi",
