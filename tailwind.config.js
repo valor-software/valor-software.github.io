@@ -56,7 +56,9 @@ module.exports = {
         '64': '4rem',
         '32': '2rem',
         'title': '200px',
+        'double_title': '180px',
         '56': '56px',
+        '50': '50px',
         '150': '150px',
         '24': '24px',
         '20': '20px'

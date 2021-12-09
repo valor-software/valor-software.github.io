@@ -10,7 +10,7 @@ import { IArticle } from "./articles.list";
             <div class="w-full h-350 mb-6">
                 <img class="w-full h-full object-cover" [src]="article?.bgImg" [alt]="article?.title + 'img'">
             </div>
-            <div class="w-full text-light_title_col text-32 leading-40 font-bold">
+            <div class="w-full text-light_title_col text-24 md:text-32 leading-40 font-bold">
                 <p>{{article?.title}}</p>
             </div>
         </div>

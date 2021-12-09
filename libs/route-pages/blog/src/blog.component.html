@@ -4,7 +4,7 @@
         [activeItem]="activeIndex"
         [items]="articles"
         (changedArticles)="updateArticles($event)"
-        class="flex justify-between items-start mb-14"
+        class="flex justify-between items-start mb-14 flex-col md:flex-row"
 >
     <div class="w-full lg:w-65% ">
         <h3 class="text-placeholder_col text-24 font-bold mb-6">Domains</h3>
@@ -33,12 +33,12 @@
         <div class="w-full flex flex-wrap justify-between">
             <ng-container *ngIf="!showAll && checkLength()">
                 <ng-container *ngFor="let art of sortArticles | slice:0:8">
-                    <blog-item class="w-full md:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-item>
+                    <blog-item class="w-full lg:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-item>
                 </ng-container>
             </ng-container>
             <ng-container *ngIf="showAll || !checkLength()">
                 <ng-container *ngFor="let art of sortArticles">
-                    <blog-item class="w-full md:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-item>
+                    <blog-item class="w-full lg:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-item>
                 </ng-container>
             </ng-container>
         </div>

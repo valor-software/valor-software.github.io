@@ -30,7 +30,7 @@ export class ArticleComponent implements OnDestroy{
         const artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
 
         if (!artTitle) {
-            //todo add routing on blog page after checking all articles
+            this.router.navigate(['/blog']);
         }
 
         if (artTitle) {
@@ -40,16 +40,25 @@ export class ArticleComponent implements OnDestroy{
                     title: res.title
                 }];
                 this.article = res;
-                console.log(res);
             }, error => {
                 console.log('error', error);
-                //todo add routing on blog page after checking all articles
+                this.router.navigate(['/blog']);
             });
         }
     }
 
     checkHTML(html: string) {
         return this.sanitizer.bypassSecurityTrustHtml(html);
+    }
+
+    routLink(event: any) {
+        const element = event.target;
+
+        if (element.nodeName === 'A' && element.getAttribute('routerLink')) {
+            event.preventDefault();
+            const link = element.getAttribute('routerLink');
+            this.router.navigate([link]);
+        }
     }
 
     ngOnDestroy() {

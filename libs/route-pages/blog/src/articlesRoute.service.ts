@@ -11,15 +11,14 @@ export class ArticlesRouteService {
     ){}
 
     route(title: string) {
-        // let link = title;
-        let link = 'Case study of Applitools or not only Cypress cross-browser testing';
+        let link = title;
         while(link.match(' '|| ':' || '–' || '—')) {
             link = link.replace(' ','_');
             link = link.replace(':','');
             link = link.replace('–','_');
             link = link.replace('—','_');
         }
-        // this.router.navigate(['blog', link]);
-        console.log(link);
+        this.router.navigate(['blog', link]);
+        window.scrollTo(0,0);
     }
 }

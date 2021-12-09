@@ -13,6 +13,10 @@
 
 .main-title {
   @apply font-bold text-dark_title_col text-56 xl:text-title lg:text-150 lg:mb-10 mb-6;
+
+  &.double {
+    @apply text-50 lg:text-double_title ;
+  }
 }
 
 //.container {
@@ -288,7 +292,7 @@ li::marker {
   }
 
   h3, h2 {
-    @apply mt-16 mb-16 text-light_title_col font-bold text-large;
+    @apply md:mt-16 md:mb-16 mt-8 mb-8 text-light_title_col font-bold text-24 md:text-large;
   }
 
   h4 {
@@ -296,7 +300,7 @@ li::marker {
   }
 
   img {
-    @apply mt-8 mb-8 w-full;
+    @apply mt-8 mb-8 w-full mx-auto;
   }
 
   p>strong {
@@ -313,7 +317,16 @@ li::marker {
   }
 
   pre {
-    @apply max-w-full text-header_font_col bg-light_grey_bg w-full mt-4 mb-4;
+    @apply w-11/12 lg:w-1225  mx-auto text-header_font_col bg-light_grey_bg w-full mt-4 mb-4;
+    pre, code {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      text-align: justify;
+    }
+
+    code {
+      @apply max-w-full;
+    }
   }
 
   ul {
@@ -326,6 +339,19 @@ li::marker {
 
   figcaption {
     @apply text-center text-grey_font_col;
+  }
+
+  blockquote {
+    @apply bg-light_grey_bg text-header_font_col border-l-8 border-dark_title_col mt-4 mb-2 p-4;
+  }
+
+  figure {
+    max-width: 100% !important;
+    @apply w-full;
+
+    &>div {
+      @apply w-full;
+    }
   }
 
 

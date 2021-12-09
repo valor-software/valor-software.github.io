@@ -37,7 +37,8 @@ export class SortBlogsDirective {
         }
 
         value.map(val => {
-            const filterRes: IArticle[] | undefined = langFiles?.filter((item: IArticle) => item.domains.includes(val));
+            let filterRes: IArticle[] | undefined = [];
+            filterRes = langFiles?.filter((item: IArticle) => item.domains.includes(val));
             if (filterRes?.length) {
                 filterRes.map(item => files.add(item));
             }

@@ -21,7 +21,7 @@ export class GetArticlesService {
     }
 
     getPreviewArticle(): Observable<any>[] | undefined {
-        return this.apiArray?.slice(0, 4);
+        return this.apiArray?.slice(0, 3);
     }
 
     getFullListOfArticles(): Observable<any>[] | undefined {

@@ -1,6 +1,6 @@
 {
   "author": "Vyacheslav Chub",
-  "domains": "['dev_quality_assurance', 'user_research_design']",
+  "domains": ["dev_quality_assurance"],
   "language": "en",
   "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/605cae2c7867f335233903bf_card.jpg",
   "title": "Multi-highlighting for DraftJS",
