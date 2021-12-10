@@ -1,0 +1,43 @@
+{
+  "name": "Vizabi",
+  "link": "https://vizabi.org/examples/bubble-chart.html",
+  "behanceLink": "https://www.behance.net/gallery/49460795/Vizabi-Tools-Statistics-can-be-interesting",
+  "description": "Social project to hire women in tech. A company can solve its diversity problem quickly by hiring the teams of female junior developers paired with a senior developer mentor.",
+  "goals": [
+    "Migration from NodeJS to Typescript",
+    "Migration from AWS to GCP",
+    "New features development"
+  ],
+  "solutions": [
+    "Created the architecture sctructure of the tool",
+    "Updated visualization tools and BigData sets"
+  ],
+  "outcome": "BigData is a visualization tool that could be embedded in custom solutions to create new visualizations for users' needs.",
+  "headerImg": "",
+  "aspects": {
+    "type": [
+      "Medium-Sized Businesses???",
+      "Gaming????"
+    ],
+    "country": [
+      "UK???"
+    ],
+    "Technology stack": [
+      "Node.js to TypeScript migration",
+      "Express.js",
+      "Lodash",
+      "Bunyan",
+      "Mongoose",
+      "Mocha, Chai, Sinon",
+      "MongoDB",
+      "Redis",
+      "New Relic",
+      "AWS (EC2, ECR, ECS, ElasticCache, CloudFormation) to GCP migration"
+    ],
+    "Services provided": [
+      "UX/UI???",
+      "Front-End????",
+      "Back-End???"
+    ]
+  }
+}

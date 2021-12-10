@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
 import { AppComponent } from './app.component';
 import { CommonDocsModule } from '@valor-software/common-docs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -12,7 +14,8 @@ import { CommonDocsModule } from '@valor-software/common-docs';
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes, {anchorScrolling: 'enabled', onSameUrlNavigation: 'reload'}),
-    CommonDocsModule
+    CommonDocsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

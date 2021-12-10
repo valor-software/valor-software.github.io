@@ -194,6 +194,52 @@
         "common-docs"
       ]
     },
+    "route-pages-portfolio": {
+      "projectType": "library",
+      "root": "libs/route-pages/portfolio",
+      "sourceRoot": "libs/route-pages/portfolio/src",
+      "prefix": "valor-software-site-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/route-pages/portfolio"
+          ],
+          "options": {
+            "project": "libs/route-pages/portfolio/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/route-pages/portfolio/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/route-pages/portfolio/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/route-pages/portfolio"
+          ],
+          "options": {
+            "jestConfig": "libs/route-pages/portfolio/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/route-pages/portfolio/src/**/*.ts",
+              "libs/route-pages/portfolio/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "route-pages-services-page": {
       "projectType": "library",
       "root": "libs/route-pages/services-page",

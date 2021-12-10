@@ -1,0 +1,44 @@
+{
+  "name": "Souqalmal",
+  "link": "https://www.souqalmal.com/ae-en/",
+  "description": "Souqalmal.com is the leading comparison website in the Middle East: it lets compare, search, and get information on financial products.",
+  "goals": [
+    "Optimize the architecture and code",
+    "Rich search engine",
+    "SEO",
+    "Integrate Google Ads",
+    "Update and modernize existing design"
+  ],
+  "solutions": [
+    "Used Elasticsearch for full-text search",
+    "Interactive documentation with Swagger",
+    "Islamic-friendly banking",
+    "Developed own Node.js-based CMS"
+  ],
+  "outcome": "\nFully working and deployed Debt Burden Ratio Calculator, Airmiles Calculator, Car Loan Calculator, and Mortgage Calculator. Stable environment and further maintenance.",
+  "headerImg": "",
+  "feedback": "Iraklis Alexopoulos",
+  "aspects": {
+    "type": [
+      "Medium-Sized Businesses???",
+      "Gaming????"
+    ],
+    "country": [
+      "UK???"
+    ],
+    "Technology stack": [
+      "Node.js",
+      "AngularJS",
+      "MongoDB",
+      "ElasticSearch",
+      "Redis",
+      "Nginx",
+      "Amazon S3"
+    ],
+    "Services provided": [
+      "UX/UI???",
+      "Front-End????",
+      "Back-End???"
+    ]
+  }
+}

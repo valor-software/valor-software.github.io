@@ -1,0 +1,32 @@
+{
+  "name": "Breethe: Sleep & Meditation",
+  "link": "https://breethe.com/",
+  "description": "Breethe: Sleep & Meditation mobile application is the next generation meditation app that has the following features: sleep tracks, hypnotherapy sessions, masterclasses, music, nature sounds playlists, and much more.",
+  "goals": [
+    "Create a cross-platform app to replace the existing Android and iOS applications."
+  ],
+  "solutions": [
+    "We used NativeScript as a solution that allows creating applications for both Android and iOS platforms with a single codebase.",
+    "Angular 7 was chosen as a framework. With this bundle, NativeScript is providing a mechanism to compile Angular application to native application for a mobile platform. NativeScript provides APIs' proxy to mobile native APIs, such as camera access, audio, and video playing access, storage, files, access to hardware buttons, etc."
+  ],
+  "outcome": "Cross-platform and easily maintainable meditation app to replace the existing Android and iOS applications.",
+  "headerImg": "assets/img/portfolio/breethe_header.png",
+  "aspects": {
+    "type": [
+      "Medium-Sized Businesses???",
+      "Gaming????"
+    ],
+    "country": [
+      "UK???"
+    ],
+    "Technology stack": [
+      "Angular 7.0 (NgRx)",
+      "NativeScript"
+    ],
+    "Services provided": [
+      "UX/UI???",
+      "Front-End????",
+      "Back-End???"
+    ]
+  }
+}

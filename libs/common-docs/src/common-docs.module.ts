@@ -14,6 +14,7 @@ import { ResultModalComponent } from './components/result-modal/result-modal.com
 import { AppFooterComponent } from "./components/app-footer/app-footer.component";
 import { ServicesBlockComponent } from './components/services_block/services-block.component';
 import { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.component';
+import { ShowHideDirective } from './directives/showHide.directive';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -23,6 +24,7 @@ export { ServicesBlockComponent } from './components/services_block/services-blo
 export { ContactModalComponent } from "./components/contact-modal/contactModal.components";
 export { ModalService } from './services/modal.service';
 export { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.component';
+export { ShowHideDirective } from './directives/showHide.directive';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ export { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.compo
     ResultModalComponent,
     AppFooterComponent,
     ServicesBlockComponent,
-    BreadCrumbsComponent
+    BreadCrumbsComponent,
+    ShowHideDirective
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule],
   exports: [
@@ -43,7 +46,8 @@ export { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.compo
     PopoverComponent,
     AppFooterComponent,
     ServicesBlockComponent,
-    BreadCrumbsComponent
+    BreadCrumbsComponent,
+    ShowHideDirective
   ],
   providers: [ModalService, SendEmailService]
 })

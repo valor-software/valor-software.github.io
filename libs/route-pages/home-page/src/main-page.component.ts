@@ -2,8 +2,8 @@ import {Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { SwiperComponent } from "swiper/angular";
 import { NpmStatisticService } from "./getNpmStatistic.service";
-import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
-SwiperCore.use([Pagination]);
+import SwiperCore, { Pagination, Mousewheel, SwiperOptions  } from "swiper";
+SwiperCore.use([Mousewheel, Pagination]);
 
 const slideModel = [
     {
@@ -371,6 +371,7 @@ export class MainPageComponent {
         slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 40,
+        mousewheel: true,
         pagination: {
             clickable: true
         },

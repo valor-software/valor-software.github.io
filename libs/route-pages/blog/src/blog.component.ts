@@ -33,7 +33,7 @@ export class BlogComponent implements OnDestroy{
     sortArticles?: IArticle[] = [];
     activeIndex: string[] = ['en'];
     showAll = false;
-
+    isCollapsed = true;
 
     constructor(
         private router: Router,

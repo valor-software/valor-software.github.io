@@ -1,0 +1,47 @@
+{
+  "name": "Priceshredder",
+  "link": "https://priceshredder.com/",
+  "description": "Souqalmal.com is the leading comparison website in the Middle East: it lets compare, search, and get information on financial products.",
+  "goals": [
+    "Add notification and modal popups support",
+    "Create a design for Buyer profile and Seller/Buyer Dashboard",
+    "Add support of themes",
+    "Create a new design",
+    "Implement blog functionality"
+  ],
+  "solutions": [
+    "We chose WebSockets implementation to support multi-user accounts",
+    "implementation of the Stripe payment system"
+  ],
+  "outcome": "The useful and popular smartphone-based platform that helps insurance buyers receive and manage bids from major insurance companies. As a result, PriceShredder allows an easier, faster, and more efficient way to shop for insurance.",
+  "headerImg": "",
+  "aspects": {
+    "type": [
+      "Medium-Sized Businesses???",
+      "Gaming????"
+    ],
+    "country": [
+      "UK???"
+    ],
+    "Technology stack": [
+      "AngularJS",
+      "Ionic Framework",
+      "Node.js",
+      "MongoDB",
+      "Webpack",
+      "Redis",
+      "UI Bootstrap",
+      "Express",
+      "Prerender.io",
+      "CloudFlare",
+      "Amazon S3",
+      "Nginx (Proxy server)",
+      "Amazon EC2"
+    ],
+    "Services provided": [
+      "UX/UI???",
+      "Front-End????",
+      "Back-End???"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "renaizant",
+  "link": "https://app.renaizant.com/login",
+  "description": "Renaizant is an ongoing performance management platform that helps employees grow and succeed.",
+  "goals": [
+    "Develop UI/UX",
+    "Create product concept and vision",
+    "Use the power of ML and AI for contextual suggestions",
+    "Add Integrations with powerful platforms as Jira, SalesForce, GitHub, Slack, Skype, Office 365, Plaid, Stripe, etc.",
+    "Add new features concepts and development to cover a set of standard tools for performance review"
+  ],
+  "solutions": [
+    "We used Just In Time feedback approach to make performance review a continuous activity and integrate powerful popular platforms to track the progress of users who even don't use the application.",
+    "Renaizant has advanced features to cover common performance review needs, and makes this process easy and fun."
+  ],
+  "outcome": "Developed a fully functioning MVP within one year.",
+  "headerImg": "assets/img/portfolio/tablesReady_header.png",
+  "aspects": {
+    "type": [
+      "Medium-Sized Businesses???",
+      "Gaming????"
+    ],
+    "country": [
+      "UK???"
+    ],
+    "Technology stack": [
+      "Angular v7",
+      "Node.js 10+ with NestJS",
+      "MySQL",
+      "MongoDB"
+    ],
+    "Services provided": [
+      "UX/UI???",
+      "Front-End????",
+      "Back-End???"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "ThisDot",
+  "link": "https://www.thisdot.co/",
+  "description": "An education and news focused web platform that facilitates the idea of learning through four main principles: Watch, Engage, Listen, and Learn.",
+  "goals": [
+    "Create international Product Brand",
+    "UX/UI experience",
+    "Mobile first Approach",
+    "Development",
+    "Media sources"
+  ],
+  "solutions": [
+    "We prepared Brading, POS material to support the community.",
+    "All UX/UI and Illustrations were covered by Valor Software team.",
+    "Webflow was delected as a main development tool."
+  ],
+  "outcome": "An educational web-based platform, which helps to raise JS community, create the most suitable education business model and encourage knowledge sharing through video and courses.",
+  "headerImg": "",
+  "aspects": {
+    "type": [
+      "Medium-Sized Businesses???",
+      "Gaming????"
+    ],
+    "country": [
+      "UK???"
+    ],
+    "Technology stack": [
+      "Figma",
+      "WebFlow",
+      "FlowMap",
+      "Illustrator"
+    ],
+    "Services provided": [
+      "UX/UI???",
+      "Front-End????",
+      "Back-End???"
+    ]
+  }
+}

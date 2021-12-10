@@ -1,0 +1,35 @@
+{
+  "name": "Qualtrax",
+  "link": "https://www.qualtrax.com/",
+  "description": "On-premise & cloud-based quality management tool that helps businesses of all sizes manage and control documentation, compliance, workflows, employees training, purchase request automation & more.",
+  "behanceLink": "https://www.behance.net/gallery/81368931/Qualtrax-Compliance-Management-Software",
+  "goals": [
+    "UX/UI experience",
+    "Mobile first Approach"
+  ],
+  "solutions": [
+    "We prepared main User flows using FlowMap and re-designed the app using the main UX/UI best practices."
+  ],
+  "outcome": "Using our UX/UI experience we improved main User Flows and delivered the Application design more User-friendly.",
+  "headerImg": "",
+  "aspects": {
+    "type": [
+      "Medium-Sized Businesses???",
+      "Gaming????"
+    ],
+    "country": [
+      "UK???"
+    ],
+    "Technology stack": [
+      "Sketch",
+      "Abstract",
+      "Invision",
+      "FlowMap"
+    ],
+    "Services provided": [
+      "UX/UI???",
+      "Front-End????",
+      "Back-End???"
+    ]
+  }
+}
