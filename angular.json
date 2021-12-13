@@ -50,6 +50,52 @@
         "file-uploader"
       ]
     },
+    "feedback": {
+      "projectType": "library",
+      "root": "libs/feedback",
+      "sourceRoot": "libs/feedback/src",
+      "prefix": "valor-software-site-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/feedback"
+          ],
+          "options": {
+            "project": "libs/feedback/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/feedback/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/feedback/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/feedback"
+          ],
+          "options": {
+            "jestConfig": "libs/feedback/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/feedback/src/**/*.ts",
+              "libs/feedback/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "file-uploader": {
       "projectType": "library",
       "root": "libs/file-uploader",
@@ -191,29 +237,30 @@
       },
       "tags": [],
       "implicitDependencies": [
-        "common-docs"
+        "common-docs",
+        "feedback"
       ]
     },
-    "route-pages-portfolio": {
+    "route-pages-projects": {
       "projectType": "library",
-      "root": "libs/route-pages/portfolio",
-      "sourceRoot": "libs/route-pages/portfolio/src",
+      "root": "libs/route-pages/projects",
+      "sourceRoot": "libs/route-pages/projects/src",
       "prefix": "valor-software-site-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
-            "dist/libs/route-pages/portfolio"
+            "dist/libs/route-pages/projects"
           ],
           "options": {
-            "project": "libs/route-pages/portfolio/ng-package.json"
+            "project": "libs/route-pages/projects/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/route-pages/portfolio/tsconfig.lib.prod.json"
+              "tsConfig": "libs/route-pages/projects/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/route-pages/portfolio/tsconfig.lib.json"
+              "tsConfig": "libs/route-pages/projects/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -221,10 +268,10 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/libs/route-pages/portfolio"
+            "coverage/libs/route-pages/projects"
           ],
           "options": {
-            "jestConfig": "libs/route-pages/portfolio/jest.config.js",
+            "jestConfig": "libs/route-pages/projects/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -232,13 +279,17 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/route-pages/portfolio/src/**/*.ts",
-              "libs/route-pages/portfolio/src/**/*.html"
+              "libs/route-pages/projects/src/**/*.ts",
+              "libs/route-pages/projects/src/**/*.html"
             ]
           }
         }
       },
-      "tags": []
+      "tags": [],
+      "implicitDependencies": [
+        "common-docs",
+        "feedback"
+      ]
     },
     "route-pages-services-page": {
       "projectType": "library",

@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'route-pages-portfolio',
-  preset: '../../../jest.preset.js',
+  displayName: 'feedback',
+  preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     }
   },
-  coverageDirectory: '../../../coverage/libs/route-pages/portfolio',
+  coverageDirectory: '../../coverage/libs/feedback',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular'
   },

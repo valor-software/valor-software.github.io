@@ -1,6 +1,9 @@
 {
   "name": "Gapminder Offline",
   "link": "https://www.gapminder.org/tools-offline/",
+  "sortTechnologies": ["angular", "js"],
+  "sortServices": ["ui", "web"],
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c3ae2909819e614070b3_gm-cover.jpg",
   "description": "Gapminder Offline is an offline implementation of Vizabi—a freely provided by Gapminder framework for building visual data exploration tools.",
   "goals": [
     "Integrate Vizabi",

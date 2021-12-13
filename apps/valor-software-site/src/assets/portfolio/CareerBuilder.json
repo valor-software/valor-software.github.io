@@ -1,13 +1,22 @@
 {
-  "name": "Zuora",
-  "description": "Zuora is a payment system that can be connected through API to e-commerce websites.",
+  "name": "CareerBuilder",
+  "sortTechnologies": ["angular", "js", "nest_js"],
+  "sortServices": ["ui"],
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c551269cc479d767eabf_cb-cover.jpg",
+  "description": "The source for job opportunities & advice. Access career resources, personalized salary tools & insights.",
   "goals": [
-    "Create a sub-application for an application platform."
+    ".NET to Node.js migration",
+    "Rearchitecture: MicroFrontends and Microservices Modularization",
+    "Create new modules",
+    "Stabilize the app"
   ],
   "solutions": [
-    "We created a complex UI interface from scratch and used a native application's API to interact with our solution."
+    "Machine Learning algorithms",
+    "Components architecture redesign",
+    "New modules development",
+    "Styles redesign"
   ],
-  "outcome": "The ability for Zuora's customers to create custom templates for their personal admin panels, including color schemes and payment related settings.",
+  "outcome": "\nSolved many performance and logic issues, increased development speed and performance of the app in general, stabilized the application. Valor Team was trusted to train remote teams, set up the development and testing process.",
   "headerImg": "",
   "feedback": "Zackary Chapple",
   "aspects": {
@@ -20,8 +29,18 @@
     ],
     "Technology stack": [
       "Angular",
-      "Vue.js",
-      "Ruby on Rails"
+      "SASS",
+      "Nest.js",
+      "TypeScript",
+      "Node.js",
+      "Express 4",
+      "NgRx",
+      "RxJS",
+      "Redis",
+      "MySQL",
+      "CQRS + event sourcing",
+      "Unit tests with Karma and Jasmine",
+      "Integration tests with Protractor, Cucumber, Chai, and Gherkin"
     ],
     "Services provided": [
       "UX/UI???",

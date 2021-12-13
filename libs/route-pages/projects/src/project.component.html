@@ -1,0 +1,112 @@
+<ng-container *ngIf="project">
+    <section class="landing-section lg:!pb-32 !pb:8 !pt-12 !lg:pt-32">
+        <div class="container">
+            <ng-container *ngIf="changeBreadCrumbTitle?.length">
+                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block"></breadCrumbs>
+            </ng-container>
+            <div class="w-full pb-5 flex justify-between items-center pt-16">
+                <div class="max-w-600">
+                    <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">{{project.name}}</h1>
+                    <p class="leading-normal text-grey_font_col lg:mb-8 mb-14">{{project.description}}</p>
+                    <div class="flex" *ngIf="project.link || project.behanceLink">
+                        <button class="btn-pink w-full md:w-auto flex items-center mr-6" *ngIf="project.link">
+                            <a class="flex justify-center items-center" [href]="project.link" target="_blank">Visit the site<img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+                        </button>
+                        <button class="btn-dark-pink w-full md:w-auto flex items-center" *ngIf="project.behanceLink">
+                            <a class="flex justify-center items-center" [href]="project.behanceLink" target="_blank">
+                                Behance<img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt="">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <img [src]="project.headerImg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="landing-section">
+        <h1 class="main-title">Goals</h1>
+        <div class="container">
+            <div class="w-full flex justify-between">
+                <div class="mr-12 max-w-50%">
+                    <div *ngFor="let goal of project.goals; index as i" class="flex items-center mb-20">
+                        <p class="main-title main-title-150 !mb-0">{{i+1}}</p>
+                        <p class="text-large font-bold text-white -ml-5">{{goal}}</p>
+                    </div>
+                </div>
+                <div *ngIf="project.goalsImg" class="max-w-600 flex items-start pt-12">
+                    <img [src]="project.goalsImg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="landing-section">
+        <h1 class="main-title">Solutions</h1>
+        <div class="container">
+            <div class="w-full flex justify-between">
+                <div class="mr-12 max-w-50%">
+                    <div *ngFor="let solution of project.solutions; index as i" class="flex items-center mb-20">
+                        <p class="main-title main-title-150 !mb-0">{{i+1}}</p>
+                        <p class="text-large font-bold text-white -ml-5">{{solution}}</p>
+                    </div>
+                </div>
+                <div *ngIf="project.solutionsImg" class="max-w-600 flex items-start">
+                    <img [src]="project.solutionsImg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="landing-section">
+        <h1 class="main-title">Outcome</h1>
+        <div class="container">
+            <div class="w-full lg:max-w-75% mb-28">
+                <p class="text-large font-bold text-white">{{project.outcome}}</p>
+            </div>
+            <div *ngIf="project.video && project.iframe" class="iframe-box">
+                <iframe scrolling="no" frameborder="0" [src]="getSafeUrl(project.video)" allowfullscreen="true"></iframe>
+            </div>
+            <div *ngIf="project.video && !project.iframe">
+                <video width="100%" controls>
+                    <source [src]="getSafeUrl(project.video)" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+    <section class="landing-section" *ngIf="project.feedback">
+        <h1 class="main-title">Reference</h1>
+        <div class="container">
+            <feedback [startFrom]="project.feedback" ></feedback>
+        </div>
+    </section>
+    <section class="landing-section" *ngIf="project.feedback">
+        <h1 class="main-title">Aspects</h1>
+        <div class="container">
+            <div *ngIf="project.aspects.type">
+                <p>Type</p>
+                <div>
+                    <span *ngFor="let type of project.aspects.type" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors">{{type}}</span>
+                </div>
+            </div>
+            <div *ngIf="project.aspects.country">
+                <p>Country</p>
+                <div>
+                    <span *ngFor="let country of project.aspects.country" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors">{{country}}</span>
+                </div>
+            </div>
+            <div *ngIf="project.aspects.technology_stack">
+                <p>Technology stack</p>
+                <div>
+                    <span *ngFor="let stack of project.aspects.technology_stack" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors">{{stack}}</span>
+                </div>
+            </div>
+            <div *ngIf="project.aspects.services_provided">
+                <p>Services provided</p>
+                <div>
+                    <span *ngFor="let stack of project.aspects.services_provided" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors">{{stack}}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-container>

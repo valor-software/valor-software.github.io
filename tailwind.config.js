@@ -32,7 +32,11 @@ module.exports = {
       input_col: '#343434',
       placeholder_col: '#585858',
       hover_pink_btn_col: '#C03247',
-      feedback_font_col: '#E1E1E1'
+      feedback_font_col: '#E1E1E1',
+      darkPink: '#D85988',
+      darkPinkHover: '#9C395E',
+      blue_btn: '#1F5CF5',
+      darkBlue: '#22469F'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -46,6 +50,7 @@ module.exports = {
         '40': '2.5rem',
         '66': '4.125rem',
         '200': '200px',
+        '150': '150px',
         '56': '56px',
         '28': '28px'
       },

@@ -1,0 +1,43 @@
+<div class="">
+    <div
+            *ngIf="sortList?.length"
+            sortProjects
+            [activeItem]="activeIndex"
+            [items]="projects"
+            (changedArticles)="updateProjects($event)"
+            class="flex justify-between items-start mb-14 flex-col md:flex-row"
+    >
+        <div class="w-full">
+            <h3 class="text-placeholder_col text-24 font-bold mb-6">Domains</h3>
+            <div class="w-full flex flex-wrap items-center">
+                <div *ngFor="let key of sortList" (click)="toggleActiveIndex(key)">
+                    <p [class.text-grey_bg]="activeIndex.includes(key)" [class.bg-light_title_col]="activeIndex.includes(key)" class="mb-4 mr-4 cursor-pointer text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2 hover:text-grey_bg hover:bg-light_title_col transition-colors">{{getSortTitle(key)}}</p>
+                </div>
+                <button (click)="resetAll()" class="text-light_title_col underline mb-4">Reset all</button>
+            </div>
+
+        </div>
+        <div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="sortProjects?.length">
+    <div class="w-full">
+        <div class="w-full flex flex-wrap justify-between">
+            <ng-container *ngIf="!showAll && checkLength()">
+                <ng-container *ngFor="let art of sortProjects | slice:0:8">
+                    <project-item class="w-full lg:w-45% cursor-pointer" [project]="art" (click)="route(art.name)"></project-item>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="showAll || !checkLength()">
+                <ng-container *ngFor="let art of sortProjects">
+                    <project-item class="w-full lg:w-45% cursor-pointer" [project]="art" (click)="route(art.name)"></project-item>
+                </ng-container>
+            </ng-container>
+        </div>
+
+        <button *ngIf="!showAll && checkLength()" class="btn-pink w-full md:w-auto flex items-baseline justify-center mx-auto" (click)="showAll = true" >Show all projects</button>
+    </div>
+</ng-container>
+

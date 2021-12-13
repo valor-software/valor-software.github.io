@@ -15,6 +15,7 @@ import { AppFooterComponent } from "./components/app-footer/app-footer.component
 import { ServicesBlockComponent } from './components/services_block/services-block.component';
 import { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.component';
 import { ShowHideDirective } from './directives/showHide.directive';
+import {SwiperModule} from "swiper/angular";
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -39,7 +40,7 @@ export { ShowHideDirective } from './directives/showHide.directive';
     BreadCrumbsComponent,
     ShowHideDirective
   ],
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule],
   exports: [
     TopMenuComponent,
     ImgHoverDirective,

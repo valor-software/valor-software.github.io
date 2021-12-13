@@ -1,6 +1,8 @@
 {
-  "name": "renaizant",
+  "name": "Renaizant",
   "link": "https://app.renaizant.com/login",
+  "sortServices": [],
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69e2049799581dd75381af_Renaizent_cover.jpg",
   "description": "Renaizant is an ongoing performance management platform that helps employees grow and succeed.",
   "goals": [
     "Develop UI/UX",

@@ -1,6 +1,9 @@
 {
   "name": "Cinnabon",
   "link": "https://shop.cinnabon.com/mp/nd/sites/xilan-fb/#/location/1/menu",
+  "sortServices": ["migration"],
+  "sortTechnologies": ["angular"],
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dc9d5da14b8e36af90b2_Cinnabon-cover.jpg",
   "description": "Cinnabon is one of the cafes that wanted to create its own online shop on the base of Novadine platform, but also add some customizations.",
   "goals": [
     "Create a new UX/UI",

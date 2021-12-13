@@ -1,6 +1,8 @@
 {
   "name": "NgTalks",
   "link": "https://ngtalks.io/",
+  "sortServices": [],
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69de0c269cc4de21681f5d_ngtalks_cover.jpg",
   "description": "NgTalks is the first conference in Ukraine dedicated to Angular technologies and covering best practices, approaches and the latest community trends.",
   "goals": [
     "Create international Product Brand",

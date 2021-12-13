@@ -6,6 +6,7 @@ import { SwiperModule } from "swiper/angular";
 import { CommonDocsModule } from '@valor-software/common-docs';
 import { NpmStatisticService } from './getNpmStatistic.service';
 import { MainPageComponent } from "./main-page.component";
+import { FeedbackModule } from "@valor-software/feedback";
 
 export { MainPageComponent } from "./main-page.component";
 
@@ -17,7 +18,8 @@ export { MainPageComponent } from "./main-page.component";
         CommonModule,
         RouterModule.forChild(routes),
         SwiperModule,
-        CommonDocsModule
+        CommonDocsModule,
+        FeedbackModule
     ],
     providers: [NpmStatisticService]
 })

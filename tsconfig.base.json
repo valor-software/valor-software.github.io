@@ -27,14 +27,17 @@
       "@valor-software/common-docs": [
         "libs/common-docs/src/index.ts"
       ],
+      "@valor-software/feedback": [
+        "libs/feedback/src/index.ts"
+      ],
       "@valor-software/file-uploader": [
         "libs/file-uploader/src/index.ts"
       ],
       "@valor-software/home-page": [
         "libs/route-pages/home-page/src/index.ts"
       ],
-      "@valor-software/portfolio": [
-        "libs/route-pages/portfolio/src/index.ts"
+      "@valor-software/projects": [
+        "libs/route-pages/projects/src/index.ts"
       ],
       "@valor-software/services-page": [
         "libs/route-pages/services-page/src/index.ts"

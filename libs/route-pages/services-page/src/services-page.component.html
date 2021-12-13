@@ -1,9 +1,11 @@
 <section class="landing-section">
     <div class="container pb-5 flex justify-between items-center pt-16" style="max-height: 100%;">
-        <div class="max-w-600 mx-auto">
+        <div class="max-w-600">
             <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">Full-cycle software development for your business </h1>
             <p class="leading-normal text-grey_font_col lg:mb-8 mb-14">We can help you cover all aspects of software development, including UX/UI design, custom web and mobile development, QA services, business analysis, and content writing. With the help of our Technical Writers, you’ll have all the documentation ready for smooth product maintenance in the future.</p>
-            <button class="btn-pink flex justify-center items-baseline w-full md:w-auto">Visit portfolio<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
+            <button class="btn-pink mx-auto">
+                <a [routerLink]="'/portfolio'" class="flex justify-center items-center">Visit portfolio <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
+            </button>
         </div>
         <div class="hidden lg:block">
             <img src="assets/img/bg-img/services_page/header_bg.svg" alt="">

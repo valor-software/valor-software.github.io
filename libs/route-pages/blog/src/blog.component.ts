@@ -25,7 +25,7 @@ export const Languages = {
     selector: 'blog-block',
     templateUrl: './blog.component.html'
 })
-export class BlogComponent implements OnDestroy{
+export class BlogComponent implements OnDestroy {
     sortList: string[] = [];
     sortLang: string[] =[];
     $articles?: Subscription;

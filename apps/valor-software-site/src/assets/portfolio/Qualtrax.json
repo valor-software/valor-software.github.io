@@ -1,6 +1,8 @@
 {
   "name": "Qualtrax",
   "link": "https://www.qualtrax.com/",
+  "sortServices": [],
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69e0222909818c8b40d4b9_qualtrax_cover.jpg",
   "description": "On-premise & cloud-based quality management tool that helps businesses of all sizes manage and control documentation, compliance, workflows, employees training, purchase request automation & more.",
   "behanceLink": "https://www.behance.net/gallery/81368931/Qualtrax-Compliance-Management-Software",
   "goals": [

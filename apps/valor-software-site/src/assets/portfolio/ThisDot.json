@@ -1,6 +1,8 @@
 {
   "name": "ThisDot",
   "link": "https://www.thisdot.co/",
+  "sortServices": [],
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dd7cdadedd2f047a1d37_thisdot%20-%20cover.jpg",
   "description": "An education and news focused web platform that facilitates the idea of learning through four main principles: Watch, Engage, Listen, and Learn.",
   "goals": [
     "Create international Product Brand",

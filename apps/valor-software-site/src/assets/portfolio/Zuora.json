@@ -1,0 +1,35 @@
+{
+  "name": "Zuora",
+  "link": "https://www.zuora.com/",
+  "sortTechnologies": ["angular", "js", "aws", "firebase"],
+  "sortServices": [],
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c56cf47dbf6ed124413d_zoura-cover.jpg",
+  "description": "Zuora is a payment system that can be connected through API to e-commerce websites.",
+  "goals": [
+    "Create a sub-application for an application platform."
+  ],
+  "solutions": [
+    "We created a complex UI interface from scratch and used a native application's API to interact with our solution."
+  ],
+  "outcome": "The ability for Zuora's customers to create custom templates for their personal admin panels, including color schemes and payment related settings.",
+  "headerImg": "",
+  "aspects": {
+    "type": [
+      "Medium-Sized Businesses???",
+      "Gaming????"
+    ],
+    "country": [
+      "UK???"
+    ],
+    "Technology stack": [
+      "Angular",
+      "Vue.js",
+      "Ruby on Rails"
+    ],
+    "Services provided": [
+      "UX/UI???",
+      "Front-End????",
+      "Back-End???"
+    ]
+  }
+}

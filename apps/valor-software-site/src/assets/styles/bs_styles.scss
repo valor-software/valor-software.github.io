@@ -11,11 +11,32 @@
   }
 }
 
+.btn-dark-pink {
+  @apply bg-darkPink text-white rounded-20 px-4 py-2.5 hover:bg-darkPinkHover transition-colors items-center h-10;
+
+  &[disabled] {
+    @apply opacity-50;
+  }
+}
+
+.btn-blue {
+  @apply bg-blue_btn text-white rounded-20 px-4 py-2.5 hover:bg-darkBlue transition-colors items-center h-10;
+
+  &[disabled] {
+    @apply opacity-50;
+  }
+}
+
+
 .main-title {
   @apply font-bold text-dark_title_col text-56 xl:text-title lg:text-150 lg:mb-10 mb-6;
 
   &.double {
     @apply text-50 lg:text-double_title ;
+  }
+
+  &-150 {
+    @apply text-150 leading-150;
   }
 }
 

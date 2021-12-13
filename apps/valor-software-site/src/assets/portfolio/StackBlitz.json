@@ -1,6 +1,8 @@
 {
   "name": "StackBlitz",
   "link": "https://www.behance.net/gallery/76452277/StackBlitz-Logo-redesign",
+  "sortServices": [],
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69de8e9077c4763471f51d_StackBlitz_cover.jpg",
   "description": "Online IDE for web applications powered by Visual Studio Code.",
   "goals": [
     "Update the logo and site's color scheme according to Material Design Guideline."
