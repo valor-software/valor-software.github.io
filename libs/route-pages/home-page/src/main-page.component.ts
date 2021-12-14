@@ -2,6 +2,8 @@ import {Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NpmStatisticService } from "./getNpmStatistic.service";
 import SwiperCore, { Pagination, Mousewheel, SwiperOptions  } from "swiper";
+import {forkJoin, Subscription} from "rxjs";
+import {GetPortfolioService, IPortfolio, ProjectsRouteService} from "@valor-software/portfolio";
 SwiperCore.use([Mousewheel, Pagination]);
 
 const slideModel = [
@@ -158,14 +160,14 @@ const technologiesList = [
         active: false,
         disabled: false
     },
-    {
-        id: 'js',
-        img: 'assets/img/technologies/not_active/java_script.png',
-        activeImg: 'assets/img/technologies/active/java_script.png',
-        blockedImg: 'assets/img/technologies/blocked/java_script.png',
-        active: false,
-        disabled: false
-    }
+    // {
+    //     id: 'js',
+    //     img: 'assets/img/technologies/not_active/java_script.png',
+    //     activeImg: 'assets/img/technologies/active/java_script.png',
+    //     blockedImg: 'assets/img/technologies/blocked/java_script.png',
+    //     active: false,
+    //     disabled: false
+    // }
 ];
 
 const projectsList = [
@@ -330,21 +332,33 @@ export class MainPageComponent {
     };
 
     technologiesList: typeof technologiesList = technologiesList;
-    projectList = projectsList;
-    sortedProjects?: {labels: string[], name: string, img: string}[];
+    // projectList = projectsList;
+    // sortedProjects?: {labels: string[], name: string, img: string}[];
     sortedProjectsAmount = 4;
     showSocial = false;
     services: typeof ServicesModel = ServicesModel;
     openSourceSlides: typeof OpenSourceSlidesModel = OpenSourceSlidesModel;
+    $portfolio: Subscription;
+    projects?: IPortfolio[];
+    sortProjects?: IPortfolio[];
 
     constructor(
         private npmCounts: NpmStatisticService,
         private cdr: ChangeDetectorRef,
-        protected router: Router
+        protected router: Router,
+        private getPortfolio: GetPortfolioService,
+        private projectRouteServ: ProjectsRouteService
     ) {
+        this.$portfolio = forkJoin(this.getPortfolio.getFullListOfPortfolio()).subscribe((res: IPortfolio[] | undefined) => {
+            this.projects = res;
+            this.sortProjects = res;
+            this.initDisabledTechnologies();
+            this.getSortProjects('angular');
+        });
+
+
+
         this.sortedProjectsAmount = window.innerWidth >= 768 ? 4 : 2;
-        this.initDisabledTechnologies();
-        this.sortProjects('angular');
         if (this.router.parseUrl(this.router.url).fragment) {
             this.router.navigate(['.']);
         }
@@ -365,7 +379,7 @@ export class MainPageComponent {
 
     initDisabledTechnologies() {
         this.technologiesList.forEach(techno => {
-            const res = this.projectList.find(item => item.labels.includes(techno.id));
+            const res = this.projects?.find(item => item.sortTechnologies?.includes(techno.id));
             if (!res) {
                 techno.disabled = true;
             }
@@ -379,12 +393,15 @@ export class MainPageComponent {
         return this.technologiesList.some(item => item.active);
     }
 
-    sortProjects(id: string): void {
+    getSortProjects(id: string) {
         if (this.setActiveTechnology(id)) {
-            this.sortedProjects = this.projectList?.filter(item => item.labels.includes(id))?.slice(0, this.sortedProjectsAmount);
+            this.sortProjects = this.projects?.filter(item => item.sortTechnologies?.includes(id))?.slice(0, this.sortedProjectsAmount);
         }
     }
 
+    projectRoute(name: string) {
+        this.projectRouteServ.route(name);
+    }
 
     checkIndex(index: number): boolean {
         index++;

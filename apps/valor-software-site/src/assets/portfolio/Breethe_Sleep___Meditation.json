@@ -2,7 +2,7 @@
   "name": "Breethe: Sleep & Meditation",
   "link": "https://breethe.com/",
   "sortTechnologies": ["angular", "native_script"],
-  "sortServices": ["web", "mobile"],
+  "sortServices": ["web", "mobile", "migration"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dddd9c3bd8ebc465e133_breathe_cover.jpg",
   "description": "Breethe: Sleep & Meditation mobile application is the next generation meditation app that has the following features: sleep tracks, hypnotherapy sessions, masterclasses, music, nature sounds playlists, and much more.",
   "goals": [
@@ -22,11 +22,11 @@
     "country": [
       "UK???"
     ],
-    "Technology stack": [
+    "technology_stack": [
       "Angular 7.0 (NgRx)",
       "NativeScript"
     ],
-    "Services provided": [
+    "services_provided": [
       "UX/UI???",
       "Front-End????",
       "Back-End???"

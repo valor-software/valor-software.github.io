@@ -1,9 +1,7 @@
 import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import {forkJoin, Subscription} from "rxjs";
-import {IPortfolio} from "./portfolio.list";
+import { IPortfolio, GetPortfolioService, ProjectsRouteService } from "@valor-software/portfolio";
 import {Router} from "@angular/router";
-import {GetPortfolioService} from "./getPortfolio.service";
-import {ProjectsRouteService} from "./projectsRoute.service";
 
 const SortList = {
     all_projects: 'All Projects',
@@ -55,8 +53,16 @@ export class ProjectsBlockComponent implements OnDestroy{
     toggleActiveIndex(key: string) {
         if (this.activeIndex.includes(key)) {
             this.activeIndex = this.activeIndex.filter(item => item !== key);
+            if (!this.activeIndex.length) {
+                this.resetAll();
+            }
+
             this.showAll = false;
             return;
+        }
+
+        if (key) {
+            this.activeIndex = this.activeIndex.filter(item => item !== 'all_projects');
         }
 
         this.activeIndex = [...this.activeIndex, key];

@@ -1,11 +1,9 @@
-import {Component, OnDestroy} from '@angular/core';
-import {IPortfolio} from "./portfolio.list";
-import {Subscription} from "rxjs";
-import {NavigationEnd, Router} from "@angular/router";
-import {GetPortfolioService} from "./getPortfolio.service";
-import {filter} from "rxjs/operators";
+import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import { IPortfolio, GetPortfolioService, ProjectsRouteService } from "@valor-software/portfolio";
+import { Subscription } from "rxjs";
+import { NavigationEnd, Router } from "@angular/router";
+import { filter } from "rxjs/operators";
 import { DomSanitizer } from '@angular/platform-browser';
-import {SwiperOptions} from "swiper";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -16,32 +14,15 @@ export class ProjectComponent implements OnDestroy{
     changeBreadCrumbTitle?: {path: string, title: string}[];
     project?: IPortfolio;
     $routEvents?: Subscription;
-    testConfig: SwiperOptions = {
-        slidesPerView: 1,
-        spaceBetween: 40,
-        centeredSlides: true,
-        initialSlide: 1,
-        slideToClickedSlide: true,
-        pagination: {
-            clickable: true
-        },
-        breakpoints: {
-            768: {
-                slidesPerView: 1
-            },
-            1024: {
-                slidesPerView: 1.4
-            },
-            1280: {
-                slidesPerView: 1.8
-            },
-        }
-    };
+    nextProject?: IPortfolio;
 
     constructor(
         private router: Router,
         private getProjectsServ: GetPortfolioService,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private projectRoute: ProjectsRouteService,
+        private cdr: ChangeDetectorRef,
+
     ) {
         this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
             this.checkRoutePath();
@@ -50,7 +31,6 @@ export class ProjectComponent implements OnDestroy{
 
     checkRoutePath() {
         const artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
-
         if (!artTitle) {
             this.router.navigate(['/portfolio']);
         }
@@ -62,8 +42,7 @@ export class ProjectComponent implements OnDestroy{
                     title: res.name
                 }];
                 this.project = res;
-
-                console.log(this.project);
+                this.initNextProject();
             }, error => {
                 console.log('error', error);
                 this.router.navigate(['/portfolio']);
@@ -77,6 +56,37 @@ export class ProjectComponent implements OnDestroy{
         };
 
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    }
+
+    initNextProject() {
+        const array = this.getProjectsServ.getProjectList();
+        let index = array.findIndex(item => item === this.changeBreadCrumbTitle?.[0]?.path);
+
+        if (!index && index !== 0) {
+            return;
+        }
+        index++;
+
+        if (index > array.length - 1) {
+            index = 0;
+        }
+        this.getProjectsServ.getPortfolioRequest(array[index]).subscribe(res => {
+            this.nextProject = res;
+        });
+    }
+
+    route(link: string) {
+        this.projectRoute.route(link);
+    }
+
+    getRespSrc(link: string): string {
+        const arr = link.split('.');
+        return `${arr[0]}_resp.${arr[1]}`;
+    }
+
+    changeSrc(event: Event, link:string) {
+        (event.target as HTMLImageElement).src = link;
+        this.cdr.detectChanges();
     }
 
     ngOnDestroy() {

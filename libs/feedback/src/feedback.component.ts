@@ -14,6 +14,14 @@ export class FeedbackComponent implements AfterViewInit{
         if (value) {
             this.startFromIndex = this.feedbackList.findIndex(item => item.author === value);
         }
+
+        if(this.swiperRef && this.startFromIndex) {
+            this.swiperRef.swiperRef.slideTo(this.startFromIndex+1);
+        }
+
+        if(this.swiperRefResp && this.startFromIndex) {
+            this.swiperRefResp.swiperRef.slideTo(this.startFromIndex+1);
+        }
     };
     feedbackList: IFeedBack[] = feedBack;
     @ViewChild("swiperRef", { static: false }) swiperRef?: SwiperComponent;

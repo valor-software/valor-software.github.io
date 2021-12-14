@@ -3,7 +3,7 @@ import {
     Output,
     EventEmitter,  Input
 } from "@angular/core";
-import { IPortfolio } from "./portfolio.list";
+import { IPortfolio } from "@valor-software/portfolio";
 
 
 @Directive({

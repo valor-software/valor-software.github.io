@@ -36,7 +36,7 @@
   }
 
   &-150 {
-    @apply text-150 leading-150;
+    @apply lg:text-150 lg:leading-150 text-105;
   }
 }
 
@@ -241,8 +241,10 @@
 
 
 h3 {
+  @apply font-bold;
+
   span {
-    @apply text-dar_grey_font_col;
+    @apply text-dar_grey_font_col font-normal;
   }
 }
 

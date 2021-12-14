@@ -1,7 +1,7 @@
 {
   "name": "Vizabi",
   "link": "https://vizabi.org/examples/bubble-chart.html",
-  "sortServices": [],
+  "sortServices": ["web"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dedb9077c42af471f54f_Vizabi-cover.jpg",
   "behanceLink": "https://www.behance.net/gallery/49460795/Vizabi-Tools-Statistics-can-be-interesting",
   "description": "Social project to hire women in tech. A company can solve its diversity problem quickly by hiring the teams of female junior developers paired with a senior developer mentor.",
@@ -15,7 +15,7 @@
     "Updated visualization tools and BigData sets"
   ],
   "outcome": "BigData is a visualization tool that could be embedded in custom solutions to create new visualizations for users' needs.",
-  "headerImg": "",
+  "headerImg": "assets/img/portfolio/vizabi_header.png",
   "aspects": {
     "type": [
       "Medium-Sized Businesses???",
@@ -24,7 +24,7 @@
     "country": [
       "UK???"
     ],
-    "Technology stack": [
+    "technology_stack": [
       "Node.js to TypeScript migration",
       "Express.js",
       "Lodash",
@@ -36,7 +36,7 @@
       "New Relic",
       "AWS (EC2, ECR, ECS, ElasticCache, CloudFormation) to GCP migration"
     ],
-    "Services provided": [
+    "services_provided": [
       "UX/UI???",
       "Front-End????",
       "Back-End???"

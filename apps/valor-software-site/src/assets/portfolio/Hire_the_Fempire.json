@@ -1,8 +1,7 @@
 {
   "name": "Hire the Fempire",
   "link": "https://apprentice.thisdot.co/",
-  "sortServices": ["art_intel", "web"],
-  "sortTechnologies": [],
+  "sortServices": ["web", "ui"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dd2e2909812ab440c423_fempire-cover.jpg",
   "description": "Social project to hire women in tech. A company can solve its diversity problem quickly by hiring the teams of female junior developers paired with a senior developer mentor.",
   "goals": [
@@ -26,13 +25,13 @@
     "country": [
       "UK???"
     ],
-    "Technology stack": [
+    "technology_stack": [
       "Figma",
       "WebFlow",
       "FlowMap",
       "Illustrator"
     ],
-    "Services provided": [
+    "services_provided": [
       "UX/UI???",
       "Front-End????",
       "Back-End???"

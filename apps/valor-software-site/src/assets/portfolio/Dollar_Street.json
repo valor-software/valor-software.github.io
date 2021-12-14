@@ -1,7 +1,7 @@
 {
   "name": "Dollar Street",
   "link": "https://www.gapminder.org/dollar-street",
-  "sortServices": ["art_intel"],
+  "sortServices": ["web"],
   "sortTechnologies": ["angular", "js", "aws", "firebase"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c3596e5af657dfd5a657_ds-cover.jpg",
   "description": "Dollar Street allows exploring how people live all across the globe interactively. A team of photographers has documented over 200 homes in almost 50 countries so far, and the list is growing.",
@@ -22,7 +22,7 @@
     "D3.js used for drawing the main navigation element"
   ],
   "outcome": "The powerful and heavy-load optimized analytical environment with great design and good performance on extremely huge amounts of data.",
-  "headerImg": "",
+  "headerImg": "assets/img/portfolio/dollarstreet_header.png",
   "feedback": "Anna Rosling",
   "aspects": {
     "type": [
@@ -32,21 +32,21 @@
     "country": [
       "UK???"
     ],
-    "Technology stack": [
-      "JavaScript to TypeScript migration (front and back end)",
-      "Amazon AWS to GCP migrations",
-      "MongoDB 3.2 → 3.4 → 3.6 → 4.0 migrations",
-      "AngularJS → Angular 2 → Angular 7 migrations",
-      "Node.js → Express.js → NestJS migrations",
-      "Jasmine to Mocha, Chai, Sinon migrations",
+    "technology_stack": [
       "AWS S3",
       "Docker",
       "Angular CLI",
       "ImageMagic",
       "Cloudflare",
-      "Firebase Cloud Functions"
+      "Firebase Cloud Functions",
+      "JavaScript to TypeScript migration (front and back end)",
+      "Amazon AWS to GCP migrations",
+      "MongoDB 3.2 → 3.4 → 3.6 → 4.0 migrations",
+      "AngularJS → Angular 2 → Angular 7 migrations",
+      "Node.js → Express.js → NestJS migrations",
+      "Jasmine to Mocha, Chai, Sinon migrations"
     ],
-    "Services provided": [
+    "services_provided": [
       "UX/UI???",
       "Front-End????",
       "Back-End???"

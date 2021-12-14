@@ -4,23 +4,24 @@
             <ng-container *ngIf="changeBreadCrumbTitle?.length">
                 <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block"></breadCrumbs>
             </ng-container>
-            <div class="w-full pb-5 flex justify-between items-center pt-16">
+            <div class="w-full pb-5 flex-col lg:flex-row flex justify-between items-center pt-16">
                 <div class="max-w-600">
                     <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">{{project.name}}</h1>
                     <p class="leading-normal text-grey_font_col lg:mb-8 mb-14">{{project.description}}</p>
                     <div class="flex" *ngIf="project.link || project.behanceLink">
-                        <button class="btn-pink w-full md:w-auto flex items-center mr-6" *ngIf="project.link">
+                        <button class="btn-pink w-full md:w-auto flex items-center mr-6 justify-center" *ngIf="project.link">
                             <a class="flex justify-center items-center" [href]="project.link" target="_blank">Visit the site<img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
                         </button>
-                        <button class="btn-dark-pink w-full md:w-auto flex items-center" *ngIf="project.behanceLink">
+                        <button class="btn-dark-pink w-full md:w-auto flex items-center justify-center" *ngIf="project.behanceLink">
                             <a class="flex justify-center items-center" [href]="project.behanceLink" target="_blank">
                                 Behance<img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt="">
                             </a>
                         </button>
                     </div>
                 </div>
-                <div class="hidden lg:block">
-                    <img [src]="project.headerImg" alt="">
+                <div class="mt-16 lg:mt-0 flex justify-center w-full">
+                    <img class="hidden md:block" [src]="project.headerImg" alt="">
+                    <img class="block md:hidden w-full" [src]="getRespSrc(project.headerImg)" alt="" (error)="changeSrc($event, project.headerImg)">
                 </div>
             </div>
         </div>
@@ -28,11 +29,11 @@
     <section class="landing-section">
         <h1 class="main-title">Goals</h1>
         <div class="container">
-            <div class="w-full flex justify-between">
-                <div class="mr-12 max-w-50%">
-                    <div *ngFor="let goal of project.goals; index as i" class="flex items-center mb-20">
-                        <p class="main-title main-title-150 !mb-0">{{i+1}}</p>
-                        <p class="text-large font-bold text-white -ml-5">{{goal}}</p>
+            <div class="w-full flex flex-col lg:flex-row justify-between">
+                <div class="mr-12 lg:max-w-50%">
+                    <div *ngFor="let goal of project.goals; index as i" class="flex items-center mb-6 lg:mb-20">
+                        <p class="main-title main-title-150 !mb-0 text-center min-w-70 lg:min-w-100">{{i+1}}</p>
+                        <p class="text-24 lg:text-large font-bold text-white -ml-5">{{goal}}</p>
                     </div>
                 </div>
                 <div *ngIf="project.goalsImg" class="max-w-600 flex items-start pt-12">
@@ -44,11 +45,11 @@
     <section class="landing-section">
         <h1 class="main-title">Solutions</h1>
         <div class="container">
-            <div class="w-full flex justify-between">
-                <div class="mr-12 max-w-50%">
-                    <div *ngFor="let solution of project.solutions; index as i" class="flex items-center mb-20">
-                        <p class="main-title main-title-150 !mb-0">{{i+1}}</p>
-                        <p class="text-large font-bold text-white -ml-5">{{solution}}</p>
+            <div class="w-full flex flex-col lg:flex-row justify-between">
+                <div class="mr-12 lg:max-w-50%">
+                    <div *ngFor="let solution of project.solutions; index as i" class="flex items-center mb-6 lg:mb-20">
+                        <p class="main-title main-title-150 !mb-0 text-center min-w-70 lg:min-w-100">{{i+1}}</p>
+                        <p class="text-24 lg:text-large font-bold text-white -ml-5">{{solution}}</p>
                     </div>
                 </div>
                 <div *ngIf="project.solutionsImg" class="max-w-600 flex items-start">
@@ -60,8 +61,8 @@
     <section class="landing-section">
         <h1 class="main-title">Outcome</h1>
         <div class="container">
-            <div class="w-full lg:max-w-75% mb-28">
-                <p class="text-large font-bold text-white">{{project.outcome}}</p>
+            <div class="w-full lg:max-w-75% mb-12 lg:mb-28">
+                <p class="text-24 lg:text-large font-bold text-white">{{project.outcome}}</p>
             </div>
             <div *ngIf="project.video && project.iframe" class="iframe-box">
                 <iframe scrolling="no" frameborder="0" [src]="getSafeUrl(project.video)" allowfullscreen="true"></iframe>
@@ -82,29 +83,51 @@
     </section>
     <section class="landing-section" *ngIf="project.feedback">
         <h1 class="main-title">Aspects</h1>
+        <div class="container lg:grid lg:grid-cols-4 lg:gap-4">
+            <div *ngIf="project.aspects.type" class="mb-6 lg:mb-0">
+                <p class="font-bold text-24 text-placeholder_col mb-2 lg:mb-6">Type</p>
+                <div class="flex flex-wrap items-start">
+                    <span *ngFor="let type of project.aspects.type" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors mb-2">{{type}}</span>
+                </div>
+            </div>
+            <div *ngIf="project.aspects.country" class="mb-6 lg:mb-0">
+                <p class="font-bold text-24 text-placeholder_col mb-2 lg:mb-6">Country</p>
+                <div class="flex flex-wrap items-start">
+                    <span *ngFor="let country of project.aspects.country" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors mb-2">{{country}}</span>
+                </div>
+            </div>
+            <div *ngIf="project.aspects.technology_stack" class="mb-6 lg:mb-0">
+                <p class="font-bold text-24 text-placeholder_col mb-2 lg:mb-6">Technology stack</p>
+                <div class="flex flex-wrap items-start">
+                    <span *ngFor="let stack of project.aspects.technology_stack" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors mb-2">{{stack}}</span>
+                </div>
+            </div>
+            <div *ngIf="project.aspects.services_provided" class="mb-6 lg:mb-0">
+                <p class="font-bold text-24 text-placeholder_col mb-2 lg:mb-6">Services provided</p>
+                <div class="flex flex-wrap items-start">
+                    <span *ngFor="let stack of project.aspects.services_provided" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors mb-2">{{stack}}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="landing-section" *ngIf="nextProject">
+        <h1 class="main-title">Next Project</h1>
         <div class="container">
-            <div *ngIf="project.aspects.type">
-                <p>Type</p>
-                <div>
-                    <span *ngFor="let type of project.aspects.type" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors">{{type}}</span>
+            <div class="w-full max-w-80% mx-auto">
+                <div class="mb-10">
+                    <img [src]="nextProject.previewImg" [alt]="nextProject.name+' image'" class="w-full h-full object-cover">
                 </div>
-            </div>
-            <div *ngIf="project.aspects.country">
-                <p>Country</p>
-                <div>
-                    <span *ngFor="let country of project.aspects.country" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors">{{country}}</span>
-                </div>
-            </div>
-            <div *ngIf="project.aspects.technology_stack">
-                <p>Technology stack</p>
-                <div>
-                    <span *ngFor="let stack of project.aspects.technology_stack" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors">{{stack}}</span>
-                </div>
-            </div>
-            <div *ngIf="project.aspects.services_provided">
-                <p>Services provided</p>
-                <div>
-                    <span *ngFor="let stack of project.aspects.services_provided" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors">{{stack}}</span>
+                <div class="flex flex-col">
+                    <div class="mb-12 cursor-pointer" (click)="route(nextProject.name)">
+                        <p *ngIf="nextProject.sortServices.includes('web')" class="text-header_font_col text-sm md:text-20">Website</p>
+                        <div class="flex">
+                            <p class="text-light_title_col font-bold text-24 lg:text-56 mr-4">{{nextProject.name}}</p>
+                            <img src="assets/img/icons/arrow.svg" class="ml-2 w-35" alt="">
+                        </div>
+                    </div>
+                    <button class="btn-pink w-full md:w-auto flex items-center self-end">
+                        <a class="flex justify-center items-center mx-auto" [routerLink]="'/portfolio'">Visit all projects<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
+                    </button>
                 </div>
             </div>
         </div>

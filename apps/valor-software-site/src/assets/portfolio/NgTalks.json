@@ -1,7 +1,7 @@
 {
   "name": "NgTalks",
   "link": "https://ngtalks.io/",
-  "sortServices": [],
+  "sortServices": ["web"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69de0c269cc4de21681f5d_ngtalks_cover.jpg",
   "description": "NgTalks is the first conference in Ukraine dedicated to Angular technologies and covering best practices, approaches and the latest community trends.",
   "goals": [
@@ -14,7 +14,7 @@
     "We decided to use Webflow as a main development solution. As it was important to launch the marketing strategy as soon as possible, we delivered the application within 3 weeks."
   ],
   "outcome": "NgTalks website is specifically designed to be a central hub for everything about the Ukrainian Kharkov-based Angular conference. It is intended to be simple, clean and easy to navigate for both visitors and speakers.",
-  "headerImg": "",
+  "headerImg": "assets/img/portfolio/ngtalks_header.png",
   "aspects": {
     "type": [
       "Medium-Sized Businesses???",
@@ -23,12 +23,12 @@
     "country": [
       "UK???"
     ],
-    "Technology stack": [
+    "technology_stack": [
       "Figma",
       "Webflow",
       "FlowMap"
     ],
-    "Services provided": [
+    "services_provided": [
       "UX/UI???",
       "Front-End????",
       "Back-End???"

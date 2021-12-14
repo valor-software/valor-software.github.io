@@ -7,13 +7,13 @@ export const PortfolioList = [
     'Priceshredder',
     'Gapminder_Offline',
     'TablesReady',
-    'Breethe__Sleep___Meditation',
+    'Breethe_Sleep___Meditation',
     'StackBlitz',
     'Renaizant',
     'Cinnabon',
     'NgTalks',
     'Qualtrax',
-    'Hire_the_Fempire',
+    // 'Hire_the_Fempire',
     'ThisDot',
     'NgAtlanta',
     'Vizabi',
@@ -26,6 +26,7 @@ export interface IPortfolio {
     behanceLink?: string;
     goalsImg?: string;
     solutionsImg?: string;
+    webSort?: string[];
     video?:string;
     iframe?: string;
     feedback?: string;

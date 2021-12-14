@@ -12,11 +12,12 @@ export class ProjectsRouteService {
 
     route(title: string) {
         let link = title;
-        while(link.match(' '|| ':' || '–' || '—')) {
+        while(link.match(' '|| ':' || '–' || '—' || '&')) {
             link = link.replace(' ','_');
             link = link.replace(':','');
             link = link.replace('–','_');
             link = link.replace('—','_');
+            link = link.replace('&','_');
         }
         this.router.navigate(['portfolio', link]);
         window.scrollTo(0,0);

@@ -1,7 +1,7 @@
 {
   "name": "StackBlitz",
   "link": "https://www.behance.net/gallery/76452277/StackBlitz-Logo-redesign",
-  "sortServices": [],
+  "sortServices": ["ui"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69de8e9077c4763471f51d_StackBlitz_cover.jpg",
   "description": "Online IDE for web applications powered by Visual Studio Code.",
   "goals": [
@@ -11,7 +11,7 @@
     "Our Design Team decided not to put many layers and overlaps on the icon and make it front facing."
   ],
   "outcome": "Modernized logo to give it more \"Google Material\" feel.",
-  "headerImg": "",
+  "headerImg": "assets/img/portfolio/stackblitz_header.png",
   "aspects": {
     "type": [
       "Medium-Sized Businesses???",
@@ -20,10 +20,10 @@
     "country": [
       "UK???"
     ],
-    "Technology stack": [
+    "technology_stack": [
       "Figma"
     ],
-    "Services provided": [
+    "services_provided": [
       "UX/UI???",
       "Front-End????",
       "Back-End???"

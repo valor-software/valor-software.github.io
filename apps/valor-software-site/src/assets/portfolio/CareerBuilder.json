@@ -1,7 +1,7 @@
 {
   "name": "CareerBuilder",
   "sortTechnologies": ["angular", "js", "nest_js"],
-  "sortServices": ["ui"],
+  "sortServices": ["web", "migration", "art_intel"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c551269cc479d767eabf_cb-cover.jpg",
   "description": "The source for job opportunities & advice. Access career resources, personalized salary tools & insights.",
   "goals": [
@@ -16,8 +16,8 @@
     "New modules development",
     "Styles redesign"
   ],
-  "outcome": "\nSolved many performance and logic issues, increased development speed and performance of the app in general, stabilized the application. Valor Team was trusted to train remote teams, set up the development and testing process.",
-  "headerImg": "",
+  "outcome": "Solved many performance and logic issues, increased development speed and performance of the app in general, stabilized the application. Valor Team was trusted to train remote teams, set up the development and testing process.",
+  "headerImg": "assets/img/portfolio/careerbuilder_header.png",
   "feedback": "Zackary Chapple",
   "aspects": {
     "type": [
@@ -27,7 +27,7 @@
     "country": [
       "UK???"
     ],
-    "Technology stack": [
+    "technology_stack": [
       "Angular",
       "SASS",
       "Nest.js",
@@ -42,7 +42,7 @@
       "Unit tests with Karma and Jasmine",
       "Integration tests with Protractor, Cucumber, Chai, and Gherkin"
     ],
-    "Services provided": [
+    "services_provided": [
       "UX/UI???",
       "Front-End????",
       "Back-End???"

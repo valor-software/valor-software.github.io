@@ -2,7 +2,7 @@
   "name": "Gapminder Offline",
   "link": "https://www.gapminder.org/tools-offline/",
   "sortTechnologies": ["angular", "js"],
-  "sortServices": ["ui", "web"],
+  "sortServices": ["web"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c3ae2909819e614070b3_gm-cover.jpg",
   "description": "Gapminder Offline is an offline implementation of Vizabi—a freely provided by Gapminder framework for building visual data exploration tools.",
   "goals": [
@@ -23,7 +23,7 @@
     "WS reader for querying data on WS by DDFQL"
   ],
   "outcome": "Offline visualization tool for statistic data.",
-  "headerImg": "",
+  "headerImg": "assets/img/portfolio/gapminder_header.png",
   "feedback": "Ola Rosling",
   "aspects": {
     "type": [
@@ -33,13 +33,13 @@
     "country": [
       "UK???"
     ],
-    "Technology stack": [
+    "technology_stack": [
       "AngularJS",
       "Node.js",
       "Electron",
       "TypeScript"
     ],
-    "Services provided": [
+    "services_provided": [
       "UX/UI???",
       "Front-End????",
       "Back-End???"

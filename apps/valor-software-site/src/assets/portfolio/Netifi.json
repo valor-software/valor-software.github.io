@@ -1,7 +1,7 @@
 {
   "name": "Netifi",
   "behanceLink": "https://www.behance.net/gallery/76500797/Netifi-Proteus-Control",
-  "sortServices": [],
+  "sortServices": ["web", "ui"],
   "sortTechnologies": [],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69df72c526ab5a30d6c94c_netifi.jpg",
   "description": "Netifi is a cloud-native application platform, that dramatically reduces operational overhead and speeds development with AI-driven management and reactive software components.",
@@ -15,7 +15,7 @@
     "We used Abstract as a version control tool and a Sketch files manager. This reduced the time to create the design and made this process easier and more comfortable."
   ],
   "outcome": "Valor Software team fully designed the MVP version of Netifi application and created different promo materials, including banners, brochures, flyers and business cards.",
-  "headerImg": "",
+  "headerImg": "assets/img/portfolio/netifi_header.png",
   "aspects": {
     "type": [
       "Medium-Sized Businesses???",
@@ -24,13 +24,13 @@
     "country": [
       "UK???"
     ],
-    "Technology stack": [
+    "technology_stack": [
       "Abstract",
       "Sketch",
       "Invision",
       "Illustrator (Print)"
     ],
-    "Services provided": [
+    "services_provided": [
       "UX/UI???",
       "Front-End????",
       "Back-End???"

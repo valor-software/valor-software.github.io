@@ -24,9 +24,13 @@ import {Router, UrlSegment} from "@angular/router";
 })
 export class BreadCrumbsComponent {
     @Input() set changeTitle(value: {path: string, title: string}[] | undefined) {
+
         if (!this.segments?.length || !value?.length) {
             return;
         }
+
+        const segments = this.router.parseUrl(this.router.url).root.children.primary.segments;
+        this.initSegments(segments);
 
         this.segments.map(item => {
            value.map(key => {
@@ -35,7 +39,6 @@ export class BreadCrumbsComponent {
                 }
            });
         });
-
     };
     segments?: {path: string, title: string}[];
 

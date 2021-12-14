@@ -1,7 +1,7 @@
 {
   "name": "Renaizant",
   "link": "https://app.renaizant.com/login",
-  "sortServices": [],
+  "sortServices": ["web", "ui", "art_intel"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69e2049799581dd75381af_Renaizent_cover.jpg",
   "description": "Renaizant is an ongoing performance management platform that helps employees grow and succeed.",
   "goals": [
@@ -16,7 +16,7 @@
     "Renaizant has advanced features to cover common performance review needs, and makes this process easy and fun."
   ],
   "outcome": "Developed a fully functioning MVP within one year.",
-  "headerImg": "assets/img/portfolio/tablesReady_header.png",
+  "headerImg": "assets/img/portfolio/renaizant_header.png",
   "aspects": {
     "type": [
       "Medium-Sized Businesses???",
@@ -25,13 +25,13 @@
     "country": [
       "UK???"
     ],
-    "Technology stack": [
+    "technology_stack": [
       "Angular v7",
       "Node.js 10+ with NestJS",
       "MySQL",
       "MongoDB"
     ],
-    "Services provided": [
+    "services_provided": [
       "UX/UI???",
       "Front-End????",
       "Back-End???"

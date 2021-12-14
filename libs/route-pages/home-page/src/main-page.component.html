@@ -66,27 +66,26 @@
     <h1 class="main-title">Technology</h1>
     <div class="container flex justify-between flex-col lg:flex-row">
         <div class="lg:bg-grey xl:py-16 xl:px-7 w-full max-w-455 bg-transparent mx-auto lg:mr-8">
-            <div class="flex justify-between flex-wrap items-start">
-                <div
-                        *ngFor="let technology of technologiesList; index as i"
-                        class="border-2 transition-all max-w-19% p-2.5 flex items-center mb-5 lg:mb-9"
-                        [ngClass]="{'active border-pink': technology.active, 'border-transparent': !technology.active, 'mr-5 xl:mr-7': !checkIndex(i), 'cursor-pointer': !technology.disabled, 'cursor-not-allowed': technology.disabled}" (click)="sortProjects(technology.id)"
-                        changeSrcOnHover [check]="technology.active" [defaultSrc]="technology.disabled ? '' : technology.img" [activeSrc]="technology.disabled ? '' : technology.activeImg"
-                        (click)="setActiveTechnology(technology.id)"
+            <div class="grid grid-cols-4">
+                <div *ngFor="let technology of technologiesList; index as i"
+                    class="border-2 transition-all p-2.5 flex items-center mb-5 lg:mb-9"
+                     [ngClass]="{'active border-pink': technology.active, 'border-transparent': !technology.active, 'mr-5 xl:mr-7': !checkIndex(i), 'cursor-pointer': !technology.disabled, 'cursor-not-allowed': technology.disabled}" (click)="getSortProjects(technology.id)"
+                     changeSrcOnHover [check]="technology.active" [defaultSrc]="technology.disabled ? '' : technology.img" [activeSrc]="technology.disabled ? '' : technology.activeImg"
+                     (click)="setActiveTechnology(technology.id)"
                 >
-                    <img [src]="technology.disabled ? technology.blockedImg : technology.active ? technology.activeImg : technology.img" [alt]="technology.id" class="">
+                    <img [src]="technology.disabled ? technology.blockedImg : technology.active ? technology.activeImg : technology.img" [alt]="technology.id" class="mx-auto">
                 </div>
             </div>
 
         </div>
         <div class="lg:max-w-735 w-full flex flex-col justify-between max-w-455 mx-auto">
             <div class="flex flex-wrap justify-between">
-                <div *ngFor="let project of sortedProjects"  class="lg:w-48% w-full relative  mb-8 cursor-pointer border-grey_bg border-2 hover:border-pink">
-                    <img [src]="project.img" [alt]="project.name" class="w-full h-full object-cover">
+                <div *ngFor="let project of sortProjects"  class="lg:w-48% w-full relative  mb-8 cursor-pointer border-grey_bg border-2 hover:border-pink" (click)="projectRoute(project.name)">
+                    <img [src]="project.previewImg" [alt]="project.name" class="w-full h-full object-cover">
                     <div class="absolute inset-0 flex flex-col justify-end p-6 w-full h-full" [style.background]="'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)'">
                         <p class="font-bold text-light_title_col text-xl mb-2 text-center lg:text-left">{{project.name}}</p>
-                        <div class="hidden lg:block">
-                            <span *ngFor="let item of project.labels" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2 hover:text-grey_bg hover:bg-light_title_col transition-colors">{{item}}</span>
+                        <div class="hidden lg:flex flex-wrap">
+                            <span *ngFor="let item of project.aspects.technology_stack | slice:0:3" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2 hover:text-grey_bg hover:bg-light_title_col transition-colors">{{item}}</span>
                         </div>
                     </div>
                 </div>

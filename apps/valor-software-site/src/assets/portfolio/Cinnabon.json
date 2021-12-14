@@ -1,7 +1,7 @@
 {
   "name": "Cinnabon",
   "link": "https://shop.cinnabon.com/mp/nd/sites/xilan-fb/#/location/1/menu",
-  "sortServices": ["migration"],
+  "sortServices": ["web"],
   "sortTechnologies": ["angular"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dc9d5da14b8e36af90b2_Cinnabon-cover.jpg",
   "description": "Cinnabon is one of the cafes that wanted to create its own online shop on the base of Novadine platform, but also add some customizations.",
@@ -14,7 +14,7 @@
     "Designed a new user flow for a payment process (made one custom page instead of four predefined pages)"
   ],
   "outcome": "Full development cycle of the multitenancy instance for a customer, from the design to the production.",
-  "headerImg": "",
+  "headerImg": "assets/img/portfolio/cinnabon_header.png",
   "aspects": {
     "type": [
       "Medium-Sized Businesses???",
@@ -23,12 +23,12 @@
     "country": [
       "UK???"
     ],
-    "Technology stack": [
+    "technology_stack": [
       "Angular 5",
       "NgRx",
       "Unit & E2E testing"
     ],
-    "Services provided": [
+    "services_provided": [
       "UX/UI???",
       "Front-End????",
       "Back-End???"

@@ -1,18 +1,18 @@
 {
   "name": "Liberty Flights",
   "link": "https://www.liberty-flights.co.uk/",
-  "sortServices": [],
+  "sortServices": ["web", "migration"],
   "sortTechnologies": ["angular", "js", "nest_js"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c59c4f54f587685b5840_ls-cover.jpg",
   "description": "Online store of UK made premium vaping devices and kits.",
   "goals": ["Update the design", "Modernize the web site", "Implement new features"],
   "solutions": ["We created a brand new design", "Migrated the site from ASP.NET to Angular & Nest.js", "Added plenty of new features to improve the usability"],
   "outcome": "Google Analytics performance improvements: Page views increased by 40%, and Bounce rate fell by 20%. The web application has become a way easier to support, scale, and manage.",
-  "headerImg": "assets/img/portfolio/tablesReady_header.png",
+  "headerImg": "assets/img/portfolio/liberty_header.png",
   "aspects": {
     "type": ["Medium-Sized Businesses???", "Gaming????"],
     "country": ["UK???"],
-    "Technology stack": ["Angular", "Nest.js", "TypeScript", "Node.js", "MS SQL 2017"],
-    "Services provided": ["UX/UI???", "Front-End????", "Back-End???"]
+    "technology_stack": ["Angular", "Nest.js", "TypeScript", "Node.js", "MS SQL 2017"],
+    "services_provided": ["UX/UI???", "Front-End????", "Back-End???"]
   }
 }

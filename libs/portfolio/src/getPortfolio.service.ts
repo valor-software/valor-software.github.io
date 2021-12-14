@@ -19,11 +19,11 @@ export class GetPortfolioService {
         return this.http.get(`assets/portfolio/${art}.json`);
     }
 
-    // getPreviewArticle(): Observable<any>[] | undefined {
-    //     return this.apiArray?.slice(0, 3);
-    // }
-
     getFullListOfPortfolio(): Observable<IPortfolio>[] | undefined {
         return this.apiArray;
+    }
+
+    getProjectList(): string[] {
+        return PortfolioList;
     }
 }
