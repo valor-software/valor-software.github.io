@@ -42,7 +42,6 @@
                             <textarea class="text-input h-36 resize-none" formControlName="message" placeholder="Type here ..."></textarea>
                         </div>
                         <file-uploader (filesChanged)="addFiles($event)"></file-uploader>
-<!--                        <div class="g-recaptcha" data-sitekey="6LfNf6QdAAAAAATBz8kQeDAK1D0WyiMnMSyoIgdy"></div>-->
                         <button
                                 class="g-recaptcha btn-pink m-auto flex justify-center w-full md:w-auto mt-6"
                                 [disabled]="!form.valid"
@@ -62,7 +61,7 @@
                 </div>
             </div>
     </div>
-        <div *ngIf="showSuccess || showError" class="w-full mb-4 h-full lg:min-h-525 lg:min-w-1000 flex justify-center items-center">
+        <div *ngIf="showSuccess || showError" class="w-full h-full md:h-5/6 flex justify-center items-center">
             <result-modal [type]="showSuccess ? 'success' : 'error'"></result-modal>
         </div>
     </div>

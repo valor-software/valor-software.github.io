@@ -20,6 +20,8 @@ import { BlogPreviewComponent } from './components/blog-preview/blog-preview.com
 import { BlogItemComponent } from './components/blog-preview/blog-item.component';
 import { GetArticlesService } from './services/getArticles.service';
 import { ArticlesRouteService } from './services/articlesRoute.service';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -50,7 +52,7 @@ export { BlogItemComponent } from './components/blog-preview/blog-item.component
     BlogPreviewComponent,
     BlogItemComponent
   ],
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
     TopMenuComponent,
     ImgHoverDirective,
@@ -62,6 +64,11 @@ export { BlogItemComponent } from './components/blog-preview/blog-item.component
     BlogPreviewComponent,
     BlogItemComponent
   ],
-  providers: [ModalService, SendEmailService, ArticlesRouteService, GetArticlesService]
+  providers: [ModalService, SendEmailService, ArticlesRouteService, GetArticlesService,
+    {
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',
+    }
+  ]
 })
 export class CommonDocsModule {}

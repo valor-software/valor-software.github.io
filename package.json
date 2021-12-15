@@ -25,6 +25,7 @@
     "@tailwindcss/forms": "^0.3.4",
     "@tailwindcss/typography": "^0.4.1",
     "@tailwindcss/ui": "^0.7.2",
+    "ng-recaptcha": "^9.0.0",
     "rxjs": "~6.6.0",
     "swiper": "^7.0.0",
     "tailwind-colors": "^1.1.0",

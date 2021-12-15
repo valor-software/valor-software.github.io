@@ -13,7 +13,7 @@ export class SendEmailService {
 //     https://formspree.io/f/mpzbawjy
     public sendEmail(body: any): Observable<any> {
         return this.http
-            .post('https://formspree.io/f/mpzbawjy', body, {
+            .post('https://formspree.io/f/xeqnjork', body, {
                 headers: new HttpHeaders({
                     'Accept': 'application/json'
                 })
