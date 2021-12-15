@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IArticle } from "@valor-software/common-docs";
+import { IArticle } from "../../models/articles.list";
 
 
 @Component({
