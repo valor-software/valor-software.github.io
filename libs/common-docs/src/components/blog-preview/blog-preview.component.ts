@@ -1,8 +1,8 @@
-import {Component, OnDestroy} from '@angular/core';
-import { GetArticlesService } from "./getArticles.service";
-import { IArticle } from "./articles.list";
+import {Component, OnDestroy, Input, OnInit} from '@angular/core';
+import { GetArticlesService } from "../../services/getArticles.service";
+import { IArticle } from "../../models/articles.list";
 import { forkJoin, Subscription } from "rxjs";
-import {ArticlesRouteService} from "./articlesRoute.service";
+import { ArticlesRouteService } from "../../services/articlesRoute.service";
 import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
 SwiperCore.use([Pagination]);
 
@@ -11,7 +11,8 @@ SwiperCore.use([Pagination]);
     selector: 'blog-preview',
     templateUrl: './blog-preview.component.html'
 })
-export class BlogPreviewComponent implements OnDestroy{
+export class BlogPreviewComponent implements OnDestroy, OnInit{
+    @Input() articlesList?: string[];
     articles?: IArticle[];
     $articles?: Subscription;
     swiperConfig: SwiperOptions = {
@@ -36,9 +37,20 @@ export class BlogPreviewComponent implements OnDestroy{
         private getArticles: GetArticlesService,
         private articleRoute: ArticlesRouteService
     ) {
-        this.$articles = forkJoin(this.getArticles.getPreviewArticle()).subscribe((res: IArticle[] | undefined) => {
-            this.articles = res;
-        });
+    }
+
+    ngOnInit() {
+        if (this.articlesList?.length) {
+            this.$articles = forkJoin(this.getArticles.getArticlesByNames(this.articlesList)).subscribe((res: IArticle[] | undefined) => {
+                this.articles = res;
+            });
+        }
+
+        if (!this.articlesList?.length) {
+            this.$articles = forkJoin(this.getArticles.getPreviewArticle()).subscribe((res: IArticle[] | undefined) => {
+                this.articles = res;
+            });
+        }
     }
 
     ngOnDestroy() {

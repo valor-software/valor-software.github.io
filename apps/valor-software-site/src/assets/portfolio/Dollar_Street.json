@@ -2,7 +2,7 @@
   "name": "Dollar Street",
   "link": "https://www.gapminder.org/dollar-street",
   "sortServices": ["web"],
-  "sortTechnologies": ["angular", "js", "aws", "firebase"],
+  "sortTechnologies": ["angular", "nest_js", "aws", "firebase", "google"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c3596e5af657dfd5a657_ds-cover.jpg",
   "description": "Dollar Street allows exploring how people live all across the globe interactively. A team of photographers has documented over 200 homes in almost 50 countries so far, and the list is growing.",
   "goals": [
@@ -26,11 +26,12 @@
   "feedback": "Anna Rosling",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "Global impact",
+      "Awareness",
+      "Startup"
     ],
     "country": [
-      "UK???"
+      "Sweden"
     ],
     "technology_stack": [
       "AWS S3",
@@ -47,9 +48,8 @@
       "Jasmine to Mocha, Chai, Sinon migrations"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "Frontend",
+      "Backend"
     ]
   }
 }

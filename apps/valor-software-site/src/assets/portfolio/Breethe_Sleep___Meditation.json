@@ -16,20 +16,21 @@
   "headerImg": "assets/img/portfolio/breethe_header.png",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "B2C",
+      "SaaS",
+      "Startup"
     ],
     "country": [
-      "UK???"
+      "USA"
     ],
     "technology_stack": [
       "Angular 7.0 (NgRx)",
       "NativeScript"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "Frontend",
+      "Backend",
+      "Mobile"
     ]
   }
 }

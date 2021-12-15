@@ -17,11 +17,11 @@
   "headerImg": "assets/img/portfolio/ngatlanta_header.png",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "Education",
+      "Startup"
     ],
     "country": [
-      "UK???"
+      "USA"
     ],
     "technology_stack": [
       "Sketch",
@@ -31,9 +31,7 @@
       "FlowMap"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "Frontend"
     ]
   }
 }

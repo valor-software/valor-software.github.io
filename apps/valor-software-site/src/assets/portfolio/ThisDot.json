@@ -20,11 +20,11 @@
   "headerImg": "assets/img/portfolio/thisdot_header.png",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "Education",
+      "SMB"
     ],
     "country": [
-      "UK???"
+      "USA"
     ],
     "technology_stack": [
       "Figma",
@@ -33,9 +33,8 @@
       "Illustrator"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "UX/UI",
+      "Frontend"
     ]
   }
 }

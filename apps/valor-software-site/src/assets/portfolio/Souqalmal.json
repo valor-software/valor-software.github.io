@@ -2,6 +2,7 @@
   "name": "Souqalmal",
   "link": "https://www.souqalmal.com/ae-en/",
   "sortServices": ["web"],
+  "sortTechnologies": ["angular", "aws"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69e4bcb83181603733979a_souqalmal-cover.jpg",
   "description": "Souqalmal.com is the leading comparison website in the Middle East: it lets compare, search, and get information on financial products.",
   "goals": [
@@ -22,11 +23,12 @@
   "feedback": "Iraklis Alexopoulos",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "B2C",
+      "SaaS",
+      "Startup"
     ],
     "country": [
-      "UK???"
+      "the United Arab Emirates"
     ],
     "technology_stack": [
       "Node.js",
@@ -38,9 +40,8 @@
       "Amazon S3"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "Frontend",
+      "Backend"
     ]
   }
 }

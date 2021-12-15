@@ -1,8 +1,8 @@
 import {Component, OnDestroy} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from "@angular/router";
-import { GetArticlesService } from "./getArticles.service";
-import { IArticle } from "./articles.list";
+import { GetArticlesService } from "@valor-software/common-docs";
+import { IArticle } from "@valor-software/common-docs";
 import { filter } from 'rxjs/operators';
 import { Subscription } from "rxjs";
 

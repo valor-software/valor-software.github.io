@@ -42,8 +42,13 @@
                             <textarea class="text-input h-36 resize-none" formControlName="message" placeholder="Type here ..."></textarea>
                         </div>
                         <file-uploader (filesChanged)="addFiles($event)"></file-uploader>
-
-                        <button class="btn-pink m-auto flex justify-center w-full md:w-auto mt-6" [disabled]="!form.valid" (click)="onSubmit()">Submit</button>
+<!--                        <div class="g-recaptcha" data-sitekey="6LfNf6QdAAAAAATBz8kQeDAK1D0WyiMnMSyoIgdy"></div>-->
+                        <button
+                                class="g-recaptcha btn-pink m-auto flex justify-center w-full md:w-auto mt-6"
+                                [disabled]="!form.valid"
+                                (click)="onSubmit()"
+                        >Submit
+                        </button>
                     </div>
                 </div>
                 <div class="flex flex-col lg:ml-28 text-light_title_col border-t-2 border-placeholder_col lg:border-0 pt-10 mt-10 lg:mt-10 lg:pt-0">

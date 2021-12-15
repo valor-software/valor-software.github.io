@@ -4,7 +4,7 @@ export const PopoverStructure: PopoverStructureType = [
         icon: '/assets/img/icons/startups.svg',
         activeIcon: '/assets/img/icons/startups_active.svg',
         description: 'Software development from scratch to market launch',
-        route: 'startups'
+        route: 'clients/startups'
     },
     {
         title: 'Enterprises',
@@ -17,7 +17,7 @@ export const PopoverStructure: PopoverStructureType = [
         icon: '/assets/img/icons/smbs.svg',
         activeIcon: '/assets/img/icons/smbs_active.svg',
         description: 'Budget-wise solutions for small to medium-sized businesses',
-        route: 'smbs'
+        route: 'clients/smbs'
     },
     {
         title: 'Non-profits',

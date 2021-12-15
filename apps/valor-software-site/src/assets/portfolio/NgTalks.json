@@ -17,11 +17,11 @@
   "headerImg": "assets/img/portfolio/ngtalks_header.png",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "Education",
+      "Startup"
     ],
     "country": [
-      "UK???"
+      "Ukraine"
     ],
     "technology_stack": [
       "Figma",
@@ -29,9 +29,7 @@
       "FlowMap"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "Frontend"
     ]
   }
 }

@@ -16,6 +16,10 @@ import { ServicesBlockComponent } from './components/services_block/services-blo
 import { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.component';
 import { ShowHideDirective } from './directives/showHide.directive';
 import {SwiperModule} from "swiper/angular";
+import { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
+import { BlogItemComponent } from './components/blog-preview/blog-item.component';
+import { GetArticlesService } from './services/getArticles.service';
+import { ArticlesRouteService } from './services/articlesRoute.service';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -26,7 +30,11 @@ export { ContactModalComponent } from "./components/contact-modal/contactModal.c
 export { ModalService } from './services/modal.service';
 export { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.component';
 export { ShowHideDirective } from './directives/showHide.directive';
-
+export { GetArticlesService } from './services/getArticles.service';
+export { ArticlesRouteService } from './services/articlesRoute.service';
+export { ArticlesList, IArticle } from './models/articles.list';
+export { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
+export { BlogItemComponent } from './components/blog-preview/blog-item.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +46,9 @@ export { ShowHideDirective } from './directives/showHide.directive';
     AppFooterComponent,
     ServicesBlockComponent,
     BreadCrumbsComponent,
-    ShowHideDirective
+    ShowHideDirective,
+    BlogPreviewComponent,
+    BlogItemComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule],
   exports: [
@@ -48,8 +58,10 @@ export { ShowHideDirective } from './directives/showHide.directive';
     AppFooterComponent,
     ServicesBlockComponent,
     BreadCrumbsComponent,
-    ShowHideDirective
+    ShowHideDirective,
+    BlogPreviewComponent,
+    BlogItemComponent
   ],
-  providers: [ModalService, SendEmailService]
+  providers: [ModalService, SendEmailService, ArticlesRouteService, GetArticlesService]
 })
 export class CommonDocsModule {}

@@ -1,29 +1,30 @@
 import { Component, Input } from '@angular/core';
-import {Router, UrlSegment} from "@angular/router";
+import { Router, UrlSegment } from "@angular/router";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'breadCrumbs',
     template:`
-        <div class="" *ngIf="segments && segments?.length && segments.length > 1">
-            <div class="flex text-light_title_col">
+        <div *ngIf="segments && segments?.length && segments.length > 1">
+            <div class="flex text-grey_font_col">
                 <p class="underline cursor-pointer" (click)="navigate()">Home</p>
                 <ng-container *ngFor="let segment of segments;let i = index">
-                    <span>&nbsp;{{'>'}}&nbsp;</span>
-                    <p
-                            (click)="navigate(i)"
-                            [ngClass]="{'disabled': checkDisabled(i), 'underline cursor-pointer': !checkDisabled(i)}"
-                    >
-                        {{segment.title.toString() | titlecase}}
-                    </p>
+                    <ng-container *ngIf="segment.title && segment.path">
+                        <span>&nbsp;{{'>'}}&nbsp;</span>
+                        <p
+                                (click)="navigate(i)"
+                                [ngClass]="{'disabled': checkDisabled(i), 'underline cursor-pointer': !checkDisabled(i)}"
+                        >
+                            {{segment.title.toString() | titlecase}}
+                        </p>
+                    </ng-container>
                 </ng-container>
-
             </div>
         </div>
     `
 })
 export class BreadCrumbsComponent {
-    @Input() set changeTitle(value: {path: string, title: string}[] | undefined) {
+    @Input() set changeTitle(value: {path: string, title: string, excludePath?: boolean}[] | undefined) {
 
         if (!this.segments?.length || !value?.length) {
             return;
@@ -36,6 +37,11 @@ export class BreadCrumbsComponent {
            value.map(key => {
                 if (key.path === item.path) {
                     item.title = key.title;
+                }
+
+                if (key.path === item.path && key.excludePath) {
+                    item.title = '';
+                    item.path = '';
                 }
            });
         });

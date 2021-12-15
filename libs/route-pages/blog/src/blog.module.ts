@@ -5,13 +5,11 @@ import { routes } from "./routes";
 import { BlogPageComponent } from "./blog-page.component";
 import { ArticleComponent } from "./article.component";
 import { BlogComponent } from "./blog.component";
-import { GetArticlesService } from "./getArticles.service";
+import { GetArticlesService } from "@valor-software/common-docs";
 import { SortBlogsDirective } from "./sort.directive";
-import { BlogItemComponent } from "./blog-item.component";
 import { CommonDocsModule } from "@valor-software/common-docs";
-import { ArticlesRouteService } from "./articlesRoute.service";
+import { ArticlesRouteService } from "@valor-software/common-docs";
 import { SwiperModule } from "swiper/angular";
-import { BlogPreviewComponent } from './blog-preview.component';
 
 
 @NgModule({
@@ -19,9 +17,7 @@ import { BlogPreviewComponent } from './blog-preview.component';
         BlogPageComponent,
         ArticleComponent,
         BlogComponent,
-        SortBlogsDirective,
-        BlogItemComponent,
-        BlogPreviewComponent
+        SortBlogsDirective
     ],
     imports: [
         CommonModule,

@@ -2,7 +2,7 @@
   "name": "Zuora",
   "link": "https://www.zuora.com/",
   "sortServices": ["web"],
-  "sortTechnologies": ["angular", "js", "aws", "firebase"],
+  "sortTechnologies": ["angular", "vue", "ruby"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c56cf47dbf6ed124413d_zoura-cover.jpg",
   "description": "Zuora is a payment system that can be connected through API to e-commerce websites.",
   "goals": [
@@ -15,11 +15,12 @@
   "headerImg": "assets/img/portfolio/zuora_header.png",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "B2B",
+      "SaaS",
+      "Enterprise"
     ],
     "country": [
-      "UK???"
+      "USA"
     ],
     "technology_stack": [
       "Angular",
@@ -27,9 +28,8 @@
       "Ruby on Rails"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "Frontend",
+      "Backend"
     ]
   }
 }

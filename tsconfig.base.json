@@ -33,6 +33,9 @@
       "@valor-software/file-uploader": [
         "libs/file-uploader/src/index.ts"
       ],
+      "@valor-software/for-clients": [
+        "libs/route-pages/for-clients/src/index.ts"
+      ],
       "@valor-software/home-page": [
         "libs/route-pages/home-page/src/index.ts"
       ],

@@ -2,6 +2,7 @@
   "name": "Priceshredder",
   "link": "https://priceshredder.com/",
   "sortServices": ["web"],
+  "sortTechnologies": ["angular", "aws"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dff25da14b9781af99e1_priceshredder.jpg",
   "description": "Souqalmal.com is the leading comparison website in the Middle East: it lets compare, search, and get information on financial products.",
   "goals": [
@@ -19,11 +20,12 @@
   "headerImg": "assets/img/portfolio/priceshredder_header.png",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "B2C",
+      "SaaS",
+      "Startup"
     ],
     "country": [
-      "UK???"
+      "USA"
     ],
     "technology_stack": [
       "AngularJS",
@@ -41,9 +43,8 @@
       "Amazon EC2"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "Frontend",
+      "Backend"
     ]
   }
 }

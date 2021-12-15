@@ -2,7 +2,7 @@
     <div class="popover pt-10 px-10" [class.popover_show]="show">
         <div class="arrow"></div>
         <div class="flex justify-between flex-wrap">
-            <div class="w-45% cursor-pointer text-light_font_col mb-12" *ngFor="let item of popover_str" changeSrcOnHover [defaultSrc]="item.icon" [activeSrc]="item.activeIcon">
+            <div class="w-45% cursor-pointer text-light_font_col mb-12" *ngFor="let item of popover_str" changeSrcOnHover [defaultSrc]="item.icon" [activeSrc]="item.activeIcon" [routerLink]="item.route" (click)="changeShow(false)">
                 <div class="flex mb-2.5">
                     <div class="flex items-center">
                         <img [src]="item.icon">

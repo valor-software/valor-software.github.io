@@ -1,0 +1,57 @@
+<section class="landing-section lg:!pb-32 !pb:8 !pt-12 !lg:pt-32">
+    <div class="container">
+        <ng-container>
+            <breadCrumbs [changeTitle]="changeBreadCrumbsPath" class="w-full hidden md:block"></breadCrumbs>
+        </ng-container>
+        <div class="container pb-5 flex justify-between items-center pt-16" style="max-height: 100%;">
+            <div class="max-w-600">
+                <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">Helping your business to grow</h1>
+                <p class="leading-normal text-grey_font_col lg:mb-8 mb-14">Seeking a reliable partner with transparent processes who is available for long-term business relationships? — Search no more! Valor Software is here to become your trusted software development associate and collaborate on your brilliant idea to boost your business above and beyond!</p>
+                <button class="btn-pink mx-auto">
+                    <a [routerLink]="'/portfolio'" class="flex justify-center items-center">Visit portfolio <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
+                </button>
+            </div>
+            <div class="hidden lg:block">
+                <img src="assets/img/bg-img/clients/smbs_header_bg.svg" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="landing-section" id="feedback">
+    <div class="container">
+        <div>
+            <p class="max-w-90% text-large text-dar_grey_font_col leading-44 mb-28">Valor Software <span class="font-bold text-light_title_col">provides</span> small and medium-sized <span class="font-bold text-light_title_col">businesses</span> (SMBs) with the <span class="font-bold text-light_title_col">flexibility</span> they need, and on the other hand – <span class="font-bold text-light_title_col">stability</span>.</p>
+            <img src="assets/img/bg-img/clients/smbs_provides.svg" alt="" class="w-full">
+        </div>
+    </div>
+</section>
+<section class="landing-section">
+    <h1 class="main-title">Advantages</h1>
+    <div class="container">
+        <div
+                *ngFor="let item of advantages; index as i"
+                class="bg-grey lg:p-12 py-7 px-7 flex justify-between mb-8 w-full items-center lg:h-300"
+        >
+            <div class="mr-16 min-w-200">
+                <img [src]="item.img" [alt]="item.title + ' icon'" class="w-full h-full">
+            </div>
+            <div class="">
+                <p class="font-bold text-light_title_col md:text-large block mr-3.5 text-center md:text-left mt-6 md:mt-0 text-xl md:leading-44 mb-6">{{item.title}}</p>
+                <p class="text-grey_font_col">{{item.description}}</p>
+            </div>
+        </div>
+        <button class="btn-pink flex justify-center items-baseline mx-auto mt-14" (click)="openModal()">Get started<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
+    </div>
+</section>
+<section class="landing-section">
+    <h1 class="main-title">Articles</h1>
+    <div class="container">
+        <blog-preview [articlesList]="articlesList"></blog-preview>
+    </div>
+</section>
+<section class="landing-section">
+    <h1 class="main-title">Feedback</h1>
+    <div class="container">
+        <feedback></feedback>
+    </div>
+</section>

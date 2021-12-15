@@ -18,11 +18,12 @@
   "headerImg": "assets/img/portfolio/vizabi_header.png",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "B2B",
+      "SaaS",
+      "Startup"
     ],
     "country": [
-      "UK???"
+      "Sweden"
     ],
     "technology_stack": [
       "Node.js to TypeScript migration",
@@ -37,9 +38,7 @@
       "AWS (EC2, ECR, ECS, ElasticCache, CloudFormation) to GCP migration"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "Backend"
     ]
   }
 }

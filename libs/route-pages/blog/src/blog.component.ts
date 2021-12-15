@@ -1,9 +1,9 @@
 import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
-import { GetArticlesService } from "./getArticles.service";
+import { GetArticlesService } from "@valor-software/common-docs";
 import { forkJoin, Subscription } from "rxjs";
-import { IArticle } from "./articles.list";
+import { IArticle } from "@valor-software/common-docs";
 import { Router } from "@angular/router";
-import {ArticlesRouteService} from "./articlesRoute.service";
+import {ArticlesRouteService} from "@valor-software/common-docs";
 
 export const Domains = {
     business_analysis: 'Business Analysis',

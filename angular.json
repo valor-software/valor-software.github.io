@@ -237,6 +237,56 @@
         "common-docs"
       ]
     },
+    "route-pages-for-clients": {
+      "projectType": "library",
+      "root": "libs/route-pages/for-clients",
+      "sourceRoot": "libs/route-pages/for-clients/src",
+      "prefix": "valor-software-site-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/route-pages/for-clients"
+          ],
+          "options": {
+            "project": "libs/route-pages/for-clients/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/route-pages/for-clients/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/route-pages/for-clients/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/route-pages/for-clients"
+          ],
+          "options": {
+            "jestConfig": "libs/route-pages/for-clients/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/route-pages/for-clients/src/**/*.ts",
+              "libs/route-pages/for-clients/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": [
+        "common-docs",
+        "feedback"
+      ]
+    },
     "route-pages-home-page": {
       "projectType": "library",
       "root": "libs/route-pages/home-page",

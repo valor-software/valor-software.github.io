@@ -17,11 +17,11 @@
   "headerImg": "assets/img/portfolio/cinnabon_header.png",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "Travel and hospitality",
+      "Enterprise"
     ],
     "country": [
-      "UK???"
+      "USA"
     ],
     "technology_stack": [
       "Angular 5",
@@ -29,9 +29,7 @@
       "Unit & E2E testing"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "Frontend"
     ]
   }
 }

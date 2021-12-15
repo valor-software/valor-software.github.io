@@ -4,9 +4,7 @@ import {
     Output,
     EventEmitter, ElementRef, Input, OnChanges, SimpleChanges
 } from "@angular/core";
-import { IArticle } from "./articles.list";
-import {toArray} from "rxjs/operators";
-
+import { IArticle } from "@valor-software/common-docs";
 
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector

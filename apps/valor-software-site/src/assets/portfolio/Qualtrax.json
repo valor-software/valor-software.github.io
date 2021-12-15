@@ -16,11 +16,12 @@
   "headerImg": "assets/img/portfolio/qualtrax_header.png",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "B2C",
+      "Saas",
+      "SMB"
     ],
     "country": [
-      "UK???"
+      "USA"
     ],
     "technology_stack": [
       "Sketch",
@@ -29,9 +30,7 @@
       "FlowMap"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "UX/UI"
     ]
   }
 }

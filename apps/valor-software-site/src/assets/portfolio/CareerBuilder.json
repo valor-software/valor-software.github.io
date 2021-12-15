@@ -1,6 +1,6 @@
 {
   "name": "CareerBuilder",
-  "sortTechnologies": ["angular", "js", "nest_js"],
+  "sortTechnologies": ["angular", "nest_js"],
   "sortServices": ["web", "migration", "art_intel"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c551269cc479d767eabf_cb-cover.jpg",
   "description": "The source for job opportunities & advice. Access career resources, personalized salary tools & insights.",
@@ -21,11 +21,12 @@
   "feedback": "Zackary Chapple",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "B2B",
+      "SaaS",
+      "Startup"
     ],
     "country": [
-      "UK???"
+      "USA"
     ],
     "technology_stack": [
       "Angular",
@@ -43,9 +44,8 @@
       "Integration tests with Protractor, Cucumber, Chai, and Gherkin"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "Frontend",
+      "Backend"
     ]
   }
 }

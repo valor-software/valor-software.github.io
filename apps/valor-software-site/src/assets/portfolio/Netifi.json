@@ -18,11 +18,12 @@
   "headerImg": "assets/img/portfolio/netifi_header.png",
   "aspects": {
     "type": [
-      "Medium-Sized Businesses???",
-      "Gaming????"
+      "B2B",
+      "SaaS",
+      "Startup"
     ],
     "country": [
-      "UK???"
+      "USA"
     ],
     "technology_stack": [
       "Abstract",
@@ -31,9 +32,7 @@
       "Illustrator (Print)"
     ],
     "services_provided": [
-      "UX/UI???",
-      "Front-End????",
-      "Back-End???"
+      "UX/UI"
     ]
   }
 }

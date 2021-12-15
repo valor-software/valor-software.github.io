@@ -19,7 +19,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="mt-16 lg:mt-0 flex justify-center w-full">
+                <div class="mt-16 lg:mt-0 flex justify-center lg:justify-end w-full">
                     <img class="hidden md:block" [src]="project.headerImg" alt="">
                     <img class="block md:hidden w-full" [src]="getRespSrc(project.headerImg)" alt="" (error)="changeSrc($event, project.headerImg)">
                 </div>

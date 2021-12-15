@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ArticlesList } from "./articles.list";
+import { ArticlesList } from "../models/articles.list";
 
 
 
@@ -26,5 +26,11 @@ export class GetArticlesService {
 
     getFullListOfArticles(): Observable<any>[] | undefined {
         return this.apiArray;
+    }
+
+    getArticlesByNames(value: string[]): Observable<any>[] | undefined{
+        const articlesList = ArticlesList;
+        const list = articlesList.filter(item => value.includes(item));
+        return list.map(art => this.getArticleRequest(art));
     }
 }
