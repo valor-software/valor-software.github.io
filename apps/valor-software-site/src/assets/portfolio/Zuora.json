@@ -3,6 +3,8 @@
   "link": "https://www.zuora.com/",
   "sortServices": ["web"],
   "sortTechnologies": ["angular", "vue", "ruby"],
+  "goalsImg": "assets/img/portfolio/zuora_goals.png",
+  "solutionsImg": "assets/img/portfolio/zuora_solutions.png",
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c56cf47dbf6ed124413d_zoura-cover.jpg",
   "description": "Zuora is a payment system that can be connected through API to e-commerce websites.",
   "goals": [

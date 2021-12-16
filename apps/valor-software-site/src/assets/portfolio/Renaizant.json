@@ -3,6 +3,8 @@
   "link": "https://app.renaizant.com/login",
   "sortServices": ["web", "ui", "art_intel"],
   "sortTechnologies": ["angular"],
+  "goalsImg": "assets/img/portfolio/renaizant_goals.png",
+  "solutionsImg": "assets/img/portfolio/renaizant_solutions.png",
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69e2049799581dd75381af_Renaizent_cover.jpg",
   "description": "Renaizant is an ongoing performance management platform that helps employees grow and succeed.",
   "goals": [

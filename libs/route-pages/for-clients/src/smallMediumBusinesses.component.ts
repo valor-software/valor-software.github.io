@@ -48,7 +48,7 @@ export class SmallMediumBusinessesComponent {
             excludePath: true
         },
         {
-            path: 'startups',
+            path: 'smbs',
             title: 'For clients / Small to medium-sized businesses'
         }
     ];

@@ -23,7 +23,7 @@
 
 <!--ADAPTIVE MENU-->
 <div class="adaptive-popover" [class.show]="show">
-    <div class="" *ngFor="let item of popover_str; index as i">
+    <div class="" *ngFor="let item of popover_str; index as i" [routerLink]="item.route" (click)="changeShow(false)">
         <div class="flex" [class.mb-7]="i !== popover_str.length-1">
             <div class="flex items-center">
                 <img [src]="item.icon">

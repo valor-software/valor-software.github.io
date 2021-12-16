@@ -2,6 +2,8 @@
   "name": "Liberty Flights",
   "link": "https://www.liberty-flights.co.uk/",
   "sortServices": ["web", "migration"],
+  "goalsImg": "assets/img/portfolio/liberty_goals.png",
+  "solutionsImg": "assets/img/portfolio/liberty_solutions.png",
   "sortTechnologies": ["angular", "nest_js"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c59c4f54f587685b5840_ls-cover.jpg",
   "description": "Online store of UK made premium vaping devices and kits.",

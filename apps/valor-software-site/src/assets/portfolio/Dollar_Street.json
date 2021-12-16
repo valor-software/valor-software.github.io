@@ -3,6 +3,8 @@
   "link": "https://www.gapminder.org/dollar-street",
   "sortServices": ["web"],
   "sortTechnologies": ["angular", "nest_js", "aws", "firebase", "google"],
+  "goalsImg": "assets/img/portfolio/dollarstreet_goals.png",
+  "solutionsImg": "assets/img/portfolio/dollarstreet_solutions.png",
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c3596e5af657dfd5a657_ds-cover.jpg",
   "description": "Dollar Street allows exploring how people live all across the globe interactively. A team of photographers has documented over 200 homes in almost 50 countries so far, and the list is growing.",
   "goals": [

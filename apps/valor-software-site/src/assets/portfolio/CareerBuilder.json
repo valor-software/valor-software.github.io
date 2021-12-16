@@ -2,6 +2,8 @@
   "name": "CareerBuilder",
   "sortTechnologies": ["angular", "nest_js"],
   "sortServices": ["web", "migration", "art_intel"],
+  "goalsImg": "assets/img/portfolio/careerbuilder_goals.png",
+  "solutionsImg": "assets/img/portfolio/careerbuilder_solutions.png",
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c551269cc479d767eabf_cb-cover.jpg",
   "description": "The source for job opportunities & advice. Access career resources, personalized salary tools & insights.",
   "goals": [

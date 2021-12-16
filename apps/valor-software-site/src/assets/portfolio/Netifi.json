@@ -2,6 +2,8 @@
   "name": "Netifi",
   "behanceLink": "https://www.behance.net/gallery/76500797/Netifi-Proteus-Control",
   "sortServices": ["web", "ui"],
+  "goalsImg": "assets/img/portfolio/netifi_goals.png",
+  "solutionsImg": "assets/img/portfolio/netifi_solutions.png",
   "sortTechnologies": [],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69df72c526ab5a30d6c94c_netifi.jpg",
   "description": "Netifi is a cloud-native application platform, that dramatically reduces operational overhead and speeds development with AI-driven management and reactive software components.",

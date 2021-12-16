@@ -3,6 +3,8 @@
   "link": "https://www.souqalmal.com/ae-en/",
   "sortServices": ["web"],
   "sortTechnologies": ["angular", "aws"],
+  "goalsImg": "assets/img/portfolio/souqalmal_goals.png",
+  "solutionsImg": "assets/img/portfolio/souqalmal_solutions.png",
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69e4bcb83181603733979a_souqalmal-cover.jpg",
   "description": "Souqalmal.com is the leading comparison website in the Middle East: it lets compare, search, and get information on financial products.",
   "goals": [

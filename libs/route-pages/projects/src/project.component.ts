@@ -89,6 +89,10 @@ export class ProjectComponent implements OnDestroy{
         this.cdr.detectChanges();
     }
 
+    checkLength(arr: Array<any>, number:number): boolean {
+        return arr?.length > number;
+    }
+
     ngOnDestroy() {
         this.$routEvents?.unsubscribe();
     }
