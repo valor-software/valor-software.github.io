@@ -37,7 +37,7 @@
         <div class="container">
             <div class="w-full flex flex-col justify-between" [class.lg:flex-row]="checkLength(project.goals, 1)" [class.lg:items-center]="!checkLength(project.goals, 1)">
                 <div class="mr-12 lg:max-w-50%" *ngIf="checkLength(project.goals, 1); else elseBlock">
-                    <div *ngFor="let goal of project.goals; index as i" class="flex items-center mb-6 lg:mb-20">
+                    <div *ngFor="let goal of project.goals; index as i" class="flex items-center lg:mb-6 lg:mb-20">
                         <p class="main-title main-title-150 !mb-0 text-center min-w-70 lg:min-w-100">{{i+1}}</p>
                         <p class="text-24 lg:text-large font-bold text-white -ml-5">{{goal}}</p>
                     </div>
@@ -47,7 +47,7 @@
                         <p class="text-24 lg:text-large font-bold text-white">{{project.goals[0]}}</p>
                     </div>
                 </ng-template>
-                <div *ngIf="project.goalsImg" class="max-w-600 flex items-start pt-12">
+                <div *ngIf="project.goalsImg" class="w-full lg:max-w-600 flex items-center lg:items-start pt-12">
                     <img [src]="project.goalsImg" alt="">
                 </div>
             </div>
@@ -58,7 +58,7 @@
         <div class="container">
             <div class="w-full flex flex-col justify-between" [class.lg:flex-row]="checkLength(project.solutions, 1)" [class.lg:items-center]="!checkLength(project.solutions, 1)">
                 <div class="mr-12 lg:max-w-50%" *ngIf="checkLength(project.solutions, 1); else elseBlock">
-                    <div *ngFor="let goal of project.solutions; index as i" class="flex items-center mb-6 lg:mb-20">
+                    <div *ngFor="let goal of project.solutions; index as i" class="flex items-center lg:mb-6 lg:mb-20">
                         <p class="main-title main-title-150 !mb-0 text-center min-w-70 lg:min-w-100">{{i+1}}</p>
                         <p class="text-24 lg:text-large font-bold text-white -ml-5">{{goal}}</p>
                     </div>
@@ -68,7 +68,7 @@
                         <p class="text-24 lg:text-large font-bold text-white">{{project.solutions[0]}}</p>
                     </div>
                 </ng-template>
-                <div *ngIf="project.solutionsImg" class="max-w-600 flex items-start pt-12">
+                <div *ngIf="project.solutionsImg" class="w-full lg:max-w-600 flex items-center lg:items-start pt-12">
                     <img [src]="project.solutionsImg" alt="">
                 </div>
             </div>

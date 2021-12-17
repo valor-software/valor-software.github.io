@@ -1,209 +1,163 @@
-<div class=max-w-full>  <h3><strong>This article is part of a series:</strong></h3>
+<div class="max-w-full"> <p>I design sites in Webflow every day, and I enjoy it. Still, sometimes, I stumble upon
+    interesting corner cases that Webflow can't handle by itself yet, so I have to hand code a little. And yes, I'm a
+    designer who codes from time to time. Working as a part of the outsource development company brings many
+    challenging tasks :)</p> <p>Recently I caught myself thinking about how many custom code snippets I use for
+    Webflow development. I figured out that I have a lot of useful ones to share. I've included a few tricks in this
+    article - more to come! Follow our blog to stay updated on Webflow tips and code snippets in the future.<br></p>
+    <h2>Removing font ligatures</h2> <p>In typography, Ligature binds two or more characters into one, which sometimes
+        looks like an issue. Some Web browsers like Safari browser on both Mac OS X and iOS show standard ligatures by
+        default.</p>
+    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
+    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
+    <div><img src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2bfebbfa1c94d95309544_ligature1.jpg"
+              alt="Removing font Ligature">
+    </div>
+    
+    <figcaption>The most popular example of font ligatures is a combination of the following letters: fi, fl, ff, ffi,
+        and ffl.
+    </figcaption>
+        </figure><p>If you have expanded or collapsed tracking (CSS: Letter-spacing) in the font you use, you will see
+        that some letters are defined as one symbol:</p>
+    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
+    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
+    <div><img src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c0297065d90ea7ec6a14_ligature2.jpg"
+              alt="Removing font Ligature">
+    </div>
+        </figure><p>I bet you'll want to disable Ligatures - use the following custom CSS code for the entire website
+        or just for a specific selector by a class name:</p>
+    <pre>        <code>            ~~~%css%/* Disable Ligature for the entire website */* &#123;            font-variant-ligatures: none;&#125;/* Disable Ligature for a specific selector */.class-name &#123;            font-variant-ligatures: none;&#125;~~~        </code>    </pre>
+    
+    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
+    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
+    <div><img src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c3d2f8fc0b1bce9f30c9_ligature3.gif"
+              alt="Font Ligature Example">
+    </div>
+    
+    <figcaption>Check <a href="https://font-ligatures.webflow.io/"target="_blank" data-rt-link-type="external">the
+        live web example</a> I've made in Webflow to see the difference.
+    </figcaption>
+        </figure><p>Learn more about <a href="http://blog.fonts.com/2016/06/30/to-ligature-or-not-to-ligature/"
+                                          data-rt-link-type="external">ligatures issues</a> described by Jason
+        Tselentis, Associate Professor at Winthrop University's Department of Design.</p> <h2>Preventing scaling on
+        mobile</h2> <p>Some browsers on mobile, especially Apple ones, tend to autoscale the viewport. Autoscale
+        happens when you click on the Input or the Text area if your inputs have font-size less than 16px. It's
+        painful for users to fill in such form as it scales while you type and doesn't scale back after a user stops
+        typing.</p> <p>To make all text elements on a page readable and legible without zooming, disable scaling by
+        using this itty-bitty code snippet:<br></p>
+    <pre>        <code>            ~~~%xml%\t&lt;meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>~~~        </code>    </pre>
+    
+    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
+    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
+    <div><img
+            src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c282f8fc0b6f9c9f2c25_mobile-scaling.jpg"
+            alt="Preventing scaling on mobile">
+    </div>
+        </figure><p>Want to go deeper and prevent scale effect only on input click? Check <a
+            href="https://www.dynamo6.com/how-to-prevent-unwanted-zooming-on-mobile-devices/"
+            data-rt-link-type="external">article on dynamo6</a> as well.</p> <h2>Improving height behavior: 100VH on
+        mobile</h2> <p>Another pretty known issue is an ugly jumpy effect when you use 100VH points on mobile devices.
+        As mobile browsers have a top address bar as a part of the UI, some space of your section will be cut or
+        layout will be re-rendered and re-adjust since the dimensions have changed. Which is bad for user
+        experience.</p> <p>This issue was mentioned so many times in different articles and forums, but I would like
+        to mention <a href=" https://css-tricks.com/the-trick-to-viewport-units-on-mobile/"
+        data-rt-link-type="external">one</a> where I take the solution from. Here's the magic you'll create:</p>
+    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
+    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
+    <div><img src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c30f578360a8346d8578_100vh.jpg"
+              alt="100VH on mobile">
+    </div>
+        </figure><p>As you can see, social icons get cropped at the bottom, but we want to see them without scrolling.
+        Check out how it looks <a href="https://100vh.webflow.io/"data-rt-link-type="external">on mobile</a>.</p>
+     <p>Just use a small chunk of JS and CSS to fix this - put the code into the heading of a page using Script and
+        Style tags respectively.<br></p> <p><strong>JavaScript:</strong></p>
+    <pre>        <code>            ~~~%javascript%// First we get the viewport height and multiply it by 1% to get a value for a vh unitlet vh = window.innerHeight * 0.01;// Then we set the value in the --vh custom property to the root of the documentdocument.documentElement.style.setProperty('--vh', `$&#123;vh&#125;px`);~~~        </code>    </pre>
+     <p>When you scroll down, the address bar is collapsing which updates the value of --vh and repaints the
+        page so the user may experience a jump effect.</p> <p>In case of fixed height for the mobile landscape
+        breakpoint, we don't need the event listener as you can find in the original example:<br></p>
+    <pre>        <code>            ~~~%javascript%// We listen to the resize eventwindow.addEventListener('resize', () => &#123;            // We execute the same script as before            let vh = window.innerHeight * 0.01;            document.documentElement.style.setProperty('--vh', `$&#123;vh&#125;px`);&#125;);~~~        </code>    </pre>
+     <p><strong>CSS:</strong></p>
+    <pre>        <code>            ~~~%css%/*We apply these styles only from the tablet breakpoint, desktop doesn't require it*/@media (max-width: 991px) &#123;            .hero &#123;  height: calc(var(--vh, 1vh) * 100);&#125;&#125;/*We set the fixed height for mobile landscape because there is not enough height space for the one screen section*/@media (max-width: 767px) &#123;            .hero &#123;   height: auto;   min-height: 500px;&#125;&#125;/*And then again calculate the height for the hero section*/@media (max-width: 479px) &#123;            .hero &#123;  height: calc(var(--vh, 1vh) * 100);&#125;&#125;~~~        </code>    </pre>
+     <p>On a side note, updating the value of --vh will trigger a repaint of the page, and the user may
+        experience a jump as a result. Because of this, I'm not advising you to use this trick for every projector to
+        replace all usage of the vh unit, but only when you need your users to have an exact viewport unit value.</p>
+     <h2>Resetting Apple default form styles</h2> <p>It's a common practice to keep all inputs, text-areas, and
+        selects under control and make them consistent across all devices, so I use custom form style. To reset iOS
+        default styles for the entire website, add the following CSS code at the end of the &lthead&gt tag in
+        project settings:</p>
+    <pre>        <code>            ~~~%css%/*Reset apple form styles*/input, textarea, select &#123;            -webkit-appearance: none;            -moz-appearance: none;            appearance: none; border-radius: 0;            background-image: none;&#125;~~~        </code>    </pre>
+     <h2>Using Open Graph Image</h2> <p>Webflow has its own Open Graph Image URL field for each page.</p> <p>
+        To add Open Graph Image, you need to:</p>
     <ul>
-        <li><a routerLink=blog/Incorporating_user_research_on_live_projects___Part_1 class=cursor-pointer
-               target=_blank>Part 1</a>: Context of the Project, User Persona, Search for Participants.
-        </li>
-         
-        <li><a routerLink=blog/Incorporating_user_research_on_live_projects___Part_2 class=cursor-pointer
-               target=_blank>Part 2</a>: Preparation for the Interview, Competitors Research.
-        </li>
-         
-        <li>Part 3: Context of Pandemic, Transcribing, Affinity Diagraming, Report.</li>
-         
-        <li>Part 4: Conclusion, Lessons Learned.</li>
-         
+        <li>Create an image with recommended dimensions - at least 1200px by 630px and with 1.91:1 aspect ratio.</li>
+        
+        <li>Upload it to Webflow.</li>
+        
     </ul>
-     <p>Check out the context and the preparation part of this article in case you missed it. And, moving to the
-        very hands-on section!</p>
-    <h2><strong>Conducting contextual inquiries during the pandemic</strong></h2> <p>Ok, so what about user research
-        in times of a pandemic? Is it even possible? Thanks to technological progress, people now are much better
-        technically equipped, and video calls are not a surprise anymore. The key is preparation and moderation skills
-        while running an interview or a contextual inquiry.</p>
-    <p>We did the following to conduct user research effectively:</p>
-    <ol>
-        <li>Set up video calls. In our case, we had 2 calls in Google Hangouts and 1 in Zoom.</li>
-         
-        <li>Chosen screen and audio recorders.</li>
-         
-        <li>Arranged meetings in advance, sent invitation letters with a short explanation of the purpose.</li>
-         
-        <li>Asked participants to be ready to show some of their notes, the software they use in their workflow, to be
-            ready to share their screens.
-        </li>
-         
-        <li>Prepared a cheatsheet with topics to discuss.</li>
-         
-    </ol>
-     <p>Looking ahead, I want to say that all 3 arrangements went well and productive. On average, inquiries lasted
-        1-2 hours. They were productive and gave lots of insights. The structure of each session was the
-        following:</p>
-    <ol>
-        <li>Introduction. Thanking for giving your time, and asking for consent to record audio and video. Telling
-            more details about the purpose of the study and its structure (1st one - interview, second -
-            observation).
-        </li>
-         
-        <li>Starting with simple questions, such as: What is your role? What's the first thing you do when you come to
-            the office? What are your daily activities?
-        </li>
-         
-        <li>Moving to more complex topics: start talking about frustrations and challenges.</li>
-         
-        <li>Going deeper: discussing specific spheres of work, for example: how do you forecast any budget/workforce
-            losses? What helped you in preventing high turnover? What the lack of data interferes with?
-        </li>
-         
-        <li>Asking to show the process of gathering and analysing data about employees.</li>
-         
-        <li>Observing and making tips.</li>
-         
-        <li>Repeating.</li>
-         
-    </ol>
-     <h2><strong>Transcribing</strong></h2>
-    <p>The next step before we can go to the data analysis, is to transcribe our inquiries. For me, honestly, it was
-        the most boring part of the study, but still crucial 🤷🏻‍. While making a study, we can't
-        manually record all the communication - it's better to take some notes and clarifications to deepen the
-        conversation later. So after we are done with an inquiry, we make a cup of coffee/tea, sit down, play the
-        recording, and start typing. Absolute concentration.</p>
-    <p>On average, each interview was 5-8 pages long. We really got a lot of information - especially in
-        combination with video recordings of participants' workflows.</p>
-    <p>But to find any patterns and tendencies, so that we can form design suggestions, we have to work out the data
-        - in our case, qualitatively. How can we do that?</p>
-    <h3><strong>Qualitative data: processing</strong></h3><h4><strong>Affinity Diagramming</strong></h4> <p>Affinity
-        Diagramming is a method we used while working with qualitative data. The essence of the method is uniting
-        observations, ideas, quotations - everything we have got during our studies into clusters on a basis of
-        similarity and affinity. So we basically make groups of information pieces that have something in common. Then
-        we label these clusters.</p>
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth" style="max-width:1440px">
-    <div><img src= https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/602d30aedb95e53e379845b0_Screenshot%202021-02-17%20at%2017.04.46.png
-        loading=lazywidth=autoheight=auto>
+    
+    <figure class="w-richtext-figure-type-image w-richtext-align-center \
+    "data-rt-type="image"data-rt-align="center">
+    <div><img
+            src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c6d1316b12b03ad0c4a7_open-graph-1.jpg"
+            alt="Webflow Open Graph Image">
     </div>
-            </figure> <p>So what was the process in our case?</p>
-    <p>After transcribing the interviews, I wrote down all the key observations, thoughts, frustrations, and tricks on
-        hundreds of post-it notes. To make the process of sharing deliverables easier (in terms of total remote work
-        with peers), I have chosen the Miro tool.</p> <p>Each color defined a specific participant. I processed each
-        interview separately, and as a result, had huge masses of information gained from inquiries with
-        respondents.</p>
-    <p>It was a real mess, and the next step I should have done - is clustering all these pieces into groups so that
-        we can analyze them, and find common patterns, problems, and needs.</p>
-    <p>The result we had:</p>
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth" style="max-width:3086px">
-    <div><img src= https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/602d311c50d1afa87f7b9a8b_Dashboard_Valor_Article.png
-        loading=lazywidth=autoheight=auto>
+        </figure>
+    <ul>
+        <li>Open it in a new tab as shown on the image above.</li>
+        
+        <li>Copy its URL from a browser's address bar.</li>
+        
+    </ul>
+    
+    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
+    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="951px"style="max-width:951px">
+    <div><img
+            src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c7037065d98c9cec7dd1_open-graph-2.jpg"
+            alt="Webflow Open Graph Image">
     </div>
-            </figure> <h4><strong>Uncovered key problems and needs</strong></h4>
-    <p>It turned out, that <strong>the most crucial challenges</strong> our potential users faced in their everyday
-        activities were the following: </p>
-    <ol>
-        <li>Having data for different types of people analytics in different tools and spreadsheets causes a time
-            increase in processing, comparing, and finding correlations.
-        </li>
-         
-        <li>Too many spreadsheets and different tools make knowledge sharing and transferability between HR department
-            team members complicated.
-        </li>
-         
-        <li>The complexity of storing information (too many steps because of many tools) causes incorrect data about
-            employees.
-        </li>
-         
-        <li>Budget losses caused by lack of the data, such as: absenteeism, burnout, correlating quantitative
-            performance, and engagement, etc.
-        </li>
-         
-        <li>Low level of turnover prediction.</li>
-         
-        <li>It is hard to track effectiveness of recruitment, organisational, and educational programs.</li>
-         
-    </ol>
-     <p><strong>What are the key needs</strong> discovered within the research?</p>
-    <ol>
-        <li>Be valuable among other departments with the help of data-driven approaches and metrics</li>
-         
-        <li>Have data to get resources - budget, employees, programs</li>
-         
-        <li>Keep turnover and retention on a benchmark</li>
-         
-        <li>Measure effectiveness of the programs</li>
-         
-        <li>Keep teams engaged and well-performed</li>
-         
-        <li>Meet forecast goals and revenues</li>
-         
-    </ol>
-     <h4><strong>Brainstorming</strong></h4>
-    <p>Based on a quick review of the clusters, I brainstormed ideas we could bundle into the feature. Note - it is
-        much better to try this activity with your team to collect diverse approaches and solutions. Such workshops
-        help teams be on the same page while working on the discovery and ideation stage of the
-        product/feature/enhancement development, and increase engagement.</p>
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth" style="max-width:1752px">
-    <div><img src= https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/602d3171edfb057611b4af47_Suggestions_to_features_Valor_Article.png
-        loading=lazywidth=autoheight=auto>
+    
+    <figcaption>The Open Graph preview.</figcaption>
+        </figure>
+    <ul>
+        <li>Paste the link to the Open Graph Image URL field for the required page as shown on the image.<br></li>
+        
+    </ul>
+     <p>If you need to insert the same image throughout the site, add meta tag with a link to your open graph image
+        to the Head section in Webflow project settings instead:</p>
+    <pre>        <code>            ~~~%xml%\t&lt;meta property="og:image"content="https://assets.website-files.com/your-link.jpg">~~~        </code>    </pre>
+     <h2>Preventing scroll when a pop-up is opened</h2> <p>By default, when you open a pop-up or menu and start
+        scrolling, the main content will scroll too. You can't fix that with native Webflow features, but it's not a
+        big deal to add a short script to prevent this:</p>
+    <pre>        <code>            ~~~%javascript%// Prevent scrolling on click$('.menu-btn').click(function (e) &#123;            e.preventDefault();            $('body').css('overflow', 'hidden');&#125;);/* Allow back page scrolling by clicking on the element with the necessary class name. If you have several close elements with the same action like a close button and cancel button, write classes by a comma.*/$('.close-menu-btn, .menu-wrap').click(function (e) &#123;            e.preventDefault();            $('body').css('overflow', 'auto');&#125;);~~~        </code>    </pre>
+     <p>See how this <a href="http://99ui-2.webflow.io/"data-rt-link-type="external">script works</a> -
+        all interactions except the script were made with Webflow built-in interactions 1.0.</p> <h2>Closing modal
+        window on the ESC button</h2> <p>It's time to improve the accessibility of modal dialogs too! Add an event
+        listener that waits when the <strong>ESC</strong> button is pressed and then runs the same action as the
+        <strong>.modal__closeclass</strong>:</p>
+    <pre>        <code>            ~~~%javascript%// close CTA section on the ESC buttondocument.body.addEventListener('keydown', function (e) &#123;            if (e.key === 'Escape') &#123;   document.querySelector('.modal__close').click(); &#125;&#125;);~~~        </code>    </pre>
+    
+    <figure class="w-richtext-figure-type-image w-richtext-align-center \
+    "data-rt-type="image"data-rt-align="center">
+    <div><img src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd44050d94ad4128974fd0c_escbtn-sm.gif"
+              alt="example">
     </div>
-            </figure> <h4>Report preparation</h4>
-    <p>After this activity, I have moved further to create a detailed report with Key Insights and Design Ideas. In
-        the end, it turned out as an 8-page document that concluded the following sections:</p>
-    <ol>
-        <li>Motivations and Frustration Summary</li>
-         
-        <li>Overview of key topics and functionality ideas for each of them (headcount, data correlations, revenue
-            (quantitative performance), qualitative performance, talent acquisition, turnover, promotions, 1on1s,
-            etc.)
-        </li>
-         
-        <li>Design recommendations to predefined dashboards views for each role (HR, Manager, Regular Employee)</li>
-         
-        <li>Design recommendations to dashboard functionality</li>
-         
-    </ol>
-     <p>Here you can read some pieces of the report:</p>
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth" style="max-width:1200px">
-    <div><img src= https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/602d332035a63cae6a2a5add_Screenshot%202021-02-17%20at%2017.13.55.png
-        loading=lazywidth=autoheight=auto>
+    
+    <figcaption>Try it live on <a href="https://99ui-8.webflow.io/"target="_blank" data-rt-link-type="external">this
+        example</a>.
+    </figcaption>
+            </figure><p>Btw, note that <strong>.keypress()</strong> doesn't work on MacBook Pro with touch bar, so use
+        <strong>.keydown()</strong> instead.</p> <h2>Customizing text selection color</h2> <p>Quite often you need
+        to change text selection color to fit brand colors or just make a text selection eligible for seeing what you
+        select. Use this script to customize that:</p>
+    <pre>        <code>            ~~~%css%/*Text Selection Color*/::selection &#123;            background: #173686; /* WebKit/Blink Browsers */&#125;::-moz-selection &#123;            background: #173686; /* Gecko Browsers */&#125;~~~        </code>    </pre>
+    
+    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
+    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
+    <div><img
+            src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c8ba578360ef956da542_custom-selection.jpg"
+            alt="Customizing text selection color">
     </div>
-            </figure>
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth" style="max-width:1200px">
-    <div><img src= https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/602d33315a65342f18e62de6_Screenshot%202021-02-17%20at%2017.14.16.png
-        loading=lazywidth=autoheight=auto>
-    </div>
-            </figure> <p>Based on the insights we have worked on the informational structure of the feature so that
-        we can implement it later on in the wireframes.</p>
-    <p><em>Informational structure:</em></p>
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth" style="max-width:3338px">
-    <div><img src= https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/602d342436e881bef3b5f207_Dashboard_Ideas_Valor_Article.png
-        loading=lazywidth=autoheight=auto>
-    </div>
-            </figure> <p>The report with supplying materials, as competitors' analysis, initial hypothesis,
-        informational structure, and widget ideas was presented to the product owner and QA lead of the team and then
-        sent to other team members. The next step was wireframes creation. Mostly we focused on such features, as:</p>
-    <p>- Adaptive grids </p>
-    <p>- Multiple dashboards </p>
-    <p>- Customizable widgets </p>
-    <p>- Actionable insights forming.</p>
-    <p>I can give you a small glance on the following work we have done:</p>
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth" style="max-width:2880px">
-    <div><img src=https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/602d34b9d09df20364e94a26_sketch.jpg
-              loading=lazywidth=autoheight=auto>
-    </div>
-            </figure>
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth" style="max-width:2880px">
-    <div><img src=https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/602d34cd36e88114a6b66b14_showreel.png
-              loading=lazywidth=autoheight=auto>
-    </div>
-            </figure><p>But wireframing is another big part of the process, going apart from the research stage of
-        the project.</p>
-    <h3>Conclusion</h3>
-    <p>Ok, if you're about to run a research, nothing can stop you. And when the pandemic comes - comes help from
-        the technologies. Video calls that you schedule in advance might be even more efficient than live meetings
-        since people do get ready for those and even come on time. Maybe that's because communication became even a
-        more lively need these days :-)</p>
-    <p>If your questions for the interview are ready, prepare yourself for another role on top of an interviewer. You
-        need to moderate the conversation in order to pick up the most valuable grains for your research. This
-        requires attention, so make a cheatsheet with topics to discuss. When ready with this part, you need to
-        transcribe the requirements you gathered. You record, then you transcribe taking all the time you need because
-        this takes time.When all the key observations are at hand, you can ease the process of sharing
-        deliverables by going with the Miro tool. You realize the most crucial challenges of potential users and
-        formulate the key needs. Now it's just a detailed report with Key Insights and Design Ideas left to complete
-        the mission. Good job!</p>
+            </figure><p>That's it for the first episode. Follow us on the Web or subscribe to get more code snippets
+        and tricks! Feel free to share custom scripts you use in the comment section below, or let us know if you are
+        having any issues with Webflow and we will do our best to help you!</p> <p>See you in the next episode!<br>
+    </p>
 </div>
