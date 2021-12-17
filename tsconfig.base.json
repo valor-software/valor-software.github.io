@@ -24,6 +24,9 @@
       "@valor-software/blog": [
         "libs/route-pages/blog/src/index.ts"
       ],
+      "@valor-software/careers": [
+        "libs/route-pages/careers/src/index.ts"
+      ],
       "@valor-software/common-docs": [
         "libs/common-docs/src/index.ts"
       ],

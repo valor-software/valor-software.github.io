@@ -27,9 +27,22 @@
   }
 }
 
+.pink-circle {
+  transform: translate(-50%, -20%);
+  @apply w-12 h-12 border-2 rounded-full border-light_pink bg-grey_bg absolute;
+
+  &::after {
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @apply block absolute w-7 h-7 bg-light_pink rounded-full overflow-hidden;
+  }
+}
+
 
 .main-title {
-  @apply font-bold text-dark_title_col text-56 xl:text-title lg:text-150 lg:mb-10 mb-6;
+  @apply font-bold text-dark_title_col text-56 xl:text-title xl:leading-200 lg:text-150 lg:mb-14 lg:mt-16 mb-6;
 
   &.double {
     @apply text-50 lg:text-double_title ;

@@ -13,6 +13,7 @@ module.exports = {
   theme: {
     colors: {
       pink: '#E24E63',
+      light_pink: '#CE7783',
       grey: '#1B1B1C',
       grey_bg: '#161617',
       light_grey_bg: '#2C2C2D',
@@ -98,7 +99,9 @@ module.exports = {
         '80%': '80%',
         '600': '600px',
         '380': '380px',
-        '75%': '75%'
+        '75%': '75%',
+        '400': '400px',
+        '500': '500px'
       },
       maxHeight: {
         '700': '700px',

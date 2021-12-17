@@ -1,0 +1,57 @@
+<section class="landing-section">
+    <div class="container pb-5 flex justify-between items-center pt-16" style="max-height: 100%;">
+        <div class="max-w-600">
+            <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">Who We Are</h1>
+            <p class="leading-normal text-grey_font_col lg:mb-8 mb-14">Professional and friendly with our clients and co-workers, we treat each other as we would want to be treated. Our working environment emphasizes equality, transparency... and a pet-friendly atmosphere! That's what Valor is all about :)</p>
+            <button class="btn-pink w-full md:w-auto flex items-baseline">
+                <a href="https://valorsoftware.recruitee.com/" target="_blank" class="w-full flex justify-center items-center">Check the openings<img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+            </button>
+        </div>
+        <div class="hidden lg:block">
+            <img src="assets/img/bg-img/careers/header_bg.svg" alt="">
+        </div>
+    </div>
+</section>
+<section class="landing-section">
+    <h1 class="main-title">Our Values</h1>
+    <div class="container flex justify-between">
+        <div>
+            <div *ngFor="let item of valuesList;let i = index" class=" pb-8 relative" [class.border-l-2]="i<valuesList.length-1" [class.border-l-light_pink]="i<valuesList.length-1">
+                <div class="pink-circle"></div>
+                <div class="max-w-400 ml-12 text-light_title_col">
+                    <p class="font-bold text-32">{{item.title}}</p>
+                    <p class="text-grey_font_col">{{item.description}}</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <img src="assets/img/bg-img/careers/values_bg.svg" alt="">
+        </div>
+    </div>
+</section>
+<section class="landing-section">
+    <h1 class="main-title">We Offer</h1>
+    <div class="container grid grid-cols-3 gap-6">
+       <div *ngFor="let item of offers" class="bg-grey px-6 py-8">
+           <div class="w-28 h-28 flex items-center justify-center">
+               <img [src]="item.img" alt="">
+           </div>
+           <p class="tracking-tighter text-light_title_col font-bold text-24 mb-4 mt-2">{{item.title}}</p>
+           <p class="tracking-tighter text-grey_font_col">{{item.description}}</p>
+       </div>
+    </div>
+</section>
+<section class="landing-section">
+    <div class="container flex items-center">
+        <div>
+            <img src="assets/img/bg-img/careers/rock_it.svg" alt="">
+        </div>
+        <div class="max-w-500 pl-6">
+            <h2 class="text-feedback_font_col text-left text-32 lg:text-56 font-bold leading-66">Let’s Rock It<br>Together!</h2>
+            <p class="text-dar_grey_font_col text-left mb-8 mt-8 leading-6">If you feel like our values and aspirations resonate with you, become part of the Valor’s team! Let’s create meaningful things together, grow, and have fun!</p>
+            <button class="btn-pink w-full md:w-auto flex items-baseline">
+                <a href="https://valorsoftware.recruitee.com/" target="_blank" class="w-full flex justify-center items-center">Join us<img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+            </button>
+        </div>
+    </div>
+</section>

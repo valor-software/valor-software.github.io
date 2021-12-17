@@ -18,7 +18,7 @@
                         <a class="menu-item" (click)="toggleClientsRoute()">For clients <div class="light-arrow"></div></a>
                         <a routerLink="/services" [routerLinkActive]="['active-route']" class="menu-item">Services</a>
                         <a routerLink="/portfolio" [routerLinkActive]="['active-route']" class="menu-item">Portfolio</a>
-                        <a href="https://valorsoftware.recruitee.com/" target="_blank" class="menu-item">Careers</a>
+                        <a routerLink="/careers" [routerLinkActive]="['active-route']" class="menu-item">Careers</a>
                         <a routerLink="/blog" [routerLinkActive]="['active-route']" class="menu-item">Blog</a>
                     </div>
                     <menu-popover class="hidden lg:block" [show]="showClientsRoute" (changeShowClientRoute)="showClientsRoute=$event"></menu-popover>

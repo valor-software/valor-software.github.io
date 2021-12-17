@@ -20,10 +20,10 @@
 </section>
 <section class="landing-section !pb-0">
     <div class="container">
-        <h2 class="text-feedback_font_col text-left lg:text-center text-32 lg:text-56 font-bold mb-4">Wondering what special offerings <br>we can provide?</h2>
+        <h2 class="text-feedback_font_col text-left lg:text-center leading-56 text-32 lg:text-56 font-bold mb-4">Wondering what special offerings <br>we can provide?</h2>
         <p class="text-dar_grey_font_col text-left text-24 lg:text-large lg:text-center mb-14">Check out our exclusive packages!</p>
         <div class="hidden lg:flex h-550 justify-between">
-            <div *ngFor="let package of packageList" class="h-full bg-grey w-31% pb-8 pt-10 px-6 flex flex-col">
+            <div *ngFor="let package of packageList" class="h-full bg-grey w-31% pb-8 pt-10 px-6 flex flex-col border-2 border-transparent hover:border-dar_grey_font_col">
                 <div class="pb-6 border-b-2 border-light_title_col min-h-100">
                     <h3 class="text-light_title_col text-24 font-bold">{{package.title}}</h3>
                 </div>
