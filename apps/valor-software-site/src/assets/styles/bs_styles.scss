@@ -29,14 +29,14 @@
 
 .pink-circle {
   transform: translate(-50%, -20%);
-  @apply w-12 h-12 border-2 rounded-full border-light_pink bg-grey_bg absolute;
+  @apply w-8 h-8 md:w-12 md:h-12 border-2 rounded-full border-light_pink bg-grey_bg absolute;
 
   &::after {
     content: '';
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    @apply block absolute w-7 h-7 bg-light_pink rounded-full overflow-hidden;
+    @apply block absolute w-5 md:w-7 h-5 md:h-7 bg-light_pink rounded-full overflow-hidden;
   }
 }
 
