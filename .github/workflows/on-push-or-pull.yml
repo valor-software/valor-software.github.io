@@ -18,9 +18,11 @@ env:
   CACHE_NODE_MODULES_PATH: |
     ~/.npm
     node_modules
+    dist/valor-software-site
 
   CACHE_DIST_PATH: |
     dist
+    dist/valor-software-site
 
 jobs:
   # one run
