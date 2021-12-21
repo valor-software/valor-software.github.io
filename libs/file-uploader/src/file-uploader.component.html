@@ -3,7 +3,7 @@
         <file *ngFor="let file of files" [file]="file" (remove)="removeFile($event)"></file>
     </div>
     <div
-            class="relative w-full border-dashed border border-dar_grey_font_col hover:border-pink py-3 flex justify-center items-center text-dar_grey_font_col text-sm rounded"
+            class="relative w-full border-dashed border border-dar_grey_font_col hover:border-pink py-3 flex justify-center items-center flex-col text-grey_font_col text-sm rounded"
             fileDrag (files)="addFiles($event)" [acceptedFiles]="['pptx', 'pdf', 'csv', 'doc']"
             style="transition: all ease .3s"
     >
@@ -13,5 +13,7 @@
         </p>
 
         <p class="flex lg:hidden"><img src="assets/img/icons/file-uploader.svg" alt="file uploader icon" class="mr-1">Upload a file</p>
+        <p class="text-sm text-dar_grey_font_col mt-2 mb-2">*Files type: pdf, csv, doc, pptx </p>
+        <p class="text-sm text-dar_grey_font_col">*Max size: 20 MB </p>
     </div>
 </div>

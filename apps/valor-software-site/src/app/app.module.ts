@@ -5,6 +5,7 @@ import { routes } from './app.routing';
 import { AppComponent } from './app.component';
 import { CommonDocsModule } from '@valor-software/common-docs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     RouterModule.forRoot(routes, {anchorScrolling: 'enabled', onSameUrlNavigation: 'reload'}),
     CommonDocsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ScullyLibModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -6,10 +6,12 @@
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start": "nx serve",
-    "build": "nx build",
+    "build": "nx build && npm run scully",
     "test": "nx test",
     "lint": "nx run-many --all --target=lint",
-    "runAnotherHost": "nx serve --host=127.0.0.1"
+    "runAnotherHost": "nx serve --host=127.0.0.1",
+    "scully": "npx scully --prod --scanRoutes --project=valor-software-site",
+    "scully:serve": "npx scully serve --project=valor-software-site"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +24,10 @@
     "@angular/platform-browser-dynamic": "^12.2.0",
     "@angular/router": "^12.2.0",
     "@nrwl/angular": "13.1.4",
+    "@scullyio/init": "^2.0.5",
+    "@scullyio/ng-lib": "^2.0.0",
+    "@scullyio/scully": "^2.0.0",
+    "@scullyio/scully-plugin-puppeteer": "^2.0.0",
     "@tailwindcss/forms": "^0.3.4",
     "@tailwindcss/typography": "^0.4.1",
     "@tailwindcss/ui": "^0.7.2",

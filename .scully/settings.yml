@@ -1,0 +1,11 @@
+identifier: kcx9e7n28ecd34ef
+appPort: 1864
+staticPort: 1668
+reloadPort: 2667
+hostName: localhost
+projectName: valor-software-site
+homeFolder: E:\projects\valor-software.github.io
+distFolder: dist/apps/valor-software-site
+outDir: E:\projects\valor-software.github.io\dist\valor-software-site
+handle404: ''
+allowErrorCollect: false

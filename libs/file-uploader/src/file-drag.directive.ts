@@ -45,7 +45,7 @@ export class FileDragDirective {
 
         for (const filesKey in evt.dataTransfer.files) {
             const file = evt.dataTransfer.files[filesKey];
-            if (file.type && this.checkAllowedExtension(file.name)) {
+            if (file.type && this.checkAllowedExtension(file.name) && this.checkMaxMemory(files, file)) {
                 files.push(file);
             }
         }
@@ -62,5 +62,15 @@ export class FileDragDirective {
         const arr = name.split('.');
         const extension = arr[arr.length-1];
         return this.acceptedFiles.some(item => item === extension);
+    }
+
+    checkMaxMemory(files: File[], file:File): boolean {
+        const maxSize = 20971520;
+        // const resultAmount = files.reduce((amount, file) => +amount + +file.size, 0);
+        const arr = [1,258,456,147,11,25,88,54];
+        const resultAmount = arr.reduce((amount, num) => +amount + +num, 0);
+        console.log(resultAmount);
+        // console.log(resultAmount, file.size);
+        return true;
     }
 }

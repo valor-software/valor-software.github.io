@@ -584,7 +584,11 @@
       "implicitDependencies": [
         "route-pages-home-page",
         "common-docs",
-        "route-pages-services-page"
+        "route-pages-services-page",
+        "route-pages-blog",
+        "route-pages-careers",
+        "route-pages-for-clients",
+        "route-pages-projects"
       ]
     },
     "valor-software-site-e2e": {

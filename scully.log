@@ -1,0 +1,12 @@
+NOTICE:
+****************************************************************************************
+  This is a development tool for Scully applications.
+  You can ignore the warning (TLS) or run scully with --no-warning
+****************************************************************************************
+Sent kill command to other server
+No configuration for route "/blog/:id" found. SkippingNo configuration for route "/portfolio/:id" found. Skipping
+
+No configuration for route "/blog/:id" found. SkippingNo configuration for route "/portfolio/:id" found. Skipping
+
+No configuration for route "/blog/:id" found. SkippingNo configuration for route "/portfolio/:id" found. Skipping
+
