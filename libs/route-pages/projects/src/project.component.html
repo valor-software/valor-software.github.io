@@ -37,8 +37,8 @@
         <div class="container">
             <div class="w-full flex flex-col justify-between" [class.lg:flex-row]="checkLength(project.goals, 1)" [class.lg:items-center]="!checkLength(project.goals, 1)">
                 <div class="mr-12 lg:max-w-50%" *ngIf="checkLength(project.goals, 1); else elseBlock">
-                    <div *ngFor="let goal of project.goals; index as i" class="flex items-center lg:mb-6 lg:mb-20">
-                        <p class="main-title main-title-150 !mb-0 text-center min-w-70 lg:min-w-100">{{i+1}}</p>
+                    <div *ngFor="let goal of project.goals; index as i" class="flex items-center lg:mb-6 lg:mb-12">
+                        <p class="main-title main-title-150 !mb-0 text-center min-w-70 lg:min-w-100 !mt-0">{{i+1}}</p>
                         <p class="text-24 lg:text-large font-bold text-white -ml-5">{{goal}}</p>
                     </div>
                 </div>
@@ -58,8 +58,8 @@
         <div class="container">
             <div class="w-full flex flex-col justify-between" [class.lg:flex-row]="checkLength(project.solutions, 1)" [class.lg:items-center]="!checkLength(project.solutions, 1)">
                 <div class="mr-12 lg:max-w-50%" *ngIf="checkLength(project.solutions, 1); else elseBlock">
-                    <div *ngFor="let goal of project.solutions; index as i" class="flex items-center lg:mb-6 lg:mb-20">
-                        <p class="main-title main-title-150 !mb-0 text-center min-w-70 lg:min-w-100">{{i+1}}</p>
+                    <div *ngFor="let goal of project.solutions; index as i" class="flex items-center lg:mb-6 lg:mb-12">
+                        <p class="main-title main-title-150 !mb-0 text-center min-w-70 lg:min-w-100 !mt-0">{{i+1}}</p>
                         <p class="text-24 lg:text-large font-bold text-white -ml-5">{{goal}}</p>
                     </div>
                 </div>
