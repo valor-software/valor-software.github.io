@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/apps/valor-software-site",
+    "public": "dist/valor-software-site",
     "ignore": [
       "firebase.json",
       "**/.*",

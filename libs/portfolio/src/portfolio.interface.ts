@@ -1,25 +1,3 @@
-export const PortfolioList = [
-    'CareerBuilder',
-    'Zuora',
-    'Dollar_Street',
-    'Liberty_Flights',
-    'Souqalmal',
-    'Priceshredder',
-    'Gapminder_Offline',
-    'TablesReady',
-    'Breethe_Sleep___Meditation',
-    'StackBlitz',
-    'Renaizant',
-    'Cinnabon',
-    'NgTalks',
-    'Qualtrax',
-    // 'Hire_the_Fempire',
-    'ThisDot',
-    'NgAtlanta',
-    'Vizabi',
-    'Netifi'
-];
-
 export interface IPortfolio {
     name: string;
     link?: string;

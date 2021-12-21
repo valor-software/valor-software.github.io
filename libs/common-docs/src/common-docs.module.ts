@@ -15,7 +15,7 @@ import { AppFooterComponent } from "./components/app-footer/app-footer.component
 import { ServicesBlockComponent } from './components/services_block/services-block.component';
 import { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.component';
 import { ShowHideDirective } from './directives/showHide.directive';
-import {SwiperModule} from "swiper/angular";
+import { SwiperModule } from "swiper/angular";
 import { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
 import { BlogItemComponent } from './components/blog-preview/blog-item.component';
 import { GetArticlesService } from './services/getArticles.service';
@@ -34,9 +34,10 @@ export { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.compo
 export { ShowHideDirective } from './directives/showHide.directive';
 export { GetArticlesService } from './services/getArticles.service';
 export { ArticlesRouteService } from './services/articlesRoute.service';
-export { ArticlesList, IArticle } from './models/articles.list';
+export { IArticle } from './models/article.interface';
 export { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
 export { BlogItemComponent } from './components/blog-preview/blog-item.component';
+export { ARTICLES_LIST } from './tokens/articlesList.token';
 
 @NgModule({
   declarations: [

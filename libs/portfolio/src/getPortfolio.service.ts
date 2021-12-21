@@ -1,29 +1,32 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {IPortfolio, PortfolioList} from "./portfolio.list";
+import { IPortfolio } from "./portfolio.interface";
+import { PORTFOLIO_LIST } from "./portfolioList.token";
 
 
 @Injectable({providedIn: 'platform'})
 export class GetPortfolioService {
     private apiArray?: Observable<any>[];
+    private portfolioList?: string[];
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        @Inject(PORTFOLIO_LIST) portfolioList: string[]
     ){
-        const list = PortfolioList;
-        this.apiArray = list.map(art => this.getPortfolioRequest(art));
+        this.portfolioList = portfolioList;
+        this.apiArray = this.portfolioList.map(art => this.getPortfolioRequest(art));
     }
 
     getPortfolioRequest(art: string):Observable<any> {
-        return this.http.get(`assets/portfolio/${art}.json`);
+        return this.http.get(`assets/portfolio/clients/${art}.json`);
     }
 
     getFullListOfPortfolio(): Observable<IPortfolio>[] | undefined {
         return this.apiArray;
     }
 
-    getProjectList(): string[] {
-        return PortfolioList;
+    getProjectList(): string[] | undefined {
+        return this.portfolioList;
     }
 }

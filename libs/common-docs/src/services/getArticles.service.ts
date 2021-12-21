@@ -1,19 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ArticlesList } from "../models/articles.list";
-
+import { ARTICLES_LIST } from "../tokens/articlesList.token";
+// import { ArticlesList } from "../models/articles.list";
 
 
 @Injectable({providedIn: 'platform'})
 export class GetArticlesService {
     private apiArray?: Observable<any>[];
+    private articlesList?: string[];
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        @Inject(ARTICLES_LIST) articlesList: string[]
     ){
-        const list = ArticlesList;
-        this.apiArray = list.map(art => this.getArticleRequest(art));
+        this.articlesList = articlesList;
+        this.apiArray = this.articlesList.map(art => this.getArticleRequest(art));
     }
 
     getArticleRequest(art: string):Observable<any> {
@@ -29,8 +31,11 @@ export class GetArticlesService {
     }
 
     getArticlesByNames(value: string[]): Observable<any>[] | undefined{
-        const articlesList = ArticlesList;
-        const list = articlesList.filter(item => value.includes(item));
-        return list.map(art => this.getArticleRequest(art));
+        const articlesList = this.articlesList;
+        if (articlesList?.length) {
+            const list = articlesList.filter(item => value.includes(item));
+            return list.map(art => this.getArticleRequest(art));
+        }
+        return;
     }
 }

@@ -6,6 +6,7 @@
     "lib": ["ES2019", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "sourceMap": true,
     "target": "es2018",
     "types": ["node"],
@@ -14,5 +15,6 @@
     "typeRoots": ["../node_modules/@types"],
     "allowSyntheticDefaultImports": true
   },
+  "allowSyntheticDefaultImports": true,
   "exclude": ["./**/*spec.ts"]
 }

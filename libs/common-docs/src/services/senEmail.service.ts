@@ -9,8 +9,7 @@ export class SendEmailService {
     constructor(
         private http: HttpClient
     ){}
-//https://formspree.io/f/xeqnjork
-//     https://formspree.io/f/mpzbawjy
+
     public sendEmail(body: any): Observable<any> {
         return this.http
             .post('https://formspree.io/f/xeqnjork', body, {

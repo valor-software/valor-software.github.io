@@ -60,6 +60,10 @@ export class ProjectComponent implements OnDestroy{
 
     initNextProject() {
         const array = this.getProjectsServ.getProjectList();
+        if (!array) {
+            return;
+        }
+
         let index = array.findIndex(item => item === this.changeBreadCrumbTitle?.[0]?.path);
 
         if (!index && index !== 0) {
@@ -67,7 +71,7 @@ export class ProjectComponent implements OnDestroy{
         }
         index++;
 
-        if (index > array.length - 1) {
+        if (index > array?.length - 1) {
             index = 0;
         }
         this.getProjectsServ.getPortfolioRequest(array[index]).subscribe(res => {
