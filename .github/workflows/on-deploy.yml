@@ -1,4 +1,4 @@
-name: on-pull-request-or-push
+name: on-deploy
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
       - development
 
 env:
-  FIREBASE_CHANNEL: ${{ fromJSON('["", "live"]')[!github.base_ref] }}
+  FIREBASE_CHANNEL: live
 
   CACHE_NODE_MODULES_PATH: |
     ~/.npm
@@ -60,24 +60,10 @@ jobs:
           npx ng build --runner cloud --prod
           npx scully --prod --scanRoutes --project=valor-software-site
 
-  # run linting
-  linting:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: ${{ env.CACHE_NODE_MODULES_PATH }}
-          key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - run: npm run lint -- --runner cloud
-
-  # firebase deploy preview
-  firebase_preview:
+  # firebase deploy
+  firebase_deploy:
     runs-on: ubuntu-latest
     needs: build
-    outputs:
-      output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -86,10 +72,9 @@ jobs:
           key: dist-${{ github.run_id }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         continue-on-error: true
-        id: firebase_hosting_preview
+        id: firebase_hosting
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VALOR_SOFTWARE_SITE }}'
           projectId: valor-software-site
           channelId: ${{ env.FIREBASE_CHANNEL }}
-          expires: 2d

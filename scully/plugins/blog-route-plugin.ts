@@ -3,7 +3,6 @@ import { ArticlesList } from "../../apps/valor-software-site/src/assets/blog/art
 
 function blogRoutePlugin(route: string, config = {}): Promise<HandledRoute[]> {
     const routes = ArticlesList.map((item: string) => {
-        console.log(item);
         return {route: `/blog/${item}`};
     })
     return Promise.resolve(routes);
