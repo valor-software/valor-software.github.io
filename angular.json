@@ -505,7 +505,8 @@
               "apps/valor-software-site/src/assets"
             ],
             "styles": [
-              "apps/valor-software-site/src/assets/styles/styles.scss"
+              "apps/valor-software-site/src/assets/styles/styles.scss",
+              "apps/valor-software-site/src/assets/styles/prettify-angulario.css"
             ],
             "scripts": []
           },

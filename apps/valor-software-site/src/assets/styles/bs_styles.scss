@@ -355,7 +355,8 @@ li::marker {
   }
 
   pre {
-    @apply w-11/12 mx-auto text-header_font_col bg-light_grey_bg w-full mt-4 mb-4;
+    @apply w-11/12 mx-auto bg-light_grey_bg w-full mt-4 mb-4;
+    color: aliceblue;
 
     code {
       @apply max-w-full;

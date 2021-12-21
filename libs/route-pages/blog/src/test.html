@@ -1,163 +1,237 @@
-<div class="max-w-full"> <p>I design sites in Webflow every day, and I enjoy it. Still, sometimes, I stumble upon
-    interesting corner cases that Webflow can't handle by itself yet, so I have to hand code a little. And yes, I'm a
-    designer who codes from time to time. Working as a part of the outsource development company brings many
-    challenging tasks :)</p> <p>Recently I caught myself thinking about how many custom code snippets I use for
-    Webflow development. I figured out that I have a lot of useful ones to share. I've included a few tricks in this
-    article - more to come! Follow our blog to stay updated on Webflow tips and code snippets in the future.<br></p>
-    <h2>Removing font ligatures</h2> <p>In typography, Ligature binds two or more characters into one, which sometimes
-        looks like an issue. Some Web browsers like Safari browser on both Mac OS X and iOS show standard ligatures by
-        default.</p>
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
-    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
-    <div><img src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2bfebbfa1c94d95309544_ligature1.jpg"
-              alt="Removing font Ligature">
-    </div>
-    
-    <figcaption>The most popular example of font ligatures is a combination of the following letters: fi, fl, ff, ffi,
-        and ffl.
-    </figcaption>
-        </figure><p>If you have expanded or collapsed tracking (CSS: Letter-spacing) in the font you use, you will see
-        that some letters are defined as one symbol:</p>
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
-    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
-    <div><img src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c0297065d90ea7ec6a14_ligature2.jpg"
-              alt="Removing font Ligature">
-    </div>
-        </figure><p>I bet you'll want to disable Ligatures - use the following custom CSS code for the entire website
-        or just for a specific selector by a class name:</p>
-    <pre>        <code>            ~~~%css%/* Disable Ligature for the entire website */* &#123;            font-variant-ligatures: none;&#125;/* Disable Ligature for a specific selector */.class-name &#123;            font-variant-ligatures: none;&#125;~~~        </code>    </pre>
-    
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
-    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
-    <div><img src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c3d2f8fc0b1bce9f30c9_ligature3.gif"
-              alt="Font Ligature Example">
-    </div>
-    
-    <figcaption>Check <a href="https://font-ligatures.webflow.io/"target="_blank" data-rt-link-type="external">the
-        live web example</a> I've made in Webflow to see the difference.
-    </figcaption>
-        </figure><p>Learn more about <a href="http://blog.fonts.com/2016/06/30/to-ligature-or-not-to-ligature/"
-                                          data-rt-link-type="external">ligatures issues</a> described by Jason
-        Tselentis, Associate Professor at Winthrop University's Department of Design.</p> <h2>Preventing scaling on
-        mobile</h2> <p>Some browsers on mobile, especially Apple ones, tend to autoscale the viewport. Autoscale
-        happens when you click on the Input or the Text area if your inputs have font-size less than 16px. It's
-        painful for users to fill in such form as it scales while you type and doesn't scale back after a user stops
-        typing.</p> <p>To make all text elements on a page readable and legible without zooming, disable scaling by
-        using this itty-bitty code snippet:<br></p>
-    <pre>        <code>            ~~~%xml%\t&lt;meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>~~~        </code>    </pre>
-    
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
-    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
-    <div><img
-            src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c282f8fc0b6f9c9f2c25_mobile-scaling.jpg"
-            alt="Preventing scaling on mobile">
-    </div>
-        </figure><p>Want to go deeper and prevent scale effect only on input click? Check <a
-            href="https://www.dynamo6.com/how-to-prevent-unwanted-zooming-on-mobile-devices/"
-            data-rt-link-type="external">article on dynamo6</a> as well.</p> <h2>Improving height behavior: 100VH on
-        mobile</h2> <p>Another pretty known issue is an ugly jumpy effect when you use 100VH points on mobile devices.
-        As mobile browsers have a top address bar as a part of the UI, some space of your section will be cut or
-        layout will be re-rendered and re-adjust since the dimensions have changed. Which is bad for user
-        experience.</p> <p>This issue was mentioned so many times in different articles and forums, but I would like
-        to mention <a href=" https://css-tricks.com/the-trick-to-viewport-units-on-mobile/"
-        data-rt-link-type="external">one</a> where I take the solution from. Here's the magic you'll create:</p>
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
-    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
-    <div><img src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c30f578360a8346d8578_100vh.jpg"
-              alt="100VH on mobile">
-    </div>
-        </figure><p>As you can see, social icons get cropped at the bottom, but we want to see them without scrolling.
-        Check out how it looks <a href="https://100vh.webflow.io/"data-rt-link-type="external">on mobile</a>.</p>
-     <p>Just use a small chunk of JS and CSS to fix this - put the code into the heading of a page using Script and
-        Style tags respectively.<br></p> <p><strong>JavaScript:</strong></p>
-    <pre>        <code>            ~~~%javascript%// First we get the viewport height and multiply it by 1% to get a value for a vh unitlet vh = window.innerHeight * 0.01;// Then we set the value in the --vh custom property to the root of the documentdocument.documentElement.style.setProperty('--vh', `$&#123;vh&#125;px`);~~~        </code>    </pre>
-     <p>When you scroll down, the address bar is collapsing which updates the value of --vh and repaints the
-        page so the user may experience a jump effect.</p> <p>In case of fixed height for the mobile landscape
-        breakpoint, we don't need the event listener as you can find in the original example:<br></p>
-    <pre>        <code>            ~~~%javascript%// We listen to the resize eventwindow.addEventListener('resize', () => &#123;            // We execute the same script as before            let vh = window.innerHeight * 0.01;            document.documentElement.style.setProperty('--vh', `$&#123;vh&#125;px`);&#125;);~~~        </code>    </pre>
-     <p><strong>CSS:</strong></p>
-    <pre>        <code>            ~~~%css%/*We apply these styles only from the tablet breakpoint, desktop doesn't require it*/@media (max-width: 991px) &#123;            .hero &#123;  height: calc(var(--vh, 1vh) * 100);&#125;&#125;/*We set the fixed height for mobile landscape because there is not enough height space for the one screen section*/@media (max-width: 767px) &#123;            .hero &#123;   height: auto;   min-height: 500px;&#125;&#125;/*And then again calculate the height for the hero section*/@media (max-width: 479px) &#123;            .hero &#123;  height: calc(var(--vh, 1vh) * 100);&#125;&#125;~~~        </code>    </pre>
-     <p>On a side note, updating the value of --vh will trigger a repaint of the page, and the user may
-        experience a jump as a result. Because of this, I'm not advising you to use this trick for every projector to
-        replace all usage of the vh unit, but only when you need your users to have an exact viewport unit value.</p>
-     <h2>Resetting Apple default form styles</h2> <p>It's a common practice to keep all inputs, text-areas, and
-        selects under control and make them consistent across all devices, so I use custom form style. To reset iOS
-        default styles for the entire website, add the following CSS code at the end of the &lthead&gt tag in
-        project settings:</p>
-    <pre>        <code>            ~~~%css%/*Reset apple form styles*/input, textarea, select &#123;            -webkit-appearance: none;            -moz-appearance: none;            appearance: none; border-radius: 0;            background-image: none;&#125;~~~        </code>    </pre>
-     <h2>Using Open Graph Image</h2> <p>Webflow has its own Open Graph Image URL field for each page.</p> <p>
-        To add Open Graph Image, you need to:</p>
-    <ul>
-        <li>Create an image with recommended dimensions - at least 1200px by 630px and with 1.91:1 aspect ratio.</li>
-        
-        <li>Upload it to Webflow.</li>
-        
-    </ul>
-    
-    <figure class="w-richtext-figure-type-image w-richtext-align-center \
-    "data-rt-type="image"data-rt-align="center">
-    <div><img
-            src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c6d1316b12b03ad0c4a7_open-graph-1.jpg"
-            alt="Webflow Open Graph Image">
-    </div>
-        </figure>
-    <ul>
-        <li>Open it in a new tab as shown on the image above.</li>
-        
-        <li>Copy its URL from a browser's address bar.</li>
-        
-    </ul>
-    
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
-    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="951px"style="max-width:951px">
-    <div><img
-            src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c7037065d98c9cec7dd1_open-graph-2.jpg"
-            alt="Webflow Open Graph Image">
-    </div>
-    
-    <figcaption>The Open Graph preview.</figcaption>
-        </figure>
-    <ul>
-        <li>Paste the link to the Open Graph Image URL field for the required page as shown on the image.<br></li>
-        
-    </ul>
-     <p>If you need to insert the same image throughout the site, add meta tag with a link to your open graph image
-        to the Head section in Webflow project settings instead:</p>
-    <pre>        <code>            ~~~%xml%\t&lt;meta property="og:image"content="https://assets.website-files.com/your-link.jpg">~~~        </code>    </pre>
-     <h2>Preventing scroll when a pop-up is opened</h2> <p>By default, when you open a pop-up or menu and start
-        scrolling, the main content will scroll too. You can't fix that with native Webflow features, but it's not a
-        big deal to add a short script to prevent this:</p>
-    <pre>        <code>            ~~~%javascript%// Prevent scrolling on click$('.menu-btn').click(function (e) &#123;            e.preventDefault();            $('body').css('overflow', 'hidden');&#125;);/* Allow back page scrolling by clicking on the element with the necessary class name. If you have several close elements with the same action like a close button and cancel button, write classes by a comma.*/$('.close-menu-btn, .menu-wrap').click(function (e) &#123;            e.preventDefault();            $('body').css('overflow', 'auto');&#125;);~~~        </code>    </pre>
-     <p>See how this <a href="http://99ui-2.webflow.io/"data-rt-link-type="external">script works</a> -
-        all interactions except the script were made with Webflow built-in interactions 1.0.</p> <h2>Closing modal
-        window on the ESC button</h2> <p>It's time to improve the accessibility of modal dialogs too! Add an event
-        listener that waits when the <strong>ESC</strong> button is pressed and then runs the same action as the
-        <strong>.modal__closeclass</strong>:</p>
-    <pre>        <code>            ~~~%javascript%// close CTA section on the ESC buttondocument.body.addEventListener('keydown', function (e) &#123;            if (e.key === 'Escape') &#123;   document.querySelector('.modal__close').click(); &#125;&#125;);~~~        </code>    </pre>
-    
-    <figure class="w-richtext-figure-type-image w-richtext-align-center \
-    "data-rt-type="image"data-rt-align="center">
-    <div><img src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd44050d94ad4128974fd0c_escbtn-sm.gif"
-              alt="example">
-    </div>
-    
-    <figcaption>Try it live on <a href="https://99ui-8.webflow.io/"target="_blank" data-rt-link-type="external">this
-        example</a>.
-    </figcaption>
-            </figure><p>Btw, note that <strong>.keypress()</strong> doesn't work on MacBook Pro with touch bar, so use
-        <strong>.keydown()</strong> instead.</p> <h2>Customizing text selection color</h2> <p>Quite often you need
-        to change text selection color to fit brand colors or just make a text selection eligible for seeing what you
-        select. Use this script to customize that:</p>
-    <pre>        <code>            ~~~%css%/*Text Selection Color*/::selection &#123;            background: #173686; /* WebKit/Blink Browsers */&#125;::-moz-selection &#123;            background: #173686; /* Gecko Browsers */&#125;~~~        </code>    </pre>
-    
-    <figure class="w-richtext-figure-type-image w-richtext-align-fullwidth \
-    "data-rt-type="image"data-rt-align="fullwidth"data-rt-max-width="1400px"style="max-width:1400px">
-    <div><img
-            src="https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cd2c8ba578360ef956da542_custom-selection.jpg"
-            alt="Customizing text selection color">
-    </div>
-            </figure><p>That's it for the first episode. Follow us on the Web or subscribe to get more code snippets
-        and tricks! Feel free to share custom scripts you use in the comment section below, or let us know if you are
-        having any issues with Webflow and we will do our best to help you!</p> <p>See you in the next episode!<br>
+<div class="max-w-full"><p> Hi! My name is Angelina, and I'm a DevOps Engineer at Valor Software. With the help
+    of this article, we'll set up your GCP environment to work in tandem with Terraform. I'll guide you through the
+    setup of a basic cluster. For this, I picked the services that I use daily within my DevOps routine, since they are
+    optimal for your typical project setup. Let me explain myself here! By typical I mean common projects that are
+    natural (habitual) for your company or industry. In this case, I bet you'd appreciate a chance to build the
+    environment once and clone it for future projects. That's exactly the way you can go with the services I offer
+    below. So, once you learn the basics for the project setup in this stack, you'll be able to run new ones in the
+    cloud in no time.<br></p>
+    <h3><strong>Automated setup with Terraform</strong><br></h3>
+    <p> When we
+        need to set up a cloud infrastructure for the project, we want to make it quickly. That's when automation tools
+        come
+        to help. <a href="https://www.terraform.io/" target="_blank">Terraform</a> is one of the instruments that
+        serve for automated setup, and it is compatible with more than 70 providers, which is beyond handy. Besides,
+        Terraform is pretty straightforward to get along with thanks to its declarative language. You don't need to get
+        used
+        to a completely different CLI, like in cases when you switch to another cloud provider. </p>
+    <p> Why I suggest
+        picking Terraform from the great variety of services is because it's perfect for creating reusable
+        infrastructures.
+        You can also clone the existing infrastructure and apply it to your next project, with small alterations if
+        needed.
+        This benefit of reusability, together with the security that Terraform provides, makes it a first-choice
+        technology
+        for solving my daily tasks. BTW, it's also the right place for keeping electronic keys and hidden or encrypted
+        variables. </p>
+    <p> Another good point is that Terraform allows for managing several cloud infrastructures
+        from different providers in parallel with minimal time and effort spent. </p>
+    <p> In this article, I'll lead
+        you through setting up infrastructure on Google Cloud using Terraform, so buckle up! </p>
+    <h3><strong>Kubernetes
+        on Google Cloud Platform</strong></h3>
+    <p> Being one of the native Google products, Kubernetes is integrated
+        into GCP quite as is, with no alterations. So you can conveniently set it up and manage it through the GCP CLI
+        or
+        with the help of external instruments like Terraform.<br></p>
+    <h3><strong>Before you begin<br></strong>
+    </h3>
+    <ol>
+        <li><a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects" target="_blank">Create
+            a Google Cloud project</a></li>
+
+    </ol>
+
+    <ol start="2">
+        <li><a href="https://cloud.google.com/iam/docs/creating-managing-service-account-keys" target="_blank">Create
+            a service account key</a> and download it in JSON format
+        </li>
+
+    </ol>
+    <h3><strong>Terraform and GCP setup step-by-step<br></strong></h3>
+    <p> Create a new directory for the
+        project and create a main.tf file for the Terraform config,&nbsp and populate it with the following content:<br>
     </p>
+    <pre class="prettyprint lang-js prettyprinted">
+provider "google" <span class="pun">&#123;</span>
+    <span class="kwd">credentials</span> = file("CREDENTIALS_FILE.json")
+    <span class="kwd">project</span> = "your-project"
+    <span class="kwd">region</span> = "us-west1"
+<span class="pun">}</span>
+    </pre>
+
+    <p> Before we jump to the next step of creating a configuration file, we should remember to keep data (e.g.
+        keys, project names) in separate files. This way we ensure project security and give ourselves a chance to reuse
+        the configuration in the future. So, locate the project name, region, and credentials file in a separate file
+        with variables. </p>
+    <p> First, create a variables.tf file and declare variables for it:<br></p>
+    <pre class="prettyprint lang-js prettyprinted">
+variable "credentials" <span class="pun">&#123;</span>
+    <span class="kwd">type</span> = string
+<span class="pun">}</span>
+variable "project"<span class="pun">&#123;</span>
+    <span class="kwd">type</span> = string
+<span class="pun">}</span>
+variable "region"<span class="pun">&#123;</span>
+    <span class="kwd">type</span> = string
+<span class="pun">}</span>
+    </pre>
+
+    <p> Add the variables' values to secrets.tfvars:<br></p>
+    <pre class="prettyprint lang-js prettyprinted">
+<span class="kwd">credentials</span> = "CREDENTIALS_FILE.json"
+<span class="kwd">project</span> = "your-project"
+<span class="kwd">region</span> = "us-west1"
+    </pre>
+
+    <p> Then format your main.tf file like so:<br></p>
+    <pre class="prettyprint lang-js prettyprinted">
+provider  "google"<span class="pun">&#123;</span>
+    <span class="kwd">credentials</span> = file(var.credentials)
+    <span class="kwd">project</span> = var.project
+    <span class="kwd">region</span> = var.region
+<span class="pun">}</span>
+    </pre>
+
+    <p> Now, when your variables are safe, you'll be able to pick the needed files with variables instead of
+        repeatedly typing in new data in the main file. </p>
+    <p> With the `<em>terraform init</em>` command,
+        you're pulling up modules that you will need to proceed with further steps. </p>
+    <pre class="prettyprint lang-js prettyprinted">terraform init</pre>
+    <p> If you see this message, it's a success! Hurray!<br></p>
+    <pre class="prettyprint lang-js prettyprinted">Terraform has been initialised!</pre>
+    <p> For the next step, you add variables to the variables.tf file:<br></p>
+    <pre class="prettyprint lang-js prettyprinted">
+variable "cluster_name"<span class="pun">&#123;</span>
+    <span class="kwd">type</span> = string
+<span class="pun">}</span>
+variable "cluster_zone"<span class="pun">&#123;</span>
+    <span class="kwd">type</span> = string
+<span class="pun">}</span>
+variable "app_name"<span class="pun">&#123;</span>
+    <span class="kwd">type</span> = string
+<span class="pun">}</span>
+    </pre>
+    <p> Before creating a cluster, you should first add variables describing this particular cluster to the
+        secrets.tfvars file: </p>
+    <pre class="prettyprint lang-js prettyprinted">
+cluster_name = “cluster-1”
+cluster_zone = “us-west1-a”
+app_name = “test”
+    </pre>
+    <p> Now add the cluster configuration to your main.tf file:<br></p>
+    <pre class="prettyprint lang-js prettyprinted">
+resource "google_container_cluster" "cluster-1"<span class="pun">&#123;</span>
+    name =  var.cluster_name
+    location =  var.cluster_zone
+    initial_node_count = 3
+    node_config
+<span class="pun">&#123;</span>
+    labels =<span class="pun">&#123;</span>
+        app = var.app_name
+    <span class="pun">}</span>
+        tags = ["app", var.app_name]
+    <span class="pun">}</span>
+    timeouts<span class="pun">&#123;</span>
+        create = "30m"
+        update = "40m"
+    <span class="pun">}</span>
+<span class="pun">}</span>
+    </pre>
+    <p> In the configuration, you define the cluster's name, its location, and the number of nodes and their
+        labels. The default namespace is the place where you create a cluster. </p>
+    <p> To operate with the
+        cluster and its components conveniently, you need to create an output.tf file, where you'll add variables that
+        will be displayed after running the `<em>terraform apply</em>` command. You can use them later by calling them
+        during configuration.<br></p>
+    <pre class="prettyprint lang-js prettyprinted">
+output "cluster"<span class="pun">&#123;</span>
+    value = google_container_cluster.cluster-1.name
+<span class="pun">}</span>
+    </pre>
+    <p> Now add a new resource which is deployment:<br></p>
+    <pre class="prettyprint lang-js prettyprinted">
+resource "kubernetes_deployment" "example"<span class="pun">&#123;</span>
+    metadata<span class="pun">&#123;</span>
+        name = "terraform-example"
+        labels =<span class="pun">&#123;</span>
+            app = var.app_name
+        <span class="pun">}</span>
+    <span class="pun">}</span>
+    spec<span class="pun">&#123;</span>
+        replicas = 3
+        selector<span class="pun">&#123;</span>
+            match_labels =<span class="pun">&#123;</span>
+                app = var.app_name
+            <span class="pun">}</span>
+        <span class="pun">}</span>
+        template<span class="pun">&#123;</span>
+            metadata<span class="pun">&#123;</span>
+                labels =<span class="pun">&#123;</span>
+                    app = var.app_name
+                <span class="pun">}</span>
+            <span class="pun">}</span>
+            spec<span class="pun">&#123;</span>
+                container<span class="pun">&#123;</span>
+                    image = "nginx:1.7.8"
+                    name  = "example"
+                    resources<span class="pun">&#123;</span>
+                        limits =<span class="pun">&#123;</span>
+                            cpu = "0.5"
+                            memory = "512Mi"
+                        <span class="pun">}</span>
+                        requests =<span class="pun">&#123;</span>
+                            cpu = "250m"
+                            memory = "50Mi"
+                        <span class="pun">}</span>
+                    <span class="pun">}</span>
+                    liveness_probe<span class="pun">&#123;</span>
+                        http_get<span class="pun">&#123;</span>
+                            path = "/"
+                            port = 80
+                            http_header<span class="pun">&#123;</span>
+                                name  = "X-Custom-Header"
+                                value = "Awesome"
+                            <span class="pun">}</span>
+                        <span class="pun">}</span>
+                        initial_delay_seconds = 3
+                        period_seconds = 3
+                    <span class="pun">}</span>
+                <span class="pun">}</span>
+            <span class="pun">}</span>
+        <span class="pun">}</span>
+    <span class="pun">}</span>
+<span class="pun">}</span>
+    </pre>
+    <p> In the deployment configuration, you specify the number of replicas, tags, labels, an image that we're
+        going to use, as well as internal resources. Finally, you have it all ready for the first launch and go with
+        this command: </p>
+    <pre class="prettyprint lang-js prettyprinted">            terraform plan -var-file=secrets.tfvars        </pre>
+    <p> In this way, you check if the configuration is created properly and if you're satisfied with the range of
+        resources. </p>
+    <p> When you're quite sure that everything is correct, it's time for the `<em>terraform
+        apply</em>` command: </p>
+    <pre class="prettyprint lang-js prettyprinted">            terraform apply -var-file=secrets.tfvars        </pre>
+    <p> And don't forget to specify the file with variables! At this stage, you'll have to confirm your actions by
+        running a `<em>yes</em>` command. Terraform will build your new GKE cluster on GCP. After the cluster is
+        created, you'll see the output list. </p>
+    <p> For your convenience, in the future, you can split the
+        config file into a few separate files. Place the provider block in the providers.tf file, and a
+        "google_container_cluster" block вЂ” in the cluster.tf file. <br></p>
+    <h3><strong>Good
+        job!<br></strong></h3>
+    <p> You're almost done with your journey, the cluster is up and running, and you
+        can be (ugh) proud of yourself!&nbsp </p>
+    <p> For your future projects, you'll be able to add more metrics
+        and parameters when creating a resource. This will help you adjust your configuration for solving every
+        particular task. </p>
+    <h3><strong>Useful links<br></strong></h3>
+    <ul>
+        <li><a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects">Create a Google Cloud
+            project</a></li>
+
+        <li><a href="http://about:blank">Create a service account key using the Google Cloud Console</a><br></li>
+
+    </ul>
+
 </div>
