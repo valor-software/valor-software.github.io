@@ -27,6 +27,24 @@ body, html {
     border: 0px solid transparent;
   }
 }
+
+pre, code {
+  &::-webkit-scrollbar {
+    width: 1px;
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #8C8C8C;
+    border-radius: 10%;
+    border: 0px solid transparent;
+  }
+}
+
 .iframe-box {
   width: 100%;
   position: relative;

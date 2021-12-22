@@ -1,5 +1,5 @@
 <ng-container *ngIf="article">
-    <section class="landing-section bg-dark_title_col lg:!pb-32 !pb:8 !pt-12 !lg:pt-32">
+    <section class="landing-section mt-4 md:mt-12 bg-dark_title_col lg:!pb-32 !pb:8 !pt-12 !lg:pt-32">
         <div class="container flex items-center flex-col">
             <ng-container *ngIf="changeBreadCrumbTitle?.length">
                 <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block"></breadCrumbs>
@@ -16,7 +16,7 @@
         </div>
     </section>
     <section class="landing-section">
-        <div class="container flex items-center flex-col article-box !max-w-1010" [innerHTML]="checkHTML(article.content)" (click)="routLink($event)"></div>
+        <div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010" [innerHTML]="checkHTML(article.content)" (click)="routLink($event)"></div>
     </section>
     <section class="landing-section">
         <div class="container">

@@ -1,10 +1,10 @@
-import {Component, OnDestroy} from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from "@angular/router";
 import { GetArticlesService } from "@valor-software/common-docs";
 import { IArticle } from "@valor-software/common-docs";
-import { filter } from 'rxjs/operators';
-import { Subscription } from "rxjs";
+import { filter, switchMap, catchError } from 'rxjs/operators';
+import { Subscription, of } from "rxjs";
 
 
 @Component({
@@ -34,14 +34,30 @@ export class ArticleComponent implements OnDestroy{
         }
 
         if (artTitle) {
-            this.getArticleServ.getArticleRequest(artTitle).subscribe((res: IArticle) => {
-                this.changeBreadCrumbTitle = [{
-                    path: artTitle,
-                    title: res.title
-                }];
-                this.article = res;
+            this.getArticleServ.getArticleRequest(artTitle).pipe(
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+              switchMap((art) => {
+                  this.article = art;
+                  this.changeBreadCrumbTitle = [{
+                      path: artTitle,
+                      title: art.title
+                  }];
+                  if (art.contentUrl) {
+                      return this.getArticleServ.getHTMLSource(artTitle);
+                  }
+              }),
+                catchError(error => {
+                    if (!this.article) {
+                        this.router.navigate(['/blog']);
+                    }
+                    return of();
+                })
+            ).subscribe(res => {
+                if (this.article) {
+                    this.article.content = res;
+                }
             }, error => {
-                console.log('error', error);
                 this.router.navigate(['/blog']);
             });
         }

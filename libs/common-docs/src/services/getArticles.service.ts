@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ARTICLES_LIST } from "../tokens/articlesList.token";
-// import { ArticlesList } from "../models/articles.list";
+import { IArticle } from "../models/article.interface";
 
 
 @Injectable({providedIn: 'platform'})
@@ -18,8 +18,8 @@ export class GetArticlesService {
         this.apiArray = this.articlesList.map(art => this.getArticleRequest(art));
     }
 
-    getArticleRequest(art: string):Observable<any> {
-        return this.http.get(`assets/blog/articles/${art}.json`);
+    getArticleRequest(art: string):Observable<IArticle> {
+        return this.http.get(`assets/blog/articles/${art}.json`) as Observable<IArticle>;
     }
 
     getPreviewArticle(): Observable<any>[] | undefined {
@@ -37,5 +37,13 @@ export class GetArticlesService {
             return list.map(art => this.getArticleRequest(art));
         }
         return;
+    }
+
+    getHTMLSource(link?: string): Observable<any> | undefined {
+        if (!link) {
+            return;
+        }
+
+        return this.http.get(`assets/blog/html/${link}.html`, {responseType:'text'});
     }
 }

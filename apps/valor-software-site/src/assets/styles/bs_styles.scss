@@ -331,6 +331,10 @@ li::marker {
     @apply mt-8 mb-6 text-light_title_col font-bold text-32;
   }
 
+  h5 {
+    @apply mt-8 mb-6 text-light_title_col font-bold;
+  }
+
   img {
     @apply mt-8 mb-8 w-full mx-auto;
   }
@@ -349,14 +353,14 @@ li::marker {
   }
 
   pre, code {
-    white-space: pre-wrap;
-    word-wrap: break-word;
+    overflow-x: auto;
     text-align: justify;
   }
 
   pre {
     @apply w-11/12 mx-auto bg-light_grey_bg w-full mt-4 mb-4;
     color: aliceblue;
+    padding: 10px;
 
     code {
       @apply max-w-full;
