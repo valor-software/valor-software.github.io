@@ -8,14 +8,11 @@
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c3596e5af657dfd5a657_ds-cover.jpg",
   "description": "Dollar Street allows exploring how people live all across the globe interactively. A team of photographers has documented over 200 homes in almost 50 countries so far, and the list is growing.",
   "goals": [
-    "New design development",
-    "Create Admin panel",
-    "Blog development",
+    "Development of a new design for the platform",
+    "Creation of an Admin panel and development of the Blog",
     "Translation via crowdIn",
-    "Deployment",
-    "Add a comparison feature",
-    "Add a video feature",
-    "Stabilization"
+    "Adding a comparison and a video feature",
+    "Deployment of new functionality and app upgrade with newer Angular"
   ],
   "solutions": [
     "The Angular framework was updated to stable Angular 2 and later—Angular 7",

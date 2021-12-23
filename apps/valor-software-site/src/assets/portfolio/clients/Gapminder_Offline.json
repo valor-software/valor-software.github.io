@@ -8,14 +8,12 @@
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c3ae2909819e614070b3_gm-cover.jpg",
   "description": "Gapminder Offline is an offline implementation of Vizabi—a freely provided by Gapminder framework for building visual data exploration tools.",
   "goals": [
-    "Integrate Vizabi",
-    "Integrate readers (DDF-CSV, Excel, CSV)",
-    "Data management (including chart state saving and restoring, chart state export to a different format)",
-    "Support for UI Controls and interaction",
-    "Translation and localization",
-    "Add an ability to work with several charts at the same time",
+    "Integrate Vizabi platform and add readers: DDF-CSV, Excel, CSV",
+    "Provide new data management features and provide support for UI Controls and interaction",
+    "Add translation and localization",
+    "Add an ability to work with several charts in parallel",
     "Add a possibility to work on Windows, Linux, and Mac OS",
-    "Add an automatic update system"
+    "Add an automatic system update"
   ],
   "solutions": [
     "Test-Driven Development (e2e tests)",

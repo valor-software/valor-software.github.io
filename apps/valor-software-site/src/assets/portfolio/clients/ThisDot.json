@@ -7,16 +7,15 @@
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dd7cdadedd2f047a1d37_thisdot%20-%20cover.jpg",
   "description": "An education and news focused web platform that facilitates the idea of learning through four main principles: Watch, Engage, Listen, and Learn.",
   "goals": [
-    "Create international Product Brand",
-    "UX/UI experience",
-    "Mobile first Approach",
+    "Create the Product Brand and UX/UI",
+    "Mobile-first Approach",
     "Development",
     "Media sources"
   ],
   "solutions": [
     "We prepared Brading, POS material to support the community.",
     "All UX/UI and Illustrations were covered by Valor Software team.",
-    "Webflow was delected as a main development tool."
+    "Webflow was selected as the main development tool."
   ],
   "outcome": "An educational web-based platform, which helps to raise JS community, create the most suitable education business model and encourage knowledge sharing through video and courses.",
   "headerImg": "assets/img/portfolio/thisdot_header.png",

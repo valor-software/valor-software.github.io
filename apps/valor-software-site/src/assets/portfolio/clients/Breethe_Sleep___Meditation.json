@@ -11,8 +11,9 @@
     "Create a cross-platform app to replace the existing Android and iOS applications."
   ],
   "solutions": [
-    "We used NativeScript as a solution that allows creating applications for both Android and iOS platforms with a single codebase.",
-    "Angular 7 was chosen as a framework. With this bundle, NativeScript is providing a mechanism to compile Angular application to native application for a mobile platform. NativeScript provides APIs' proxy to mobile native APIs, such as camera access, audio, and video playing access, storage, files, access to hardware buttons, etc."
+    "We used NativeScript to create single codebase apps for both Android and iOS",
+    "We chose Angular 7, and with the help of NativeScript, compiled Angular application into native mobile apps",
+    "Provided access to camera, audio and video playing, storage, files, etc. through NativeScript API’s proxy to mobile native APIs"
   ],
   "outcome": "Cross-platform and easily maintainable meditation app to replace the existing Android and iOS applications.",
   "headerImg": "assets/img/portfolio/breethe_header.png",

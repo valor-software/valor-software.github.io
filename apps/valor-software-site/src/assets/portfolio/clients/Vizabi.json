@@ -6,7 +6,7 @@
   "solutionsImg": "assets/img/portfolio/vizabi_solutions.png",
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dedb9077c42af471f54f_Vizabi-cover.jpg",
   "behanceLink": "https://www.behance.net/gallery/49460795/Vizabi-Tools-Statistics-can-be-interesting",
-  "description": "Social project to hire women in tech. A company can solve its diversity problem quickly by hiring the teams of female junior developers paired with a senior developer mentor.",
+  "description": "The open-source framework by Gapminder Foundation for creating maintainable charts and visualization tools. Embed Vizabi freely to your page, add your own data, or extend it to create new visualizations and modify existing ones.",
   "goals": [
     "Migration from NodeJS to Typescript",
     "Migration from AWS to GCP",

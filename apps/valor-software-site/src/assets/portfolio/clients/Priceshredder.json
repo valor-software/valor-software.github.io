@@ -6,17 +6,16 @@
   "solutionsImg": "assets/img/portfolio/priceshredder_solutions.png",
   "sortTechnologies": ["angular", "aws"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dff25da14b9781af99e1_priceshredder.jpg",
-  "description": "Souqalmal.com is the leading comparison website in the Middle East: it lets compare, search, and get information on financial products.",
+  "description": "Priceshredder helps people who are already insured by the company to change the conditions of insurance at a more affordable price with the help of insurance brokers of another company.",
   "goals": [
     "Add notification and modal popups support",
-    "Create a design for Buyer profile and Seller/Buyer Dashboard",
+    "Create a design for the Buyer profile and Seller/Buyer Dashboard",
     "Add support of themes",
-    "Create a new design",
-    "Implement blog functionality"
+    "Redesign the platform and implement Blog functionality"
   ],
   "solutions": [
-    "We chose WebSockets implementation to support multi-user accounts",
-    "implementation of the Stripe payment system"
+    "We provided support for multi-user accounts and implemented WebSockets for this goal",
+    "Integrated the Stripe payment system"
   ],
   "outcome": "The useful and popular smartphone-based platform that helps insurance buyers receive and manage bids from major insurance companies. As a result, PriceShredder allows an easier, faster, and more efficient way to shop for insurance.",
   "headerImg": "assets/img/portfolio/priceshredder_header.png",

@@ -1,34 +1,34 @@
 <ng-container *ngIf="project">
-    <section class="landing-section lg:!pb-32 !pb:8 !pt-12 !lg:pt-32 ">
+    <section class="landing-section !pt-12 !lg:pt-32 !pt-12">
         <div class="container">
             <ng-container *ngIf="changeBreadCrumbTitle?.length">
                 <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block"></breadCrumbs>
             </ng-container>
         </div>
-        <div class="flex flex-nowrap xl:mt-0 lg:mt-4">
-            <div class="container xl:!w-auto">
-                <div class="flex-col flex h-full items-center">
-                    <div class="xl:max-w-600 h-full flex flex-col justify-center">
+        <div class="flex flex-nowrap md:mt-8 relative">
+            <div class="container">
+                <div class="flex-col flex h-full">
+                    <div class="xl:max-w-600 h-full flex flex-col justify-center xl:h-550">
                         <h1 class="text-light_title_col lg:text-center xl:text-left md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">{{project.name}}</h1>
                         <p class="leading-normal text-grey_font_col lg:mb-8 mb-14">{{project.description}}</p>
-                        <div class="flex flex-col xl:flex-row mb-5 xl:mb-0" *ngIf="project.link || project.behanceLink">
-                            <button class="btn-pink w-full lg:w-auto flex items-center xl:mr-6 mb-5 xl:mb-0 justify-center" *ngIf="project.link">
+                        <div class="flex flex-col xl:flex-row md:items-center xl:items-start mb-5 xl:mb-0" *ngIf="project.link || project.behanceLink">
+                            <button class="btn-pink w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center" *ngIf="project.link">
                                 <a class="flex justify-center items-center" [href]="project.link" target="_blank">Visit the site<img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
                             </button>
-                            <button class="btn-dark-pink w-full lg:w-auto flex items-center justify-center" *ngIf="project.behanceLink">
+                            <button class="btn-dark-pink w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center" *ngIf="project.behanceLink">
                                 <a class="flex justify-center items-center" [href]="project.behanceLink" target="_blank">
                                     Behance<img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt="">
                                 </a>
                             </button>
                         </div>
                     </div>
-                    <div class="mt-16 lg:mt-0 flex justify-center lg:justify-end w-full max-w-600">
-                        <img class="block xl:hidden w-full" [src]="getRespSrc(project.headerImg)" alt="" (error)="changeSrc($event, project.headerImg)">
+                    <div class="mt-16 xl:mt-0 flex justify-center w-full max-w-600 block xl:hidden self-center">
+                        <img class="w-full" [src]="getRespSrc(project.headerImg)" alt="" (error)="changeSrc($event, project.headerImg)">
                     </div>
                 </div>
             </div>
-            <div class="">
-                <img class="hidden xl:block" [src]="project.headerImg" alt="">
+            <div class="absolute top-0 right-0 hidden xl:block">
+                <img [src]="project.headerImg" alt="">
             </div>
         </div>
     </section>
