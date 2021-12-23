@@ -43,11 +43,11 @@
                     </div>
                 </div>
                 <ng-template #elseBlock>
-                    <div>
+                    <div class="mb-12 lg:mb-28">
                         <p class="text-24 lg:text-large font-bold text-white">{{project.goals[0]}}</p>
                     </div>
                 </ng-template>
-                <div *ngIf="project.goalsImg" class="w-full lg:max-w-600 flex items-center lg:items-start pt-12">
+                <div *ngIf="project.goalsImg" class="w-full lg:max-w-600 flex items-center">
                     <img [src]="project.goalsImg" alt="">
                 </div>
             </div>
@@ -64,11 +64,11 @@
                     </div>
                 </div>
                 <ng-template #elseBlock>
-                    <div>
+                    <div class="mb-12 lg:mb-28">
                         <p class="text-24 lg:text-large font-bold text-white">{{project.solutions[0]}}</p>
                     </div>
                 </ng-template>
-                <div *ngIf="project.solutionsImg" class="w-full lg:max-w-600 flex items-center lg:items-start pt-12">
+                <div *ngIf="project.solutionsImg" class="w-full lg:max-w-600 flex items-center">
                     <img [src]="project.solutionsImg" alt="">
                 </div>
             </div>
@@ -103,25 +103,25 @@
             <div *ngIf="project.aspects.type" class="mb-6 lg:mb-0">
                 <p class="font-bold text-24 text-placeholder_col mb-2 lg:mb-6">Type</p>
                 <div class="flex flex-wrap items-start">
-                    <span *ngFor="let type of project.aspects.type" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors mb-2">{{type}}</span>
+                    <span *ngFor="let type of project.aspects.type" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2  transition-colors mb-2">{{type}}</span>
                 </div>
             </div>
             <div *ngIf="project.aspects.country" class="mb-6 lg:mb-0">
                 <p class="font-bold text-24 text-placeholder_col mb-2 lg:mb-6">Country</p>
                 <div class="flex flex-wrap items-start">
-                    <span *ngFor="let country of project.aspects.country" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors mb-2">{{country}}</span>
+                    <span *ngFor="let country of project.aspects.country" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2  transition-colors mb-2">{{country}}</span>
                 </div>
             </div>
             <div *ngIf="project.aspects.technology_stack" class="mb-6 lg:mb-0">
                 <p class="font-bold text-24 text-placeholder_col mb-2 lg:mb-6">Technology stack</p>
                 <div class="flex flex-wrap items-start">
-                    <span *ngFor="let stack of project.aspects.technology_stack" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors mb-2">{{stack}}</span>
+                    <span *ngFor="let stack of project.aspects.technology_stack" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2  transition-colors mb-2">{{stack}}</span>
                 </div>
             </div>
             <div *ngIf="project.aspects.services_provided" class="mb-6 lg:mb-0">
                 <p class="font-bold text-24 text-placeholder_col mb-2 lg:mb-6">Services provided</p>
                 <div class="flex flex-wrap items-start">
-                    <span *ngFor="let stack of project.aspects.services_provided" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-xl mr-2  transition-colors mb-2">{{stack}}</span>
+                    <span *ngFor="let stack of project.aspects.services_provided" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2  transition-colors mb-2">{{stack}}</span>
                 </div>
             </div>
         </div>

@@ -44,7 +44,8 @@ module.exports = {
     }),
     extend: {
       fontFamily: {
-        'workSans': ['Work Sans', 'Roboto', 'Arial', 'sans-serif']
+        'workSans': ['Work Sans', 'Roboto', 'Arial', 'sans-serif'],
+        'workSansBold': ['Work Sans-Bold', 'Work Sans', 'Roboto', 'Arial', 'sans-serif']
       },
       lineHeight: {
         '44': '2.75rem',

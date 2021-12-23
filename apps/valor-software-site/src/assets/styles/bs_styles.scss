@@ -93,7 +93,7 @@
 }
 
 .popover {
-  @apply hidden absolute bg-light_grey_bg rounded-xl min-w-585 z-10;
+  @apply hidden absolute bg-light_grey_bg rounded-20 min-w-585 z-10;
   left: -5rem;
   top: 70px;
 
@@ -249,7 +249,7 @@ h3 {
   @apply font-bold;
 
   span {
-    @apply text-dar_grey_font_col font-normal;
+    @apply text-dar_grey_font_col font-workSans;
   }
 }
 
@@ -271,6 +271,12 @@ li::marker {
     font-family: Work Sans;
     font-weight: 400;
     src: url(../fonts/work-sans/WorkSans-Regular.woff) format("woff");
+  }
+
+  @font-face {
+    font-family: Work Sans-Bold;
+    font-weight: 700;
+    src: url(../fonts/work-sans/WorkSans-Bold.woff) format("woff");
   }
 }
 

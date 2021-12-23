@@ -25,7 +25,7 @@
         <div class="hidden lg:flex h-550 justify-between">
             <div *ngFor="let package of packageList" class="h-full bg-grey w-31% pb-8 pt-10 px-6 flex flex-col border-2 border-transparent hover:border-dar_grey_font_col">
                 <div class="pb-6 border-b-2 border-light_title_col min-h-100">
-                    <h3 class="text-light_title_col text-24 font-bold">{{package.title}}</h3>
+                    <h3 class="text-light_title_col text-24 font-bold tracking-tighter">{{package.title}}</h3>
                 </div>
                 <div class="mt-8 flex flex-col justify-between flex-1">
                     <p class="text-grey_font_col">{{package.description}}</p>
@@ -42,7 +42,7 @@
                 <ng-template swiperSlide *ngFor="let package of packageList">
                     <div class="h-full relative bg-grey py-7 px-4" style="min-height: 470px">
                         <div class="pb-6 border-b-2 border-light_title_col">
-                            <h3 class="text-light_title_col text-center text-24 font-bold">{{package.title}}</h3>
+                            <h3 class="text-light_title_col text-center text-24 font-bold tracking-tighter">{{package.title}}</h3>
                         </div>
                         <div class="mt-8">
                             <p class="text-grey_font_col">{{package.description}}</p>

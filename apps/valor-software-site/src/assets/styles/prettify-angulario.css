@@ -1,7 +1,7 @@
 .prettyprint {
   white-space: pre-wrap;
   background: #F5F6F7;
-  font-family: Monaco,"Lucida Console",monospace;
+  /*font-family: Monaco,"Lucida Console",monospace;*/
   color: #5C707A;
   width: auto;
   overflow: auto;
@@ -162,7 +162,7 @@
 
 h1 .prettyprint,h2 .prettyprint,h3 .prettyprint,h4 .prettyprint {
   background: none;
-  font-family: Monaco,"Lucida Console",monospace;
+  /*font-family: Monaco,"Lucida Console",monospace;*/
   color: #253238;
   overflow: hidden;
   position: relative;
