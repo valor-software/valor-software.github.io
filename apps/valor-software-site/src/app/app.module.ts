@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { CommonDocsModule, ARTICLES_LIST } from '@valor-software/common-docs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScullyLibModule } from '@scullyio/ng-lib';
-import { ArticlesList } from "../assets/blog/articles.list";
+import { articlesList } from "../assets/blog/articles.list";
 import { PORTFOLIO_LIST } from "@valor-software/portfolio";
-import { PortfolioList } from "../assets/portfolio/portfolio.list";
+import { portfolioList } from "../assets/portfolio/portfolio.list";
 
 
 @NgModule({
@@ -23,8 +23,8 @@ import { PortfolioList } from "../assets/portfolio/portfolio.list";
     ScullyLibModule
   ],
   providers: [
-    { provide: ARTICLES_LIST, useValue: ArticlesList },
-    { provide: PORTFOLIO_LIST, useValue: PortfolioList }
+    { provide: ARTICLES_LIST, useValue: articlesList },
+    { provide: PORTFOLIO_LIST, useValue: portfolioList }
   ],
   bootstrap: [AppComponent],
 })

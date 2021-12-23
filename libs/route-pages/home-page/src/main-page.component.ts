@@ -159,77 +159,6 @@ const technologiesList = [
         blockedImg: 'assets/img/technologies/blocked/lang.png',
         active: false,
         disabled: false
-    },
-    // {
-    //     id: 'js',
-    //     img: 'assets/img/technologies/not_active/java_script.png',
-    //     activeImg: 'assets/img/technologies/active/java_script.png',
-    //     blockedImg: 'assets/img/technologies/blocked/java_script.png',
-    //     active: false,
-    //     disabled: false
-    // }
-];
-
-const projectsList = [
-    {
-        labels: ['angular', 'ruby'],
-        name: 'test',
-        img: 'assets/img/projects/project_1.png'
-    },
-    {
-        labels: ['angular', 'firebase'],
-        name: 'test',
-        img: 'assets/img/projects/project_2.png'
-    },
-    {
-        labels: ['angular', 'js'],
-        name: 'test',
-        img: 'assets/img/projects/project_1.png'
-    },
-    {
-        labels: ['angular'],
-        name: 'test',
-        img: 'assets/img/projects/project_2.png'
-    },
-    {
-        labels: ['angular', 'lang'],
-        name: 'test',
-        img: 'assets/img/projects/project_2.png'
-    },
-    {
-        labels: ['lang'],
-        name: 'test_1',
-        img: 'assets/img/projects/project_1.png'
-    },
-    {
-        labels: ['firebase', 'js'],
-        name: 'test_2',
-        img: 'assets/img/projects/project_2.png'
-    },
-    {
-        labels: ['native_script'],
-        name: 'test_3',
-        img: 'assets/img/projects/project_1.png'
-    },
-    {
-        labels: ['google'],
-        name: 'test_4',
-        img: 'assets/img/projects/project_2.png'
-    },
-    {
-        labels: ['react_native'],
-        name: 'test_5',
-        img: 'assets/img/projects/project_1.png'
-    },
-    {
-        labels: ['ruby'],
-        name: 'test_6',
-        img: 'assets/img/projects/project_2.png'
-    },
-    {
-        labels: ['angular'],
-        name: 'test_7',
-        img: 'assets/img/projects/project_1.png'
     }
 ];
 
@@ -332,8 +261,6 @@ export class MainPageComponent {
     };
 
     technologiesList: typeof technologiesList = technologiesList;
-    // projectList = projectsList;
-    // sortedProjects?: {labels: string[], name: string, img: string}[];
     sortedProjectsAmount = 4;
     showSocial = false;
     services: typeof ServicesModel = ServicesModel;
@@ -407,6 +334,4 @@ export class MainPageComponent {
         index++;
         return !!(index && !(index % 4));
     }
-
-
 }

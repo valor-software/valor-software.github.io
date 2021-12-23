@@ -49,8 +49,7 @@ export class FeedbackComponent implements AfterViewInit{
 
     constructor(
         private cdr: ChangeDetectorRef,
-    ) {
-    }
+    ) {}
 
     showIndex(value: any) {
         this.currentFeedBackIndex = value.activeIndex > this.feedbackList.length ? 1 : value.activeIndex < 1 ? this.feedbackList.length : value.activeIndex;
@@ -74,5 +73,4 @@ export class FeedbackComponent implements AfterViewInit{
             this.swiperRefResp.swiperRef.slideTo(this.startFromIndex+1);
         }
     }
-
 }

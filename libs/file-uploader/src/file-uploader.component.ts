@@ -7,7 +7,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class FileUploaderComponent {
     @Output() filesChanged: EventEmitter<File[]> = new EventEmitter<File[]>();
-
     files: File[] = [];
 
     onFileChange(event: Event) {

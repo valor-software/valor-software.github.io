@@ -48,11 +48,8 @@ export class ShowHideDirective implements AfterViewChecked {
 
     isExpanded = true;
     collapseNewValue = true;
-    // hidden
     @HostBinding('attr.aria-hidden') isCollapsed = false;
-    // stale state
     @HostBinding('class.collapse') isCollapse = true;
-    // animation state
     @HostBinding('class.collapsing') isCollapsing = false;
 
     private _display = 'block';
@@ -87,7 +84,6 @@ export class ShowHideDirective implements AfterViewChecked {
         this._renderer.setStyle(this._el.nativeElement, 'height', '*');
     }
 
-    /** allows to manually toggle content visibility */
     toggle(): void {
         if (this.isExpanded) {
             this.hide();
@@ -96,17 +92,12 @@ export class ShowHideDirective implements AfterViewChecked {
         }
     }
 
-    /** allows to manually hide content */
     hide(): void {
         this.isCollapsing = true;
         this.isExpanded = false;
         this.isCollapsed = true;
         this.isCollapsing = false;
-
-        // this.collapses.emit(this);
-
         this._isAnimationDone = false;
-
         this.animationRun(this.partlyClose ? this._PARTLY_CLOSE_ACTION_NAME : this._COLLAPSE_ACTION_NAME)(() => {
             this._isAnimationDone = true;
             if (this.collapseNewValue !== this.isCollapsed) {
@@ -116,7 +107,7 @@ export class ShowHideDirective implements AfterViewChecked {
             this._renderer.setStyle(this._el.nativeElement, 'display', this.partlyClose ? this._display : 'none');
         });
     }
-    /** allows to manually show collapsed content */
+
     show(): void {
         this._renderer.setStyle(this._el.nativeElement, 'display', this._display);
 
@@ -144,18 +135,15 @@ export class ShowHideDirective implements AfterViewChecked {
 
         this._renderer.setStyle(this._el.nativeElement, 'overflow', 'hidden');
         this._renderer.addClass(this._el.nativeElement, 'collapse');
-
         const factoryAnimation = (action === this._EXPAND_ACTION_NAME)
             ? this._factoryExpandAnimation
             : this._factoryCollapseAnimation;
-
         if (this._player) {
             this._player.destroy();
         }
 
         this._player = factoryAnimation.create(this._el.nativeElement);
         this._player.play();
-
         return (callback: () => void) => this._player?.onDone(callback);
     }
 }

@@ -1,4 +1,4 @@
-export const PopoverStructure: PopoverStructureType = [
+export const popoverStructure: PopoverStructureType = [
     {
         title: 'Startups',
         icon: '/assets/img/icons/startups.svg',

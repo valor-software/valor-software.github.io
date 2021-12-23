@@ -1,3 +1,2 @@
-
-        export * from './for-clients.module';
+export * from './for-clients.module';
         

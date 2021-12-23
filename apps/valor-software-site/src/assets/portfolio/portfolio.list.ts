@@ -1,4 +1,4 @@
-export const PortfolioList = [
+export const portfolioList = [
     'CareerBuilder',
     'Zuora',
     'Dollar_Street',

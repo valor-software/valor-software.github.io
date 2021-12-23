@@ -69,8 +69,8 @@ export class ProjectComponent implements OnDestroy{
         if (!index && index !== 0) {
             return;
         }
-        index++;
 
+        index++;
         if (index > array?.length - 1) {
             index = 0;
         }

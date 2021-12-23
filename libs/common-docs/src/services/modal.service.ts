@@ -6,7 +6,7 @@ import {
     Injector,
     Type,
 } from '@angular/core';
-import {BehaviorSubject, Subject} from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
     providedIn: 'platform',

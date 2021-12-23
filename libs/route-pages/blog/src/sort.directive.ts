@@ -14,9 +14,7 @@ export class SortBlogsDirective {
     @Input() set activeItem(value: string[]) {
         this.sortItems(value);
     };
-
     @Input() items?: IArticle[];
-
     @Output() changedArticles: EventEmitter<IArticle[]> = new EventEmitter();
 
     sortItems(value: string[]) {

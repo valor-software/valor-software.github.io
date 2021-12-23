@@ -24,40 +24,40 @@ export class ContactModalComponent implements OnDestroy {
     showError = false;
     $reCaptchaSub?: Subscription;
 
-    formData = [
-        {
-            name: 'type',
-            type: 'radio',
-            values: [
-                {
-                    value: 'service',
-                    title: 'Services'
-                },
-                {
-                    value: 'career',
-                    title: 'Careers'
-                },
-                {
-                    value: 'partner',
-                    title: 'Partnerships & Sales'
-                },
-                {
-                    value: 'other',
-                    title: 'Other'
-                }
-            ]
-        },
-        {
-            name: 'email',
-            type: 'email',
-            title: 'Email'
-        },
-        {
-            name: 'message',
-            type: 'text',
-            title: 'Message'
-        }
-    ];
+    // formData = [
+    //     {
+    //         name: 'type',
+    //         type: 'radio',
+    //         values: [
+    //             {
+    //                 value: 'service',
+    //                 title: 'Services'
+    //             },
+    //             {
+    //                 value: 'career',
+    //                 title: 'Careers'
+    //             },
+    //             {
+    //                 value: 'partner',
+    //                 title: 'Partnerships & Sales'
+    //             },
+    //             {
+    //                 value: 'other',
+    //                 title: 'Other'
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         name: 'email',
+    //         type: 'email',
+    //         title: 'Email'
+    //     },
+    //     {
+    //         name: 'message',
+    //         type: 'text',
+    //         title: 'Message'
+    //     }
+    // ];
 
     constructor(
         private modalService: ModalService<ContactModalComponent>,
@@ -95,9 +95,9 @@ export class ContactModalComponent implements OnDestroy {
             });
     }
 
-    addFiles(files: File[] | []) {
-        this.files = files;
-    }
+    // addFiles(files: File[] | []) {
+    //     this.files = files;
+    // }
 
     showSuccessModal() {
         this.showSuccess = true;

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PopoverStructure, PopoverStructureType } from "../../models/popover.model";
+import { popoverStructure, PopoverStructureType } from "../../models/popover.model";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -9,7 +9,7 @@ import { PopoverStructure, PopoverStructureType } from "../../models/popover.mod
 export class PopoverComponent {
     @Input() show = false;
     @Output() changeShowClientRoute: EventEmitter<boolean> = new EventEmitter<boolean>();
-    popover_str: PopoverStructureType = PopoverStructure;
+    popover_str: PopoverStructureType = popoverStructure;
 
     changeShow(value?: boolean) {
         if (value !== undefined) {

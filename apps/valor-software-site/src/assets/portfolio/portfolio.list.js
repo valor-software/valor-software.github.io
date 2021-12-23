@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PortfolioList = void 0;
-exports.PortfolioList = [
+exports.portfolioList = void 0;
+exports.portfolioList = [
     'CareerBuilder',
     'Zuora',
     'Dollar_Street',

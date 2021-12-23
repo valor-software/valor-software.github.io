@@ -35,7 +35,6 @@ export class ServicesPageComponent {
         }
     };
 
-
     constructor(
         private modalService: ModalService<ContactModalComponent>
     ) {}

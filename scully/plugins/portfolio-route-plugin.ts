@@ -1,8 +1,8 @@
 import { HandledRoute, registerPlugin } from "@scullyio/scully";
-import { PortfolioList } from "../../apps/valor-software-site/src/assets/portfolio/portfolio.list";
+import { portfolioList } from "../../apps/valor-software-site/src/assets/portfolio/portfolio.list";
 
 function PortfolioRoutePlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    const routes = PortfolioList.map((item: string) => {
+    const routes = portfolioList.map((item: string) => {
         return {route: `/portfolio/${item}`};
     })
     return Promise.resolve(routes);

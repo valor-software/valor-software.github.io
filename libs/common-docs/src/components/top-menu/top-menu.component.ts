@@ -22,5 +22,4 @@ export class TopMenuComponent {
     openModal() {
         this.modalService.open(ContactModalComponent);
     }
-
 }

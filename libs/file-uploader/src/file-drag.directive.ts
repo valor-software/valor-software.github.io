@@ -69,8 +69,6 @@ export class FileDragDirective {
         // const resultAmount = files.reduce((amount, file) => +amount + +file.size, 0);
         const arr = [1,258,456,147,11,25,88,54];
         const resultAmount = arr.reduce((amount, num) => +amount + +num, 0);
-        console.log(resultAmount);
-        // console.log(resultAmount, file.size);
         return true;
     }
 }

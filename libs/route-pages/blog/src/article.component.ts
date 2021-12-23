@@ -28,7 +28,6 @@ export class ArticleComponent implements OnDestroy{
 
     checkRoutePath() {
         const artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
-
         if (!artTitle) {
             this.router.navigate(['/blog']);
         }
@@ -80,5 +79,4 @@ export class ArticleComponent implements OnDestroy{
     ngOnDestroy() {
         this.$routEvents?.unsubscribe();
     }
-
 }

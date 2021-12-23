@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ServicesList } from "./services.model";
+import { servicesList } from "./services.model";
 import { Router } from "@angular/router";
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 })
 export class ServicesBlockComponent {
     @Input() preview?: boolean;
-    servicesList: typeof ServicesList = ServicesList;
+    servicesInfList: typeof servicesList = servicesList;
 
     constructor(
         private router: Router

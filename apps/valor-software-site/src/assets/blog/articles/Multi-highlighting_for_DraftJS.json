@@ -2,9 +2,10 @@
   "author": "Vyacheslav Chub",
   "domains": ["dev_quality_assurance"],
   "language": "en",
+  "authorImg": "https://valor-software.com/assets/images/5c814a507773034dcc12c3dd_ava-chub.jpg",
   "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/605cae2c7867f335233903bf_card.jpg",
   "title": "Multi-highlighting for DraftJS",
   "position": "JS Developer",
-  "date": "Wed May 19 2021 08:27:24 GMT+0000 (Coordinated Universal Time)",
-  "content": ""
+  "date": "Wed March 17 2021 08:27:24 GMT+0000 (Coordinated Universal Time)",
+  "contentUrl": true
 }

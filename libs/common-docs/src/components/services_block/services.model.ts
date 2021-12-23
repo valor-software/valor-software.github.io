@@ -1,4 +1,4 @@
-export const ServicesList = [
+export const servicesList = [
     {
         title: 'Design',
         description: 'Designing websites and applications that look good is not enough. Let your users experience human-centric solutions with intuitive navigation, high accessibility, and a custom UI that appeals.',

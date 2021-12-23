@@ -14,9 +14,7 @@ export class SortProjectsDirective {
     @Input() set activeItem(value: string[]) {
         this.sortItems(value);
     };
-
     @Input() items?: IPortfolio[];
-
     @Output() changedArticles: EventEmitter<IPortfolio[]> = new EventEmitter();
 
     sortItems(value: string[]) {

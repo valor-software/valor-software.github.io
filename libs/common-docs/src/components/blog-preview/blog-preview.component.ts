@@ -32,12 +32,10 @@ export class BlogPreviewComponent implements OnDestroy, OnInit{
         }
     };
 
-
     constructor(
         private getArticles: GetArticlesService,
         private articleRoute: ArticlesRouteService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         if (this.articlesList?.length) {
