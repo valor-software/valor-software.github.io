@@ -3,7 +3,7 @@ name: on-pull-request-or-push
 on:
   pull_request:
     branches:
-      - development
+      - updated-site-deploy
 
 env:
   FIREBASE_CHANNEL: ${{ fromJSON('["", "live"]')[!github.base_ref] }}
