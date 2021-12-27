@@ -47,7 +47,8 @@
       },
       "tags": [],
       "implicitDependencies": [
-        "file-uploader"
+        "file-uploader",
+        "portfolio"
       ]
     },
     "feedback": {

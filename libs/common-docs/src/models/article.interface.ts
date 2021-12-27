@@ -9,4 +9,5 @@ export interface IArticle {
     date: string;
     content: string;
     contentUrl?: string;
+    seoDescription?: string;
 }

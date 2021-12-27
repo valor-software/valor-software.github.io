@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
 import { AppComponent } from './app.component';
-import { CommonDocsModule, ARTICLES_LIST } from '@valor-software/common-docs';
+import {CommonDocsModule, ARTICLES_LIST, SeoService} from '@valor-software/common-docs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import { articlesList } from "../assets/blog/articles.list";
@@ -23,6 +23,7 @@ import { portfolioList } from "../assets/portfolio/portfolio.list";
     ScullyLibModule
   ],
   providers: [
+    SeoService,
     { provide: ARTICLES_LIST, useValue: articlesList },
     { provide: PORTFOLIO_LIST, useValue: portfolioList }
   ],

@@ -42,7 +42,7 @@
 
 
 .main-title {
-  @apply font-bold text-dark_title_col text-56 xl:text-title xl:leading-200 lg:text-150 lg:mb-14 lg:mt-16 mb-6;
+  @apply font-workSansBold text-dark_title_col text-56 xl:text-title xl:leading-200 lg:text-150 lg:mb-14 lg:mt-16 mb-6;
 
   &.double {
     @apply text-50 lg:text-double_title ;
@@ -84,7 +84,7 @@
 }
 
 .active-route {
-  @apply font-bold text-light_title_col;
+  @apply font-workSansBold text-light_title_col;
 
   &:after {
     width: 1.25rem;
@@ -246,7 +246,7 @@
 
 
 h3 {
-  @apply font-bold;
+  @apply font-workSansBold;
 
   span {
     @apply text-dar_grey_font_col font-workSans;
@@ -326,19 +326,19 @@ li::marker {
   }
 
   h1 {
-    @apply mt-8 mb-8 md:mt-12 md:mb-8 text-light_title_col font-bold text-24 md:text-50;
+    @apply mt-8 mb-8 md:mt-12 md:mb-8 text-light_title_col font-workSansBold text-24 md:text-50;
   }
 
   h3, h2 {
-    @apply mt-8 mb-8 md:mt-12 md:mb-8 text-light_title_col font-bold text-24 md:text-large;
+    @apply mt-8 mb-8 md:mt-12 md:mb-8 text-light_title_col font-workSansBold text-24 md:text-large;
   }
 
   h4 {
-    @apply mt-8 mb-6 text-light_title_col font-bold text-32;
+    @apply mt-8 mb-6 text-light_title_col font-workSansBold text-32;
   }
 
   h5 {
-    @apply mt-8 mb-6 text-light_title_col font-bold;
+    @apply mt-8 mb-6 text-light_title_col font-workSansBold;
   }
 
   img {
