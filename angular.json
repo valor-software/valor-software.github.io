@@ -143,6 +143,52 @@
       },
       "tags": []
     },
+    "popover": {
+      "projectType": "library",
+      "root": "libs/popover",
+      "sourceRoot": "libs/popover/src",
+      "prefix": "valor-software-site-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/popover"
+          ],
+          "options": {
+            "project": "libs/popover/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/popover/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/popover/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/popover"
+          ],
+          "options": {
+            "jestConfig": "libs/popover/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/popover/src/**/*.ts",
+              "libs/popover/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "portfolio": {
       "projectType": "library",
       "root": "libs/portfolio",

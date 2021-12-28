@@ -1,0 +1,13 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M37.4987 0.833008H2.4987C1.57822 0.833008 0.832031 1.5792 0.832031 2.49967V37.4997C0.832031 38.4202 1.57822 39.1663 2.4987 39.1663H37.4987C38.4192 39.1663 39.1654 38.4202 39.1654 37.4997V2.49967C39.1654 1.5792 38.4192 0.833008 37.4987 0.833008Z" stroke="#161617" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.332 25.833C17.4742 25.833 20.832 22.4751 20.832 18.333C20.832 14.1909 17.4742 10.833 13.332 10.833C9.1899 10.833 5.83203 14.1909 5.83203 18.333C5.83203 22.4751 9.1899 25.833 13.332 25.833Z" stroke="#161617" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M24.168 5.83301H15.8346C15.3926 5.83301 14.9687 6.0086 14.6561 6.32116C14.3436 6.63372 14.168 7.05765 14.168 7.49967V10.8797C15.8586 11.0687 17.4348 11.827 18.6377 13.0299C19.8407 14.2328 20.5989 15.809 20.788 17.4997H24.168C24.61 17.4997 25.0339 17.3241 25.3465 17.0115C25.659 16.699 25.8346 16.275 25.8346 15.833V7.49967C25.8346 7.05765 25.659 6.63372 25.3465 6.32116C25.0339 6.0086 24.61 5.83301 24.168 5.83301V5.83301Z" stroke="#161617" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M30.832 10.833H35.832" stroke="#161617" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M30.832 14.167H34.1654" stroke="#161617" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5.83203 30.833H20.832" stroke="#161617" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5.83203 34.167H10.832" stroke="#161617" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M24.168 21.667L29.7013 26.2787" stroke="#161617" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M34.168 25.833H30.8346C29.9142 25.833 29.168 26.5792 29.168 27.4997V34.1663C29.168 35.0868 29.9142 35.833 30.8346 35.833H34.168C35.0884 35.833 35.8346 35.0868 35.8346 34.1663V27.4997C35.8346 26.5792 35.0884 25.833 34.168 25.833Z" stroke="#161617" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M14.168 34.167H15.8346" stroke="#161617" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M30.832 7.5H35.832" stroke="#161617" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -6,6 +6,7 @@ import { routes } from './routes';
 import { CommonDocsModule } from "@valor-software/common-docs";
 import { FeedbackModule } from "@valor-software/feedback";
 import { SmallMediumBusinessesComponent } from './smallMediumBusinesses.component';
+import { PopoverModule } from '@valor-software/popover';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SmallMediumBusinessesComponent } from './smallMediumBusinesses.componen
     CommonModule,
     RouterModule.forChild(routes),
     CommonDocsModule,
-    FeedbackModule
+    FeedbackModule,
+    PopoverModule
   ]
 })
 export class ForClientsModule {

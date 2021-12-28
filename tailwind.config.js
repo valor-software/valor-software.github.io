@@ -37,7 +37,9 @@ module.exports = {
       darkPink: '#D85988',
       darkPinkHover: '#9C395E',
       blue_btn: '#1F5CF5',
-      darkBlue: '#22469F'
+      darkBlue: '#22469F',
+      light_green: '#77CE9A',
+      light_blue: '#71A5D2'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -135,6 +137,7 @@ module.exports = {
         '31%': '31%',
         '35': '35px',
         '100': '100px',
+        '90': '90px'
       },
       minHeight: {
         '725': '725px',
@@ -147,6 +150,8 @@ module.exports = {
         '350': '350px',
         '70': '70px',
         '300': '300px',
+        '790': '790px',
+        '90': '90px'
       },
       zIndex: {
         '1': '1'

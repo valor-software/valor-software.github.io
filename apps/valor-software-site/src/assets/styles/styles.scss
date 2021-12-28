@@ -73,6 +73,30 @@ pre, code {
   @apply font-workSansBold;
 }
 
+.popover-top {
+  bottom: 100%;
+  margin-bottom: 20px;
+}
+
+.popover-left {
+  margin-right: 20px;
+  top: 0;
+  transform: translateX(-100%);
+}
+
+.popover-right {
+  top: 0;
+  transform: translateX(120%);
+}
+
+.popover-bottom {
+  bottom: -60px;
+}
+
+.popover-container {
+  position: absolute;
+  z-index: 10;
+}
 
 
 
