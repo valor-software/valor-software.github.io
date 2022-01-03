@@ -39,7 +39,8 @@ module.exports = {
       blue_btn: '#1F5CF5',
       darkBlue: '#22469F',
       light_green: '#77CE9A',
-      light_blue: '#71A5D2'
+      light_blue: '#71A5D2',
+      popover_bg: '#282828'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -121,7 +122,8 @@ module.exports = {
         'm100%': '-105%'
       },
       borderRadius: {
-        '20': '20px'
+        '20': '20px',
+        '12': '12px'
       },
       spacing: {
         '6.75': '6.75rem'

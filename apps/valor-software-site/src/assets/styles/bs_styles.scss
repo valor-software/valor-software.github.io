@@ -119,7 +119,7 @@
 }
 
 .backdrop {
-  @apply hidden fixed w-full h-full z-0 bg-transparent inset-0;
+  @apply hidden fixed w-full h-full z-10 bg-transparent inset-0;
 
   &.grey {
     @apply bg-black opacity-70;
@@ -428,40 +428,19 @@ li::marker {
   }
 }
 
-.top-right-dashed-border {
-  background: repeating-linear-gradient(to bottom, transparent 0 15px, #E3E3E3 4px 25px) 100%/2px 100% no-repeat;
-
-  &:after {
-    //content: '';
-    //display: block;
-    //height: 2px;
-    //width: 100%;
-    //background: repeating-linear-gradient(to right, transparent 0 15px, #E3E3E3 4px 25px) 0 100% no-repeat;
-    content: "";
-    display: block;
-    height: 2px;
-    width: 100%;
-    top: 45px;
-    background: repeating-linear-gradient(to right, transparent 0 15px, #E3E3E3 4px 25px) 0 100% no-repeat;
-    position: absolute;
-    z-index: -1;
-  }
+.top-dashed-border {
+  background: repeating-linear-gradient(to right, transparent 0 15px, #E3E3E3 4px 25px) 0 100% no-repeat;
+  height: 2px;
 }
 
-.top-left-dashed-border {
+.right-dashed-border {
+  height: 100%;
+  background: repeating-linear-gradient(to bottom, transparent 0 15px, #E3E3E3 4px 25px) 100%/2px 100% no-repeat;
+}
+
+.left-dashed-border {
+  height: 100%;
   background: repeating-linear-gradient(to bottom, transparent 0 15px, #E3E3E3 4px 25px) 0/2px 100% no-repeat;
-
-  &:after {
-    content: '';
-    display: block;
-    height: 2px;
-    width: 100%;
-    background: repeating-linear-gradient(to right, transparent 0 15px, #E3E3E3 4px 25px) 0 100% no-repeat;
-    top: 45px;
-    position: absolute;
-    z-index: -1;
-
-  }
 }
 
 .-ml-50 {
@@ -484,24 +463,16 @@ li::marker {
   margin-top: 45px;
 }
 
+.-mt-45 {
+  margin-top: -45px;
+}
+
 .blob {
   box-shadow: 0 0 0 0 rgba(119, 206, 154, 1);
   animation: pulse-green 2s infinite;
   cursor: pointer;
 }
 
-.long-arrow {
-  position: absolute;
-  width: 750px;
-  top: -100px;
-  left: 95%;
-}
-
-.short-arrow {
-  position: absolute;
-  width: 200px;
-  right: 100%;
-}
 
 @keyframes pulse-green {
   0% {
@@ -518,6 +489,87 @@ li::marker {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(119, 206, 154, 0);
   }
+}
+
+popover {
+  @apply block;
+
+  h3 {
+    @apply text-light_title_col text-20 mb-6 tracking-tighter;
+  }
+
+  h3+p {
+    @apply text-grey_font_col leading-6 mt-4;
+  }
+
+  .phrase {
+    @apply text-grey_font_col leading-6 mt-4;
+
+    &:before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      @apply inline-block rounded-full bg-light_green mr-2;
+    }
+
+    span {
+      @apply text-light_title_col font-workSansBold;
+    }
+  }
+}
+
+.popover-container {
+  width: 400px;
+  @apply bg-popover_bg p-6 rounded-12;
+
+  .arrow {
+    @apply absolute bg-popover_bg w-8 h-8;
+
+    &.right-center {
+      right: 0;
+      top: 50%;
+      transform: rotate(45deg) translateY(-50%);
+    }
+
+    &.top-left {
+      top: -1rem;
+      left: 65px;
+      transform: rotate(45deg);
+    }
+
+    &.left-bottom {
+      bottom: 65px;
+      left: -1rem;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+.popover-left {
+  top: -50%;
+  left: -440px;
+  position: absolute;
+  z-index: 10;
+}
+
+.popover-bottom {
+  position: absolute;
+  top: 100%;
+  left: -30px;
+  z-index: 10;
+}
+
+.popover-right {
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  left: 150px;
+}
+
+.left-right-dashed-border {
+  height: 100%;
+  background: repeating-linear-gradient(to bottom, transparent 0 15px, #E3E3E3 4px 25px) 0/2px 100% no-repeat,
+              repeating-linear-gradient(to bottom, transparent 0 15px, #E3E3E3 4px 25px) 100%/2px 100% no-repeat;
 }
 
 

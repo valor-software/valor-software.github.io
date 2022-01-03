@@ -19,98 +19,7 @@
 </section>
 <section class="landing-section">
     <div class="container">
-        <div class="h-790 -w-full-100 m-auto">
-            <div class="top-right-dashed-border relative  h-2/4">
-                <div class="flex justify-between w-full-100 -ml-50 -mr-50">
-                    <div *ngFor="let item of schemaList[0]; index as i" class="relative">
-                        <div  class="w-100 flex flex-col items-center" (click)="openPopover(item)">
-                            <div class="h-90 flex items-end mb-4">
-                                <div *ngIf="item.img" class="bg-grey_bg"><img [src]="item.img" alt=""></div>
-                                <div
-                                        *ngIf="item.icon"
-                                        class="w-90 h-90 rounded-full flex justify-center items-center"
-                                        [class.bg-light_pink]="item.color === 'pink'"
-                                        [class.bg-light_green]="item.clickable"
-                                        [class.blob]="item.clickable"
-                                ><img [src]="item.icon" alt=""></div>
-                            </div>
-                            <div class="bg-grey_bg w-full text-center" [class.cursor-pointer]="item.clickable">
-                                <p class="text-light_title_col tracking-tighter">{{item.title}}</p>
-                            </div>
-                        </div>
-                        <ng-container *ngIf="item.popover">
-                            <popover [position]="'bottom'" [open]="!!item.showPopover" (close)="item.showPopover = false">{{item.popover.title}}</popover>
-                        </ng-container>
-                    </div>
-                </div>
-
-                <div class="flex justify-end w-full-100 -ml-50 -mr-50 mt-45">
-                    <div *ngFor="let item of schemaList[1]; index as i" class="w-100 flex flex-col relative items-center">
-                        <div  *ngIf="item.arrow" class="short-arrow">
-                            <img [src]="item.arrow" alt="">
-                        </div>
-                        <div class="h-90 flex items-end mb-4">
-                            <div *ngIf="item.img" class="bg-grey_bg"><img [src]="item.img" alt=""></div>
-                            <div
-                                    *ngIf="item.icon"
-                                    class="w-90 h-90 rounded-full flex justify-center items-center"
-                                    [class.bg-yellow_bg_col]="item.color === 'yellow'"
-                            ><img [src]="item.icon" alt=""></div>
-                        </div>
-                        <div class="bg-grey_bg w-full text-center">
-                            <p class="text-light_title_col tracking-tighter">{{item.title}}</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="top-left-dashed-border relative w-full h-2/4 ">
-                <div class="flex justify-between w-full-100 -ml-50 -mr-50">
-                    <div *ngFor="let item of schemaList[2]; index as i" class="w-100 flex flex-col items-center relative">
-                        <div  *ngIf="item.arrow" class="long-arrow">
-                            <img [src]="item.arrow" alt="">
-                        </div>
-
-                        <div class="h-90 flex items-end mb-4">
-                            <div *ngIf="item.img" class="bg-grey_bg"><img [src]="item.img" alt=""></div>
-                            <div
-                                    *ngIf="item.icon"
-                                    class="w-90 h-90 rounded-full flex justify-center items-center"
-                                    [class.bg-light_pink]="item.color === 'pink'"
-                                    [class.bg-yellow_bg_col]="item.color === 'yellow'"
-                                    [class.bg-light_blue]="item.color === 'blue'"
-                                    [class.bg-light_green]="item.clickable"
-                                    [class.blob]="item.clickable"
-                            ><img [src]="item.icon" alt=""></div>
-                        </div>
-                        <div class="bg-grey_bg w-full text-center">
-                            <p class="text-light_title_col tracking-tighter">{{item.title}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-end flex-col w-full-100 -ml-50 -mr-50 ">
-                    <div *ngFor="let item of schemaList[3]; index as i" class="w-100 mt-45 flex flex-col items-center">
-                        <div class="h-90 flex items-end mb-4">
-                            <div *ngIf="item.img" class="bg-grey_bg"><img [src]="item.img" alt=""></div>
-                            <div
-                                    *ngIf="item.icon"
-                                    class="w-90 h-90 rounded-full flex justify-center items-center"
-                                    [class.bg-light_blue]="item.color === 'blue'"
-                                    [class.bg-light_green]="item.clickable"
-                                    [class.blob]="item.clickable"
-                            ><img [src]="item.icon" alt=""></div>
-                        </div>
-                        <div class="bg-grey_bg w-full text-center">
-                            <p class="text-light_title_col tracking-tighter">{{item.title}}</p>
-                        </div>
-                    </div>
-                    <div class="absolute left-40">
-                        <img src="assets/img/icons/startup_schema/endRocket.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
+        <process-scheme></process-scheme>
     </div>
 </section>
 <section class="landing-section">
@@ -128,7 +37,7 @@
                 <p class="text-left text-grey_font_col">{{item.description}}</p>
             </div>
         </div>
-        <button class="btn-pink flex justify-center items-baseline mx-auto mt-14" (click)="openModal()">Get started<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
+        <button class="btn-pink flex justify-center mx-auto mt-14" (click)="openModal()">Get started<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
     </div>
 </section>
 <section class="landing-section">

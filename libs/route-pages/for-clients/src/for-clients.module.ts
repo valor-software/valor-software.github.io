@@ -7,11 +7,13 @@ import { CommonDocsModule } from "@valor-software/common-docs";
 import { FeedbackModule } from "@valor-software/feedback";
 import { SmallMediumBusinessesComponent } from './smallMediumBusinesses.component';
 import { PopoverModule } from '@valor-software/popover';
+import { ProcessSchemeComponentComponent } from './process-scheme.component'
 
 @NgModule({
   declarations: [
     StartupsComponent,
-    SmallMediumBusinessesComponent
+    SmallMediumBusinessesComponent,
+    ProcessSchemeComponentComponent
   ],
   imports: [
     CommonModule,

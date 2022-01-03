@@ -1,0 +1,36 @@
+@import 'tailwindcss/utilities';
+
+@layer utilities {
+  * {
+    .short-arrow {
+      width: 200px;
+      position: absolute;
+      right: 100%;
+      z-index: -1;
+    }
+
+    .short-arrow-lg {
+      width: 150px;
+      position: absolute;
+      right: 100%;
+      z-index: -1;
+    }
+
+    .long-arrow {
+      position: absolute;
+      width: 750px;
+      top: -100px;
+      left: 95%;
+      z-index: -1;
+    }
+
+    .long-arrow-lg {
+      position: absolute;
+      width: 600px;
+      top: -100px;
+      left: 95%;
+      z-index: -1;
+    }
+  }
+
+}

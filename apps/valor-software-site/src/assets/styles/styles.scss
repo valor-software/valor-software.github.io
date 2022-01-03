@@ -2,8 +2,8 @@
 @import "~swiper/swiper-bundle.css";
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
 @import 'bs_styles';
+@import 'responsive_utility';
 
 body, html {
   @apply bg-grey_bg h-full;
@@ -73,29 +73,8 @@ pre, code {
   @apply font-workSansBold;
 }
 
-.popover-top {
-  bottom: 100%;
-  margin-bottom: 20px;
-}
-
-.popover-left {
-  margin-right: 20px;
-  top: 0;
-  transform: translateX(-100%);
-}
-
-.popover-right {
-  top: 0;
-  transform: translateX(120%);
-}
-
-.popover-bottom {
-  bottom: -60px;
-}
-
-.popover-container {
-  position: absolute;
-  z-index: 10;
+.z-1 {
+  z-index: 1;
 }
 
 
