@@ -16,6 +16,37 @@
       z-index: -1;
     }
 
+    .short-arrow-sm {
+      position: absolute;
+      //transform: scale(1, -1) translateY(50%);
+      top: -10%;
+      width: 60%;
+      left: 7%;
+      transform: rotate(25deg);
+    }
+
+    .short-arrow-xs {
+      position: absolute;
+      top: 40%;
+      left: -3%;
+      transform: rotate(10deg);
+      width: 60%;
+    }
+
+    .straight-arrow-sm {
+      position: absolute;
+      top: 10%;
+      left: 0%;
+      width: 100%;
+    }
+
+    .straight-arrow-xs {
+      position: absolute;
+      top: 20%;
+      left: -20px;
+      width: 80%;
+    }
+
     .long-arrow {
       position: absolute;
       width: 750px;

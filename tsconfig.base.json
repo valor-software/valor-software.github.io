@@ -42,9 +42,6 @@
       "@valor-software/home-page": [
         "libs/route-pages/home-page/src/index.ts"
       ],
-      "@valor-software/popover": [
-        "libs/popover/src/index.ts"
-      ],
       "@valor-software/portfolio": [
         "libs/portfolio/src/index.ts"
       ],

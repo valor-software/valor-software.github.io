@@ -25,7 +25,7 @@ import { portfolioList } from "../assets/portfolio/portfolio.list";
   providers: [
     SeoService,
     { provide: ARTICLES_LIST, useValue: articlesList },
-    { provide: PORTFOLIO_LIST, useValue: portfolioList }
+    { provide: PORTFOLIO_LIST, useValue: portfolioList },
   ],
   bootstrap: [AppComponent],
 })

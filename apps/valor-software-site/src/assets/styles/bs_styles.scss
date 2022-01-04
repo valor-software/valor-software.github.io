@@ -447,8 +447,36 @@ li::marker {
   margin-left: -50px;
 }
 
+.-ml-35 {
+  margin-left: -35px;
+}
+
 .-mr-50 {
   margin-right: -50px;
+}
+
+.-mr-35 {
+  margin-right: -35px;
+}
+
+.-mt-50 {
+  margin-top: -50px;
+}
+
+.-mt-25 {
+  margin-top: -25px;
+}
+
+.-mb-50 {
+  margin-bottom: -50px;
+}
+
+.-mb-25 {
+  margin-bottom: -25px;
+}
+
+.ml-35 {
+  margin-left: 35px;
 }
 
 .w-full-100 {
@@ -457,6 +485,10 @@ li::marker {
 
 .-w-full-100 {
   width: calc(100% - 100px);
+}
+
+.-w-full-70 {
+  width: calc(100% - 70px);
 }
 
 .mt-45 {
@@ -491,15 +523,15 @@ li::marker {
   }
 }
 
-popover {
+popover, .popover-block {
   @apply block;
 
   h3 {
-    @apply text-light_title_col text-20 mb-6 tracking-tighter;
+    @apply text-light_title_col text-24 lg:text-20 mb-6 tracking-tighter;
   }
 
   h3+p {
-    @apply text-grey_font_col leading-6 mt-4;
+    @apply text-grey_font_col text-20 lg:text-base lg:leading-4 mt-4;
   }
 
   .phrase {
@@ -567,7 +599,7 @@ popover {
 }
 
 .left-right-dashed-border {
-  height: 100%;
+  height: calc(100% - 80px);
   background: repeating-linear-gradient(to bottom, transparent 0 15px, #E3E3E3 4px 25px) 0/2px 100% no-repeat,
               repeating-linear-gradient(to bottom, transparent 0 15px, #E3E3E3 4px 25px) 100%/2px 100% no-repeat;
 }

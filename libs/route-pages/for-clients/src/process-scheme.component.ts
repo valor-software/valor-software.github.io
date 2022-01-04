@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ModalService } from "@valor-software/common-docs";
+import { PopoverModalComponent } from "./popoverModal.component";
+import {CurrentPopoversService} from "./currentPopovers.service";
 
 const schemaData: ISchemaData[][] = [
     [
@@ -145,6 +148,27 @@ const schemaDataResp: ISchemaData[][] = [
     ],
     [
         {
+            title: 'Clickable prototype',
+            icon: 'assets/img/icons/startup_schema/prototype.svg',
+            clickable: false,
+            color: 'yellow'
+        },
+        {
+            id: 'ui/ux',
+            title: 'UX/UI',
+            icon: 'assets/img/icons/startup_schema/uxUi.svg',
+            clickable: false,
+            color: 'yellow'
+        },
+        {
+            id: 'wireframes',
+            title: 'Wireframes',
+            icon: 'assets/img/icons/startup_schema/wireframes.svg',
+            clickable: false,
+            color: 'yellow',
+            arrow: 'assets/img/icons/startup_schema/shortArrowResp.svg'
+        },
+        {
             title: 'Discovery',
             icon: 'assets/img/icons/startup_schema/clickable.svg',
             clickable: true,
@@ -157,27 +181,6 @@ const schemaDataResp: ISchemaData[][] = [
                 ]
             },
             showPopover: false
-        },
-        {
-            id: 'wireframes',
-            title: 'Wireframes',
-            icon: 'assets/img/icons/startup_schema/wireframes.svg',
-            clickable: false,
-            color: 'yellow',
-            arrow: 'assets/img/icons/startup_schema/shortArrow.png'
-        },
-        {
-            id: 'ui/ux',
-            title: 'UX/UI',
-            icon: 'assets/img/icons/startup_schema/uxUi.svg',
-            clickable: false,
-            color: 'yellow'
-        },
-        {
-            title: 'Clickable prototype',
-            icon: 'assets/img/icons/startup_schema/prototype.svg',
-            clickable: false,
-            color: 'yellow'
         }
     ],
     [
@@ -200,7 +203,7 @@ const schemaDataResp: ISchemaData[][] = [
             icon: 'assets/img/icons/startup_schema/plan.svg',
             clickable: false,
             color: 'blue',
-            arrow: 'assets/img/icons/startup_schema/longArrow.png'
+            arrow: 'assets/img/icons/startup_schema/straightArrow.svg'
         },
         {
             title: 'Development process',
@@ -253,6 +256,14 @@ export interface ISchemaData {
 })
 export class ProcessSchemeComponentComponent {
     schemaList: ISchemaData[][] = schemaData;
+    schemeListResp: ISchemaData[][] = schemaDataResp;
+
+    constructor(
+        private modalService: ModalService<PopoverModalComponent>,
+        private currentPopoverServ: CurrentPopoversService
+
+    ) {
+    }
 
     openPopover(item: ISchemaData) {
         if (!item.clickable) {
@@ -260,6 +271,14 @@ export class ProcessSchemeComponentComponent {
         }
 
         item.showPopover = true;
+    }
+
+    openPopoverModal(item?: {title: string, subTitle?: string, list: string[]}) {
+        if (!item) {
+            return;
+        }
+        this.currentPopoverServ.currentPopover = item;
+        this.modalService.open(PopoverModalComponent);
     }
 
 }

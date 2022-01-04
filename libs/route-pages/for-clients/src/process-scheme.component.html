@@ -117,23 +117,93 @@
                     </ng-container>
                 </div>
                 <div class="absolute left-40">
-                    <img src="assets/img/icons/startup_schema/endRocket.png" alt="">
+                    <img src="assets/img/icons/startup_schema/endRocket.svg" alt="">
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="flex lg:hidden">
-    <div class="w-2/4" style="height: 500px">
-        <div class="left-right-dashed-border">
+<div class="flex lg:hidden -w-full-70 mx-auto mt-14 items-start relative">
+    <div class="w-2/4">
+        <div class="left-right-dashed-border flex justify-between" style="max-height: 420px">
+            <div class="flex flex-col -ml-35 -mt-25 -mb-25">
+                <div *ngFor="let item of schemeListResp[0]; index as i" class="relative" [class.mb-6]="i < schemeListResp[0].length - 1">
+                    <div  class="w-70 flex flex-col items-center h-115" (click)="openPopoverModal(item.popover)">
+                        <div class="h-50 flex items-end mb-4">
+                            <div *ngIf="item.img" class="bg-grey_bg"><img [src]="item.img" alt=""></div>
+                            <div
+                                    *ngIf="item.icon"
+                                    class="w-50 h-50 rounded-full flex justify-center items-center"
+                                    [class.bg-light_pink]="item.color === 'pink'"
+                                    [class.bg-light_green]="item.clickable"
+                                    [class.blob]="item.clickable"
+                            ><img [src]="item.icon" class="h-2/4 w-2/4 mx-auto" alt=""></div>
+                        </div>
+                        <div class="bg-grey_bg w-full text-center" [class.cursor-pointer]="item.clickable">
+                            <p class="text-light_title_col text-xs tracking-tighter">{{item.title}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="flex flex-col -mr-35 -mt-25 -mb-25 w-full items-end">
+                <div *ngFor="let item of schemeListResp[1]; index as i" class="relative flex justify-end w-full" [class.mb-6]="i < schemeListResp[1].length - 1">
+                    <div  class="w-70 flex flex-col items-center h-115" (click)="openPopoverModal(item.popover)">
+                        <div  *ngIf="item.arrow" class="sm:short-arrow-sm short-arrow-xs">
+                            <img [src]="item.arrow" alt="" class="w-full">
+                        </div>
+                        <div class="h-50 flex items-end mb-4">
+                            <div *ngIf="item.img" class="bg-grey_bg"><img [src]="item.img" alt=""></div>
+                            <div
+                                    *ngIf="item.icon"
+                                    class="w-50 h-50 rounded-full flex justify-center items-center"
+                                    [class.bg-light_green]="item.clickable"
+                                    [class.bg-yellow_bg_col]="item.color === 'yellow'"
+                                    [class.blob]="item.clickable"
+                            ><img [src]="item.icon" class="h-2/4 w-2/4 mx-auto" alt=""></div>
+                        </div>
+                        <div class="bg-grey_bg w-full text-center" [class.cursor-pointer]="item.clickable">
+                            <p class="text-light_title_col text-xs tracking-tighter">{{item.title}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="top-dashed-border"></div>
-
-        </div>
-    <div class="w-2/4" style="height: 500px">
+    </div>
+    <div class="w-2/4">
         <div class="top-dashed-border"></div>
-        <div class="right-dashed-border"></div>
+        <div class="right-dashed-border" style="max-height: 575px">
+            <div class="flex flex-col -mr-35 -mt-25 -mb-25 ml-35 w-full items-end">
+                <div *ngFor="let item of schemeListResp[2]; index as i" class="relative flex justify-end w-full" [class.mb-6]="i < schemeListResp[2].length - 1">
+                    <div  class="w-70 flex flex-col items-center h-115" (click)="openPopoverModal(item.popover)">
+                        <div  *ngIf="item.arrow" class="sm:straight-arrow-sm straight-arrow-xs">
+                            <img [src]="item.arrow" alt="" class="w-full">
+                        </div>
+                        <div class="h-50 flex items-end mb-4">
+                            <div *ngIf="item.img" class="bg-grey_bg"><img [src]="item.img" alt=""></div>
+                            <div
+                                    *ngIf="item.icon"
+                                    class="w-50 h-50 rounded-full flex justify-center items-center"
+                                    [class.bg-light_green]="item.clickable"
+                                    [class.bg-light_blue]="item.color === 'blue'"
+                                    [class.blob]="item.clickable"
+                            ><img [src]="item.icon" class="h-2/4 w-2/4 mx-auto" alt=""></div>
+                        </div>
+                        <div class="bg-grey_bg w-full text-center" [class.cursor-pointer]="item.clickable">
+                            <p class="text-light_title_col text-xs tracking-tighter">{{item.title}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="absolute" style="bottom: -50px;
+    width: 85px;
+    height: 85px;
+    transform: scale(-1, 1) translate(50%, 0);
+    left: 50%;">
+        <img src="assets/img/icons/startup_schema/endRocket.svg" alt="">
     </div>
 </div>
