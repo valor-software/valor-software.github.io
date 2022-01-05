@@ -38,10 +38,10 @@ export class PopoverComponent {
         this._open = value;
     }
 
-    @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() popoverClosed: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     closePopover() {
         this._open = false;
-        this.close.emit();
+        this.popoverClosed.emit();
     }
 }

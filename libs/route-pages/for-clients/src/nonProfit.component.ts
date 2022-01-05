@@ -50,7 +50,7 @@ const purposes = [
         description: 'Launching the product is just part of a job. You seek a reliable partner that can support and enhance the solution, promptly addressing users’ needs and new system requirements. We know what partnership means, and you can rely on us to efficiently maintain your products and build new ones.',
         img: 'assets/img/bg-img/clients/icons/support.svg'
     }
-]
+];
 
 
 @Component({

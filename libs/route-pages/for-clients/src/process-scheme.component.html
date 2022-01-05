@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <ng-container *ngIf="item.popover">
-                        <popover [position]="'left'" [open]="!!item.showPopover" (close)="item.showPopover = false">
+                        <popover [position]="'left'" [open]="!!item.showPopover" (popoverClosed)="item.showPopover = false">
                             <h3>{{item.popover.title}}</h3>
                             <p *ngIf="item.popover.subTitle">{{item.popover.subTitle}}</p>
                             <div>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <ng-container *ngIf="item.popover">
-                        <popover [position]="'bottom'" [arrowPosition]="'top left'" [open]="!!item.showPopover" (close)="item.showPopover = false">
+                        <popover [position]="'bottom'" [arrowPosition]="'top left'" [open]="!!item.showPopover" (popoverClosed)="item.showPopover = false">
                             <h3>{{item.popover.title}}</h3>
                             <p *ngIf="item.popover.subTitle">{{item.popover.subTitle}}</p>
                             <div>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <ng-container *ngIf="item.popover">
-                        <popover [position]="'right'" [arrowPosition]="'left bottom'" [open]="!!item.showPopover" (close)="item.showPopover = false">
+                        <popover [position]="'right'" [arrowPosition]="'left bottom'" [open]="!!item.showPopover" (popoverClosed)="item.showPopover = false">
                             <h3>{{item.popover.title}}</h3>
                             <p *ngIf="item.popover.subTitle">{{item.popover.subTitle}}</p>
                             <div>
