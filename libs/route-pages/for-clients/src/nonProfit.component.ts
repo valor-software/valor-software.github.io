@@ -29,6 +29,29 @@ const advantagesList = [
     }
 ];
 
+const purposes = [
+    {
+        title: 'Staying on time & on tight budget',
+        description: 'When it comes to humanitarian organizations, staying on time and budget is critical. Due to being publicly funded, the more efficiently you allocate the funds, the more people will get needed aid. We deliver the required scope of work and even exceed expectations within the restricted budget and timeframe.',
+        img: 'assets/img/bg-img/clients/icons/onTime.svg'
+    },
+    {
+        title: 'Building solutions that support offline mode and perform under tough conditions',
+        description: 'Software-wise, it might be crucial that your solution works under extreme conditions. For example, in distant areas of the Earth, places of war, or natural disasters, the intermittent Internet connection is an issue, and an offline mode is a must. We know how to address this and other possible challenges.',
+        img: 'assets/img/bg-img/clients/icons/offline.svg'
+    },
+    {
+        title: 'Creating complex ecosystems with connected devices',
+        description: 'Sometimes rather than building applications we create complex ecosystems with connected devices. And we need to take care of a stable signal transmitting data between the software and the hardware, be it via Wi-Fi or Bluetooth.',
+        img: 'assets/img/bg-img/clients/icons/ecosystem.svg'
+    },
+    {
+        title: 'Providing support and post-launch enhancement',
+        description: 'Launching the product is just part of a job. You seek a reliable partner that can support and enhance the solution, promptly addressing users’ needs and new system requirements. We know what partnership means, and you can rely on us to efficiently maintain your products and build new ones.',
+        img: 'assets/img/bg-img/clients/icons/support.svg'
+    }
+]
+
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -47,7 +70,7 @@ export class NonProfitComponent {
             title: 'For clients / Non-Profit Organizations'
         }
     ];
-
+    purposesList = purposes;
     advantages = advantagesList;
     articlesList = [
         'ngx-bootstrap_v7.0.0_is_officially_released!',

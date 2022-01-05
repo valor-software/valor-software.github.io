@@ -6,6 +6,7 @@ export const articlesList = [
     'Scully_Helped_us_Reach_a_99_Lighthouse_Score_for_a_B2C_Platform',
     'Designing_Aggregator_App_from_A_to_Z___Part_2',
     'Designing_Aggregator_App_from_A_to_Z___Part_1',
+    'Multi-highlighting_for_DraftJS',
     'New_year,_new_Valor,_new_you',
     'Incorporating_user_research_on_live_projects___Part_4',
     'Incorporating_user_research_on_live_projects___Part_3',
