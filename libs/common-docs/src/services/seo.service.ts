@@ -202,7 +202,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'name',
             nameValue: 'description',
-            content: ''
+            content: 'Valor Software helps startups solidify their vision, develop a minimum viable product (MVP), and go from idea to value-generating solution. Launch to market with a Cloud-First scale and prepare for fundraising.'
         },
         {
             nameType: 'meta',
@@ -214,7 +214,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'property',
             nameValue: 'og:description',
-            content: ''
+            content: 'Valor Software helps startups solidify their vision, develop a minimum viable product (MVP), and go from idea to value-generating solution. Launch to market with a Cloud-First scale and prepare for fundraising.'
         },
         {
             nameType: 'meta',
@@ -226,7 +226,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'property',
             nameValue: 'twitter:description',
-            content: ''
+            content: 'Valor Software helps startups solidify their vision, develop a minimum viable product (MVP), and go from idea to value-generating solution. Launch to market with a Cloud-First scale and prepare for fundraising.'
         },
         {
             nameType: 'title',
@@ -240,7 +240,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'name',
             nameValue: 'description',
-            content: ''
+            content: 'Seeking a reliable partner who will help your business grow and save costs? Valor Software helps small and medium-sized businesses (SMBs) ramp up teams with needed expertise, migrate from legacy systems, and integrate edge technologies.'
         },
         {
             nameType: 'meta',
@@ -252,7 +252,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'property',
             nameValue: 'og:description',
-            content: ''
+            content: 'Seeking a reliable partner who will help your business grow and save costs? Valor Software helps small and medium-sized businesses (SMBs) ramp up teams with needed expertise, migrate from legacy systems, and integrate edge technologies.'
         },
         {
             nameType: 'meta',
@@ -264,13 +264,89 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'property',
             nameValue: 'twitter:description',
-            content: ''
+            content: 'Seeking a reliable partner who will help your business grow and save costs? Valor Software helps small and medium-sized businesses (SMBs) ramp up teams with needed expertise, migrate from legacy systems, and integrate edge technologies.'
         },
         {
             nameType: 'title',
             name: 'title',
             nameValue: 'title',
             content: 'SMBs - Valor Software'
+        }
+    ],
+    'clients/enterprises': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content: 'We help solve the toughest challenges within your enterprise in a snap of fingers. It doesn’t matter if it’s cloud migration, optimization, implementation of new technologies, or underpinning everything with security.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'Enterprises - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'We help solve the toughest challenges within your enterprise in a snap of fingers. It doesn’t matter if it’s cloud migration, optimization, implementation of new technologies, or underpinning everything with security.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'Enterprises - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'We help solve the toughest challenges within your enterprise in a snap of fingers. It doesn’t matter if it’s cloud migration, optimization, implementation of new technologies, or underpinning everything with security.'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'Enterprises - Valor Software'
+        }
+    ],
+    'clients/non-profit': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content: 'Valor Software can create unique technology-enabled solutions for socially meaningful purposes and help you raise funds. We deliver the required scope of work within the restricted budget and timeframe and provide post-launch support and maintenance.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'Non-profit Organizations - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'Valor Software can create unique technology-enabled solutions for socially meaningful purposes and help you raise funds. We deliver the required scope of work within the restricted budget and timeframe and provide post-launch support and maintenance.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'Non-profit Organizations - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'Valor Software can create unique technology-enabled solutions for socially meaningful purposes and help you raise funds. We deliver the required scope of work within the restricted budget and timeframe and provide post-launch support and maintenance.'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'Non-profit Organizations - Valor Software'
         }
     ]
 };
