@@ -21,6 +21,7 @@ import { BlogItemComponent } from './components/blog-preview/blog-item.component
 import { GetArticlesService } from './services/getArticles.service';
 import { ArticlesRouteService } from './services/articlesRoute.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import {GetPortfolioService} from "@valor-software/portfolio";
 
 
 export { PopoverComponent } from './components/popover/popover.component';
@@ -38,6 +39,7 @@ export { IArticle } from './models/article.interface';
 export { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
 export { BlogItemComponent } from './components/blog-preview/blog-item.component';
 export { ARTICLES_LIST } from './tokens/articlesList.token';
+export { SeoService } from './services/seo.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,7 @@ export { ARTICLES_LIST } from './tokens/articlesList.token';
     BlogPreviewComponent,
     BlogItemComponent
   ],
-  providers: [ModalService, SendEmailService, ArticlesRouteService, GetArticlesService,
+  providers: [ModalService, SendEmailService, ArticlesRouteService, GetArticlesService, GetPortfolioService,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',

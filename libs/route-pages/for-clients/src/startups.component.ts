@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ContactModalComponent, ModalService} from "@valor-software/common-docs";
+import { ContactModalComponent, ModalService } from "@valor-software/common-docs";
 
 const advantagesList = [
     {

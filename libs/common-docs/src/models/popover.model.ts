@@ -11,6 +11,7 @@ export const popoverStructure: PopoverStructureType = [
         icon: '/assets/img/icons/enterprises.svg',
         activeIcon: '/assets/img/icons/enterprises_active.svg',
         description: "Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs",
+        route: 'clients/enterprises'
     },
     {
         title: 'SMBs',
@@ -23,7 +24,8 @@ export const popoverStructure: PopoverStructureType = [
         title: 'Non-profits',
         icon: '/assets/img/icons/non-profits.svg',
         activeIcon: '/assets/img/icons/non-profits_active.svg',
-        description: "Technology solutions for non-governmental organizations"
+        description: "Technology solutions for non-governmental organizations",
+        route: 'clients/non-profit'
     }
 ];
 

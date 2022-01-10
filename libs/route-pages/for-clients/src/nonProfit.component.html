@@ -1,0 +1,72 @@
+<section class="landing-section lg:!pb-32 !pb:8 !pt-12 !lg:pt-32">
+    <div class="container">
+        <ng-container>
+            <breadCrumbs [changeTitle]="changeBreadCrumbsPath" class="w-full hidden md:block"></breadCrumbs>
+        </ng-container>
+        <div class="lg:container pb-5 flex justify-between items-center pt-16" style="max-height: 100%;">
+            <div class="lg:max-w-600">
+                <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">Building reliable software time and budget-wise</h1>
+                <p class="leading-normal text-grey_font_col lg:mb-8 mb-14">A strong desire to change the world for the better and improve people's quality of life is one of the core drivers for Valor Software. That is why we have by now broad expertise in working with non-profit organizations (NPOs), including non-governmental organizations. We know the specifics of approaching projects of this kind, and we know how to deliver the result, setting the priorities right.</p>
+                <button class="btn-pink w-full md:w-auto flex items-baseline">
+                    <a [routerLink]="'/portfolio'" class=" w-full flex justify-center items-center">Visit portfolio <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
+                </button>
+            </div>
+            <div class="hidden lg:block">
+                <img src="assets/img/bg-img/clients/nonProfit_bg.svg" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="landing-section">
+    <div class="container">
+        <div class="flex flex-col">
+            <p class="md:max-w-90% text-24 md:text-large text-dar_grey_font_col md:leading-44 mb-16 md:mb-28">
+                Understanding the insides of <span class="font-bold text-light_title_col">working</span> with NPOs and being <span class="font-bold text-light_title_col">experienced</span> in <span class="font-bold text-light_title_col">virtually</span> every sector of <span class="font-bold text-light_title_col">business</span>, Valor Software can create <span class="font-bold text-light_title_col">unique</span> technology-enabled <span class="font-bold text-light_title_col">solutions</span> for socially <span class="font-bold text-light_title_col">meaningful</span> purposes.
+            </p>
+            <div class="lg:-w-full-65 lg:self-end">
+                <div *ngFor="let item of purposesList; index as i" class="flex flex-col lg:flex-row lg:border-light_title_col flex justify-between mb-8 pb-8" [class.lg:border-l-2]="i < purposesList.length - 1">
+                    <div class="lg:max-w-500 flex lg:mr-14 flex-col lg:flex-row">
+                        <div class="w-130 lg:-ml-65 h-115 bg-grey_bg">
+                            <p class="font-bold text-80 lg:text-105 text-dark_title_col lg:leading-75">{{'0'+(i+1)}}</p>
+                        </div>
+                        <div class="lg:ml-9 mb-9 lg:mb-0">
+                            <p class="font-bold text-light_title_col text-24 lg:text-large tracking-tighter mb-4 lg:mb-6 lg:leading-44">{{item.title}}</p>
+                            <p class="text-grey_font_col leading-6">{{item.description}}</p>
+                        </div>
+                    </div>
+                    <div class="lg:max-w-2/4 flex justify-center w-full"><img [src]="item.img"  alt="" style="width: fit-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="landing-section">
+    <h1 class="main-title">Advantages</h1>
+    <div class="container">
+        <div
+                *ngFor="let item of advantages; index as i"
+                class="bg-grey lg:p-12 py-7 px-7 flex-col lg:flex-row flex justify-between mb-8 w-full items-center lg:h-300"
+        >
+            <div class="lg:mr-16 w-100 lg:w-auto lg:min-w-200">
+                <img [src]="item.img" [alt]="item.title + ' icon'" class="mx-auto h-full">
+            </div>
+            <div class="w-full">
+                <p class="text-left font-bold text-light_title_col md:text-large block mt-6 md:mt-0 text-xl md:leading-44 mb-6">{{item.title}}</p>
+                <p class="text-left text-grey_font_col">{{item.description}}</p>
+            </div>
+        </div>
+        <button class="btn-pink w-full md:w-auto flex justify-center mx-auto mt-14" (click)="openModal()">Get started<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
+    </div>
+</section>
+<section class="landing-section">
+    <h1 class="main-title">Articles</h1>
+    <div class="container">
+        <blog-preview [articlesList]="articlesList"></blog-preview>
+    </div>
+</section>
+<section class="landing-section hidden md:block">
+    <h1 class="main-title">Feedback</h1>
+    <div class="container">
+        <feedback></feedback>
+    </div>
+</section>

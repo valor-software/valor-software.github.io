@@ -1,11 +1,11 @@
-<section class="landing-section h-screen flex flex-col items-center pt-12">
+<section class="landing-section h-screen-40 md:h-screen flex flex-col items-center pt-12">
     <div class="container flex flex-col justify-between h-full pb-5" style="max-height: 100%;">
         <div class="flex-col lg:flex-row flex justify-between w-full" style="max-height: 100%;">
             <div class="flex items-start max-w-30% mr-16">
                 <div class="hidden lg:flex flex-col justify-between items-start">
                     <h1 class="text-light_title_col text-64 leading-66 mb-12 font-bold">Led<br> by a Google<br>Developer Expert</h1>
                     <p class="leading-normal text-grey_font_col mb-8">Valor Software is more than just a software development company. We’re a team of people driven by innovation who pull off the impossible with the blend of the brightest technological minds and edge technologies.</p>
-                    <button class="btn-pink flex justify-between items-baseline" routerLink="/" fragment="feedback">Our clients’ feedback <img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt=""></button>
+                    <button class="btn-pink flex justify-between" routerLink="/" fragment="feedback">Our clients’ feedback <img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt=""></button>
                 </div>
             </div>
             <div class="flex justify-end relative">
@@ -120,10 +120,10 @@
                                 <p class="font-bold text-large text-light_title_col mb-8" [innerHTML]="slide.title"></p>
                                 <p class="text-light_title_col text-xl mb-6">{{slide.description}}</p>
                                 <ul class="list-disc text-grey_font_col pl-5">
-                                    <li *ngFor="let item of slide.list">{{item}}</li>
+                                    <li class="leading-4 mb-4" *ngFor="let item of slide.list">{{item}}</li>
                                 </ul>
                             </div>
-                            <button class="btn-pink flex justify-between items-baseline"><a class="flex justify-between items-center" [href]="slide.link" target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
+                            <button class="btn-pink flex justify-between"><a class="flex justify-between items-center" [href]="slide.link" target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
                         </div>
                         <div class="max-w-65% flex flex-col justify-center items-center text-light_title_col">
                             <img [src]="slide.img" [alt]="slide.name + 'icon'">
@@ -149,6 +149,7 @@
                             <div>
                                 <p class="font-bold text-24 leading-28 text-light_title_col mb-8" [innerHTML]="slide.title"></p>
                                 <p class="text-light_title_col text-xl mb-6">{{slide.description}}</p>
+
                                 <ul class="list-disc text-grey_font_col pl-5">
                                     <li *ngFor="let item of slide.list">{{item}}</li>
                                 </ul>

@@ -10,5 +10,6 @@
   "title": "Angular and SEO: Structured Data for Rich Snippets",
   "position": "JS Developer",
   "date": "Thu Jul 18 2019 13:53:56 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "We’ll show you how to make your Angular SPA more user-friendly with the help of Structured Data—a set of rules for data formatting proposed by Google.",
   "contentUrl": true
 }

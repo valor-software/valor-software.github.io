@@ -1,4 +1,5 @@
 import {AfterContentInit, Component} from '@angular/core';
+import {SeoService} from "@valor-software/common-docs";
 
 @Component({
   selector: 'valor-software-site-base-root',
@@ -7,6 +8,11 @@ import {AfterContentInit, Component} from '@angular/core';
 })
 export class AppComponent implements AfterContentInit{
   title = 'valor-software-site';
+
+  constructor(
+      private seo: SeoService
+  ) {
+  }
 
 
   ngAfterContentInit() {

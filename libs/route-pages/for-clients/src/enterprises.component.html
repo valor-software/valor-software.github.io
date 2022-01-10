@@ -1,0 +1,60 @@
+<section class="landing-section lg:!pb-32 !pb:8 !pt-12 !lg:pt-32">
+    <div class="container">
+        <ng-container>
+            <breadCrumbs [changeTitle]="changeBreadCrumbsPath" class="w-full hidden md:block"></breadCrumbs>
+        </ng-container>
+        <div class="lg:container pb-5 flex justify-between items-center pt-16" style="max-height: 100%;">
+            <div class="lg:max-w-600">
+                <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">Accelerating your enterprise technologies</h1>
+                <p class="leading-normal text-grey_font_col lg:mb-8 mb-14">We blend a business-oriented approach with deep technical expertise to help you solve the toughest challenges within your enterprise in a snap of fingers. It doesn’t matter if it’s cloud migration, optimization, implementation of new technologies, or underpinning everything with security — our industry competence will help you on this journey.</p>
+                <button class="btn-pink w-full md:w-auto flex items-baseline">
+                    <a [routerLink]="'/portfolio'" class=" w-full flex justify-center items-center">Visit portfolio <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
+                </button>
+            </div>
+            <div class="hidden lg:block">
+                <img src="assets/img/bg-img/clients/enterprises_bg.svg" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="landing-section">
+    <div class="container">
+        <div>
+            <p class="md:max-w-90% text-24 md:text-large text-dar_grey_font_col md:leading-44 mb-16 md:mb-28">
+                Valor Software can <span class="font-bold text-light_title_col">help</span>
+                with today's issues, <span class="font-bold text-light_title_col">anticipate</span> tomorrow’s <span class="font-bold text-light_title_col">needs</span>, and <span class="font-bold text-light_title_col">build</span> next-generation <span class="font-bold text-light_title_col">solutions</span>.
+            </p>
+            <img src="assets/img/bg-img/clients/enterprises_provides.svg" alt="" class="max-w-full lg:max-w-900 mx-auto">
+        </div>
+    </div>
+</section>
+<section class="landing-section">
+    <h1 class="main-title">Advantages</h1>
+    <div class="container">
+        <div
+                *ngFor="let item of advantages; index as i"
+                class="bg-grey lg:p-12 py-7 px-7 flex-col lg:flex-row flex justify-between mb-8 w-full items-center lg:h-300"
+        >
+            <div class="lg:mr-16 w-100 lg:w-auto lg:min-w-200">
+                <img [src]="item.img" [alt]="item.title + ' icon'" class="mx-auto h-full">
+            </div>
+            <div class="w-full">
+                <p class="text-left font-bold text-light_title_col md:text-large block mt-6 md:mt-0 text-xl md:leading-44 mb-6">{{item.title}}</p>
+                <p class="text-left text-grey_font_col">{{item.description}}</p>
+            </div>
+        </div>
+        <button class="btn-pink flex justify-center mx-auto w-full md:w-auto mt-14" (click)="openModal()">Get started<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></button>
+    </div>
+</section>
+<section class="landing-section">
+    <h1 class="main-title">Articles</h1>
+    <div class="container">
+        <blog-preview [articlesList]="articlesList"></blog-preview>
+    </div>
+</section>
+<section class="landing-section hidden md:block">
+    <h1 class="main-title">Feedback</h1>
+    <div class="container">
+        <feedback></feedback>
+    </div>
+</section>

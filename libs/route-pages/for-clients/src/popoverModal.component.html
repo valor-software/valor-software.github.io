@@ -1,0 +1,14 @@
+<ng-container *ngIf="popoverInf">
+    <div class="w-screen h-screen z-10 bg-popover_bg fixed inset-0 overflow-hidden p-8">
+        <div class="w-full flex justify-end">
+            <img src="assets/img/icons/close.png" alt="close icon" class="cursor-pointer w-4 h-4 lg:w-auto lg:h-auto" (click)="closeModal()">
+        </div>
+        <div class="popover-block mt-8">
+            <h3>{{popoverInf.title}}</h3>
+            <p *ngIf="popoverInf.subTitle">{{popoverInf.subTitle}}</p>
+            <div>
+                <p *ngFor="let phrase of popoverInf.list" [innerHTML]="phrase" class="phrase"></p>
+            </div>
+        </div>
+    </div>
+</ng-container>

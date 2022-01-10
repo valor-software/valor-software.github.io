@@ -37,7 +37,10 @@ module.exports = {
       darkPink: '#D85988',
       darkPinkHover: '#9C395E',
       blue_btn: '#1F5CF5',
-      darkBlue: '#22469F'
+      darkBlue: '#22469F',
+      light_green: '#77CE9A',
+      light_blue: '#71A5D2',
+      popover_bg: '#282828'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -55,7 +58,8 @@ module.exports = {
         '150': '150px',
         '56': '56px',
         '28': '28px',
-        '36': '36px'
+        '36': '36px',
+        '75': '75px'
       },
       fontSize: {
         'base': '1rem',
@@ -70,7 +74,8 @@ module.exports = {
         '150': '150px',
         '24': '24px',
         '20': '20px',
-        '105': '105px'
+        '105': '105px',
+        '80': '80px'
       },
       minWidth: {
         '585': '585px',
@@ -103,7 +108,8 @@ module.exports = {
         '380': '380px',
         '75%': '75%',
         '400': '400px',
-        '500': '500px'
+        '500': '500px',
+        '900': '900px'
       },
       maxHeight: {
         '700': '700px',
@@ -119,7 +125,8 @@ module.exports = {
         'm100%': '-105%'
       },
       borderRadius: {
-        '20': '20px'
+        '20': '20px',
+        '12': '12px'
       },
       spacing: {
         '6.75': '6.75rem'
@@ -135,6 +142,9 @@ module.exports = {
         '31%': '31%',
         '35': '35px',
         '100': '100px',
+        '90': '90px',
+        '50': '50px',
+        '130': '130px'
       },
       minHeight: {
         '725': '725px',
@@ -147,6 +157,10 @@ module.exports = {
         '350': '350px',
         '70': '70px',
         '300': '300px',
+        '790': '790px',
+        '90': '90px',
+        '50': '50px',
+        '115': '115px'
       },
       zIndex: {
         '1': '1'

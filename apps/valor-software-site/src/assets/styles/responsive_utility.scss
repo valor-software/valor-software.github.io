@@ -1,0 +1,74 @@
+@import 'tailwindcss/utilities';
+
+@layer utilities {
+  * {
+    .short-arrow {
+      width: 200px;
+      position: absolute;
+      right: 100%;
+      z-index: -1;
+    }
+
+    .short-arrow-lg {
+      width: 150px;
+      position: absolute;
+      right: 100%;
+      z-index: -1;
+    }
+
+    .short-arrow-sm {
+      position: absolute;
+      //transform: scale(1, -1) translateY(50%);
+      top: -10%;
+      width: 60%;
+      left: 7%;
+      transform: rotate(25deg);
+    }
+
+    .short-arrow-xs {
+      position: absolute;
+      top: 40%;
+      left: -3%;
+      transform: rotate(10deg);
+      width: 60%;
+    }
+
+    .straight-arrow-sm {
+      position: absolute;
+      top: 10%;
+      left: 0%;
+      width: 100%;
+    }
+
+    .straight-arrow-xs {
+      position: absolute;
+      top: 20%;
+      left: -20px;
+      width: 80%;
+    }
+
+    .long-arrow {
+      position: absolute;
+      width: 750px;
+      top: -100px;
+      left: 95%;
+      z-index: -1;
+    }
+
+    .long-arrow-lg {
+      position: absolute;
+      width: 600px;
+      top: -100px;
+      left: 95%;
+      z-index: -1;
+    }
+
+    .-ml-65 {
+      margin-left: -65px;
+    }
+
+    .h-screen-40 {
+      height: calc(100vh - 40px);
+    }
+  }
+}

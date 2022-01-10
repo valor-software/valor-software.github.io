@@ -2,8 +2,8 @@
 @import "~swiper/swiper-bundle.css";
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
 @import 'bs_styles';
+@import 'responsive_utility';
 
 body, html {
   @apply bg-grey_bg h-full;
@@ -73,6 +73,9 @@ pre, code {
   @apply font-workSansBold;
 }
 
+.z-1 {
+  z-index: 1;
+}
 
 
 

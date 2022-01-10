@@ -29,6 +29,7 @@ export class ModalService<T> {
         this.componentRef = this.componentFactoryResolver
             .resolveComponentFactory<T>(component)
             .create(this.injector);
+
         this.appRef.attachView(this.componentRef.hostView);
         document.body.appendChild(this.componentRef.location.nativeElement);
         this.state.next(true);
