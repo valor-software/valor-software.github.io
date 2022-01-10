@@ -120,7 +120,7 @@
                                 <p class="font-bold text-large text-light_title_col mb-8" [innerHTML]="slide.title"></p>
                                 <p class="text-light_title_col text-xl mb-6">{{slide.description}}</p>
                                 <ul class="list-disc text-grey_font_col pl-5">
-                                    <li *ngFor="let item of slide.list">{{item}}</li>
+                                    <li class="leading-4 mb-4" *ngFor="let item of slide.list">{{item}}</li>
                                 </ul>
                             </div>
                             <button class="btn-pink flex justify-between"><a class="flex justify-between items-center" [href]="slide.link" target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
@@ -149,6 +149,7 @@
                             <div>
                                 <p class="font-bold text-24 leading-28 text-light_title_col mb-8" [innerHTML]="slide.title"></p>
                                 <p class="text-light_title_col text-xl mb-6">{{slide.description}}</p>
+
                                 <ul class="list-disc text-grey_font_col pl-5">
                                     <li *ngFor="let item of slide.list">{{item}}</li>
                                 </ul>
