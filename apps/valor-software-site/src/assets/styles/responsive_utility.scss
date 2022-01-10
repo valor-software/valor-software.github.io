@@ -66,5 +66,9 @@
     .-ml-65 {
       margin-left: -65px;
     }
+
+    .h-screen-40 {
+      height: calc(100vh - 40px);
+    }
   }
 }

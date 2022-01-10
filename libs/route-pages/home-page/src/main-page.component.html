@@ -1,4 +1,4 @@
-<section class="landing-section h-screen flex flex-col items-center pt-12">
+<section class="landing-section h-screen-40 md:h-screen flex flex-col items-center pt-12">
     <div class="container flex flex-col justify-between h-full pb-5" style="max-height: 100%;">
         <div class="flex-col lg:flex-row flex justify-between w-full" style="max-height: 100%;">
             <div class="flex items-start max-w-30% mr-16">
@@ -123,7 +123,7 @@
                                     <li *ngFor="let item of slide.list">{{item}}</li>
                                 </ul>
                             </div>
-                            <button class="btn-pink flex justify-between items-baseline"><a class="flex justify-between items-center" [href]="slide.link" target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
+                            <button class="btn-pink flex justify-between"><a class="flex justify-between items-center" [href]="slide.link" target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
                         </div>
                         <div class="max-w-65% flex flex-col justify-center items-center text-light_title_col">
                             <img [src]="slide.img" [alt]="slide.name + 'icon'">

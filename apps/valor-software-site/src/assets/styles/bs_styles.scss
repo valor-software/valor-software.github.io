@@ -313,9 +313,11 @@ li::marker {
 }
 
 .article-box {
+  @apply text-grey_font_col;
 
   p {
     @apply leading-6 text-grey_font_col mt-4;
+
     &:first-child {
       margin-top: 0;
     }
