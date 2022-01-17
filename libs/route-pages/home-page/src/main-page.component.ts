@@ -191,7 +191,7 @@ const ServicesModel = [
 
 const OpenSourceSlidesModel = [
     {
-        title: 'We built<br> ngx-bootstrap<br> library',
+        title: 'We’ve built<br> ngx-bootstrap<br> library',
         description: 'Bootstrap components powered by Angular',
         list: ['Flexibility', 'Tinker-friendly code', 'Thorough documentation', 'Lots of demo'],
         name: 'ngx-bootstrap',
@@ -211,7 +211,7 @@ const OpenSourceSlidesModel = [
     },
     {
         title: 'We contribute<br>to NativeScript',
-        description: 'Empower JavaScript with native APIs. Liberate your development by using platform APIs directly without leaving your love for JavaScript aside.',
+        description: 'NativeScript empowers you to access native platform APIs from JavaScript directly',
         list: ['Flexible', 'Regular updates', 'Compatible', 'Inspires animations'],
         name: 'NativeScript',
         img: 'assets/img/bg-img/open-source/nativescript.svg',
