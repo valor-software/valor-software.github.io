@@ -15,7 +15,7 @@
                 </div>
                 <div class="hidden lg:block relative ml-20">
                     <div class="flex space-x-2 leading-4">
-                        <a class="menu-item" (click)="toggleClientsRoute()">For clients <div class="light-arrow"></div></a>
+                        <div class="menu-item" (click)="toggleClientsRoute()">For clients <div class="light-arrow"></div></div>
                         <a routerLink="/services" [routerLinkActive]="['active-route']" class="menu-item">Services</a>
                         <a routerLink="/portfolio" [routerLinkActive]="['active-route']" class="menu-item">Portfolio</a>
                         <a routerLink="/careers" [routerLinkActive]="['active-route']" class="menu-item">Careers</a>
@@ -37,7 +37,7 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="adaptive-menu" [class.show]="showBurgerMenu" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a class="menu-item" (click)="toggleClientsRoute()">For clients <div class="light-arrow big" [class.rotate]="showClientsRoute"></div></a>
+            <div class="menu-item" (click)="toggleClientsRoute()">For clients <div class="light-arrow big" [class.rotate]="showClientsRoute"></div></div>
             <menu-popover class="block lg:hidden !m-0" (changeShowClientRoute)="toggleClientsRoute(); showBurgerMenu = false" [show]="showClientsRoute"></menu-popover>
             <a (click)="showBurgerMenu = false" routerLink="/services" [routerLinkActive]="['active-route']" class="menu-item">Services</a>
             <a (click)="showBurgerMenu = false" routerLink="/portfolio" [routerLinkActive]="['active-route']" class="menu-item">Portfolio</a>
