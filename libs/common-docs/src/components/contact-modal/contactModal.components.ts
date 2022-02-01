@@ -15,7 +15,7 @@ export class ContactModalComponent implements OnDestroy {
     form: FormGroup = new FormGroup({
         type: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
-        message: new FormControl('', [Validators.required]),
+        message: new FormControl('', [Validators.required, Validators.maxLength(1000)]),
         'g-recaptcha-response': new FormControl('')
     });
     data?: FormData;

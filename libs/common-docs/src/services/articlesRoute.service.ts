@@ -19,6 +19,6 @@ export class ArticlesRouteService {
             link = link.replace('—','_');
         }
         this.router.navigate(['blog', link]);
-        window.scrollTo(0,0);
+        // window.scrollTo(0,0);
     }
 }
