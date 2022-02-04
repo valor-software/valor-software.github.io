@@ -24,7 +24,7 @@ export class AppComponent implements AfterContentInit{
             filter(event => event instanceof NavigationEnd)
         )
         .subscribe(() => setTimeout(() => {
-          const hash = this.router.parseUrl(this.router.url).fragment
+          const hash = this.router.parseUrl(this.router.url).fragment;
           if (hash) {
             //todo logic for router with fragment
           } else {
