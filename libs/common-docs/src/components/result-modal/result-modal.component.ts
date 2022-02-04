@@ -7,4 +7,5 @@ import {Component, Input} from '@angular/core';
 })
 export class ResultModalComponent {
     @Input() type?: 'success' | 'error';
+    @Input() errorMessage?: string;
 }

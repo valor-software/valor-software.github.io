@@ -13,12 +13,12 @@ const advantagesList = [
         img: 'assets/img/bg-img/clients/advantages_enterprises/itTalants.svg'
     },
     {
-        title: 'Freeing Up Your Team\'s Time',
+        title: 'Freeing up your Team’s Time',
         description: 'You can entrust the scope of work to your self-sufficient team at Valor with no supervision. While you focus on business objectives, we deliver excellent results within the agreed time and budget.',
         img: 'assets/img/bg-img/clients/advantages_enterprises/teamsTime.svg'
     },
     {
-        title: 'Strict and reliable processes',
+        title: 'Strict and Reliable Processes',
         description: 'You can rely on us applying best practices and following proven processes. We have documented guidelines for every step, starting from onboarding to product offboarding. And we follow management system standards relevant to your particular business needs and your current product stage.',
         img: 'assets/img/bg-img/clients/advantages_enterprises/strictProcess.svg'
     },

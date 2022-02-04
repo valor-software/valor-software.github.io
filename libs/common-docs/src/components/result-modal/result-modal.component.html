@@ -1,5 +1,6 @@
 <div class="flex flex-col justify-center items-center text-center">
     <img [src]="type === 'success' ? 'assets/img/bg-img/success.svg' : 'assets/img/bg-img/error.svg'" alt="">
     <p class="text-white text-large font-bold mb-4">{{type === 'success' ? 'Success' : 'Something went wrong!'}}</p>
-    <p class="text-white text-xl">{{type === 'success' ? 'Your message has been successfully sent!' : 'We’re sorry for this, please try again later!'}}</p>
+    <p class="text-white text-xl" *ngIf="!errorMessage">{{type === 'success' ? 'Your message has been successfully sent!' : 'We’re sorry for this, please try again later!'}}</p>
+    <p class="text-white text-xl" *ngIf="errorMessage">{{errorMessage}} <br>Please try again</p>
 </div>

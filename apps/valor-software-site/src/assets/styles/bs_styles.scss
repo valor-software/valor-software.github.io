@@ -189,11 +189,11 @@
   @apply lg:pt-16 lg:pb-12 pb-16;
 
   &.first-section {
-    @apply lg:pt-52;
+    @apply pt-16 lg:pt-52;
   }
 
   &.first-section-half {
-    @apply lg:pt-40;
+    @apply pt-16 lg:pt-40;
   }
 }
 
