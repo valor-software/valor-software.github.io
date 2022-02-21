@@ -25,6 +25,7 @@ module.exports = {
       white: colors.white,
       light_title_col: '#E3E3E3',
       dark_title_col: '#202020',
+      dark_title_col_updated: '#2B2B2B',
       light_font_col: 'var(--light_font_col)',
       grey_font_col: '#C0C0C0',
       header_font_col: '#C8C8C8',

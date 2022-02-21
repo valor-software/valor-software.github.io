@@ -4,6 +4,17 @@ import { Subscription } from "rxjs";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SendEmailService } from "../../services/senEmail.service";
 import { ReCaptchaV3Service } from 'ng-recaptcha';
+
+interface IError {
+    error: {
+        errors: {
+            code: string;
+            field: string;
+            message: string;
+        }[];
+    }
+}
+
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'contact-modal',
@@ -15,7 +26,7 @@ export class ContactModalComponent implements OnDestroy {
     form: FormGroup = new FormGroup({
         type: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
-        message: new FormControl('', [Validators.required]),
+        message: new FormControl('', [Validators.required, Validators.maxLength(1000), Validators.minLength(5)]),
         'g-recaptcha-response': new FormControl('')
     });
     data?: FormData;
@@ -23,41 +34,7 @@ export class ContactModalComponent implements OnDestroy {
     showSuccess = false;
     showError = false;
     $reCaptchaSub?: Subscription;
-
-    // formData = [
-    //     {
-    //         name: 'type',
-    //         type: 'radio',
-    //         values: [
-    //             {
-    //                 value: 'service',
-    //                 title: 'Services'
-    //             },
-    //             {
-    //                 value: 'career',
-    //                 title: 'Careers'
-    //             },
-    //             {
-    //                 value: 'partner',
-    //                 title: 'Partnerships & Sales'
-    //             },
-    //             {
-    //                 value: 'other',
-    //                 title: 'Other'
-    //             }
-    //         ]
-    //     },
-    //     {
-    //         name: 'email',
-    //         type: 'email',
-    //         title: 'Email'
-    //     },
-    //     {
-    //         name: 'message',
-    //         type: 'text',
-    //         title: 'Message'
-    //     }
-    // ];
+    errorMessage?: string;
 
     constructor(
         private modalService: ModalService<ContactModalComponent>,
@@ -88,9 +65,8 @@ export class ContactModalComponent implements OnDestroy {
                     this.form.reset();
                     this.showSuccessModal();
                     this.recaptchaV3Service.execute('');
-                }, error => {
-                    this.showErrorModal();
-                    console.log(error);
+                }, (error: IError) => {
+                    this.showErrorModal(error.error.errors[0].message);
                 });
             });
     }
@@ -102,11 +78,13 @@ export class ContactModalComponent implements OnDestroy {
     showSuccessModal() {
         this.showSuccess = true;
         this.showError = false;
+        this.errorMessage = '';
     }
 
-    showErrorModal() {
+    showErrorModal(error?: string) {
         this.showSuccess = false;
         this.showError = true;
+        this.errorMessage = error;
     }
 
     ngOnDestroy() {

@@ -40,9 +40,8 @@
   }
 }
 
-
 .main-title {
-  @apply font-workSansBold text-dark_title_col text-56 xl:text-title xl:leading-200 lg:text-150 lg:mb-14 lg:mt-16 mb-6;
+  @apply font-workSansBold text-dark_title_col_updated text-56 xl:text-title xl:leading-200 lg:text-150 lg:mb-14 lg:mt-16 mb-6;
 
   &.double {
     @apply text-50 lg:text-double_title ;
@@ -188,7 +187,17 @@
 
 .landing-section {
   @apply lg:pt-16 lg:pb-12 pb-16;
+
+  &.first-section {
+    @apply pt-16 lg:pt-52;
+  }
+
+  &.first-section-half {
+    @apply pt-16 lg:pt-40;
+  }
 }
+
+
 
 .img-filter {
   @apply relative;

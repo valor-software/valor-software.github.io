@@ -18,6 +18,6 @@ export class ProjectsRouteService {
             link = link.replace('&','_');
         }
         this.router.navigate(['portfolio', link]);
-        window.scrollTo(0,0);
+        // window.scrollTo(0,0);
     }
 }

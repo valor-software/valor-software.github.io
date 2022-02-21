@@ -1,4 +1,4 @@
-<section class="landing-section lg:!pb-32 !pb:8 !pt-12 !lg:pt-32">
+<section class="first-section-half landing-section lg:!pb-32 !pb:8">
     <div class="container">
         <ng-container>
             <breadCrumbs [changeTitle]="changeBreadCrumbsPath" class="w-full hidden md:block"></breadCrumbs>
@@ -27,7 +27,7 @@
                 <div *ngFor="let item of purposesList; index as i" class="flex flex-col lg:flex-row lg:border-light_title_col flex justify-between mb-8 pb-8" [class.lg:border-l-2]="i < purposesList.length - 1">
                     <div class="lg:max-w-500 flex lg:mr-14 flex-col lg:flex-row">
                         <div class="w-130 lg:-ml-65 h-115 bg-grey_bg">
-                            <p class="font-bold text-80 lg:text-105 text-dark_title_col lg:leading-75">{{'0'+(i+1)}}</p>
+                            <p class="font-bold text-80 lg:text-105 text-dark_title_col_updated lg:leading-75">{{'0'+(i+1)}}</p>
                         </div>
                         <div class="lg:ml-9 mb-9 lg:mb-0">
                             <p class="font-bold text-light_title_col text-24 lg:text-large tracking-tighter mb-4 lg:mb-6 lg:leading-44">{{item.title}}</p>

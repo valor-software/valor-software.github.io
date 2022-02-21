@@ -13,12 +13,12 @@ const advantagesList = [
         img: 'assets/img/bg-img/clients/advantages_non_profit/transparency.svg'
     },
     {
-        title: 'Integration with Your Set Processes',
+        title: 'Integration with your Set Processes',
         description: 'Assuming that your project may involve several stakeholders and development teams, we\'ll adjust to your existing processes. We’ll prepare all the needed documentation to start our collaboration and continue delivering project-related materials in the required form, quality, and quantity.',
         img: 'assets/img/bg-img/clients/advantages_non_profit/integration.svg'
     },
     {
-        title: 'Short Time To Market',
+        title: 'Short Time to Market',
         description: 'Understanding that meeting the given time frames with the software delivery is the priority for you, we put functionality first. By prioritizing the development of crucial features, we decrease the time to market. So you can demonstrate the solution to stakeholders and start using it in the shortest period possible.',
         img: 'assets/img/bg-img/clients/advantages_non_profit/shortTime.svg'
     },

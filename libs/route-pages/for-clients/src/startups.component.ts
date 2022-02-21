@@ -13,12 +13,12 @@ const advantagesList = [
         img: 'assets/img/bg-img/clients/advantages/prod_pivot.svg'
     },
     {
-        title: 'Solid Project Management & Constant Team Involvementz',
+        title: 'Solid Project Management & Constant Team Involvement',
         description: 'As we’re using the Agile approach to software development, you’ll see progress after each sprint. What’s more, we’re always open to brainstorm together and suggest several additional options, based on the successful company\'s experiences.',
         img: 'assets/img/bg-img/clients/advantages/solid_managment.svg'
     },
     {
-        title: 'Investment into the future',
+        title: 'Investment in the Future',
         description: 'Although we understand that quick market release is crucial for startups, working on the core functionality, we always think about the future of your product. That\'s why the solutions we offer are always scalable and maintainable.',
         img: 'assets/img/bg-img/clients/advantages/investment.svg'
     }
