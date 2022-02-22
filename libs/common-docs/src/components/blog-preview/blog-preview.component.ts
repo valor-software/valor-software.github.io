@@ -19,6 +19,9 @@ export class BlogPreviewComponent implements OnDestroy, OnInit{
         slidesPerView: 1,
         spaceBetween: 40,
         slideToClickedSlide: true,
+        mousewheel: {
+            releaseOnEdges: true
+        },
         pagination: {
             clickable: true
         },

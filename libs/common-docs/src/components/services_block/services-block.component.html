@@ -1,5 +1,5 @@
 <div class="flex justify-between flex-col flex-wrap lg:flex-row" *ngIf="preview">
-    <div *ngFor="let serv of servicesInfList" class="lg:w-48% bg-grey py-7 px-12 flex justify-between flex-col-reverse md:flex-row font-bold mb-8 w-full items-center cursor-pointer" (click)="routeLink('services')">
+    <div *ngFor="let serv of servicesInfList" class="lg:w-48% bg-grey py-7 px-12 flex justify-between flex-col-reverse md:flex-row font-bold mb-8 w-full items-center cursor-pointer md:border-2 md:border-transparent md:hover:border-pink transition-colors" (click)="routeLink('services')">
         <p class="text-light_title_col md:text-large block md:mr-3.5 flex items-center mt-6 md:mt-0 text-xl md:leading-44 text-center md:text-left">{{serv.title}}</p>
         <img [src]="serv.img" [alt]="serv.title + ' icon'" class="md:max-w-45% max-w-10.5">
     </div>

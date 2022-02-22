@@ -21,8 +21,7 @@ import { BlogItemComponent } from './components/blog-preview/blog-item.component
 import { GetArticlesService } from './services/getArticles.service';
 import { ArticlesRouteService } from './services/articlesRoute.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
-import {GetPortfolioService} from "@valor-software/portfolio";
-
+import { GetPortfolioService } from "@valor-software/portfolio";
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -53,7 +52,7 @@ export { SeoService } from './services/seo.service';
     BreadCrumbsComponent,
     ShowHideDirective,
     BlogPreviewComponent,
-    BlogItemComponent
+    BlogItemComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -65,7 +64,7 @@ export { SeoService } from './services/seo.service';
     BreadCrumbsComponent,
     ShowHideDirective,
     BlogPreviewComponent,
-    BlogItemComponent
+    BlogItemComponent,
   ],
   providers: [ModalService, SendEmailService, ArticlesRouteService, GetArticlesService, GetPortfolioService,
     {
