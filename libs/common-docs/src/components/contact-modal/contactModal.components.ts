@@ -17,7 +17,7 @@ interface IError {
 
 const errorVocabulary = {
     email: "Check your email"
-}
+};
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -70,7 +70,7 @@ export class ContactModalComponent implements OnDestroy {
                     this.showSuccessModal();
                     this.recaptchaV3Service.execute('');
                 }, (error: IError) => {
-                    const errorText = errorVocabulary[error.error.errors[0].field as keyof typeof errorVocabulary] || error.error.errors[0].message
+                    const errorText = errorVocabulary[error.error.errors[0].field as keyof typeof errorVocabulary] || error.error.errors[0].message;
                     this.showErrorModal(errorText);
                 });
             });
