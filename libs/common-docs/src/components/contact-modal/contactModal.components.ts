@@ -16,7 +16,11 @@ interface IError {
 }
 
 const errorVocabulary = {
-    email: "Check your email"
+    TYPE_EMAIL: "Check your email",
+    REQUIRED_FIELD_MISSING: "Fields are required, but no value was provided",
+    REQUIRED_FIELD_EMPTY: "A field is required, but a blank or empty string was provided",
+    TYPE_NUMERIC: "A field should contain a number",
+    TYPE_TEXT: "A field should contain text"
 };
 
 @Component({
@@ -70,7 +74,7 @@ export class ContactModalComponent implements OnDestroy {
                     this.showSuccessModal();
                     this.recaptchaV3Service.execute('');
                 }, (error: IError) => {
-                    const errorText = errorVocabulary[error.error.errors[0].field as keyof typeof errorVocabulary] || error.error.errors[0].message;
+                    const errorText = errorVocabulary[error.error.errors[0].code as keyof typeof errorVocabulary] || error.error.errors[0].message;
                     this.showErrorModal(errorText);
                 });
             });
