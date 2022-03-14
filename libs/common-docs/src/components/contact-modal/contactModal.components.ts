@@ -4,24 +4,7 @@ import { Subscription } from "rxjs";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SendEmailService } from "../../services/senEmail.service";
 import { ReCaptchaV3Service } from 'ng-recaptcha';
-
-interface IError {
-    error: {
-        errors: {
-            code: string;
-            field: string;
-            message: string;
-        }[];
-    }
-}
-
-const errorVocabulary = {
-    TYPE_EMAIL: "Check your email",
-    REQUIRED_FIELD_MISSING: "Fields are required, but no value was provided",
-    REQUIRED_FIELD_EMPTY: "A field is required, but a blank or empty string was provided",
-    TYPE_NUMERIC: "A field should contain a number",
-    TYPE_TEXT: "A field should contain text"
-};
+import { IError, errorVocabulary} from './errors';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
