@@ -4,16 +4,7 @@ import { Subscription } from "rxjs";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SendEmailService } from "../../services/senEmail.service";
 import { ReCaptchaV3Service } from 'ng-recaptcha';
-
-interface IError {
-    error: {
-        errors: {
-            code: string;
-            field: string;
-            message: string;
-        }[];
-    }
-}
+import { IError, errorVocabulary} from './errors';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -66,14 +57,11 @@ export class ContactModalComponent implements OnDestroy {
                     this.showSuccessModal();
                     this.recaptchaV3Service.execute('');
                 }, (error: IError) => {
-                    this.showErrorModal(error.error.errors[0].message);
+                    const errorText = errorVocabulary[error.error.errors[0].code as keyof typeof errorVocabulary] || error.error.errors[0].message;
+                    this.showErrorModal(errorText);
                 });
             });
     }
-
-    // addFiles(files: File[] | []) {
-    //     this.files = files;
-    // }
 
     showSuccessModal() {
         this.showSuccess = true;

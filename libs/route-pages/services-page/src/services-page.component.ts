@@ -30,6 +30,9 @@ export class ServicesPageComponent {
         spaceBetween: 40,
         centeredSlides: true,
         initialSlide: 0,
+        mousewheel: {
+            releaseOnEdges: true
+        },
         pagination: {
             clickable: true
         }

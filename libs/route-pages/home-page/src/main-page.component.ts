@@ -1,4 +1,4 @@
-import {Component, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {Component, ViewChild, ChangeDetectorRef, HostListener} from '@angular/core';
 import { Router } from '@angular/router';
 import { NpmStatisticService } from "./getNpmStatistic.service";
 import SwiperCore, { Pagination, Mousewheel, SwiperOptions  } from "swiper";
@@ -232,6 +232,9 @@ export class MainPageComponent {
         slidesPerView: 1,
         spaceBetween: 40,
         centeredSlides: true,
+        mousewheel: {
+            releaseOnEdges: true
+        },
         initialSlide: 1,
         slideToClickedSlide: true,
         pagination: {
@@ -254,7 +257,9 @@ export class MainPageComponent {
         slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 40,
-        mousewheel: true,
+        mousewheel: {
+            releaseOnEdges: true
+        },
         pagination: {
             clickable: true
         },

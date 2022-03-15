@@ -32,6 +32,9 @@ export class FeedbackComponent implements AfterViewInit{
         slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 40,
+        mousewheel: {
+            releaseOnEdges: true
+        },
         loop: true
     };
     feedBackRespConfig: SwiperOptions = {
@@ -39,6 +42,9 @@ export class FeedbackComponent implements AfterViewInit{
         centeredSlides: true,
         spaceBetween: 40,
         loop: true,
+        mousewheel: {
+            releaseOnEdges: true
+        },
         autoHeight: true,
         pagination: {
             clickable: true
