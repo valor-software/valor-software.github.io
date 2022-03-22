@@ -21,13 +21,13 @@ export class BlogPageComponent {
         this.$articles = forkJoin(this.getArticles.getFullListOfArticles()).subscribe((res: IArticle[] | undefined) => {
             if (res) {
                 this.articles = res;
-                this.firstArticles = this.getLastArticles(res);
+                this.firstArticles = this.getFirstArticles(res);
                 this.activeArticle = this.firstArticles[0];
             }
         });
     }
 
-    getLastArticles(value: IArticle[]) {
+    getFirstArticles(value: IArticle[]) {
         return value.slice(0,4);
     }
 

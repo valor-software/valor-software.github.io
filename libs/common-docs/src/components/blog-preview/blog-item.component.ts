@@ -7,7 +7,7 @@ import { IArticle } from "../../models/article.interface";
     selector: 'blog-item',
     template:`
         <div class="article-item">
-            <div class="img-container">
+            <div class="img-container zoom-img-scale">
                 <img class="w-full h-full object-cover" [src]="article?.bgImg" [alt]="article?.title + 'img'">
             </div>
             <div class="text-container">

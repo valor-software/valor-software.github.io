@@ -1,7 +1,6 @@
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
-import {forkJoin, Subscription} from "rxjs";
-import { IPortfolio, GetPortfolioService, ProjectsRouteService } from "@valor-software/portfolio";
-import {Router} from "@angular/router";
+import {ChangeDetectorRef, Component, Input } from '@angular/core';
+import { IPortfolio, ProjectsRouteService } from "@valor-software/portfolio";
+import { Router } from "@angular/router";
 
 const SortList = {
     all_projects: 'All Projects',
@@ -17,25 +16,23 @@ const SortList = {
     selector: 'projects-block',
     templateUrl: './projects-block.component.html'
 })
-export class ProjectsBlockComponent implements OnDestroy{
+export class ProjectsBlockComponent {
     sortList?: string[];
-    $portfolio?: Subscription;
     projects?: IPortfolio[];
     sortProjects?: IPortfolio[] = [];
     activeIndex: string[] = ['all_projects'];
     showAll = false;
 
+    @Input() set _projects (value: IPortfolio[]) {
+        this.projects = Object.assign(value);
+        this.updateProjects(value);
+    }
+
     constructor(
         private router: Router,
-        private getPortfolio: GetPortfolioService,
         private cdr: ChangeDetectorRef,
-        private routeProject: ProjectsRouteService
+        private routeProjectServ: ProjectsRouteService
     ) {
-        this.$portfolio = forkJoin(this.getPortfolio.getFullListOfPortfolio()).subscribe((res: IPortfolio[] | undefined) => {
-            this.projects = res;
-            this.sortProjects = res;
-        });
-
         this.getSortKeys();
     }
 
@@ -78,15 +75,13 @@ export class ProjectsBlockComponent implements OnDestroy{
     }
 
     route(title: string) {
-        this.routeProject.route(title);
+        this.routeProjectServ.route(title);
     }
 
     updateProjects(projects: IPortfolio[]) {
-        this.sortProjects = projects;
-        this.cdr.detectChanges();
-    }
-
-    ngOnDestroy() {
-        this.$portfolio?.unsubscribe();
+        if (projects) {
+            this.sortProjects = Object.assign(projects);
+            this.cdr.detectChanges();
+        }
     }
 }
