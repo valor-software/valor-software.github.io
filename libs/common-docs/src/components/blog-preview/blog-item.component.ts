@@ -6,11 +6,11 @@ import { IArticle } from "../../models/article.interface";
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'blog-item',
     template:`
-        <div class="w-full flex flex-col justify-between mb-16">
-            <div class="w-full h-350 mb-6">
+        <div class="article-item">
+            <div class="img-container">
                 <img class="w-full h-full object-cover" [src]="article?.bgImg" [alt]="article?.title + 'img'">
             </div>
-            <div class="w-full text-light_title_col text-24 md:text-32 leading-40 font-bold">
+            <div class="text-container">
                 <p>{{article?.title}}</p>
             </div>
         </div>

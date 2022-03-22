@@ -1,4 +1,4 @@
-<div class="hidden md:block">
+<div class="hidden md:block" *ngIf="articles">
     <ng-container *ngTemplateOutlet="sortMenu"></ng-container>
 </div>
 
@@ -19,7 +19,7 @@
 
 <ng-template #sortMenu>
     <div
-            *ngIf="sortList.length && sortLang.length"
+            *ngIf="sortList.length && sortLang.length && articles"
             sortBlogs
             [activeItem]="activeIndex"
             [items]="articles"

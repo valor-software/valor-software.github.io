@@ -22,6 +22,7 @@ import { GetArticlesService } from './services/getArticles.service';
 import { ArticlesRouteService } from './services/articlesRoute.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { GetPortfolioService } from "@valor-software/portfolio";
+import { CustomSlicePipe } from './pipes/customSlice.pipe';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -39,6 +40,7 @@ export { BlogPreviewComponent } from './components/blog-preview/blog-preview.com
 export { BlogItemComponent } from './components/blog-preview/blog-item.component';
 export { ARTICLES_LIST } from './tokens/articlesList.token';
 export { SeoService } from './services/seo.service';
+export { CustomSlicePipe } from './pipes/customSlice.pipe';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ export { SeoService } from './services/seo.service';
     ShowHideDirective,
     BlogPreviewComponent,
     BlogItemComponent,
+    CustomSlicePipe
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -65,6 +68,7 @@ export { SeoService } from './services/seo.service';
     ShowHideDirective,
     BlogPreviewComponent,
     BlogItemComponent,
+    CustomSlicePipe
   ],
   providers: [ModalService, SendEmailService, ArticlesRouteService, GetArticlesService, GetPortfolioService,
     {

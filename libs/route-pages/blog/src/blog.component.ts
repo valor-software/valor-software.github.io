@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnDestroy} from '@angular/core';
 import { GetArticlesService } from "@valor-software/common-docs";
 import { forkJoin, Subscription } from "rxjs";
 import { IArticle } from "@valor-software/common-docs";
@@ -35,18 +35,20 @@ export class BlogComponent implements OnDestroy {
     showAll = false;
     isCollapsed = true;
 
+    @Input() set _articles (value: IArticle[]) {
+        this.articles = Object.assign(value);
+        this.sortArticles = Object.assign(value);
+    }
+
     constructor(
         private router: Router,
         private getArticles: GetArticlesService,
         private cdr: ChangeDetectorRef,
         private routeArticle: ArticlesRouteService
     ) {
-        this.$articles = forkJoin(this.getArticles.getFullListOfArticles()).subscribe((res: IArticle[] | undefined) => {
-            this.articles = res;
-            this.sortArticles = res;
-        });
         this.getSortKeys();
     }
+
 
     getSortKeys() {
         const sortSet = new Set<string>();
@@ -84,6 +86,7 @@ export class BlogComponent implements OnDestroy {
             const keys = this.activeIndex.filter(item => item !== 'pt' && item !== 'en');
             this.activeIndex = [...keys, key];
         }
+
         this.showAll = false;
     }
 
