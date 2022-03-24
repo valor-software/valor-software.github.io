@@ -17,7 +17,7 @@ import { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.compo
 import { ShowHideDirective } from './directives/showHide.directive';
 import { SwiperModule } from "swiper/angular";
 import { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
-import { BlogItemComponent } from './components/blog-preview/blog-item.component';
+import { BlogPortfolioItemComponent } from './components/blog-preview/blog-portfolio-item.component';
 import { GetArticlesService } from './services/getArticles.service';
 import { ArticlesRouteService } from './services/articlesRoute.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
@@ -37,10 +37,11 @@ export { GetArticlesService } from './services/getArticles.service';
 export { ArticlesRouteService } from './services/articlesRoute.service';
 export { IArticle } from './models/article.interface';
 export { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
-export { BlogItemComponent } from './components/blog-preview/blog-item.component';
+export { BlogPortfolioItemComponent } from './components/blog-preview/blog-portfolio-item.component';
 export { ARTICLES_LIST } from './tokens/articlesList.token';
 export { SeoService } from './services/seo.service';
 export { CustomSlicePipe } from './pipes/customSlice.pipe';
+export { IPortfolio } from './models/portfolio.interface';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
     BreadCrumbsComponent,
     ShowHideDirective,
     BlogPreviewComponent,
-    BlogItemComponent,
+    BlogPortfolioItemComponent,
     CustomSlicePipe
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
@@ -67,7 +68,7 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
     BreadCrumbsComponent,
     ShowHideDirective,
     BlogPreviewComponent,
-    BlogItemComponent,
+    BlogPortfolioItemComponent,
     CustomSlicePipe
   ],
   providers: [ModalService, SendEmailService, ArticlesRouteService, GetArticlesService, GetPortfolioService,

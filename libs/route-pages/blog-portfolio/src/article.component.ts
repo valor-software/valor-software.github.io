@@ -1,22 +1,14 @@
-import {Component, OnDestroy, ViewChild} from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from "@angular/router";
 import { GetArticlesService } from "@valor-software/common-docs";
 import { IArticle } from "@valor-software/common-docs";
 import { filter, switchMap, catchError } from 'rxjs/operators';
 import { Subscription, of } from "rxjs";
-// import {
-//     createPopperLite as createPopper,
-//     preventOverflow,
-//     flip,
-// } from '@popperjs/core';
-
-
-
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'article-block',
+    selector: 'article',
     templateUrl: './article.component.html'
 })
 export class ArticleComponent implements OnDestroy{
@@ -31,18 +23,10 @@ export class ArticleComponent implements OnDestroy{
         this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
             this.checkRoutePath();
         });
-        // setTimeout(() => {
-        //     const button = document.querySelector('#button') as HTMLElement;
-        //     const tooltip = document.querySelector('#tooltip') as HTMLElement;
-        //     console.log(button, tooltip);
-        //
-        //     if (button && tooltip) {
-        //         createPopper(button, tooltip, {
-        //             modifiers: [preventOverflow, flip],
-        //             placement: 'right',
-        //         });
-        //     }
-        // }, 1000);
+
+        if (!this.article) {
+            this.checkRoutePath();
+        }
     }
 
     checkRoutePath() {

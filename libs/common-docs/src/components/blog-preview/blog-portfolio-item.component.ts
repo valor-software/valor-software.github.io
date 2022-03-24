@@ -1,21 +1,23 @@
 import { Component, Input } from '@angular/core';
 import { IArticle } from "../../models/article.interface";
+import { IPortfolio } from "../../models/portfolio.interface";
 
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'blog-item',
+    selector: 'blog-portfolio-item',
     template:`
         <div class="article-item">
             <div class="img-container zoom-img-scale">
-                <img class="w-full h-full object-cover" [src]="article?.bgImg" [alt]="article?.title + 'img'">
+                <img class="w-full h-full object-cover" [src]="article ? article?.bgImg : project?.previewImg" [alt]="article ? article?.title : project?.name + 'img'">
             </div>
             <div class="text-container">
-                <p>{{article?.title}}</p>
+                <p>{{article ? article?.title : project?.name}}</p>
             </div>
         </div>
     `
 })
-export class BlogItemComponent {
+export class BlogPortfolioItemComponent {
     @Input() article?: IArticle;
+    @Input() project?: IPortfolio;
 }

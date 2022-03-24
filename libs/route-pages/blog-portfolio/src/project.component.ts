@@ -1,9 +1,10 @@
 import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
-import { IPortfolio, GetPortfolioService, ProjectsRouteService } from "@valor-software/portfolio";
+import { IPortfolio, GetPortfolioService } from "@valor-software/portfolio";
 import { Subscription } from "rxjs";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { DomSanitizer } from '@angular/platform-browser';
+import { BlogPortfolioRouteService } from "./services/route.service";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -20,13 +21,17 @@ export class ProjectComponent implements OnDestroy{
         private router: Router,
         private getProjectsServ: GetPortfolioService,
         private sanitizer: DomSanitizer,
-        private projectRoute: ProjectsRouteService,
+        private projectRoute: BlogPortfolioRouteService,
         private cdr: ChangeDetectorRef,
 
     ) {
         this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
             this.checkRoutePath();
         });
+
+        if (!this.project) {
+            this.checkRoutePath();
+        }
     }
 
     checkRoutePath() {
@@ -80,7 +85,7 @@ export class ProjectComponent implements OnDestroy{
     }
 
     route(link: string) {
-        this.projectRoute.route(link);
+        this.projectRoute.route(link, false);
     }
 
     getRespSrc(link: string): string {

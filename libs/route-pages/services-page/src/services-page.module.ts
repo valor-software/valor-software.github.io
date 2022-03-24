@@ -6,7 +6,6 @@ import { RouterModule, Routes } from "@angular/router";
 import { CommonDocsModule } from '@valor-software/common-docs';
 import { SwiperModule } from "swiper/angular";
 
-
 export { ServicesPageComponent } from "./services-page.component";
 
 @NgModule({

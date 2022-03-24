@@ -1,28 +1,55 @@
 import {
     Directive,
-    HostListener,
     Output,
-    EventEmitter, ElementRef, Input, OnChanges, SimpleChanges
+    EventEmitter,  Input
 } from "@angular/core";
+import { IPortfolio } from "@valor-software/portfolio";
 import { IArticle } from "@valor-software/common-docs";
+
 
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: "[sortBlogs]"
+    selector: "[sort]"
 })
-export class SortBlogsDirective {
+export class SortDirective {
     _items?: IArticle[];
     _activeItem: string[] = [];
+
     @Input() set activeItem(value: string[]) {
-        this.sortItems(value);
+        this._items ? this.sortArticleItems(value) : this.sortProjectItems(value);
     };
-    @Input() set items (value: IArticle[]) {
+
+    @Input() projects?: IPortfolio[];
+
+    @Input() set articles (value: IArticle[]) {
         this._items = value;
-        this.sortItems(this._activeItem);
+        this.sortArticleItems(this._activeItem);
     };
+
+    @Output() changedProjects: EventEmitter<IPortfolio[]> = new EventEmitter();
+
     @Output() changedArticles: EventEmitter<IArticle[]> = new EventEmitter();
 
-    sortItems(value: string[]) {
+    sortProjectItems(value: string[]) {
+        if (!value.length || value.includes('all_projects')) {
+            this.changedProjects.emit(this.projects);
+            return;
+        }
+
+        const files = new Set<IPortfolio>();
+
+        value.map(val => {
+            let filterRes: IPortfolio[] | undefined = [];
+            filterRes = this.projects?.filter((item: IPortfolio) => item.sortServices.includes(val));
+            if (filterRes?.length) {
+                filterRes.map(item => files.add(item));
+            }
+        });
+        this.changedProjects.emit([...files]);
+    }
+
+
+    sortArticleItems(value: string[]) {
         if (!value.length) {
             this.changedArticles.emit(this._items);
             return;

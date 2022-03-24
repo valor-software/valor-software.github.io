@@ -1,10 +1,10 @@
 <div class="">
     <div
             *ngIf="sortList?.length"
-            sortProjects
+            sort
             [activeItem]="activeIndex"
-            [items]="projects"
-            (changedArticles)="updateProjects($event)"
+            [projects]="projects"
+            (changedProjects)="updateProjects($event)"
             class="flex justify-between items-start mb-14 flex-col md:flex-row"
     >
         <div class="w-full">
@@ -24,12 +24,12 @@
         <div class="w-full flex flex-wrap justify-between">
             <ng-container *ngIf="!showAll && checkLength()">
                 <ng-container *ngFor="let art of sortProjects | slice:0:8">
-                    <project-item class="w-full lg:w-45% cursor-pointer" [project]="art" (click)="route(art.name)"></project-item>
+                    <blog-portfolio-item class="w-full lg:w-45% cursor-pointer" [project]="art" (click)="route(art.name)"></blog-portfolio-item>
                 </ng-container>
             </ng-container>
             <ng-container *ngIf="showAll || !checkLength()">
                 <ng-container *ngFor="let art of sortProjects">
-                    <project-item class="w-full lg:w-45% cursor-pointer" [project]="art" (click)="route(art.name)"></project-item>
+                    <blog-portfolio-item class="w-full lg:w-45% cursor-pointer" [project]="art" (click)="route(art.name)"></blog-portfolio-item>
                 </ng-container>
             </ng-container>
         </div>

@@ -20,9 +20,9 @@
 <ng-template #sortMenu>
     <div
             *ngIf="sortList.length && sortLang.length && articles"
-            sortBlogs
+            sort
             [activeItem]="activeIndex"
-            [items]="articles"
+            [articles]="articles"
             (changedArticles)="updateArticles($event)"
             class="flex justify-between items-start mb-14 flex-col md:flex-row"
     >
@@ -54,12 +54,12 @@
         <div class="w-full flex flex-wrap justify-between">
             <ng-container *ngIf="!showAll && checkLength()">
                 <ng-container *ngFor="let art of sortArticles | slice:0:8">
-                    <blog-item class="w-full lg:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-item>
+                    <blog-portfolio-item class="w-full lg:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-portfolio-item>
                 </ng-container>
             </ng-container>
             <ng-container *ngIf="showAll || !checkLength()">
                 <ng-container *ngFor="let art of sortArticles">
-                    <blog-item class="w-full lg:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-item>
+                    <blog-portfolio-item class="w-full lg:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-portfolio-item>
                 </ng-container>
             </ng-container>
         </div>

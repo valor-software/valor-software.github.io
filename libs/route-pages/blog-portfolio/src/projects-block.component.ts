@@ -1,6 +1,7 @@
 import {ChangeDetectorRef, Component, Input } from '@angular/core';
-import { IPortfolio, ProjectsRouteService } from "@valor-software/portfolio";
+import { IPortfolio } from "@valor-software/portfolio";
 import { Router } from "@angular/router";
+import { BlogPortfolioRouteService } from './services/route.service'
 
 const SortList = {
     all_projects: 'All Projects',
@@ -31,7 +32,7 @@ export class ProjectsBlockComponent {
     constructor(
         private router: Router,
         private cdr: ChangeDetectorRef,
-        private routeProjectServ: ProjectsRouteService
+        private routeProjectServ: BlogPortfolioRouteService
     ) {
         this.getSortKeys();
     }
@@ -75,7 +76,7 @@ export class ProjectsBlockComponent {
     }
 
     route(title: string) {
-        this.routeProjectServ.route(title);
+        this.routeProjectServ.route(title, false);
     }
 
     updateProjects(projects: IPortfolio[]) {

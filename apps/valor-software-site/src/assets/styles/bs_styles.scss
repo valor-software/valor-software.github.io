@@ -653,5 +653,19 @@ popover, .popover-block {
   }
 }
 
+swiper.transparent_slides {
+  .swiper-slide {
+    @apply bg-transparent pl-0 pr-0;
+  }
+
+  blog-portfolio-item.smaller-article-item,
+  blog-portfolio-item.smaller-project-item
+  {
+    .article-item, .project-item {
+      @apply mb-0 lg:mb-16
+    }
+  }
+}
+
 
 

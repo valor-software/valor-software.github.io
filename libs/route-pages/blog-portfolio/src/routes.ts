@@ -1,5 +1,6 @@
-import { BlogPageComponent } from "./blog-page.component";
-import { ArticleComponent } from "./article.component";
+import { GeneralPageComponent } from "./genral-page.component";
+import { GeneralItemComponent } from "./general-item.component";
+
 
 export const routes = [
     {
@@ -8,11 +9,11 @@ export const routes = [
             {
                 path: '',
                 pathMatch: 'full',
-                component: BlogPageComponent
+                component: GeneralPageComponent
             },
             {
                 path: ':id',
-                component: ArticleComponent
+                component: GeneralItemComponent
             }
         ]
     }
