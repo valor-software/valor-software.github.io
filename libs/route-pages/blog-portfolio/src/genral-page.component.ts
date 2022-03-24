@@ -11,7 +11,7 @@ SwiperCore.use([Pagination]);
 const generalPaths = {
     BLOG: 'blog',
     PORTFOLIO: 'portfolio'
-}
+};
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -78,8 +78,7 @@ export class GeneralPageComponent implements OnDestroy{
     }
 
     getFirstProjects <Type>(value: Type[]): Type[] {
-        let res = value.slice(0,4);
-        return res;
+        return value.slice(0,4);
     }
 
     route(link?: string) {

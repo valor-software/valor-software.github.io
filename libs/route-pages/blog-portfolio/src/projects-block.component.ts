@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, Input } from '@angular/core';
 import { IPortfolio } from "@valor-software/portfolio";
 import { Router } from "@angular/router";
-import { BlogPortfolioRouteService } from './services/route.service'
+import { BlogPortfolioRouteService } from './services/route.service';
 
 const SortList = {
     all_projects: 'All Projects',

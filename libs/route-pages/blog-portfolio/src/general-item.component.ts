@@ -6,7 +6,7 @@ import { Subscription } from "rxjs";
 const generalPaths = {
     BLOG: 'blog',
     PORTFOLIO: 'portfolio'
-}
+};
 
 
 @Component({
