@@ -1,0 +1,78 @@
+<div class="hidden md:block" *ngIf="articles">
+    <ng-container *ngTemplateOutlet="sortMenu"></ng-container>
+</div>
+
+<div class="block md:hidden w-full">
+    <div>
+        <div class="w-full flex justify-end">
+            <button
+                    (click)="isCollapsed = !isCollapsed"
+                    class="text-light_title_col mb-4">Filter
+                <div class="light-arrow" [class.rotate]="isCollapsed"></div>
+            </button>
+        </div>
+        <div [collapse]="isCollapsed">
+            <ng-container *ngTemplateOutlet="sortMenu"></ng-container>
+        </div>
+    </div>
+</div>
+
+<ng-template #sortMenu>
+    <div
+            *ngIf="sortList.length && sortLang.length && articles"
+            sort
+            [activeItem]="activeIndex"
+            [articles]="articles"
+            (changedArticles)="updateArticles($event)"
+            class="flex justify-between items-start mb-14 flex-col md:flex-row"
+    >
+        <div class="w-full lg:w-65% ">
+            <h3 class="text-placeholder_col text-24 font-bold mb-6">Domains</h3>
+            <div class="w-full flex flex-wrap items-center">
+                <div *ngFor="let key of sortList" (click)="toggleActiveIndex(key)">
+                    <p [class.text-grey_bg]="activeIndex.includes(key)" [class.bg-light_title_col]="activeIndex.includes(key)" class="mb-4 mr-4 cursor-pointer text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2 md:hover:text-grey_bg md:hover:bg-light_title_col transition-colors">{{getDomainTitle(key)}}</p>
+                </div>
+                <button (click)="resetAll()" class="text-light_title_col underline mb-4" [class.warning]="!sortArticles?.length && sortList.length">Reset all</button>
+            </div>
+
+        </div>
+        <div class="w-full lg:w-35% flex flex-wrap items-center">
+            <h3 class="text-placeholder_col text-24 font-bold mb-6">Language</h3>
+            <div class="w-full flex flex-wrap items-center">
+                <div *ngFor="let key of sortLang" (click)="toggleLanguage(key)">
+                    <p [class.text-grey_bg]="activeIndex.includes(key)" [class.bg-light_title_col]="activeIndex.includes(key)" class="mb-4 mr-4 cursor-pointer text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2 md:hover:text-grey_bg md:hover:bg-light_title_col transition-colors">{{getLanguageTitle(key)}}</p>
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-container *ngIf="sortArticles?.length || sortList.length">
+    <div class="w-full" *ngIf="sortArticles?.length">
+        <div class="w-full flex flex-wrap justify-between">
+            <ng-container *ngIf="!showAll && checkLength()">
+                <ng-container *ngFor="let art of sortArticles | slice:0:8">
+                    <blog-portfolio-item class="w-full lg:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-portfolio-item>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="showAll || !checkLength()">
+                <ng-container *ngFor="let art of sortArticles">
+                    <blog-portfolio-item class="w-full lg:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-portfolio-item>
+                </ng-container>
+            </ng-container>
+        </div>
+
+        <button *ngIf="!showAll && checkLength()" class="btn-pink w-full md:w-auto flex items-baseline justify-center mx-auto" (click)="showAll = true" >Show all articles</button>
+    </div>
+    <ng-container *ngIf="!sortArticles?.length">
+        <div class="w-full flex flex-col items-center lg:mt-36">
+            <img src="assets/img/bg-img/blog/no_articles.svg" alt="no articles img">
+            <p class="text-white text-center font-bold text-32 mt-8 mb-4">No Results found</p>
+            <p class="text-grey_font_col">Try adjusting your search or filter to find what you’re looking for.</p>
+            <button class="btn-pink w-auto flex items-baseline mt-6" (click)="resetAll()">Reset all</button>
+        </div>
+    </ng-container>
+</ng-container>
+

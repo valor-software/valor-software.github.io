@@ -10,20 +10,20 @@ export const routes: Routes = [
     loadChildren: () => import('@valor-software/services-page').then(m => m.ServicesPageModule)
   },
   {
-    path: 'blog',
-    loadChildren: () => import('@valor-software/blog').then(m => m.BlogModule)
-  },
-  {
-    path: 'portfolio',
-    loadChildren: () => import('@valor-software/projects').then(m => m.ProjectsModule)
-  },
-  {
     path: 'clients',
     loadChildren: () => import('@valor-software/for-clients').then(m => m.ForClientsModule)
   },
   {
     path: 'careers',
     loadChildren: () => import('@valor-software/careers').then(m => m.CareersModule)
+  },
+  {
+    path: 'blog',
+    loadChildren: () => import('@valor-software/blog-portfolio').then(m => m.BlogPortfolioModule)
+  },
+  {
+    path: 'portfolio',
+    loadChildren: () => import('@valor-software/blog-portfolio').then(m => m.BlogPortfolioModule)
   },
   {
     path: '**',

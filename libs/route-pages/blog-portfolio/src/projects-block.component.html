@@ -1,0 +1,40 @@
+<div class="">
+    <div
+            *ngIf="sortList?.length"
+            sort
+            [activeItem]="activeIndex"
+            [projects]="projects"
+            (changedProjects)="updateProjects($event)"
+            class="flex justify-between items-start mb-14 flex-col md:flex-row"
+    >
+        <div class="w-full">
+            <div class="w-full flex flex-wrap items-center">
+                <div *ngFor="let key of sortList" (click)="toggleActiveIndex(key)">
+                    <p [class.text-grey_bg]="activeIndex.includes(key)" [class.bg-light_title_col]="activeIndex.includes(key)" class="mb-4 mr-4 cursor-pointer text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2 md:hover:text-grey_bg md:hover:bg-light_title_col transition-colors">{{getSortTitle(key)}}</p>
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="sortProjects?.length">
+    <div class="w-full">
+        <div class="w-full flex flex-wrap justify-between">
+            <ng-container *ngIf="!showAll && checkLength()">
+                <ng-container *ngFor="let art of sortProjects | slice:0:8">
+                    <blog-portfolio-item class="w-full lg:w-45% cursor-pointer" [project]="art" (click)="route(art.name)"></blog-portfolio-item>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="showAll || !checkLength()">
+                <ng-container *ngFor="let art of sortProjects">
+                    <blog-portfolio-item class="w-full lg:w-45% cursor-pointer" [project]="art" (click)="route(art.name)"></blog-portfolio-item>
+                </ng-container>
+            </ng-container>
+        </div>
+
+        <button *ngIf="!showAll && checkLength()" class="btn-pink w-full md:w-auto flex items-baseline justify-center mx-auto" (click)="showAll = true" >Show all projects</button>
+    </div>
+</ng-container>
+

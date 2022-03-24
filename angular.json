@@ -189,26 +189,26 @@
       },
       "tags": []
     },
-    "route-pages-blog": {
+    "route-pages-blog-portfolio": {
       "projectType": "library",
-      "root": "libs/route-pages/blog",
-      "sourceRoot": "libs/route-pages/blog/src",
+      "root": "libs/route-pages/blog-portfolio",
+      "sourceRoot": "libs/route-pages/blog-portfolio/src",
       "prefix": "valor-software-site-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
-            "dist/libs/route-pages/blog"
+            "dist/libs/route-pages/blog-portfolio"
           ],
           "options": {
-            "project": "libs/route-pages/blog/ng-package.json"
+            "project": "libs/route-pages/blog-portfolio/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/route-pages/blog/tsconfig.lib.prod.json"
+              "tsConfig": "libs/route-pages/blog-portfolio/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/route-pages/blog/tsconfig.lib.json"
+              "tsConfig": "libs/route-pages/blog-portfolio/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -216,10 +216,10 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/libs/route-pages/blog"
+            "coverage/libs/route-pages/blog-portfolio"
           ],
           "options": {
-            "jestConfig": "libs/route-pages/blog/jest.config.js",
+            "jestConfig": "libs/route-pages/blog-portfolio/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -227,16 +227,13 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/route-pages/blog/src/**/*.ts",
-              "libs/route-pages/blog/src/**/*.html"
+              "libs/route-pages/blog-portfolio/src/**/*.ts",
+              "libs/route-pages/blog-portfolio/src/**/*.html"
             ]
           }
         }
       },
-      "tags": [],
-      "implicitDependencies": [
-        "common-docs"
-      ]
+      "tags": []
     },
     "route-pages-careers": {
       "projectType": "library",
@@ -374,56 +371,6 @@
             "lintFilePatterns": [
               "libs/route-pages/home-page/src/**/*.ts",
               "libs/route-pages/home-page/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": [
-        "common-docs",
-        "feedback"
-      ]
-    },
-    "route-pages-projects": {
-      "projectType": "library",
-      "root": "libs/route-pages/projects",
-      "sourceRoot": "libs/route-pages/projects/src",
-      "prefix": "valor-software-site-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/route-pages/projects"
-          ],
-          "options": {
-            "project": "libs/route-pages/projects/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/route-pages/projects/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/route-pages/projects/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/route-pages/projects"
-          ],
-          "options": {
-            "jestConfig": "libs/route-pages/projects/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/route-pages/projects/src/**/*.ts",
-              "libs/route-pages/projects/src/**/*.html"
             ]
           }
         }
@@ -587,10 +534,8 @@
         "route-pages-home-page",
         "common-docs",
         "route-pages-services-page",
-        "route-pages-blog",
         "route-pages-careers",
-        "route-pages-for-clients",
-        "route-pages-projects"
+        "route-pages-for-clients"
       ]
     },
     "valor-software-site-e2e": {

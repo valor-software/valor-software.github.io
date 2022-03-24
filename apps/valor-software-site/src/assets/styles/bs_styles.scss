@@ -619,7 +619,53 @@ popover, .popover-block {
               repeating-linear-gradient(to bottom, transparent 0 15px, #E3E3E3 4px 25px) 100%/2px 100% no-repeat;
 }
 
+.article-item, .project-item {
+  @apply w-full flex flex-col justify-between mb-16;
 
+  .img-container {
+    @apply w-full h-350 mb-6;
+  }
+
+  .text-container {
+    @apply w-full text-light_title_col text-24 md:text-32 leading-40 font-bold;
+  }
+}
+
+.smaller-article-item, .smaller-project-item {
+  .article-item, .project-item {
+    .img-container {
+      @apply max-h-60;
+    }
+
+    .text-container {
+      @apply text-24 leading-36;
+    }
+  }
+}
+
+.zoom-img-scale {
+  img:hover {
+    transform: scale(1.1);
+  }
+
+  img {
+    transition: transform ease .3s;
+  }
+}
+
+swiper.transparent_slides {
+  .swiper-slide {
+    @apply bg-transparent pl-0 pr-0;
+  }
+
+  blog-portfolio-item.smaller-article-item,
+  blog-portfolio-item.smaller-project-item
+  {
+    .article-item, .project-item {
+      @apply mb-0 lg:mb-16
+    }
+  }
+}
 
 
 
