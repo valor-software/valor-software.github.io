@@ -644,8 +644,10 @@ popover, .popover-block {
 }
 
 .zoom-img-scale {
+  overflow: hidden;
+
   img:hover {
-    transform: scale(1.1);
+    @apply lg:scale-110;
   }
 
   img {
