@@ -41,7 +41,6 @@ export { BlogPortfolioItemComponent } from './components/blog-preview/blog-portf
 export { ARTICLES_LIST } from './tokens/articlesList.token';
 export { SeoService } from './services/seo.service';
 export { CustomSlicePipe } from './pipes/customSlice.pipe';
-export { IPortfolio } from './models/portfolio.interface';
 
 @NgModule({
   declarations: [
