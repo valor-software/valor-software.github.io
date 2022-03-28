@@ -17,7 +17,7 @@ const schemaData: ISchemaData[][] = [
             color: 'pink'
         },
         {
-            title: 'Business Analysis',
+            title: 'Business analysis',
             icon: 'assets/img/icons/startup_schema/analysis.svg',
             clickable: false,
             color: 'pink'

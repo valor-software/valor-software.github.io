@@ -192,6 +192,10 @@
     @apply pt-16 lg:pt-52;
   }
 
+  &.first-section.pb-0 {
+    @apply pb-0 lg:pb-12;
+  }
+
   &.first-section-half {
     @apply pt-16 lg:pt-40;
   }

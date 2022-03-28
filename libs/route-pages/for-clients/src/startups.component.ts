@@ -4,12 +4,12 @@ import { ContactModalComponent, ModalService } from "@valor-software/common-docs
 const advantagesList = [
     {
         title: 'Full-Cycle MVP Development',
-        description: 'We’re not only about coding. We are about providing your MVP with all needed services from initial idea analysis to actual development and even creating all the documentation for smooth maintenance in the future. Launch your core product to the market to start acquiring your clients as soon as possible!',
+        description: 'We’re not only about coding. We are about providing your MVP with all needed services from initial idea analysis to actual development. We will also create all necessary documentation for smooth maintenance in the future.',
         img: 'assets/img/bg-img/clients/advantages/mvp_dev.svg'
     },
     {
         title: 'Product Pivot',
-        description: 'Your product is already on the market when suddenly you understand that users’ feedback suggests another path to successful market presence. Not a problem at all. Together we will find out the best option to implement changes with minimum time and money investment.',
+        description: 'Your product is already on the market when suddenly you understand that users’ feedback suggests another path to successful market presence. Not a problem at all. Together we will find out the best option to implement changes with minimum time and money investment?',
         img: 'assets/img/bg-img/clients/advantages/prod_pivot.svg'
     },
     {

@@ -11,18 +11,18 @@ const slideModel = [
         title: '<span>To nurture</span> professional<br>growth',
         list: [
             'Culture of self-development',
-            'Time for skill-up as part of the schedule',
-            'Internal and external knowledge-sharing',
-            'Contribution to open-source'
+            'Time for skill-up and self-study',
+            'Cultivation of knowledge-sharing',
+            'Contribution to open source'
         ],
         imgSource: 'assets/img/bg-img/landing_slide/slide_1.svg'
     },
     {
         title: '<span>To make</span> outsourcing<br><span>more</span> human',
         list: [
-            'Increased communication',
+            'Improved communication',
             'Decreased bureaucracy',
-            'Flat company structure',
+            'Human-centred organization',
             'We’re all partners, inside the company and with clients'
         ],
         imgSource: 'assets/img/bg-img/landing_slide/slide_2.svg'
@@ -32,7 +32,7 @@ const slideModel = [
         list: [
             'Pushing technology to its limits',
             'Building unique expertise within the company',
-            'Mastering edge technologies',
+            'Mastering cutting-edge tools',
             'Always finding the way to meet clients’ business needs'
         ],
         imgSource: 'assets/img/bg-img/landing_slide/slide_3.svg'
@@ -193,7 +193,7 @@ const OpenSourceSlidesModel = [
     {
         title: 'We’ve built<br> ngx-bootstrap<br> library',
         description: 'Bootstrap components powered by Angular',
-        list: ['Flexibility', 'Tinker-friendly code', 'Thorough documentation', 'Lots of demo'],
+        list: ['Flexibility', 'Tinker-friendly code', 'In-depth documentation', 'Lots of demo'],
         name: 'ngx-bootstrap',
         img: 'assets/img/bg-img/open-source/ngx-bootstrap.svg',
         link: 'https://valor-software.com/ngx-bootstrap/#/',
@@ -203,7 +203,7 @@ const OpenSourceSlidesModel = [
     {
         title: 'We sponsor<br>NestJS<br> framework',
         description: 'A progressive Node.js framework for building efficient, reliable, and scalable server-side applications',
-        list: ['Modular architecture', 'Scalability', 'Compatibility with server-side apps', 'Orientation on endpoints'],
+        list: ['Modular architecture', 'Scalability', 'Compatibility with server-side apps', 'Ability to serve multiple endpoints'],
         name: 'NestJS',
         img: 'assets/img/bg-img/open-source/nestjs.svg',
         link: 'https://nestjs.com/',

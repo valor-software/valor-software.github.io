@@ -23,7 +23,7 @@ const ourValues = [
     },
     {
         title: 'Growth',
-        description: 'We flourish through training, knowledge sharing, and contribution to open source.'
+        description: 'We flourish through training, knowledge-sharing, and contribution to open source.'
     },
     {
         title: 'Friendliness',

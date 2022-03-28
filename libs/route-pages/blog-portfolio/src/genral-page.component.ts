@@ -49,7 +49,7 @@ export class GeneralPageComponent implements OnDestroy{
                 filter(event => event instanceof NavigationEnd)
             )
             .subscribe(event => {
-                this.routeUrl = this.router.parseUrl(this.router.url).root.children["primary"].segments[0].path;
+                this.routeUrl = this.router.parseUrl(this.router.url).root.children["primary"]?.segments[0].path;
                 if (this.isBlogPage()) {
                     this.$generalSubscription = forkJoin(this.getArticlesServ.getFullListOfArticles()).subscribe((res: IArticle[] | undefined) => {
                         if (res) {
