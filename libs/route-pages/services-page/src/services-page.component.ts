@@ -6,7 +6,7 @@ SwiperCore.use([Pagination]);
 const PackageList = [
     {
         title: 'Startup Packages: From Idea to Scalable Production',
-        description: 'Helping you fine-tune your idea! From just a couple of words to a fully-equipped rewarding product — we are here to cover your back in this thrilling journey.'
+        description: 'Our brightest minds are here to help you fine-tune your idea! From just a verbal description in a couple of words to a fully-equipped and rewarding product — we are here to cover your back in this thrilling journey.'
     },
     {
         title: 'Design Systems',
