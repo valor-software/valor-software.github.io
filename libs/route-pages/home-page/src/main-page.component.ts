@@ -339,4 +339,12 @@ export class MainPageComponent {
         index++;
         return !!(index && !(index % 4));
     }
+
+    checkFirstSectionHeight(): boolean {
+        if (window.innerWidth < 768) {
+            return true;
+        }
+
+        return window.innerHeight > 800 && window.devicePixelRatio*100 === 100;
+    }
 }

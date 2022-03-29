@@ -12,15 +12,16 @@ SwiperCore.use([Mousewheel, Pagination]);
 export class FeedbackComponent implements AfterViewInit{
     @Input() set startFrom(value: string) {
         if (value) {
-            this.startFromIndex = this.feedbackList.findIndex(item => item.author === value);
+            let index = this.feedbackList.findIndex(item => item.author === value);
+            this.startFromIndex = index > 0 ? index : 0;
         }
 
         if(this.swiperRef && this.startFromIndex) {
-            this.swiperRef.swiperRef.slideTo(this.startFromIndex+1);
+            this.swiperRef.swiperRef.slideTo(this.startFromIndex);
         }
 
         if(this.swiperRefResp && this.startFromIndex) {
-            this.swiperRefResp.swiperRef.slideTo(this.startFromIndex+1);
+            this.swiperRefResp.swiperRef.slideTo(this.startFromIndex);
         }
     };
     feedbackList: IFeedBack[] = feedBack;
@@ -35,13 +36,13 @@ export class FeedbackComponent implements AfterViewInit{
         mousewheel: {
             releaseOnEdges: true
         },
-        loop: true
+        loop: false
     };
     feedBackRespConfig: SwiperOptions = {
         slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 40,
-        loop: true,
+        loop: false,
         mousewheel: {
             releaseOnEdges: true
         },
@@ -58,7 +59,7 @@ export class FeedbackComponent implements AfterViewInit{
     ) {}
 
     showIndex(value: any) {
-        this.currentFeedBackIndex = value.activeIndex > this.feedbackList.length ? 1 : value.activeIndex < 1 ? this.feedbackList.length : value.activeIndex;
+        this.currentFeedBackIndex = value.activeIndex;
         this.cdr.detectChanges();
     }
 
@@ -72,11 +73,11 @@ export class FeedbackComponent implements AfterViewInit{
 
     ngAfterViewInit() {
         if(this.swiperRef && this.startFromIndex) {
-            this.swiperRef.swiperRef.slideTo(this.startFromIndex+1);
+            this.swiperRef.swiperRef.slideTo(this.startFromIndex);
         }
 
         if(this.swiperRefResp && this.startFromIndex) {
-            this.swiperRefResp.swiperRef.slideTo(this.startFromIndex+1);
+            this.swiperRefResp.swiperRef.slideTo(this.startFromIndex);
         }
     }
 }
