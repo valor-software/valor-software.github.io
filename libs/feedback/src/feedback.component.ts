@@ -12,7 +12,7 @@ SwiperCore.use([Mousewheel, Pagination]);
 export class FeedbackComponent implements AfterViewInit{
     @Input() set startFrom(value: string) {
         if (value) {
-            let index = this.feedbackList.findIndex(item => item.author === value);
+            const index = this.feedbackList.findIndex(item => item.author === value);
             this.startFromIndex = index > 0 ? index : 0;
         }
 
