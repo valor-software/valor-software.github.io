@@ -347,4 +347,9 @@ export class MainPageComponent {
 
         return window.innerHeight > 800 && window.devicePixelRatio*100 === 100;
     }
+
+    checkCursor(event: MouseEvent) {
+
+        console.log(event);
+    }
 }
