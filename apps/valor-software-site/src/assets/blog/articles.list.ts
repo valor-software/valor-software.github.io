@@ -1,4 +1,5 @@
 export const articlesList = [
+    'Announcing_strategic_partnership_with_Zack_Jackson,_the_Module_Federation_inventor',
     'Implementing_WebSockets_plugin_for_NativeScript_using_React_Native',
     'TagTide_library_make_your_HTML_editor-friendly_and_more',
     'Diving_into_seeking_issue_with_MP3_files',
