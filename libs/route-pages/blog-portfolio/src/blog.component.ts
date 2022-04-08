@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, Input, OnDestroy} from '@angular/core';
 import { GetArticlesService } from "@valor-software/common-docs";
-import { forkJoin, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { IArticle } from "@valor-software/common-docs";
 import { Router } from "@angular/router";
 import {ArticlesRouteService} from "@valor-software/common-docs";
