@@ -23,18 +23,23 @@
             <p class="md:max-w-90% text-24 md:text-large text-dar_grey_font_col md:leading-44 mb-16 md:mb-28">
                 Understanding the insides of <span class="font-bold text-light_title_col">working</span> with NPOs and being <span class="font-bold text-light_title_col">experienced</span> in <span class="font-bold text-light_title_col">virtually</span> every sector of <span class="font-bold text-light_title_col">business</span>, Valor Software can create <span class="font-bold text-light_title_col">unique</span> technology-enabled <span class="font-bold text-light_title_col">solutions</span> for socially <span class="font-bold text-light_title_col">meaningful</span> purposes.
             </p>
-            <div class="lg:-w-full-65 lg:self-end">
-                <div *ngFor="let item of purposesList; index as i" class="flex flex-col lg:flex-row lg:border-light_title_col flex justify-between mb-8 pb-8" [class.lg:border-l-2]="i < purposesList.length - 1">
-                    <div class="lg:max-w-500 flex lg:mr-14 flex-col lg:flex-row">
-                        <div class="w-130 lg:-ml-65 h-115 bg-grey_bg">
-                            <p class="font-bold text-80 lg:text-105 text-dark_title_col_updated lg:leading-75">{{'0'+(i+1)}}</p>
+            <div class="">
+                <div
+                        *ngFor="let item of purposesList; index as i; let odd = odd"
+                        class="flex flex-col flex justify-between mb-14 w-full"
+                        [class.lg:flex-row-reverse]="odd"
+                        [class.lg:flex-row]="!odd"
+                >
+                    <div class="lg:max-w-540">
+                        <div class="mb-4">
+                            <p class="font-bold text-80 lg:text-105 text-dark_title_col_updated leading-75">{{'0'+(i+1)}}</p>
                         </div>
-                        <div class="lg:ml-9 mb-9 lg:mb-0">
-                            <p class="font-bold text-light_title_col text-24 lg:text-large tracking-tighter mb-4 lg:mb-6 lg:leading-44">{{item.title}}</p>
+                        <div class="mb-9 lg:mb-0">
+                            <p class="font-bold text-light_title_col text-24 lg:text-large tracking-tighter mb-6 lg:leading-44">{{item.title}}</p>
                             <p class="text-grey_font_col leading-6">{{item.description}}</p>
                         </div>
                     </div>
-                    <div class="lg:max-w-2/4 flex justify-center w-full"><img [src]="item.img"  alt="" style="width: fit-content"></div>
+                    <div class="lg:max-w-400 flex justify-center w-full"><img [src]="item.img"  alt="" style="width: fit-content"></div>
                 </div>
             </div>
         </div>
