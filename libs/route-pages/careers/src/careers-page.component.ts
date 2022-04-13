@@ -39,7 +39,7 @@ const offers = [
     },
     {
         title: 'Remote',
-        description: 'Even though we have a 4-flour office after renovation, everyone can work remotely, constantly, or from time to time.',
+        description: 'Even though we have a 4-floor office after renovation, everyone can work remotely, constantly, or from time to time.',
         img: 'assets/img/bg-img/careers/offer/remote.svg'
     },
     {

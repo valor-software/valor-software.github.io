@@ -16,10 +16,10 @@
     <h1 class="main-title">Our Values</h1>
     <div class="container flex justify-between">
         <div class="px-5 lg:px-0">
-            <div *ngFor="let item of valuesList;let i = index" class=" pb-8 relative" [class.border-l-2]="i<valuesList.length-1" [class.border-l-light_pink]="i<valuesList.length-1">
-                <div class="pink-circle"></div>
+            <div *ngFor="let item of valuesList;let i = index" class="pb-6 md:pb-10 relative" [class.border-l-2]="i<valuesList.length-1" [class.border-l-green]="i<valuesList.length-1">
+                <div class="green-circle"></div>
                 <div class="max-w-fit lg:max-w-400 ml-12 text-light_title_col">
-                    <p class="font-bold text-24 md:text-32">{{item.title}}</p>
+                    <p class="font-bold leading-6 md:leading-8 mb-4 text-24 md:text-32">{{item.title}}</p>
                     <p class="text-grey_font_col">{{item.description}}</p>
                 </div>
             </div>
