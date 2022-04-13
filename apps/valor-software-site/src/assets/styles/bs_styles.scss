@@ -9,6 +9,10 @@
   &[disabled] {
     @apply opacity-50;
   }
+
+  &[disabled]:hover {
+    @apply bg-pink opacity-50;
+  }
 }
 
 .btn-dark-pink {
@@ -191,7 +195,7 @@
 }
 
 .radio-button {
-  @apply w-4 h-4 rounded-full border border-pink bg-transparent shadow-inner_radio_btn transition-colors;
+  @apply w-4 h-4 rounded-full border border-pink shadow-inner_radio_btn_darker lg:shadow-inner_radio_btn bg-transparent transition-colors;
 
   &.checked {
     @apply bg-pink;
@@ -254,7 +258,7 @@
   @apply w-full h-full flex flex-col-reverse;
 
   .swiper-pagination {
-    @apply relative mt-12;
+    @apply relative md:mt-12;
   }
 
   .swiper-pagination-bullet {
@@ -636,11 +640,17 @@ popover, .popover-block {
               repeating-linear-gradient(to bottom, transparent 0 15px, #E3E3E3 4px 25px) 100%/2px 100% no-repeat;
 }
 
+swiper {
+  .article-item, .project-item {
+    @apply mb-10;
+  }
+}
+
 .article-item, .project-item {
   @apply w-full flex flex-col justify-between mb-16;
 
   .img-container {
-    @apply w-full h-350 mb-6;
+    @apply w-full h-350 md:mb-6 mb-4;
   }
 
   .text-container {

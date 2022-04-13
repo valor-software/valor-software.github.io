@@ -107,10 +107,12 @@ module.exports = {
         '85%': '85%',
         '80%': '80%',
         '600': '600px',
+        '630': '630px',
         '380': '380px',
         '75%': '75%',
         '400': '400px',
         '500': '500px',
+        '540': '540px',
         '900': '900px'
       },
       maxHeight: {
@@ -120,7 +122,8 @@ module.exports = {
         '200': '200px'
       },
       boxShadow: {
-        inner_radio_btn: 'inset 0 0 0 3px #161617'
+        inner_radio_btn: 'inset 0 0 0 3px #272727',
+        inner_radio_btn_darker: 'inset 0 0 0 3px #161617'
       },
       inset: {
         'm5': '-5px',
