@@ -39,7 +39,11 @@
                             <p class="text-grey_font_col leading-6">{{item.description}}</p>
                         </div>
                     </div>
-                    <div class="lg:max-w-630 flex justify-center w-full"><img [src]="item.img"  alt="" style="width: fit-content"></div>
+                    <div
+                        class="lg:max-w-630 flex justify-center w-full"
+                        [class.lg:mr-4]="odd"
+                        [class.lg:ml-4]="!odd"
+                    ><img [src]="item.img"  alt="" style="width: fit-content"></div>
                 </div>
             </div>
         </div>
