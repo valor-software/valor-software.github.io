@@ -120,7 +120,8 @@ module.exports = {
         '200': '200px'
       },
       boxShadow: {
-        inner_radio_btn: 'inset 0 0 0 3px #161617'
+        inner_radio_btn: 'inset 0 0 0 3px #272727',
+        inner_radio_btn_darker: 'inset 0 0 0 3px #161617'
       },
       inset: {
         'm5': '-5px',

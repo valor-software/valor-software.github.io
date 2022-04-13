@@ -9,6 +9,10 @@
   &[disabled] {
     @apply opacity-50;
   }
+
+  &[disabled]:hover {
+    @apply bg-pink opacity-50;
+  }
 }
 
 .btn-dark-pink {
@@ -191,7 +195,7 @@
 }
 
 .radio-button {
-  @apply w-4 h-4 rounded-full border border-pink bg-transparent shadow-inner_radio_btn transition-colors;
+  @apply w-4 h-4 rounded-full border border-pink shadow-inner_radio_btn_darker lg:shadow-inner_radio_btn bg-transparent transition-colors;
 
   &.checked {
     @apply bg-pink;
