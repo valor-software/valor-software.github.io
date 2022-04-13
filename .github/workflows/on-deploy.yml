@@ -75,5 +75,7 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VALOR_SOFTWARE_SITE }}'
+          target: development
           projectId: valor-software-site
-          channelId: ${{ env.FIREBASE_CHANNEL }}
+          channelId: live
+

@@ -1,0 +1,31 @@
+name: on push to master
+on:
+  push:
+    branches:
+      - add-deploy-to-master
+
+jobs:
+  build_and_deploy:
+     runs-on: ubuntu-latest
+     steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.4
+        id: cache-build
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+        if: steps.cache-build.outputs.cache-hit != 'true'
+      - run: |
+          npx ng build --runner cloud --prod
+          npx scully --prod --scanRoutes --project=valor-software-site
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VALOR_SOFTWARE_SITE }}'
+          channelId: live
+          target: production
+          projectId: valor-software-site

@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "valor-software-site"
+  },
+  "targets": {
+    "valor-software-site": {
+      "hosting": {
+        "development": [
+          "valor-software-site"
+        ],
+        "production": [
+          "valor-software-production"
+        ]
+      }
+    }
   }
 }
