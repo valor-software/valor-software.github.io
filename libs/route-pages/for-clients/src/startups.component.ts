@@ -9,7 +9,7 @@ const advantagesList = [
     },
     {
         title: 'Product Pivot',
-        description: 'Your product is already on the market when suddenly you understand that users’ feedback suggests another path to successful market presence. Not a problem at all. Together we will find out the best option to implement changes with minimum time and money investment?',
+        description: 'Your product is already on the market when suddenly you understand that users’ feedback suggests another path to successful market presence. Not a problem at all. Together we will find out the best option to implement changes with minimum time and money investment',
         img: 'assets/img/bg-img/clients/advantages/prod_pivot.svg'
     },
     {

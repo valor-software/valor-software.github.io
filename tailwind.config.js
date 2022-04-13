@@ -40,6 +40,7 @@ module.exports = {
       blue_btn: '#1F5CF5',
       darkBlue: '#22469F',
       light_green: '#77CE9A',
+      green: '#658B80',
       light_blue: '#71A5D2',
       popover_bg: '#282828'
     },
