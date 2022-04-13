@@ -90,5 +90,8 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VALOR_SOFTWARE_SITE }}'
           projectId: valor-software-site
-          channelId: ${{ env.FIREBASE_CHANNEL }}
+          target: development
           expires: 2d
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
+
