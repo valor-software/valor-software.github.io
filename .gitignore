@@ -43,3 +43,4 @@ Thumbs.db
 firebase-debug.log
 .nx-cache
 /gh-pages
+.firebase
