@@ -26,7 +26,7 @@ export const servicesList = [
     },
     {
         title: 'Product Ownership & Project Management',
-        description: 'Staying ahead of the technology curve, we cover front-end, backend, and full-stack development. Get an advanced and easily-maintainable product that grants high responsiveness and a smooth user journey.',
+        description: 'We’ll accomplish your team with the first-class product owner who will prioritize the backlog for engineers and take care of customer satisfaction by creating user stories. With the help of the project manager, we’ll keep the project requirements clear and up-to-date, so you get exactly the solution you need.',
         img: 'assets/img/bg-img/services_img/services_6.svg'
     }
 ];

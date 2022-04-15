@@ -5,7 +5,7 @@ import { BlogPortfolioRouteService } from './services/route.service';
 
 const SortList = {
     all_projects: 'All Projects',
-    web: 'web',
+    web: 'Web',
     mobile: 'Mobile',
     ui: 'UI/UX',
     migration: 'Migration',
