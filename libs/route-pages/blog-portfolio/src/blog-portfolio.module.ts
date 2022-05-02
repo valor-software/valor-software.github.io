@@ -13,6 +13,7 @@ import { ArticleComponent } from './article.component';
 import { ProjectComponent } from './project.component';
 import { FeedbackModule } from "@valor-software/feedback";
 import { SwiperModule } from "swiper/angular";
+import { GetBlogsService } from "./services/getBlogs.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { SwiperModule } from "swiper/angular";
     FeedbackModule,
     SwiperModule
   ],
-  providers: [ BlogPortfolioRouteService ]
+  providers: [ BlogPortfolioRouteService, GetBlogsService ]
 })
 export class BlogPortfolioModule { }
         

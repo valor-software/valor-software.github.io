@@ -18,7 +18,7 @@ export const articlesList = [
     'Incorporating_user_research_on_live_projects___Part_2',
     'Incorporating_user_research_on_live_projects___Part_1',
     'Why_you_might_want_to_switch_to_Time_and_Material_from_Fixed_Price',
-    'Cross-Site_Scripting_(XSS)_a_QA_Engineer\'s_Guide',
+    'Cross-Site_Scripting_(XSS)_a_QA_Engineer_s_Guide',
     'Career_Path_for_a_Flat-structured_company',
     'JSON_Web_Token_Authorization_with_Access_and_Refresh_Tokens_in_Angular_Application_with_Node.js_Server',
     'Testing_iOS_App_Vulnerabilities_with_Jailbreaking._Part_1.',

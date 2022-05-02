@@ -15,6 +15,7 @@ export class ArticlesRouteService {
             link = link.replace(':','');
             link = link.replace('–','_');
             link = link.replace('—','_');
+            link = link.replace('\'','_');
         }
         this.router.navigate(['blog', link]);
     }

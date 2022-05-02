@@ -16,6 +16,7 @@ export class ProjectsRouteService {
             link = link.replace('–','_');
             link = link.replace('—','_');
             link = link.replace('&','_');
+            link = link.replace('\'','_');
         }
         this.router.navigate(['portfolio', link]);
     }

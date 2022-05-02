@@ -15,6 +15,7 @@ export class ArticleComponent implements OnDestroy{
     changeBreadCrumbTitle?: {path: string, title: string}[];
     article?: IArticle;
     $routEvents?: Subscription;
+
     constructor(
         private router: Router,
         private getArticleServ: GetArticlesService,

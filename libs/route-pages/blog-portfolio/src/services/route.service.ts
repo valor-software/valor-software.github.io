@@ -16,6 +16,7 @@ export class BlogPortfolioRouteService {
             link = link.replace('–','_');
             link = link.replace('—','_');
             link = link.replace('&','_');
+            link = link.replace('\'','_');
         }
 
         this.router.navigate([isBlogPage ? 'blog' : 'portfolio', link]);
