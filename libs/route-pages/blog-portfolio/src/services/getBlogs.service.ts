@@ -1,36 +1,48 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
+import { titleRefactoring } from "../utils/titleRefactoring";
 
 import Processor from 'asciidoctor'
 const processor = Processor();
+const GITHUB_API = 'https://api.github.com/repos/SvetlanaMuravlova/testBlog'
+interface IBlogs {
+    list: string[];
+    info: {
+        author: string;
+        domains: string[];
+        authorImg: string;
+        language: string;
+        bgImg: string;
+        title: string;
+        position: string;
+        date: string;
+        seoDescription: string;
+    }[]
+}
 
 @Injectable({providedIn: 'platform'})
 export class GetBlogsService {
     $articles: Subject<any> = new Subject<any>();
+    blogs?: IBlogs;
     constructor(
         private http: HttpClient
-    ){
-        this.getBlogs();
-        let html = processor.convert('Hello, _Asciidoctor_');
-    }
+    ){}
 
     getBlogs() {
-        this.http.get('https://api.github.com/repos/SvetlanaMuravlova/testBlog/contents/blog_list.json').subscribe((res: any) => {
-            const blogsInfo = JSON.parse(atob(res.content));
-            const list = blogsInfo.list;
-            const blog_details = blogsInfo.blog_info;
+        this.http.get(`${GITHUB_API}/contents/blog_list.json`).subscribe((res: any) => {
+            this.blogs = this.parseContent(res.content);
+            const list = this.blogs?.list;
+            const blog_details = this.blogs?.info;
 
             if (list) {
                 let apiArray = list.map( (item: string, index: number) => {
                     return {
-                        request: this.http.get(`https://api.github.com/repos/SvetlanaMuravlova/testBlog/contents/${item}.adoc`),
+                        request: this.http.get(`${GITHUB_API}/contents/${item}.adoc`),
                         index,
                         routeTitle: item
                     }
                 });
-                console.log(apiArray);
-
                 const articles = apiArray[0].request.subscribe((resp: any) => {
                     const content = atob(resp.content);
                     const info = blog_details?.[0];
@@ -43,6 +55,25 @@ export class GetBlogsService {
         }, error => {
             console.log('error', error);
         })
+    }
+
+    parseContent(content: string): any {
+        return JSON.parse(this.decodeContent(content));
+    }
+
+    decodeContent(content: string): string {
+        return atob(content);
+    }
+
+    parseHtmlContent(content: string) {
+        return processor.convert(content);
+    }
+
+    getArticle(title: string): Observable<any>[] {
+        title = titleRefactoring(title);
+        return this.blogs ?
+            [this.http.get(`${GITHUB_API}/contents/${title}.adoc`)] :
+            [this.http.get(`${GITHUB_API}/contents/blog_list.json`), this.http.get(`${GITHUB_API}/contents/${title}.adoc`)];
     }
 
 }

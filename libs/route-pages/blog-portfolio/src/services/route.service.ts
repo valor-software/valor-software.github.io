@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
+import { titleRefactoring } from "../utils/titleRefactoring";
 
 @Injectable({providedIn: 'platform'})
 export class BlogPortfolioRouteService {
@@ -9,16 +10,7 @@ export class BlogPortfolioRouteService {
     ){}
 
     route(title: string, isBlogPage: boolean) {
-        let link = title;
-        while(link.match(' '|| ':' || '–' || '—' || '&')) {
-            link = link.replace(' ','_');
-            link = link.replace(':','');
-            link = link.replace('–','_');
-            link = link.replace('—','_');
-            link = link.replace('&','_');
-            link = link.replace('\'','_');
-        }
-
+        let link = titleRefactoring(title);
         this.router.navigate([isBlogPage ? 'blog' : 'portfolio', link]);
     }
 }

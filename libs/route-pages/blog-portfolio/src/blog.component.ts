@@ -49,6 +49,7 @@ export class BlogComponent implements OnDestroy {
         private getBlogsService: GetBlogsService
     ) {
         this.getSortKeys();
+        this.getBlogsService.getBlogs();
         getBlogsService.$articles.subscribe(res => {
             console.log('articles', res);
         })
