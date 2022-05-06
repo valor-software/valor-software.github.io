@@ -487,6 +487,14 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "preview": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/valor-software-site/src/environments/environment.ts",
+                  "with": "apps/valor-software-site/src/environments/environment.staging.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
