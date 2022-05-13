@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { ARTICLES_LIST } from "../tokens/articlesList.token";
 import { IArticle } from "../models/article.interface";
 
@@ -39,11 +39,13 @@ export class GetArticlesService {
         return;
     }
 
+    // @ts-ignore
     getHTMLSource(link?: string): Observable<any> | undefined {
+        console.log(link)
         if (!link) {
             return;
         }
 
-        return this.http.get(`assets/blog/html/${link}.html`, {responseType:'text'});
+        return this.http.get(`assets/blog/adoc/${link}.adoc`, {responseType:'text'})
     }
 }

@@ -1,0 +1,293 @@
+The world of testing is moving further and deeper towards automated tests. Naturally,
+more and more new tools and approaches are emerging. To keep up with innovation and at the same time understand
+which of the approaches or tools are best suited precisely in this situation, you need to continually experiment,
+try new applications, libraries, and technologies.
+
+As a testing engineer in the automation field, I
+understand that most functional testing types could and should be automated. But what about non-functional? UI
+testing, pixel-perfect, usability testing - can also be automated. Surprised? Then this article is for you,
+because it's a story about automated testing of the graphic user interface, including pixel-perfect and
+cross-browser Cypress testing, using https://applitools.com[Applitools^].
+
+According to official documentation, Applitools is a
+multi-functional application that provides a lot of interesting features for test engineers, developers, product
+owners, managers, etc. We wanted to implement just a few of the provided features to our https://valor-software.com/ngx-bootstrap/#[ngx-bootstrap^] library, specifically:
+
+* Screenshot comparisons using artificial intelligence
+* Applitools dashboard for managing snapshot tests
+* Cross-browser and cross-device testing for already implemented Cypress tests.
+
+All tasks above are interdependent on each other and therefore should be done at one time. On a side note:
+we're implying that Cypress is already installed and that all functionality is covered by e2e-Cypress tests.
+If you need help with the basic setup and configuration of Cypress, we advice to follow the https://docs.cypress.io/guides/getting-started/installing-cypress.html[official Getting Started article^]. To keep things straight, let's move through all steps and set up the Applitools plugin for Cypress:
+
+==== Set up Applitools Eyes
+
+We already had a large scope of Cypress tests, so they just needed several additions:
+
+[start=1]
+1. Add the Applitools plugin to the _cypress/plugins/index.js_ file by specifying
+*eyes.cypress* module:
+
+    require('@applitools/eyes.cypress')(module);
+
+[start=2]
+2. Import all possible Applitools commands to the _cypress/support/index.js_ file:
+
+    import './commands'
+
+*Note* In the basic setup, you can do steps #1 and #2 by just running '` _npx eyes-setup_ `'
+after installing the Eyes Cypress npm package.
+
+[start=3]
+3. Add Applitools eyes as an additional library to the dependencies and run *_npm i_* command in the terminal:
+
+    "@applitools/eyes.cypress": "3.4.2"
+
+[start=4]
+4. Add the appropriate command to the package.json in the src folder (we'll explain what it does, don't be
+scared):
+
+    "cy:run:snapshot": "APPLITOOLS_SHOW_LOGS=1 APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress/snapshot"
+
+* APPLITOOLS_SHOW_LOGS=1 - throws additional logs to the console (can be helpful when you need to
+investigate the reason for failures locally and on the CI).
+* APPLITOOLS_CONCURRENCY=100 - specifies the amount of available concurrent sessions in your price plan.
+*Note* Default value is 0.
+* --config integrationFolder=cypress/snapshot - makes Cypress run only snapshot tests in this scope.
+
+If you want to run Cypress tests without Applitools and you don't want to get any warnings from Applitools
+such as in the image below, add the APPLITOOLS_CONCURRENCY=100 parameter to the appropriate Cypress
+command.
+
+____
+*Important notice:* the default behavior for free accounts is that the Applitools
+visual tests are run with a concurrency value of 1. This means that the visual tests don't run in parallel,
+and therefore are slower.
+
+If your account does support a higher level of concurrency, it's possible to pass
+a different value by specifying '`concurrency:X`' in the applitools.config.js file.
+
+Check https://www.npmjs.com/package/@applitools/eyes.cypress#concurrency[more information on how to configure the concurrency level^]
+
+If you are interested in speeding up your visual tests, contact http://sdr@applitools.com/[sdr@applitools.com^] to get a trial account and a higher level of concurrency.
+____
+
+==== Write your test for visual testing
+
+To begin with, let's look how the https://github.com/valor-software/ngx-bootstrap/blob/development/cypress/snapshot/snapshot_spec.js[fully functional tes^]  looks like:
+
+    import { DatepickerPo } from '../support/datepicker.po';
+    import { DropdownsPo } from '../support/dropdowns.po';
+    import { ModalsPo } from '../support/modals.po';
+    import { TabsPo } from '../support/tabs.po';
+    import { TypeaheadPo } from '../support/typeahead.po';
+    describe('Snapshot test', () => {
+        const componentsArray = [
+            new DatepickerPo(),
+            new DropdownsPo(),
+            new ModalsPo(),
+            new TypeaheadPo(),
+            new TabsPo()
+        ];
+        componentsArray.forEach(page => {
+            it(`navigate to each Demo and check example: ${page.pageUrl}`, () => {
+            page.navigateTo();
+            cy.get('ng-sample-box').each(demo => {
+                const subtitle = demo.parent().find('h3').text();   cy.wrap(demo).find(`.bd-example`)
+                .eyesOpen({
+                    appName: 'NGX-bootstrap',
+                    concurrency: 5,
+                    matchLevel: 'Strict',
+                    testName: `${page.pageUrl} - ${subtitle}`,
+                    browser: [
+                        {
+                            name: 'chrome',
+                            width: 360,
+                            height: 640
+                        },
+                        {
+                            name: 'firefox',
+                            width: 360,
+                            height: 640
+                        },
+                        {
+                            name: 'firefox',
+                            width: 1366,
+                            height: 768
+                        }
+                    ]
+                })
+                .eyesCheckWindow({
+                    sizeMode: 'selector',
+                    selector: `.bd-example`,
+                    tag: `${page.pageUrl}-${subtitle}`,
+                    sendDom: false,
+                })
+                .eyesClose();
+            });
+        });
+    });
+});
+
+Let's analyze it step by step because it's much code to grasp at one sitting.
+
+Firstly, we need to
+declare an array of objects. Each Page Object has its unique URL for navigation and the set of methods for our
+test.
+
+    const componentsArray = [new DatepickerPo(),new DropdownsPo(),new TabsPo()];
+
+Take each object using forEach loop.
+
+    componentsArray.forEach(page =>
+
+Invoke URL name, which will make a descriptive test name and tell you what the name of the current testing page is.
+
+    it('navigate to each Demo and check example: ${page.pageUrl}', () => {
+
+Navigate to a page to start testing:
+
+    page.navigateTo();
+
+Method navigateTo() is implemented using cy.visit command, which will take our pageUrl, add it to baseUrl, and form an appropriate URL to navigate.
+
+    navigateTo() {
+        const bsVersionRoute = Cypress.env('bsVersion') ? `?_bsVersion=bs${Cypress.env('bsVersion')}` : '';
+        cy.visit(`${ this.pageUrl }${bsVersionRoute}`);
+    }
+
+Okay, but what is _bsVersionRoute_ doing there? This is just a specification of the testing process
+for the ngx-bootstrap library, due to the extended range of supported Bootstrap versions.
+
+_bsVersionRoute_ parameter will tell Cypress which bootstrap version should be tested:
+
+* https://valor-software.com/ngx-bootstrap/#/datepicker[Bootstrap 4^] version (default one)
+* https://valor-software.com/ngx-bootstrap/#/datepicker?_bsVersion=bs3[Bootstrap 3^] version
+
+Find each demo snippet, which consists of the demo component itself and two tabs with additional info:
+
+    cy.get('ng-sample-box').each(demo => {
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cab2e647177dc01b8d79c43_IaNO13CuCwBG6QvLn0cpMlOwcVqfi9TXLk_OMRojE1FGHdA2Ir-A8DqxNNJ08Qc3-mVo5mboraTgc6rffkffQm6F3yeFrd3BfshS7V04zrzoGYUnmpUofvrKpE5MYhWqRtPxhwi8.png[Bootstrap example]
+
+Now we can define the sub-title of each Demo, which we'll test. Let's turn to the parent of
+the component that we've found and find 'h3' header there.
+
+    const subtitle = demo.parent().find('h3').text();
+
+The _ng-sample-box_ component contains a template and component source. In our test, we don't need
+any information from tabs, so we'll work solely with the .bd-example class.
+
+    cy.wrap(demo).find(`.bd-example`)
+
+Oooh! Now we can open Applitools eyes and begin "staring"at our demo. Remember we said that these tasks
+are interdependent at the beginning of an article? Here we can also define the settings for our next task, in
+which we want to see the results on the Applitools Dashboard:
+
+    eyesOpen({
+        appName: 'NGX-bootstrap',
+        matchLevel: 'Strict',
+        testName: `${page.pageUrl} - ${subtitle}`,
+
+1. *appName*, as the name
+suggests, is an application name that'll be shown on the Dashboard in "Apps &amp Tests" menu. Also, we'll
+group all our test results according to this parameter.
+2. *matchLevel* parameter sets
+the level of image comparison. The default match level is "Strict". If you would like to use a different
+match level, you should specify it right here.
+
+Some other comparison levels:
+
+* *Exact* - pixel to pixel comparison.
+* *Strict* - comparison for everything, what the user can visually detect, including content and color.
+* *Content* - same as Strict, but without color comparison.
+* *Layout* - compares elements structure.
+
+If that's not enough, you can get more information about the _matchLevel_ parameter at https://help.applitools.com/hc/en-us/articles/360007188591-Match-Levels[official Applitoos blog^].
+
+[start=3]
+3. *testName* parameter
+helps you understand which tests failed and what functionality you should recheck or fix. You'll see this info
+in the Applitools Dashboard according to our configuration:
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cab32d43be192e8aa80ebec_ATDeleG.png[image7]
+
+Also, let's not forget about cross-browser testing, so be sure to indicate the browsers:
+
+    browser: [{
+        name: 'chrome',
+        width: 360,
+        height: 640
+    },
+    {
+        name: 'firefox',
+        width: 1366,
+        height: 768
+    }]
+
+To be clear, as of now, the Applitools plugin provides the possibility to test in Firefox, Chrome, IE, Edge.
+In the nearest future, Safari and many other browsers are going to be supported. In the meantime, you can
+already set different screen resolutions using width and height settings.
+
+Now, when we're almost done, let Applitools know that we're ready to start testing:
+
+    .eyesCheckWindow({
+        sizeMode: 'selector',
+        selector: `.bd-example`,
+        tag: `${page.pageUrl}-${subtitle}`,
+        sendDom: false,
+    })
+
+* *sizeMode* parameter defines which part of our window will be checked. List of available options: full-page, viewport, selector, region. You can find the official description of each option in the https://github.com/applitools/eyes-cypress/blob/master/README.md#arguments-to-cyeyescheckwindow[appropriate section of official documentation^].
+* *selector* parameter will work only if you set the _sizeMode: 'selector.'_ The value
+should be a valid CSS-selector or XPath to an appropriate component/block/part which you want to test.
+* *tag* parameter groups test results by tag in the dashboard.
+
+Once our tests are finished, we need to tell Applitools about it:
+
+ .eyesClose();
+
+==== Run our test and observe the results
+
+    APPLITOOLS_API_KEY=myKey npm run cy:run:snapshot
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cab3423f8e012b814e70c56_ECro61m.png[image5]
+
+Applitools Dashboard shows the baseline images (which will be taken at the first test run and
+will be considered as a reference result) and images from the current test run.
+
+If there are some differences, then the comparison logic, based on AI, will detect changes and show them to you:
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cab34427177dceb5bd7b918_YYUXA9z.png[image2]
+
+If we want to update our baseline images, we need to go to the Dashboard and accept the
+differences which were found during the latest test run. This helps you keep the latest reference images
+versions up-to-date.
+
+==== Summary
+
+We've implemented *cross-browser* and *cross-device* testing for our demo application, using our default testing library (Cypress) with the additional Applitools plugin. Now we can be sure that each part of our UI works properly. Okay, but everything couldn't be that good and painless, could it? Let's take a look at some of the pros and cons:
+
+===== PROS
+
+* Easy to set up, short time for implementation
+* AI-powered image comparison technology
+* A wide spectrum of available settings for image comparison
+* Possibility to manage reference images in the dashboard
+* Great test result management: find them, group them, remove, etc.
+* Responsive support team, who took all our wishes into account.
+
+===== CONS
+
+* Not as many browsers available for testing as we would like (BUT, while our article was passing through
+    several levels of verification, the Applitools development team has already made support for IE and Edge
+    and will soon have Safari as well).
+* TypeScript support is coming soon. Check the https://applitools.com/tutorials[list of tutorials^], maybe
+    it already exists.
+* From time to time, error logs in the console aren't that descriptive.
+
+==== Afterwords
+
+A big THANK YOU to https://applitools.com/[Applitools^]
+and https://www.thisdot.co/[This Dot Labs^] teams for their ongoing support during our testing journey and for providing the possibility to test all this out. It was a blast!

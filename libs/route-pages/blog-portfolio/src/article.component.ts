@@ -1,12 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from "@angular/router";
+import { GetArticlesService } from "@valor-software/common-docs";
 import { IArticle } from "@valor-software/common-docs";
-import { filter } from 'rxjs/operators';
-import {Subscription, forkJoin} from "rxjs";
-import {GetBlogsService} from "./services/getBlogs.service";
-import { titleRefactoring } from "./utils/titleRefactoring";
-
+import { filter, switchMap, catchError } from 'rxjs/operators';
+import { Subscription, of } from "rxjs";
+import Processor from 'asciidoctor'
+const processor = Processor();
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'article',
@@ -16,11 +16,10 @@ export class ArticleComponent implements OnDestroy{
     changeBreadCrumbTitle?: {path: string, title: string}[];
     article?: IArticle;
     $routEvents?: Subscription;
-
     constructor(
         private router: Router,
-        private sanitizer: DomSanitizer,
-        private getBlogsService: GetBlogsService
+        private getArticleServ: GetArticlesService,
+        private sanitizer: DomSanitizer
     ) {
         this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
             this.checkRoutePath();
@@ -35,54 +34,39 @@ export class ArticleComponent implements OnDestroy{
         const artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
         if (!artTitle) {
             this.router.navigate(['/blog']);
-            return;
         }
 
-        this.getBlogsService.getArticle(artTitle)
-        forkJoin(this.getBlogsService.getArticle(artTitle)).subscribe(res => {
-            let generalInfo;
-            let article;
+        if (artTitle) {
+            this.getArticleServ.getArticleRequest(artTitle).pipe(
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                switchMap((art) => {
+                    this.article = art;
+                    this.changeBreadCrumbTitle = [{
+                        path: artTitle,
+                        title: art.title
+                    }];
+                    if (art.contentUrl) {
+                        return this.getArticleServ.getHTMLSource(artTitle);
+                    }
+                }),
+                catchError(error => {
+                    if (!this.article) {
+                        this.router.navigate(['/blog']);
+                    }
+                    return of();
+                })
+            ).subscribe(res => {
 
-            if (res.length > 1) {
-                const list = this.getBlogsService.parseContent(res[0].content).list;
-                const index = list.findIndex((item: string) => item === titleRefactoring(artTitle));
-                if (!index && index !== 0) {
-                    return;;
+                if (this.article) {
+                    const html = processor.convert(res);
+                    // @ts-ignore
+                    this.article.content = html;
                 }
-
-                generalInfo = this.getBlogsService.parseContent(res[0].content).info[index];
-                article = this.getBlogsService.decodeContent(res[1]?.content);
-            }
-
-            if (res.length < 2) {
-                article = this.getBlogsService.decodeContent(res[0]?.content);
-                const index = this.getBlogsService.blogs?.list.findIndex((item: string) => item === titleRefactoring(artTitle));
-                if (!index && index !== 0) {
-                    return;;
-                }
-
-                generalInfo = this.getBlogsService.blogs?.info[index];
-            }
-
-            if (!generalInfo || !article) {
+            }, error => {
                 this.router.navigate(['/blog']);
-                return;
-            }
-
-            this.article = {... generalInfo, content: this.getBlogsService.parseHtmlContent(article)};
-            if (!this.article) {
-                return;;
-            }
-
-            this.changeBreadCrumbTitle = [{
-              path: artTitle,
-              title: this.article.title
-            }];
-
-        }, error => {
-            console.log('error', error);
-            this.router.navigate(['/blog']);
-        })
+            });
+        }
     }
 
     checkHTML(html: string) {

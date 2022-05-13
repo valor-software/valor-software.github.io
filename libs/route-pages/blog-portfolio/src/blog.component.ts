@@ -1,10 +1,9 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnDestroy} from '@angular/core';
 import { GetArticlesService } from "@valor-software/common-docs";
 import { Subscription } from "rxjs";
 import { IArticle } from "@valor-software/common-docs";
 import { Router } from "@angular/router";
-import { ArticlesRouteService } from "@valor-software/common-docs";
-import { GetBlogsService } from "./services/getBlogs.service";
+import {ArticlesRouteService} from "@valor-software/common-docs";
 
 export const Domains = {
     business_analysis: 'Business Analysis',
@@ -45,15 +44,11 @@ export class BlogComponent implements OnDestroy {
         private router: Router,
         private getArticles: GetArticlesService,
         private cdr: ChangeDetectorRef,
-        private routeArticle: ArticlesRouteService,
-        private getBlogsService: GetBlogsService
+        private routeArticle: ArticlesRouteService
     ) {
         this.getSortKeys();
-        this.getBlogsService.getBlogs();
-        getBlogsService.$articles.subscribe(res => {
-            console.log('articles', res);
-        })
     }
+
 
     getSortKeys() {
         const sortSet = new Set<string>();
