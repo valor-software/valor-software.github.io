@@ -1,0 +1,203 @@
+Let's start with a short background overview of how this task came on my plate. Why we could not effectively
+highlight paragraphs, sentences, and words. And what kind of a text editor the project required.
+
+=== Before the struggle and the win
+
+Here is what https://www.linkedin.com/in/waqas-younas/[Waqas Younas^], the founder of
+the solution, and a Valor's client says: "We recently developed an interesting product called http://www.homerwritingapp.com/[Homer^]. Homer is a web application. Its core function is to analyze text and give useful suggestions to make text simple, cogent, and clear. Homer does this in a somewhat unique way by highlighting paragraphs, sentences, and words based on some rules. When we set out to work on this we had to survey the existing text editors to ensure that we could effectively highlight
+paragraphs, sentences, and words. At first, this looked like regular front-end work. But upon a closer look, it
+seemed that there was no text editor available that offered all this functionality by exposing a user-friendly
+API.".
+
+=== The case
+
+Some time ago I tackled an unusual issue. It was about text highlighting in the HTML-WYSIWYG editor. At the first
+glance, this issue looked like a usual front-end task. But when I read the full set of requirements for my
+current project, I understood that this would require creating something unique. At least it felt this way…
+
+The requirements were the following:
+
+1. A user of the web application should be able to edit HTML markup in the WYSIWYG mode.
+2. Related paragraphs of text should be highlighted according to a set of specific rules.
+3. It should be possible to highlight sentences in any paragraph including already highlighted ones.
+4. It should be possible to highlight separate words in any sentence including already highlighted ones.
+
+I want to note that it was previously decided to use https://draftjs.org/[DraftJS^] as HTML-WYSIWYG implementation. Looking ahead I want to emphasize that I wasn't going to “reinvent the wheel”.
+On the opposite, the first thing I did was a search for similar solutions. But to my astonishment, I haven’t
+found even a single similar solution.
+
+There is only one reasonable choice in this case — create everything from scratch.
+
+So, the final result should look somehow similar to the image below:
+
+image::https://valor-software.com/assets/images/6050ac8247cb436466fbc712_goal.png[]
+
+In the example above we see the following:
+
+* The first paragraph contains only highlighted words.
+* The second one is highlighted in full using grey color and contains a yellow sentence with a blue-highlighted word inside.
+* Also, the second paragraph contains a lot of highlighted words with different colors.
+
+Before implementation, I decided to perform detailed research on how to highlight different fragments of text in DraftJS editor.
+
+The first useful thing that I found is https://draftjs.org/docs/advanced-topics-decorators/[Decorators in DraftJS^]. According to the information mentioned above, I should write code like the following:
+
+----
+    // ...
+        import { Editor, EditorState, ContentState } from "draft-js";
+        import DraftPasteProcessor from "draft-js/lib/DraftPasteProcessor";
+
+        const compositeDecorator = new CompositeDecorator([
+            {
+                strategy: handleErrorWordStrategy,
+                component: HandleRedSpan,
+            },
+            {
+                strategy: hashtagWarningSentenceStrategy,
+                component: HandleYellowSpan,
+            },
+        ]);
+        const processedHTML = DraftPasteProcessor.processHTML('Hello world!');
+        const contentState = ContentState.createFromBlockArray(processedHTML);
+        const [editorState, setEditorState] = useState(
+            EditorState.createWithContent(contentState, compositeDecorator)
+        );
+    // ...
+----
+
+If you want more information on the topic, please, read the https://draftjs.org/docs/advanced-topics-decorators/[Draft.js Decorators documentation^].
+
+I implemented the first basic example with *CompositeDecorator*. But my first attempt, as it
+sometimes happens, was not successful. Let me explain why. I provided a couple of strategies. Let’s say, the
+first strategy should highlight words in red color and the second one should highlight the whole background of
+the sentences in yellow. It seemed that my basic example worked well. But it worked only when highlighted
+fragments didn’t interfere with each other. Otherwise, some highlights were missing.
+
+I decided to change my approach regarding highlighting. First of all, there is only one easy way to implement
+highlighting in DraftJS. I’m talking about decorators. I found that https://github.com/Soreine/draft-js-simpledecorator[SimpleDecorator for DraftJS^] is the best approach to apply inline text highlighting for the same fragments.
+
+My second attempt turned out to be successful. I provided a simple and flexible solution as a decorator for
+DraftJS. If you want to see the source of the solution, please, visit https://github.com/buchslava/draft-js-multi-inline-highlight[Multi-inline
+highlighting for DraftJS editor^]. Also, you can try a working https://buchslava.github.io/draft-js-multi-inline-highlight-demo/[example^]. Also, its source code is available in https://github.com/buchslava/draft-js-multi-inline-highlight-demo[one of my repositories].
+
+Let me share some significant points regarding my solution. First of all, this solution is written using
+TypeScript. Secondly, I use https://rollupjs.org/guide/en/[rollup.js] as a module bundler. You can see its config https://github.com/buchslava/draft-js-multi-inline-highlight/blob/main/rollup.config.js[here].
+
+Let me explain how to use the solution:
+
+=== Import
+
+    import React, { useRef, useState, useEffect } from "react";
+    import { Editor, EditorState, ContentState, ContentBlock } from "draft-js";
+    import {
+        MultiHighlightDecorator,
+        WordMatcher,
+        SentenceMatcher,
+        MultiHighlightConfig,
+    } from "draft-js-multi-inline-highlight";
+
+Some important notes:
+
+*MultiHighlightDecorator* - returns the decorator.
+
+*WordMatcher* and *SentenceMatcher* allow to MultiHighlightDecorator to recognize
+different kinds of text fragments. They are “word” and “sentence” in our case. You can implement your own
+*matcher* if you want.
+
+*MultiHighlightConfig* - allows us to declare what exactly and how it should be highlighted.
+
+=== Configuration
+
+    const hightlightStyles = {
+        yellow: {
+            backgroundColor: "yellow",
+        },
+        red: {
+            color: "red",
+        },
+        blue: {
+            color: "blue",
+        },
+    };
+    const initHighlightConfig: MultiHighlightConfig = {
+        rules: [
+            {
+                content: ["His back begins to ache, but he knows he can bear it."],
+                style: "yellow",
+                matcher: SentenceMatcher,
+            },
+            {
+                content: ["and"],
+                style: "red",
+                matcher: WordMatcher,
+            },
+            {
+                content: ["pulled", "knows"],
+                style: "blue",
+                matcher: WordMatcher,
+            },
+        ],
+        styles: hightlightStyles,
+    };
+
+The configuration above exactly means the following.
+
+* There are 3 rules.
+* The first one is regarding sentence highlighting. In this case, *yellow* style should be applied for each entrance of the following text *His back begins to ache, but he knows he can bear it.*
+* The second couple is regarding words highlighting. In this case, *red* style should be applied to the *and* word. Also, *blue* style should be applied for *pulled* and *knows* words.
+
+=== Initialization
+
+    const [highlightConfig, setHighlightConfig] = useState(
+        initHighlightConfig
+    );
+    const [editorState, setEditorState] = useState(
+        EditorState.createWithContent(
+            contentState,
+            MultiHighlightDecorator(highlightConfig)
+        )
+    );
+
+=== Change highlighting state according to the new configuration
+
+The issue that *initHighlightConfig* above is static. Let’s say the text to be highlighted has
+changed. In this case, we should recreate an instance of *MultiHighlightDecorator.*
+
+    useEffect(() => {
+        if (highlightConfig) {
+            setEditorState(
+                EditorState.set(editorState, {
+                    decorator: MultiHighlightDecorator(highlightConfig),
+                })
+            );
+        }
+    }, [highlightConfig]);
+
+=== Known issues
+
+During this solution development, I discovered several serious issues. The first issue was regarding incorrect
+behavior when using https://github.com/draft-js-plugins/draft-js-plugins[@draft-js-plugins/editor^].
+That’s why I used *draft-js* instead. Briefly, my solution does not work properly with the
+DraftJS plugin system.
+
+The second known issue is related to incorrect behavior in browsers on mobile phones when a user is editing
+highlighted text on the fly.
+
+Both of them are related to https://github.com/draft-js-plugins/draft-js-plugins[@draft-js-plugins/editor^].
+I hope these issues will be fixed in the future.
+
+=== Shortlist of links you need
+- https://draftjs.org/[DraftJS editor^]
+- Source code for this https://www.npmjs.com/package/draft-js-multi-inline-highlight[solution -
+NPM^]
+- Source code for the https://github.com/buchslava/draft-js-multi-inline-highlight-demo[demo^]
+- Working https://buchslava.github.io/draft-js-multi-inline-highlight-demo/[example^]
+- DraftJS https://github.com/Soreine/draft-js-simpledecorator[Simple Decorator^]
+
+
+
+
+
+
+
+

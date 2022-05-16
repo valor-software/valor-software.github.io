@@ -1,0 +1,690 @@
+Whenever we talk about web development and particularly web-application security, we
+can't walk past these two terms - authentication and authorization. In this article, I want to teach you how to
+implement JSON Web Token (JWT) authorization with access and refresh tokens in your Angular application. Since
+authorization also requires some server-side code, I'm going to implement the server functionality too so that we will have the whole context and see how all the parts work together.
+
+Of course, JSON Web Token is not the only tool which you can use to add authorization to your application. I find this solution more self-contained and implemented faster than other common practices like session-based authentication. If you haven't heard about JWT, I recommend you check out https://jwt.io/introduction/[the official page of JWT standard^] before we switch to the implementation. In short, JWT is a string, which contains encrypted information about the authorized user, so we can avoid calling the service or database more than is necessary. For example, you can add such kinds of information to your token:
+
+* User ID
+* Email
+* Username.
+
+That's what we are going to do together!
+
+Be aware that you shouldn't store any sensitive data in the
+token like passwords or payment credentials because tokens are not fully encrypted. The server can simply read
+the user's data from the JWT, without making any database lookups. We only need to inspect the token itself
+and validate the signature.
+
+In addition, keep in mind that JWT tokens should have an expiration time
+and be renewable at certain intervals. It's not obligatory, but it will protect your application when somebody
+steals the token and tries to get private data from the token over and over again.
+
+Let's look at the scheme to get a general understanding of how authorization with tokens works.
+
+._Authorization with access and refresh tokens._
+[caption=""]
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5e456e6a9522e72386a3d109_D-zJVfpIrJ-Ji17cz4XsxFhXbJ7M6u0l9t-0fnzVVEN_O9HqCLyb-kzVV9PD3VQepkw2G6MmVTIidM6kTZ_-qbQVrLppqWNrV0pue1FyXWgkgwdE1sjVb6ZFp8WM_hFEBmnwSc_5.png[]
+
+As you can see, the user receives both access and refresh tokens from the server. The access token is used each time we want to get protected data from our server, but usually developers send it with every request. You can do this using the https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers[HTTP Authorization request
+header^].
+
+The server is responsible for checking the user's permission by using information, which is encrypted inside the access token. If the token is not expired and permission is valid, the server sends the requested data back to the client. Otherwise, the user receives an HTTP error of https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401[401 Unauthorized^]. In this case, the client sends a refresh token request.
+
+The request that is responsible for updating the token has to
+contain the refresh token&nbsp created during the user's authorization. The server parses this token, and in
+case it's valid, the system generates new access and refresh tokens, sends them back to the client, and failed
+requests are repeated. Under other conditions, the server sends back an error, and the user is redirected to
+the login page - not mandatory, but it is the most common practice.
+
+After a brief description of JWT
+and the authorization process, we will implement this functionality step by step and investigate it more
+deeply through the following steps:
+
+* Preliminary work: Configure the sample app
+* Step 1: Create access and refresh tokens on the server
+* Step 2: Send tokens to the client application
+* Step 3: Create an HTTP interceptor
+* Step 4: Check access via the token
+* Step 5: Get the user data on page reload
+* Step 6: Add functionality to refresh tokens.
+
+== Preliminary work: Configure the sample app
+
+I've already created a basic application for our little
+experiment. It consists of server and client parts. The client part is small and contains just three pages
+just to demonstrate the authorization for an Angular 8 application - a home page, a profile page, and a login
+page. The profile page is available only if users are logged in.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5e456e6e2fec8556e02f3341_T30FMx7gF5n-sSnAg81DpPmcLju5wKNKl5U0YeDyuuaAG4UZDqI9iL7VaM5kZuQ6WUSxzzgDLibThgVfo3fg7qZvbXBsRstL6L9epE3LUIE1Q-CwZPHPWGxE9jONVo_VivhLKd__.gif[]
+
+Here is a list of technologies I've used for the application:
+
+* Node.js 12.13.1
+
+* NPM 6.12.1
+
+* Angular 8.2.14
+
+* Angular CLI 8.3.19
+
+* Typescript 3.5.3
+
+* Bootstrap 4.3.1.
+
+Note: You can have other versions of packages, but it could affect some of the functionality.
+
+The code, which we are using for the sample app, is available https://github.com/IraErshova/angular-authorization[on GitHub^]. See the https://github.com/IraErshova/angular-authorization/blob/master/README.md[README.md file^] for instructions on how to set up the application locally. You can check out the step-x (where x is the number of the step) branch if you want to work on the application in parallel with me alongside this article, or you can pull the master branch to use the code with the authorization already implemented.
+
+As I've
+already mentioned, we have three pages, and the profile page contains sensitive data available for logged-in
+users only. The application sends HTTP requests to our server, which works with fake data. There is no
+database, and I just use the object to store user lists and information about user's jobs in the data.mock.js
+file.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/step-1/server/data.mock.js[server/data.mock.js^]
+
+    exports.users = [{...}];
+    exports.jobs = [{...}];
+
+Note: To log into the application, you can use any user from the data.mock.js file. There you can find
+usernames and passwords for each user.
+
+When the user submits a form on the login page, the server
+checks the username and the password being sent. In case there's a user on our list, we send the user's
+information back to the client and save it to the user$ property and local storage inside the auth.service.ts
+file. That's how we can use the user's information throughout the application. If you are not familiar with
+this syntax, don't worry, you can implement this functionality in any way that is more suitable to you.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/step-1/client/src/app/services/auth.service.ts[client/src/app/services/auth.service.ts^]
+
+    export class AuthService {
+        user$ = new BehaviorSubject(null);
+        constructor(private http: HttpClient) { }
+        login(form: {username: string; password: string}): Observable<User> {
+            return this.http.post<User>(`${environment.apiUrl}/login`, form)
+            .pipe(
+                tap(user => this.user$.next(user))
+            );
+        }
+    }
+
+AuthGuard protects the page from unauthorized access, but it doesn't protect the server-side data. If you
+look at the profile component code, you'll see the request, which is executed during component initialization.
+It gets the user's job list. The request has a params object, which contains the user's ID.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/step-1/client/src/app/services/job.service.ts#L16[client/src/app/services/job.service.ts^]
+
+    getJobList(userId: string): Observable<Job[]> {
+        return this.http.get<Job[]>(`${environment.apiUrl}/job-list`, {
+            params: {
+                userId
+            }
+        });
+    }
+
+Everybody who knows the user’s ID can repeat the request and get the private data—this is what we want to
+solve in this article. The access token is used in a token-based authorization to allow the client application
+to access the server’s data. As mentioned earlier, we receive access and refresh tokens after the user
+successfully authenticates and authorizes access. Then, we set the access token as HTTP Authorization header
+and send it with every request to our server. The token being passed informs the server that the bearer of the
+token has been authorized to access the server’s data.
+
+So, without further ado, let's get started learning JWT-based Angular authorization!
+
+== Step 1: Create access and refresh tokens
+
+First of all, let’s create a jwt.js file inside the server folder and add code there. The jwt.js file will be
+responsible for the functionality related to tokens. As I’ve already mentioned, we are going to use JWT, so we
+only need three things to create a token:
+
+* A payload—the user’s data, which we want to encode;
+* A secret or private key;
+* The expiration time of the token.
+
+Tokens are generated on the server based on the secret key stored on the server and the payload. When a
+hacker tries to replace data in the payload, the token will become invalid because it won’t match the original
+value. Besides, the hacker doesn’t have an opportunity to generate a new token since the secret key for
+encryption is stored on the server. In our example, I added a secret key to the server.js file only, but
+it’s not good practice. You should always use the env variable for such data.
+
+Since tokens are not
+fully encrypted information, we recommend not to store any sensitive data like passwords or payment
+credentials in them.
+
+To make JSON web tokens work in the project, install the https://www.npmjs.com/package/jsonwebtoken [jwt library^] as a dependency of the app (this part is already done) and import the module to the jwt.js file.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/step-1/server/jwt.js[server/jwt.js^]
+
+    const jwt = require('jsonwebtoken');
+    const uuidv1 = require('uuid/v1');
+    const mockDB = require('./data.mock');
+
+Let’s move on to the function of getting the access token. As you can see, the expiration time is only 15
+minutes. After this time, the token will expire, and we will need to create a new one.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/step-1/server/jwt.js#L7[server/jwt.js^]
+
+    function getAccessToken(payload) {
+        return jwt.sign({user: payload}, jwtSecretString, { expiresIn: '15min' });
+    }
+
+The function of getting the refresh token is a bit more complicated because we need to save it somewhere
+on the server. Usually, developers use https://redis.io/[Redis^] to store refresh tokens, but
+they can also use any database they want, no strict rules there. In our case, we are going to use our fake
+database to store tokens. But be aware that if we reload the server, we will lose all this data.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/step-1/server/jwt.js#L11[server/jwt.js]
+
+    function getRefreshToken(payload) {
+        // get all user's refresh tokens from DB
+        const userRefreshTokens = mockDB.tokens.filter(token => token.userId === payload.id); // check if there are 5 or more refresh tokens,
+        // which have already been generated. In this case, we should
+        // remove all this refresh tokens and leave only new one for security reason
+        if (userRefreshTokens.length >= 5) {
+            mockDB.tokens = mockDB.tokens.filter(token => token.userId !== payload.id);
+        }
+        const refreshToken = jwt.sign({user: payload}, jwtSecretString, { expiresIn: '30d' });
+        mockDB.tokens.push({
+            id: uuidv1(),
+            userId: payload.id,
+            refreshToken
+        });
+        return refreshToken;
+    }
+
+I want you to look at the comments which I left for you inside the function. As you can see,
+before creating a new refresh token, we check how many refresh tokens the user has already had. But how is it
+possible that one user has multiple refresh tokens? Nowadays, people can use more than one device -
+smartphones, laptops, and tablets. That's why we have to store all the refresh tokens for each user to use the
+authorization feature on more than one device. During each login, a record is created in our database. But, in
+that case, it's worth taking care of security, that's why I check the number of refresh tokens. The maximum
+number of tokens is five. If there are more than five, we have to delete all of them and keep only the new
+one. In this way, we can avoid a situation when someone tries to do sketchy stuff.
+
+Note: To make
+your authorization process more secure, you have to add an extra identifier to the tokens table. For example,
+it could be a https://en.wikipedia.org/wiki/Device_fingerprint[Browser fingerprint^]. Browser
+fingerprinting allows websites to collect information about your browser type and version, your operating
+system, active plugins, timezone, language, screen resolution, and other various active settings. With this
+information, it will be almost impossible for the person who stole the token to refresh it without the correct
+browser fingerprint. But we don't cover this part in the article.
+
+At the end of the file, we have to export our functions to use them in any part of the server.
+
+    module.exports = {
+        getAccessToken,
+        getRefreshToken
+    };
+
+== Step 2: Send tokens to the client application
+
+Аfter you create the tokens, send them to the client application. If you want, you can switch to the step-2 branch to see implemented code or continue working in your current branch.
+
+Let's add this functionality to the server. First of all, we have
+to import our JWT service (jwt.js) to server.js and use its functions to get tokens.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/step-2/server/server.js#L16[server/server.js]
+
+    const jwtService = require('./jwt');…app.post('/login', function (req, res) {
+    ...
+        // Add tokens to request’s response const payload = {
+            id : user.id,
+            email: user.email,
+            username: user.username
+        };
+        const accessToken = jwtService.getAccessToken(payload);
+        const refreshToken = jwtService.getRefreshToken(payload);
+        res.send({
+            user,
+            accessToken,
+            refreshToken
+        });
+    });
+
+Note: Don't forget to restart the server after you change code there, as there is no hot reload. If you
+really want to save some time, you can install https://nodemon.io/[nodemon^] to restart your
+server automatically on changes.
+
+Also, we need to update the login method in AuthService because
+the response was changed. Let's inject LocalStorageService to the service and save tokens to the local
+storage.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/step-2/client/src/app/services/auth.service.ts#L20[client/src/app/services/auth.service.ts^]
+
+    export class AuthService {
+        user$ = new BehaviorSubject(null);
+        constructor(
+            private http: HttpClient,
+            private localStorageService: LocalStorageService
+        ) { }
+        login(form: {username: string; password: string}): Observable<LoginResponse> {
+            return this.http.post<LoginResponse>(`${environment.apiUrl}/login`, form)
+            .pipe(
+                tap(response => {
+                    this.user$.next(response.user);
+                    this.setToken('token', response.accessToken);
+                    this.setToken('refreshToken', response.refreshToken);
+                })
+            );
+        }
+        private setToken(key: string, token: string): void {
+            this.localStorageService.setItem(key, token);
+        }
+
+Great! Let’s log in and check what’s in the local storage. The result should look like this:
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5e456e6a9fe97358c72813ef_7GCuS1cbD_HahA8YFMkdU9pSjr-FUebYprhgkReozezZK40LXqzasa-MPAio_CUxUWnLi6VkfdoM6BZVHDVViAdvcdVn5aNAq31H_b-BYbwwyDseMAr7MDRHiXImdle3NfPFwht5.png[]
+
+Also, don't forget to remove tokens from the local storage on logout.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/step-2/client/src/app/services/auth.service.ts#L37[client/src/app/services/auth.service.ts^]
+
+    logout(): void {
+        this.localStorageService.removeItem('token');
+        this.localStorageService.removeItem('refreshToken');
+        this.user$.next(null);
+    }
+
+Right now, we can add the HTTP Authorization header to all the requests, which we send to the server. The
+best tool for this is https://angular.io/api/common/http/HttpInterceptor[HttpInterceptor].
+
+== Step 3: Create an HTTP interceptor
+
+First of all, we have to create HttpInterceptor. Let's add
+token.interceptor.ts to the client/service folder. To set a new header, you need to get the access token from
+the local storage. In case the access token isn't null, set the header. Otherwise, leave the request data
+untouched.
+
+Note: You can switch to the step-3 branch if you want to see the ready code.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/step-3/client/src/app/services/token.interceptor.ts[client/src/app/services/token.interceptor.ts^]
+
+    export class TokenInterceptor implements HttpInterceptor {
+        constructor(private localStorageService: LocalStorageService) {}
+        intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+            const accessToken = this.localStorageService.getItem('token');
+            return next.handle(this.addAuthorizationHeader(req, accessToken));
+        }
+        private addAuthorizationHeader(request: HttpRequest<any>, token: string): HttpRequest<any> {
+            // If there is token then add Authorization header otherwise don't change    request
+            if (token) {
+                return request.clone({setHeaders: {Authorization: `Bearer ${token}`}});
+            }
+            return request;
+        }
+    }
+
+Awesome! Let's check our new functionality - log in and go to the profile page. In Devtools, in the Network
+tab, you can see a request for a job list. If you click on it, you'll see more information about the request.
+If everything is correct, you'll see our Authorization header in the Headers tab.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5e456e6af2cbe27e2f88d6f1_mYVaqA9S2g77V5DwY2sja-yotNBM2pJDALNDYSVigOqZYnt7sNHxd8B2eelr1SgU1BBVATuX_65zyAQ4suSOmxnpvxedaGtUCFFmkGgfr8wVHcUQ1R3qzTSdAnpJ_tjynPuL7C08.png[]
+
+The next step is to implement a token check to verify access to the server data.
+
+== Step 4: Check access via the token
+
+For starters, we create a function in jwt.js, which is going to
+return either user data or an error. I'm planning to wrap this functionality in Promise. You can switch to
+the step-4 branch to see ready code for this part or continue working on your branch.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/master/server/jwt.js#L33[server/jwt.js^]
+
+    function verifyJWTToken(token) {
+        return new Promise((resolve, reject) => {
+            if (!token.startsWith('Bearer')) {
+                // Reject if there is no Bearer in the token
+                return reject('Token is invalid');
+            }
+            // Remove Bearer from string
+            token = token.slice(7, token.length);  jwt.verify(token, jwtSecretString, (err, decodedToken) => {
+                if (err) {
+                    return reject(err.message);
+                }
+                // Check the decoded user
+                if (!decodedToken || !decodedToken.user) {
+                    return reject('Token is invalid');
+                }
+                resolve(decodedToken.user);
+            })
+        });
+    }
+
+jwt.verify method has a callback that is called with the decoded payload if the signature and optional
+expiration, audience, or issuer are valid. If not, it will be called with an error. As you can see, the
+function returns decoded user's data. This is done to use this data further in request methods, so we can
+avoid calling the database every time. Also, don't forget to export this function.
+
+Next, let's use this function to add middleware to our routes, which require verification of access. Middleware functions give you access to the request (req) and response (res) objects and the next function in the application's request-response cycle. https://expressjs.com/en/guide/writing-middleware.html[Read more about middleware^].
+
+Middleware functions are also the perfect place to modify the req and res objects with
+relevant information and check user's access. In our case, we can take the token and use it to fetch the
+user's details from a database and store those details in res.user. Let's add a new function to server.js,
+which is going to be our authorization middleware.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/master/server/server.js#L88[server/server.js^]
+
+    function jwtMiddleware(req, res, next) {
+        // get token from headers object
+        const token = req.get('Authorization');
+        // check token
+        if (!token) {
+            res.status(401).send('Token is invalid');
+        } jwtService.verifyJWTToken(token)
+        .then(user => {
+            // put user's information to req object
+            req.user = user;
+            // call next to finish this middleware function
+            next();
+        }).catch(err => {
+            res.status(401).send(err);
+        });
+    }
+
+In this function, we get the token from the request's headers object and pass it as an argument to the
+verifyJWTToken function we just added. In case of error, we send 401 HTTP statuses and error messages. To
+apply our middleware function to the particular routes, we have to put it as an argument. Let's check it with
+the request, which is responsible for getting the job list.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/master/server/server.js#L52[server/server.js^]
+
+    app.get('/job-list', jwtMiddleware, function (req, res) {
+        const jobList = mockDB.jobs.filter(job => job.user_id === req.user.id); res.send(jobList);
+    });
+
+As you can see, I deleted the user ID, which I got from the request's query.
+
+    const userId = req.query.userId; // deleted code
+
+Now replace it with the user ID from the req.user object. Do you remember that we created this property
+inside the jwtMiddleware function? In this way, we get rid of the user's ID, which we send from the client.
+Now, no one can get the user's job list event if they know the user's ID. That's how the access token
+works.
+
+Since we don't need the user ID, we can delete params from the request. Let's remove
+redundant code from JobService.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/master/client/src/app/services/job.service.ts[client/src/app/services/job.service.ts^]
+
+    getJobList(): Observable<Job[]> {
+        return this.http.get<Job[]>(`${environment.apiUrl}/job-list`);
+    }
+
+It seems like everything already looks good except the refresh token functionality. But the small issue
+which we have to fix is the loss of the user's data on page reload. Let's correct this.
+
+== Step 5: Get the user data on page reload
+
+If users log in and reload any page of our application in a browser,
+we need to redirect users to that page and keep them logged in. This will only happen if the access token is
+valid.
+
+To implement this functionality, we need to get the user data from the client or, if there
+is no such data, but we have the token, fetch the token from the server. Let's do this.
+
+Note: You can use the step-5 branch.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/master/client/src/app/services/auth.service.ts#L43[client/src/app/services/auth.service.ts^]
+
+    getCurrentUser(): Observable<User> {
+        return this.user$.pipe(
+            switchMap(user => {
+                // check if we already have user data
+                if (user) {
+                    return of(user);
+                }
+                const token = this.localStorageService.getItem('token');
+                // if there is token then fetch the current user
+                if (token) {
+                    return this.fetchCurrentUser();
+                }
+                return of(null);
+            })
+        );
+    }
+    fetchCurrentUser(): Observable<User> {
+        return this.http.get<User>(`${environment.apiUrl}/current-user`)
+            .pipe(
+                tap(user => {
+                // save data to this.user$
+                this.user$.next(user);
+            })
+        );
+    }
+
+Look, we have a new request there—`${environment.apiUrl}/current-user`. Let’s add it to our server.
+
+Note: This request is similar to getting the job list request because it returns sensitive
+data. To receive user's data, we need to have a valid token.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/master/server/server.js#L61[server/server.js^]
+
+    app.get('/current-user', jwtMiddleware, function (req, res) {
+        const currentUser = mockDB.users.find(user => user.id === req.user.id); res.send(currentUser);
+    });
+
+The function is straightforward because we didn't even have to get user data from the database it's
+already in req.user object. Therefore, the only thing left for us to do is to send this data.
+
+Next, use this functionality in the root component. Since it doesn't matter which page we reload, this request
+will always work. Can you guess which component we're going to use? AppComponent, no doubt! Go to
+app.component.ts and change the following code:
+
+Path: https://github.com/IraErshova/angular-authorization/blob/master/client/src/app/app.component.ts#L22[client/src/app/app.component.ts^]
+
+    ngOnInit(): void {
+        this.user$ = this.authService.user$.pipe(share());
+    }
+
+To:
+
+    ngOnInit(): void {
+        this.user$ = this.authService.getCurrentUser().pipe(share());
+    }
+
+Great! You can check your application now. If you log in and reload it in the browser, you'll still be
+authorized.
+
+Finally, we are ready to move to our last step - implementing the refresh token
+functionality.
+
+== Step 6: Add functionality to refresh tokens
+
+The last issue, which we are
+going to resolve, is refreshing the tokens. If you remember, our access token has an expiration time of only
+15 minutes. It increases the security of the application. The token will become invalid 15 minutes after it's
+created, and all the requests that have an authorization check will return a 401 HTTP error. To avoid this, we
+have to update the access token by using the refresh token so users could continue using the application
+without even noticing that something happened. Look at these steps:
+
+1. jwtMiddleware check if the access token is still valid.
+2. If the access token is invalid, the server sends a 401 HTTP error.
+3. Add the refresh token functionality to our interceptor. It checks every HTTP error, which the client receives from the server. 
+4. In case the error has a 401 status, the client sends the request /refresh-token with the refresh token in
+    the body (and a fingerprint if you have it).
+5. The server looks for this refresh token in the DB, and in case there is no such token, we send a 403 HTTP
+    error.
+6. Otherwise, we check if the refresh token is valid (like it hasn't expired and contains a correct
+    signature). If the token is invalid, we send a 403 HTTP error.
+7. If you have a fingerprint, you have to compare the current fingerprint with the one from the DB. If they
+    are different, you have to send a 403 HTTP error.
+8. In case all checks are valid, update this refresh token with a new one.
+9. Create a new access token.
+10. Send new tokens to the client.
+11. Repeat failed requests.
+
+Note: You can switch to the step-6 branch to view the ready code.
+
+Steps 1 and 2 are already
+implemented. Let's add the refresh token functionality to the server. First of all, we have to create a new
+post request.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/master/server/server.js#L67[server/server.js^]
+
+    app.post('/refresh-token', function (req, res) {
+        const refreshToken = req.body.refreshToken; if (!refreshToken) {
+            return res.status(403).send('Access is forbidden');
+        }
+        try {
+            const newTokens = jwtService.refreshToken(refreshToken, res);  res.send(newTokens);
+        } catch (err) {
+            const message = (err && err.message) || err;
+            res.status(403).send(message);
+        }
+    });
+
+As you can see, we have a new method there - jwtService.refreshToken. This method will check if our
+refresh token is valid and return new access and refresh tokens.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/master/server/jwt.js#L57[server/jwt.js^]
+
+    function refreshToken(token) {
+        // get decoded data
+        const decodedToken = jwt.verify(token, jwtSecretString);
+        // find the user in the user table
+        const user = mockDB.users.find(user => user.id = decodedToken.user.id); if (!user) {
+            throw new Error(`Access is forbidden`);
+        }
+        // get all user's refresh tokens from DB
+        const allRefreshTokens = mockDB.tokens.filter(refreshToken => refreshToken.userId === user.id);
+        if (!allRefreshTokens || !allRefreshTokens.length) {
+            throw new Error(`There is no refresh token for the user with`);
+        }
+        const currentRefreshToken = allRefreshTokens.find(refreshToken => refreshToken.refreshToken === token);
+        if (!currentRefreshToken) {
+            throw new Error(`Refresh token is wrong`);
+        }
+        // user's data for new tokens
+        const payload = {
+            id : user.id,
+            email: user.email,
+            username: user.username
+        };
+        // get new refresh and access token
+        const newRefreshToken = getUpdatedRefreshToken(token, payload);
+        const newAccessToken = getAccessToken(payload); return {
+            accessToken: newAccessToken,
+            refreshToken: newRefreshToken
+        };
+    }
+    function getUpdatedRefreshToken(oldRefreshToken, payload) {
+        // create new refresh token
+        const newRefreshToken = jwt.sign({user: payload}, jwtSecretString, { expiresIn: '30d' });
+        // replace current refresh token with new one
+        mockDB.tokens = mockDB.tokens.map(token => {
+            if (token.refreshToken === oldRefreshToken) {
+                return {
+                    ...token,
+                    refreshToken: newRefreshToken
+                };
+            }
+            return token;
+        });
+        return newRefreshToken;
+    }
+
+I want you to pay attention to the getUpdatedRefreshToken function. You may wonder why I updated the old refresh token with a new one considering that every refresh token is valid for 30 days. It’s true. But in case somebody steals your refresh token, a hacker can also generate a new access token during these 30 days while the old token expires. To avoid this situation, and increase security, we are going to update the refresh token whenever we generate a new access token. But if the user is offline for more than 30 days, the user has to be authenticated again.
+
+Let’s update our interceptor and add a refresh token request to AuthService. After getting a new token, don’t forget to save them in local storage:
+
+Path: https://github.com/IraErshova/angular-authorization/blob/master/client/src/app/services/auth.service.ts#L71[client/src/app/services/auth.service.ts^]
+
+    refreshToken(): Observable<{accessToken: string; refreshToken: string}> {
+        const refreshToken = this.localStorageService.getItem('refreshToken');
+        return this.http.post<{accessToken: string; refreshToken: string}>(
+            `${environment.apiUrl}/refresh-token`,
+        {
+            refreshToken
+        }).pipe(
+            tap(response => {
+                this.setToken('token', response.accessToken);
+                this.setToken('refreshToken', response.refreshToken);
+            })
+        );
+    }
+
+In the interceptor, we are going to work with a response. We have to check every response, which returns
+an error. In case you get a 401 HTTP error, update the tokens.
+
+Path: https://github.com/IraErshova/angular-authorization/blob/master/client/src/app/services/token.interceptor.ts[client/src/app/services/token.interceptor.ts^]
+
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const accessToken = this.localStorageService.getItem('token'); return next.handle(this.addAuthorizationHeader(req, accessToken)).pipe(
+        catchError(err => {
+            // in case of 401 http error
+            if (err instanceof HttpErrorResponse && err.status === 401) {
+            // get refresh tokens
+            const refreshToken = this.localStorageService.getItem('refreshToken');    // if there are tokens then send refresh token request
+                if (refreshToken && accessToken) {
+                    return this.refreshToken(req, next);
+                }    // otherwise logout and redirect to login page
+                return this.logoutAndRedirect(err);
+            }   // in case of 403 http error (refresh token failed)
+            if (err instanceof HttpErrorResponse && err.status === 403) {
+                // logout and redirect to login page
+                return this.logoutAndRedirect(err);
+            }
+        // if error has status neither 401 nor 403 then just return this error
+            return throwError(err);
+        })
+    );
+    }
+    private logoutAndRedirect(err): Observable<HttpEvent<any>> {
+        this.authService.logout();
+        this.router.navigateByUrl('/login');
+        return throwError(err);
+    }
+    private refreshToken(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (!this.refreshingInProgress) {
+            this.refreshingInProgress = true;
+            this.accessTokenSubject.next(null);
+            return this.authService.refreshToken().pipe(
+                switchMap((res) => {
+                    this.refreshingInProgress = false;
+                    this.accessTokenSubject.next(res.accessToken);
+                    // repeat failed request with new token
+                    return next.handle(this.addAuthorizationHeader(request, res.accessToken));
+                })
+            );
+        } else {
+            // wait while getting new token
+            return this.accessTokenSubject.pipe(
+            filter(token => token !== null),
+            take(1),
+            switchMap(token => {
+                // repeat failed request with new token
+                return next.handle(this.addAuthorizationHeader(request, token));
+            }));
+        }
+    }
+
+Lastly, I want to draw your attention to the refreshToken method. You can see that there is a condition.
+We check whether refreshing has already started, set refreshingInProgress variable to true, and populate null
+into accessTokenSubject behavior subject. Then, we send a refreshToken request. In case of success, we set
+refreshingInProgress to false and place the access token we received into the accessTokenSubject. Finally, we
+call next.handle with a new Authorization header to repeat failed requests. In case the refreshing is already
+happening (the _else_ part of the _if_ statement), we want to wait until accessTokenSubject
+becomes _not null_. Once some value is emitted, we use take(1) to complete the stream and call _next.handle_
+to process the request.
+
+If we get a 403 HTTP error, this means that the server couldn't update your
+access token, and the user must be logged out.
+
+== Conclusion
+
+In this article, we looked at
+such an important concept as authorization using JSON Web Token (JWT). JWT is overtaking the traditional
+session authorization for Angular applications by encrypting the user information and passing it back to the
+client.
+
+We introduced you to principles of how JWT authorization works and implemented it step by
+step into https://github.com/IraErshova/angular-authorization[the sample app that you can always
+find on GitHub^].
+
+I hope that you got the picture of JWT authorization and its implementation and
+enjoyed the journey! If you have any questions, please leave comments and I will get back to you.
+
+Thanks for reading!
+
+
