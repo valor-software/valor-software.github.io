@@ -46,9 +46,7 @@ export class ArticleComponent implements OnDestroy{
                         path: artTitle,
                         title: art.title
                     }];
-                    if (art.contentUrl) {
-                        return this.getArticleServ.getHTMLSource(artTitle);
-                    }
+                    return this.getArticleServ.getHTMLSource(artTitle);
                 }),
                 catchError(error => {
                     if (!this.article) {
@@ -57,7 +55,6 @@ export class ArticleComponent implements OnDestroy{
                     return of();
                 })
             ).subscribe(res => {
-
                 if (this.article) {
                     const html = processor.convert(res);
                     // @ts-ignore

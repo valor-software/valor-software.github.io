@@ -1,0 +1,151 @@
+Valor Software is not only a software development company but also a great contributor to
+the Angular development community: being creators of https://valor-software.com/ngx-bootstrap[ngx-bootstrap^], we
+strive to improve our beloved library as Angular innovates. This time we worked on implementing Ivy renderer. Ivy
+is a complete rewrite of the renderer with the significant refactoring of the compiler enabling devs to:
+
+* Reach better build times (thanks to incremental compilation)
+* Make a bundle smaller and faster, which will be especially useful for mobiles (with a generated code more
+    compatible with tree shaking)
+* Unlock new potential features (metaprogramming or higher order components, lazy loading of the component
+    instead of modules, a new change detection system that is not based on zone.js, etc.)
+
+==== Road To Success: Implementing Ivy
+
+According to the promising features above, we've had two goals in mind:
+
+1. Make ngx-bootstrap compatible with other projects, which are using ngx-bootstrap and ivy:enabled.&nbsp
+2. Make all of our demos ivy:enabled-compatible.
+
+In total, we spent about five days to achieve our goals with Ivy support (1 developer + 1 QA engineer).
+
+However, implementation was not an easy task. The first issue which we faced is that Ivy-ngcc doesn't support
+the spread operator inside @NgModule. After https://github.com/valor-software/ngx-bootstrap/pull/5268/files#diff-768d8aaacb20fff9a181d4fe63e131bcL61[removing it^], we've achieved our first goal and ngx-bootstrap https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md#510-2019-06-24[began to support Ivy^] from version 5.1.0.
+
+Ok, that's better already. But we also have to update our demo app to Ivy compatible format. It was a bit
+harder to achieve: we faced several issues. Let's go through them one by one:
+
+1. The host should not return a redirect source file from 'getSourceFile' (related https://github.com/angular/angular/issues/22524[Angular Issue^])
+
+In the Angular 8, they've changed the TypeScript output to ES6, so instead of using _this.hostAdapter_
+we now need to use _this.hostAdapter_ when searching for the line number.
+
+Unfortunately, the Angular team still hasn't proceeded to resolve the issue. So we had to temporarily https://en.wikipedia.org/wiki/Monkey_patch[monkey patch^] Angular to fix the issue.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d1b64d7aee43c6b794168f0_5d1b4eb3a694d6f8e4e182cb_01.png[Fix for:The host should not return a redirect source file from 'getSourceFile'^]
+
+[start=2]
+2. ERROR in demo/src/+__ng_typecheck__+.ts(857,9): error TS2551: Property 'innerHtml' does not exist on type
+'HTMLParagraphElement'.
+
+The root cause of the second issue is that https://github.com/angular/angular/issues/31366['innerHtml' binding
+got broken since Angular 8.0.0^], as Angular 7 had no strict check for templates.
+
+To fix this, we've changed all occurrences of innerHtml to innerHTML.
+
+[start=3]
+3. Injecting the deprecated renderer (https://angular.io/api/core/Renderer[Renderer^]) is not supported, so we had
+to use https://angular.io/api/core/Renderer2[Renderer2^].
+
+[start=4]
+4. Can't bind to 'ngClass'. Can't bind to 'ngIf'
+
+Our library and demo application (which uses this library) live in a mono repo, so for the demo
+application to use the ngx-bootstrap library as if it were installed from npm packages, we had to https://medium.com/dailyjs/how-to-use-npm-link-7375b6219557[link^] our dist (compiled library) with the node_modules folder (named ngx-bootstrap)
+
+However, unfortunately, the dist binding to node_modules cannot be handled by Ivy, so the compiled
+ngx-bootstrap must be placed directly inside the node_modules.
+
+However, unfortunately, the dist binding to node_modules cannot be handled by Ivy, so the compiled
+ngx-bootstrap must be placed directly inside the node_modules.
+
+In our case, this caused the following errors:
+
+* Can't bind to 'ngClass' since it isn't a known property.
+* Can't bind to 'ngIf' since it isn't a known property.
+
+We dealt with those two by writing a https://github.com/valor-software/ngx-bootstrap/pull/5285/files#diff-b9cfc7f2cdf78a7f4b91a753d10865a2R28[one-liner^] that copies the entire folder and renames it.
+
+[start=5]
+5. For some reason, 'host: style' option of decorator @Component became rewritten by the same option from the class from which we inherit. This is not described well in the official documentation. As a solution, we directly updated the host element styles using the renderer method.
+
+[start=6]
+6. Issues with Unit Tests
+
+We pay great attention to unit tests, and we mean it! We run tests for different browsers,
+operating systems, and we even run them for different Angular versions. So we wanted not only to fix all of
+them but also add separate stages with tests into our CI, which will check ngx-bootstrap with Ivy:enabled and
+disabled, respectively. Unit tests help us to make sure that we're delivering the qualitative library to a
+massive audience of users.
+
+In the process of implementing Ivy, we've noticed that event triggering inside our tests is not working as
+expected:
+
+    const directive = fixture.debugElement.query( By.directive(PopoverDirective));directive.triggerEventHandler('click', {});
+
+To resolve the issue, we used the cross-browser library for testing https://github.com/NetanelBasal/spectator[@netbasal/spectator^].
+
+==== Show Me the Numbers!
+
+Let's see how we can benefit from using Ivy instead of the View Engine. For starters, we've tested bundle size
+reducement.
+
+*Compiled to ES5*
+
+After updating https://valor-software.com/ngx-bootstrap[ngx-bootstrap^] with Ivy support, we have reduced a bundle size by 12%.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d3b07bf797cb8713fa8134f_Compiled_to_ES5_Bundle_size_reduced_by_12%25.png[Compiled to ES5: Bundle size reduced by 12%^]
+
+Built with the View Engine:
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d1c72392b2ad29a97466cdb_2%202.jpg[Chunks sizes for application, Built with the View Engine, compiled with ES5^]
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d1b64d79f13c359cbae4cdb_5d1b53cdd7f015f62ec40dc1_d_Qx-minEOXzUIRUx6_soj8vZPT6MpIA2ZqiXtiGp33GO91bqKKGbGvfAGg2pMu2U_5GANViNnqtqvAwUDyZBjfQqkaC1gwIu1bAmwikT_HwUi96oSFYoQvptdSAvEHOAX0Zzum5.png[sizes for application, Built with the View Engine, compiled with ES5^]
+
+Built with Ivy:
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d1c7544df18299104edc263_es5.jpg[Chunks sizes for application, Built with Ivy, compiled with ES5^]
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d1b64d7b994130b84396f2b_5d1b55ceaee43ccbd940ee57_Screenshot%2520from%25202019-06-29%252012-23-42%2520copy.png[Modules sizes for application, Built with Ivy, compiled with ES5^]
+
+*Compiled to ES6*
+
+After building with Ivy, we have reduced a bundle by 13%.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d3b07e167bbc72286749da7_Compiled_to_ES6_Bundle_size_reduced_by_13%25.png.png[Compiled to ES6: Bundle size reduced by 13%^]
+
+Built with the View Engine:
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d1c72632087660b19d5e2d8_2%2003.jpg[Chunks sizes for application, Built with the View Engine, compiled with ES6^]
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d1b64d8a884d4423e7328b6_5d1b5963a884d461f172f537_06.png[sizes for application, Built with the View Engine, compiled with ES6^]
+
+Built with Ivy:
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d1c74808da84273fa95f22d_es6.jpg[Chunks sizes for application, Built with Ivy, compiled with ES6^]
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d1b64d7aee43c167a4168f2_5d1b59dfd7f015b831c42c1a_08.png[Modules sizes for application, Built with Ivy, compiled with ES6^]
+
+Unfortunately, after enabling server-side compression, Ivy didn't show us any signs of
+improvement. In general, the gzipped bundle size increased by 2%. If it has to do with tree shaking not
+working correctly or not, we hope for this to be updated in the final Ivy version.
+
+._Gzipped bundle size gained 2% after compilation with Ivy._
+[caption=""]
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d3b08050038410d478da705_Gzipped_Compiled_to_ES5_Bundle_size_increased_by_2%25.png[Gzipped: Bundle size increased by 2%^]
+
+==== What's next
+
+The Angular core team is still working hard on Ivy. Therefore, we are confident that soon, all the issues we
+faced with Ivy will be fixed and official documentation will be shared and updated accordingly.
+
+Still, there's no need to wait for the final release to start using Ivy-enabled ngx-bootstrap - we've released
+https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md#510-2019-06-24[version 5.1.0^]!
+
+*Vitaliy Makogon* +
+JavaScript Developer +
+https://twitter.com/mVitaliyd[https://twitter.com/mVitaliyd^]
+
+*Ludmila Nesvitiy* +
+QA Automation Engineer +
+https://twitter.com/LudmilaNes[https://twitter.com/LudmilaNes^]
+

@@ -434,8 +434,22 @@ li::marker {
     }
   }
 
-  figcaption {
+  figcaption, .imageblock .title {
     @apply text-center text-grey_font_col;
+  }
+
+  .imageblock {
+    &.max-w-900 {
+      @apply max-w-900 m-auto;
+    }
+
+    .content img {
+      @apply mb-0;
+    }
+  }
+
+  .imageblock .title {
+    @apply mt-2;
   }
 
   blockquote {

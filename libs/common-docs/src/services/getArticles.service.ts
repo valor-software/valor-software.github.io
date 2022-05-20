@@ -41,7 +41,6 @@ export class GetArticlesService {
 
     // @ts-ignore
     getHTMLSource(link?: string): Observable<any> | undefined {
-        console.log(link)
         if (!link) {
             return;
         }

@@ -1,0 +1,161 @@
+Hello, my name is Maxym, I am QA Automation Engineer at Valor Software, and today I'll
+guide you through ARC - a platform for accessibility testing. I'll help you with setting it up and with creating a couple of scenarios. Also, I'll make a short comparison between the
+web version of https://www.tpgarc.com/[ARC^] and https://chrome.google.com/webstore/detail/arc-toolkit/chdkkkccnlfncngelccgbgfmjebmkmce?hl=en[ARC Toolkit^], a Chrome extension for quick accessibility checks.
+
+=== *Why do we need accessibility testing*
+
+https://www.w3.org/wiki/Accessibility_testing[Accessibility testing^] as part of usability testing helps adjust our app to the needs of as many groups of people as possible. For example, it helps
+us make sure that users with special conditions like vision impairments, hearing disabilities, color blindness, and others can interact with the software smoothly.
+
+=== *The ARC Platform traits*
+
+In this article, I decided to share my experience of using ARC, a solution for accessibility testing
+that I find pretty handy and affordable (it even has a free extension). I'll lead you through the setup of the platform because the process itself turned out to be tricky for a person new to ARC. Also, we'll take a look at the report and specify the areas that we don't want to miss. Finally, I'll briefly cover the Toolkit and how this extension can contribute to your QA pipeline.
+
+==== How it works
+
+ARC crawls your website and scans pages while making the accessibility analysis. A nice thing about it is that you can run the check on two engines: the default ARC engine or AXE (in the latter case, you use ARC as a service for check and still stick to your trusted AXE testing platform). You can switch between both anytime.
+
+ARC checks for accessibility problems and features according to https://en.wikipedia.org/wiki/Web_Content_Accessibility_Guidelines[WCAG accessibility standards^] and supports versions 2.0 and 2.1. The default scan runs on the ARC engine with the 2.0, but you're free to switch versions yourself.
+
+The best part is that you choose the engine and the WCAG version for every page you want to check. As a result of the evaluation, you get a report with the overall number of failures and suggestions for the first-priority fixes.
+
+==== *Getting the installation done*
+
+First, you need to create an account on the https://www.tpgarc.com/[ARC portal^].
+
+Then, when you have an account - you create a workspace. For that:
+
+1. Select \"Workspaces\" in the left menu.
+2. Click at the \"Add a new workspace\" button on the right.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac214c2fb53528b7cd14_ioXtSEQvNQBuBerdHzQqqI8watrF_JjxrBrFbf7elk4ZCCFeu9sw29awE22cJaF4m_F5iUQRG7I59sKaLxmfz9A-aUoXuTez3mPtFTjIFzIdfgwLT5g6eaxc6oJTTzJzkyVRkw7m%3Ds0.png[]
+
+3. Fill in the form and click "Submit".
+
+4. Open the workspace, select the "Monitoring" tab and click on "Add a new dashboard".
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac21dbfc8f36aa8a52a1_MKZSOuQwUzSzAmByKkM9fdlBJWudlYGgL27IJhM4zOh-gUJNMXZjKu-geAowrroLsEqegRDYX1yz6J5uXwXXmN4wuv4iv2YIGRVADOD0B5JY1kuLpjolcj7sFXmG1kkD6-h1Pe80%3Ds0.png[]
+
+5. Select "Domain".
+
+To learn more about User Flow, you can check https://www.tpgarc.com/Support[the Support documentation^] (available after registration). But in short, the principle is the same as in https://www.softwaretestinghelp.com/what-is-end-to-end-testing/[end-to-end testing^] : you can upload your Selenium test or create a new one on the ARC platform. For a more precise explanation, check https://www.tpgarc.com/KnowledgeBase[the ARC Knowledge Base^].
+
+6. Fill in the form, click "next" and then - "Complete".
+
+*Congratulations, you've created a workspace and a dashboard for the page!*
+
+When the dashboard is ready, the scanning of the page will start automatically, and when it's finished, you'll get the report. It will pop up right on the monitor, or you can select the "Reports" tab on the left side of the menu and find your report there.
+
+Also, it's up to you how often you want to run the checks and whether you want them to run automatically. In the latter case, you just pick the run frequency, like daily, weekly, biweekly, monthly. Or you choose none of those and make accessibility checks upon request.
+
+==== *What to look for in the ARC report*
+
+After ARC completes its scanning, you get a relatively precise report on the failures and weak sides of the page. Also, you'll see step-by-step guidance on how to fix the accessibility issues. In this part, I'll outline the most important categories in the report that you should check in the first place.
+
+1) WCAG priorities: here, ARC will highlight the most critical errors you need to prioritise and fix.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac21955d4da2a62556a6_ZAUQB3FsLt0bPccOqcmCkWzRwikfcX3qHR_nkXVzc6d1MslOW_j9nTYeTsdDlTCExVY3Rh5g8gm-X4qK8xuCNGmXg26abz6H_JFXCne0F8ytgHeMukTmD5DCsZkmqoQAEAKvyojs%3Ds0.png[]
+
+2) Top Assertions: ARC will sort failed assertions by quantity.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac2188007e110b370b66_15gcwLg3N4mJ8XaH4zw15XSX3e4QWqgLJKzOKsXcWMC7pBOaIA-oIgtK4MwIPjeMid5vh8s-EqlvsAfpaAOt1_dInCB5usOGzzlVNphNC5lg3t4u6DfyhVzerBdXQAvZiRxWWvnI%3Ds0.png[]
+
+3) Explanation of detected fails with guidelines and recommendations for fixes.
+
+For viewing the detailed explanation, you click on one of the failed assertions from the list (on the left side of the previous screen).
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac21df5f343551413497_9OeslmXZ0XxxHEUBSSfam3dTNxFyPvM6qm_uY78eTluynSjdq1trwbBjb2stozMevjx_BNcefe9tw_1ETXgTlUmE-WSDZI6c0w4a4AnzTHghp6fJBo0wCgcZmgfqvVIS-5-ZSIh8%3Ds0.png[]
+
+=== *The ARC Toolkit - extension for a quick check*
+
+Another tool from the ARC family that I found useful is https://chrome.google.com/webstore/detail/arc-toolkit/chdkkkccnlfncngelccgbgfmjebmkmce?hl=en[the ARC Toolkit^]. You simply install it as a Chrome browser extension and evaluate any page you browse through. If the page you want to check is not live yet, you can run the check on your localhost build. A special thing about the tool is that you can check particular sections of the screen instead of getting a whole page evaluation.
+
+==== *Installing and applying the Toolkit*
+
+1. Install https://chrome.google.com/webstore/detail/arc-toolkit/chdkkkccnlfncngelccgbgfmjebmkmce?hl=en[the extension^] from the Chrome webstore.
+2. Open the page you want to test for accessibility issues.
+3. Then go to the Chrome dev tools, select the "ARC Toolkit" tab at the end of the list, and click on the "Run tests" big blue button.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac22fe5bb113cda70318_CwUEEt_W_cdPuR_koaOz3UiLyJ0y0bJgL9JWSVv-uVeSlaczpYY1xRFYZDj8_MqWDTXdMq4qQNRVki5J5WjfShHjxraztVXRQ3IPFeF9nC3eNQAxfPADb7CusGbCjbDba9bTPyDb%3Ds0.png[]
+
+[start=4]
+4. After scanning the page, you will see a complete report with warnings, passed and failed
+assertions.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac22c075545e6d2ded18_-ZhRbFSiqkurvO2YIsvXMRlpNPrMYYgyuMiC7QqKROUgCiGfohM293yh-rcbLhb2XKLYXr26UFJbdInEMx8twto1_80hmJfJjlOUOkQX8M28ywk841ZI0PJhgZiUf5aYQdMrQVWQ%3Ds0.png[]
+
+Basically, you get quite the same amount of information as with the ARC platform check:
+explanations of errors, recommendations for fixes, and guidelines for developers.
+
+==== *Scan sections, not pages*
+
+As I said earlier, unlike the on-site version, the extension can scan sections you need and not full pages. Here are the steps for running this check:
+
+1. Open DOM tree and select the component/section you need to test.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac22b03355505d3beb71_bQfktGUWOORWQy_2FQbhVp_2vdfeJ83_pFHCHOxYUTL3KL2rXP-KsFa2cPh-Nn6f-MgQhmrsBxJR-LIxU-OPGe5cx0UaXzB4-Lsaap9l-sL1-VN3M-KKkAVA5HNnBF20Z_vsAVXo%3Ds0.png[]
+
+[start=2]
+2. Then click on the ARC Toolkit tab and select "Filter result for selected node only"
+from the checkbox. After, you'll see the selected tag displayed in the "Limited scope".
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac218e7b6e1f3352fe3e_AQFOs29DNURHo2jsPY-09j4D4elLHQCALvs8whpPQeeqR2vpDi7mzXV18U5VjMTuAUN6OlB8CMOHVgXmgOIjyITjcoMQfREF3Al1cW30UzqFJxsN5PNTAeqtKeKTfxXTZruOMAHC%3Ds0.png[]
+
+[start=3]
+3. Run the tests :-)
+
+=== *How do the Toolkit and platform versions differ?*
+
+First of all, the Toolkit is free, and that's a great advantage. You can start getting to know ARC using the Toolkit, and if it suits you - proceed with the paid version.
+
+As for functional differences, despite the opportunity for particular page sections check, the Toolkit has a couple of flaws in comparison with the platform:
+
+1. Using the Toolkit extension, you can not change the engine (it's ARC only) and a WCAG version (the 2.1 version is the only one available).
+
+2. You can not automate testing using the extension.
+
+=== *Pros and cons of ARC for accessibility testing*
+
+Here are the key things I like about using ARC:
+
+1. You get informative reports and suggestions for fixing issues.
+2. You can switch between different engines and WCAG versions for a more precise check.
+3. You can integrate the ARC check into your automated testing pipeline.
+
+*What ARC can't do:*
+
+1. It does not allow for screen reader testing.
+
+As an option, you can use a separate tool for this purpose. In the case of my project, I went with the https://www.freedomscientific.com/products/software/jaws/[JAWS^] screen reader.
+
+[start=2]
+2. It can't check keyboard focus, keyboard navigation, etc.
+
+Currently, I haven't found a better solution than testing these things manually :)
+
+=== *Prices*
+
+ARC Toolkit is completely free!&nbsp As for the site version of ARC
+- they have 3 plans.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac22b638d76be2b645f7_rXQMTIqe0GyDMn9BNA5iU4VqcxW2X0Ws6iT3wrXBvBolzUMJAVhs_zJQdJ9k1kE5VQ6fvw41HIwUl5pKNChRd5Hh5MwQbT29vzygHhhO5JgdVN0IvlxLIxTUErMpvVvYMJDFG7s3%3Ds0.png[]
+
+=== *Let's make accessibility the new norm!*
+
+ARC platform and its tools for accessibility testing may not be a magic pill that will cover all the aspects in terms of accessibility on your website. But, in my opinion, this solution works and helps you move towards greater usability with simple and clear steps.
+
+Hopefully, you'll give it a go and try to reproduce the setup flow I described above to make accessibility testing part of your QA routine. With ARC, you can make your site more friendly to people with special conditions and needs, and it is already a huge change! So, create an account and just do it! :)
+
+Good luck!
+
+=== *Useful links*
+
+- https://en.wikipedia.org/wiki/Web_Content_Accessibility_Guidelines[WCAG accessibility standards^]
+- https://www.tpgarc.com/[ARC portal^]
+- https://chrome.google.com/webstore/detail/arc-toolkit/chdkkkccnlfncngelccgbgfmjebmkmce[ARC Toolkit for Chrome^]
+
+Available after you https://www.tpgarc.com/Signup[get started^] with the platform:
+
+* https://www.tpgarc.com/KnowledgeBase[the ARC Knowledge Base^]
+* https://www.tpgarc.com/Support[the ARC Support documentation^]

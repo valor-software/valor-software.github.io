@@ -1,0 +1,193 @@
+When you deal with an outsourcing company for building a product, you are expecting
+quality service, a clear understanding of what's happening, and regular status updates. Of course, these criteria are vital for you because you pay for the work. Make sure that your initial agreement includes metrics of how to track the workflow process and results.
+
+The issue of traditional project management approaches lays in spending too much time implementing a
+hypothesis, which may not work for users. Also, the actual result may not meet expectations due to
+miscommunication or incorrect interpretation of requirements by the team. In modern project management
+concepts, we create the MVP (minimum viable product) with a minimum set of resources to check and verify the idea and business model, as well as to gain the first profit or investment.
+
+Here, at Valor Software, we use Agile - not just to build the process but to foster a culture of
+business-oriented professionals in the company.
+
+In this article, we'll reason about the values Agile brings for the whole project committee - the customer, management, and development teams.
+
+== Agile approaches deliver a more successful product
+
+____
+Too many traditionalists out there like to use the http://www.agilemodeling.com/essays/proof.htm[where's the proof^] "question as an excuse not to adopt agile techniques. By providing some evidence that a wide range of organizations seem to be adopting these techniques maybe we can get them to rethink things a bit. (c) http://www.ambysoft.com/scottAmbler.html[Scott W. Ambler^]
+____
+
+So let's take a look at the figures first. http://www.ambysoft.com/surveys/success2018.html[Ambysoft's
+2018 IT Project Success Rates Survey^] concluded that the Agile teams have a 55% success rate, compared to just 29% for the traditional method.
+
+[.max-w-900]
+._The success rates of IT development teams following various paradigms._
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ddfd2d2bf3f25ffeeac9db6_ycPB1w3I9Oj89iS2E3de_SUHDi-8CYHE2c-fLcsYl27_u5amPG8zpI2bOD3OBgkexkdGV7QU3OHT6Rv01mnzXUHbH45j3gxK5VOdVnfkEl-01-lNBDPwuT71dV0wcjDgQWL061O-.png[]
+
+So why is Agile so successful? Let's look into three Agile values that won us over.
+
+== Value #1: Risks of loss are low
+
+The main question to ask as soon as an idea is born is: will people like, buy, and use what we're creating? Usually, this question is answered when it's too late.
+
+Based on Agile approaches, we have to deliver the critical MVP as soon as possible. The MVP could be any
+solution that solves the problem you detected. Even if, having developed the MVP, you understand that the product isn't feasible, the losses - time and money - will be lower than if you had developed a huge product.
+
+Why? The main advantage is to provide a functioning product that is usable at an early stage. How do we know it's usable? We deliver earlier to get feedback. Once the MVP is delivered, we build more and more nice-to-have features, and the product grows.
+
+[.max-w-900]
+._How to build a minimum viable product._
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ddfd2d224feeb3789694282_Rw-EGmi5vTrDtEREArPvdlC4WtZ2L7EGwn6bcxWBRAQ_4eivB_hlMDEwCVCMPED9fjj9WFZFni5MSsy5iX8--NzjgX9nFcBx_YozBgMumpDruvdixbh0_4Vtu4TBqzO2sPZbw63v.png[]
+
+Let's take a look at the first model of Harley Davidson bike:
+
+[.max-w-900]
+._Proof of concept: testing the idea of a customized bicycle._
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ddfd2d25d76df2fc42afd0c_GRBSY8CpQmtX6sErtOTiN8pg_lu3POPAiR2LhlFbY7NrIX83xTd_V5p4guVFWxWOF9eCWxjdBFTM86WzMg642VgXaWEJsqWWTbfVzg6kgTSyDNbsHP4Z5W5ntFqzFefRRPGc0jiP.png[]
+
+It's a bike with a motor that allows people to move quicker than using just a bicycle. With
+this MVP, people's needs are satisfied, the idea is verified, and the business becomes successful. Then, the product is further developed iteratively to its final view:
+
+[.max-w-900]
+._Adding more and more features step by step lead to the iron monster available now._
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ddfd2d3cd25be0e65b6491d_BQeHyltAqTs5jzqYgjqS3qroTF4zLmhAZ3cp5DM1KeMhxg5zTFO1zAxcx6Rf52Fij8CgOCm0_xQg2JzYDHyi7K-QBFPxxWUbpTFrAm2vTtbF6vNweRQb69qGDUpVo1u3qhTtHEM4.png[]
+
+Suppose that the Harley-Davidson Motor Company created a final product without verifying the
+idea, and users didn't understand the value of the motorcycle and why its cost was so high. The creators of the bike, potentially, could have lost time and money spent on the whole product.
+
+To let you know how much development of IT MVP can take, https://www.quora.com/How-long-will-it-take-to-develop-an-MVP[let's address insights from Guy
+Brockless^], Head of Growth Marketing at Creatella:
+
+_It depends on the project scope, but I'll try to give some estimates based on typical MVPs we've
+built:_
+
+*_Basic webpage only platforms_*
+
+_From concept to finished site - 1-4 weeks_
+
+*_Web App, including back end, admin panel, chat platform, file upload, etc._*
+
+_From concept to finished MVP - 2-3 months_
+
+*_Complex Hybrid Web &amp Mobile App with chat, voice and video calls, social feed,
+etc._*
+
+_From concept to finished MVP - 3-6 months_
+
+== Value #2: Early learning
+
+The product may be delivered not as expected due to lack of domain expertise within a team, or
+misinterpretation of requirements, but not because the team lacks technical skills alone. That's why the
+interaction between customers and teams is crucial at all stages of the project's development. It may sound obvious, but in reality, this is not always the case.
+
+According to the classic approach, instead of continuous delivery, we learn only when the product's development is completed. In this case, the gained knowledge is less valuable.
+
+[.max-w-900]
+.Late learning sequence of product development in a waterfall fashion.
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ddfd2d2df0bf0020fff0759_Rd46BgSYvkjqM_kCLOXosgvdmJqQRuWSayixGSCC_8V0_ZdyozE0HwcQfPii9xXoeaRR7qt9GVgftJCIgxgRqCBswmlkuqJOlbRXDEjobtvzBPnJ_JDZfDrm2OALrglWH3YdwsGU.png[]
+
+With Agile, we move iteratively and show what we have done after each stage, thus, receive
+frequent feedback. Basically, every participant of the project shares invaluable knowledge:
+
+* *Users* get the solution based on their needs.
+* *Development team* gets input from the client and studies a domain area.
+* *Customer and stakeholders* learn the technical side and the features of their product.
+
+[.max-w-900]
+._Applying the principle: Learn Early, Learn Often._
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ddfd2d20ff52bfc9267396c_i9Ym3iok2mdBpfB6Y6Zbhwu1l_I3fIzD4IwnEAxoaoKpDr6R7qCLQzy3XcjqhKEmdH8GXoFyKyxAEhwlECBVGWZcDMUph7RbdjID8vO__l68HoloNwm1uqqPJQJFxV-_gsn8SKrZ.png[]
+
+As a result, we deliver a more qualitative and improved product phase by phase. Besides, the
+earlier we learn, the lower the costs for possible changes - for updates of the product, the composition of the team, directions to promote the product, and so on.
+
+== Value #3: Transparent communication
+
+https://www.pmi.org/-/media/pmi/documents/public/pdf/learning/thought-leadership/pulse/pulse-of-the-profession-2018.pdf?v=d5e5be9f-5496-41fe-97b4-4ac51d400736&sc_lang_temp=en[PMI's
+2018 Pulse of the ProfessionTM report^] revealed that 29% of the primary causes of&nbsp deemed failures in organizations fall on inadequate and poor communication.
+
+Let's explore the tools that will help to make communication transparent:
+
+1. Visible project board
+2. Planning
+3. Daily Meetings & Status Updates
+4. Sprint Review (Demo)
+5. Continuous Integration and Continuous Deployment
+
+=== Visible project board
+
+Virtual or physical boards allow viewing the main workflow with the status of each task. Depending on project needs, you can add more columns like "Backlog", "On hold", "Code review". https://apiumhub.com/tech-blog-barcelona/agile-project-management-tools/[Check various tools
+to organize the project^].
+
+[.max-w-900]
+._Basic project board._
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ddfd2d3bf3f25d111ac9dc7_YhJ5X3uQsyMbK51G4KbE5UpxaD58asz8sKeqB6Rz6ZvpmLneXJuf-cH4Pzdh_VxRd-5Qk1C2tU-0YkDsiMN5AKaR4xHrNXqVgUOubsixkIytbPgcbicx3nnOSM_xq-wBXHdElOoZ.jpeg[]
+
+=== Planning
+
+Planning is a meeting to set a sprint/milestone goal, clarify requirements, estimate the scope of work, and start working on delivery without any blockers.
+
+=== Daily Meetings &amp Status Updates
+
+Daily Meeting / Daily Standup is a face-to-face synchronization meeting between development team members to provide status and be sure that they can move on as a team. It takes only 15 minutes but helps to remove impediments, highlight the risks, and perform as a team, not as solo players.
+
+A daily meeting can have the following structure:
+
+* Current activity.
+* Upcoming activity.
+* Estimation of ongoing and next tasks so teammates could know how long it will take.
+* Potential blockers.
+
+Status update allows all team members (distributed and onsite), customer, and stakeholders to know the
+current status of how close we are to achieving the goal.
+
+Commonly, developers and test engineers provide status updates at least twice a day in their communication channel: once they get to work on some task, and once it's completed, especially if it's an unplanned task.
+
+=== Sprint Review (Demo)
+
+Sprint review is a meeting to discuss the delivered increment and get feedback from the customer and other stakeholders.
+
+=== Continuous Integration and Continuous Deployment
+
+Continuous Integration (Delivery) and Continuous Deployment (CI/CD) practices allow testing and reviewing code delivery as soon as possible. Just imagine that you can check every single new feature in a development environment before going live. Just imagine that the team can update production in a few clicks and without risk of having an unstable environment. By adopting https://travis-ci.com/[Travis CI^], we can set the CI/CD approach in minutes and use it to keep up the transparency.
+
+[.max-w-900]
+._Quick risk management with CI/CD: constantly learning from small pieces of work._
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ddfd2d35d76df42db2afd27_-Ie_tV6ycvHuv9TGENhoK3XfxcKPCudii1uIA6dM-5VnST1UTDdjmeEfg6cPXWFo7pBiV5le3VUVMBcN_wU08RikJJHwi97L-O0APfFYP3v6xnsxstO6Sx6u4okQ3_A3qX3Udnm8.png[]
+
+== Conclusion
+
+All Agile practices were invented by developers for developers based on the main recurring problems they faced in communication, knowledge sharing, and prioritization. For that reason, don't be scared of managers who would like to follow Agile for your team - try to understand the value you can get.
+
+The three main values we see in Agile are:
+
+*Value #1:* If we deliver a minimum viable product as soon as possible, we verify the need for
+this product while the potential losses are low.
+
+*Value #2:* The earlier and more often product team and customer learn, the lower the cost of a
+mistake.
+
+*Value #3:* With transparent communication, we manage the current status of work and the
+expectations of our customers and stakeholders, and vise versa.
+
+Follow us for more praise on project management and particularly Agile, unveiling its powerful weapons. Learn the dark side of the force.
+
+We wish you successful projects, folks!
+
+
+
+
+
+
+
+
+
+
+

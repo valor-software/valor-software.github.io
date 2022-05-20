@@ -7,5 +7,6 @@ export function titleRefactoring (link: string): string {
         link = link.replace('&','_');
         link = link.replace('\'','_');
     }
+
     return link;
 }

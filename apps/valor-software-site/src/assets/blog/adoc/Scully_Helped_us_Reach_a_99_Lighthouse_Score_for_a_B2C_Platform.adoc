@@ -1,0 +1,191 @@
+You may have heard of https://jamstack.org/what-is-jamstack/[JAMstack^]. It recently entered top charts
+of technology choice for the web because of its ease of use, performance, and flexibility. Scully, a static site
+generator, brings JAMstack to the next level of effectiveness because of its Angular nature. Valor Software
+decided to adopt Scully to make the client's platform fast and really convenient to use.
+
+We
+sped up the overall page load and increased the platform lighthouse score to 99-100. Also, connecting Google
+eCommerce Marketing helped us see several areas for improvement on the website and in mobile apps to streamline
+the user journey. Learn from our experience how you can achieve a boost in website performance and visibility
+for your project using Scully and Google Analytics. Also, I'm going to help you overcome possible difficulties
+with integrations since we've already been there :)
+
+==== *Who the contributors are*
+
+Alexandr Pavlovskiy and Nikita Glukhi made it possible to bring all the described to life. Many thanks for
+being great team players and for their great contribution to the project.
+
+Also, Dima Shekhovtsov
+deserves special thanks for the idea, direction, and technical guidance!
+
+==== *Project background*
+
+Well, our team's job on this project was to reconsider the B2C platform for
+a game company. They had an outdated landing, as well as mobile apps that users didn't really want to use. We
+were on a global mission to understand the current project situation, and then - bring value.
+
+The
+client had no insights in terms of the website load, performance, storage allocation, etc. And you can easily
+guess what we found once we peeked under the hood (it was a pile of legacy code there). At this point, we
+understood that something new, quick, and easy to manage needs to be built instead. That's how https://scully.io/[Scully^] came into play.
+
+==== *What is Scully and how to deploy*
+
+JAMstack stands for JavaScript, APIs, and Markup. In this kind of
+architecture, JavaScript runs entirely on the client-side and handles any dynamic programming. Reusable APIs
+cover all the server-side processes, and Markup is markup (a site generator or Webpack), and it needs to be
+pre-built.
+
+Scully generates static sites for Angular, those with no backend code, so no
+API call is needed to get the data from the server. Instead, we put all the content on our pages as data and
+text and make it available to end users. This https://snipcart.com/blog/angular-static-site-generator-scully[Scully Tutorial^] tells you all you need to know for smooth deployment.
+
+==== *Now Lighthouse score reaches 100*
+
+We use https://developers.google.com/web/tools/lighthouse[Lighthouse^], an
+open-source tool for checking and improving the quality of web pages in this project. You can run it through
+any webpage for performance, accessibility, SEO, and other audits. On completion, you get a report with
+suggestions for improvements, and all that is left is bringing those to life :-)
+
+The Lighthouse
+score represents the results from performance metrics that the tool gathered based on real website performance
+data. We considered the score to evaluate the website general performance: whether and how Scully changed the
+picture. And I can tell that once we switched to Scully, the platform's Lighthouse score grew from 56 to
+99-100. This indicator includes performance, accessibility, SEO, and application of best practices, as you can
+see from the screen below.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60b0d1d54875f90c19c209ea_Eh8d9dD7OkG3ODiudMJ8UHZs2OmC87O3sYL3GsMQlcbPmGie0fNi_uqTD3o05BoOmwbb_DbUBxlKjfKUVq2e9FZw9AH_UGHmk73U2wDWOMi3jLABRRX1UjfDqCtWBxzLXvNQx79b.png[]
+
+==== *Better Google indexation - how to spot the company in the top*
+
+If we remember the basics of the Google search logic, then the crawling stage comes first, to discover
+publicly available web pages and connected links, and bring this data back to the Google server. Then
+indexing, when Google tries to understand what the website is about in terms of content, images, video, etc.,
+to categorize the object and put it "on the right shelf" in a huge Google index storage. Finally, we have
+serving and ranking, when in response to a user's query Google goes through its index, searching for the most
+appropriate and quality answer.
+
+Angular applications are rendered at runtime, so it takes Google
+bots longer to recognize the content since they have to execute JS code first. And Scully helps us pre-render
+each route's HTML content. It generates a static version of each website page and eases the mission for bots
+to see the content. That's exactly what helped us improve the platform indexing and visibility.
+
+Learn more about boosting SEO with the help of Scully from this https://academind.com/tutorials/scully-introduction/#improving-seo-in-angular-apps[Academind article about SEO optimization in Angular apps^].
+
+==== *Making the overall CSS footprint smaller with Tailwind*
+
+To remove CSS that we
+don't need when building for production, we used Tailwind CSS. This CSS framework in the first place lets you
+easily style your website or app. And what's more important in our case, it helped us to get rid of unused
+styles and optimize builds' size.
+
+As creators claim, when removing unused styles with Tailwind,
+you never end up with more than 10kb of compressed CSS. Learn more about the framework and its worth from the
+https://tailwindcss.com/docs/optimizing-for-production[Optimizing for Production material by Tailwind^].
+
+==== *User growth and stronger involvement*
+
+Firstly, our release of an Alpha version of the platform tuned by Scully drew users to the product. By
+product, I mean in-app traits for gamers like a range of different cosmetics, including skins and pets. Scully
+brought us more visitors and buyers among those who already played the game and knew about the platform.
+
+Another part of the audience came because of better SEO optimization. Optimized content made the
+platform visible and helped new users find the website. You can see the situation before and after from the
+screen below (please, don't mind the red area, it shows the moment of deployment when we couldn't track the
+users' activity).
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60b0d1d5b45c99179c4dad71_pjjkxhvVDowJElf_ztEvzjnkmRdeziJG6VYbO_Zr6mjvUxUgnOTH7GhDc_tu7Hkh05N31S0L-f6HMf5LJ9901a3_ff5oQmMGZYGqqsEfrQ3Ui3OfDIDFkt1EDC0BhTv5H1onWPRg.png[]
+
+*As a result*, from the moment we released the new platform version, sales
+grew twice.
+
+==== *Integration of Google eCommerce Marketing*
+
+The
+eCommerce part of Google Analytics is what you definitely want to apply to gather insights on user behavior
+and preferences. You can also understand who makes up your core audience, if that's what you lack, and then -
+build more efficient marketing campaigns. eCommerce gives you access to your audience's gender, age,
+geographical location. The only thing you should take care of to obtain needed data is https://tagmanager.google.com/[tags^]. You've got to manage them right when
+setting up analytics. The following links will help you tune your tags for enhanced eCommerce:
+
+* https://www.analyticsmania.com/post/datalayer-push/[*dataLayer.push
+    with examples*]
+* https://www.analyticsmania.com/post/google-analytics-user-id-with-google-tag-manager/[*A Guide to Google Analytics User ID in Google Tag Manager*]
+* https://www.analyticsmania.com/post/ecommerce-tracking-with-google-tag-manager/[*Set Up Ecommerce Tracking with Google Tag Manager: Full Guidegle-tag-manager/*]
+* https://www.simoahava.com/analytics/enhanced-ecommerce-guide-for-google-tag-manager/[*Enhanced eCommerce Guide for Google Tag Manager*]
+
+We integrated Google eCommerce tracking and provided our clients with the data they needed for planning
+future website and mobile apps upgrades. One of the most important things that we started to track is the
+checkout process - from the moment when the product falls into the basket through filling in the form for
+online payment to the actual purchase. Clients could realize what may stop a user from a purchase, what stands
+in the way of accomplishing the checkout. Now they have a data-driven basis for targeting bigger goals in the
+future.
+
+==== *Bridging Google Analytics' tags and your Scully platform*
+
+Earlier we added a complete JavaScript tracking-code snippet into the HTML to our platform (just like
+described in this https://ppcexpo.com/blog/where-is-the-google-analytics-code[PPCexpo
+material^]). But when we switched to Scully and went on connecting Google Analytics to the Scully website, a
+conflict between Google Tag Manager and HTTPS packages arose. *So, we created a plugin to pre-build
+this connection for Scully to add the piece of code for Google Analytics without any modifications:*
+
+    import { registerPlugin, getMyConfig } from '@scullyio/scully';
+    export const GoogleAnalytics = 'googleAnalytics';
+    export const googleAnalyticsPlugin = async (html: string): Promise => {
+        const googleAnalyticsConfig = getMyConfig(googleAnalyticsPlugin);
+        if (!googleAnalyticsConfig || !googleAnalyticsConfig['globalSiteTag']) {
+            throw new Error('googleAnalytics plugin missing Global Site Tag');
+        }
+        const siteTag: string = googleAnalyticsConfig['globalSiteTag']; // your gtmTagId
+        const googleAnalyticsScript = `
+          // your GA script code here
+        `;
+        return html.replace(/<\/head/i, `${googleAnalyticsScript} [];
+        registerPlugin('postProcessByHtml', GoogleAnalytics, googleAnalyticsPlugin, validator);
+
+Use https://developers.google.com/tag-manager/quickstart[this instruction^] for implementing Google Tag Manager on your website. That's where you get the following piece of code from:
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60bf4e6e2cdce6412d434a78_Screenshot%202021-06-08%20at%2013.58.26.png[]
+
+And https://www.analyticsmania.com/post/google-tag-manager-id/[this article^] tells how to get your Google Tag Manager ID.
+
+*Here's where you should place the plugin*
+
+The Scully config file is generated
+automatically when we connect Scully to our Angular app. It is located in the root folder with package.json.
+Of course, we get a default Scully config, and then we should customize it for our project. This https://medium.com/ngconf/a-guide-to-custom-scully-plugins-5558993fd3f8[Guide
+to custom Scully plugins^] gives good advice for customizing plugins to your needs.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60b0d1d51c5fb97963e98cc3_2a4JxNNsn40mrnC1FODeMj6l1fsgYR2oCnVhykr7yvcjcZBmfMtmY3I-yFsuobT3RGRW17sQyEg2iIbhSVGs3RRhbyywxzM30dSuEBSCJ8jFRhBGgMTsnsOr6SfF0r6I9pi_FIVu.png[]
+
+==== *Summary*
+
+This switch to JAMstack and Scully gave us a
+tremendous amount of benefits, even those both we and the client didn't expect to get. For example, it was a
+surprise that we'll have better Google indexing.
+
+From my point of view, the main gain for this
+project (just like for most of them) is transparency. With such a clear structure and interaction between
+frontend and backend, you know exactly what's happening on your Scully website. And when you know, you can
+react, and actually handle complexities that arise.
+
+Sure, there's still much work to do,
+but we have bright perspectives. We plan to deepen tracking of eCommerce indicators, since this will give the
+client more ground for new business turns. Also, we'll be working on mobile apps to increase users' engagement
+even more!
+
+Here I shared our first experience and thus impressions from the technology.
+Hopefully, you'll find the story useful. Please, don't hesitate to share your feedback, give advice, or
+contact https://valor-software.com/contact.html[Valor Software^] to give your business a boost!
+
+==== *Useful links*
+
+1. https://snipcart.com/blog/angular-static-site-generator-scully[Scully Tutorial^]
+2. https://snipcart.com/blog/angular-static-site-generator-scully[Optimizing
+    for Production material by Tailwind^]
+3. https://academind.com/tutorials/scully-introduction/#improving-seo-in-angular-apps[Academind article about SEO optimization in Angular apps]
+4. https://www.simoahava.com/analytics/enhanced-ecommerce-guide-for-google-tag-manager/[Enhanced eCommerce Guide for Google Tag Manager^]
+5. https://medium.com/ngconf/a-guide-to-custom-scully-plugins-5558993fd3f8[Guide to custom Scully plugins^]
+
+
+

@@ -1,0 +1,239 @@
+Today, I’m going to tell you all about setting up and using https://artillery.io/[Artillery.io^] on your projects. We have a lot of popular testing tools like JMeter, Gatling, LoadNinja, etc. So you might be wondering why I’ve chosen Artillery. Well, I’m going to show its advantages and share handy usage tips later in the article.
+
+Artillery.io is a modern performance testing software that is powerful yet quite simple to
+navigate. It suits different types of performance testing, on local machines and as part of https://en.wikipedia.org/wiki/Continuous_integration[CI^]. What’s even better?
+– Artillery provides https://www.artillery.io/pricing[a free ‘Dev’ option^] if you want to test the waters before diving in. So, let's make some exploration!
+
+image::https://valor-software.com/assets/images/61e6b6dbef2e1c7bbd4aa6a7_biofiRwiFxpiSWFpLnazIYPCle0dSTw7n-o_5JqBXU2M3gBTTzM_tkByXqjU50wy-lh3HE_M6odcvhrltnNTq-dHMT3cdd2RBMFJE17Dj-XkJwXJAXqSrIY6un_HfQg_wzNiovD_3_FW-XftCg.jpeg[]
+
+== *Why Artillery.io?*
+
+Artillery offers many services that make performance and load testing faster and more reliable. Now let me
+outline a few reasons why I choose to use it over the better-known software.
+
+==== *1. Node.js tool*
+
+Java-based tools can be complicated and time-consuming to work with. Artillery.io is a Node.js tool with a basic
+https://en.wikipedia.org/wiki/Command-line_interface[СLI^], which is a far simpler way to run performance tests.
+
+==== *2. Broad support of protocols, frameworks, and libraries*
+
+Out of the box, Artillery.io will support:
+
+* https://www.artillery.io/docs/guides/guides/http-reference[HTTP^]
+* https://www.artillery.io/docs/guides/guides/socketio-reference[Socket.IO^]
+* https://www.artillery.io/docs/guides/guides/ws-reference[WebSocket^]
+
+However, you can use Artillery.io to test any stack, thanks to the plugin interface. Here are a few examples:
+
+* Apache Kafka
+* Amazon Kinesis
+* https://www.artillery.io/docs/guides/plugins/plugin-hls[HLS^] (HTTP Live Streaming)
+
+==== *3. YAML format*
+
+Unlike popular competitors’ testing tools, Artillery.io writes tests in YAML format which makes them readable and
+easy to understand. Artillery also supports a JSON format for testing.
+
+==== *4. Accessible scenarios*
+
+With Artillery's scenarios and phases, you can build more flexible tests and cover multiple use cases in
+parallel. Also, it takes you just a few steps and conditions to set up tests for complex user behaviours.
+Finally, it's easy to reuse scenarios for comparison and future testing.
+
+==== *5. Easy integration*
+
+Artillery.io seamlessly integrates with CI (for example, check the https://artillery.io/docs/guides/integration-guides/github-actions.html[integration guide for GitHub Actions^]), making the process very organized. It also https://artillery.io/docs/guides/guides/docker.html[works with Docker^], so you can run your Artillery tests inside a Docker container.
+
+==== *6. Detailed reports*
+
+After running tests, you can create a JSON report through the --output flag. Also, you can generate an HTML
+report out of JSON to save it as a file or export it to your browser. Find details on reporting in the Scenario
+section below.
+
+==== *7. Artillery Docs*
+
+Artillery provides https://artillery.io/docs/guides/overview/welcome.html[numerous documents^] to browse for instructions and other useful info. This helps you get the performance testing
+software up and running much smoother than with other similar tools. Also, you can look up support from other
+developers on https://github.com/artilleryio/artillery/discussions[community forums^].
+
+image::https://valor-software.com/assets/images/61e6b6dac135a26d7c224c86_FEcA8iQh4priOp2EIgpa41pwJFHtkcxiPlfx3Z1YRrUWU7tvH9Ddve5UY9cWYyGrullTwo97KCHgZlRZqFxCZEg5ZsjWa3U7JF_nXQ9qTiNak2NGp1VBAI4GlJlPrslAFZRUoWSztiw7iLknhw.jpeg[]
+
+== *How does Artillery.io work?*
+
+I’m going to walk you through some basic commands to get started with Artillery.io using https://valor-software.com/ngx-bootstrap/#/[ngx-bootstrap^] in my examples.
+Ngx-bootstrap, together with other community libraries, were created by https://valor-software.com/[Valor Software^],
+the company where I’m working. And as we have hundreds of thousands of engineers using our products monthly, we
+need scalable performance testing to make sure everything runs smoothly. So, let’s get started!
+
+First, you need to install the latest version of the software.
+
+==== *Install*
+
+To install the latest version, enter:
+
+    npm install -g artillery@latest
+
+==== *Fast test*
+
+To run a fast test, enter:
+
+    artillery quick --count 15 -n 30 https://valor-software.com/ngx-bootstrap/
+
+With this command, the test will run 15 virtual users with each of them making 30 HTTP GET requests to the URL
+address that you specified.
+
+This command also supports other flags to configure your fast tests:
+
+image::https://valor-software.com/assets/images/61e6dc58268ada7b2baa7189_n3n85QBpLJnNRmjf2KmGI6Vd_0JXn6sZ4Pt_Jf3TihpGe9xpzK-Wmr_icfmr1P6GTAg9FYkctA1jx8N_gREo4dv9UxUOAZ2IlHXmzBXPy7PtsMEL3n7wDT0wzyuknHe2GBVN_5i9.png[]
+
+Below is a list of possible configurations of the *run* command:
+
+image::https://valor-software.com/assets/images/61e6dcc8f56ef40c91343a66_D1wfiDO76AqAbf8YFECjCHzfM9qEMex5fwDqiesnrSbYTig01ZrrUzcRGEHaUDVNpoKzdOb3MmY5ItdD2k3dUJgYIa68uPmJ3uZRaIpP7o47rbJzZV1XPVJDh3qm-G5AC7seiycE.png[]
+
+==== *Config*
+
+For standard test scenarios, you should create a ‘*my.yml*’ file with config.
+
+image::https://valor-software.com/assets/images/620a6caabc207815e5fd9851_B9QLpv1Xk2qcqHSwmTRK0jGv2uYYmLXg5kcfM-rLZAxoeW51olKqZ_gjZqWNvZLe9c_CAKFo3KluK6pEdblP7WYNgKwNZZHqI7CoIevcbLaGD8vM3iPfOlyE6u4FdJZejlnJF9GR.png[]
+
+The *my.yml* file should contain *‘config:’* paired with the target URL. To set up
+environments for your tests, you can write environments into the command after the target URL has been
+entered.
+
+image::https://valor-software.com/assets/images/620a6cdfcec6669ba3cb933a_2OBgp8-wSgsPmKlIKoaE8IgftkHZxI8U_Jir1xtLQqzXbsjjTIiXBxfTpt8VNBKqyo5SSZkR-JRXI1uoU2SiuHisygXLl-SuCcXYFzTToIluLozfi3DJe5Lp2-CXGvIpaNwaqYek.png[]
+
+==== *Phases in the config*
+
+Artillery.io allows you to enter multiple sequential load options for the application. The
+testing phase consists of several aspects:
+
+* *duration*: the time of one phase;
+* *arrivalRate*: the number of users added each second;
+* *rampTo*: up to how many users per second the load will grow by;
+* *name*: a name of the phases.
+
+image::https://valor-software.com/assets/images/620a6d49351453e1970bd6df_v2FiTu_ndt8HAMbHRAjIrf-6jXsA_fNg6BHksT1XywImEog5BjNvOEiK1UXmcBE0_mU_Yw3mDpUBT6hLaK_4yBl1pGB33iTZ35tNH2F_13n2E18w6aHzhwtCwCtCcSjUNe8JVO8_.png[]
+
+If you only have one target URL, the different phases of the performance testing are placed right after it. If
+there are multiple environments, then you should add phases to each environment variable.
+
+==== *Plugins*
+
+In the Artillery npm utility, you can find https://www.npmjs.com/search?q=artillery-plugin-&amp;page=0&amp;perPage=20[lots of plugins^] that can help you in your performance testing. Install https://www.npmjs.com/package/artillery-plugin-expect[_artillery-plugin-expect_^] to compare the expected result with the actually received result.
+
+Then, after the phases inside the config, enter:
+
+    plugins:
+        expect: {}
+
+image::https://valor-software.com/assets/images/620a6f1f351453cf580c72ab_WW4O0hUrQygtMKCL41Y28O-QtSu_A4xItcAFeIUiNz7hCfipkstp6MpQW6dYvP4843dtb2JvwXQNSUT2ZXxfmQRG2ObvDBlzDtJtxu2jJUBdKnskDTkvYt-uGvLiAoQUONeTw-9O.png[]
+
+Now, with the config completed, we can finally write some tests!
+
+==== *Scenario*
+
+All tests should be written in the *`scenarios`* section and should contain:
+
+* GET, POST, PUT, DELETE, and some other commands;
+* a URL for every endpoint;
+* the body text in JSON format;
+* all checks you want to run.
+
+image::https://valor-software.com/assets/images/620a6e00b9149a62042fd21e_BaWRTn2B9CtF3V0o2f4fuvZ34cxOvNTQeOByTklpYQ5KeY-SxgSEe2Rw5oZryDz1HaX9SlB3syP64qTHxPURlatPHPdMzqWr363JcLgzG3X4DwLGUvsejTsjg3Zt2WYq-F3Nd5kn.png[]
+
+To run tests, you should enter:
+
+    artillery run my.yml
+
+To run a test and then generate a report in a .txt file, run:
+
+    artillery run -o first.txt my.yml
+
+After generating a .txt report, to generate a second report in HTML, run the command:
+
+    artillery report first.txt
+
+Here's the report example:
+
+image::https://valor-software.com/assets/images/620677d1e5b37a5a34ac81b8_Artillery_report_Valor.jpg[]
+
+==== *Authentication*
+
+With Artillery.io, you can use basic authentication or get authorized by tokens uploading CSV
+with your credentials. Just pick an option that suits your project best.
+
+Check their https://artillery.io/docs/guides/guides/http-reference.html#Basic-Authentication[official documentation^] to find information on authentication and many other aspects of Artillery.io.
+
+image::https://valor-software.com/assets/images/620a317e6e04332776bf7cb9_JsWFVRbBNI_RNrtp_OeJl3b-y6LcxHFlEvmXqAqn8zZIKzTnOZrQhPWVs0K7eBjtntToigptblOB3ZPic7ot0Z-xcupUM-T__U2oS_NwljelN1fGeAJ26wwm0dgn9w0UTvvmkdQz.png[]
+
+Let's first revise how you can get authorized by tokens. To upload a CSV file with credentials, you should add
+the following lines into the config file:
+
+1. *payload* – to use the payload functionality;
+2. *path* – to write a path for the CSV file that Artillery needs to use;
+3. *fields* – names of fields that you need to use.
+
+image::https://valor-software.com/assets/images/61e6b6dcab56b80f45de406b_ydhUhDNow7_XGKOXcFR-z8iechX2JWuaC6DH7NnsDFsT6lbZIcdD0PVyxfZVbmM390aVwnVobdEtLSW6hpJKjRE81cLu7ewXpXK0xjTNwo6M2mWOl3hAVsOb9T8M6_WGrnlj44Y7.png[]
+
+See an example with a CSV file:
+
+image::https://valor-software.com/assets/images/61e6b6dcc135a22c44224d06_2C8yt_MSmdA8iiOuIsj5zaczDHbc_nDsfDlp3nelSyAn8KLgpRnIQUW8c5B7PYwgFRTawbEktVfhKzogHvXMkR05kVfZBo7fG6ofObMR77LxLnKE9HCv2tKnmJea74yyGLtzb5rV.png[]
+
+The second way to get authorized is through environment variables. And we have several options for this. The
+first one is to execute an *export* command in your console as below:
+
+image::https://valor-software.com/assets/images/61e6b6dcc9a859cf8bd3b0a5_t5VlpO3PEXY0fx4Gz90oF2VhpSsmzK-j0Qli3mZeg4i2ZrhQ3RJvVCtrySPRwtpHUOc78fhISHne-SmjgNZPLK1ruEU63n5ufIqgNWeqlxbTLB3xArmN3gAkcN3MWkDpB62jDgOB.png[]
+
+And after it's done, you can use your variable inside your yml file:
+
+image::https://valor-software.com/assets/images/61e6b6ddc9a8593889d3b180_emp-w2bZFybmHBqVjaig0JVYAMNpEF_9DVpUFTYQ0OuulveZ2qrR05mUZao_fGcNzKK7IpfJB2Gr7hb5kZG3878EvW-W75gku95b0KwqNK8rGEpWW0dyQGONPFiTbCJ0zbR3K558.png[]
+
+Another option is to write a new script with an environment variable in your *package.json* file
+to execute your tests without typing the *export* variable in the terminal each time. It will
+look like this:
+
+image::https://valor-software.com/assets/images/61e6b6dc33effcb4ebfc94af_1FPnguaIeeWsyUgBiyhBUVYd1siQlEGlBGObLF_ae57qBDD7bpVhfb6NdyLCEfJ86mUvFcJtV4SdAdT7FIj43EgahM4g6kSJxfu8qs-pDuXwsDB1uxExTdxfyme9m5n79ziueQOY.png[]
+
+Then all you need to do is run this script in the terminal:
+
+    npm run artillery:run
+
+Finally, you can upload CSV to pass parameters for your test requests: GET, POST, PUT, etc.
+
+Check an example with POST:
+
+image::https://valor-software.com/assets/images/61e6b6dd62547e71c134018e_h_KGFTQfl8aK_2o2gRMbK89FdZXCkfTCX6r2yjtTLx2kZfiE1J26NyWLOZX-xyxJdGJ9So4u4lRSY4pKB2q0OhceVpSLwzYVBSfLTpVh_obAowo1Tvpwp-KEgbRt92MwipCWsc-r.png[]
+
+== *Final thoughts*
+
+Artillery.io is an accessible and comprehensive tool that I use and can surely recommend for performance
+testing.
+
+With a free https://artillery.io/docs/guides/getting-started/installing-artillery.html[Artillery
+Core^] version, you can run tests from a local or virtual machine. And by switching to https://artillery.io/docs/guides/getting-started/installing-artillery-pro.html[Artillery Pro^],
+you're getting a self-hosted AWS performance testing platform.
+
+Other features of Artillery Pro include:
+
+* runs millions of tests per second across 13 geographical regions;
+* works with existing security systems;
+* no repeat charges or paid maintenance;
+* VPC internal test services.
+
+I hope this article has given you some clarity on Artillery’s software, and helped you make a choice regarding
+the performance testing tool you want to work with.
+
+In case you’re looking for help in software testing, or your project needs an advanced quality assurance pipeline
+– https://valor-software.com/contact.html[drop us a line^]!
+
+== *Useful Links*
+
+- https://www.artillery.io/docs/guides/getting-started/installing-artillery[Installation through npm utility guide^]
+- https://artillery.io/docs/guides/overview/welcome.html[Artillery docs^]
+- https://www.npmjs.com/search?q=artillery-plugin-&amp;page=0&amp;perPage=20[Artillery plugins on npm^]
+
+
+
+
+

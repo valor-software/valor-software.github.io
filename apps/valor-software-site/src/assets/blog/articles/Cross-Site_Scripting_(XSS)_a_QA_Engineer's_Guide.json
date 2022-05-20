@@ -1,0 +1,11 @@
+{
+  "author": "Sean Moore",
+  "domains": ["dev_quality_assurance"],
+  "language": "en",
+  "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69ba3cacb840015aaad117_art-01.jpg",
+  "authorImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c242727b7bfd4b24c7d7_moore.jpg",
+  "title": "Cross-Site Scripting (XSS): a QA Engineer's Guide",
+  "position": "QA Engineer",
+  "date": "Fri Aug 14 2020 10:05:48 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "After reading this article, you will have a general understanding of XSS, how to check for it, and how to prevent it."
+}
