@@ -3,7 +3,7 @@ name: on-deploy
 on:
   push:
     branches:
-      - updated-site
+      - development
 
 env:
   FIREBASE_CHANNEL: live
