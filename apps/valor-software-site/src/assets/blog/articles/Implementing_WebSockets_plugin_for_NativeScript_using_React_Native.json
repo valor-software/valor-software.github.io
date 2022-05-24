@@ -9,6 +9,5 @@
   "title": "Implementing WebSockets plugin for NativeScript using React Native",
   "position": "Angular Developer",
   "date": "Wed Mar 23 2022 13:53:56 GMT+0000 (Coordinated Universal Time)",
-  "seoDescription": "WebSockets are frequently required for applications, be it for standard WebSocket communication, MQTT, debugging through Redux Remote Devtools, using socket.io, and sometimes even used internally on NativeScript itself. When researching the best solutions for a WebSocket polyfill, there were no implementations better and more battle-tested than React Native’s. With that in mind, we decided to use its approach and created a WebSocket plugin for NativeScript.",
-  "contentUrl": true
+  "seoDescription": "WebSockets are frequently required for applications, be it for standard WebSocket communication, MQTT, debugging through Redux Remote Devtools, using socket.io, and sometimes even used internally on NativeScript itself. When researching the best solutions for a WebSocket polyfill, there were no implementations better and more battle-tested than React Native’s. With that in mind, we decided to use its approach and created a WebSocket plugin for NativeScript."
 }

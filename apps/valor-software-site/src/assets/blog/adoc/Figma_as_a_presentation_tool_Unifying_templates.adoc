@@ -1,0 +1,99 @@
+The presentation is one of the most popular means of visually conveying information to
+an audience. Presentations are used everywhere by various specialists in various fields, because of the ease of
+their compilation and the popularity of the content form. Due to such popularity, people in the corporate segment
+developed a set of approaches, norms, and rules for presentations. Because all corporate presentations should be
+designed in the same style to represent the company's brand in the best way possible, it is better to use unique
+templates for this purpose. +
+The creation of such templates assumes thoughtful work on the structure,
+hierarchy of components, colors and fonts, universality in use and correctness in the design of visual
+information, therefore such templates should be created properly. The difficulty in creating a template pays off
+the ease of its use by other colleagues who does not possess appropriate design knowledge. So our design team set
+the goal of creating a template for presentations that will be comfortable and versatile to use and not imply
+special knowledge and skills, will be flexible and convenient to use.
+
+==== Research and a proper tool selection
+
+As the employees of our company work in various operating systems and to increase flexibility,
+we considered only *web-based* solutions.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ca769360adf052a0eec8bd2_6gbbCBMQJJGZrj88R1hGLshxFBeBx1lRlZEpDl4hGrLZ01HaLWEHcBK128_vFQv_v268Ozy1FDVen0u4-mPtIo_LcqijAnKfII0JNuu9cg5xjWMJAJG9-W18H6gaaJ3r-5r0Gl_U.jpeg[the tools we considered for creating high-quality presentations]
+
+A detailed study of popular presentation tools revealed that their functionality is not enough to allow us to create all types of slides that we need for our tasks. The main complaints we had were: the impossibility of adjustable settings for image placeholders and backgrounds, limited headers hierarchy, and confined master slide customization. Faced with such a problem, we decided to seek other tools for working with presentations and found the solution unexpectedly. We decided to use one of the leading modern designer's
+tools - Figma.
+
+==== Presentation development. Libraries
+
+The idea was to create such a template that would require minimal skills and knowledge to work with it and allow a user to fill in the template with content quickly. Also, let's not forget that it is necessary to protect the template from accidental changes. In addition to the built-in version control, Figma allows using libraries with predefined
+templates and styles, which gives an ability to work within one file without affecting the library.
+
+.Making the main file as a library.
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ca7693604fdce250092f31a_Qr2XbNuysNmCmCc-O7pkASSWrD2XV6HqCwS0Jdt5_2VRU4f7GFNCtYgVZppjIzDLfilNiMpyz96uj4vcknv9jyf3TGKT5OE6GWK_fMas2i1rwArS9bWGNk_-qOigVY02fpVEF7ex.png[The Figma allows using libraries with predefined templates and styles, which gives an ability to work within one file without affecting the library.]
+
+.Adding the library to the presentation file.
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ca7693604fdcef92192f319_rSH4gTJRmYvo4O1wMoIEKyGc0VrH6N229rReu3gcp_hRRhCy0aVTrQ3npUGP3z9oy2cDN5BYYG3R4ZboruCVhZG680-U7Ps8cJfeh-F3DrTjFMcXkV_uWokgrSn_RuBVcDel3lA8.png[Adding the library]
+
+==== Presentation development. Customization
+
+After connecting the library to the file with presentations, we can start creating a presentation using predefined color palettes, text styles, and slides components. Each slide component has its layout for different purposes.
+
+Here is a 9-step guide for a quick start:
+
+*#1* Create a new page and name it. We decided to go with a "one file with all the presentations and split it by pages" approach.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ca7693689cf383447eeb01c_YMGr3qyQTVESS7Xo5xiXxdNPOPErtV7u8WUi5KXc41TRnviAOPZ45ngZuLQ4R3z7uEqYNftesN0Ne03KS57tXX1PI1MLAJ7j_nF2vO9kADMLHsl-4j_Q9_7KJNpr_OQ2QWqvypLo.png[Step #1. Create a new page and name it.]
+
+*#2* To place a slide template inside, we need to create a frame (F), as the
+presentation's preview mode requires frames for each slide.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ca769363977265430f1e1f1_Fh9FuO9iTcI-H3tbyigAoEt1QCgeYNkjGeFC9u9BPGcJ1CRlzEr5Mdtdv_1fUIGyjVORc0BsYyDeJeUlNHjdedO3QH9XW0pyf-ma6zOnEVWGT0NrXGbP1PBh0RJAODnMg6d3tXLd.png[Step #2. Putting the slide template inside]
+
+*#3* Choose (Alt+2) a slide with the desired layout in the Components tab.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ca769363977266b6cf1e1f2_-HDTZ3ZHWITYnbRIA70wcVhK0bpX57ByJ8LBsJS3Oyt7Wk6LLmFPhC6kahrwoHA4ugK8eRl7ox_SzgqGzNcQrbnXsIAUHd70UR-HhS6lYuXdbEpbnWvrlQXrM9sdwh3gp1tSiUes.png[Step #3. Select a slide with the desired layout on the Components tab.]
+
+*#4* Make a slide - drag and drop template slide component into the frame.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ca7693604fdce5e0692f31b_viNgWeoYB-1azO4y2CIHKAIq8MMr_Euozp69C_FEVsurWNbNnZ_Ymia_e7v9H28fo6iE3DynI4s0GTW5YJqt4ZfVMRZbSeGdT1gH3VcRNrFp5IpdT3y_SZHXs4lcXdpGQsSLAMz5.png[Step #4 Make a slide]
+
+*#5* Select the "Resize to fit" button in the right side of the control panel to equal slide and frame dimensions.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ca769360adf050f74ec8bd4_J-xc6ZM_VWBj7WqIee8zviyVHwo5IxFvmTa2-k1UFn5_ZvEz6MQTHEZ4UrwWZG6cKx9SCr97QP-dRCmvAx5XuYm7BromFOom2a_Jt0sNGL-znSSfQ4eSeGI9nozhAONYb5ATBxQm.png[Step #5. Align the dimensions of the slide and frame]
+
+*#6* Open Layers tab (Alt+1) to edit text on a slide. It's important to remember that any work with the text has to be done only in frames of the text field.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ca769373977264f13f1e1f3_PX9KGh0mUL4u5Cvl-6ur1ooKLirsOV6AqKeB5RIzNH565mU4jVyDv4aJeNFMoRDVWKhjxd0hQnsSyBLYd--J0bs1PN3eCa-vs9tnIHCmwmuu2zJ_b3GVW44mIyR1JbYJh3tjoSnU.png[Step #6.Editing text on a slide]
+
+*#7* Change the placeholder - select the image frame, click on the image field in the right control panel, and pick a desired one.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ca769375f97517487b1b702_mbzyqEAG00BJPz_omdW3AI146o03WNWN_3PTkJ0iV9PcDUm23Px26SVfvTn0hLnA9_J7w-DAjpVyZyN751NW0oYUgCyV0YabMrclhRtLEdlvaG59fvUwcsENzhInw3trYPSIfPm3.png[Step #7. Change the placeholder]
+
+*#8* In Figma, there is a possibility to set links only for block elements. So, if pasting a link is required, choose the Rectangle tool (R) and wrap the necessary element. After that,
+switch to Prototype tab, pick the following settings: *Trigger: On click* and *Action:
+Open URL*, and paste the link.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5ca7693789cf381472eeb01f_kLhhNFcfFdLoTCAOwLfHIRUSJ0VhIkpGCntl4BnM0HTqEBJpIp3vNf2OJJ8eay9W4CFhGYbowxH0AtBQVhMuh0yqb0u8kubl-cGaYnQPZ91_ePmZwrZxRTXvYvxAmjz_xhohETvG.png[Step #8. Setting links for elements]
+
+*#9* Open the Design tab again and press eye icon near the fill settings to hide the grey rectangle.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5cab4bc23be192f69f815e16_OjpwJBR5Xaq9QproAN1xwA7VdaPVr2e_aB6kSh-hPYnAYaSolO1wv3rOwVAEC4kINGVtdXc63c5VEc2gEULNY78XG-LBwSzMIBT6QhmyYO1mbSAKspoEC0GCYBTycIC9PkTltrhr.png[Step #9.hide the element]
+
+This is everything you need to start working with presentations! As you can see, this template allows to fill the slides with content quickly and does not require any special knowledge everything is available for everyone in a single browser tab. 
+
+==== Conclusion
+
+Figma is a more practical tool for working with visual information, and has the following benefits:
+
+1. Extensive template customization
+2. Using the template does not require special skills
+3. Quick and easy content filling
+4. Parallel work on the document online
+5. Backup and auto-save system
+6. Prevention of accidental changes.
+
+These are the reasons why working with presentations in Figma was a blast for us, and was happily accepted  and used by various kinds of specialists across all company, allowing us to obtain well-read, nice-organized,
+and solid-designed presentations.
+
+Happy designing everyone!
+
