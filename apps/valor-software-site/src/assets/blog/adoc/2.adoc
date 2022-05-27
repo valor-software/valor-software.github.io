@@ -1,0 +1,119 @@
+=== JS empowerment with native platform APIs
+
+As friends of the NativeScript community and preferred partners, we’re constantly trying to improve the
+NativeScript framework, community, and developer experience.
+
+Sometimes it’s good to reiterate NativeScript’s goal: to empower JavaScript with native platform APIs. This has
+been the core focus for a while, and contrary to a common perspective among developers, NativeScript itself is
+actually not a competitor to other frameworks. Rather it is designed fundamentally to celebrate platforms while
+enhancing the entire JavaScript community (including other approaches, like React Native or Capacitor). As an
+example, @nativescript/capacitor allows you to use the full NativeScript capabilities within https://capacitorjs.com/[Capacitor^] itself.
+
+@nativescript/core is a JavaScript library that takes full advantage of what NativeScript offers (it's merely
+just a glimpse of what is possible with NativeScript as a whole), and all the other flavors like
+@nativescript/angular, nativescript-vue, and react-nativescript are compliments to each framework itself.
+
+=== WebSocket plugin for NativeScript
+
+WebSockets are frequently required for applications, be it for standard WebSocket communication, MQTT, debugging through Redux Remote Devtools, using socket.io, and sometimes even used internally on NativeScript itself.
+
+When researching the best solutions for a WebSocket polyfill, there were no implementations better and more
+battle-tested than React Native’s. With that in mind, we decided to use its approach with NativeScript.
+Something we later discovered to be surprisingly easy and painless due to the overall quality of the original
+implementation. There were only three functions that were not needed (logs and assertion helpers from the
+original implementation), but we reimplemented them to maintain a similar behavior. In the end, it proves that
+React Native and NativeScript are really complementary and quite interoperable.
+
+Visit https://www.npmjs.com/package/@valor/nativescript-websockets[npm to use the WebSocket plugin for NativeScript^], and scroll down to proceed with the Implementation part!
+
+image::https://valor-software.com/assets/images/624495a97b77ab1729aaf5ad_Implementing_20WebSockets_20plugin_20for_20NativeScript_20using_20React_20Native.png[]
+
+=== Implementation
+
+Check https://github.com/valor-software/nativescript-plugins[the original React Native
+implementation^] from where we started. Except for a few functions, like RCTAssert, RCTAssertParam, and
+RCTLog, everything else just worked straight out of the box. Since NativeScript allows you to use platform APIs
+as they were designed (most often synchronously) and without the need for a bridge, we also could drop all
+related bridge code from the React Native implementation and adjust a few data handling items (eg. converting
+from NSData to ArrayBuffer).
+
+*Here are the steps we followed:*
+
+1. Created https://github.com/valor-software/nativescript-plugins[a public workspace
+for NativeScript plugins^] based on the NativeScript https://docs.nativescript.org/plugins/plugin-workspace-guide.html[plugin workspace docs^] and generated the plugin through Nx.
+
+2. Created a native-src with the Xcode project and built scripts, using the React Native approach.
+
+3. Ran `ns typings ios` from within the "apps/demo" folder to generate the typings for the RCTSRWebSocket
+class.
+
+4. Started writing the WebSocket polyfill straight from JavaScript, which involved creating the Native delegate
+and calling a callback when these events happened.
+
+image::https://valor-software.com/assets/images/623a42cb69e4e3c90fe6021a_PMgnLe2yiP1jYyiUv5NKPybCVSqytbUPMTXUhTR-yJME3Kn-mAFDzur9oT8PXJKf2fmtg7u-s4_G2DY_GNjQ4N6emmaQOdVu1hYvTygdT3deU05UeSzsVFLbmhVrJExAv95Jq-e7.png[]
+
+[start=5]
+5. Made small adjustments related to data types and converted them to JavaScript types when needed.
+
+image::https://valor-software.com/assets/images/623a42cb0ebeab71f2c50761_8p1Us1oMMyyU-0SljBp1qFD2OfVXEhEwwybcwOWqXXs7-apoo-2V2v_1yoMyJs1rq6SmZFYRz5UttPtYTEaaNOqtJOuCWig30NTq0JowlKejh-lQ63xFj0hMnn2X1n_FYbC4Hnbd.png[]
+
+And the remaining implementations were just a case of translating Objective-C to TypeScript:
+
+image::https://valor-software.com/assets/images/623a42cb69e4e3df50e60223_Hjyt45ke5SI0QLPG86Hq2A5Qu4_C41q3bqCjl2ruKd8RJOweMparnsfEIiSkI7SEH7uwXUg3YPyf9sl6AYFOFNUH9z8FfT6-W_P0I0zIJG56u4qSyAlS1eBxwNc_hDpclAZalF_j.png[]
+
+One critical detail to remember about JavaScript while handling any platform API is that it’s single-threaded.
+Blocking calls will block the main thread, which is the reason we needed a native implementation on iOS. The iOS native implementation is responsible for receiving the calls, doing work on other threads, and then returning back to the main thread.
+
+On the Android side, React Native uses OkHttp for its WebSockets, which already handles all the threading
+details, so we needed no native code at all! All we did here was translate the Java implementation to
+JavaScript. However, we could have used the .java "as-is" as well, which is where NativeScript is endlessly
+versatile (you have the choice), so we just decided to use TypeScript here.
+
+Another interesting detail with NativeScript is the sheer reduction in code to manage - originally this code was over 400 lines: https://github.com/facebook/react-native/blob/ff568b0b1f1b58af1fa5704e46e15a0cbd21dc48/ReactAndroid/src/main/java/com/facebook/react/modules/websocket/WebSocketModule.java[WebSocket module^]. And we were able to transform this into under 150 lines of easy to read JavaScript code. Below you can see a comparison between the original code for WebSocket module in Java and in NativeScript:
+
+image::https://valor-software.com/assets/images/623a42ccea549707f8460cfc_mNG1FlvyX9BRiWbpqZ2l4UFEsowliat4S2pI99t1mBbkoQ9B7ETZcQOHyEUaMbnMBLXN3TvuL8r6idnOF5GxttYs6YvAkSzySK4iGIi1mEhIWbQ4DTsbvq8htuvKPd7_J1Iqt8g9.png[]
+
+A couple of conversions were needed for binary data. In React Native, binary data is converted to a base64 string in JavaScript and converted back to binary on send:
+
+image::https://valor-software.com/assets/images/623a42cc9e2caa7d7c427b7c_2jiYD1tkMdH2YEgu7gWNBraisH658ep32-pQwduTpGmhFGYm6qYi_JwuT5jMdtVZZaXNKRnJIEqzwPIV8Hvxy9rHpzqDQYEuT2kaDkYIQHPwJ3L6VXo9fpINo7KNoK6j-HUHU2eT.png[]
+
+In NativeScript, we are able to manipulate native types directly, so we can do a simple conversion:
+
+image::https://valor-software.com/assets/images/623a42cc2d8f2323614bd273_UEARQyIyD0QPch5a1QinnzlvWj-jS6jvKpx9pA10XYkfD2SclcTmF4Dur_b6oYhV3p93k8MWDAxBeZLS-ufD1q3TT1jcC5wbsv7lR8ptUk8Ha1jZrlpwfIAiuzrWAm90NFdTHXUa.png[]
+
+The same adjustments made to convert NSData to ArrayBuffer were needed for Android, but since Android doesn’t
+have a helper for it, we converted from ByteString:
+
+image::https://valor-software.com/assets/images/623a42cc7af8ad80b589bdfa_Rm2Nwf4NadyoHz47ziuPxRLGmKW6Ix7J2w1AwtRVCZOxh0O7ueq86sJhv79aggIaHJ7tMZmsFxwqmBFOg-TXPqSP9skdzjh369zz3VpsP7y8pg1INhoR5gNXqgDU2Vp3gLVDpkkf.png[]
+
+And that’s it! We now have a nice API for WebSockets for both iOS and Android platforms with a well defined
+interface:
+
+image::https://valor-software.com/assets/images/623a42ccc95b0ab48627e629_T1Ykebxda4AImHnbUYH2yGANiKHQ0TwRk78PTj5arxl_nie5Y51KwoyOPfBBFD1avLME4OJRm08v_dhiwB1Xppk-fteOsVSDdYg-0c83-X0OwRe2jOuB1OaRPaFBt3lHNGBgfF95.png[]
+
+Then it was just a matter of wiring up a simple WebSocket polyfill.
+
+=== Not to compete, but evolve and excel
+
+In conclusion, we want to underline that it is part of our mission as a company and engineers individually to
+contribute to open-source technologies and make them even better. This way, we can provide developers from
+around the world with more flexible and responsible options to build software products and overcome their daily challenges. Also, NativeScript is in no way competing with other JS frameworks and on the contrary can be applied in combination with other technologies, for example inside Capacitor by Ionic.
+
+Finally, we admire the quality with which WebSockets polyfill was implemented in React Native. The code structure with minimum dependencies allowed us to use it with NativeScript quite effortlessly.
+
+=== Useful links
+
+- https://www.npmjs.com/package/@valor/nativescript-websockets[WebSockets plugin for
+NativeScript on npm^]
+
+- https://developer.mozilla.org/en-US/docs/Web/API/WebSocket[Connecting WebSocket
+through API^]
+
+- https://reactnative.dev/docs/network#websocket-support[React Native documentation about WebSocket support^]
+
+- https://docs.nativescript.org/native-api-access.html[Docs on native API access^]
+
+- https://docs.nativescript.org/advanced-concepts.html#adding-objectivec-swift-code[Adding
+ObjectiveC/Swift code to NativeScript^]
+
+- https://docs.nativescript.org/advanced-concepts.html#ios-marshalling[iOS marshalling^]

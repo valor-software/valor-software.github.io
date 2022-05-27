@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {CommonDocsModule, ARTICLES_LIST, SeoService} from '@valor-software/common-docs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScullyLibModule } from '@scullyio/ng-lib';
-import { articlesList } from "../assets/blog/articles.list";
+import { articlesList, articleIdList } from "../assets/blog/articles.list";
 import { PORTFOLIO_LIST } from "@valor-software/portfolio";
 import { portfolioList } from "../assets/portfolio/portfolio.list";
 
@@ -24,7 +24,7 @@ import { portfolioList } from "../assets/portfolio/portfolio.list";
   ],
   providers: [
     SeoService,
-    { provide: ARTICLES_LIST, useValue: articlesList },
+    { provide: ARTICLES_LIST, useValue: articleIdList },
     { provide: PORTFOLIO_LIST, useValue: portfolioList },
   ],
   bootstrap: [AppComponent],

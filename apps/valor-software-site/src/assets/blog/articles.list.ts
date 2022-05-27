@@ -39,5 +39,7 @@ export const articlesList = [
     'Como_o_Scully_nos_ajudou_a_atingir_99_pontos_no_Lighthouse_para_uma_plataforma_B2C'
 ];
 
+export const articleIdList = [1, 2, 3, 4];
+
 
 

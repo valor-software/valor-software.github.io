@@ -136,6 +136,5 @@ Earlier, we talked about https://valor-software.com/persons/ludmila-nesvitiy.htm
 testing^], and in this article we dived into synchronization issues that might occur while testing
 Angular-based apps with http://www.protractortest.org/#/[Protractor^].
 
-We hope that you'll enjoy working with Protractor even more after reading this article! We wish you good luck
-with conquering new QA-horizons!
+We hope that you'll enjoy working with Protractor even more after reading this article! We wish you good luck with conquering new QA-horizons!
 

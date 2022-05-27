@@ -1,5 +1,6 @@
 export interface IArticle {
     author?: string;
+    id: string;
     authorImg?: string;
     domains: string[];
     language: string;

@@ -53,6 +53,7 @@ export class GeneralPageComponent implements OnDestroy{
                 if (this.isBlogPage()) {
                     this.$generalSubscription = forkJoin(this.getArticlesServ.getFullListOfArticles()).subscribe((res: IArticle[] | undefined) => {
                         if (res) {
+                            console.log('general sub', res);
                             this.articles = res;
                             this.firstArticles = this.getFirstProjects(res);
                             this.activeArticle = this.firstArticles[0];

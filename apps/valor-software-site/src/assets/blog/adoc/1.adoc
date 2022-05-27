@@ -1,0 +1,70 @@
+==== *Valor Software Proudly Announces Partnership with Zack Jackson, the Inventor and Co-Creator of Module Federation (MF), Aiming to Make Code Sharing More Straightforward and Independent by Popularizing, Enhancing, and Simplifying Implementation of Module Federation&nbsp;for Various Technologies Including Angular.*
+
+Valor Software, software services and consulting company, creators of https://valor-software.com/ngx-bootstrap/#/[ngx-bootstrap^] led by Dmitry Shekhovtsov, GDE in Angular and web technologies, open-source evangelist, advanced https://module-federation.github.io/[Module Federation^] practitioner, and Zack
+Jackson, the Inventor and Co-Creator of Module Federation, maintainer and core contributor to https://webpack.js.org/[webpack^], and a Principal Engineer at Lululemon
+Athletica, are announcing the beginning of their partnership for the ongoing development, support, and
+implementation of Module Federation, a groundbreaking method of sharing code between and within applications.
+
+==== *Personalities*
+
+[.image-content.max-w-200.m-auto.w-auto]
+image::https://valor-software.com/assets/images/624c946f4abecce4fa1196fd_Zack_Jackson.jpg[Zack_Jackson]
+
+Let’s take a closer look at the personalities of this cooperation, from not just a professional, but a personal
+angle. One of&nbsp; *Zack Jackson’s* biggest goals, inspirations, and drivers for life is his
+willingness to improve the developer experience. Being a person who invented Module Federation he has indeed
+revolutionized the way of architecturing software. This methodology is now being adopted across the ecosystem by
+organizations such as SAP and Google. Zack lives by the challenge that “nothing is impossible”! He’s started
+living this challenge since his childhood in South Africa, where he managed to master programming despite the 2G
+capability networks and other limitations. This gave him great empathy for users with low/no connectivity and
+lower-powered devices.
+
+Alongside a great passion for authoring code which he started at the age of 13. Zack finds joy and inspiration in
+active leisure, riding his snowmobile, and going camping. Between cats and dogs, he’s definitely a dog person
+and is the proud owner of a couple of French bulldogs.
+
+[.image-content.max-w-200.m-auto.w-auto]
+image::https://valor-software.com/assets/images/624c96a855e1ac84eced83b1_Dmitriy_Shekhovtsov.png[Dmitriy_Shekhovtsov]
+
+*Dmitriy Shekhovtsov* describes himself as a JavaScript (NodeJS + Angular) addict and Software
+architecture maniac. Being a person of a rather critical and rebellious nature, when working as an architect at
+software development entities, he always noticed the procedural and communication flaws of most organizations.
+Feeling there was a way of building and running the company more efficiently, Dmitriy organized Valor Software.
+He’s managed to switch from the heartless format of IT manufacture to a living, vibrant, flat-structured
+environment for engineers to offer bold and nonstandard ideas to realize clients’ vision and goals most smartly.
+
+Passionate about open-source, Dmitriy has built Valor Software utilizing open-source technologies and
+contributing back to the community with numerous open code libraries.
+
+Dmitry is also a dog person, and not just a lover of his own pets, he sponsors and assists a local pet shelter,
+with dozens of cats and dogs that needed financial support and additionally gave a safe home to three cats who
+reside in our Kharkiv office. Between discussions and action, Dmitriy chooses action. Additionally, to unwind he
+goes to play computer games, MMORPGs are his favourite. Last but not least Dmitriy is a family guy and loves to
+spend time with his kids! :)
+
+==== *Why this partnership is important*
+
+In the fast-paced business environment, scalability is vital to succeeding as you can react to newly arisen
+market and user demands instantly. Businesses can reach better scalability by splitting huge monolithic products
+into smaller independently-manageable applications handled by isolated teams (free to take their own technical
+decisions and make separate deployments). And Module Federation, as the continuation of the scalability
+philosophy, allows to expose applications, particular functions, components, or contents and reuse them between
+other apps.
+
+No matter how massive your system is, MF will eventually allow you to deploy changes to all the applications in
+one click without touching the codebase. _“I want universally uncoordinated, uncontrolled orchestration of
+distributed code at runtime. That’s my ultimate goal!”_ – says Zack Jackson, describing the future he
+sees for Module Federation. Among the primary objectives for this cooperation is building the ecosystem for
+Module Federation and strengthening it as a backend technology.
+
+For companies in time-pressured industries, moving from a monolith to the architecture of independent services
+powered by Module Federation would mean indisputable competitive advantage. And collaboration between Zack
+Jackson and Valor Software allows for joint effort in increasing MF availability for business.
+
+==== *In conclusion*
+
+Module Federation, a game-changer in JavaScript architecture, has boldly entered the market and been adopted by
+the ecosystems of giants like SAP and Google. Despite this fact, it’s still on the way to reaching the peak of
+success. We're looking forward to the breakthroughs in deployments and sharing dependencies coming from the
+ambitious cooperation that made a reason for this publication!
+
