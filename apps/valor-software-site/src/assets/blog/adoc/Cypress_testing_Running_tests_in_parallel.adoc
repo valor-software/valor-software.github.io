@@ -215,9 +215,11 @@ provides the possibility to run tests on different machines inside the first sta
 scripts as you need, and each of the scripts will run in their separate thread.
 
 In our example above,
-integration and the full test scope will run in three threads.</p> <p>To finish what we have started, we need
-to add a similar configuration for the two remaining instances.</p> <p>Okay, imagine that's done, But what do
-we have now? Of course, an error:
+integration and the full test scope will run in three threads.
+
+To finish what we have started, we need to add a similar configuration for the two remaining instances.
+
+Okay, imagine that's done, But what do we have now? Of course, an error:
 
 ____
 _"The run you are attempting to access is already complete and will not accept new groups."_

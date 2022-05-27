@@ -1,0 +1,205 @@
+=== *This article is part of a series:*
+
+* Part 1: Context of the Project, User Persona, Search for Participants.
+* Part 2: Preparation for the Interview, Competitors Research.
+* Part 3: Context of Pandemic, Transcribing, Affinity Diagraming, Report.
+* Part 4: Conclusion, Lessons Learned.
+
+
+First, I'll give you the context of the project I'm working on, then we'll move to the solution part in the chapters that will follow.
+
+= Context
+
+Renaizant - an all-in-one performance management tool
+with a data-driven approach to building healthy organizations. Services include various features: skill assessments, performance reviews and feedback cycles, objectives management, meetings, and many others, you name it. The project was developed by the Valor Software team and consisted of specialists from different
+spheres of IT: developers, designers, QAs, an ML specialist, a UX writer, a product owner/project manager, and a Scrum Master.
+
+It was a tremendous amount of work, as it was a AAA-level project. A lot of features
+went to production, but then we had gotten a new request from stakeholders. We had to deliver a new feature with advanced analytics and customizable dashboards to visualize results.
+
+The main goal was to provide users with analytics gathered within all the features already delivered to Renaizant and support it with actionable insights. As an example, it could be recommendations of how to raise performance among the employees (the reason) and where problematic zones are.
+
+But we didn't have any concrete requirements of
+what it all should look like, you know, it was more on the vague side of things. We already had a dashboard
+with basic analytics, based on performance review and skill assessment results, or a number of achieved
+objectives, and so on. But what can really help to build a successful, healthy, high-performing, and
+profitable organization? Should it be different for roles we have in the system? How the experience of the
+Head of HR, Project Manager, or Individual Contributor will differ?
+
+So we had a raw idea and a lot of
+questions, and we needed to go through the discovery phase to validate this request and understand real users'
+needs.
+
+Are there any hidden correlations that may be useful for HRs?
+
+== *Main user types and hypothesis*
+
+So we had 3 main user types: HR, Manager, and Regular Employee.
+
+I started by setting a hypothesis for each of these roles - which analytics may be useful for them? What are
+their purposes and what are the benefits? What will make them actually use this feature?
+
+As a result, we had:
+
+=== *Primary persona*
+
+*_HR_*
+
+*Hypothesis:* dashboard as a tool of business value and company improvement.
+
+Tasks: Analysis of data to prevent money
+loss and increase workforce usage and performance. Hard cost saving based on data-driven decisions.
+
+Dashboard as 1) quick insight of any risks that are in the organization, 2) tool to form and present reports, 3) prediction of losses, critical people issues and suggestions to improve, 4) strong analytic tool to maintain performance on top, prevent resigning (money loss), and keep rational usage of the workforce.
+
+=== *Secondary personas*
+
+*_Manager_*
+
+*Hypothesis:* dashboard as the main tool to create high-performing teams, increase their
+collaboration and deepen their professional relationships, see quick insights of what is going on, and keep
+the finger on the pulse.
+
+A manager wants to see: level of engagement, loyalty, happiness, in general
+- the atmosphere in the team. See metrics of all the teams he/she is leading.
+
+Idea: an ability to set
+up a dashboard for each team that the manager is working with now separately. Basic info - eNPS, other
+engagement metrics, important team objectives, number of 1on1s - the expected amount in comparison with the
+actual one, reminders, like "You haven't been on 1on1 with a team member for a long time," list of action
+items for each team after 1on1s.
+
+=== *Regular Employee*
+
+*Hypothesis:* for regular employees, the most valuable thing would be connected to their daily
+routine. Everything that may be helpful for their promotions, skills improvement, forecasts of their career
+path - approximate deadlines and necessary skills to improve, statistics of promotion frequency in their
+company, etc. Feedback is also valuable: it may be shown through metrics that should be improved, getting
+Kudos from co-workers. So the dashboard for them should be a bunch of ideas on how to succeed and feel
+healthy.
+
+Another point, beneficial for the organization, is the possibility to keep employees on the
+same page with their company within a public dashboard - for example, to show the direction the organization
+has and what the actual results are (organizational objectives, new employees, promotions, and rotations,
+etc.).
+
+So here we are, with the defined hypothesis and ready to go ahead. But what are the next steps?
+How can we validate this hypothesis?
+
+== *User Research*
+
+A lot of UX designers
+faced the problem of advocating for user research as a part of the development process. It can sometimes be
+hard to explain to stakeholders the advantages of a user-centered approach (which originally includes such
+types of activity as user interviews, observations, contextual inquiries, usability testing, and others)
+without any real numbers.
+
+The best way to start incorporating user-centered methodology within the
+project is to find someone on the board or management who tends to be a user advocate and solicit their
+support.
+
+In my case, it was the product manager of the project. I approached her with the idea of
+conducting contextual inquiries with potential/real users of the system (and the feature itself). As we worked
+within 3 weeks sprints and designing new features took several of them (depending on the scope of work), we
+decided to include user research in it. This way we see how it will impact delivery time and what results and
+insights it may bring to us.
+
+== *Methodology*
+
+The purpose of our research was
+to understand the typical workday of potential users of the system: what they do on a daily basis, what
+challenges they face, which tools are their little helpers. The idea was to understand the context, real
+users' needs, and frustrations.
+
+We had a lot of biases toward people's behavior and thoughts. What
+would be your initial thoughts about the typical workflow for HRD? What can help them ease their routine and
+make it more efficient? Still, we had only our assumptions, not facts.
+
+Without actually observing and
+talking to people we would never see the full picture. For sure, we may start from desk research - on the
+internet. We may find lots of information, shared by users from our target audience. They even may share their
+workflow using videos or photos on social media. Somehow it could cover our requests - especially when the
+team doesn't have enough resources or time to do the research.
+
+We decided to interview subject matter
+experts (2 experienced HR managers) and one person that fitted our secondary persona perfectly is a
+manager.
+
+The initial idea was to conduct a contextual inquiry - observe people doing their routine in
+the everyday context. By routine I mean tasks they perform in the sphere we are interested in - building
+high-performance and profitable teams and organizations. This process gives lots of insights and is considered
+the most crucial method. Even user interviews may not be as useful, because what people claim they do and
+think they do may not correlate with reality. It's a feature of our brain. That's why field studies are so
+crucial - we gain much more just by observing people do what they do. We gain empathy. And we gain facts based
+on observations - which one we can transform into actions.
+
+== *Searching for participants*
+
+As we didn't have the resources to recruit people and use the services of
+recruitment agencies, we decided to start with in-house research. I had asked a manager and a head of HR of
+our company to be participants of the study - their experience and daily working routine matched requirements
+to potential users of the system. Also, we asked a domain expert (HRD with 10+ years experience) from the
+customer side to take part in contextual inquiry as a respondent, and he agreed to help us.
+
+I had
+prepared letters, explaining the purposes of the study to the participants. As examples,
+
+*_Letter 1:_*
+
+I would like you to perform the tasks you do when working with the creation of a
+high-performance team, increasing team collaboration, and growing relationships inside it. Imagine you have
+got time to dedicate to gathering and analyzing information regarding your teammates in the context of
+improving the team's performance and engagement. What are the regular actions you do? Which parameters are
+important for you to monitor? How do you maintain the team's engagement and how do you measure the
+effectiveness of your work? I would like you to demonstrate to me the whole process from the beginning till
+the end:
+
+1. Which tools do you use when solving such tasks?
+2. Where do you find information?
+3. How do you analyse and combine it?
+4. Which actionable insights do you form based on your analytics?
+
+If it would be easier for you to recall all such tasks if you just imagine you have to present a report
+regarding your teams to CxO or HRD. What information will you need? What are key parameters, trends, and
+forecasts? During the observation I may ask clarifying questions or guide you to a specific topic - it will be
+a semi-formal interview. Each answer to a question can be supported by a demonstration from your side. If you
+say that you normally measure the feedback satisfaction of team members, it would be great If you show how
+exactly you find this information and all your steps related to that task. You don't have to prepare anything
+in advance. The aim is to see the real context of such tasks. Just act the way you usually do when working
+with employees' data gathering and analysis.
+
+*_Letter 2:_*
+
+Imagine you
+have to present an annual (quarterly, etc.) report for the CxO in a couple of weeks. This report includes
+general insights into people analytics in your organization with suggestions for improvements, any risk areas
+with further solutions, and forecasts for the future. I would like to observe the whole process, from the
+first to the final step.
+
+1. What data will you need to form this report?
+2. Where will you try to find it? Which tools do you already use?
+3. How will you combine and analyse the data?
+4. How will you transfer collected insights into the report?
+5. How will you present the report? Which tools will you use?
+
+During the observation, I may ask clarifying questions or guide you to a specific topic. Each answer to a
+question can be supported by a demonstration from your side. If you say that you normally measure the woman
+representation ratio for your company, it would be great If you show how exactly you find this information and
+all your steps related to that task. You don't have to prepare anything in advance. The aim is to see the real
+context of such tasks. Just act the way you usually do when working with employees' data gathering and
+analysis.
+
+https://docs.google.com/document/d/1ror2MeZ55s19ixn7yj-ucWsgyWPKIdXHOQFFIYuk73k/edit?usp=drivesdk[Contextual Inquiry Invitation^]
+
+=== Conclusion and Evaluation
+
+Valor Software developed an all-in-one performance management tool with a range of default features (skill assessments,
+performance reviews, objectives management, and many more, you got it), but the main goal was to gather
+analytics out of all the provided features. Then - transform results into actionable insights.
+
+Since we had rather a blurry task to form analytics not having any particular pains and requirements from users, I went
+on with field research to understand what users need and would use.
+
+We split the massive abstract task into doable research actions, like understanding the user personas workflow, data that drives their actions, tools applied daily, and insights they're searching for. As experience shows, asking open-ended questions is the best you can do to gather valuable information and build a full picture of the user flow, obstacles, and goals.
+
+As for the actual practical steps, this will follow in the next chapter.

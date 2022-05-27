@@ -1,0 +1,294 @@
+Did you know that only one in 10 startups succeed? https://s3.amazonaws.com/startupcompass-public/StartupGenomeReport2_Why_Startups_Fail_v2.pdf[The research by UC Berkeley & Stanford and other contributors^] says that over 90% of startups fail within their first
+three years. Those who succeed, still often come across near-death experience.
+
+There is no "magic pill"to build a successful startup - you need to keep your finger on the pulse. We want to
+discuss a few lessons from our successful experiences and past failures to help you increase chances of
+success. If you launch a startup, lead it, or just work on it, this article will come in handy.
+
+All roads lead to +++<del>+++Rome+++</del>+++ project management. For the startup, having a project manager is essential:
+startups are about the uncertainty and absence of long-term activities plan. Having a project manager who is
+very involved in a project helps to decrease decision-making time and allows for quicker changes, both
+internally and externally.
+
+Poor planning at the start of a startup can lead to chaos, which is quite common for a startup. For example,
+not understanding who your target audience is or developing plenty of fancy features that don't solve users'
+problems.
+
+When you understand what kind of project you have, you are a step closer to its success. According to https://en.wikipedia.org/wiki/Cynefin_framework[the Cynefin framework^], a team's velocity is
+higher in complex and complicated projects than in chaos.
+
+.https://en.wikipedia.org/wiki/Cynefin_framework[_The Cynefin framework_^] _provides a 'sense of place' from which to analyze which project management methodology should work better for your project_
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d70ec55c5dc92ececbab582_YDoHhsL8jJs4yJ183udqYIxYeVFlyMtLgo9KHP5w3wZMMZuGuEvf9yy7Kqkoj_Sf68H3G3DYoqJ3Xe-d49LBv6I-t1ydWpxUPXlq4BxY2iuIqcFMPAsJ6Ih-VjJLwDKoBc5GPkAw.png[]
+
+We want to talk about four main lessons we learned which will help you drive your project
+from chaos to complicated and complex, and therefore, manage it.
+
+== Lesson #1: Appoint a Product Owner
+
+The first lesson is related to a dedicated Agile role for managing requirements on the project - a Product Owner:
+
+_The Product Owner is responsible for maximizing the value of the product resulting from the work of the
+Development Team. How this is done may vary widely across organizations, Scrum Teams, and individuals._
+
+_The Product Owner is the sole person responsible for managing the Product Backlog. Product Backlog
+management includes:_
+
+* _Clearly expressing Product Backlog items_
+* _Ordering the items in the Product Backlog to best achieve goals and missions_
+* _Optimizing the value of the work the Development Team performs_
+* _Ensuring that the Product Backlog is visible, transparent, and clear to all, and shows what the Scrum Team will work on next and,_
+* _Ensuring the Development Team understands items in the Product Backlog to the level needed. (c) (https://www.scrumguides.org/scrum-guide.html#team-po[Scrum Guide^])_
+
+Product Backlog management can be decomposed into the following activities:
+
+._Well, so many tasks - this seems to be a full-time job!_
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d70ec55f504968a773a9d1c_wQV3zvuCMP-QZ72OuYpN6HM4TibMNwxnCiF2JRr9n8IBEe_WqxSdHspCs3MWKyqH8-X4QG4r2hNa3ZyZIBoR75uJDQUdiPCw9lMlvHDpKBrlXRqHDb4znUZJGIPzDO81CsL25ARE.png[]
+
+Let's imagine there isn't a single person responsible for these activities. Is all the
+information circulating between all the Product-related people? Aren't there delays in communicating essential
+project specifications and updates? Does everyone on the Team know what, how, and in what order to do? Are the
+stakeholders sure the developed Product will meet their expectations? You should have many doubts in mind if
+you do want to keep track of the chaos that the project may bring.
+
+We suggest you analyze the situation on your project. Do you have the Product Owner on your project? Does this
+person carry out all of the duties above? If you're uncertain about this, it's worth addressing one of the
+following options:
+
+* Make sure a current Product Owner covers all the functions from above (if you have the Product Owner on
+    your end)
+* Ask the customer to hire the Product Owner, or, even better, https://en.wikipedia.org/wiki/Subject-matter_expert[domain expert (or subject-matter expert)^] and https://en.wikipedia.org/wiki/Business_analyst[business analyst^] in addition
+* Delegate Product Owner responsibility to your organization and hire Product Owner in your company.
+
+Ideally, the Product Owner should be a domain expert. In our case, we're working with a startup to create https://app.renaizant.com/[a web application to help HRs^] and leadership keep up an organization's
+health, so we've assigned our HR generalist to act as a domain expert. If hiring a domain expert isn't
+possible, look for a person who is passionate about the Product and consult with this person.
+
+== Lesson #2: Maintain documentation
+
+Agile methodologies prioritize flexibility. However, https://agilemanifesto.org/[values of Agile^] are rarely interpreted by the customer or Team in the right way. One of them declares, "Working
+software over comprehensive documentation."And of course, nobody likes writing documentation.
+
+But does this mean that an Agile-based project doesn't need documentation? We don't think so. The lack of
+documentation may work only if:
+
+* The Product and its requirements are straightforward
+* The business industry and its tendencies are predictable
+* There are similar well-known solutions on the market
+* The Project Team includes few people (let's say, 1-5).
+
+The more the Product evolves, and the Team expands, the more miscommunication might occur. To reduce
+miscommunication, you need to focus on the documentation to help you with:
+
+* Being on the same page with the Team
+* Employee onboarding
+* Tracking different versions of product requirements.
+
+=== What documentation is needed for a startup?
+
+*As a first step, draw up a product vision:*
+
+* https://uploads-ssl.webflow.com/5c3f0ad89f55ca3a4f8c174c/5d70f1e86d5a38b568dd1f09_Persona%20canvas.pdf[*Persona
+    Canvas*^] can be used to make it easier to step into the users' shoes and guide the development
+    of a product considering the users' needs, headaches, fears, opportunities, and hopes.
+* https://uploads-ssl.webflow.com/5c3f0ad89f55ca3a4f8c174c/5d70f27c3f57a53cc866cdac_Empathy%20map%20canvas.pdf[*Empathy
+    Map Canvas*^] is a tool that the Team can use to empathize with users' actions and thoughts by
+    mapping out what users say, do, see, hear, think, and feel.
+* https://uploads-ssl.webflow.com/5c3f0ad89f55ca3a4f8c174c/5d70f27b6d5a386d86dd2a91_Business%20model.pdf[*Business
+    Model Canvas*^] helps to develop new or document existing business models by specifying key
+    partners, key activities, key resources, value propositions, customer relationships, channels, customer
+    segments, cost structure, and revenue streams.
+* https://uploads-ssl.webflow.com/5c3f0ad89f55ca3a4f8c174c/5d70f27b3f57a5bcbc66cdaa_Lean%20canvas.pdf[*Lean Canvas*^] will help you deconstruct your idea into its key assumptions: problem, existing
+    alternatives, solution, key metrics, unique value proposition, high-level concept, unfair advantage,
+    channels, customer segments, early adopters, cost structure, and revenue streams.
+* https://uploads-ssl.webflow.com/5c3f0ad89f55ca3a4f8c174c/5d70f2a19b8d7b73508c0c22_Value%20proposition%20canvas.pdf[*Value Proposition Canvas*^] helps to identify your users' major jobs-to-be-done, the pains they face
+    when trying to accomplish jobs-to-be-done, the gains they feel by getting jobs done, and then define the
+    most important components of your proposition, how you relieve pain and create benefits for product
+    users.
+* https://uploads-ssl.webflow.com/5c3f0ad89f55ca3a4f8c174c/5d70f27b6986a60366478c1e_Team%20canvas.pdf[*Team
+    Canvas*^] a tool to reflect team people &amp roles, common goals, personal goals, purpose,
+    values, strength & assets, weakness & risks, needs &amp expectations, rules & activities.
+
+*Collect product requirements and update them along the way:*
+
+* *Site map* is a list of pages of a product (application, web site).
+* *User flows:* deliverables (descriptions, prerequisites, wireframes) by features that
+    specify the complete paths that are followed across the Product to complete a task by various user
+    roles.
+* *Definition of Done* is a set of conditions that must be met to mark a user story (one or
+    more product features) complete.
+* *Acceptance Criteria* are conditions to consider a specific user story as done. As opposed
+    to Definition of Done, which is typical for all user stories, Acceptance Criteria are created individually
+    for various user stories.
+* *Non-functional requirements:* criteria that can be used to judge the functioning of a
+    product, rather than specific behaviors, for example, attributes such as performance, security, usability,
+    compatibility.
+
+*Throughout the project, maintain project onboarding docs:*
+
+* *Product vision* (described above) helps new Team members gain deeper insight into your
+    customer and product users
+* *Communication plan* defines the general communication requirements for the project: who
+    should be given specific information, the timing, and the communication channels.
+* *Star map (also referred to as Skills matrix):* a grid that visualizes the skills and
+    competence held by individuals within the Team.
+* *Responsibility assignment*, usually presented by https://en.wikipedia.org/wiki/Responsibility_assignment_matrix[the RACI matrix^], describes the
+    roles and responsibilities for a project.
+* *Development process:* the list of activities that are conducted to build up a product
+    (code is ready, tests are passed, features are documented, and so on).
+* *Tools:* the software the Team uses for a project (communication, development, testing,
+    etc.).
+* *Environments:* a computer system in which a product is deployed and executed. Usually,
+    those are development, staging, and production environments.
+* *Credentials:* a list of accounts with access details or people who can give it.
+* *Glossary* defines the meaning of the terminology appearing in the project.
+
+This list is just an example of the documentation kit: you may not use some of the suggested instruments, or
+your list may be even larger in the end, as the project scales.
+
+== Lesson #3: Start from one killer feature then work on "nice to have"features
+
+We often see startup companies that are convinced that their product can only work if it has the same Product
+complexity of a mature product such as Facebook and tend to over-engineer their products by adding features
+that aren't necessary at the beginning.
+
+From a practical point of view, more features mean more code produced. https://s3.amazonaws.com/startupcompass-public/StartupGenomeReport2_Why_Startups_Fail_v2.pdf[The investigation by UC Berkeley & Stanford and other contributors^] shows us that startups do keen to make
+the Product overstuffed on the discovery stage:
+
+._Lines of code written by stage_
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d70ec55dc2d3b392dd943f4_pJ2v8MMK8OTVPX5BjMkjOtI2BFZWlS5CvR30cNW9tkinLTnJ_0fIBsRa-QSryfAylOCbd2O80s7CbwYSpPzmqyq5OmUpTbc_NttCYX_Q7zIaCarXadRAtMF5zKadxr5WTOGJ6rl8.png[]
+
+This leads us to another Agile pillar - incremental delivery. It makes sense to build and
+ship an MVP - Minimum Viable Product - as soon as possible and expand the product feature by feature for the
+following reasons:
+
+* Verify if the Product has value and the potential of providing a benefit
+* Time to market is crucial. Once released, the Product will already be in the public eye, perhaps the first of its kind
+* Build solutions based on live feedback to adapt the development to user needs
+* Complexity may lead to lower market adoption
+* Start gaining an audience and monetizing the Product.
+
+It doesn't matter if the Product isn't super fancy at the start and doesn't have many bells and whistles. In
+the beginning, you can integrate ready-to-use solutions for basic functionality, and customize them or develop
+alternative versions and broaden functionality later on - for example, re-use existing authorization protocol,
+such as OAuth, instead of reinventing the wheel by creating a fancy new one.
+
+Despite the benefits of a quick release, consider the importance of *usability* of the Product
+even in the early stages of a project:
+
+* *UX/UI (user experience & interface)*: focus on how the Product works, how people
+    interact with it, and on the look &amp layout.
+* *IA (information architecture):* structure the design and information to be understandable
+    and consistent.
+* *QA (quality assurance):* ensure the quality of the Product.
+
+This way, you will win the loyalty of users and save time on rework in the future.
+
+== Lesson #4: Focus on the Team
+
+People who are proactive, have https://medium.com/leadership-motivation-and-impact/fixed-v-growth-mindset-902e7d0081b3[a growth mindset^], are passionate about a project and personal growth, and have the required skills to convert the
+Product Backlog into a Working Product, will be super productive in terms of startup work. In other words,
+people's personal goals have to match startup goals as well. Let's address the https://www.scrum.org/resources/scrum-guide[Scrum Guide^]'s definition of a successful Team:
+
+_The Development Team consists of professionals who do the work of delivering a potentially releasable
+Increment of "Done"product at the end of each Sprint._
+
+_Development Teams have the following characteristics:_
+
+* _They are self-organizing. No one (not even the Scrum Master) tells the Development Team how to turn
+    Product Backlog into Increments of potentially releasable functionality_
+* _Development Teams are cross-functional, with all the skills as a team necessary to create a product
+    Increment_
+* _Scrum recognizes no titles for Development Team members, regardless of the work being performed by the
+    person_
+* _Scrum recognizes no sub-teams in the Development Team, regardless of domains that need to be addressed
+    like testing, architecture, operations, or business analysis and,_
+* _Individual Development Team members may have specialized skills and areas of focus, but accountability
+    belongs to the Development Team as a whole_
+
+Besides matching the characteristics, work towards developing a set of conventional Team values. A great
+example of values to rely on are the Scrum ones, which can be adjusted to reflect a state of mind of your
+Team. We came to the following:
+
+* *Commitment:* We keep our promises to customers and set clear expectations on what, when,
+    and how to deliver. In case of uncertainty, it's always better to take some time for additional research
+    or negotiation.
+* *Courage:* We dare to disagree or provide unpleasant news. Still, it's not only about being
+    truthful but also analyzing and correcting errors.
+* *Openness:* We're open to changes - to adapt Product Backlog if some feature becomes
+    irrelevant, to learn new technology, etc.
+* *Respect:* We all come from different backgrounds and have different opinions but adapt to
+    each other and respect each other's boundaries.
+* *Focus:* The Team is focused on a Sprint Goal and Sprint delivery. We don't spread
+    ourselves but follow the Sprint Backlog.
+
+Behind the scenes, we have a couple of rules which improve our efficiency as an organization and Team inside
+an organization:
+
+* *30-minutes rule.* If you're stuck on an issue for more than 15-30 minutes, stop, don't
+    waste time, and ask your colleagues.
+
+* *Culture of asking questions.* Ask questions. Still, your question should contain 75% of
+    the answer - do your homework and research by yourself first. Consider that asking questions is a way to
+    receive a confirmation on your solution to solve some issues.
+
+* *No micromanagement.* Micromanaging is trying to closely control and monitor everything in
+    the Team, situation, or place. Micromanaged employees usually experience a lack of freedom in the
+    workplace.
+
+* *The ability to say "No."* Refusing at work is sometimes necessary. Some factors to
+    consider are your workload and personal life, the project in general, your values, and the deadline. On
+    the contrary, saying *"*Yes*"* deals with readiness to accept new
+    information, possibilities, and, the hardest one, criticism.
+
+* *The ability to apologize.* There are countless ways to mess up at work. Acknowledging your
+    mistakes and apologizing can do a lot of good. Still, don't be over-apologizing - it can have an opposite
+    effect. You don't need to apologize for having a point of view, needing help, or just being human.
+
+* *Keep it simple.* We share the idea that the right decision should be simple and
+    understandable for everyone. We don't strive to seem smarter using unnecessary bulky words or extra lines
+    of code and show rocket science we can deliver. The delivered solution should be simple, easy to
+    understand, and flexible to update or add new flows.
+
+== Conclusion
+
+Handling a startup is about bringing order to chaos. If no processes are built at the start, chances of success
+are slim to none. It's worth analyzing specifics of your project and domain in advance to pick the right
+direction on how to manage your startup. For software projects, we recommend bending the Agile and Scrum
+practices.
+
+Having managed a startup for a year, we've drawn the following lessons:
+
+1. A customer isn't always a carrier of product requirements and rarely can devote a lot of time for a
+    project. Assign a Product Owner or even break a Product Owner's role into two parts - https://en.wikipedia.org/wiki/Subject-matter_expert[domain expert^] and https://en.wikipedia.org/wiki/Business_analyst[business analyst^].
+
+2. Consider writing project documentation from the beginning of the project and our life hacks on the
+    necessary documents.
+
+3. Build a little product, release it, learn something from your customer, adapt your vision, build a bit
+    more software, and create something better than you could have ever planned.
+
+4. The Team should be priority number 1 because people who know what and how we should deliver as a Product
+    can work together as a cross-functional Team to provide any complex and complicated software.
+
+While working in a startup is a quite harsh experience, it gives you invaluable experience and lets you grow
+faster than anywhere else. Besides, we got the double bonus - while developing a custom application for human
+resource management, we improved our internal processes, automated a lot of manual managerial daily work,
+increased employee engagement, and made a great effort in keeping employee performance and career growth stats
+up to date.
+
+Another key to success in web development is to use the newest technological stack. Above all, you get a modern
+and easily supported Product. Besides, your Team is motivated to upgrade skills while learning something new,
+and this motivation helps strive for project success even more. In our case, the startup application we have
+been working on is built and maintained with the help of Node.js v.10 + NestJS v.6, Angular v.7-8, MySQL v.5 +
+MongoDB v.4, Cypress v.3, Docker, GCP API v.1, RxJs v.6, AI/ML.
+
+The experience that we have gained and continue to gain while working on the project cannot be fit into one
+article so that you do not fall asleep during its reading. But we want to continue to share our knowledge,
+because, at the time of writing this article, we studied a massive amount of similar material, but,
+unfortunately, in most cases it was far from reality and did not show how things go in real, active, and
+living projects and what to do in specific situations.
+
+See you in the next part!

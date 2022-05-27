@@ -37,7 +37,8 @@ contains malicious code.
 . Later, a user visits the infected page.
 . The user's browser runs the malicious script.
 
-XSS can be broken down into three main types:<br>DOM-based XSS (common):
+XSS can be broken down into three main types: +
+DOM-based XSS (common):
 
 * Attack is executed as a result of modifying the DOM.
 * Attacker modifies the client-side code.
@@ -173,7 +174,7 @@ page.
 As with DOM XSS, start small and simple." +
 *Step 4: Try something more complex.*
 
-Now we'll try more complex scripts and check the output. For this example, we will modify the URL directly, rather than messing with the input field. We will replace *user=MrSmith" with "user=< script> alert(123)</script>*.
+Now we'll try more complex scripts and check the output. For this example, we will modify the URL directly, rather than messing with the input field. We will replace *user=MrSmith" with "user=<script> alert(123)</script>*.
 
 ._This example is provided by the https://owasp.org/www-project-web-security-testing-guide/[OWASP     testing guide^]_.
 [caption='']
@@ -227,7 +228,7 @@ many security vulnerabilities - just don't do it. What do I mean when I say not 
 * https://en.wikipedia.org/wiki/Escape_character[*Escape*] *special characters* - replace them with something else which prevents the malicious code from running.
 * *Encode data*
 * *Filter data on input* to remove dangerous content before saving it to the database.
-* https://wiki.sei.cmu.edu/confluence/display/java/Input+Validation+and+Data+Sanitization[*Sanitize*^] data (on input and output)</strong> to ensure that the passed data meets security requirements
+* https://wiki.sei.cmu.edu/confluence/display/java/Input+Validation+and+Data+Sanitization[*Sanitize*^] data (on input and output)* to ensure that the passed data meets security requirements
 by means of removing, escaping, encoding, or replacing special characters. It's important to sanitize data on input to prevent saving malicious content to the database and on output to prevent malicious code execution in the browser.
 * *Use HTTPS header instead of HTTP*. Hint: the 'S' means 'Secure'. This protection is
     excellent for preventing reflected XSS vulnerabilities.
@@ -249,7 +250,7 @@ General manual testing flow for various XSS vulnerabilities is:
 . Find an input field.
 . Check normal output.
 . Check output with code - remembering to start small.
-. Repeat with other codes until success or you're confident in the level of security.<br>
+. Repeat with other codes until success or you're confident in the level of security.
 
 We also discussed, and perhaps experienced, how manual security testing is very time-consuming, so it's best to use automated tools whenever possible. Finally, we reviewed XSS prevention methods and why the best protection is a combination of several methods. +
 As promised, you should now have a general understanding of this vulnerability, how to test for it, and how to prevent it.

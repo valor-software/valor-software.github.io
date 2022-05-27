@@ -1,0 +1,133 @@
+You have your project, your idea, your metaphorical baby that you want to create. You're
+ready to set out on the journey of creating it, and you start looking for a team to join you in bringing this idea
+to reality. You need to know how much it's going to cost and you start collecting bids. You don't want to get into
+the trap of a never ending project that just spirals out of control so you go for fixed bids.
+
+We can all acknowledge that as human beings we are rarely 100% accurate with exactly what we want to achieve at
+the onset of any project. It is even less likely that the desired outcome will not change in any way
+throughout the duration of the project.
+
+Furthermore you most likely appreciate the freedom to adjust and react to new information, context, and market
+changes. This is where a fixed price model becomes akin to a wooden coffin buried 6 feet under the ground that
+restrains the actions for both you and your new friends, the development team. Inside the coffin your only
+source of light is burning money. While Fixed Price contracts will most likely always exist, there are other
+approaches one should consider.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5fb29e5e30e5337ca8fca8bd_Bride-Valor-Software-Blog.jpg[Valor Software blog post about fixed price vs T&M - pic1]
+
+=== Why do brides tend to cry in the morning before the ceremony
+
+Another analogy comes to mind that hits close to home for me. Lately it seems as if all of my friends are
+getting married. As I watch them prepare for the big day, oddly enough it is really analogous to our work.
+This example demonstrates at what points a business decision (in one case I witnessed, makeup style) may no
+longer be the desired direction. It's a wedding day. The long awaited time has come, and your makeup artists
+came to surpass your prom makeup experience and make you look stunning. You've already discussed what you want
+to be like at the end, it was weeks ago, and you think it's still 100% relevant. Then, they turn you away from
+the mirror, and turn you back in two hours when the makeup is ready and your eyelashes nearly touch the sky.
+You definitely like the result, except a pink blusher that is now out of fashion, and a lips' colour not
+matching your skin these days. Well, you definitely could think of something more to modify, unless you had
+time.
+
+There's a list of projects that due to their specifics might make you feel just like a bride from my example
+- not quite satisfied with the end result, because your initial requirements and expectations got expired.
+
+=== On what condition does Fixed Price work best
+
+I must admit, there's a particular range of projects where a fixed price model fits the bill. It is all about
+the degree of the unknown in your project, the probability and the volume of inevitable change, the length of
+time and effort required. If you're able to describe the requirements in detail, consider all you need,
+document it, and communicate it to your vendor - it sounds like a healthy case for a sound fixed price. Also,
+this approach allows you to meet a strictly limited budget, which is crucial for governmental projects. In any
+case, according to my experience, this approach makes you deviate from the initial scope by roughly 30% of
+costs and features in order to meet new requirements that always appear on the run. You make a change list,
+approve it, and get updates that were not included in the initial scope. And this is a great option, so better
+keep it for yourself.
+
+When it comes to higher levels of unknown or a more long-term engagement, a fixed price approach will force
+your vendor to consider all the possible risks at the estimation stage, which will certainly influence the
+final project cost. Also, acceptance testing will take you and a team more time, and this will influence the
+project duration.
+
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5fb2980a66bffe32498f25af_Leo-Wolf-Valor-Software.jpg[Valor Software blog post about fixed price vs T&M - pic2]
+
+It's impossible to plan and estimate the solution development for more than a 3-months period
+from the start date, so you either split it into phases, or switch to another development approach at once. If
+you play big, you might want to consider a more changes-providing approach.
+
+=== Rise of the SAAS platform format - take advantage of pay-as *-* you-go
+
+The world is currently drawn to the https://en.wikipedia.org/wiki/Software_as_a_service[software as a service^] (SAAS) platform format, where you use what you use, and pay only for this. Finally, you get
+released from ready-made packages with items you're not going to apply. You don't have unneeded storage space,
+memory gigabytes, apps features, or screens. If this sounds like something relevant for you, you'll probably
+enjoy what a time and material software development model has to offer: pay for what's done, according to your
+latest request.
+
+This project development flow allows staying abreast of current tendencies, latest technologies, and best
+practices that may boost your solution. What is crucial is that you and a team react to changing realities,
+and adjust to win users' preference. Moreover, you may request particular experts' engagement for the crucial
+project stages: QA engineers, business analysts, https://en.wikipedia.org/wiki/Software_as_a_service[DevOps^] experts, UI/UX designers, technical and content writers.
+
+=== Time and material being good for expectation management
+
+As https://medium.com/@benek?source=post_page-----c70427aab628--------------------------------[Benek Lisefski^] said in https://medium.com/@benek?source=post_page-----c70427aab628--------------------------------[the development flow article^], a whole application development process is not what you
+can estimate from the start. It has myriades of variables, so the estimation will be optimistic or
+pessimistic. And you lack tools to influence, as well as a development team might not be able to manage your
+expectations.
+
+When it comes to impacting the development flow and the code flash on the run, T&M with dedicated developers
+will better meet your needs. Going T&M, you get a preliminary estimation for cost and duration, and you get
+flexibility to accustom the solution to the modern world. You update and specify the requirements at the end
+of each stage (from a couple of weeks to a month), depending on what you got from a previous stage. Each
+sprint effects the next one estimation-wise, you pay no extra money, they develop no needless modules.
+
+=== Make the predictions you can trust: predictability review
+
+Too many factors will influence the end result: quality of documentation, vendor's team expertise, their good
+will to make you a reliable client, internal processes and changes, and many more. It's always a risk. T&M
+gives you facilities for predictability. You have estimations, access time and task tracking systems, check
+code updates, and know when the next release is coming.
+
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5fb29c198973d6ff4e163be0_FortuneTeller-Valor-Software-Blog.jpg[Valor Software blog post about fixed price vs T&M - pic3]
+
+Having your dedicated team members on board, you can expect that they will do their best to
+meet your project goals and timelines, take overtimes when critical, and find a better technical and
+business option in case competition intensifies.
+
+=== Availability, communication, and team involvement
+
+On top of the flexibility and predictability that T&M gives, you outsource developers that work on your project
+exclusively. At least that's how it is supposed to be and the way https://valor-software.com/approach.html[Valor Software^] approaches projects.
+When a team has a particular scope for one customer they work on daily, they pay all the attention, skills,
+and afterhours for solving tasks of this particular project. No distractions - higher effectiveness.
+
+Your dedicated engineers treat your project, your company, and your business as part of their life. They care
+about the results and the way the market meets the solution, and they will stop you from making wrong turns if
+you allow them. You'll appreciate this approach.
+
+You also get direct access to your remote dedicated team, you communicate when you need and as often as your
+project requires. So, make sure your vendor provides English-speaking engineers to use the value of
+face-to-face meetings.
+
+=== Access unique brains, grow your team, utilize vendor's tech expertise
+
+A fixed price approach is not about personalities, it's about input and output. At this restaurant, you make an
+order with no pics in the menu - you get whatever they bring you. You might not have a chance to talk to a
+chef cook if, let's say, you want to shake hands. Actually, you're not supposed to know who worked on your
+project. It may become a bonus for small projects that need to be brought to life ASAP, but what about larger
+solutions?
+
+With T&M, you know the team, you approve it, you grow it when the project requires. I've already outlined
+the benefits from communication, and here I want to stress the importance of access to the market. It gives
+you a chance to find the ones you require, even if your project is extremely demanding, and the technology is
+rare. Your software development vendor will recruit the right engineer, and will make its best to make him
+stay with your project for as long as needed.
+
+=== *Think twice, then go with Valor Software*
+
+Compare the approaches, consider the most suitable one, and go with it, knowing the consequences. I hope after reading all the above, you'll come to the same conclusion as me: if your desired solution is more complicated than a non-interactive landing page or a blog, leave yourself a space for change.
+
+You've got to have enough vision and responsibility to take care about the way your solution is born and
+developed. Follow the link to get a fact-driven estimate from my colleagues at Valor Software: https://valor-software.com/contact.html[https://valor-software.com/contact.html^]
+
+Special thanks to contributors and reviewers of the article: https://www.linkedin.com/in/valorkin/[Dmitriy Shekhovtsov^], https://www.linkedin.com/in/zackarychapple/[Zackary Chapple^], https://www.linkedin.com/in/nikitanuts/[Nikita Demchenko^], https://www.linkedin.com/in/viktoria-lurye-4b7b41155/[Viktoria Lurye^].

@@ -1,0 +1,30 @@
+It's challenging to start a new business with limited time and energy at your disposal.
+While having energetic staff members and solid business objectives are key in securing early milestones, mastering
+your digital presence is just as important. Your customers want sleek, modern solutions at their disposal, and the
+best way to give them exactly what they need is through a custom software solution. If you're unsure where to find
+a development team that can help you achieve your ambitious business goals, Valor Software is here to help!
+
+We're a full-cycle development agency that meets our clients' goals with top technical expertise. We've
+delivered powerful projects involving Angular, Node.js, NativeScript, and Ionic, to name a few!
+
+In light of our efforts, we've been named a Top Development Partner in Ukraine by Clutch, a https://clutch.co/developers/ukraine[data-driven resource^] platform. We want to take this
+time to thank our clients for participating in client interviews which gauge our impact on their businesses.
+In reflection of their feedback, we've been ranked an amazing five out of five stars.
+
+._Reviews from our clients on_ https://clutch.co/[_clutch.co_^]
+[caption='']
+image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5dc42fcf2131733a4d7d8b27_Sl79qTteC-5fLxp8fiFNwABLEcbOTecNposoV4trj7fiyYwrBzvkolgIUyrct5p7s8YZdZzAQ2yLWMgcULu9J5wf9YYA-CJWEOANWw3XDqROawcgCu9e3mdHU0eKMlf7gNsRaPkD.png[]
+
+____
+_“Being recognized by Clutch is so significant to our business. Clutch does everything in its
+power to connect customers with the right kind of people who are experts in their field. We specify our
+expertise, our customers provide reviews verified by Clutch, and, click, you find a helpful hand to live out
+your ideas“_. Dmitriy Shekhovtsov, CEO of Valor Software.
+____
+
+Clutch is a B2B market research firm that uses a unique rating methodology to rank leaders across
+industries. We're also featured on The Manifest, a data-driven platform that https://themanifest.com/ua/software-development/companies#valorsoftware[connects businesses with potential clients^]. Visual Objects additionally highlights us in their https://visualobjects.com/ua/software-development/top-custom-software-developers [centralized catalog of^] top custom software developers.
+
+We are grateful to the Clutch team and our clients for making this award possible!
+
+Please https://valor-software.com/contact.html[contact us today^] if you'd like to start a project.

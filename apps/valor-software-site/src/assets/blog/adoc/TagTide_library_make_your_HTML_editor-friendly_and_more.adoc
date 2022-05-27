@@ -18,7 +18,7 @@ unnecessary tags and polishing it for further work with text*.
 4. Approaches and use cases
 5. An example of Google Docs content cleanup
 6. Kind thanks to colleagues
-7. Useful links<br>
+7. Useful links
 
 == The principles of HTML code prettifying
 

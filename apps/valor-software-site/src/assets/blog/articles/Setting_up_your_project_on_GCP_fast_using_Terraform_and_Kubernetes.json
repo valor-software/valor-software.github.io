@@ -9,6 +9,5 @@
   "title": "Setting up your project on GCP fast using Terraform and Kubernetes",
   "position": "DevOps Engineer",
   "date": "Thu Jul 29 2021 13:15:26 GMT+0000 (Coordinated Universal Time)",
-  "seoDescription": "In this article, I’ll lead you through a set-up of infrastructure on Google Cloud using Terraform.",
-  "contentUrl": true
+  "seoDescription": "In this article, I’ll lead you through a set-up of infrastructure on Google Cloud using Terraform."
 }

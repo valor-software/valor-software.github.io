@@ -39,14 +39,5 @@ export const articlesList = [
     'Como_o_Scully_nos_ajudou_a_atingir_99_pontos_no_Lighthouse_para_uma_plataforma_B2C'
 ];
 
-export interface IArticle {
-    author?: string;
-    authorImg?: string;
-    domains: string[];
-    language: string;
-    bgImg: string;
-    title: string;
-    position?: string;
-    date: string;
-    content: string;
-}
+
+

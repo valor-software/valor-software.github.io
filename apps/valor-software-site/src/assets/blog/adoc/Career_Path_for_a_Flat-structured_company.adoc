@@ -116,13 +116,13 @@ organization.
 * Analyze staffing levels
 * Group employees by desired positions and levels to organize bulk education
 * Make the promotion process transparent and accessible for all employees
-* Prevent demotivation and decreases in employee productivity because of getting stuck in the same position and not understanding career opportunities within the organization.<br>
+* Prevent demotivation and decreases in employee productivity because of getting stuck in the same position and not understanding career opportunities within the organization.
 
 *CEO can:*
 
 * Have eyes on general staffing situation of the company and the number of open seats
 * Keep track of the number of employees in the company in total and per job family and position separately
-* See the level of compliance of employees with their positions.<br>
+* See the level of compliance of employees with their positions.
 
 You likely started a similar journey earlier than us, and your organization already has an established
 hierarchyof positions and associated tools. Then you just need to dust them off and improve your flow :) We hope our tool will make your journey smoother and welcome you to managing your company's Career Path with https://app.renaizant.com/[Renaizant^].
