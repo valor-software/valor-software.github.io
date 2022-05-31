@@ -1,0 +1,39 @@
+{
+  "name": "Qualtrax",
+  "link": "https://www.qualtrax.com/",
+  "sortServices": ["web", "ui"],
+  "goalsImg": "assets/img/portfolio/qualtrax_goals.png",
+  "solutionsImg": "assets/img/portfolio/qualtrax_solutions.png",
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69e0222909818c8b40d4b9_qualtrax_cover.jpg",
+  "description": "On-premise & cloud-based quality management tool that helps businesses of all sizes manage and control documentation, compliance, workflows, employees training, purchase request automation & more.",
+  "behanceLink": "https://www.behance.net/gallery/81368931/Qualtrax-Compliance-Management-Software",
+  "goals": [
+    "UX/UI experience",
+    "Mobile first Approach"
+  ],
+  "solutions": [
+    "We prepared the main User flows using FlowMap",
+    "Re-designed the app using UX/UI best practices"
+  ],
+  "outcome": "Using vast experience with UI/UX, we introduced a drastic improvement to the main User Flows. The application design became more intuitive and user-friendly.",
+  "headerImg": "assets/img/portfolio/qualtrax_header.png",
+  "aspects": {
+    "type": [
+      "B2C",
+      "Saas",
+      "SMB"
+    ],
+    "country": [
+      "USA"
+    ],
+    "technology_stack": [
+      "Sketch",
+      "Abstract",
+      "Invision",
+      "FlowMap"
+    ],
+    "services_provided": [
+      "UX/UI"
+    ]
+  }
+}

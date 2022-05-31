@@ -1,0 +1,43 @@
+{
+  "name": "Renaizant",
+  "link": "https://app.renaizant.com/login",
+  "sortServices": ["web", "ui", "art_intel"],
+  "sortTechnologies": ["angular"],
+  "goalsImg": "assets/img/portfolio/renaizant_goals.png",
+  "solutionsImg": "assets/img/portfolio/renaizant_solutions.png",
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69e2049799581dd75381af_Renaizent_cover.jpg",
+  "description": "Renaizant is an ongoing performance management platform that helps employees grow and succeed.",
+  "goals": [
+    "Develop UI/UX, create product concept and vision",
+    "Use ML and AI for contextual suggestions",
+    "Add multiple integrations: Jira, SalesForce, GitHub, Slack, Office 365, Plaid, Stripe, etc.",
+    "Add new features concepts and features to cover a set of standard tools for performance review"
+  ],
+  "solutions": [
+    "We used a Just-In-Time feedback approach to make performance review a continuous activity",
+    "Integrated powerful platforms to track the progress of users who even don't use the app",
+    "Added features for quality, easy, and fun performance review"
+  ],
+  "outcome": "Developed a fully functioning MVP within one year.",
+  "headerImg": "assets/img/portfolio/renaizant_header.png",
+  "aspects": {
+    "type": [
+      "B2B",
+      "SaaS",
+      "Startup"
+    ],
+    "country": [
+      "USA"
+    ],
+    "technology_stack": [
+      "Angular v7",
+      "Node.js 10+ with NestJS",
+      "MySQL",
+      "MongoDB"
+    ],
+    "services_provided": [
+      "UX/UI",
+      "Frontend"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "NgTalks",
+  "link": "https://ngtalks.io/",
+  "sortServices": ["web"],
+  "goalsImg": "assets/img/portfolio/ngtalks_goals.png",
+  "solutionsImg": "assets/img/portfolio/ngtalks_solutions.png",
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69de0c269cc4de21681f5d_ngtalks_cover.jpg",
+  "description": "NgTalks is the first conference in Ukraine dedicated to Angular technologies and covering best practices, approaches and the latest community trends.",
+  "goals": [
+    "Create international Product Brand",
+    "UX/UI experience",
+    "Mobile first Approach",
+    "Development"
+  ],
+  "solutions": [
+    "We decided to use Webflow as the main development solution and delivered the application within 3 weeks."
+  ],
+  "outcome": "NgTalks website is specifically designed to be a central hub for everything about the Ukrainian Kharkov-based Angular conference. It is intended to be simple, clean and easy to navigate for both visitors and speakers.",
+  "headerImg": "assets/img/portfolio/ngtalks_header.png",
+  "aspects": {
+    "type": [
+      "Education",
+      "Startup"
+    ],
+    "country": [
+      "Ukraine"
+    ],
+    "technology_stack": [
+      "Figma",
+      "Webflow",
+      "FlowMap"
+    ],
+    "services_provided": [
+      "Frontend"
+    ]
+  }
+}

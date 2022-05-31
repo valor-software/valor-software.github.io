@@ -1,0 +1,39 @@
+{
+  "name": "NgAtlanta",
+  "link": "https://ng-atl.org/",
+  "sortServices": ["web"],
+  "goalsImg": "assets/img/portfolio/ngatlanta_goals.png",
+  "solutionsImg": "assets/img/portfolio/ngatlanta_solutions.png",
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69df22f47dbf10f024a822_ngAtlana-cover.jpg",
+  "description": "The annual Angular Conference in Atlanta, Georgia and the largest one on the East Coast. It has been sponsoring by Valor Software for the last 3 years.",
+  "goals": [
+    "Created international Product Brand",
+    "UX/UI experience",
+    "Mobile first Approach",
+    "Development"
+  ],
+  "solutions": [
+    "Used Webflow as the main development tool and delivered the solution in a few weeks."
+  ],
+  "outcome": "NgAtlanta website is specifically designed to be a central hub for everything about the annual Angular conference in Atlanta to create a unique experience for the conference's attendees.",
+  "headerImg": "assets/img/portfolio/ngatlanta_header.png",
+  "aspects": {
+    "type": [
+      "Education",
+      "Startup"
+    ],
+    "country": [
+      "USA"
+    ],
+    "technology_stack": [
+      "Sketch",
+      "WebFlow",
+      "Abstract",
+      "Invision",
+      "FlowMap"
+    ],
+    "services_provided": [
+      "Frontend"
+    ]
+  }
+}

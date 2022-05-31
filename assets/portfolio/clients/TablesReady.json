@@ -1,0 +1,23 @@
+{
+  "name": "TablesReady",
+  "link": "https://www.tablesready.com/",
+  "sortServices": ["web"],
+  "sortTechnologies": ["angular"],
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5c4f17387c1ca4e494079c25_tables-ready.jpg",
+  "description": "TablesReady is a paging system that uses your guests' cell phones instead of expensive pager systems.",
+  "goals": ["Optimize the architecture and code", "Implement average analytics for wait times, busy periods, and walk-ins", "Create a new design"],
+  "solutions": ["WebSockets implementation to support multi-user accounts", "Developed Node.js library for Recurly billing system", "Mobile phone number verification system"],
+  "outcome": "Business-ready service for table reservations with text and voice messaging notifications and rich analytical support",
+  "video": "https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fplayer.vimeo.com%2Fvideo%2F44085692%3Fapp_id%3D122963&dntp=1&url=https%3A%2F%2Fvimeo.com%2F44085692&image=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F306279964_1280.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=vimeo",
+  "iframe": true,
+  "feedback": "Robert Shaw",
+  "headerImg": "assets/img/portfolio/tablesReady_header.png",
+  "goalsImg": "assets/img/portfolio/tablesReady_goals.png",
+  "solutionsImg": "assets/img/portfolio/tablesReady_solutions.png",
+  "aspects": {
+    "type": ["Travel and hospitality", "Startup"],
+    "country": ["USA"],
+    "technology_stack": ["Node.js", "MongoDB", "AngularJS", "Twilio", "Recurly", "D3.js", "Redis", "WebSocket"],
+    "services_provided": ["Frontend", "Backend"]
+  }
+}

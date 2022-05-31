@@ -1,0 +1,39 @@
+{
+  "name": "Hire the Fempire",
+  "link": "https://apprentice.thisdot.co/",
+  "sortServices": ["web", "ui"],
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dd2e2909812ab440c423_fempire-cover.jpg",
+  "description": "Social project to hire women in tech. A company can solve its diversity problem quickly by hiring the teams of female junior developers paired with a senior developer mentor.",
+  "goals": [
+    "Create international Product Brand",
+    "UX/UI experience",
+    "Mobile first Approach",
+    "Development"
+  ],
+  "solutions": [
+    "We prepared Brading, POS material to support the community.",
+    "All UX/UI and Illustrations were covered by Valor Software team.",
+    "Webflow was delected as a main development tool."
+  ],
+  "outcome": "An application, which can help you solve diversity problem quickly by hiring a team of female junior developers paired with a senior developer mentor. This mentorship model creates inclusive environments for new developers to thrive.",
+  "headerImg": "",
+  "aspects": {
+    "type": [
+      "Education",
+      "Startup"
+    ],
+    "country": [
+      "USA"
+    ],
+    "technology_stack": [
+      "Figma",
+      "WebFlow",
+      "FlowMap",
+      "Illustrator"
+    ],
+    "services_provided": [
+      "UX/UI",
+      "Frontend"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "Vizabi",
+  "link": "https://vizabi.org/examples/bubble-chart.html",
+  "sortServices": ["web"],
+  "goalsImg": "assets/img/portfolio/vizabi_goals.png",
+  "solutionsImg": "assets/img/portfolio/vizabi_solutions.png",
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dedb9077c42af471f54f_Vizabi-cover.jpg",
+  "behanceLink": "https://www.behance.net/gallery/49460795/Vizabi-Tools-Statistics-can-be-interesting",
+  "description": "The open-source framework by Gapminder Foundation for creating maintainable charts and visualization tools. Embed Vizabi freely to your page, add your own data, or extend it to create new visualizations and modify existing ones.",
+  "goals": [
+    "Migration from NodeJS to Typescript",
+    "Migration from AWS to GCP",
+    "New features development"
+  ],
+  "solutions": [
+    "Created the architecture sctructure of the tool",
+    "Updated visualization tools and BigData sets"
+  ],
+  "outcome": "BigData is a visualization tool that could be embedded in custom solutions to create new visualizations for users' needs.",
+  "headerImg": "assets/img/portfolio/vizabi_header.png",
+  "aspects": {
+    "type": [
+      "B2B",
+      "SaaS",
+      "Startup"
+    ],
+    "country": [
+      "Sweden"
+    ],
+    "technology_stack": [
+      "Node.js to TypeScript migration",
+      "Express.js",
+      "Lodash",
+      "Bunyan",
+      "Mongoose",
+      "Mocha, Chai, Sinon",
+      "MongoDB",
+      "Redis",
+      "New Relic",
+      "AWS (EC2, ECR, ECS, ElasticCache, CloudFormation) to GCP migration"
+    ],
+    "services_provided": [
+      "Backend"
+    ]
+  }
+}

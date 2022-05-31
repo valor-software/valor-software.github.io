@@ -1,0 +1,54 @@
+{
+  "name": "Dollar Street",
+  "link": "https://www.gapminder.org/dollar-street",
+  "sortServices": ["web"],
+  "sortTechnologies": ["angular", "nest_js", "aws", "firebase", "google"],
+  "goalsImg": "assets/img/portfolio/dollarstreet_goals.png",
+  "solutionsImg": "assets/img/portfolio/dollarstreet_solutions.png",
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c3596e5af657dfd5a657_ds-cover.jpg",
+  "description": "Dollar Street allows exploring how people live all across the globe interactively. A team of photographers has documented over 200 homes in almost 50 countries so far, and the list is growing.",
+  "goals": [
+    "Development of a new design for the platform",
+    "Creation of an Admin panel and development of the Blog",
+    "Translation via crowdIn",
+    "Adding a comparison and a video feature",
+    "Deployment of new functionality and app upgrade with newer Angular"
+  ],
+  "solutions": [
+    "The Angular framework was updated to stable Angular 2 and later—Angular 7",
+    "Statistical data analysis optimizations",
+    "General performance optimizations",
+    "D3.js used for drawing the main navigation element"
+  ],
+  "outcome": "The powerful and heavy-load optimized analytical environment with great design and good performance on extremely huge amounts of data.",
+  "headerImg": "assets/img/portfolio/dollarstreet_header.png",
+  "feedback": "Anna Rosling",
+  "aspects": {
+    "type": [
+      "Global impact",
+      "Awareness",
+      "Startup"
+    ],
+    "country": [
+      "Sweden"
+    ],
+    "technology_stack": [
+      "AWS S3",
+      "Docker",
+      "Angular CLI",
+      "ImageMagic",
+      "Cloudflare",
+      "Firebase Cloud Functions",
+      "JavaScript to TypeScript migration (front and back end)",
+      "Amazon AWS to GCP migrations",
+      "MongoDB 3.2 → 3.4 → 3.6 → 4.0 migrations",
+      "AngularJS → Angular 2 → Angular 7 migrations",
+      "Node.js → Express.js → NestJS migrations",
+      "Jasmine to Mocha, Chai, Sinon migrations"
+    ],
+    "services_provided": [
+      "Frontend",
+      "Backend"
+    ]
+  }
+}

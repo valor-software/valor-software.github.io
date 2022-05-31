@@ -1,0 +1,41 @@
+{
+  "name": "ThisDot",
+  "link": "https://www.thisdot.co/",
+  "sortServices": ["web", "ui"],
+  "goalsImg": "assets/img/portfolio/thisdot_goals.png",
+  "solutionsImg": "assets/img/portfolio/thisdot_solutions.png",
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69dd7cdadedd2f047a1d37_thisdot%20-%20cover.jpg",
+  "description": "An education and news focused web platform that facilitates the idea of learning through four main principles: Watch, Engage, Listen, and Learn.",
+  "goals": [
+    "Create the Product Brand and UX/UI",
+    "Mobile-first Approach",
+    "Development",
+    "Media sources"
+  ],
+  "solutions": [
+    "We prepared Brading, POS material to support the community.",
+    "All UX/UI and Illustrations were covered by Valor Software team.",
+    "Webflow was selected as the main development tool."
+  ],
+  "outcome": "An educational web-based platform, which helps to raise JS community, create the most suitable education business model and encourage knowledge sharing through video and courses.",
+  "headerImg": "assets/img/portfolio/thisdot_header.png",
+  "aspects": {
+    "type": [
+      "Education",
+      "SMB"
+    ],
+    "country": [
+      "USA"
+    ],
+    "technology_stack": [
+      "Figma",
+      "WebFlow",
+      "FlowMap",
+      "Illustrator"
+    ],
+    "services_provided": [
+      "UX/UI",
+      "Frontend"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "Gapminder Offline",
+  "link": "https://www.gapminder.org/tools-offline/",
+  "sortTechnologies": ["angular"],
+  "sortServices": ["web"],
+  "goalsImg": "assets/img/portfolio/gapminder_goals.png",
+  "solutionsImg": "assets/img/portfolio/gapminder_solutions.png",
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c3ae2909819e614070b3_gm-cover.jpg",
+  "description": "Gapminder Offline is an offline implementation of Vizabi—a freely provided by Gapminder framework for building visual data exploration tools.",
+  "goals": [
+    "Integrate Vizabi platform and add readers: DDF-CSV, Excel, CSV",
+    "Provide new data management features and provide support for UI Controls and interaction",
+    "Add translation and localization",
+    "Add an ability to work with several charts in parallel",
+    "Add a possibility to work on Windows, Linux, and Mac OS",
+    "Add an automatic system update"
+  ],
+  "solutions": [
+    "Test-Driven Development (e2e tests)",
+    "DDF-CSV databases to store all data",
+    "Electron framework that provides an offline version of the application",
+    "DDF-CSV reader for DDF data reading",
+    "WS reader for querying data on WS by DDFQL"
+  ],
+  "outcome": "Offline visualization tool for statistic data.",
+  "headerImg": "assets/img/portfolio/gapminder_header.png",
+  "feedback": "Ola Rosling",
+  "aspects": {
+    "type": [
+      "B2B",
+      "SaaS",
+      "Startup"
+    ],
+    "country": [
+      "Sweden"
+    ],
+    "technology_stack": [
+      "AngularJS",
+      "Node.js",
+      "Electron",
+      "TypeScript"
+    ],
+    "services_provided": [
+      "Frontend",
+      "Backend"
+    ]
+  }
+}

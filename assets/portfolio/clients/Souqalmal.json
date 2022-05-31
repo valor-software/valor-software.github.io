@@ -1,0 +1,48 @@
+{
+  "name": "Souqalmal",
+  "link": "https://www.souqalmal.com/ae-en/",
+  "sortServices": ["web"],
+  "sortTechnologies": ["angular", "aws"],
+  "goalsImg": "assets/img/portfolio/souqalmal_goals.png",
+  "solutionsImg": "assets/img/portfolio/souqalmal_solutions.png",
+  "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69e4bcb83181603733979a_souqalmal-cover.jpg",
+  "description": "Souqalmal.com is the leading comparison website in the Middle East: it lets compare, search, and get information on financial products.",
+  "goals": [
+    "Optimize the architecture and code",
+    "Get rich search engine results and optimize SEO",
+    "Integrate Google Ads",
+    "Update and modernize existing design"
+  ],
+  "solutions": [
+    "Used Elasticsearch for full-text search",
+    "Interactive documentation with Swagger",
+    "Islamic-friendly banking",
+    "Developed own Node.js-based CMS"
+  ],
+  "outcome": "Fully working and deployed Debt Burden Ratio Calculator, Airmiles Calculator, Car Loan Calculator, and Mortgage Calculator. Stable environment and further maintenance.",
+  "headerImg": "assets/img/portfolio/souqalmal_header.png",
+  "feedback": "Iraklis Alexopoulos",
+  "aspects": {
+    "type": [
+      "B2C",
+      "SaaS",
+      "Startup"
+    ],
+    "country": [
+      "the United Arab Emirates"
+    ],
+    "technology_stack": [
+      "Node.js",
+      "AngularJS",
+      "MongoDB",
+      "ElasticSearch",
+      "Redis",
+      "Nginx",
+      "Amazon S3"
+    ],
+    "services_provided": [
+      "Frontend",
+      "Backend"
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+@import  'variables';
+@import "~swiper/swiper-bundle.css";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'bs_styles';
+@import 'responsive_utility';
+
+body, html {
+  @apply bg-grey_bg h-full;
+  scroll-behavior: smooth;
+}
+
+.pink-scroll {
+
+  &::-webkit-scrollbar {
+    width: 1px;
+    height: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #E24E63;
+    border-radius: 10%;
+    border: 0px solid transparent;
+  }
+}
+
+pre, code {
+  &::-webkit-scrollbar {
+    width: 1px;
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #8C8C8C;
+    border-radius: 10%;
+    border: 0px solid transparent;
+  }
+}
+
+.iframe-box {
+  width: 100%;
+  position: relative;
+  padding: 0;
+  padding-top: 56.39999999999999%;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &:before {
+      content: " ";
+      display: table;
+      grid-column-start: 1;
+      grid-row-start: 1;
+      grid-column-end: 2;
+      grid-row-end: 2;
+    }
+  }
+}
+
+.font-bold {
+  @apply font-workSansBold;
+}
+
+.z-1 {
+  z-index: 1;
+}
+
+
+
