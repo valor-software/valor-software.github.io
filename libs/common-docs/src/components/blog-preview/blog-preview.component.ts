@@ -4,6 +4,7 @@ import { IArticle } from "../../models/article.interface";
 import { forkJoin, Subscription } from "rxjs";
 import { ArticlesRouteService } from "../../services/articlesRoute.service";
 import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
+import {Router} from "@angular/router";
 SwiperCore.use([Pagination]);
 
 @Component({
@@ -37,7 +38,7 @@ export class BlogPreviewComponent implements OnDestroy, OnInit{
 
     constructor(
         private getArticles: GetArticlesService,
-        private articleRoute: ArticlesRouteService
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -59,6 +60,11 @@ export class BlogPreviewComponent implements OnDestroy, OnInit{
     }
 
     route(title: string) {
-        this.articleRoute.route(title);
+        if (!title) {
+            return;
+        }
+
+        const index = this.getArticles.getArticleRouteLink(title);
+        this.router.navigate(['blog', index]);
     }
 }

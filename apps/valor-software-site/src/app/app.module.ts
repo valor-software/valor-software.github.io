@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {CommonDocsModule, ARTICLES_LIST, SeoService} from '@valor-software/common-docs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScullyLibModule } from '@scullyio/ng-lib';
-import { articlesList, articleIdList } from "../assets/blog/articles.list";
+import { articleIdList } from "../assets/blog/articles.list";
 import { PORTFOLIO_LIST } from "@valor-software/portfolio";
 import { portfolioList } from "../assets/portfolio/portfolio.list";
 

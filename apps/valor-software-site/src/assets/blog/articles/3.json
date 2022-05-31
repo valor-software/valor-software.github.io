@@ -1,12 +1,13 @@
 {
-  "author": "Vyacheslav Chub",
-  "id": 3,
-  "title": "TagTide library: make your HTML editor-friendly and more",
-  "authorImg": "https://valor-software.com/assets/images/5c814a507773034dcc12c3dd_ava-chub.jpg",
-  "domains": ["dev_quality_assurance"],
+  "author": "Ludmila Nesvitiy",
+  "domains": [
+    "dev_quality_assurance"
+  ],
+  "authorImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69eabbb804c9c13508347a_nesvitiy.jpg",
   "language": "en",
-  "position": "Full Stack Software Engineer",
-  "bgImg": "https://valor-software.com/assets/images/620e51e34b7146e6290802db_HTML_editing_valor_software.jpeg",
-  "date": "Thu Feb 3 2022 09:59:45 GMT+0000 (Coordinated Universal Time)",
-  "seoDescription": "I needed to create a simple web app with a Grammarly-like view that counts paragraphs, sentences, words, and characters in a text. The best thing is that you can copy-paste text from various resources like websites, Google Docs, MS Office, email clients, get it analyzed. But since external content contains a lot of redundant HTML tags, which influences the correctness of calculations, I came up with the solution for cleaning HTML."
+  "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5c7fd71b76e5a3bd95ad8ebf_art-2.jpeg",
+  "title": "Quality Assured: What It Really Takes To Test Open Source Libraries",
+  "position": "QA Automation Engineer",
+  "date": "Mon Feb 18 2019 11:33:05 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "I wanted to share experience in automated testing of our open-source framework—ngx-bootstrap: testing process overview, documentation examples, tech stack."
 }

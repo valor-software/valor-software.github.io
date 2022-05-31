@@ -1,14 +1,13 @@
 {
-  "author": "Eduardo Speroni",
-  "id": 2,
+  "author": "Mikhail Voloshin",
   "domains": [
-    "dev_quality_assurance"
+    "user_research_design"
   ],
-  "authorImg": "https://valor-software.com/assets/images/61fbaf8cc1e0c9364b36bffa_Eduardo_Speroni_Valor-Software.jpeg",
+  "authorImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69ea936e5af6a77ed62a30_voloshin.jpg",
   "language": "en",
-  "bgImg": "https://valor-software.com/assets/images/624495a97b77ab1729aaf5ad_Implementing_20WebSockets_20plugin_20for_20NativeScript_20using_20React_20Native.png",
-  "title": "Implementing WebSockets plugin for NativeScript using React Native",
-  "position": "Angular Developer",
-  "date": "Wed Mar 23 2022 13:53:56 GMT+0000 (Coordinated Universal Time)",
-  "seoDescription": "WebSockets are frequently required for applications, be it for standard WebSocket communication, MQTT, debugging through Redux Remote Devtools, using socket.io, and sometimes even used internally on NativeScript itself. When researching the best solutions for a WebSocket polyfill, there were no implementations better and more battle-tested than React Native’s. With that in mind, we decided to use its approach and created a WebSocket plugin for NativeScript."
+  "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5c4edb75a29a8f78baf0ffd9_1-32%20(1).jpg",
+  "title": "Figma Vs Sketch: Text alignment comparison",
+  "position": "UX/UI Engineer",
+  "date": "Mon Jan 28 2019 10:41:24 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "We explore and fix text frame issues that can scare you away from using Figma against Sketch, and check some other Figma’s pros and cons."
 }

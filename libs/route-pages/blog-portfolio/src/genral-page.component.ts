@@ -6,6 +6,7 @@ import { GetArticlesService, IArticle } from "@valor-software/common-docs";
 import { GetPortfolioService, IPortfolio } from "@valor-software/portfolio";
 import { BlogPortfolioRouteService } from "./services/route.service";
 import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
+import {titleRefactoring} from "./utils/titleRefactoring";
 SwiperCore.use([Pagination]);
 
 const generalPaths = {
@@ -53,7 +54,6 @@ export class GeneralPageComponent implements OnDestroy{
                 if (this.isBlogPage()) {
                     this.$generalSubscription = forkJoin(this.getArticlesServ.getFullListOfArticles()).subscribe((res: IArticle[] | undefined) => {
                         if (res) {
-                            console.log('general sub', res);
                             this.articles = res;
                             this.firstArticles = this.getFirstProjects(res);
                             this.activeArticle = this.firstArticles[0];
@@ -87,7 +87,13 @@ export class GeneralPageComponent implements OnDestroy{
             return;
         }
 
-        this.routeServ.route(link, this.isBlogPage());
+        if (this.isBlogPage()) {
+            const index = this.getArticlesServ.getArticleRouteLink(link);
+            this.router.navigate(['blog', index]);
+            return;
+        }
+
+        this.router.navigate(['portfolio', titleRefactoring(link)]);
     }
 
     filterFirstItems() {

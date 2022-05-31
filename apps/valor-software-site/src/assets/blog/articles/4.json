@@ -1,14 +1,14 @@
 {
-  "author": "Eduardo Speroni",
-  "id": 4,
+  "author": "Ludmila Nesvitiy",
   "domains": [
     "dev_quality_assurance"
   ],
-  "authorImg": "https://valor-software.com/assets/images/61fbaf8cc1e0c9364b36bffa_Eduardo_Speroni_Valor-Software.jpeg",
+  "authorImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69eabbb804c9c13508347a_nesvitiy.jpg",
   "language": "en",
-  "bgImg": "https://valor-software.com/assets/images/61fbaed8a4291dddcee69278_Frame_20301.png",
-  "title": "Diving into seeking issue with MP3 files",
-  "position": "Angular Developer",
-  "date": "Thu Feb 3 2022 13:53:56 GMT+0000 (Coordinated Universal Time)",
-  "seoDescription": "While working on a 10million plus user meditation app, I ran into a very weird issue. Looking into the file format, I found it is an mp3. There are many ways to seek within an audio file. Want to seek 6.3 seconds in a 100 kbps file? – Jump to the 630kb position. Should be somewhat accurate, but a 10s+ difference seems a bit too much. Let's analyze the file precisely, then – visit a marvelous world of VBR, also known as Variable Bit Rate, and play a guessing game. Finally, I'll mention a couple of solutions, to work with mp3 with less headache or to find an elegant alternative."
+  "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5c9babae27e0bf2553a92d62_pexels-photo-943096.jpeg",
+  "title": "Cypress testing: Running tests in parallel",
+  "position": "QA Automation Engineer",
+  "date": "Mon Mar 25 2019 11:12:34 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "We love testing; we love automating tests; we love running tests in parallel. Check out our Cypress guide for speedy and reliable testing.",
+  "contentUrl": true
 }

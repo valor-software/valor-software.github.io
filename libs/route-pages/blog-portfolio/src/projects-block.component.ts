@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, Input } from '@angular/core';
 import { IPortfolio } from "@valor-software/portfolio";
 import { Router } from "@angular/router";
 import { BlogPortfolioRouteService } from './services/route.service';
+import {titleRefactoring} from "./utils/titleRefactoring";
 
 const SortList = {
     all_projects: 'All Projects',
@@ -76,7 +77,7 @@ export class ProjectsBlockComponent {
     }
 
     route(title: string) {
-        this.routeProjectServ.route(title, false);
+        this.router.navigate(['portfolio', titleRefactoring(title)]);
     }
 
     updateProjects(projects: IPortfolio[]) {

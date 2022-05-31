@@ -55,12 +55,7 @@ export class SmallMediumBusinessesComponent {
 
     advantages = advantagesList;
     articlesList = [
-        'Scully_Helped_us_Reach_a_99_Lighthouse_Score_for_a_B2C_Platform',
-        'Benefits_of_Agile_to_Business_and_Team',
-        'Incorporating_user_research_on_live_projects___Part_1',
-        'Incorporating_user_research_on_live_projects___Part_2',
-        'Incorporating_user_research_on_live_projects___Part_3',
-        'Incorporating_user_research_on_live_projects___Part_4'
+        '29', '15', '21', '22', '23', '24'
     ];
 
     constructor(

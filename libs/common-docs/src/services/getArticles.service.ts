@@ -15,7 +15,9 @@ export class GetArticlesService {
         @Inject(ARTICLES_LIST) articlesList: string[]
     ){
         this.articlesList = articlesList;
-        this.apiArray = this.articlesList.map(art => this.getArticleRequest(art));
+        this.apiArray = this.articlesList.map((art, index) => {
+            return this.getArticleRequest((index + 1).toString());
+        }).reverse();
     }
 
     getArticleRequest(art: string):Observable<IArticle> {
@@ -28,6 +30,20 @@ export class GetArticlesService {
 
     getFullListOfArticles(): Observable<any>[] | undefined {
         return this.apiArray;
+    }
+
+    getArticleRouteLink(title: string): string | undefined {
+        if (!title) {
+            return;
+        }
+
+        const index = this.articlesList?.reverse().findIndex(item => item === title);
+
+        if (!index && index !== 0) {
+            return;
+        }
+
+        return (index + 1).toString();
     }
 
     getArticlesByNames(value: string[]): Observable<any>[] | undefined{

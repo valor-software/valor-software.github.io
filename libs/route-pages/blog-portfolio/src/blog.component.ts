@@ -101,7 +101,9 @@ export class BlogComponent implements OnDestroy {
     }
 
     route(title: string) {
-        this.routeArticle.route(title);
+        const index = this.getArticles.getArticleRouteLink(title);
+        this.router.navigate(['blog', index]);
+        return;
     }
 
     checkLength(): boolean {

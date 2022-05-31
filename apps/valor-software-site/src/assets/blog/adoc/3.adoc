@@ -1,421 +1,201 @@
-A couple of months ago, our customer approached me with an interesting task that
-appeared not complicated at first glance. I needed to create *a simple web app with a Grammarly-like view
-based on a WYSIWYG HTML editor*. This app should count different text units like paragraphs, sentences,
-words, and characters. The best thing is that despite the specifics of text source: websites, Google Docs, MS
-Office, email clients, your content will be carefully analyzed for units and displayed in a form convenient for
-perception.
-
-No prizes for guessing what kind of issue I faced in this case :) External content from most of the resources
-contains redundant HTML tags, which influences the correctness of calculations. Moreover, messed code makes
-testing an annoying process. So, eventually, I came up with the *solution for cleaning HTML from
-unnecessary tags and polishing it for further work with text*.
-
-*Table of contents:*
-
-1. Intro part
-2. The principles of HTML code prettifying
-3. My solution – the TagTide library
-4. Approaches and use cases
-5. An example of Google Docs content cleanup
-6. Kind thanks to colleagues
-7. Useful links
-
-== The principles of HTML code prettifying
-
-Let's think about basic steps to get *"editor-friendly" HTML code*. I'm going to describe the idea
-with a demonstrative example. Imagine we have a perfect code that defines paragraphs.
-
-The code could be the following:
-
-    Shakespeare produced most of his known works between 1589 and 1613.</p>
-    His early plays were primarily comedies and histories and are regarded as some of
-    the best work produced in these genres. He then wrote mainly tragedies until 1608,
-    among them Hamlet, Romeo and Juliet, Othello, King Lear, and Macbeth, all considered
-    to be among the finest works in the English language.</p>
-
-The example above contains a couple of paragraphs. The second paragraph has two sentences, and the first one –
-just one.
-
-Let's look at the hypothetical *messy equivalent* of the same content:
-
-
-    <div id="content">
-        <div class="sent">Shakespeare produced most of his known works between
-            <span style="color: red; font-size: 24px;">1589</span> and
-            <span style="color: red">1613</span>.
-        </div>
-        <div>
-            <div class="sent">His early plays were primarily comedies and histories and are regarded
-            as some of the best work produced in these genres.</div>
-            <div class="sent">He then wrote mainly tragedies until 1608, among them Hamlet, Romeo
-            and Juliet, Othello, King Lear, and Macbeth, all considered to be among the finest works
-            in the English language.</div>
-        <div>
-    </div>
-
-==== What issues this messiness brings:
-
-1. *Redundant root div* that should be ignored.
-2. Since a div inside another div is correct, but a *paragraph inside another paragraph* is a
-mistake, it's challenging to split the text into paragraphs.
-3. *Inline styles* uglify whole text perception, but they don't even influence calculation
-quality. We should get rid of them for aesthetic reasons.
-
-Our main goal is to transform the messy text into perfect paragraphs. Let's call this kind of text
-"editor-friendly". As far as the task contains various logic, we need to split the flow into separate
-activities. Let's dig into that!
-
-The first reasonable thing is that we need to *ignore root div*.
-
-    <div class="sent">Shakespeare produced most of his known works between <span style="color:
-    red; font-size: 24px;">1589</span> and <span style="color: red">1613</span>.</div> <div><div
-    class="sent">His early plays were primarily comedies and histories and are regarded as some
-    of the best work produced in these genres.</div> <div class="sent">He then wrote mainly tragedies
-    until 1608, among them Hamlet, Romeo and Juliet, Othello, King Lear, and Macbeth, all considered
-    to be among the finest works in the English language.</div><div></div></div>
-
-Looks better. Secondly, we should flatten the second paragraph. It means we should leave *only one level
-of divs* (in our case – root):
-
-    Shakespeare produced most of his known works between 1589 and 1613.</div> <div>
-    His early plays were primarily comedies and histories and are regarded as
-    some of the best work produced in these genres. He then wrote mainly tragedies until
-    1608, among them Hamlet, Romeo and Juliet, Othello, King Lear, and Macbeth, all
-    considered to be among the finest works in the English language.</div>
-
-Our text looks much better because the second paragraph looks good. But if we talk about editor-friendly HTML
-code, we should *change divs to pure paragraphs*:
-
-    <p class="sent">Shakespeare produced most of his known works between 1589 and 1613.</p><p>
-    His early plays were primarily comedies and histories and are regarded as some of the best
-    work produced in these genres. He then wrote mainly tragedies until 1608, among them Hamlet,
-    Romeo and Juliet, Othello, King Lear, and Macbeth, all considered to be among the finest works
-    in the English language.</p>
+We're living in the golden age of software development, and open-source libraries are a
+huge part of the software revolution that we're facing now. That's why I felt the need to talk about it now. I, as
+an Automation QA, got experience in testing open-source libraries and wanted to share my thoughts with everybody,
+because such type of projects requires a slightly different testing approach.
 
-Looks almost perfect! We have just minor stuff left. We need to *remove* all redundant *tag
-attributes* (*"class"* in our case):
+All examples shown in this article are based solely on my experience testing https://github.com/valor-software/ngx-bootstrap[ngx-bootstrap^].
 
-    <p>Shakespeare produced most of his known works between 1589 and 1613.</p><p>
-    His early plays were primarily comedies and histories and are regarded as
-    some of the best work produced in these genres. He then wrote mainly tragedies
-    until 1608, among them Hamlet, Romeo and Juliet, Othello, King Lear, and
-    Macbeth, all considered to be among the finest works in the English language.</p>
+https://github.com/valor-software/ngx-bootstrap[Ngx-bootstrap^] is a set of Bootstrap components, powered by Angular, which developers can quickly integrate into their projects.
+Each UI component has specific reconfigurable properties/inputs/outputs, which makes the library very interesting
+for us in terms of gaining testing experience. Okay, now it becomes a bit confusing with all those properties and
+inputs. To make things clear, let's go through all project roles first.
 
-That's it. We have 100% editor-friendly HTML code that contains a couple of pure paragraphs!
-*In conclusion, I want to summarize all provided steps that you can use as separate pattern:*
+*Project roles in open source universe*
 
-1. Start from a certain point in the original code. You can ignore redundant tags that aren't important
-anymore.
-2. Flatten the code by removing redundant inner tags. The main goal of this step is preparation for paragraph
-splitting.
-3. Change div tags to paragraphs.
-4. Remove redundant attributes.
+1. *Customer* The primary consumer of an open-source library is usually a simple
+developer. In most cases, a developer is trying to implement not his own, but customer's wishes. What it
+means for us, is that testing engineer can't directly get requirements from an appropriate person, who
+knows 100% how new features should function. This results a few pros and cons:
 
-== Technical approaches
+PROS:
 
-At the start of the project, I intended to resolve the principles above via sets of pure regular expressions. As
-you can guess, this attempt failed. Regular expressions are not friendly with deep-nested lexemes. In this case,
-by lexemes, I mean nested HTML tags and their attributes. Having thought a little, I decided to use the https://en.wikipedia.org/wiki/Abstract_syntax_tree[AST-based^] approach because
-I shouldn't reinvent the wheel in this case. I chose the https://github.com/henrikjoreteg/html-parse-stringify[HTML-parse-stringify
-library^] because this solution is minimalistic yet contains all the expected functionality regarding HTML
-AST processing.
+* You have many customers (in our case - developers), and you can contact each of them directly.
+* Your customer is usually smart and can know much more about the new feature request/issue that you can
+imagine. It gives QA possibilities to grow and to learn much new stuff, especially related to web
+development, different technologies, new software solutions, and so on.
 
-=== *My solution – the TagTide library*
+* All your customers are from different countries, who speak different languages, and most importantly -
+they have different wishes. All this gives QA the possibility to make a unique and universal instrument,
+like Datepicker locales: everyone needs it, but we have many different languages with different
+parameters.
 
-So, please, welcome https://github.com/buchslava/tag-tide[TagTide^]. The main idea of
-the solution is a set of patterns you can apply anytime when you need them. Also, I suggest you apply them in
-sequence, just like the steps above.
+CONS:
 
-*Let's repeat the steps of the above text transformations using TagTide.*
+* You have tons of feature requests/issues/bugs, all of which need to be appropriately structured and
+implemented.
+* Feature requests could be conflicting. They could be hard to implement and test.
+* A customer could create an issue and forget about it. This bug could be without any details, specific
+description, clarifying information, which QA usually expects in order to reproduce the issue. Also, in
+the end, this bug could be not a bug at all, but just a misunderstanding on how to use the library.
+
+[start="2"]
+2. *Developer* +
+Not all open-source libraries are developed and supported by developers, who are directly interested in the development, as https://twitter.com/ladyleet[Tracy Lee^] said in one of our discussions:
+
+____
+_Companies now support open source. Like Valor, for example, because a lot of people think open
+source is just random people doing it, but really it's actually supported by companies_.
+____
+
+This is true, and the main point here is that the leading development team knows the quality assurance team,
+and we regularly collaborate as in the usual project. However, from time to time, your developer could be an
+undefined person from the other side of the planet.
+
+PROS:
+
+* Open source project grows rapidly and exponentially, depending on how many developers are involved in
+working on it.
+* QA can directly interact with developers who share their experiences.
+
+CONS:
+
+* Open source for developers, in most cases, is just an initiative: the response to a question or comment
+may be delayed due to higher priorities of an actual and paid job.
+* You need to have rules, style guides, linters, which are correctly described and easy to find. BUT, the
+initial setup to support typical code/commit/doc style, etc., requires a lot of time and force. This may
+not be a minus if you already have such rules or a standardized approach to their setup.
+
+[start="3"]
+* *QA* +
+Maybe you will laugh now, but the main testers of an open source library are the
+developers :) Yeah, well, that's because they're the primary users, and they will try to use your library
+with different OSs, environments, browsers, type of apps, etc.
+
+PROS:
+
+* QA needs to act as a developer, use your lib in real app code, test all new changes related to library
+source in already prepared test projects.
+* Firstly, QA needs to review the code, parts of which have been changed (those parts could be broken, or
+their behavior could have changed).
+
+CONS:
+
+* This activity could be boring and very hard for a manual tester.
+* If the library is too small, then the QA Engineer can take over the responsibilities of an analyst,
+project manager, and even the developer.
+
+*Testing process overview*
+
+Based on differences in project participants, it is logical
+to assume that the testing process itself will be very specific. It's true. We can describe the testing stages
+in the following way:
+
+*1.Testing New Issues.* Before including issue/request/bug to the
+current iteration/milestone QA needs to investigate all other related cards (link them together if they exist)
+and perform a requirements testing.
+
+*2. Pull Requests (PR) Testing*. When the
+developer completes a new task, QA needs to clone all new changes locally, build the library, and perform
+testing of a new feature, which includes:
 
-----
-import { TagTide } from "tag-tide";
-
-const original = `
-<div id="content"><div class="sent">Shakespeare produced most of his known works
-between <span style="color: red; font-size: 24px;">1589</span> and <span style="color: red">1613</span>.</div>
-<div><div class="sent">His early plays were primarily comedies and histories and are regarded
-as some of the best work produced in these genres.</div>
-<div class="sent">He then wrote mainly tragedies until 1608, among them Hamlet, Romeo and Juliet,
-Othello, King Lear, and Macbeth, all considered to be among the finest works in the English language.</div><div></div>`;
-const tagTide = new TagTide(original).startAfter("id", /^content/);
-const startedAfter = tagTide.result();
-
-console.log(startedAfter, "\n");
-
-tagTide.flatten();
-const flattened = tagTide.result();
-
-console.log(flattened, "\n");
-
-tagTide.rootParagraphs();
-const paragraphs = tagTide.result();
-
-console.log(paragraphs, "\n");
-
-tagTide.removeAttributes();
-const pureHtml = tagTide.result();
-
-console.log(pureHtml);
-----
-
-Also, TagTide allows you to get the expected result in the shortest way *handling the request in
-sequence* by different objects (I use https://www.dofactory.com/javascript/design-patterns/chain-of-responsibility[a chain of responsibility pattern^]):
-
-----
-import { TagTide } from "tag-tide";
-
-const original = `
-<div id="content"><div class="sent">Shakespeare produced most of his known works
-between <span style="color: red; font-size: 24px;">1589</span> and <span style="color: red">1613</span>.</div>
-<div><div class="sent">His early plays were primarily comedies and histories and are regarded
-as some of the best work produced in these genres.</div>
-<div class="sent">He then wrote mainly tragedies until 1608, among them Hamlet, Romeo and Juliet, Othello,
-King Lear, and Macbeth, all considered to be among the finest works in the English language.</div><div></div>`;
-const pureHtml = new TagTide(original).startAfter("id", /^content/).flatten().rootParagraphs().removeAttributes().result();
-
-console.log(pureHtml);
-----
-
-== Use cases
-
-There is a couple of fundamental approaches how to change your HTML code using TagTide:
-
-1. Direct changes via *`traverse`*;
-2. Changes via the *set of patterns*.
-
-This part contains different examples illustrating the approaches above.
-
-==== *Change some content in 2nd nesting level*
-
-----
-import { El, TagTide } from "tag-tide";
-
-const original = "<div>level 1 <div>level 2 <div>level 3</div></div></div>";
-const prettified = new TagTide(original)
-.traverse((el: El, level: number) => {
-    if (level === 2 && el.content) {
-        el.content = `modified ${el.content}`;
-    }
-})
-.result();
-
-console.log(prettified);
-----
-
-Output::
-
-    <div>level 1 <div>modified level 2 <div>level 3</div></div></div>
-
-==== *Aggregate numeric values from different nesting levels*
-
-----
-import { El, TagTide } from "tag-tide";
-
-const original = "
-1
-2
-3
-";
-let total = 0;
-new TagTide(original).traverse((el: El) => {
-    if (el.content) {
-        total += +el.content.trim();
-    }
-});
-
-console.log(total);
-----
-
-Output:
-
-    `6`
-
-==== *Strip some tags*
-
-----
-import { TagTide } from "tag-tide";
-
-const original = "<div>level 1 <div><a href='#'><span>level <i>2</i></span></a> <div>
-level 3<br></div></div></div>";
-const prettified = new TagTide(original)
-.result(['a', 'span', 'i', 'br']);
-
-console.log(prettified);
-----
-
-Output:
-
-    <div>level 1 <div>level 2 <div>level 3</div></div></div>
-
-==== *Start after or Start from*
-
-This pattern allows us to *ignore* some *parent structures*.
-
-----
-import { TagTide } from "tag-tide";
-
-const source = `<body><div class="container-1"><p>content</p></div></body>`;
-const result = new TagTide(source)
-  .startAfter("class", /^container-\d/)
-  .result();
-
-console.log(result);
-----
-
-Output:
-
-    <p>content</p>
-
-The following code illustrates another approach to *set starter-tag*. Also, a related tag can be
-included:
-
-----
-import { TagTide } from "tag-tide";
-
-const source = `<body><div class="container-1"><p>content</p></div></body>`;
-const result = new TagTide(source)
-  .startFrom("class", /^container-\d/)
-  .result();
-
-console.log(result);
-----
-
-Output:
-
-    <div class="container-1"><p>content</p></div>
-
-*Important notes:*
-
-1. In the "Start from" case, the result will include the associated (search) tag.
-2. If no matching tag is found, these patterns don't affect the result.
-
-==== *Flatten*
-
-This pattern will be useful if we need to *remove nested tags*.
-
-----
-import { TagTide } from "tag-tide";
-
-const original =
-"<div>1 <div id='first'>2 <div><span class='foo' style='color: red;'>3</span></div></div></div> middle <div>4 <div>5</div></div>";
-const prettified = new TagTide(original).flatten().result();
-
-console.log(prettified);
-----
-
-Output:
-
-    <div>1 2 3</div> middle <div>4 5</div>
-
-Also, you can *omit any tags* that you want except for those you need to keep (ex. &lt;br&gt;,
-&lt;b&gt;,etc.):
-
-----
-import { TagTide } from "tag-tide";
-
-const original =
-  "<div>1 <div id='first'>2 <div><span class='foo' style='color: red;'><a href='1' target='_blank'>3</a></span></div></div></div> middle
-<div>4 <div>5</div></div>";
-const prettified = new TagTide(original).flatten(['a']).result();
-
-console.log(prettified);
-----
-
-Output:
-
-    <div>1 2 <a href="1" target="_blank">3</a></div> middle <div>4 5</div>
-
-==== *Remove attributes*
-
-This pattern allows removing all or some attributes through the whole content.
-In the following example, I've *removed all attributes*:
-
-----
-import { TagTide } from "tag-tide";
-
-const original =
-  "<div>1 <div id='first'>2 <div><span class='foo' style='color: red;'>3</span></div></div></div> middle <div>4 <div>5</div></div>";
-const prettified = new TagTide(original).flatten().removeAttributes().result();
-
-console.log(prettified);
-----
-
-Output:
-
-    <div>1 <div>2 <div><span>3</span></div></div></div> middle <div>4 <div>5</div></div>
-
-In the following example, all attributes have been removed except:
-
-**`id`* attribute in all *`span`* tags
-
-* all *`style`* attributes
-
-----
-import { TagTide } from "tag-tide";
-
-const original =
-  "<div>1 <div id='first'>2 <div><span id='s1' class='foo' style='color: red;'>3</span></div></div></div>
-middle <div style='color: red;'>4 <div>5</div></div>";
-const prettified = new TagTide(original).removeAttributes({'span': ['id'], '*': ['style']}).result();
-
-console.log(prettified);
-----
-
-Output:
-
-    <div>1 <div>2 <div><span id="s1" style="color: red;">3</span></div></div></div>
-    middle <div style="color: red;">4 <div>5</div></div>
-
-==== *Root paragraphs*
-
-We need to *replace the `divs`* in the first level of HTML *with `paragraphs`*. If the *`plain text`* appears at the *`first level`* instead of another tag, it should be enclosed in a *`paragraph`*.
-
-The following example shows how this approach works:
-
-----
-import { TagTide } from "tag-tide";
-
-const original = "
-start
- middle
-finish
-";
-const prettified = new TagTide(original).rootParagraphs().result();
-
-console.log(prettified);
-----
-
-Output:
-
-    <p>start</p><p> middle </p><p>finish</p>
-
-== An example of Google Docs content cleanup
-
-The icing on the cake is the case with code that I took from an *actual Google Docs document*. Not
-to overload this article, I placed this https://github.com/buchslava/tag-tide/blob/main/examples/complex.ts[example of
-code containing HTML&nbsp;on GitHub^].
-
-If you checked https://github.com/buchslava/tag-tide/blob/main/examples/complex.ts[the link^], I suppose you might be surprised by the volume of HTML in the document. Now let's imagine you need to
-work with the text inside. Can you see the text there, by the way? – I guess not really because of lots of trash
-tags and attributes. The most exciting thing in this story is that using the TagTide script, you can *transform
-code* from my example *into the following HTML*:
-
-    <p> Test test test </p><p> Test test test </p><p><a href="http://www.microsoft.com">Test</a> test test</p><br/><br/><br/><p>
-    12 34 </p><br/><br/><ul><li>Aaa</li><li>Bbb</li><li>Ccc</li></ul><br/><p>The end</p>
-
-*And you can repeat the same with the code taken from email clients, MS Word documents, and other
-sources!*
-
-== In conclusion, I want to thank:
-
-- https://www.linkedin.com/in/waqas-younas/[Waqas Younas^] for long and fruitful cooperation
-- https://github.com/HenrikJoreteg[Henrik Joreteg^] for https://github.com/henrikjoreteg/html-parse-stringify[html-parse-stringify^]
-
-And in case you're interested in other solutions for text editing and processing, check my https://valor-software.com/articles/multi-highlighting-for-draftjs.html[Multi-Highlighting for DraftJS^] article. There I share how I added an option to highlight paragraphs, phrases, and words in DraftJS with my solution written in TypeScript.
-
-== Useful links
-* https://valor-software.com/articles/multi-highlighting-for-draftjs.html[HTML-parse-stringify library^] for HTML AST processing
-* https://github.com/buchslava/tag-tide[The TagTide library on GitHub^]
-* https://github.com/henrikjoreteg/html-parse-stringify[TagTide on npm^]
-* https://valor-software.com/articles/multi-highlighting-for-draftjs.html[Multi-Highlighting for DraftJS^] - my other solution for highlighting text units in DraftJS editor
+* Requirements testing
+* Manual feature testing
+* Smoke regression testing
+* Integration testing.
+
+*3. Automated testing*. PR testing also can include any automated tests (if they're not
+included to the CI, duh). If new PR broke automated tests, then QA teams up with a developer in a tighter bond
+to investigate failures and fix them. QA helps to cover new functionality with unit tests.
+
+*4. Integration pre-release testing* Integration pre-release testing is performed only before creating
+a new release. It includes:
+
+* Smoke checking for the entire DEMO application
+* Checking for full workability of all components
+* Integration testing of the whole library (including testing of a new version of the library in integration
+with other test projects). https://docs.npmjs.com/cli/link.html[Here's^] a very useful tip for it.
+
+*5. Integration post-release testing* is performed only after release is published (could be
+@latest, @next, with/without breaking changes). Usually performed in test libraries (TODO-APP or HELLO WORLD
+apps that can be tested for compatibility, sometimes via ng new), which are using the latest version of the
+current library.
+
+==== *Documentation examples for open-source libraries*
+
+The main goal of a new QA on the project is to make it maximum qualitative for the minimum time (as it could be
+something else :D). And the first step in the qualitative direction is documentation. In a perfect world, a
+docset should include:
+
+* https://github.com/valor-software/ngx-bootstrap/blob/development/.github/ISSUE_TEMPLATE.md[Issue Template^] - helps new contributors in creating issues in a standardized way and describes what should be done before/now/after creating a new issue.
+* https://github.com/valor-software/ngx-bootstrap/blob/development/.github/PULL_REQUEST_TEMPLATE.md[Pull Request Template^] - helps new contributors in
+applying appropriate changes to the codebase with the same code style, approach, and describes the rules.
+* https://github.com/valor-software/ngx-bootstrap/blob/development/CONTRIBUTING.md[Contributing Guide^] - describes what types of issues/feature requests/pull requests exist, how to pull/commit/push changes, contains useful links and
+answers for the frequent questions.
+* https://github.com/valor-software/ngx-bootstrap/blob/development/README.md[README^] - contains essential links, info on how to clone, install,
+build, use, and make changes to the library. This info is always shown on the main GitHub repo page, so it
+should contain the maximum amount of useful information, treat it as your landing page. Our advice would
+be to follow https://www.makeareadme.com/[makeareadme.com^] instructions on how to maintain an excellent README for your project.
+* https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md[Changelog^] - contains information about versions, releases, changes that were included to each release. A changelog is very important to developers, who wait for some fixes/features, that's why it should not be empty. Our advice would be to follow https://keepachangelog.com/en/1.0.0/[keepachangelog.com^] instructions on how to maintain an excellent
+changelog for your project.
+* https://github.com/valor-software/ngx-bootstrap/wiki[Wiki^] - a great place to accumulate all links and other useful info.
+* Graphical examples of different flows:
+
+1. https://github.com/valor-software/ngx-bootstrap/wiki/PR-lifecycle[PR flow^]
+2. https://github.com/valor-software/ngx-bootstrap/wiki/Issue-lifecycle[Issue flow^]
+3. https://github.com/valor-software/ngx-bootstrap/wiki/Deployment-lifecycle[Development flow^]
+
+* https://github.com/valor-software/ngx-bootstrap/blob/development/docs/spec/datepicker/datepicker.examples.basic.use-case.md[Test design/Use-cases/Test-cases^] - helps each user
+understand how specific functionality should work, helps QAs to cover application with automated tests,
+check test coverage percentage, and to manually test the library and then prepare a summary with testing
+results.
+
+*Tech Stack for automated testing*
+
+Unit tests: http://karma-runner.github.io/[Karma^] + https://github.com/jasmine/jasmine[Jasmine^]
+are our tools of choice for automated tests. Our approach consists of two major rules:
+
+1. Unit tests should be written for each new change.
+2. There should be no Pull Requests merged to development branch without tests.
+
+These two simple rules give dev team at least some kind of confidence that the code will work adequately
+(its development, we can never be sure about something working 100% right). If new contributors create PRs
+without unit tests, then other participants or QAs could (should, in a perfect world) help and do everything
+the right way. https://github.com/marketplace/codecov[Codecov^] is a bot for GitHub that helps to get rid of
+developers PRs without any tests attached, and https://www.npmjs.com/package/karma-coverage-istanbul-reporter[karma-coverage-istanbul-reporter^] is a code coverage
+tool.
+
+E2E tests: https://cypress.io[Cypress^].
+This type of test covers the user behavior for each demo page and demo component. Full coverage with such
+tests helps to decrease the time for manual pre-release and post-release testing.
+
+*Anything else what QA's should pay attention to? Sure!*
+
+* Don't spend much time for reproducing a poorly described issue. A much better approach would be to ask the
+author about the details directly. Many contributors ignore any recommendations and issue templates,
+providing so little info without confirmation.
+
+* Use https://stackblitz.com/[Stackblitz^], https://plnkr.co[Plunker^] or any other online
+IDE (https://github.com/styfle/awesome-online-ide[dozens of them!^]), which can easily share projects between people
+for the reproduction of issues/requests.
+
+* Build priorities for next releases according to the most popular issues/requests inside a repository, as
+fixing issues that users demand highly increases usage auditory.
+
+* Before creating a new release with colossal change/new functionality, be sure that it doesn't break other
+components/services. Ask your collaborators and users about this in your public channels (Slack, Twitter,
+Telegram, etc.).
+
+* Many paid services/libraries/tools are ready to provide free plans for Open Source. It gives the
+development team more possibilities for promotion. Don't be afraid to ask the related team for cooperation
+"we're all in the same boat.
+
+_PS:_
+
+Testing open source libraries is a little bit different from testing other projects, at
+a minimum it requires additional knowledge, which is based on those technologies, which are used in current
+lib. However, it gives each involved engineer a possibility to grow much faster than in other projects.
+
+_P.P.S_
+
+Thank you, the one who contributes to the Open Source. Together we can make the world a
+better place :)
