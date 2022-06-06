@@ -1,6 +1,5 @@
 export interface IArticle {
     author?: string;
-    id: string;
     authorImg?: string;
     domains: string[];
     language: string;
@@ -9,6 +8,5 @@ export interface IArticle {
     position?: string;
     date: string;
     content: string;
-    contentUrl?: string;
     seoDescription?: string;
 }

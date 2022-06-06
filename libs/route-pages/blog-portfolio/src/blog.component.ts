@@ -102,7 +102,7 @@ export class BlogComponent implements OnDestroy {
 
     route(title: string) {
         const index = this.getArticles.getArticleRouteLink(title);
-        this.router.navigate(['blog', index]);
+        this.router.navigate(['articles', index]);
         return;
     }
 

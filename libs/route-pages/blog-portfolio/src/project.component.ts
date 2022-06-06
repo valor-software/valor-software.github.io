@@ -4,7 +4,7 @@ import { Subscription } from "rxjs";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { DomSanitizer } from '@angular/platform-browser';
-import { BlogPortfolioRouteService } from "./services/route.service";
+import { titleRefactoring } from "./utils/titleRefactoring";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -21,7 +21,6 @@ export class ProjectComponent implements OnDestroy{
         private router: Router,
         private getProjectsServ: GetPortfolioService,
         private sanitizer: DomSanitizer,
-        private projectRoute: BlogPortfolioRouteService,
         private cdr: ChangeDetectorRef,
 
     ) {
@@ -85,7 +84,7 @@ export class ProjectComponent implements OnDestroy{
     }
 
     route(link: string) {
-        this.projectRoute.route(link, false);
+        this.router.navigate(['portfolio', titleRefactoring(link)]);
     }
 
     getRespSrc(link: string): string {

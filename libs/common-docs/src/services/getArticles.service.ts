@@ -1,14 +1,15 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, from } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ARTICLES_LIST } from "../tokens/articlesList.token";
 import { IArticle } from "../models/article.interface";
-
+import {blogTitleRefactoring, checkHTMLExtension} from '../utils/titleRefactoringUtil';
 
 @Injectable({providedIn: 'platform'})
 export class GetArticlesService {
     private apiArray?: Observable<any>[];
     private articlesList?: string[];
+    private refactoredArticleList?: string[];
 
     constructor(
         private http: HttpClient,
@@ -18,6 +19,11 @@ export class GetArticlesService {
         this.apiArray = this.articlesList.map((art, index) => {
             return this.getArticleRequest((index + 1).toString());
         }).reverse();
+        if (!this.refactoredArticleList?.length) {
+            this.refactoredArticleList = this.articlesList.map(item => {
+                return blogTitleRefactoring(item);
+            })
+        }
     }
 
     getArticleRequest(art: string):Observable<IArticle> {
@@ -33,12 +39,12 @@ export class GetArticlesService {
     }
 
     getArticleRouteLink(title: string): string | undefined {
-        if (!title) {
+        if (!title || !this.articlesList?.length) {
             return;
         }
 
-        const index = this.articlesList?.reverse().findIndex(item => item === title);
-
+        const arr = [...this.articlesList].reverse();
+        const index = arr.findIndex(item => item === title);
         if (!index && index !== 0) {
             return;
         }
@@ -46,12 +52,32 @@ export class GetArticlesService {
         return (index + 1).toString();
     }
 
-    getArticlesByNames(value: string[]): Observable<any>[] | undefined{
-        const articlesList = this.articlesList;
-        if (articlesList?.length) {
-            const list = articlesList.filter(item => value.includes(item));
-            return list.map(art => this.getArticleRequest(art));
+    getArticlesByNames(value: string[]): Observable<any>[] | undefined {
+        if (!this.articlesList?.length) {
+            return;
         }
+
+        const articlesList = [...this.articlesList];
+        if (articlesList?.length) {
+            return value.map(art => this.getArticleRequest(art));
+        }
+        return;
+    }
+
+    getRefactoredArticlesList(): string[] | undefined {
+        return this.refactoredArticleList;
+    }
+
+    getTitleArticleIndex(title: string): number | undefined {
+        if (!this.refactoredArticleList?.length) {
+            return;
+        }
+
+        let index = this.refactoredArticleList?.findIndex(item => item === title || item === checkHTMLExtension(title));
+        if (index || index === 0) {
+            return index ++;
+        }
+
         return;
     }
 

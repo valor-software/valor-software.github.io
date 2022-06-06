@@ -1,6 +1,6 @@
 In this second part of my Designing Aggregator App for Movie Tickets Purchase article,
 I'll be talking about Design Interaction and Interface UI Design. Also, I'll share my conclusions of all processes in general.
-Check link:blog/Designing_Aggregator_App_from_A_to_Z___Part_1[the first part] if you missed it before you go on reading this one :-)
+Check link:articles/Designing_Aggregator_App_from_A_to_Z___Part_1[the first part] if you missed it before you go on reading this one :-)
 
 == Stage 2: Design Interaction
 

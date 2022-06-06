@@ -4,7 +4,6 @@ import { RouterModule } from "@angular/router";
 import { routes } from './routes';
 import { GeneralPageComponent } from "./genral-page.component";
 import { CommonDocsModule } from "@valor-software/common-docs";
-import { BlogPortfolioRouteService } from "./services/route.service";
 import { BlogComponent } from "./blog.component";
 import { ProjectsBlockComponent } from "./projects-block.component";
 import { SortDirective } from './directives/sort.directive';
@@ -32,7 +31,7 @@ import { GetBlogsService } from "./services/getBlogs.service";
     FeedbackModule,
     SwiperModule
   ],
-  providers: [ BlogPortfolioRouteService, GetBlogsService ]
+  providers: [ GetBlogsService ]
 })
 export class BlogPortfolioModule { }
         

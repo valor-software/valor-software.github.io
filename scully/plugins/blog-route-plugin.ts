@@ -1,9 +1,9 @@
 import { HandledRoute, registerPlugin } from "@scullyio/scully";
-import { articlesList } from "../../apps/valor-software-site/src/assets/blog/articles.list";
+import { articleIdList } from "../../apps/valor-software-site/src/assets/blog/articles.list";
 
 function blogRoutePlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    const routes = articlesList.map((item: string) => {
-        return {route: `/blog/${item}`};
+    const routes = articleIdList.map((item: string, index) => {
+        return {route: `/articles/${index +1}`};
     })
     return Promise.resolve(routes);
 }

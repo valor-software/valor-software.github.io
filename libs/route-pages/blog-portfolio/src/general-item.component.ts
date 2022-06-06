@@ -4,7 +4,7 @@ import { filter } from "rxjs/operators";
 import { Subscription } from "rxjs";
 
 const generalPaths = {
-    BLOG: 'blog',
+    BLOG: 'articles',
     PORTFOLIO: 'portfolio'
 };
 

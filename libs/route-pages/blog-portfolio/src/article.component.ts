@@ -2,9 +2,10 @@ import { Component, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from "@angular/router";
 import { GetArticlesService } from "@valor-software/common-docs";
-import { IArticle } from "@valor-software/common-docs";
+import { IArticle, blogTitleRefactoring } from "@valor-software/common-docs";
 import { filter, switchMap, catchError } from 'rxjs/operators';
 import { Subscription, of } from "rxjs";
+
 import Processor from 'asciidoctor'
 const processor = Processor();
 @Component({
@@ -33,11 +34,17 @@ export class ArticleComponent implements OnDestroy{
     checkRoutePath() {
         const artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
         if (!artTitle) {
-            this.router.navigate(['/blog']);
+            this.router.navigate(['/articles']);
         }
 
         if (artTitle) {
-            this.getArticleServ.getArticleRequest(artTitle).pipe(
+            const index = this.getArticleServ.getTitleArticleIndex(artTitle);
+            if (!index) {
+                this.router.navigate(['/articles']);
+                return;
+            }
+
+            this.getArticleServ.getArticleRequest(index?.toString()).pipe(
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 switchMap((art) => {
@@ -46,7 +53,7 @@ export class ArticleComponent implements OnDestroy{
                         path: artTitle,
                         title: art.title
                     }];
-                    return this.getArticleServ.getHTMLSource(artTitle);
+                    return this.getArticleServ.getHTMLSource(index?.toString());
                 }),
                 catchError(error => {
                     if (!this.article) {

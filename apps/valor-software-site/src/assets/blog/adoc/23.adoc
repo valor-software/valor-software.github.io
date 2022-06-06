@@ -1,7 +1,7 @@
 === *This article is part of a series:*
 
-* link:blog/Incorporating_user_research_on_live_projects___Part_1[Part 1]: Context of the Project, User Persona, Search for Participants.
-* link:blog/Incorporating_user_research_on_live_projects___Part_2[Part 2]: Preparation for the Interview, Competitors Research.
+* link:articles/Incorporating_user_research_on_live_projects___Part_1[Part 1]: Context of the Project, User Persona, Search for Participants.
+* link:articles/Incorporating_user_research_on_live_projects___Part_2[Part 2]: Preparation for the Interview, Competitors Research.
 * Part 3: Context of Pandemic, Transcribing, Affinity Diagraming, Report.
 * Part 4: Conclusion, Lessons Learned.
 
