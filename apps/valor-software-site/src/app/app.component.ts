@@ -17,7 +17,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
     scrollPosition = 0;
     $routeEvents?: Subscription;
     $routerEventNavigationEnd: Subscription;
-    showFooterAndHeader: boolean = true;
+    showFooterAndHeader = true;
 
     @HostListener('window:beforeunload') private onReload() {
         window.sessionStorage.setItem('scrollPosition', window.scrollY.toString());
@@ -34,7 +34,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
             filter(evt => evt instanceof NavigationEnd)
         ).subscribe(res => {
             this.showFooterAndHeader = !!(this.router.url === notFoundPageUrl);
-        })
+        });
     }
 
     scrollToPosition(value: number) {
@@ -75,7 +75,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
     }
 
     ngOnDestroy() {
-        this.$routeEvents?.unsubscribe()
+        this.$routeEvents?.unsubscribe();
         this.$routerEventNavigationEnd?.unsubscribe();
     }
 }

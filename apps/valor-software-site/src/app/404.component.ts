@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'app-not-found',
     template: `
         <section class="landing-section !pb-0" style="min-height: 100%; height: 100vh;">
