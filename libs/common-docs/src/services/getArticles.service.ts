@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ARTICLES_LIST } from "../tokens/articlesList.token";
 import { IArticle } from "../models/article.interface";
-import {blogTitleRefactoring, checkHTMLExtension} from '../utils/titleRefactoringUtil';
+import { blogTitleRefactoring, checkHTMLExtension } from '../utils/titleRefactoringUtil';
 
 @Injectable({providedIn: 'platform'})
 export class GetArticlesService {
@@ -22,7 +22,7 @@ export class GetArticlesService {
         if (!this.refactoredArticleList?.length) {
             this.refactoredArticleList = this.articlesList.map(item => {
                 return blogTitleRefactoring(item);
-            })
+            }).reverse();
         }
     }
 
@@ -38,19 +38,19 @@ export class GetArticlesService {
         return this.apiArray;
     }
 
-    getArticleRouteLink(title: string): string | undefined {
-        if (!title || !this.articlesList?.length) {
-            return;
-        }
-
-        const arr = [...this.articlesList].reverse();
-        const index = arr.findIndex(item => item === title);
-        if (!index && index !== 0) {
-            return;
-        }
-
-        return (index + 1).toString();
-    }
+    // getArticleRouteLink(title: string): string | undefined {
+    //     if (!title || !this.articlesList?.length) {
+    //         return;
+    //     }
+    //
+    //     const arr = [...this.articlesList].reverse();
+    //     const index = arr.findIndex(item => item === title);
+    //     if (!index && index !== 0) {
+    //         return;
+    //     }
+    //
+    //     return (index + 1).toString();
+    // }
 
     getArticlesByNames(value: string[]): Observable<any>[] | undefined {
         if (!this.articlesList?.length) {
@@ -75,10 +75,15 @@ export class GetArticlesService {
 
         let index = this.refactoredArticleList?.findIndex(item => item === title || item === checkHTMLExtension(title));
         if (index || index === 0) {
-            return index ++;
+            index = index + 1;
+            return index;
         }
 
         return;
+    }
+
+    getRefactoredTitle(title: string): string {
+        return blogTitleRefactoring(title);
     }
 
     // @ts-ignore

@@ -86,8 +86,8 @@ export class GeneralPageComponent implements OnDestroy{
         }
 
         if (this.isBlogPage()) {
-            const index = this.getArticlesServ.getArticleRouteLink(link);
-            this.router.navigate(['articles', index]);
+            const title = this.getArticlesServ.getRefactoredTitle(link);
+            this.router.navigate(['articles', title]);
             return;
         }
 

@@ -1,5 +1,5 @@
 export function blogTitleRefactoring(link: string): string {
-    while(link.match(' '|| ':' || '_' || '—' || '&' || ',' || '#' || '$' || '%' || '*' || '+' || '\'' || `\'` || '/' || ';' || '=' || '?' || '!' || '@' || '[' || ']' || '(' || ')' || `'` || '--')) {
+    while(link.match(' '|| ':' || '_' || '–' || '—' || '&' || ',' || '#' || '$' || '%' || '*' || '+' || '\'' || `\'` || '/' || ';' || '=' || '?' || '!' || '@' || '[' || ']' || '(' || ')' || `'` || '--')) {
         link = link.replace(`\'`, '')
         link = link.replace('!', '')
         link = link.replace('.','-');
@@ -22,14 +22,14 @@ export function blogTitleRefactoring(link: string): string {
         link = link.replace('?','-');
         link = link.replace('@','-');
         link = link.replace('[','-');
-        link = link.replace(']','-')
-        link = link.replace('(','-')
-        link = link.replace(')','-')
-        link = link.replace(`'`,'')
+        link = link.replace(']','-');
+        link = link.replace('(','-');
+        link = link.replace(')','-');
+        link = link.replace(`'`,'');
+        link = link.replace(`–`,'-');
         link = link.replace('--','-');
     }
-
-    return link.toLowerCase();
+    return link.replace(/-$/, '').toLowerCase();
 }
 
 export function checkHTMLExtension(link: string): string {

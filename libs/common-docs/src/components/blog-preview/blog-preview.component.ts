@@ -63,7 +63,7 @@ export class BlogPreviewComponent implements OnDestroy, OnInit{
             return;
         }
 
-        const index = this.getArticles.getArticleRouteLink(title);
-        this.router.navigate(['articles', index]);
+        const link = this.getArticles.getRefactoredTitle(title);
+        this.router.navigate(['articles', link]);
     }
 }

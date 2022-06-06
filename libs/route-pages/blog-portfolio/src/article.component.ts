@@ -8,6 +8,14 @@ import { Subscription, of } from "rxjs";
 
 import Processor from 'asciidoctor'
 const processor = Processor();
+
+// small enum for incorrect links from old site, but it should be available
+const linksFromOldSite = {
+    'career-path-for-a-flat-structured-sompany': 'career-path-for-a-flat-structured-company',
+    'testing-with-protractor-how-to-fix-synchroniza': 'testing-with-protractor-how-to-fix-synchronization-issues',
+    'the-partnership-press-release-zack-jackson-and-valor-software.html': 'announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor'
+}
+
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'article',
@@ -32,13 +40,15 @@ export class ArticleComponent implements OnDestroy{
     }
 
     checkRoutePath() {
-        const artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
+        let artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
         if (!artTitle) {
             this.router.navigate(['/articles']);
         }
 
         if (artTitle) {
-            const index = this.getArticleServ.getTitleArticleIndex(artTitle);
+            // @ts-ignore
+            artTitle = linksFromOldSite[artTitle] ? linksFromOldSite[artTitle] : artTitle;
+            const index = this.getArticleServ.getTitleArticleIndex(artTitle)
             if (!index) {
                 this.router.navigate(['/articles']);
                 return;
