@@ -6,7 +6,7 @@ import { IArticle, blogTitleRefactoring } from "@valor-software/common-docs";
 import { filter, switchMap, catchError } from 'rxjs/operators';
 import { Subscription, of } from "rxjs";
 
-import Processor from 'asciidoctor'
+import Processor from 'asciidoctor';
 const processor = Processor();
 
 // small enum for incorrect links from old site, but it should be available
@@ -14,7 +14,7 @@ const linksFromOldSite = {
     'career-path-for-a-flat-structured-sompany': 'career-path-for-a-flat-structured-company',
     'testing-with-protractor-how-to-fix-synchroniza': 'testing-with-protractor-how-to-fix-synchronization-issues',
     'the-partnership-press-release-zack-jackson-and-valor-software.html': 'announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor'
-}
+};
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -46,9 +46,10 @@ export class ArticleComponent implements OnDestroy{
         }
 
         if (artTitle) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             artTitle = linksFromOldSite[artTitle] ? linksFromOldSite[artTitle] : artTitle;
-            const index = this.getArticleServ.getTitleArticleIndex(artTitle)
+            const index = this.getArticleServ.getTitleArticleIndex(artTitle);
             if (!index) {
                 this.router.navigate(['/articles']);
                 return;
@@ -74,6 +75,7 @@ export class ArticleComponent implements OnDestroy{
             ).subscribe(res => {
                 if (this.article) {
                     const html = processor.convert(res);
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
                     this.article.content = html;
                 }

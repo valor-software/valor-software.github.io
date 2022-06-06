@@ -86,12 +86,13 @@ export class GetArticlesService {
         return blogTitleRefactoring(title);
     }
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     getHTMLSource(link?: string): Observable<any> | undefined {
         if (!link) {
             return;
         }
 
-        return this.http.get(`assets/blog/adoc/${link}.adoc`, {responseType:'text'})
+        return this.http.get(`assets/blog/adoc/${link}.adoc`, {responseType:'text'});
     }
 }

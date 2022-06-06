@@ -1,7 +1,9 @@
 export function blogTitleRefactoring(link: string): string {
+    // eslint-disable-next-line no-useless-escape
     while(link.match(' '|| ':' || '_' || '–' || '—' || '&' || ',' || '#' || '$' || '%' || '*' || '+' || '\'' || `\'` || '/' || ';' || '=' || '?' || '!' || '@' || '[' || ']' || '(' || ')' || `'` || '--')) {
-        link = link.replace(`\'`, '')
-        link = link.replace('!', '')
+        // eslint-disable-next-line no-useless-escape
+        link = link.replace(`\'`, '');
+        link = link.replace('!', '');
         link = link.replace('.','-');
         link = link.replace(' ','-');
         link = link.replace(':','-');

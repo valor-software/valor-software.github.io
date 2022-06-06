@@ -43,7 +43,7 @@ export class StartupsComponent {
     ];
 
     advantages = advantagesList;
-    articlesList = [ '11', '27', '28']
+    articlesList = [ '11', '27', '28'];
 
     constructor(
         private modalService: ModalService<ContactModalComponent>
