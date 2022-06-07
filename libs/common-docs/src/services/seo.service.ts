@@ -83,7 +83,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             content: 'Services - Valor Software'
         }
     ],
-    'portfolio': [
+    'projects': [
         {
             nameType: 'meta',
             name: 'name',
@@ -159,7 +159,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             content: 'Careers - Valor Software'
         }
     ],
-    'blog': [
+    'articles': [
         {
             nameType: 'meta',
             name: 'name',
@@ -355,8 +355,8 @@ enum routeValues {
     default = '/',
     clients = 'clients',
     services = 'services',
-    blog = 'blog',
-    portfolio = 'portfolio',
+    blog = 'articles',
+    portfolio = 'projects',
     careers = 'careers'
 
 };
@@ -395,8 +395,8 @@ export class SeoService {
                 });
             }
 
-            if (value[0].path === 'portfolio') {
-                this.getProjectInfo(value[1].path).subscribe(res => {
+            if (value[0].path === 'projects') {
+                this.getProjectInfo(value[1].path)?.subscribe(res => {
                     this.initCurrentTagsWithParams({
                         title: res.name,
                         description: res.description
@@ -451,8 +451,13 @@ export class SeoService {
         return this.getArticle.getArticleRequest(title);
     }
 
-    getProjectInfo(title: string): Observable<any> {
-        return this.getPortfolio.getPortfolioRequest(title);
+    getProjectInfo(title: string): Observable<any> | undefined {
+        const index = this.getPortfolio.getTitleIndex(title);
+        if (!index) {
+           return;
+        }
+
+        return this.getPortfolio.getPortfolioRequest(index?.toString());
     }
 
     initCurrentTagsWithParams(value: {title: string, description: string}) {

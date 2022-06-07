@@ -13,7 +13,7 @@ export const config: ScullyConfig = {
     '/articles/:id': {
       type: 'blogRoute',
     },
-    '/portfolio/:id': {
+    '/projects/:id': {
       type: 'portfolioRoute',
     }
   }

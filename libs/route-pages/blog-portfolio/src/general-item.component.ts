@@ -5,7 +5,7 @@ import { Subscription } from "rxjs";
 
 const generalPaths = {
     BLOG: 'articles',
-    PORTFOLIO: 'portfolio'
+    PORTFOLIO: 'projects'
 };
 
 

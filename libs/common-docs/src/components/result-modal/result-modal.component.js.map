@@ -1,0 +1,1 @@
+{"version":3,"file":"result-modal.component.js","sourceRoot":"","sources":["result-modal.component.ts"],"names":[],"mappings":";;;;;;;;;AAAA,wCAA+C;AAO/C,IAAa,oBAAoB,GAAjC,MAAa,oBAAoB;CAGhC,CAAA;AAFY;IAAR,YAAK,EAAE;kDAA4B;AAC3B;IAAR,YAAK,EAAE;0DAAuB;AAFtB,oBAAoB;IALhC,gBAAS,CAAC;QACP,8DAA8D;QAC9D,QAAQ,EAAE,cAAc;QACxB,WAAW,EAAE,+BAA+B;KAC/C,CAAC;GACW,oBAAoB,CAGhC;AAHY,oDAAoB"}

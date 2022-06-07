@@ -1,16 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.portfolioList = void 0;
-exports.portfolioList = [
+exports.projectsList = void 0;
+exports.projectsList = [
     'CareerBuilder',
     'Zuora',
-    'Dollar_Street',
-    'Liberty_Flights',
+    'Dollar Street',
+    'Liberty Flights',
     'Souqalmal',
     'Priceshredder',
-    'Gapminder_Offline',
+    'Gapminder Offline',
     'TablesReady',
-    'Breethe_Sleep___Meditation',
+    'Breethe: Sleep & Meditation',
     'StackBlitz',
     'Renaizant',
     'Cinnabon',

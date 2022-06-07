@@ -5,12 +5,12 @@ import { forkJoin, Subscription } from "rxjs";
 import { GetArticlesService, IArticle } from "@valor-software/common-docs";
 import { GetPortfolioService, IPortfolio } from "@valor-software/portfolio";
 import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
-import { titleRefactoring } from "./utils/titleRefactoring";
+
 SwiperCore.use([Pagination]);
 
 const generalPaths = {
     BLOG: 'articles',
-    PORTFOLIO: 'portfolio'
+    PORTFOLIO: 'projects'
 };
 
 @Component({
@@ -91,7 +91,7 @@ export class GeneralPageComponent implements OnDestroy{
             return;
         }
 
-        this.router.navigate(['portfolio', titleRefactoring(link)]);
+        this.router.navigate(['projects', this.getPortfolio.getRefactoredTitle(link)]);
     }
 
     filterFirstItems() {

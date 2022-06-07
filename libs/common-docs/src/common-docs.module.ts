@@ -41,7 +41,7 @@ export { BlogPortfolioItemComponent } from './components/blog-preview/blog-portf
 export { ARTICLES_LIST } from './tokens/articlesList.token';
 export { SeoService } from './services/seo.service';
 export { CustomSlicePipe } from './pipes/customSlice.pipe';
-export { blogTitleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
+export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 
 @NgModule({
   declarations: [

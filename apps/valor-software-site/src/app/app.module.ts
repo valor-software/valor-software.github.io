@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import { articleIdList } from "../assets/blog/articles.list";
 import { PORTFOLIO_LIST } from "@valor-software/portfolio";
-import { portfolioList } from "../assets/portfolio/portfolio.list";
+import { projectsList } from "../assets/portfolio/portfolio.list";
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { portfolioList } from "../assets/portfolio/portfolio.list";
   providers: [
     SeoService,
     { provide: ARTICLES_LIST, useValue: articleIdList },
-    { provide: PORTFOLIO_LIST, useValue: portfolioList },
+    { provide: PORTFOLIO_LIST, useValue: projectsList },
   ],
   bootstrap: [AppComponent],
 })

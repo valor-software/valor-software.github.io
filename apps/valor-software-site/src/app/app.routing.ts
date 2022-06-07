@@ -22,7 +22,7 @@ export const routes: Routes = [
     loadChildren: () => import('@valor-software/blog-portfolio').then(m => m.BlogPortfolioModule)
   },
   {
-    path: 'portfolio',
+    path: 'projects',
     loadChildren: () => import('@valor-software/blog-portfolio').then(m => m.BlogPortfolioModule)
   },
   {

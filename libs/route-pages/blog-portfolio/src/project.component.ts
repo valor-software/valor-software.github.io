@@ -4,7 +4,7 @@ import { Subscription } from "rxjs";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { DomSanitizer } from '@angular/platform-browser';
-import { titleRefactoring } from "./utils/titleRefactoring";
+import { titleRefactoring } from "@valor-software/common-docs";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -36,11 +36,17 @@ export class ProjectComponent implements OnDestroy{
     checkRoutePath() {
         const artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
         if (!artTitle) {
-            this.router.navigate(['/portfolio']);
+            this.router.navigate(['/projects']);
         }
 
         if (artTitle) {
-            this.getProjectsServ.getPortfolioRequest(artTitle).subscribe((res: IPortfolio) => {
+            const index = this.getProjectsServ.getTitleIndex(artTitle);
+            if (!index) {
+                this.router.navigate(['/projects']);
+                return;
+            }
+
+            this.getProjectsServ.getPortfolioRequest(index?.toString()).subscribe((res: IPortfolio) => {
                 this.changeBreadCrumbTitle = [{
                     path: artTitle,
                     title: res.name
@@ -49,7 +55,7 @@ export class ProjectComponent implements OnDestroy{
                 this.initNextProject();
             }, error => {
                 console.log('error', error);
-                this.router.navigate(['/portfolio']);
+                this.router.navigate(['/projects']);
             });
         }
     }
@@ -63,28 +69,24 @@ export class ProjectComponent implements OnDestroy{
     }
 
     initNextProject() {
-        const array = this.getProjectsServ.getProjectList();
-        if (!array) {
-            return;
-        }
-
-        let index = array.findIndex(item => item === this.changeBreadCrumbTitle?.[0]?.path);
-
+        let index = this.getProjectsServ.getTitleIndex(this.router.parseUrl(this.router.url).root.children.primary.segments[1].path);
         if (!index && index !== 0) {
             return;
         }
 
-        index++;
-        if (index > array?.length - 1) {
-            index = 0;
+        const projectList = this.getProjectsServ.getRefactoredList();
+        index--;
+        if (index === 0 && projectList?.length) {
+            index = projectList?.length;
         }
-        this.getProjectsServ.getPortfolioRequest(array[index]).subscribe(res => {
+
+        this.getProjectsServ.getPortfolioRequest(index.toString()).subscribe(res => {
             this.nextProject = res;
         });
     }
 
     route(link: string) {
-        this.router.navigate(['portfolio', titleRefactoring(link)]);
+        this.router.navigate(['projects', titleRefactoring(link)]);
     }
 
     getRespSrc(link: string): string {
