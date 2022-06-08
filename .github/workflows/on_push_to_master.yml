@@ -1,31 +1,31 @@
 name: on push to master
 on:
   push:
-    branches:
-      - master
+     branches:
+        - master
+
+env:
+  CACHE_NODE_MODULES_PATH: |
+    ~/.npm
+    node_modules
 
 jobs:
-  build_and_deploy:
-     runs-on: ubuntu-latest
-     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
-        id: cache-build
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        id: cache
         with:
-          path: |
-            ~/.npm
-            node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: ${{ env.CACHE_NODE_MODULES_PATH }}
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci
-        if: steps.cache-build.outputs.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true'
       - run: |
           npx ng build --runner cloud --prod
           npx scully --prod --scanRoutes --project=valor-software-site
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VALOR_SOFTWARE_SITE }}'
-          channelId: live
-          target: production
-          projectId: valor-software-site
+          branch: gh-pages
+          folder: ./dist/valor-software-site
