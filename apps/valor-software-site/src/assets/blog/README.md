@@ -132,7 +132,7 @@ Ex.
 
 ## Github steps
 
-###File editing in github
+### File editing in github
 - click the button edite file, it looks like
 
 <img class="mx-auto center-block d-block" alt="example" src="../img/instruction/2.png">
@@ -142,7 +142,7 @@ Ex.
 <img class="mx-auto center-block d-block" alt="example" src="../img/instruction/3.png">
 
 
-###File creating in github
+### File creating in github
  - Open the folder where you need to create a new file
  - In the right side press the button 'add file' and select 'Create new file'
 
@@ -154,7 +154,7 @@ Ex.
 - Save changes with button 'Commit changes' in the end of the page
   <img class="mx-auto center-block d-block" alt="example" src="../img/instruction/3.png">
 
-###Add media in github
+### Add media in github
 All media of such repository is situated in folder assets. So if you need to add image or gif you should folow such path:
 
 /apps/valor-software-site/src/assets/images
@@ -170,7 +170,7 @@ All media of such repository is situated in folder assets. So if you need to add
 
 For getting remote link of file which you added, you need to open added media file, then click with the right button of mouse on it and choose 'open image in new tab'. Then you can use this url as remote.
 
-###Delete created branch on github
+### Delete created branch on github
 
 - Visit link with all branches of repository https://github.com/valor-software/valor-software.github.io/branches
 - in the list of all branches you should find your branch and click delete branch 
