@@ -1,19 +1,14 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from "@angular/router";
-import { GetArticlesService, IArticle } from "@valor-software/common-docs";
+import { GetArticlesService, IArticle, OLD_ROUTES_FROM_OLD_SITE} from "@valor-software/common-docs";
 import { filter, switchMap, catchError } from 'rxjs/operators';
 import { Subscription, of } from "rxjs";
 
 import Processor from 'asciidoctor';
 const processor = Processor();
 
-// small enum for incorrect links from old site, but it should be available
-const linksFromOldSite = {
-    'career-path-for-a-flat-structured-sompany': 'career-path-for-a-flat-structured-company',
-    'testing-with-protractor-how-to-fix-synchroniza': 'testing-with-protractor-how-to-fix-synchronization-issues',
-    'the-partnership-press-release-zack-jackson-and-valor-software.html': 'announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor'
-};
+
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -24,11 +19,15 @@ export class ArticleComponent implements OnDestroy{
     changeBreadCrumbTitle?: {path: string, title: string}[];
     article?: IArticle;
     $routEvents?: Subscription;
+    linksFromOldSite?: {[key: string]: string};
+
     constructor(
         private router: Router,
         private getArticleServ: GetArticlesService,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        @Inject(OLD_ROUTES_FROM_OLD_SITE) linkList: {[key: string]: string},
     ) {
+        this.linksFromOldSite = linkList;
         this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
             this.checkRoutePath();
         });
@@ -47,7 +46,7 @@ export class ArticleComponent implements OnDestroy{
         if (artTitle) {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            artTitle = linksFromOldSite[artTitle] ? linksFromOldSite[artTitle] : artTitle;
+            artTitle = this.linksFromOldSite[artTitle] ? this.linksFromOldSite[artTitle] : artTitle;
             const index = this.getArticleServ.getTitleArticleIndex(artTitle);
             if (!index) {
                 this.router.navigate(['/articles']);

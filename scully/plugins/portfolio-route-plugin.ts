@@ -3,10 +3,13 @@ import { projectsList } from "../../apps/valor-software-site/src/assets/portfoli
 import { titleRefactoring } from "../utils/titleRefactoring";
 
 function PortfolioRoutePlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    const routes = projectsList.map((item: string) => {
+    const routes = [];
+    projectsList.map((item: string) => {
         let link = titleRefactoring(item);
-        return {route: `/projects/${link}`};
-    })
+        routes.push({route: `/projects/${link}`});
+        routes.push({route: `/projects/${link}.html`});
+    });
+
     return Promise.resolve(routes);
 }
 

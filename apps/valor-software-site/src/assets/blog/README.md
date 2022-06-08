@@ -60,3 +60,5 @@ as ex.
 [//]: # (### Adoc content)
 
 [//]: # (Fot getting content of the article )
+
+[//]: # (https://playcode.io/909527)

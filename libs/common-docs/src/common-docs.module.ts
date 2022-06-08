@@ -42,6 +42,7 @@ export { ARTICLES_LIST } from './tokens/articlesList.token';
 export { SeoService } from './services/seo.service';
 export { CustomSlicePipe } from './pipes/customSlice.pipe';
 export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
+export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 
 @NgModule({
   declarations: [
