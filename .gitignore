@@ -44,3 +44,27 @@ firebase-debug.log
 .nx-cache
 /gh-pages
 .firebase
+
+# .js and .map.js files
+./apps/valor-software-site/src/assets/**/*.js.map
+./apps/valor-software-site/src/assets/**/*.js
+./libs/common-docs/src/**/*.js.map
+./libs/common-docs/src/**/*.js
+./libs/feedback/src/**/*.js
+./libs/feedback/src/**/*.js.map
+./libs/file-uploader/src/**/*.js
+./libs/file-uploader/src/**/*.js.map
+./libs/portfolio/src/**/*.js
+./libs/portfolio/src/**/*.js.map
+./libs/route-pages/blog-portfolio/src/**/*.js
+./libs/route-pages/blog-portfolio/src/**/*.js.map
+./libs/route-pages/careers/src/**/*.js
+./libs/route-pages/careers/src/**/*.js.map
+./libs/route-pages/for-clients/src/**/*.js
+./libs/route-pages/for-clients/src/**/*.js.map
+./libs/route-pages/home-page/src/**/*.js
+./libs/route-pages/home-page/src/**/*.js.map
+./libs/route-pages/services-page/src/**/*.js
+./libs/route-pages/services-page/src/**/*.js.map
+./scully/**/*.js
+./scully/**/*.js.map
