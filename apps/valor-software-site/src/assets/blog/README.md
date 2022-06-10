@@ -185,10 +185,46 @@ After you can see such confirm modal, choose 'Delete'
 
 ### Advices:
 
-- Open links in new tab. Add character '^' in the end of link name.
+ - **Links**. More details https://docs.asciidoctor.org/asciidoc/latest/macros/links/ <br>
+Link contains two parts, the first one it is link (https://...) and the second one it is the name for displaying (how customer will see it).
+
+Ex. 
+  https://...bla.com[the name for customer]
+
+Open links in new tab. Add character '^' in the end of link name.
 Ex. 
 
-  https://github.com/valor-software/valor-software.github.io[repository^]
+   https://github.com/valor-software/valor-software.github.io[repository^]
+
+- **Titles**. More details https://docs.asciidoctor.org/asciidoc/latest/document/title/
+<br> 
+To create titles use character =
+
+Ex. <br>
+  == Test title
+<br>
+Result:<br>
+<h2>Test title </h2>
+
+Ex. <br>
+==== Test title
+<br>
+Result:<br>
+<h4>Test title </h4>
+
+- **Line cutting**
+
+If you need to cut the line as separate paragraph yse double enter.<br>
+If you need to cut the line as a separate paragraph without additional space use  character '+'
+
+Ex. 
+
+  First test line. +
+  Second test line.
+
+- **Code displaying**. More information https://docs.asciidoctor.org/asciidoc/latest/verbatim/source-blocks/
+
+
 
 
 
