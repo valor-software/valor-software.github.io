@@ -1,10 +1,11 @@
 import { Component, Inject, HostListener, OnDestroy, AfterViewInit } from '@angular/core';
 import { SeoService } from "@valor-software/common-docs";
-import { Router, RoutesRecognized } from '@angular/router';
+import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { filter, pairwise } from "rxjs/operators";
-import {Subscription} from "rxjs";
+import { Subscription } from "rxjs";
 
+const notFoundPageUrl = '/404';
 
 @Component({
   selector: 'valor-software-site-base-root',
@@ -15,6 +16,8 @@ export class AppComponent implements OnDestroy, AfterViewInit {
     title = 'valor-software-site';
     scrollPosition = 0;
     $routeEvents?: Subscription;
+    $routerEventNavigationEnd: Subscription;
+    showFooterAndHeader = true;
 
     @HostListener('window:beforeunload') private onReload() {
         window.sessionStorage.setItem('scrollPosition', window.scrollY.toString());
@@ -27,6 +30,11 @@ export class AppComponent implements OnDestroy, AfterViewInit {
     ) {
         const scrollItem = window.sessionStorage.getItem('scrollPosition');
         this.scrollPosition = scrollItem || scrollItem == '0' ? Number(scrollItem) : 0;
+        this.$routerEventNavigationEnd = router.events.pipe(
+            filter(evt => evt instanceof NavigationEnd)
+        ).subscribe(res => {
+            this.showFooterAndHeader = !!(this.router.url === notFoundPageUrl);
+        });
     }
 
     scrollToPosition(value: number) {
@@ -68,5 +76,6 @@ export class AppComponent implements OnDestroy, AfterViewInit {
 
     ngOnDestroy() {
         this.$routeEvents?.unsubscribe();
+        this.$routerEventNavigationEnd?.unsubscribe();
     }
 }

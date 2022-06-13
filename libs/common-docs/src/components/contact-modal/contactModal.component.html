@@ -11,7 +11,7 @@
                 <div class="lg:min-w-45% lg:max-w-50% w-full">
                     <div [formGroup]="form">
                         <p class="text-dar_grey_font_col text-xl mb-6">How can we help you?</p>
-                        <div class="flex flex-wrap lgjustify-between mb-8">
+                        <div class="flex flex-wrap lgjustify-between mb-8 items-start">
                             <label for="service" class="block w-65% lg:w-45% flex text-white items-center cursor-pointer text-base mb-4">
                                 <input class="opacity-0 w-px h-px" type="radio"  name="type" id="service" formControlName="type" value="service">
                                 <div class="radio-button" [class.checked]="form.value.type === 'service'"></div>
@@ -53,9 +53,9 @@
                 <div class="flex flex-col lg:ml-28 text-light_title_col border-t-2 border-placeholder_col lg:border-0 pt-10 mt-10 lg:mt-10 lg:pt-0">
                     <div>
                         <p class="text-2xl">Careers:</p>
-                        <p class="hover:text-pink text-xl underline">horoshie.ruki@valor-software.com</p>
+                        <p class="hover:text-pink text-xl underline cursor-pointer"><a href="mailto:horoshie.ruki@valor-software.com">horoshie.ruki@valor-software.com</a></p>
                         <p class="text-2xl mt-8">Sales:</p>
-                        <p class="hover:text-pink text-xl underline">sales@valor-software.com</p>
+                        <p class="hover:text-pink text-xl underline cursor-pointer"><a href="mailto:sales@valor-software.com">sales@valor-software.com</a></p>
                     </div>
                     <img class="hidden lg:block max-w-200 mt-10" src="assets/img/bg-img/get_in_touch.svg" alt="get in touch img">
                 </div>

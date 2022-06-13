@@ -9,11 +9,12 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
 import { articlesList } from "../assets/blog/articles.list";
 import { PORTFOLIO_LIST } from "@valor-software/portfolio";
 import { portfolioList } from "../assets/portfolio/portfolio.list";
-
+import { NotFoundComponent } from './404.component';
 
 @NgModule({
   declarations: [
-      AppComponent
+      AppComponent,
+      NotFoundComponent
   ],
   imports: [
     BrowserModule,

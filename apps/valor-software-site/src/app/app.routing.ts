@@ -1,9 +1,14 @@
 import { Routes } from '@angular/router';
+import { NotFoundComponent } from './404.component';
 
 export const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('@valor-software/home-page').then(m => m.MainPageModule)
+  },
+  {
+    path: '404',
+    component: NotFoundComponent
   },
   {
     path: 'services',
@@ -27,7 +32,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/'
+    redirectTo: '404'
   }
 ];
 
