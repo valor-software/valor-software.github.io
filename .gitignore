@@ -48,6 +48,8 @@ firebase-debug.log
 # .js and .map.js files
 **/assets/**/*.js.map
 **/assets/**/*.js
+**/assets/articles/**/*.html
+**/assets/articles/*.ts
 libs/common-docs/src/**/*.js.map
 libs/common-docs/src/**/*.js
 libs/feedback/src/**/*.js
