@@ -54,7 +54,7 @@ export class EnterprisesComponent {
     ];
 
     advantages = advantagesList;
-    articlesList = [ '29', '15', '19'];
+    articlesList = [ 'scully-helped-us-reach-a-99-lighthouse-score-for-a-b2c-platform', 'benefits-of-agile-to-business-and-team', 'cross-site-scripting-xss-a-qa-engineers-guide'];
     constructor(
         private modalService: ModalService<ContactModalComponent>
     ) {}

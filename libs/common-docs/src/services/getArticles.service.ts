@@ -1,33 +1,31 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ARTICLES_LIST } from "../tokens/articlesList.token";
+import { ARTICLES_LIST, ARTICLES_REFACTORED_TITLE_LIST } from "../tokens/articlesList.token";
 import { IArticle } from "../models/article.interface";
-import { titleRefactoring, checkHTMLExtension } from '../utils/titleRefactoringUtil';
+import { titleRefactoring } from '../utils/titleRefactoringUtil';
 
 @Injectable({providedIn: 'platform'})
 export class GetArticlesService {
     private apiArray?: Observable<any>[];
     private articlesList?: string[];
+    private articlesRefactoredTitlesList?: string[];
     private refactoredArticleList?: string[];
 
     constructor(
         private http: HttpClient,
-        @Inject(ARTICLES_LIST) articlesList: string[]
+        @Inject(ARTICLES_LIST) articlesList: string[],
+        @Inject(ARTICLES_REFACTORED_TITLE_LIST) articlesRefactoredTitlesList: string[]
     ){
         this.articlesList = articlesList;
-        this.apiArray = this.articlesList.map((art, index) => {
-            return this.getArticleRequest((index + 1).toString());
-        }).reverse();
-        if (!this.refactoredArticleList?.length) {
-            this.refactoredArticleList = this.articlesList.map(item => {
-                return titleRefactoring(item);
-            }).reverse();
-        }
+        this.articlesRefactoredTitlesList = articlesRefactoredTitlesList;
+        this.apiArray = this.articlesRefactoredTitlesList.map((art) => {
+            return this.getArticleRequest(art);
+        });
     }
 
     getArticleRequest(art: string):Observable<IArticle> {
-        return this.http.get(`assets/blog/articles/${art}.json`) as Observable<IArticle>;
+        return this.http.get(`assets/articles/${art}/${art}.json`) as Observable<IArticle>;
     }
 
     getPreviewArticle(): Observable<any>[] | undefined {
@@ -54,20 +52,6 @@ export class GetArticlesService {
         return this.refactoredArticleList;
     }
 
-    getTitleArticleIndex(title: string): number | undefined {
-        if (!this.refactoredArticleList?.length) {
-            return;
-        }
-
-        let index = this.refactoredArticleList?.findIndex(item => item === title || item === checkHTMLExtension(title));
-        if (index || index === 0) {
-            index = index + 1;
-            return index;
-        }
-
-        return;
-    }
-
     getRefactoredTitle(title: string): string {
         return titleRefactoring(title);
     }
@@ -79,6 +63,6 @@ export class GetArticlesService {
             return;
         }
 
-        return this.http.get(`assets/blog/adoc/${link}.adoc`, {responseType:'text'});
+        return this.http.get(`assets/articles/${link}/${link}.html`, {responseType:'text'});
     }
 }

@@ -1,0 +1,14 @@
+{
+  "author": "Dmitriy Zhemchugov",
+  "order": 16,
+  "domains": [
+    "dev_quality_assurance"
+  ],
+  "authorImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69c139ad11997382022d15_jemchugov.jpg",
+  "language": "en",
+  "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69be37bcaae8d4d334f8d4_art-4.jpg",
+  "title": "Testing iOS App Vulnerabilities with Jailbreaking. Part 1.",
+  "position": "QA Engineer",
+  "date": "Thu Dec 26 2019 14:17:38 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "Today we will introduce you to Jailbreaking—hacking iOS device—for testing vulnerabilities in your app."
+}

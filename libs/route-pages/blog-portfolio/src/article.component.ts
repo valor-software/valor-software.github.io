@@ -5,11 +5,6 @@ import { GetArticlesService, IArticle, OLD_ROUTES_FROM_OLD_SITE} from "@valor-so
 import { filter, switchMap, catchError } from 'rxjs/operators';
 import { Subscription, of } from "rxjs";
 
-import Processor from 'asciidoctor';
-const processor = Processor();
-
-
-
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'article',
@@ -47,13 +42,7 @@ export class ArticleComponent implements OnDestroy{
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             artTitle = this.linksFromOldSite[artTitle] ? this.linksFromOldSite[artTitle] : artTitle;
-            const index = this.getArticleServ.getTitleArticleIndex(artTitle);
-            if (!index) {
-                this.router.navigate(['/articles']);
-                return;
-            }
-
-            this.getArticleServ.getArticleRequest(index?.toString()).pipe(
+            this.getArticleServ.getArticleRequest(artTitle).pipe(
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 switchMap((art) => {
@@ -62,23 +51,22 @@ export class ArticleComponent implements OnDestroy{
                         path: artTitle,
                         title: art.title
                     }];
-                    return this.getArticleServ.getHTMLSource(index?.toString());
+                    return this.getArticleServ.getHTMLSource(artTitle);
                 }),
                 catchError(error => {
                     if (!this.article) {
-                        this.router.navigate(['/blog']);
+                        this.router.navigate(['/articles']);
                     }
                     return of();
                 })
             ).subscribe(res => {
                 if (this.article) {
-                    const html = processor.convert(res);
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
-                    this.article.content = html;
+                    this.article.content = res;
                 }
             }, error => {
-                this.router.navigate(['/blog']);
+                this.router.navigate(['/articles']);
             });
         }
     }
