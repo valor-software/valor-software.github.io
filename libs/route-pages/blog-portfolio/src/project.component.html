@@ -130,7 +130,7 @@
         <h1 class="main-title">Next Project</h1>
         <div class="container">
             <div class="w-full max-w-80% mx-auto">
-                <div class="mb-10">
+                <div class="mb-10 zoom-img-scale cursor-pointer" (click)="route(nextProject.name)">
                     <img [src]="nextProject.previewImg" [alt]="nextProject.name+' image'" class="w-full h-full object-cover">
                 </div>
                 <div class="flex flex-col">
