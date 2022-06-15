@@ -36,13 +36,13 @@ export class ProjectComponent implements OnDestroy{
     checkRoutePath() {
         const artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
         if (!artTitle) {
-            this.router.navigate(['/projects']);
+            this.router.navigate(['/404']);
         }
 
         if (artTitle) {
             const index = this.getProjectsServ.getTitleIndex(artTitle);
             if (!index) {
-                this.router.navigate(['/projects']);
+                this.router.navigate(['/404']);
                 return;
             }
 
@@ -55,7 +55,7 @@ export class ProjectComponent implements OnDestroy{
                 this.initNextProject();
             }, error => {
                 console.log('error', error);
-                this.router.navigate(['/projects']);
+                this.router.navigate(['/404']);
             });
         }
     }

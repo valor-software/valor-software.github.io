@@ -355,8 +355,8 @@ enum routeValues {
     default = '/',
     clients = 'clients',
     services = 'services',
-    blog = 'articles',
-    portfolio = 'projects',
+    articles = 'articles',
+    projects = 'projects',
     careers = 'careers'
 
 };
@@ -380,13 +380,14 @@ export class SeoService {
     }
 
     editRouteUrl(value: UrlSegment[]): string {
+        console.log(value)
         if (!value) {
             return routeValues.default;
         }
 
         if (value?.length > 1) {
             let info;
-            if (value[0].path === 'blog') {
+            if (value[0].path === 'articles') {
                 this.getBlogInfo(value[1].path).subscribe(res => {
                     this.initCurrentTagsWithParams({
                         title: res.title,

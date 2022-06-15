@@ -10,10 +10,12 @@ import { articlesList, articlesRefactoringTitlesList } from "../assets/articles/
 import { PORTFOLIO_LIST } from "@valor-software/portfolio";
 import { projectsList } from "../assets/portfolio/portfolio.list";
 import { linksFromOldSite } from "../assets/articles/brokenRoutes";
+import { NotFoundComponent } from './404.component';
 
 @NgModule({
   declarations: [
-      AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
