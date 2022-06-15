@@ -189,6 +189,51 @@
       },
       "tags": []
     },
+    "root": {
+      "projectType": "library",
+      "root": "libs/root",
+      "sourceRoot": "libs/root/src",
+      "prefix": "valor-software-site-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [
+            "dist/libs/root"
+          ],
+          "options": {
+            "project": "libs/root/ng-package.json",
+            "commands": [
+              "nx run root:adoc"
+            ],
+            "parallel": false
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/root/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/root/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "adoc": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [],
+          "options": {
+            "command": "node scripts/ascidoctor.js"
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": [
+        "route-pages-home-page",
+        "common-docs",
+        "route-pages-services-page",
+        "route-pages-careers",
+        "route-pages-for-clients"
+      ]
+    },
     "route-pages-blog-portfolio": {
       "projectType": "library",
       "root": "libs/route-pages/blog-portfolio",
@@ -539,11 +584,7 @@
       },
       "tags": [],
       "implicitDependencies": [
-        "route-pages-home-page",
-        "common-docs",
-        "route-pages-services-page",
-        "route-pages-careers",
-        "route-pages-for-clients"
+        "root"
       ]
     },
     "valor-software-site-e2e": {

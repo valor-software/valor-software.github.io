@@ -45,7 +45,7 @@ let articleOrder = new Set();
              await Promise.all(artList).then(() => {
                 const text = [...articlesList].map(JSON.stringify).reduce((prev, next) => `${prev}, ${next}`);
                 const titleText = [...titleList].map(JSON.stringify).reduce((prev, next) => `${prev}, ${next}`);
-                const arrContent = `export const articlesRefactoringTitlesList = [${text}];\nexport const articlesList = [${titleText}];\nconst orderNumberForNextArticle = ${artList.length + 1}`;
+                const arrContent = `export const articlesRefactoringTitlesList = [${text}];\nexport const articlesList = [${titleText}];\nconst orderNumberForNextArticle = ${artList.length + 1};`;
                 fs.writeFileSync(`apps/valor-software-site/src/assets/articles/articlesList.ts`, arrContent, 'utf-8');
              })
          })

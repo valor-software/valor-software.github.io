@@ -38,7 +38,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-./scully.log
+scully.log
 
 firebase-debug.log
 .nx-cache
