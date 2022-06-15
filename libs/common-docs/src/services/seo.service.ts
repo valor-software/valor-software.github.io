@@ -6,6 +6,7 @@ import {Observable, Subscription} from "rxjs";
 import {GetArticlesService} from "./getArticles.service";
 import { GetPortfolioService } from "@valor-software/portfolio";
 import { checkHTMLExtension } from "../utils/titleRefactoringUtil";
+import {OLD_ROUTES_FROM_OLD_SITE} from "../tokens/linksFromOldSite.token";
 
 const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue: string, content: string }[]} = {
     '/': [
@@ -366,14 +367,17 @@ enum routeValues {
 export class SeoService {
     metaList: typeof ex = ex;
     $routEvents: Subscription;
+    brokenArticlesRoutes?: {[key: string]: string};
 
     constructor(
         private titleService: Title,
         private metaTagService: Meta,
         private router: Router,
         private getArticle: GetArticlesService,
-        private getPortfolio: GetPortfolioService
+        private getPortfolio: GetPortfolioService,
+        @Inject(OLD_ROUTES_FROM_OLD_SITE) linkList: {[key: string]: string},
     ){
+        this.brokenArticlesRoutes = linkList;
         this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
             const url = this.router.parseUrl(this.router.url).root.children?.primary?.segments;
             this.initCurrentTags(this.editRouteUrl(url));
@@ -449,7 +453,12 @@ export class SeoService {
     }
 
     getBlogInfo(title: string): Observable<any> {
-        return this.getArticle.getArticleRequest(checkHTMLExtension(title));
+        let requestLink = title;
+        if (this.brokenArticlesRoutes && this.brokenArticlesRoutes[title]) {
+            requestLink = this.brokenArticlesRoutes[title];
+        }
+
+        return this.getArticle.getArticleRequest(checkHTMLExtension(requestLink));
     }
 
     getProjectInfo(title: string): Observable<any> | undefined {
