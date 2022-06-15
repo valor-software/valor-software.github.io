@@ -380,7 +380,6 @@ export class SeoService {
     }
 
     editRouteUrl(value: UrlSegment[]): string {
-        console.log(value)
         if (!value) {
             return routeValues.default;
         }
