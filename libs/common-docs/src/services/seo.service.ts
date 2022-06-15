@@ -5,6 +5,7 @@ import {NavigationEnd, Router, UrlSegment} from "@angular/router";
 import {Observable, Subscription} from "rxjs";
 import {GetArticlesService} from "./getArticles.service";
 import { GetPortfolioService } from "@valor-software/portfolio";
+import { checkHTMLExtension } from "../utils/titleRefactoringUtil";
 
 const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue: string, content: string }[]} = {
     '/': [
@@ -448,16 +449,11 @@ export class SeoService {
     }
 
     getBlogInfo(title: string): Observable<any> {
-        return this.getArticle.getArticleRequest(title);
+        return this.getArticle.getArticleRequest(checkHTMLExtension(title));
     }
 
     getProjectInfo(title: string): Observable<any> | undefined {
-        const index = this.getPortfolio.getTitleIndex(title);
-        if (!index) {
-           return;
-        }
-
-        return this.getPortfolio.getPortfolioRequest(index?.toString());
+        return this.getPortfolio.getPortfolioRequest(checkHTMLExtension(title));
     }
 
     initCurrentTagsWithParams(value: {title: string, description: string}) {

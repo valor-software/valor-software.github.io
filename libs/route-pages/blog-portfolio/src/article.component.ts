@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from "@angular/router";
-import { GetArticlesService, IArticle, OLD_ROUTES_FROM_OLD_SITE} from "@valor-software/common-docs";
+import {checkHTMLExtension, GetArticlesService, IArticle, OLD_ROUTES_FROM_OLD_SITE} from "@valor-software/common-docs";
 import { filter, switchMap, catchError } from 'rxjs/operators';
 import { Subscription, of } from "rxjs";
 
@@ -42,13 +42,14 @@ export class ArticleComponent implements OnDestroy{
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             artTitle = this.linksFromOldSite[artTitle] ? this.linksFromOldSite[artTitle] : artTitle;
+            artTitle = checkHTMLExtension(artTitle);
             this.getArticleServ.getArticleRequest(artTitle).pipe(
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 switchMap((art) => {
                     this.article = art;
                     this.changeBreadCrumbTitle = [{
-                        path: artTitle,
+                        path: this.router.parseUrl(this.router.url).root.children.primary.segments[1].path,
                         title: art.title
                     }];
                     return this.getArticleServ.getHTMLSource(artTitle);

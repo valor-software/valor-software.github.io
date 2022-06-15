@@ -57,7 +57,7 @@
                 </ng-template>
             </div>
 
-            <div class="block lg:hidden">
+            <div *ngIf="firstArticles?.length || firstProjects?.length" class="block lg:hidden">
                 <swiper
                         [config]="swiperConfig"
                         class="pink_swiper transparent_slides"

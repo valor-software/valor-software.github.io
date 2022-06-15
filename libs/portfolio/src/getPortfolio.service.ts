@@ -17,13 +17,13 @@ export class GetPortfolioService {
         @Inject(PORTFOLIO_LIST) portfolioList: string[]
     ){
         this.portfolioList = portfolioList;
-        this.apiArray = this.portfolioList.map((art, index) => {
-            return this.getPortfolioRequest((index + 1).toString());
-        }).reverse();
-
         if (!this.refactoredList?.length) {
             this.refactoredList = this.portfolioList.map(item => titleRefactoring(item)).reverse();
         }
+
+        this.apiArray = this.refactoredList.map(art => {
+            return this.getPortfolioRequest(art);
+        }).reverse();
     }
 
     getPortfolioRequest(art: string):Observable<any> {
@@ -47,7 +47,9 @@ export class GetPortfolioService {
             return;
         }
 
-        let index = this.refactoredList?.findIndex(item => item === title || item === checkHTMLExtension(title));
+        const refactoredList = [...this.refactoredList].reverse();
+        let index = refactoredList.findIndex(item => item === title || item === checkHTMLExtension(title));
+
         if (index || index === 0) {
             index = index + 1;
             return index;
