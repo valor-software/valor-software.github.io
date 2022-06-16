@@ -14,7 +14,7 @@ let articleOrder = new Set();
                  return
              }
 
-             await fs.readFile(`${dirFolder}/../apps/valor-software-site/src/assets/articles/${folder.name}/${folder.name}.adoc`, 'utf8').then(content => {
+             await fs.readFile(`apps/valor-software-site/src/assets/articles/${folder.name}/${folder.name}.adoc`, 'utf8').then(content => {
                  const htmlContent = asciidoctor.convert(content);
                  fs.writeFileSync(`apps/valor-software-site/src/assets/articles/${folder.name}/${folder.name}.html`, htmlContent, 'utf-8');
              }).catch(err => {
@@ -40,7 +40,6 @@ let articleOrder = new Set();
                  articlesList.add(article.name);
                  titleList.add(article.title);
              });
-
 
              await Promise.all(artList).then(() => {
                 const text = [...articlesList].map(JSON.stringify).reduce((prev, next) => `${prev}, ${next}`);

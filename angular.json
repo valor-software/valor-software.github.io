@@ -1,6 +1,66 @@
 {
-  "version": 1,
+  "version": 2,
+  "defaultProject": "valor-software-site",
   "projects": {
+    "adoc-app": {
+      "root": "apps/adoc-app",
+      "sourceRoot": "apps/adoc-app/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:webpack",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/adoc-app",
+            "main": "apps/adoc-app/src/main.js",
+            "tsConfig": "apps/adoc-app/tsconfig.app.json"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/adoc-app/src/environments/environment.js",
+                  "with": "apps/adoc-app/src/environments/environment.prod.js"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:node",
+          "options": {
+            "buildTarget": "adoc-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "apps/adoc-app/**/*.js"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/adoc-app"
+          ],
+          "options": {
+            "jestConfig": "apps/adoc-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "common-docs": {
       "projectType": "library",
       "root": "libs/common-docs",
@@ -285,7 +345,6 @@
         "feedback",
         "portfolio"
       ]
-
     },
     "route-pages-careers": {
       "projectType": "library",
