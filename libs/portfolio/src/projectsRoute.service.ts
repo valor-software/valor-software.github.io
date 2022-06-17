@@ -9,6 +9,14 @@ export class ProjectsRouteService {
     ){}
 
     route(title: string) {
+        this.router.navigate(['portfolio', this.getRefactoredLink(title)]);
+    }
+
+    getRouteLink(title: string): string {
+        return this.getRefactoredLink(title);
+    }
+
+    getRefactoredLink(title: string): string {
         let link = title;
         while(link.match(' '|| ':' || '–' || '—' || '&')) {
             link = link.replace(' ','_');
@@ -17,6 +25,7 @@ export class ProjectsRouteService {
             link = link.replace('—','_');
             link = link.replace('&','_');
         }
-        this.router.navigate(['portfolio', link]);
+
+        return link;
     }
 }

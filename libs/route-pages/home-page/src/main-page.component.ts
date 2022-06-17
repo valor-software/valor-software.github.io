@@ -332,7 +332,7 @@ export class MainPageComponent {
     }
 
     projectRoute(name: string) {
-        this.projectRouteServ.route(name);
+        this.projectRouteServ.getRouteLink(name);
     }
 
     checkIndex(index: number): boolean {

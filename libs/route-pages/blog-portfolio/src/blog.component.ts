@@ -100,8 +100,8 @@ export class BlogComponent implements OnDestroy {
         this.activeIndex = [lang];
     }
 
-    route(title: string) {
-        this.routeArticle.route(title);
+    getRouteLink(link: string): any {
+        return this.routeArticle.getRouteLink(link);
     }
 
     checkLength(): boolean {

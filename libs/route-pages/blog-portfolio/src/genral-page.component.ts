@@ -81,12 +81,8 @@ export class GeneralPageComponent implements OnDestroy{
         return value.slice(0,4);
     }
 
-    route(link?: string) {
-        if (!link) {
-            return;
-        }
-
-        this.routeServ.route(link, this.isBlogPage());
+    getRouteLink(link: string): any {
+        return this.routeServ.getRouteLink(link);
     }
 
     filterFirstItems() {

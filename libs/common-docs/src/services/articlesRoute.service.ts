@@ -9,13 +9,23 @@ export class ArticlesRouteService {
     ){}
 
     route(title: string) {
+        this.router.navigate(['blog', this.getRefactoredLink(title)]);
+    }
+
+    getRouteLink(title: string): string {
+        return this.getRefactoredLink(title);
+    }
+
+    getRefactoredLink(title: string): string {
         let link = title;
-        while(link.match(' '|| ':' || '–' || '—')) {
-            link = link.replace(' ','_');
-            link = link.replace(':','');
-            link = link.replace('–','_');
-            link = link.replace('—','_');
+        while (link.match(' ' || ':' || '–' || '—' || '&')) {
+            link = link.replace(' ', '_');
+            link = link.replace(':', '');
+            link = link.replace('–', '_');
+            link = link.replace('—', '_');
+            link = link.replace('&', '_');
         }
-        this.router.navigate(['blog', link]);
+
+        return link;
     }
 }

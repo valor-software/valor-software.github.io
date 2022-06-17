@@ -84,8 +84,8 @@ export class ProjectComponent implements OnDestroy{
         });
     }
 
-    route(link: string) {
-        this.projectRoute.route(link, false);
+    getRouteLink(link: string): any {
+        return this.projectRoute.getRouteLink(link);
     }
 
     getRespSrc(link: string): string {

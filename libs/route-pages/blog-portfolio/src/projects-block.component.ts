@@ -75,8 +75,8 @@ export class ProjectsBlockComponent {
         return !!(this.sortProjects?.length && this.sortProjects?.length > 8);
     }
 
-    route(title: string) {
-        this.routeProjectServ.route(title, false);
+    getRouteLink(link: string): any {
+        return this.routeProjectServ.getRouteLink(link);
     }
 
     updateProjects(projects: IPortfolio[]) {
