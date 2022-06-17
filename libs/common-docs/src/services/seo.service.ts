@@ -1,10 +1,10 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import {filter} from "rxjs/operators";
-import {NavigationEnd, Router, UrlSegment} from "@angular/router";
-import {Observable, Subscription} from "rxjs";
-import {GetArticlesService} from "./getArticles.service";
-import { GetPortfolioService } from "@valor-software/portfolio";
+import { filter } from "rxjs/operators";
+import { NavigationEnd, Router, UrlSegment } from "@angular/router";
+import { Observable, Subscription } from "rxjs";
+import { GetArticlesService } from "./getArticles.service";
+import { GetPortfolioService } from "./getPortfolio.service";
 
 const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue: string, content: string }[]} = {
     '/': [

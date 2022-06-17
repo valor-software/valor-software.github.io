@@ -19,9 +19,9 @@ import { SwiperModule } from "swiper/angular";
 import { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
 import { BlogPortfolioItemComponent } from './components/blog-preview/blog-portfolio-item.component';
 import { GetArticlesService } from './services/getArticles.service';
-import { ArticlesRouteService } from './services/articlesRoute.service';
+import { BlogArticlesRouteService } from './services/blogArticlesRoute.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
-import { GetPortfolioService } from "@valor-software/portfolio";
+import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
 
 export { PopoverComponent } from './components/popover/popover.component';
@@ -34,13 +34,16 @@ export { ModalService } from './services/modal.service';
 export { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.component';
 export { ShowHideDirective } from './directives/showHide.directive';
 export { GetArticlesService } from './services/getArticles.service';
-export { ArticlesRouteService } from './services/articlesRoute.service';
+export { BlogArticlesRouteService } from './services/blogArticlesRoute.service';
 export { IArticle } from './models/article.interface';
 export { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
 export { BlogPortfolioItemComponent } from './components/blog-preview/blog-portfolio-item.component';
 export { ARTICLES_LIST } from './tokens/articlesList.token';
 export { SeoService } from './services/seo.service';
 export { CustomSlicePipe } from './pipes/customSlice.pipe';
+export { PORTFOLIO_LIST } from './tokens/portfolioList.token';
+export { IPortfolio } from './models/portfolio.interface';
+export { GetPortfolioService } from './services/getPortfolio.service';
 
 @NgModule({
   declarations: [
@@ -68,9 +71,9 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
     ShowHideDirective,
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
-    CustomSlicePipe
+    CustomSlicePipe,
   ],
-  providers: [ModalService, SendEmailService, ArticlesRouteService, GetArticlesService, GetPortfolioService,
+  providers: [ModalService, SendEmailService, BlogArticlesRouteService, GetArticlesService, GetPortfolioService,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',

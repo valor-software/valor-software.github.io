@@ -1,9 +1,8 @@
 import {ChangeDetectorRef, Component, Input, OnDestroy} from '@angular/core';
 import { GetArticlesService } from "@valor-software/common-docs";
 import { Subscription } from "rxjs";
-import { IArticle } from "@valor-software/common-docs";
+import { IArticle, BlogArticlesRouteService } from "@valor-software/common-docs";
 import { Router } from "@angular/router";
-import {ArticlesRouteService} from "@valor-software/common-docs";
 
 export const Domains = {
     business_analysis: 'Business Analysis',
@@ -44,7 +43,7 @@ export class BlogComponent implements OnDestroy {
         private router: Router,
         private getArticles: GetArticlesService,
         private cdr: ChangeDetectorRef,
-        private routeArticle: ArticlesRouteService
+        private routeArticle: BlogArticlesRouteService
     ) {
         this.getSortKeys();
     }

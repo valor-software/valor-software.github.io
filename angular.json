@@ -47,8 +47,7 @@
       },
       "tags": [],
       "implicitDependencies": [
-        "file-uploader",
-        "portfolio"
+        "file-uploader"
       ]
     },
     "feedback": {
@@ -137,52 +136,6 @@
             "lintFilePatterns": [
               "libs/file-uploader/src/**/*.ts",
               "libs/file-uploader/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": []
-    },
-    "portfolio": {
-      "projectType": "library",
-      "root": "libs/portfolio",
-      "sourceRoot": "libs/portfolio/src",
-      "prefix": "valor-software-site-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/portfolio"
-          ],
-          "options": {
-            "project": "libs/portfolio/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/portfolio/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/portfolio/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/portfolio"
-          ],
-          "options": {
-            "jestConfig": "libs/portfolio/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/portfolio/src/**/*.ts",
-              "libs/portfolio/src/**/*.html"
             ]
           }
         }

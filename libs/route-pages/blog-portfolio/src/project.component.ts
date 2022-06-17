@@ -1,10 +1,9 @@
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
-import { IPortfolio, GetPortfolioService } from "@valor-software/portfolio";
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { DomSanitizer } from '@angular/platform-browser';
-import { BlogPortfolioRouteService } from "./services/route.service";
+import { BlogArticlesRouteService, IPortfolio, GetPortfolioService } from "@valor-software/common-docs";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -21,7 +20,7 @@ export class ProjectComponent implements OnDestroy{
         private router: Router,
         private getProjectsServ: GetPortfolioService,
         private sanitizer: DomSanitizer,
-        private projectRoute: BlogPortfolioRouteService,
+        private projectRoute: BlogArticlesRouteService,
         private cdr: ChangeDetectorRef,
 
     ) {
@@ -84,7 +83,7 @@ export class ProjectComponent implements OnDestroy{
         });
     }
 
-    getRouteLink(link: string): any {
+    getRouteLink(link: string): string {
         return this.projectRoute.getRouteLink(link);
     }
 

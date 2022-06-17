@@ -130,13 +130,13 @@
         <h1 class="main-title">Next Project</h1>
         <div class="container">
             <div class="w-full max-w-80% mx-auto">
-                <a class="mb-10 zoom-img-scale cursor-pointer" href="javascript:void(0)" [routerLink]="['/portfolio', getRouteLink(nextProject.name)]">
+                <a class="block mb-10 zoom-img-scale cursor-pointer" href="javascript:void(0)" [routerLink]="['/portfolio', getRouteLink(nextProject.name)]">
                     <div>
                         <img [src]="nextProject.previewImg" [alt]="nextProject.name+' image'" class="w-full h-full object-cover">
                     </div>
                 </a>
                 <div class="flex flex-col">
-                    <a class="mb-12 cursor-pointer" href="javascript:void(0)" [routerLink]="['/portfolio', getRouteLink(nextProject.name)]">
+                    <a class="block mb-12 cursor-pointer" href="javascript:void(0)" [routerLink]="['/portfolio', getRouteLink(nextProject.name)]">
                         <div>
                             <p *ngIf="nextProject.sortServices.includes('web')" class="text-header_font_col text-sm md:text-20">Website</p>
                             <div class="flex">

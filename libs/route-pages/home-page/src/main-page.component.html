@@ -80,8 +80,8 @@
         </div>
         <div class="lg:max-w-735 w-full flex flex-col justify-between max-w-455 mx-auto">
             <div class="flex flex-wrap justify-between">
-                <div *ngFor="let project of sortProjects"  class="lg:w-48% w-full relative  mb-8 cursor-pointer lg:h-300 border-grey_bg border-2 hover:border-pink" (click)="projectRoute(project.name)">
-                    <a href="javaScript:void(0)">
+                <div *ngFor="let project of sortProjects"  class="lg:w-48% w-full relative  mb-8 cursor-pointer lg:h-300 border-grey_bg border-2 hover:border-pink">
+                    <a href="javaScript:void(0)" [routerLink]="['portfolio', projectRoute(project.name)]">
                         <img [src]="project.previewImg" [alt]="project.name" class="w-full h-full object-cover">
                         <div class="absolute inset-0 flex flex-col justify-end p-6 w-full h-full" [style.background]="'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)'">
                             <p class="font-bold text-light_title_col text-xl mb-2 text-center lg:text-left">{{project.name}}</p>

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IArticle } from "../../models/article.interface";
-import { IPortfolio } from "@valor-software/portfolio";
+import { IPortfolio } from "../../models/portfolio.interface";
 
 
 @Component({

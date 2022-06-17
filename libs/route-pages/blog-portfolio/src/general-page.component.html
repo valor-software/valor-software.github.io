@@ -32,10 +32,18 @@
                 </div>
                 <div class="hidden lg:block ml-6">
                     <ng-container *ngIf="!isBlogPage(); else blogPageImage">
-                        <img [src]="activeProject?.previewImg" [alt]="activeProject?.name + 'image'">
+                        <ng-container *ngIf="activeProject && activeProject.name">
+                            <a href="javascript:void(0)" [routerLink]="[getRouteLink(activeProject.name)]" class="block zoom-img-scale">
+                                <img [src]="activeProject?.previewImg" [alt]="activeProject?.name + 'image'">
+                            </a>
+                        </ng-container>
                     </ng-container>
                     <ng-template #blogPageImage>
-                        <img [src]="activeArticle?.bgImg" [alt]="activeArticle?.title + 'image'">
+                        <ng-container *ngIf="activeArticle && activeArticle.title">
+                            <a href="javascript:void(0)" [routerLink]="[getRouteLink(activeArticle.title)]" class="block zoom-img-scale">
+                                <img [src]="activeArticle?.bgImg" [alt]="activeArticle?.title + 'image'">
+                            </a>
+                        </ng-container>
                     </ng-template>
                 </div>
             </div>
