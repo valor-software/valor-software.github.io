@@ -50,8 +50,8 @@
                     <ul class="list-disc text-grey_font_col pl-5 swiper-no-swiping">
                         <li *ngFor="let item of slide.list" class="mb-4 swiper-no-swiping">{{item}}</li>
                     </ul>
-                    <button class="btn-pink flex justify-center md:justify-between mt-10 w-full md:w-auto">
-                        <a [routerLink]="['blog']" class="flex justify-center w-full">Visit blog <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
+                    <button class="flex justify-center md:justify-between mt-10 w-full md:w-auto">
+                        <a [routerLink]="['blog']" class="btn-pink flex justify-center w-full">Visit blog <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
                     </button>
                 </div>
                 <div class="max-w-140 md:max-w-full mb-6 md:mb-0">
@@ -93,8 +93,8 @@
                 </div>
             </div>
 
-            <button class="btn-pink mx-auto flex">
-                <a [routerLink]="'/portfolio'" class="flex justify-center items-center">Visit portfolio <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
+            <button class="mx-auto flex">
+                <a [routerLink]="'/portfolio'" class="btn-pink flex justify-center items-center">Visit portfolio <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
             </button>
         </div>
     </div>
@@ -125,7 +125,7 @@
                                     <li class="leading-4 mb-4" *ngFor="let item of slide.list">{{item}}</li>
                                 </ul>
                             </div>
-                            <button class="btn-pink flex justify-between"><a class="flex justify-between items-center" [href]="slide.link" target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
+                            <button class="flex justify-between"><a class="btn-pink flex justify-between items-center" [href]="slide.link" target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
                         </div>
                         <div class="max-w-65% flex flex-col justify-center items-center text-light_title_col">
                             <img [src]="slide.img" [alt]="slide.name + 'icon'">
@@ -165,7 +165,7 @@
                                 <p class="text-large cursor-pointer" *ngIf="slide.npmLink"><a [href]="slide.npmLink" target="_blank">{{slide.downloads | number}}</a></p>
                             </ng-container>
                         </div>
-                        <button class="btn-pink flex justify-center w-full mt-24"><a class="flex justify-between items-center" [href]="slide.link" target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
+                        <button class="flex justify-center w-full mt-24"><a class="btn-pink flex justify-between items-center" [href]="slide.link" target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
                     </div>
                 </ng-template>
             </swiper>
