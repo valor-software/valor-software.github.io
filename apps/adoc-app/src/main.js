@@ -25,9 +25,12 @@ const glob = require('glob');
             if ( extension === 'adoc') {
                 const content = await fs.readFile(`${articlesFolderPath}/${folder.name}/${file.name}`, 'utf8');
                 const htmlContent = await asciidoctor.convert(content);
-                await fs.writeFile(`apps/valor-software-site/src/assets/articles/${dirName}/${dirName}.html`, htmlContent, 'utf-8').catch(error => {
-                    console.log(error);
-                });
+                if (!fs.existsSync(`apps/valor-software-site/src/assets/articles/${dirName}`)) {
+                    await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`)
+                    await fs.writeFile(`apps/valor-software-site/src/assets/articles/${dirName}/${dirName}.html`, htmlContent, 'utf-8')
+                    return
+                }
+                await fs.writeFile(`apps/valor-software-site/src/assets/articles/${dirName}/${dirName}.html`, htmlContent, 'utf-8')
             }
 
             if (extension === 'json') {
