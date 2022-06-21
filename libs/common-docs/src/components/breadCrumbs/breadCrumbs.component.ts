@@ -63,28 +63,6 @@ export class BreadCrumbsComponent {
         });
     }
 
-    navigate(link?: number) {
-        // if (!this.segments?.length) {
-        //     return;
-        // }
-        //
-        // if (!link && link !== 0) {
-        //     this.router.navigate(['/']);
-        //     return;
-        // }
-        //
-        // link++;
-        // if (link >= this.segments.length) {
-        //     return;
-        // }
-        //
-        // const arr = this.segments.slice(0, link);
-        // const url = arr.map(url => url.path);
-        console.log(this.getRouteLink(link));
-
-            // this.router.navigate([`/${url.join('/')}`]);
-    }
-
     getRouteLink(link?: number): string {
         if (!this.segments?.length || !link && link !== 0) {
             return '/';
