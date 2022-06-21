@@ -1,35 +1,9 @@
-export function titleRefactoring(link: string): string {
-    // eslint-disable-next-line no-useless-escape
-    while(link.match(' '|| ':' || '_' || '–' || '—' || '&' || ',' || '#' || '$' || '%' || '*' || '+' || '\'' || `\'` || '/' || ';' || '=' || '?' || '!' || '@' || '[' || ']' || '(' || ')' || `'` || '--')) {
-        // eslint-disable-next-line no-useless-escape
-        link = link.replace(`\'`, '');
-        link = link.replace('!', '');
-        link = link.replace('.','-');
-        link = link.replace(' ','-');
-        link = link.replace(':','-');
-        link = link.replace('_','-');
-        link = link.replace('—','-');
-        link = link.replace('.','-');
-        link = link.replace('&','-');
-        link = link.replace(',','-');
-        link = link.replace('#','-');
-        link = link.replace('$','-');
-        link = link.replace('%','-');
-        link = link.replace('*','-');
-        link = link.replace('+','-');
-        link = link.replace('\'','-');
-        link = link.replace('/','-');
-        link = link.replace(';','-');
-        link = link.replace('=','-');
-        link = link.replace('?','-');
-        link = link.replace('@','-');
-        link = link.replace('[','-');
-        link = link.replace(']','-');
-        link = link.replace('(','-');
-        link = link.replace(')','-');
-        link = link.replace(`'`,'');
-        link = link.replace(`–`,'-');
-        link = link.replace('--','-');
-    }
-    return link.replace(/-$/, '').toLowerCase();
+export function titleRefactoring(title: string): string {
+    let res = title.replace(/[^a-zA-Z 0-9\'\-]/gm, "-");
+    res = res.replace(/[\s*]/gm, "-");
+    res = res.replace(/()\--*/gm, "-");
+    res = res.replace(/\'/gm, "");
+    res = res.replace(/\/-/gm, "");
+    res = res.replace(/\-*$/gm, "");
+    return res.toLowerCase();
 }

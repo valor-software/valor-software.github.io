@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { CommonDocsModule, ARTICLES_LIST, ARTICLES_REFACTORED_TITLE_LIST, SeoService, OLD_ROUTES_FROM_OLD_SITE } from '@valor-software/common-docs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScullyLibModule } from '@scullyio/ng-lib';
-import { articlesList, articlesRefactoringTitlesList } from "../assets/articles/articlesList";
+import { articlesList, articlesRefactoringTitlesList } from "../../../../assets/articles/articlesList";
 import { PORTFOLIO_LIST } from "@valor-software/portfolio";
 import { projectsList } from "../assets/portfolio/portfolio.list";
-import { linksFromOldSite } from "../assets/articles/brokenRoutes";
+import { linksFromOldSite } from "../../../../assets/articles/brokenRoutes";
 import { NotFoundComponent } from './404.component';
 
 @NgModule({
