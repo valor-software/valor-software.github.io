@@ -496,9 +496,9 @@
       "root": "apps/valor-software-site",
       "sourceRoot": "apps/valor-software-site/src",
       "prefix": "valor-software-site-base",
-      "targets": {
+      "architect": {
         "build": {
-          "executor": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "outputs": [
             "{options.outputPath}"
           ],
@@ -553,7 +553,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "executor": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "valor-software-site:build:production"
@@ -565,13 +565,13 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "valor-software-site:build"
           }
         },
         "lint": {
-          "executor": "@nrwl/linter:eslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "apps/valor-software-site/src/**/*.ts",
@@ -580,7 +580,7 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
+          "builder": "@nrwl/jest:jest",
           "outputs": [
             "coverage/apps/valor-software-site"
           ],
