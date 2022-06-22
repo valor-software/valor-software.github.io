@@ -29,13 +29,13 @@ Then, when you have an account - you create a workspace. For that:
 1. Select \"Workspaces\" in the left menu.
 2. Click at the \"Add a new workspace\" button on the right.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac214c2fb53528b7cd14_ioXtSEQvNQBuBerdHzQqqI8watrF_JjxrBrFbf7elk4ZCCFeu9sw29awE22cJaF4m_F5iUQRG7I59sKaLxmfz9A-aUoXuTez3mPtFTjIFzIdfgwLT5g6eaxc6oJTTzJzkyVRkw7m%3Ds0.png[]
+image::assets/articles/arc-a-new-weapon-against-accessibility-bugs/6151ac214c2fb53528b7cd14_ioXtSEQvNQBuBerdHzQqqI8watrF_JjxrBrFbf7elk4ZCCFeu9sw29awE22cJaF4m_F5iUQRG7I59sKaLxmfz9A-aUoXuTez3mPtFTjIFzIdfgwLT5g6eaxc6oJTTzJzkyVRkw7m%3Ds0.png[]
 
 3. Fill in the form and click "Submit".
 
 4. Open the workspace, select the "Monitoring" tab and click on "Add a new dashboard".
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac21dbfc8f36aa8a52a1_MKZSOuQwUzSzAmByKkM9fdlBJWudlYGgL27IJhM4zOh-gUJNMXZjKu-geAowrroLsEqegRDYX1yz6J5uXwXXmN4wuv4iv2YIGRVADOD0B5JY1kuLpjolcj7sFXmG1kkD6-h1Pe80%3Ds0.png[]
+image::assets/articles/arc-a-new-weapon-against-accessibility-bugs/6151ac21dbfc8f36aa8a52a1_MKZSOuQwUzSzAmByKkM9fdlBJWudlYGgL27IJhM4zOh-gUJNMXZjKu-geAowrroLsEqegRDYX1yz6J5uXwXXmN4wuv4iv2YIGRVADOD0B5JY1kuLpjolcj7sFXmG1kkD6-h1Pe80%3Ds0.png[]
 
 5. Select "Domain".
 
@@ -55,17 +55,17 @@ After ARC completes its scanning, you get a relatively precise report on the fai
 
 1) WCAG priorities: here, ARC will highlight the most critical errors you need to prioritise and fix.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac21955d4da2a62556a6_ZAUQB3FsLt0bPccOqcmCkWzRwikfcX3qHR_nkXVzc6d1MslOW_j9nTYeTsdDlTCExVY3Rh5g8gm-X4qK8xuCNGmXg26abz6H_JFXCne0F8ytgHeMukTmD5DCsZkmqoQAEAKvyojs%3Ds0.png[]
+image::assets/articles/arc-a-new-weapon-against-accessibility-bugs/6151ac21955d4da2a62556a6_ZAUQB3FsLt0bPccOqcmCkWzRwikfcX3qHR_nkXVzc6d1MslOW_j9nTYeTsdDlTCExVY3Rh5g8gm-X4qK8xuCNGmXg26abz6H_JFXCne0F8ytgHeMukTmD5DCsZkmqoQAEAKvyojs%3Ds0.png[]
 
 2) Top Assertions: ARC will sort failed assertions by quantity.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac2188007e110b370b66_15gcwLg3N4mJ8XaH4zw15XSX3e4QWqgLJKzOKsXcWMC7pBOaIA-oIgtK4MwIPjeMid5vh8s-EqlvsAfpaAOt1_dInCB5usOGzzlVNphNC5lg3t4u6DfyhVzerBdXQAvZiRxWWvnI%3Ds0.png[]
+image::assets/articles/arc-a-new-weapon-against-accessibility-bugs/6151ac2188007e110b370b66_15gcwLg3N4mJ8XaH4zw15XSX3e4QWqgLJKzOKsXcWMC7pBOaIA-oIgtK4MwIPjeMid5vh8s-EqlvsAfpaAOt1_dInCB5usOGzzlVNphNC5lg3t4u6DfyhVzerBdXQAvZiRxWWvnI%3Ds0.png[]
 
 3) Explanation of detected fails with guidelines and recommendations for fixes.
 
 For viewing the detailed explanation, you click on one of the failed assertions from the list (on the left side of the previous screen).
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac21df5f343551413497_9OeslmXZ0XxxHEUBSSfam3dTNxFyPvM6qm_uY78eTluynSjdq1trwbBjb2stozMevjx_BNcefe9tw_1ETXgTlUmE-WSDZI6c0w4a4AnzTHghp6fJBo0wCgcZmgfqvVIS-5-ZSIh8%3Ds0.png[]
+image::assets/articles/arc-a-new-weapon-against-accessibility-bugs/6151ac21df5f343551413497_9OeslmXZ0XxxHEUBSSfam3dTNxFyPvM6qm_uY78eTluynSjdq1trwbBjb2stozMevjx_BNcefe9tw_1ETXgTlUmE-WSDZI6c0w4a4AnzTHghp6fJBo0wCgcZmgfqvVIS-5-ZSIh8%3Ds0.png[]
 
 === *The ARC Toolkit - extension for a quick check*
 
@@ -77,13 +77,13 @@ Another tool from the ARC family that I found useful is https://chrome.google.co
 2. Open the page you want to test for accessibility issues.
 3. Then go to the Chrome dev tools, select the "ARC Toolkit" tab at the end of the list, and click on the "Run tests" big blue button.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac22fe5bb113cda70318_CwUEEt_W_cdPuR_koaOz3UiLyJ0y0bJgL9JWSVv-uVeSlaczpYY1xRFYZDj8_MqWDTXdMq4qQNRVki5J5WjfShHjxraztVXRQ3IPFeF9nC3eNQAxfPADb7CusGbCjbDba9bTPyDb%3Ds0.png[]
+image::assets/articles/arc-a-new-weapon-against-accessibility-bugs/6151ac22fe5bb113cda70318_CwUEEt_W_cdPuR_koaOz3UiLyJ0y0bJgL9JWSVv-uVeSlaczpYY1xRFYZDj8_MqWDTXdMq4qQNRVki5J5WjfShHjxraztVXRQ3IPFeF9nC3eNQAxfPADb7CusGbCjbDba9bTPyDb%3Ds0.png[]
 
 [start=4]
 4. After scanning the page, you will see a complete report with warnings, passed and failed
 assertions.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac22c075545e6d2ded18_-ZhRbFSiqkurvO2YIsvXMRlpNPrMYYgyuMiC7QqKROUgCiGfohM293yh-rcbLhb2XKLYXr26UFJbdInEMx8twto1_80hmJfJjlOUOkQX8M28ywk841ZI0PJhgZiUf5aYQdMrQVWQ%3Ds0.png[]
+image::assets/articles/arc-a-new-weapon-against-accessibility-bugs/6151ac22c075545e6d2ded18_-ZhRbFSiqkurvO2YIsvXMRlpNPrMYYgyuMiC7QqKROUgCiGfohM293yh-rcbLhb2XKLYXr26UFJbdInEMx8twto1_80hmJfJjlOUOkQX8M28ywk841ZI0PJhgZiUf5aYQdMrQVWQ%3Ds0.png[]
 
 Basically, you get quite the same amount of information as with the ARC platform check:
 explanations of errors, recommendations for fixes, and guidelines for developers.
@@ -94,13 +94,13 @@ As I said earlier, unlike the on-site version, the extension can scan sections y
 
 1. Open DOM tree and select the component/section you need to test.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac22b03355505d3beb71_bQfktGUWOORWQy_2FQbhVp_2vdfeJ83_pFHCHOxYUTL3KL2rXP-KsFa2cPh-Nn6f-MgQhmrsBxJR-LIxU-OPGe5cx0UaXzB4-Lsaap9l-sL1-VN3M-KKkAVA5HNnBF20Z_vsAVXo%3Ds0.png[]
+image::assets/articles/arc-a-new-weapon-against-accessibility-bugs/6151ac22b03355505d3beb71_bQfktGUWOORWQy_2FQbhVp_2vdfeJ83_pFHCHOxYUTL3KL2rXP-KsFa2cPh-Nn6f-MgQhmrsBxJR-LIxU-OPGe5cx0UaXzB4-Lsaap9l-sL1-VN3M-KKkAVA5HNnBF20Z_vsAVXo%3Ds0.png[]
 
 [start=2]
 2. Then click on the ARC Toolkit tab and select "Filter result for selected node only"
 from the checkbox. After, you'll see the selected tag displayed in the "Limited scope".
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac218e7b6e1f3352fe3e_AQFOs29DNURHo2jsPY-09j4D4elLHQCALvs8whpPQeeqR2vpDi7mzXV18U5VjMTuAUN6OlB8CMOHVgXmgOIjyITjcoMQfREF3Al1cW30UzqFJxsN5PNTAeqtKeKTfxXTZruOMAHC%3Ds0.png[]
+image::assets/articles/arc-a-new-weapon-against-accessibility-bugs/6151ac218e7b6e1f3352fe3e_AQFOs29DNURHo2jsPY-09j4D4elLHQCALvs8whpPQeeqR2vpDi7mzXV18U5VjMTuAUN6OlB8CMOHVgXmgOIjyITjcoMQfREF3Al1cW30UzqFJxsN5PNTAeqtKeKTfxXTZruOMAHC%3Ds0.png[]
 
 [start=3]
 3. Run the tests :-)
@@ -139,7 +139,7 @@ Currently, I haven't found a better solution than testing these things manually 
 ARC Toolkit is completely free!&nbsp As for the site version of ARC
 - they have 3 plans.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/6151ac22b638d76be2b645f7_rXQMTIqe0GyDMn9BNA5iU4VqcxW2X0Ws6iT3wrXBvBolzUMJAVhs_zJQdJ9k1kE5VQ6fvw41HIwUl5pKNChRd5Hh5MwQbT29vzygHhhO5JgdVN0IvlxLIxTUErMpvVvYMJDFG7s3%3Ds0.png[]
+image::assets/articles/arc-a-new-weapon-against-accessibility-bugs/6151ac22b638d76be2b645f7_rXQMTIqe0GyDMn9BNA5iU4VqcxW2X0Ws6iT3wrXBvBolzUMJAVhs_zJQdJ9k1kE5VQ6fvw41HIwUl5pKNChRd5Hh5MwQbT29vzygHhhO5JgdVN0IvlxLIxTUErMpvVvYMJDFG7s3%3Ds0.png[]
 
 === *Let's make accessibility the new norm!*
 

@@ -13,7 +13,7 @@ restrains the actions for both you and your new friends, the development team. I
 source of light is burning money. While Fixed Price contracts will most likely always exist, there are other
 approaches one should consider.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5fb29e5e30e5337ca8fca8bd_Bride-Valor-Software-Blog.jpg[Valor Software blog post about fixed price vs T&M - pic1]
+image::assets/articles/why-you-might-want-to-switch-to-time-and-material-from-fixed-price/5fb29e5e30e5337ca8fca8bd_Bride-Valor-Software-Blog.jpg[Valor Software blog post about fixed price vs T&M - pic1]
 
 === Why do brides tend to cry in the morning before the ceremony
 
@@ -49,7 +49,7 @@ final project cost. Also, acceptance testing will take you and a team more time,
 project duration.
 
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5fb2980a66bffe32498f25af_Leo-Wolf-Valor-Software.jpg[Valor Software blog post about fixed price vs T&M - pic2]
+image::assets/articles/why-you-might-want-to-switch-to-time-and-material-from-fixed-price/5fb2980a66bffe32498f25af_Leo-Wolf-Valor-Software.jpg[Valor Software blog post about fixed price vs T&M - pic2]
 
 It's impossible to plan and estimate the solution development for more than a 3-months period
 from the start date, so you either split it into phases, or switch to another development approach at once. If
@@ -88,7 +88,7 @@ will to make you a reliable client, internal processes and changes, and many mor
 gives you facilities for predictability. You have estimations, access time and task tracking systems, check
 code updates, and know when the next release is coming.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5fb29c198973d6ff4e163be0_FortuneTeller-Valor-Software-Blog.jpg[Valor Software blog post about fixed price vs T&M - pic3]
+image::assets/articles/why-you-might-want-to-switch-to-time-and-material-from-fixed-price/5fb29c198973d6ff4e163be0_FortuneTeller-Valor-Software-Blog.jpg[Valor Software blog post about fixed price vs T&M - pic3]
 
 Having your dedicated team members on board, you can expect that they will do their best to
 meet your project goals and timelines, take overtimes when critical, and find a better technical and

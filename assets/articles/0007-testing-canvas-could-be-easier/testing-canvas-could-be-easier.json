@@ -4,9 +4,9 @@
   "domains": [
     "dev_quality_assurance"
   ],
-  "authorImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69eabbb804c9c13508347a_nesvitiy.jpg",
+  "authorImg": "assets/articles/testing-canvas-could-be-easier/5f69eabbb804c9c13508347a_nesvitiy.jpg",
   "language": "en",
-  "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5cadcf20a10ee1f986d98a29_canvas.png",
+  "bgImg": "assets/articles/testing-canvas-could-be-easier/5cadcf20a10ee1f986d98a29_canvas.png",
   "title": "Testing Canvas could be easier",
   "position": "QA Automation Engineer",
   "date": "Tue Apr 16 2019 11:17:20 GMT+0000 (Coordinated Universal Time)",

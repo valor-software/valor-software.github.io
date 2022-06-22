@@ -21,7 +21,7 @@ crucial.
 ._Examples of rich snippets - you'll find the one to present your specific content._
 [.image-content.m-auto.w-auto.title-center]
 [caption=""]
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d307773875feb82a4abbd76_B7picOG_gPEf6oVRy3lCForWylnvxpUgEAcMS1emVJpvy3YAhYFxhpFQPZBD7tzhtiu4zFkz9eEebjtW2ySjXJq8skV2xWXeskgyXkBSydRpEfCWGizLEVBuVLKji9EdQ3muMaaA.jpeg[Examples of rich snippets in Google search results]
+image::assets/articles/angular-and-seo-structured-data-for-rich-snippets/5d307773875feb82a4abbd76_B7picOG_gPEf6oVRy3lCForWylnvxpUgEAcMS1emVJpvy3YAhYFxhpFQPZBD7tzhtiu4zFkz9eEebjtW2ySjXJq8skV2xWXeskgyXkBSydRpEfCWGizLEVBuVLKji9EdQ3muMaaA.jpeg[Examples of rich snippets in Google search results]
 
 Google Search supports three formats of Structured data (https://json-ld.org[JSON-LD^], https://www.w3.org/TR/microdata[Microdata^], https://rdfa.info[RDFa^]), but recommends using JSON-LD.
 Moreover, this format suits SPA development the best since Google can read JSON-LD data when it's dynamically
@@ -147,7 +147,7 @@ https://workspace.google.com/marketplace/app/asciidoc_processor/1023004302050[St
 ._The preview of our product snippet in Google search results._
 [.image-content.m-auto.w-auto.title-center]
 [caption=""]
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5d3077736324e975692f59e0_Pw6i3raF3cNFaBhI2QQa8I3_kAD6mTz6Umz8taS5kkvuSpamLx1EIYQqFIovzgHKLcpiOAx0JoPVPmolYxCmieStUbtQ5dRqNPDNyEHpWkmCKZ3fugWlsRTIF_8Na-X6jGZndDe0.png[Preview of our product snippet in Google search results]
+image::assets/articles/angular-and-seo-structured-data-for-rich-snippets/5d3077736324e975692f59e0_Pw6i3raF3cNFaBhI2QQa8I3_kAD6mTz6Umz8taS5kkvuSpamLx1EIYQqFIovzgHKLcpiOAx0JoPVPmolYxCmieStUbtQ5dRqNPDNyEHpWkmCKZ3fugWlsRTIF_8Na-X6jGZndDe0.png[Preview of our product snippet in Google search results]
 
 After deployment, https://support.google.com/webmasters/answer/7552505?hl=en[Rich result status reports tool^] will help
 you to check up on the flawless site operation. If the report shows any issues, you can request a recrawl

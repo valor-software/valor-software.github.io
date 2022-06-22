@@ -30,7 +30,7 @@ There is only one reasonable choice in this case — create everything from scra
 
 So, the final result should look somehow similar to the image below:
 
-image::https://valor-software.com/assets/images/6050ac8247cb436466fbc712_goal.png[]
+image::assets/articles/multi-highlighting-for-draftjs/6050ac8247cb436466fbc712_goal.png[]
 
 In the example above we see the following:
 

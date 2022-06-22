@@ -37,7 +37,7 @@ UX specialists. As a person responsible for product usage, we should find new st
 user-centered approach into the development process, which means actually going out of the office and
 talking to/observing users.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/605b34311c35a55009a1c9d9_friendly.jpg[]
+image::assets/articles/incorporating-user-research-on-live-projects-part-4/605b34311c35a55009a1c9d9_friendly.jpg[]
 
 This journey was a great start to incorporating more UX methodology into already
 existing product teams. I hope my experience will motivate you to start involving user studies in your project

@@ -30,13 +30,13 @@ Besides, a lot of users continue using previous iOS versions and devices with it
 
 ._38% of *all devices* use iOS 12, https://developer.apple.com/support/app-store/[as measured by the App Store^]on October 15, 2019._
 [caption='']
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5e04c0bc52e2d0735d7730cc_Un82qXnMJHP0THO6PSv_ImjUGJDt6ZNbEOgJmuHu8b0V_hleFx1bqfhD4SgxZrtJQvurPfUJQ9vNwEhYcGPuX0RoOBofNNS3rBMp9vBxtrKGvzDtpSnp0juSG374BoyitMdyauTi.png[]
+image::assets/articles/testing-ios-app-vulnerabilities-with-jailbreaking-part-1/5e04c0bc52e2d0735d7730cc_Un82qXnMJHP0THO6PSv_ImjUGJDt6ZNbEOgJmuHu8b0V_hleFx1bqfhD4SgxZrtJQvurPfUJQ9vNwEhYcGPuX0RoOBofNNS3rBMp9vBxtrKGvzDtpSnp0juSG374BoyitMdyauTi.png[]
 
 *iPad*
 
 ._41% of *all devices* use iOS 12, https://developer.apple.com/support/app-store/[as measured by the App Store^] on October 15, 2019._
 [caption='']
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5e05dd1e664aac73888e0226_58uC6tNAESc-hiTunvY2fsvyiY9m8DnXzaYf9OWrFCWRpFbymokaOokXfJzAXRtc_C_ZSGRBJVR3PKDbzX6r6lsprKQow9rmLi3EF2b-hZEcGoKSTJrJPpvKrLB2TJa7jcuwEUSh.png[]
+image::assets/articles/testing-ios-app-vulnerabilities-with-jailbreaking-part-1/5e05dd1e664aac73888e0226_58uC6tNAESc-hiTunvY2fsvyiY9m8DnXzaYf9OWrFCWRpFbymokaOokXfJzAXRtc_C_ZSGRBJVR3PKDbzX6r6lsprKQow9rmLi3EF2b-hZEcGoKSTJrJPpvKrLB2TJa7jcuwEUSh.png[]
 
 As long as there are users of older operating systems and you distribute an
 application that supports older iOS versions, your app should be checked for security vulnerabilities. The old

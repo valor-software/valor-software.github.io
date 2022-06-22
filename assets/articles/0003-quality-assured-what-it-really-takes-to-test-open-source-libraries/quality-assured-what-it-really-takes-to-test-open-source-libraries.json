@@ -4,9 +4,9 @@
   "domains": [
     "dev_quality_assurance"
   ],
-  "authorImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69eabbb804c9c13508347a_nesvitiy.jpg",
+  "authorImg": "assets/articles/quality-assured-what-it-really-takes-to-test-open-source-libraries/5f69eabbb804c9c13508347a_nesvitiy.jpg",
   "language": "en",
-  "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5c7fd71b76e5a3bd95ad8ebf_art-2.jpeg",
+  "bgImg": "assets/articles/quality-assured-what-it-really-takes-to-test-open-source-libraries/5c7fd71b76e5a3bd95ad8ebf_art-2.jpeg",
   "title": "Quality Assured: What It Really Takes To Test Open Source Libraries",
   "position": "QA Automation Engineer",
   "date": "Mon Feb 18 2019 11:33:05 GMT+0000 (Coordinated Universal Time)",

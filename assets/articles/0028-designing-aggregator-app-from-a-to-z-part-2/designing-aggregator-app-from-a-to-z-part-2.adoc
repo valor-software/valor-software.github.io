@@ -33,11 +33,11 @@ considered the convenience of interaction, I didn't need to think about what sho
 
 .Scenario 1 ( Regular user)
 [caption='']
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60a4c3588e08f01802d118bd_XTLXuI88sH-ENs4vpm26mRmh6oATP9B-OqhKJx0uJ7UQ_SC6y7kdAf1QbRu8AAofJw0CECzuBIEYiDF2FyfFI9Y9ZJsymFdaM6JHVUsHQifkBdgPRETk95rInoN6dW27BCjIsHnP.png[]
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c3588e08f01802d118bd_XTLXuI88sH-ENs4vpm26mRmh6oATP9B-OqhKJx0uJ7UQ_SC6y7kdAf1QbRu8AAofJw0CECzuBIEYiDF2FyfFI9Y9ZJsymFdaM6JHVUsHQifkBdgPRETk95rInoN6dW27BCjIsHnP.png[]
 
 .Scenario 2 ( New user)
 [caption='']
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60a4c35811008206018b2d99_PkgbwKkVJxHxENM_voQNQY46A6W1vlTiNGzOrWlUJxxv9WNPmtwySZLGBSp0_H2nNDha_z4xoEczLHcyArCNRidKQiYAyRm5qPwcb0p3w8qwJLRZEeoe8SCK68YnPnlXD0Wq-PIx.png[]
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c35811008206018b2d99_PkgbwKkVJxHxENM_voQNQY46A6W1vlTiNGzOrWlUJxxv9WNPmtwySZLGBSp0_H2nNDha_z4xoEczLHcyArCNRidKQiYAyRm5qPwcb0p3w8qwJLRZEeoe8SCK68YnPnlXD0Wq-PIx.png[]
 
 ==== *Sketches*
 
@@ -51,7 +51,7 @@ used Figma to create the Wireframes and also the clickable prototype.
 During the creation of the Wireframes, I used the IOS Human Interface Design library and guidelines to speed
 up the process and make it possible to use it in the UI part.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60a4c358450d4c4bde7a86cf_1ORQJp0Gop8bmCNDoU4D2diPwM2KQQg5rauKyk6ggQPiMGYza5nBz6vUDBkXKpFLOZclYCeq1XUa0ndpSEqdyM1hg-Zmq1TFpVS6U09KJFMtYs3Ea1z5syUyQm6scIfEIXCNa1u8.png[]
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c358450d4c4bde7a86cf_1ORQJp0Gop8bmCNDoU4D2diPwM2KQQg5rauKyk6ggQPiMGYza5nBz6vUDBkXKpFLOZclYCeq1XUa0ndpSEqdyM1hg-Zmq1TFpVS6U09KJFMtYs3Ea1z5syUyQm6scIfEIXCNa1u8.png[]
 
 ==== *Navigation map*
 
@@ -60,7 +60,7 @@ states, after that I pass on to the developers for further product development.
 
 In this situation, I chose one of the main scenarios and created a navigation map for it.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60a4c359976ee9684ea4e0c1_c4G_iNN0jU2xa9VpujMflQD6z-bFoxJhF3HCc4x9_RkuItohXrjuoS3fjvnQUDdO_OX4Uk8zpp-35G58Oacj-im2EmBAweAs3wR1JvXHMbAp7pk96sJHuID3dpfcrjJ1sVQHp-VS.png[]
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c359976ee9684ea4e0c1_c4G_iNN0jU2xa9VpujMflQD6z-bFoxJhF3HCc4x9_RkuItohXrjuoS3fjvnQUDdO_OX4Uk8zpp-35G58Oacj-im2EmBAweAs3wR1JvXHMbAp7pk96sJHuID3dpfcrjJ1sVQHp-VS.png[]
 
 == *Stage 3: Interface UI Design*
 
@@ -71,11 +71,11 @@ video::556103163[vimeo]
 
 ==== Dark mode
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60ae689a112c781f30e072d3_d7F2nXUGkJ9snrITRu6a0nwrKiS2UM6bZPqwY-qC5rdkv7EGlYWmX4kU0gqkY2EfZD5CvgUut88xwixzWCPehqS4HM0RVWMrm0CbP6nyfvFL1WCK0E-gFmF-QUAQX26vbYN4Von9.png[]
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60ae689a112c781f30e072d3_d7F2nXUGkJ9snrITRu6a0nwrKiS2UM6bZPqwY-qC5rdkv7EGlYWmX4kU0gqkY2EfZD5CvgUut88xwixzWCPehqS4HM0RVWMrm0CbP6nyfvFL1WCK0E-gFmF-QUAQX26vbYN4Von9.png[]
 
 ==== Light mode
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60ae6879b162b047e8cec0e9_3-QdG-kXOE6_Y83x8kSdQrV6v4CfIRM3uyRzK8IR-SYYGBV1XflLt_oDYgZ0h1mG6jPNqhD0tas3Hs2AUM9F-1bVnabn_qDWySrNK4pi0Z3nKAHDRqAJA5IZ2-AtwF4eBQ_7c_2e.png[]
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60ae6879b162b047e8cec0e9_3-QdG-kXOE6_Y83x8kSdQrV6v4CfIRM3uyRzK8IR-SYYGBV1XflLt_oDYgZ0h1mG6jPNqhD0tas3Hs2AUM9F-1bVnabn_qDWySrNK4pi0Z3nKAHDRqAJA5IZ2-AtwF4eBQ_7c_2e.png[]
 
 == *MyTicketsApp*
 

@@ -43,11 +43,11 @@ interview, more like a semi-formal one.
 
 _HR role_
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/602d269a0e4c3ec2028e4d47_Screenshot%202021-02-17%20at%2016.19.23.png[]
+image::assets/articles/incorporating-user-research-on-live-projects-part-2/602d269a0e4c3ec2028e4d47_Screenshot%202021-02-17%20at%2016.19.23.png[]
 
 _Manager role_
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/602d26d350d1afb981750bd2_Screenshot%202021-02-17%20at%2016.20.04.png[]
+image::assets/articles/incorporating-user-research-on-live-projects-part-2/602d26d350d1afb981750bd2_Screenshot%202021-02-17%20at%2016.20.04.png[]
 
 https://docs.google.com/document/d/13wO1xLk1AxoFpVwZmVPyBaL8DgEy6sXrbkfJwsmCEeQ/edit?usp=drivesdk[HR Role | Context Interview^]
 
@@ -70,7 +70,7 @@ The experience of the giants could help us with learning the best practices and 
 dashboards' creation. Understanding, inheriting, and adopting - we must learn from past experiences, but be
 open to something new.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/602d26f4db95e50e0f958d2d_competitors.png[]
+image::assets/articles/incorporating-user-research-on-live-projects-part-2/602d26f4db95e50e0f958d2d_competitors.png[]
 
 === Conclusion and Thoughts
 

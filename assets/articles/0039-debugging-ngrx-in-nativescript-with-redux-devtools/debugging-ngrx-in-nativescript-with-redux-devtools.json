@@ -4,9 +4,9 @@
   "domains": [
     "dev_quality_assurance"
   ],
-  "authorImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/61fbaf8cc1e0c9364b36bffa_Eduardo_Speroni_Valor-Software.jpeg",
+  "authorImg": "assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/61fbaf8cc1e0c9364b36bffa_Eduardo_Speroni_Valor-Software.jpeg",
   "language": "en",
-  "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/6290c837fcac1c2dfd58b45e_cover.png",
+  "bgImg": "assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png",
   "title": "Debugging NgRx in NativeScript with Redux DevTools",
   "position": "Angular Developer",
   "date": "Tue Jun 7 2022",

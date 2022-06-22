@@ -124,7 +124,7 @@ To better understand which parts of an application you may need to rewrite, see 
 
 .Examples of detected code parts
 [caption='']
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/5dbacaa2bbcbc1610e7123fa_Examples%20of%20detected%20code%20parts.png[]
+image::assets/articles/testing-with-protractor-how-to-fix-synchronization-issues/5dbacaa2bbcbc1610e7123fa_Examples%20of%20detected%20code%20parts.png[]
 
 == Conclusion
 Needless to say that using open-source tools makes our lives easier. Unfortunately, when working with a new

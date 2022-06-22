@@ -54,7 +54,7 @@ picture. And I can tell that once we switched to Scully, the platform's Lighthou
 99-100. This indicator includes performance, accessibility, SEO, and application of best practices, as you can
 see from the screen below.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60b0d1d54875f90c19c209ea_Eh8d9dD7OkG3ODiudMJ8UHZs2OmC87O3sYL3GsMQlcbPmGie0fNi_uqTD3o05BoOmwbb_DbUBxlKjfKUVq2e9FZw9AH_UGHmk73U2wDWOMi3jLABRRX1UjfDqCtWBxzLXvNQx79b.png[]
+image::assets/articles/scully-helped-us-reach-a-99-lighthouse-score-for-a-b2c-platform/60b0d1d54875f90c19c209ea_Eh8d9dD7OkG3ODiudMJ8UHZs2OmC87O3sYL3GsMQlcbPmGie0fNi_uqTD3o05BoOmwbb_DbUBxlKjfKUVq2e9FZw9AH_UGHmk73U2wDWOMi3jLABRRX1UjfDqCtWBxzLXvNQx79b.png[]
 
 ==== *Better Google indexation - how to spot the company in the top*
 
@@ -94,7 +94,7 @@ platform visible and helped new users find the website. You can see the situatio
 screen below (please, don't mind the red area, it shows the moment of deployment when we couldn't track the
 users' activity).
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60b0d1d5b45c99179c4dad71_pjjkxhvVDowJElf_ztEvzjnkmRdeziJG6VYbO_Zr6mjvUxUgnOTH7GhDc_tu7Hkh05N31S0L-f6HMf5LJ9901a3_ff5oQmMGZYGqqsEfrQ3Ui3OfDIDFkt1EDC0BhTv5H1onWPRg.png[]
+image::assets/articles/scully-helped-us-reach-a-99-lighthouse-score-for-a-b2c-platform/60b0d1d5b45c99179c4dad71_pjjkxhvVDowJElf_ztEvzjnkmRdeziJG6VYbO_Zr6mjvUxUgnOTH7GhDc_tu7Hkh05N31S0L-f6HMf5LJ9901a3_ff5oQmMGZYGqqsEfrQ3Ui3OfDIDFkt1EDC0BhTv5H1onWPRg.png[]
 
 *As a result*, from the moment we released the new platform version, sales
 grew twice.
@@ -145,7 +145,7 @@ this connection for Scully to add the piece of code for Google Analytics without
 
 Use https://developers.google.com/tag-manager/quickstart[this instruction^] for implementing Google Tag Manager on your website. That's where you get the following piece of code from:
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60bf4e6e2cdce6412d434a78_Screenshot%202021-06-08%20at%2013.58.26.png[]
+image::assets/articles/scully-helped-us-reach-a-99-lighthouse-score-for-a-b2c-platform/60bf4e6e2cdce6412d434a78_Screenshot%202021-06-08%20at%2013.58.26.png[]
 
 And https://www.analyticsmania.com/post/google-tag-manager-id/[this article^] tells how to get your Google Tag Manager ID.
 
@@ -156,7 +156,7 @@ automatically when we connect Scully to our Angular app. It is located in the ro
 Of course, we get a default Scully config, and then we should customize it for our project. This https://medium.com/ngconf/a-guide-to-custom-scully-plugins-5558993fd3f8[Guide
 to custom Scully plugins^] gives good advice for customizing plugins to your needs.
 
-image::https://uploads-ssl.webflow.com/5c4c30d0c49ea6746fafc90c/60b0d1d51c5fb97963e98cc3_2a4JxNNsn40mrnC1FODeMj6l1fsgYR2oCnVhykr7yvcjcZBmfMtmY3I-yFsuobT3RGRW17sQyEg2iIbhSVGs3RRhbyywxzM30dSuEBSCJ8jFRhBGgMTsnsOr6SfF0r6I9pi_FIVu.png[]
+image::assets/articles/scully-helped-us-reach-a-99-lighthouse-score-for-a-b2c-platform/60b0d1d51c5fb97963e98cc3_2a4JxNNsn40mrnC1FODeMj6l1fsgYR2oCnVhykr7yvcjcZBmfMtmY3I-yFsuobT3RGRW17sQyEg2iIbhSVGs3RRhbyywxzM30dSuEBSCJ8jFRhBGgMTsnsOr6SfF0r6I9pi_FIVu.png[]
 
 ==== *Summary*
 

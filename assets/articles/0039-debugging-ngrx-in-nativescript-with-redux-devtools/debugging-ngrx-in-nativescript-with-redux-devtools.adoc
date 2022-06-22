@@ -61,21 +61,21 @@ cases when this symbol is not defined, so you can use it with older versions.
 Below is the overview of key plugin features, so you get to know it better before the installation.
 The beginning of work with the plugin:
 
-image::https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/62912c3d5f2cb23f29c42a55_gif_new_0.00_0.08.gif[]
+image::assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912c3d5f2cb23f29c42a55_gif_new_0.00_0.08.gif[]
 
 Plugin replays the state after skipping actions:
 
-image::https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/62912ca5e43915527626e57e_gif_new_0.20_0.26.gif[]
+image::assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912ca5e43915527626e57e_gif_new_0.20_0.26.gif[]
 
-image::https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/62912cb55f2cb2100dc483fa_gif_new_0.34_0.39.gif[]
+image::assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912cb55f2cb2100dc483fa_gif_new_0.34_0.39.gif[]
 
 The increment with delay:
 
-image::https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/62912ce8bcb2ef3d71fdb1c2_gif_new_0.43_0.50.gif[]
+image::assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912ce8bcb2ef3d71fdb1c2_gif_new_0.43_0.50.gif[]
 
 Dispatching a custom action:
 
-image::https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/62912d0dc56f59ad5441affa_gif_new_1.21_1.29.gif[]
+image::assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912d0dc56f59ad5441affa_gif_new_1.21_1.29.gif[]
 
 === *How to Use the Plugin*
 
@@ -159,7 +159,7 @@ contain only serializable data.
 
 How it works with the plugin:
 
-image::https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/62912d353578300d651ee074_gif_new_0.52_0.58.gif[]
+image::assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912d353578300d651ee074_gif_new_0.52_0.58.gif[]
 
 Find more on this topic from the https://dev.to/migsarnavarro/use-sanitizers-to-avoid-redux-devtools-crash-67p[Use sanitizers to avoid Redux Devtools crash^] article by Migzar Navarro and the https://v7.ngrx.io/guide/store-devtools/config[NgRx official guide^]. Also worth
 mentioning that it’s critical to ensure you’re using webpack flags, not to bundle the DevTools in production. As
