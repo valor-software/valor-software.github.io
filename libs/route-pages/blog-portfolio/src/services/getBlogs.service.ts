@@ -26,5 +26,4 @@ export class GetBlogsService {
     decodeContent(content: string): string {
         return atob(content);
     }
-
 }

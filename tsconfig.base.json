@@ -21,9 +21,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@valor-software-site-base/root": [
-        "libs/root/src/index.ts"
-      ],
       "@valor-software/blog-portfolio": [
         "libs/route-pages/blog-portfolio/src/index.ts"
       ],

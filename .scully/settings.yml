@@ -5,7 +5,7 @@ reloadPort: 2667
 hostName: localhost
 projectName: valor-software-site
 homeFolder: /home/svetlana/projects/valor-software.github.io
-distFolder: dist/apps/valor-software-site
+distFolder: /home/svetlana/projects/valor-software.github.io/dist
 outDir: /home/svetlana/projects/valor-software.github.io/dist/valor-software-site
 handle404: ''
 allowErrorCollect: false

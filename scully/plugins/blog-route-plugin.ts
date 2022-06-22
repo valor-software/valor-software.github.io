@@ -1,6 +1,6 @@
 import { HandledRoute, registerPlugin } from "@scullyio/scully";
-import { articlesRefactoringTitlesList } from "../../apps/valor-software-site/src/assets/articles/articlesList";
-import { linksFromOldSite } from "../../apps/valor-software-site/src/assets/articles/brokenRoutes";
+import { articlesRefactoringTitlesList } from "../../assets/articles/articlesList";
+import { linksFromOldSite } from "../../assets/articles/brokenRoutes";
 
 function blogRoutePlugin(route: string, config = {}): Promise<HandledRoute[]> {
     const oldLinks = Object.keys(linksFromOldSite);
