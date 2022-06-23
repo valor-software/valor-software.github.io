@@ -19,6 +19,7 @@ jobs:
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
+          node-version: 14
       - run: npm ci
         if: steps.cache.outputs.cache-hit != 'true'
       - run: |
