@@ -1,12 +1,14 @@
-'use strict'
-
+'use strict';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs-extra');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
-const Asciidoctor = require('asciidoctor')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const Asciidoctor = require('asciidoctor');
 
 const asciidoctor = Asciidoctor();
-let articlesList = new Set();
-let articleOrder = new Set();
+const articlesList = new Set();
+const articleOrder = new Set();
 const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
 
 (async () => {
@@ -20,10 +22,10 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
                 const content = await fs.readFile(`${articlesFolderPath}/${folder.name}/${file.name}`, 'utf8');
                 const htmlContent = await asciidoctor.convert(content);
                 if (!fs.existsSync(`apps/valor-software-site/src/assets/articles/${dirName}`)) {
-                    await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => {return})
+                    await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => {return;});
                 }
 
-                await fs.writeFile(`apps/valor-software-site/src/assets/articles/${dirName}/${dirName}.html`, htmlContent, 'utf-8')
+                await fs.writeFile(`apps/valor-software-site/src/assets/articles/${dirName}/${dirName}.html`, htmlContent, 'utf-8');
             }
 
             if (extension === 'json') {
@@ -34,36 +36,41 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
                     title: jsonData.title
                 });
                 if (!fs.existsSync(`apps/valor-software-site/src/assets/articles/${dirName}`)) {
-                    await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => {return})
+                    await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => {return;});
                 }
 
-                await fs.copyFile(`${articlesFolderPath}/${folder.name}/${file.name}`, `apps/valor-software-site/src/assets/articles/${dirName}/${dirName}.json`)
+                await fs.copyFile(`${articlesFolderPath}/${folder.name}/${file.name}`, `apps/valor-software-site/src/assets/articles/${dirName}/${dirName}.json`);
             }
 
             if (extension !== 'adoc' && extension !== 'html' && extension !== 'json') {
                 if (!fs.existsSync(`apps/valor-software-site/src/assets/articles/${dirName}`)) {
-                    await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => {return})
+                    await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => {return;});
                 }
 
-                await fs.copyFile(`${articlesFolderPath}/${folder.name}/${file.name}`, `apps/valor-software-site/src/assets/articles/${dirName}/${file.name}`)
+                await fs.copyFile(`${articlesFolderPath}/${folder.name}/${file.name}`, `apps/valor-software-site/src/assets/articles/${dirName}/${file.name}`);
             }
         });
-        await Promise.all(folderFiles)
+        await Promise.all(folderFiles);
     });
 
     await Promise.all(arr);
-    let titleList = new Set();
+    const titleList = new Set();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const orderArr = [...articleOrder].sort((a, b) => b.order - a.order);
     const artList = orderArr.map(async article => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         articlesList.add(article.name);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         titleList.add(article.title);
     });
     await Promise.all(artList);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const text = [...articlesList].map(JSON.stringify).reduce((prev, next) => `${prev}, ${next}`);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const titleText = [...titleList].map(JSON.stringify).reduce((prev, next) => `${prev}, ${next}`);
     const arrContent = `export const articlesRefactoringTitlesList = [${text}];\nexport const articlesList = [${titleText}];\nconst orderNumberForNextArticle = ${artList.length + 1};`;
