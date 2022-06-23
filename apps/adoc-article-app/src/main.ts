@@ -1,11 +1,11 @@
 'use strict'
 
-import fs from 'fs-extra';
-import path from 'path';
-import Asciidoctor from "asciidoctor";
+const fs = require('fs-extra');
+const path = require('path');
+const Asciidoctor = require('asciidoctor')
 
 const asciidoctor = Asciidoctor();
-const articlesList = new Set();
+let articlesList = new Set();
 let articleOrder = new Set();
 const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
 
