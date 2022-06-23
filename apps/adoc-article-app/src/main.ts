@@ -1,8 +1,9 @@
 'use strict'
 
-const fs = require('fs-extra')
-const path = require('path');
-const Asciidoctor = require('asciidoctor');
+import fs from 'fs-extra';
+import path from 'path';
+import Asciidoctor from "asciidoctor";
+
 const asciidoctor = Asciidoctor();
 const articlesList = new Set();
 let articleOrder = new Set();
@@ -13,7 +14,6 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
     const folders = files.filter( item => item.isDirectory());
     const arr = folders.map(async (folder) => {
         const dirName = folder.name.substring(5);
-
         const folderFiles = (await (fs.readdir(`${articlesFolderPath}/${folder.name}`, {withFileTypes: true}))).map(async file => {
             const extension = path.extname(file.name).split('.')[1];
             if ( extension === 'adoc') {

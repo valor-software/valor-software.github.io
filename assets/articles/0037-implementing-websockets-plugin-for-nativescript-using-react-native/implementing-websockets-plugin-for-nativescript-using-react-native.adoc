@@ -26,7 +26,7 @@ React Native and NativeScript are really complementary and quite interoperable.
 
 Visit https://www.npmjs.com/package/@valor/nativescript-websockets[npm to use the WebSocket plugin for NativeScript^], and scroll down to proceed with the Implementation part!
 
-image::assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/624495a97b77ab1729aaf5ad_Implementing_20WebSockets_20plugin_20for_20NativeScript_20using_20React_20Native.png[]
+image::assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/624495a97b77ab1729aaf5ad_ImplementingWebSocketspluginforNativeScriptusingReactNative.png[]
 
 === Implementation
 

@@ -4,9 +4,9 @@
   "domains": [
     "dev_quality_assurance"
   ],
-  "authorImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5d1ca021208766bf43d6c7e4_ngx-bootstrap_logo.svg",
+  "authorImg": "assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1ca021208766bf43d6c7e4_ngx-bootstrap_logo.svg",
   "language": "en",
-  "bgImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5f69ec91c925267f63b5ecb5_ngx-bootstrap.jpg",
+  "bgImg": "assets/articles/ngx-bootstrap-angular-ivy-is-here/5f69ec91c925267f63b5ecb5_ngx-bootstrap.jpg",
   "title": "ngx-bootstrap: Angular Ivy is here",
   "position": "Core Team",
   "date": "Tue Jul 02 2019 14:07:32 GMT+0000 (Coordinated Universal Time)",
