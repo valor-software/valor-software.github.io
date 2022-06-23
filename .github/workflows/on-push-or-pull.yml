@@ -32,10 +32,12 @@ jobs:
     needs: one_run
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.17.0'
       - uses: actions/cache@v2
         id: cache
         with:
-          node-version: 14
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci
