@@ -5,7 +5,7 @@
     >
         <ng-template swiperSlide *ngFor="let article of articles">
             <ng-container *ngIf="article && article.title">
-                <a class="block w-full cursor-pointer" href="javascript:void(0)" [routerLink]="['/blog', getRouteLink(article.title)]">
+                <a class="block w-full cursor-pointer" href="javascript:void(0)" [routerLink]="['/articles', getRouteLink(article.title)]">
                     <blog-portfolio-item [article]="article"></blog-portfolio-item>
                 </a>
             </ng-container>

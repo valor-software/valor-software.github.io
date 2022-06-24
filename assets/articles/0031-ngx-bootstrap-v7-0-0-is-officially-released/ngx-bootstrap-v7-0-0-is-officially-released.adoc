@@ -1,0 +1,68 @@
+We’re happy to announce that ngx-bootstrap v7.0.0 is officially released! The Valor
+Software team has been working hard to bring you a truly stable and feature-packed release, and now we’re thrilled
+to share the major updates and new functionality.
+
+=== *In this release:*
+
+— Added support of Angular v11 and v12
+— Refactored ngx-bootstrap to use https://nx.dev/[Nx^]
+— Moved towards the support of Bootstrap 5
+— Added Firebase preview channels
+— Added ESLint for static code analysis
+— Updated DateRange / MaxDateRange
+— Fixed the Modal closing issue
+— Fixed the btnRadioGroup change
+— And much more, see the https://gist.github.com/valorkin/729a3c2aabe2a7069d7b7aacb877baea[release notes^]
+
+==== *Angular v11 and v12 support*
+
+We updated ngx-bootstrap to support Angular 11 and 12 in parallel! Now you can easily migrate to the latest versions of
+Angular.
+
+==== *Nx-powered development*
+
+The ngx-bootstrap source has been refactored, and now you can see the purpose of each component. Contributing to your holistic development experience, we've applied the Nx framework and decomposed the bootstrap script into modules for
+better understanding and transparency in use.
+
+==== *Getting closer to Bootstrap 5 support*
+
+We made great progress in adding Bootstrap 5 support without dropping the
+support of Bootstrap 4. Although most likely, we'll stop supporting Bootstrap 3. We'll be sure to let you know
+*if* and *when* it will happen.
+
+==== *Firebase preview channels for teamwork*
+
+We have enhanced the development process with Firebase preview
+channels to speed up testing and merging of new features into production. You can yourself try out this
+functionality and see your team's activities and updates. Also, with a link to the preview results, your QA, or
+clients can check the new deploy through. Make sure that you have a contributor's status and go ahead.
+
+==== *Strict typing to clear up the code*
+
+ngx-bootstrap supports strict types, and we hope you'll recognize the benefits of it for your development experience. This approach helps to keep the code clean and clear since everyone in the team sticks to a particular order of code writing. No mess in case someone added something new.
+
+==== *ESLint for static code analysis*
+
+In this release, we moved from TSLint to ESLint for better code quality and readability.
+
+==== *DateRange / MaxDateRange update*
+
+The DateRange / MaxDateRange processing was updated. Also, we improved the performance of the date picker component.
+
+==== *The modal closing issue fix*
+
+The issue with modal closing when clicking on the modal scrollbar was fixed.
+
+==== *The btnRadioGroup change fix*
+
+All fixes related to the issue with the btnRadioGroup change for the buttons component are made! Check out the
+results!
+
+See the https://gist.github.com/valorkin/729a3c2aabe2a7069d7b7aacb877baea[GitHub ngx-bootstrap v7.0.0. release changelog^] for a complete list of changes.
+
+=== *What's coming next:*
+
+1. We have dropdowns planned just like in this https://bootstrap-vue.org/docs[BootstrapVue Getting Started example^]. You can see how your changes work (if they do) in a live mode.
+2. ngx-bootstrap with Bootstrap 5 support is already on the way. Stay tuned!
+
+Already have ideas for upcoming releases? - Feel free to https://github.com/valor-software/ngx-bootstrap/issues[open issues^] or https://github.com/valor-software/ngx-bootstrap/pulls[pull requests^]!

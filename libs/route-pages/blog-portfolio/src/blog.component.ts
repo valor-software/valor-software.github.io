@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, Input, OnDestroy} from '@angular/core';
-import { GetArticlesService } from "@valor-software/common-docs";
+import {GetArticlesService, titleRefactoring} from "@valor-software/common-docs";
 import { Subscription } from "rxjs";
-import { IArticle, BlogArticlesRouteService } from "@valor-software/common-docs";
+import { IArticle } from "@valor-software/common-docs";
 import { Router } from "@angular/router";
 
 export const Domains = {
@@ -43,7 +43,6 @@ export class BlogComponent implements OnDestroy {
         private router: Router,
         private getArticles: GetArticlesService,
         private cdr: ChangeDetectorRef,
-        private routeArticle: BlogArticlesRouteService
     ) {
         this.getSortKeys();
     }
@@ -100,7 +99,7 @@ export class BlogComponent implements OnDestroy {
     }
 
     getRouteLink(link: string): any {
-        return this.routeArticle.getRouteLink(link);
+        return titleRefactoring(link);
     }
 
     checkLength(): boolean {

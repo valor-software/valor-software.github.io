@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from "@angular/router";
 import { routes } from "./routes";
 import { SwiperModule } from "swiper/angular";
-import { CommonDocsModule, GetPortfolioService, BlogArticlesRouteService } from '@valor-software/common-docs';
+import { CommonDocsModule, GetPortfolioService } from '@valor-software/common-docs';
 import { NpmStatisticService } from './getNpmStatistic.service';
 import { MainPageComponent } from "./main-page.component";
 import { FeedbackModule } from "@valor-software/feedback";
@@ -21,7 +21,7 @@ export { MainPageComponent } from "./main-page.component";
         CommonDocsModule,
         FeedbackModule
     ],
-    providers: [NpmStatisticService, GetPortfolioService, BlogArticlesRouteService]
+    providers: [NpmStatisticService, GetPortfolioService]
 })
 export class MainPageModule {
     static routes: Routes = routes;

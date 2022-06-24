@@ -17,9 +17,9 @@
                     <div class="flex space-x-2 leading-4">
                         <div class="menu-item" (click)="toggleClientsRoute()">For clients <div class="light-arrow"></div></div>
                         <a routerLink="/services" [routerLinkActive]="['active-route']" class="menu-item">Services</a>
-                        <a routerLink="/portfolio" [routerLinkActive]="['active-route']" class="menu-item">Portfolio</a>
+                        <a routerLink="/projects" [routerLinkActive]="['active-route']" class="menu-item">Portfolio</a>
                         <a routerLink="/careers" [routerLinkActive]="['active-route']" class="menu-item">Careers</a>
-                        <a routerLink="/blog" [routerLinkActive]="['active-route']" class="menu-item">Blog</a>
+                        <a routerLink="/articles" [routerLinkActive]="['active-route']" class="menu-item">Blog</a>
                     </div>
                     <menu-popover class="hidden lg:block" [show]="showClientsRoute" (changeShowClientRoute)="showClientsRoute=$event"></menu-popover>
                 </div>
@@ -40,9 +40,9 @@
             <div class="menu-item" (click)="toggleClientsRoute()">For clients <div class="light-arrow big" [class.rotate]="showClientsRoute"></div></div>
             <menu-popover class="block lg:hidden !m-0" (changeShowClientRoute)="toggleClientsRoute(); showBurgerMenu = false" [show]="showClientsRoute"></menu-popover>
             <a (click)="showBurgerMenu = false" routerLink="/services" [routerLinkActive]="['active-route']" class="menu-item">Services</a>
-            <a (click)="showBurgerMenu = false" routerLink="/portfolio" [routerLinkActive]="['active-route']" class="menu-item">Portfolio</a>
+            <a (click)="showBurgerMenu = false" routerLink="/projects" [routerLinkActive]="['active-route']" class="menu-item">Portfolio</a>
             <a (click)="showBurgerMenu = false" routerLink="/careers" [routerLinkActive]="['active-route']" class="menu-item">Careers</a>
-            <a (click)="showBurgerMenu = false" routerLink="/blog" [routerLinkActive]="['active-route']" class="menu-item">Blog</a>
+            <a (click)="showBurgerMenu = false" routerLink="/articles" [routerLinkActive]="['active-route']" class="menu-item">Blog</a>
         </div>
     </div>
 </nav>

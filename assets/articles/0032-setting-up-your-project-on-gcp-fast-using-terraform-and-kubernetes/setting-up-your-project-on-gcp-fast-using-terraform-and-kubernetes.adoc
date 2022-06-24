@@ -1,0 +1,259 @@
+Hi! My name is Angelina, and I'm a DevOps Engineer at Valor Software. With the help
+of this article, we'll set up your GCP environment to work in tandem with Terraform. I'll guide you through the
+setup of a basic cluster. For this, I picked the services that I use daily within my DevOps routine, since they are
+optimal for your typical project setup. Let me explain myself here! By typical I mean common projects that are
+natural (habitual) for your company or industry. In this case, I bet you'd appreciate a chance to build the
+environment once and clone it for future projects. That's exactly the way you can go with the services I offer
+below. So, once you learn the basics for the project setup in this stack, you'll be able to run new ones in the
+cloud in no time.
+
+=== *Automated setup with Terraform*
+
+When we
+need to set up a cloud infrastructure for the project, we want to make it quickly. That's when automation tools
+come
+to help. https://www.terraform.io/[Terraform^] is one of the instruments that
+serve for automated setup, and it is compatible with more than 70 providers, which is beyond handy. Besides,
+Terraform is pretty straightforward to get along with thanks to its declarative language. You don't need to get
+used
+to a completely different CLI, like in cases when you switch to another cloud provider.
+
+Why I suggest
+picking Terraform from the great variety of services is because it's perfect for creating reusable
+infrastructures.
+You can also clone the existing infrastructure and apply it to your next project, with small alterations if
+needed.
+This benefit of reusability, together with the security that Terraform provides, makes it a first-choice
+technology
+for solving my daily tasks. BTW, it's also the right place for keeping electronic keys and hidden or encrypted
+variables.
+
+Another good point is that Terraform allows for managing several cloud infrastructures
+from different providers in parallel with minimal time and effort spent.
+
+In this article, I'll lead
+you through setting up infrastructure on Google Cloud using Terraform, so buckle up!
+
+=== *Kubernetes on Google Cloud Platform*
+
+Being one of the native Google products, Kubernetes is integrated
+into GCP quite as is, with no alterations. So you can conveniently set it up and manage it through the GCP CLI
+or
+with the help of external instruments like Terraform.
+
+=== *Before you begin*
+
+1. https://cloud.google.com/resource-manager/docs/creating-managing-projects[Create a Google Cloud project^]
+2. https://cloud.google.com/iam/docs/creating-managing-service-account-keys[Create a service account key^] and download it in JSON format
+
+=== *Terraform and GCP setup step-by-step*
+
+Create a new directory for the
+project and create a main.tf file for the Terraform config, and populate it with the following content:
+
+    provider "google" {
+        credentials = file("CREDENTIALS_FILE.json")
+        project = "your-project"
+        region = "us-west1"
+    }
+
+Before we jump to the next step of creating a configuration file, we should remember to keep data (e.g.
+keys, project names) in separate files. This way we ensure project security and give ourselves a chance to reuse
+the configuration in the future. So, locate the project name, region, and credentials file in a separate file
+with variables.
+
+First, create a variables.tf file and declare variables for it:
+
+----
+    variable "credentials" {
+        type = string
+    }
+
+    variable "project" {
+        type = string
+    }
+
+    variable "region" {
+        type = string
+    }
+----
+
+Add the variables' values to secrets.tfvars:
+
+    credentials = "CREDENTIALS_FILE.json"
+    project     = "your-project"
+    region      = "us-west1"
+
+Then format your main.tf file like so:
+
+    provider  "google" {
+        credentials = file(var.credentials)
+        project     = var.project
+        region      = var.region
+    }
+
+Now, when your variables are safe, you'll be able to pick the needed files with variables instead of
+repeatedly typing in new data in the main file.
+
+With the `_terraform init_` command,
+you're pulling up modules that you will need to proceed with further steps.
+
+    terraform init
+
+If you see this message, it's a success! Hurray!
+
+    Terraform has been initialised!
+
+For the next step, you add variables to the variables.tf file:
+
+----
+    variable "cluster_name" {
+      type = string
+    }
+
+    variable "cluster_zone" {
+        type = string
+    }
+
+    variable "app_name" {
+        type = string
+    }
+----
+
+Before creating a cluster, you should first add variables describing this particular cluster to the secrets.tfvars file:
+
+    cluster_name = “cluster-1”
+    cluster_zone = “us-west1-a”
+    app_name = “test”
+
+Now add the cluster configuration to your main.tf file:
+
+----
+    resource "google_container_cluster" "cluster-1" {
+      name =  var.cluster_name
+      location =  var.cluster_zone
+      initial_node_count = 3
+      node_config {
+         labels = {
+          app = var.app_name
+          }
+
+        tags = ["app", var.app_name]
+      }
+
+      timeouts {
+        create = "30m"
+        update = "40m"
+      }
+    }
+----
+
+In the configuration, you define the cluster's name, its location, and the number of nodes and their
+labels. The default namespace is the place where you create a cluster.
+
+To operate with the
+cluster and its components conveniently, you need to create an output.tf file, where you'll add variables that
+will be displayed after running the `_terraform apply_` command. You can use them later by calling them
+during configuration.
+
+    output "cluster" {  value = google_container_cluster.cluster-1.name}
+
+Now add a new resource which is deployment:
+
+----
+    resource "kubernetes_deployment" "example" {
+        metadata {
+            name = "terraform-example"
+            labels = {
+                app = var.app_name
+            }
+        }
+
+      spec {
+        replicas = 3
+
+        selector {
+          match_labels = {
+           app = var.app_name
+          }
+        }
+
+        template {
+          metadata {
+            labels = {
+             app = var.app_name
+            }
+          }
+
+          spec {
+            container {
+              image = "nginx:1.7.8"
+              name  = "example"
+
+              resources {
+                limits = {
+                  cpu = "0.5"
+                  memory = "512Mi"
+                }
+                requests = {
+                  cpu = "250m"
+                  memory = "50Mi"
+                }
+              }
+
+              liveness_probe {
+                http_get {
+                  path = "/"
+                  port = 80
+
+                  http_header {
+                    name  = "X-Custom-Header"
+                    value = "Awesome"
+                  }
+                }
+
+                initial_delay_seconds = 3
+                period_seconds = 3
+              }
+            }
+          }
+        }
+      }
+    }
+----
+
+In the deployment configuration, you specify the number of replicas, tags, labels, an image that we're
+going to use, as well as internal resources. Finally, you have it all ready for the first launch and go with
+this command:
+
+    terraform plan -var-file=secrets.tfvars
+
+In this way, you check if the configuration is created properly and if you're satisfied with the range of
+resources.
+
+When you're quite sure that everything is correct, it's time for the `_terraform apply_` command:
+
+    terraform apply -var-file=secrets.tfvars
+
+And don't forget to specify the file with variables! At this stage, you'll have to confirm your actions by
+running a `_yes_` command. Terraform will build your new GKE cluster on GCP. After the cluster is
+created, you'll see the output list.
+
+For your convenience, in the future, you can split the
+config file into a few separate files. Place the provider block in the providers.tf file, and a
+"google_container_cluster" block” in the cluster.tf file.
+
+=== *Good job!*
+
+You're almost done with your journey, the cluster is up and running, and you
+can be (ugh) proud of yourself!
+
+For your future projects, you'll be able to add more metrics
+and parameters when creating a resource. This will help you adjust your configuration for solving every
+particular task.
+
+=== *Useful links*
+
+* https://cloud.google.com/resource-manager/docs/creating-managing-projects[Create a Google Cloud
+    project^]
+* http://about:blank[Create a service account key using the Google Cloud Console^]

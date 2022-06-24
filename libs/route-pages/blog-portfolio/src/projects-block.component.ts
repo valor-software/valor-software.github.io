@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, Input } from '@angular/core';
 import { Router } from "@angular/router";
-import { BlogArticlesRouteService, IPortfolio } from '@valor-software/common-docs';
+import {IPortfolio, titleRefactoring} from '@valor-software/common-docs';
 
 const SortList = {
     all_projects: 'All Projects',
@@ -31,7 +31,6 @@ export class ProjectsBlockComponent {
     constructor(
         private router: Router,
         private cdr: ChangeDetectorRef,
-        private routeProjectServ: BlogArticlesRouteService
     ) {
         this.getSortKeys();
     }
@@ -75,7 +74,7 @@ export class ProjectsBlockComponent {
     }
 
     getRouteLink(link: string): any {
-        return this.routeProjectServ.getRouteLink(link);
+        return titleRefactoring(link);
     }
 
     updateProjects(projects: IPortfolio[]) {

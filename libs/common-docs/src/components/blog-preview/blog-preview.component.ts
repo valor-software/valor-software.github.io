@@ -2,8 +2,8 @@ import {Component, OnDestroy, Input, OnInit} from '@angular/core';
 import { GetArticlesService } from "../../services/getArticles.service";
 import { IArticle } from "../../models/article.interface";
 import { forkJoin, Subscription } from "rxjs";
-import { BlogArticlesRouteService } from "../../services/blogArticlesRoute.service";
 import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
+import {titleRefactoring} from "../../utils/titleRefactoringUtil";
 SwiperCore.use([Pagination]);
 
 @Component({
@@ -37,7 +37,6 @@ export class BlogPreviewComponent implements OnDestroy, OnInit{
 
     constructor(
         private getArticles: GetArticlesService,
-        private articleRoute: BlogArticlesRouteService
     ) {}
 
     ngOnInit() {
@@ -59,6 +58,6 @@ export class BlogPreviewComponent implements OnDestroy, OnInit{
     }
 
     getRouteLink(link: string): string {
-        return this.articleRoute.getRouteLink(link);
+        return titleRefactoring(link);
     }
 }

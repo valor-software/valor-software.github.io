@@ -8,6 +8,5 @@ export interface IArticle {
     position?: string;
     date: string;
     content: string;
-    contentUrl?: string;
     seoDescription?: string;
 }

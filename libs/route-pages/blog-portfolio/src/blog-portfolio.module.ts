@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 import { routes } from './routes';
 import { GeneralPageComponent } from "./genral-page.component";
-import { CommonDocsModule, BlogArticlesRouteService } from "@valor-software/common-docs";
+import { CommonDocsModule } from "@valor-software/common-docs";
 import { BlogComponent } from "./blog.component";
 import { ProjectsBlockComponent } from "./projects-block.component";
 import { SortDirective } from './directives/sort.directive';
@@ -29,8 +29,7 @@ import { SwiperModule } from "swiper/angular";
     CommonDocsModule,
     FeedbackModule,
     SwiperModule
-  ],
-  providers: [ BlogArticlesRouteService ]
+  ]
 })
 export class BlogPortfolioModule { }
         

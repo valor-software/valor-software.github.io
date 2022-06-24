@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { NpmStatisticService } from "./getNpmStatistic.service";
 import SwiperCore, { Pagination, Mousewheel, SwiperOptions  } from "swiper";
 import { forkJoin, Subscription } from "rxjs";
-import { GetPortfolioService, IPortfolio, BlogArticlesRouteService } from "@valor-software/common-docs";
+import { GetPortfolioService, IPortfolio } from "@valor-software/common-docs";
+import { titleRefactoring } from "@valor-software/common-docs";
 SwiperCore.use([Mousewheel, Pagination]);
 
 const slideModel = [
@@ -279,7 +280,6 @@ export class MainPageComponent {
         private cdr: ChangeDetectorRef,
         protected router: Router,
         private getPortfolio: GetPortfolioService,
-        private projectRouteServ: BlogArticlesRouteService
     ) {
         this.$portfolio = forkJoin(this.getPortfolio.getFullListOfPortfolio()).subscribe((res: IPortfolio[] | undefined) => {
             this.projects = res;
@@ -332,7 +332,7 @@ export class MainPageComponent {
     }
 
     projectRoute(name: string): string {
-        return this.projectRouteServ.getRouteLink(name);
+        return titleRefactoring(name);
     }
 
     checkIndex(index: number): boolean {
