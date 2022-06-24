@@ -4,13 +4,13 @@ import { filter } from "rxjs/operators";
 import { forkJoin, Subscription } from "rxjs";
 import { GetArticlesService, IArticle } from "@valor-software/common-docs";
 import { GetPortfolioService, IPortfolio } from "@valor-software/portfolio";
-import { BlogPortfolioRouteService } from "./services/route.service";
 import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
+
 SwiperCore.use([Pagination]);
 
 const generalPaths = {
-    BLOG: 'blog',
-    PORTFOLIO: 'portfolio'
+    BLOG: 'articles',
+    PORTFOLIO: 'projects'
 };
 
 @Component({
@@ -42,7 +42,6 @@ export class GeneralPageComponent implements OnDestroy{
         private router: Router,
         private getArticlesServ: GetArticlesService,
         private getPortfolio: GetPortfolioService,
-        private routeServ: BlogPortfolioRouteService
     ) {
         this.router.events
             .pipe(
@@ -86,7 +85,13 @@ export class GeneralPageComponent implements OnDestroy{
             return;
         }
 
-        this.routeServ.route(link, this.isBlogPage());
+        if (this.isBlogPage()) {
+            const title = this.getArticlesServ.getRefactoredTitle(link);
+            this.router.navigate(['articles', title]);
+            return;
+        }
+
+        this.router.navigate(['projects', this.getPortfolio.getRefactoredTitle(link)]);
     }
 
     filterFirstItems() {

@@ -3,19 +3,27 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPortfolio } from "./portfolio.interface";
 import { PORTFOLIO_LIST } from "./portfolioList.token";
+import {titleRefactoring, checkHTMLExtension} from "./titleRefactoringUtil";
 
 
 @Injectable({providedIn: 'platform'})
 export class GetPortfolioService {
     private apiArray?: Observable<any>[];
     private portfolioList?: string[];
+    private refactoredList?: string[];
 
     constructor(
         private http: HttpClient,
         @Inject(PORTFOLIO_LIST) portfolioList: string[]
     ){
         this.portfolioList = portfolioList;
-        this.apiArray = this.portfolioList.map(art => this.getPortfolioRequest(art));
+        if (!this.refactoredList?.length) {
+            this.refactoredList = this.portfolioList.map(item => titleRefactoring(item)).reverse();
+        }
+
+        this.apiArray = this.refactoredList.map(art => {
+            return this.getPortfolioRequest(art);
+        }).reverse();
     }
 
     getPortfolioRequest(art: string):Observable<any> {
@@ -28,5 +36,29 @@ export class GetPortfolioService {
 
     getProjectList(): string[] | undefined {
         return this.portfolioList;
+    }
+
+    getRefactoredList(): string[] | undefined {
+        return this.refactoredList;
+    }
+
+    getTitleIndex(title: string): number | undefined {
+        if (!this.refactoredList?.length) {
+            return;
+        }
+
+        const refactoredList = [...this.refactoredList].reverse();
+        let index = refactoredList.findIndex(item => item === title || item === checkHTMLExtension(title));
+
+        if (index || index === 0) {
+            index = index + 1;
+            return index;
+        }
+
+        return;
+    }
+
+    getRefactoredTitle(title: string): string {
+        return titleRefactoring(title);
     }
 }

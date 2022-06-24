@@ -4,6 +4,7 @@ import { NpmStatisticService } from "./getNpmStatistic.service";
 import SwiperCore, { Pagination, Mousewheel, SwiperOptions  } from "swiper";
 import {forkJoin, Subscription} from "rxjs";
 import {GetPortfolioService, IPortfolio, ProjectsRouteService} from "@valor-software/portfolio";
+import {titleRefactoring} from "@valor-software/common-docs";
 SwiperCore.use([Mousewheel, Pagination]);
 
 const slideModel = [
@@ -332,7 +333,7 @@ export class MainPageComponent {
     }
 
     projectRoute(name: string) {
-        this.projectRouteServ.route(name);
+        this.router.navigate(['projects', titleRefactoring(name)]);
     }
 
     checkIndex(index: number): boolean {

@@ -72,11 +72,7 @@ export class NonProfitComponent {
     ];
     purposesList = purposes;
     advantages = advantagesList;
-    articlesList = [
-        'ngx-bootstrap_v7.0.0_is_officially_released!',
-        'ngx-bootstrap_Angular_Ivy_is_here',
-        'The_4_biggest_lessons_we_learned_while_building_a_startup_product_as_an_outsource_company'
-    ];
+    articlesList = [ 'ngx-bootstrap-v7-0-0-is-officially-released', 'ngx-bootstrap-angular-ivy-is-here', 'the-4-biggest-lessons-we-learned-while-building-a-startup-product-as-an-outsource-company' ];
 
     constructor(
         private modalService: ModalService<ContactModalComponent>

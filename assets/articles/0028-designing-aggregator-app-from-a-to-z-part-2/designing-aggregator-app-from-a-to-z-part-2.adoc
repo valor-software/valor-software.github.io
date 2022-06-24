@@ -1,0 +1,103 @@
+In this second part of my Designing Aggregator App for Movie Tickets Purchase article,
+I'll be talking about Design Interaction and Interface UI Design. Also, I'll share my conclusions of all processes in general.
+Check link:articles/designing-aggregator-app-from-a-to-z-part-1[the first part] if you missed it before you go on reading this one :-)
+
+== Stage 2: Design Interaction
+
+==== *Technical requirements and limitations:*
+
+Based on the results of the target audience research that I had gained earlier, I generated the technical and
+limitation requirements that will help us in the future development:
+
+1. The service is designed for Android and iOS mobile platforms.
+2. The app offers two language options: Ukrainian and English.
+3. Authorizing is possible through Apple account and Google account.
+4. The system is a network of movies that has addresses and the ability to display movie places on the map
+and build a route to them.
+5. In addition to ticket purchases, the app offers a pre-purchase of popcorn and drinks with a bank card or
+in-app bonuses, and it is possible to skip this step.
+6. Users can find information on movie titles, actors, and directors.
+7. The app allows filtering films by genre, technology (2D-3D-4D), age of the audience, whether it's released
+or coming soon, language, and movie location.
+8. Users can use wish lists to add and remove films.
+9. The system suggests voting for or against the film, then it generates suggestions for the user based on
+his or her preferences.
+10. The app provides notifications and the ability to turn them off if needed.
+
+==== *User journeys, structure, functionality, content*
+
+At this stage, I wrote out all the possible micro-scenarios, described the functionality and content for
+each screen, and formed the structure of the future product. This gave me a complete picture of the project.
+In addition, I wrote all of this out and worked on the structure. I focused on presenting information and
+considered the convenience of interaction, I didn't need to think about what should be on each screen anymore.
+
+.Scenario 1 ( Regular user)
+[caption='']
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c3588e08f01802d118bd_XTLXuI88sH-ENs4vpm26mRmh6oATP9B-OqhKJx0uJ7UQ_SC6y7kdAf1QbRu8AAofJw0CECzuBIEYiDF2FyfFI9Y9ZJsymFdaM6JHVUsHQifkBdgPRETk95rInoN6dW27BCjIsHnP.png[]
+
+.Scenario 2 ( New user)
+[caption='']
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c35811008206018b2d99_PkgbwKkVJxHxENM_voQNQY46A6W1vlTiNGzOrWlUJxxv9WNPmtwySZLGBSp0_H2nNDha_z4xoEczLHcyArCNRidKQiYAyRm5qPwcb0p3w8qwJLRZEeoe8SCK68YnPnlXD0Wq-PIx.png[]
+
+==== *Sketches*
+
+At this stage the process of imagination and ideas generation of the&nbsp future interface begins.
+
+==== *Design Interface (Wireframes)*
+
+After having a basic and rough understanding of the number of application screens, we can start prototyping. I
+used Figma to create the Wireframes and also the clickable prototype.
+
+During the creation of the Wireframes, I used the IOS Human Interface Design library and guidelines to speed
+up the process and make it possible to use it in the UI part.
+
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c358450d4c4bde7a86cf_1ORQJp0Gop8bmCNDoU4D2diPwM2KQQg5rauKyk6ggQPiMGYza5nBz6vUDBkXKpFLOZclYCeq1XUa0ndpSEqdyM1hg-Zmq1TFpVS6U09KJFMtYs3Ea1z5syUyQm6scIfEIXCNa1u8.png[]
+
+==== *Navigation map*
+
+At this stage, usually I create a navigation map, which includes all screens of the application with the error
+states, after that I pass on to the developers for further product development.
+
+In this situation, I chose one of the main scenarios and created a navigation map for it.
+
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c359976ee9684ea4e0c1_c4G_iNN0jU2xa9VpujMflQD6z-bFoxJhF3HCc4x9_RkuItohXrjuoS3fjvnQUDdO_OX4Uk8zpp-35G58Oacj-im2EmBAweAs3wR1JvXHMbAp7pk96sJHuID3dpfcrjJ1sVQHp-VS.png[]
+
+== *Stage 3: Interface UI Design*
+
+Now we begin to bring the beauty to life , create a palette of colors and UI elements of the application
+interface.
+
+video::556103163[vimeo]
+
+==== Dark mode
+
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60ae689a112c781f30e072d3_d7F2nXUGkJ9snrITRu6a0nwrKiS2UM6bZPqwY-qC5rdkv7EGlYWmX4kU0gqkY2EfZD5CvgUut88xwixzWCPehqS4HM0RVWMrm0CbP6nyfvFL1WCK0E-gFmF-QUAQX26vbYN4Von9.png[]
+
+==== Light mode
+
+image::assets/articles/designing-aggregator-app-from-a-to-z-part-2/60ae6879b162b047e8cec0e9_3-QdG-kXOE6_Y83x8kSdQrV6v4CfIRM3uyRzK8IR-SYYGBV1XflLt_oDYgZ0h1mG6jPNqhD0tas3Hs2AUM9F-1bVnabn_qDWySrNK4pi0Z3nKAHDRqAJA5IZ2-AtwF4eBQ_7c_2e.png[]
+
+== *MyTicketsApp*
+
+Sharing with you the extended designs of the app on my Behance: https://www.behance.net/gallery/118512915/My-Tickets-App[MyTicketsApp^].
+
+== *My conclusions*
+
+Being a UX designer isn't just about creating beautiful visualization and effects, it's more than that. Sure,
+the final result should be visually attractive, but what's more important is the usability of the
+product.
+
+After finishing the UX course I'm certain that creating any product based on users' feedback is the only way
+to go. Interacting with real users, understanding their problems and needs is an experience of a
+lifetime.
+
+Always remember you are creating for people. It is the path to a successful product since people are the soul
+of any solution in the market.
+
+== *Tools applied*
+
+1. I used https://apps.apple.com/us/app/xmind-mind-map/id1286983622[Xmind^] to create the mind mapping and the functional structure, it's a very handy App for UX designers, it's simple and easy to use.
+
+2. I used https://www.figma.com/[Figma^] to create the user flow (scenarios),
+wireframes and of course the interface UI. It's one of the greatest prototyping tools which is primarily
+web-based, with additional offline features enabled by desktop applications for macOS and Windows.

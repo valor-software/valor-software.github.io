@@ -1,14 +1,69 @@
 {
-  "version": 1,
+  "version": 2,
+  "defaultProject": "valor-software-site",
   "projects": {
+    "adoc-article-app": {
+      "root": "apps/adoc-article-app",
+      "sourceRoot": "apps/adoc-article-app/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/workspace:run-commands",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/adoc-article-app",
+            "main": "apps/adoc-article-app/src/main.ts",
+            "tsConfig": "apps/adoc-article-app/tsconfig.app.json",
+            "commands": [
+              {
+                "command": "ts-node apps/adoc-article-app/src/main.ts"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/adoc-article-app/src/environments/environment.ts",
+                  "with": "apps/adoc-article-app/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:node",
+          "options": {
+            "buildTarget": "adoc-article-app:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "apps/adoc-article-app/**/*.ts"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "common-docs": {
       "projectType": "library",
       "root": "libs/common-docs",
       "sourceRoot": "libs/common-docs/src",
       "prefix": "valor-software-site-base",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
             "dist/libs/common-docs"
           ],
@@ -26,7 +81,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": [
             "coverage/libs/common-docs"
           ],
@@ -36,7 +91,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/common-docs/src/**/*.ts",
@@ -56,9 +111,9 @@
       "root": "libs/feedback",
       "sourceRoot": "libs/feedback/src",
       "prefix": "valor-software-site-base",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
             "dist/libs/feedback"
           ],
@@ -76,7 +131,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": [
             "coverage/libs/feedback"
           ],
@@ -86,7 +141,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/feedback/src/**/*.ts",
@@ -102,9 +157,9 @@
       "root": "libs/file-uploader",
       "sourceRoot": "libs/file-uploader/src",
       "prefix": "valor-software-site-base",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
             "dist/libs/file-uploader"
           ],
@@ -122,7 +177,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": [
             "coverage/libs/file-uploader"
           ],
@@ -132,7 +187,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/file-uploader/src/**/*.ts",
@@ -148,9 +203,9 @@
       "root": "libs/portfolio",
       "sourceRoot": "libs/portfolio/src",
       "prefix": "valor-software-site-base",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
             "dist/libs/portfolio"
           ],
@@ -168,7 +223,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": [
             "coverage/libs/portfolio"
           ],
@@ -178,7 +233,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/portfolio/src/**/*.ts",
@@ -194,9 +249,9 @@
       "root": "libs/route-pages/blog-portfolio",
       "sourceRoot": "libs/route-pages/blog-portfolio/src",
       "prefix": "valor-software-site-base",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
             "dist/libs/route-pages/blog-portfolio"
           ],
@@ -214,7 +269,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": [
             "coverage/libs/route-pages/blog-portfolio"
           ],
@@ -224,7 +279,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/route-pages/blog-portfolio/src/**/*.ts",
@@ -233,16 +288,21 @@
           }
         }
       },
-      "tags": []
+      "tags": [],
+      "implicitDependencies": [
+        "common-docs",
+        "feedback",
+        "portfolio"
+      ]
     },
     "route-pages-careers": {
       "projectType": "library",
       "root": "libs/route-pages/careers",
       "sourceRoot": "libs/route-pages/careers/src",
       "prefix": "valor-software-site-base",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
             "dist/libs/route-pages/careers"
           ],
@@ -260,7 +320,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": [
             "coverage/libs/route-pages/careers"
           ],
@@ -270,7 +330,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/route-pages/careers/src/**/*.ts",
@@ -286,9 +346,9 @@
       "root": "libs/route-pages/for-clients",
       "sourceRoot": "libs/route-pages/for-clients/src",
       "prefix": "valor-software-site-base",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
             "dist/libs/route-pages/for-clients"
           ],
@@ -306,7 +366,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": [
             "coverage/libs/route-pages/for-clients"
           ],
@@ -316,7 +376,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/route-pages/for-clients/src/**/*.ts",
@@ -336,9 +396,9 @@
       "root": "libs/route-pages/home-page",
       "sourceRoot": "libs/route-pages/home-page/src",
       "prefix": "valor-software-site-base",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
             "dist/libs/route-pages/home-page"
           ],
@@ -356,7 +416,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": [
             "coverage/libs/route-pages/home-page"
           ],
@@ -366,7 +426,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/route-pages/home-page/src/**/*.ts",
@@ -378,7 +438,8 @@
       "tags": [],
       "implicitDependencies": [
         "common-docs",
-        "feedback"
+        "feedback",
+        "portfolio"
       ]
     },
     "route-pages-services-page": {
@@ -386,9 +447,9 @@
       "root": "libs/route-pages/services-page",
       "sourceRoot": "libs/route-pages/services-page/src",
       "prefix": "valor-software-site-base",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
             "dist/libs/route-pages/services-page"
           ],
@@ -406,7 +467,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": [
             "coverage/libs/route-pages/services-page"
           ],
@@ -416,7 +477,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/route-pages/services-page/src/**/*.ts",
@@ -531,20 +592,22 @@
       },
       "tags": [],
       "implicitDependencies": [
+        "adoc-article-app",
         "route-pages-home-page",
         "common-docs",
         "route-pages-services-page",
         "route-pages-careers",
-        "route-pages-for-clients"
+        "route-pages-for-clients",
+        "route-pages-blog-portfolio"
       ]
     },
     "valor-software-site-e2e": {
       "root": "apps/valor-software-site-e2e",
       "sourceRoot": "apps/valor-software-site-e2e/src",
       "projectType": "application",
-      "architect": {
+      "targets": {
         "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+          "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/valor-software-site-e2e/cypress.json",
             "devServerTarget": "valor-software-site:serve:development"
@@ -556,7 +619,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "outputs": [
             "{options.outputFile}"
           ],

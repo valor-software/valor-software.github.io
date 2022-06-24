@@ -1,0 +1,338 @@
+<div class="paragraph">
+<p>Hi! My name is Angelina, and I&#8217;m a DevOps Engineer at Valor Software. With the help
+of this article, we&#8217;ll set up your GCP environment to work in tandem with Terraform. I&#8217;ll guide you through the
+setup of a basic cluster. For this, I picked the services that I use daily within my DevOps routine, since they are
+optimal for your typical project setup. Let me explain myself here! By typical I mean common projects that are
+natural (habitual) for your company or industry. In this case, I bet you&#8217;d appreciate a chance to build the
+environment once and clone it for future projects. That&#8217;s exactly the way you can go with the services I offer
+below. So, once you learn the basics for the project setup in this stack, you&#8217;ll be able to run new ones in the
+cloud in no time.</p>
+</div>
+<div class="sect2">
+<h3 id="_automated_setup_with_terraform"><strong>Automated setup with Terraform</strong></h3>
+<div class="paragraph">
+<p>When we
+need to set up a cloud infrastructure for the project, we want to make it quickly. That&#8217;s when automation tools
+come
+to help. <a href="https://www.terraform.io/" target="_blank" rel="noopener">Terraform</a> is one of the instruments that
+serve for automated setup, and it is compatible with more than 70 providers, which is beyond handy. Besides,
+Terraform is pretty straightforward to get along with thanks to its declarative language. You don&#8217;t need to get
+used
+to a completely different CLI, like in cases when you switch to another cloud provider.</p>
+</div>
+<div class="paragraph">
+<p>Why I suggest
+picking Terraform from the great variety of services is because it&#8217;s perfect for creating reusable
+infrastructures.
+You can also clone the existing infrastructure and apply it to your next project, with small alterations if
+needed.
+This benefit of reusability, together with the security that Terraform provides, makes it a first-choice
+technology
+for solving my daily tasks. BTW, it&#8217;s also the right place for keeping electronic keys and hidden or encrypted
+variables.</p>
+</div>
+<div class="paragraph">
+<p>Another good point is that Terraform allows for managing several cloud infrastructures
+from different providers in parallel with minimal time and effort spent.</p>
+</div>
+<div class="paragraph">
+<p>In this article, I&#8217;ll lead
+you through setting up infrastructure on Google Cloud using Terraform, so buckle up!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kubernetes_on_google_cloud_platform"><strong>Kubernetes on Google Cloud Platform</strong></h3>
+<div class="paragraph">
+<p>Being one of the native Google products, Kubernetes is integrated
+into GCP quite as is, with no alterations. So you can conveniently set it up and manage it through the GCP CLI
+or
+with the help of external instruments like Terraform.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_before_you_begin"><strong>Before you begin</strong></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects" target="_blank" rel="noopener">Create a Google Cloud project</a></p>
+</li>
+<li>
+<p><a href="https://cloud.google.com/iam/docs/creating-managing-service-account-keys" target="_blank" rel="noopener">Create a service account key</a> and download it in JSON format</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_terraform_and_gcp_setup_step_by_step"><strong>Terraform and GCP setup step-by-step</strong></h3>
+<div class="paragraph">
+<p>Create a new directory for the
+project and create a main.tf file for the Terraform config, and populate it with the following content:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>provider "google" {
+    credentials = file("CREDENTIALS_FILE.json")
+    project = "your-project"
+    region = "us-west1"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before we jump to the next step of creating a configuration file, we should remember to keep data (e.g.
+keys, project names) in separate files. This way we ensure project security and give ourselves a chance to reuse
+the configuration in the future. So, locate the project name, region, and credentials file in a separate file
+with variables.</p>
+</div>
+<div class="paragraph">
+<p>First, create a variables.tf file and declare variables for it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    variable "credentials" {
+        type = string
+    }
+
+    variable "project" {
+        type = string
+    }
+
+    variable "region" {
+        type = string
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Add the variables' values to secrets.tfvars:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>credentials = "CREDENTIALS_FILE.json"
+project     = "your-project"
+region      = "us-west1"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then format your main.tf file like so:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>provider  "google" {
+    credentials = file(var.credentials)
+    project     = var.project
+    region      = var.region
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, when your variables are safe, you&#8217;ll be able to pick the needed files with variables instead of
+repeatedly typing in new data in the main file.</p>
+</div>
+<div class="paragraph">
+<p>With the <code><em>terraform init</em></code> command,
+you&#8217;re pulling up modules that you will need to proceed with further steps.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>terraform init</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you see this message, it&#8217;s a success! Hurray!</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Terraform has been initialised!</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the next step, you add variables to the variables.tf file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    variable "cluster_name" {
+      type = string
+    }
+
+    variable "cluster_zone" {
+        type = string
+    }
+
+    variable "app_name" {
+        type = string
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before creating a cluster, you should first add variables describing this particular cluster to the secrets.tfvars file:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cluster_name = “cluster-1”
+cluster_zone = “us-west1-a”
+app_name = “test”</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now add the cluster configuration to your main.tf file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    resource "google_container_cluster" "cluster-1" {
+      name =  var.cluster_name
+      location =  var.cluster_zone
+      initial_node_count = 3
+      node_config {
+         labels = {
+          app = var.app_name
+          }
+
+        tags = ["app", var.app_name]
+      }
+
+      timeouts {
+        create = "30m"
+        update = "40m"
+      }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the configuration, you define the cluster&#8217;s name, its location, and the number of nodes and their
+labels. The default namespace is the place where you create a cluster.</p>
+</div>
+<div class="paragraph">
+<p>To operate with the
+cluster and its components conveniently, you need to create an output.tf file, where you&#8217;ll add variables that
+will be displayed after running the <code><em>terraform apply</em></code> command. You can use them later by calling them
+during configuration.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>output "cluster" {  value = google_container_cluster.cluster-1.name}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now add a new resource which is deployment:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    resource "kubernetes_deployment" "example" {
+        metadata {
+            name = "terraform-example"
+            labels = {
+                app = var.app_name
+            }
+        }
+
+      spec {
+        replicas = 3
+
+        selector {
+          match_labels = {
+           app = var.app_name
+          }
+        }
+
+        template {
+          metadata {
+            labels = {
+             app = var.app_name
+            }
+          }
+
+          spec {
+            container {
+              image = "nginx:1.7.8"
+              name  = "example"
+
+              resources {
+                limits = {
+                  cpu = "0.5"
+                  memory = "512Mi"
+                }
+                requests = {
+                  cpu = "250m"
+                  memory = "50Mi"
+                }
+              }
+
+              liveness_probe {
+                http_get {
+                  path = "/"
+                  port = 80
+
+                  http_header {
+                    name  = "X-Custom-Header"
+                    value = "Awesome"
+                  }
+                }
+
+                initial_delay_seconds = 3
+                period_seconds = 3
+              }
+            }
+          }
+        }
+      }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the deployment configuration, you specify the number of replicas, tags, labels, an image that we&#8217;re
+going to use, as well as internal resources. Finally, you have it all ready for the first launch and go with
+this command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>terraform plan -var-file=secrets.tfvars</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this way, you check if the configuration is created properly and if you&#8217;re satisfied with the range of
+resources.</p>
+</div>
+<div class="paragraph">
+<p>When you&#8217;re quite sure that everything is correct, it&#8217;s time for the <code><em>terraform apply</em></code> command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>terraform apply -var-file=secrets.tfvars</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And don&#8217;t forget to specify the file with variables! At this stage, you&#8217;ll have to confirm your actions by
+running a <code><em>yes</em></code> command. Terraform will build your new GKE cluster on GCP. After the cluster is
+created, you&#8217;ll see the output list.</p>
+</div>
+<div class="paragraph">
+<p>For your convenience, in the future, you can split the
+config file into a few separate files. Place the provider block in the providers.tf file, and a
+"google_container_cluster" block” in the cluster.tf file.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_good_job"><strong>Good job!</strong></h3>
+<div class="paragraph">
+<p>You&#8217;re almost done with your journey, the cluster is up and running, and you
+can be (ugh) proud of yourself!</p>
+</div>
+<div class="paragraph">
+<p>For your future projects, you&#8217;ll be able to add more metrics
+and parameters when creating a resource. This will help you adjust your configuration for solving every
+particular task.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_useful_links"><strong>Useful links</strong></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects" target="_blank" rel="noopener">Create a Google Cloud
+project</a></p>
+</li>
+<li>
+<p><a href="http://about:blank" target="_blank" rel="noopener">Create a service account key using the Google Cloud Console</a></p>
+</li>
+</ul>
+</div>
+</div>

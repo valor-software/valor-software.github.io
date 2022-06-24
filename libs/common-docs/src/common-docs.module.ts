@@ -38,9 +38,11 @@ export { ArticlesRouteService } from './services/articlesRoute.service';
 export { IArticle } from './models/article.interface';
 export { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
 export { BlogPortfolioItemComponent } from './components/blog-preview/blog-portfolio-item.component';
-export { ARTICLES_LIST } from './tokens/articlesList.token';
+export { ARTICLES_LIST, ARTICLES_REFACTORED_TITLE_LIST } from './tokens/articlesList.token';
 export { SeoService } from './services/seo.service';
 export { CustomSlicePipe } from './pipes/customSlice.pipe';
+export { titleRefactoring, checkHTMLExtension} from './utils/titleRefactoringUtil';
+export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 
 @NgModule({
   declarations: [

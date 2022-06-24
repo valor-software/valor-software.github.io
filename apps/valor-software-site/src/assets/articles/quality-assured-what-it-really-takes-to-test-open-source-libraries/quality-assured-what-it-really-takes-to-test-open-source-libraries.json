@@ -1,0 +1,14 @@
+{
+  "author": "Ludmila Nesvitiy",
+  "order": 3,
+  "domains": [
+    "dev_quality_assurance"
+  ],
+  "authorImg": "assets/articles/quality-assured-what-it-really-takes-to-test-open-source-libraries/5f69eabbb804c9c13508347a_nesvitiy.jpg",
+  "language": "en",
+  "bgImg": "assets/articles/quality-assured-what-it-really-takes-to-test-open-source-libraries/5c7fd71b76e5a3bd95ad8ebf_art-2.jpeg",
+  "title": "Quality Assured: What It Really Takes To Test Open Source Libraries",
+  "position": "QA Automation Engineer",
+  "date": "Mon Feb 18 2019 11:33:05 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "I wanted to share experience in automated testing of our open-source framework—ngx-bootstrap: testing process overview, documentation examples, tech stack."
+}

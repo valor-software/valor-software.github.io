@@ -43,11 +43,7 @@ export class StartupsComponent {
     ];
 
     advantages = advantagesList;
-    articlesList = [
-        'The_4_biggest_lessons_we_learned_while_building_a_startup_product_as_an_outsource_company',
-        'Designing_Aggregator_App_from_A_to_Z___Part_1',
-        'Designing_Aggregator_App_from_A_to_Z___Part_2'
-    ];
+    articlesList = [ 'the-4-biggest-lessons-we-learned-while-building-a-startup-product-as-an-outsource-company', 'designing-aggregator-app-from-a-to-z-part-1', 'designing-aggregator-app-from-a-to-z-part-2'];
 
     constructor(
         private modalService: ModalService<ContactModalComponent>
