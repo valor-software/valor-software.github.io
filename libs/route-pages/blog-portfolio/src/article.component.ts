@@ -67,7 +67,6 @@ export class ArticleComponent implements OnDestroy{
                     this.article.content = res;
                 }
             }, error => {
-                console.log(2)
             this.router.navigate(['404']);
             });
         }
