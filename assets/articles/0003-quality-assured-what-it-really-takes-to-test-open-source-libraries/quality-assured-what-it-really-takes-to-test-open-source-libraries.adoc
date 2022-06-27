@@ -1,3 +1,5 @@
+:imagesdir: ./
+
 We're living in the golden age of software development, and open-source libraries are a
 huge part of the software revolution that we're facing now. That's why I felt the need to talk about it now. I, as
 an Automation QA, got experience in testing open-source libraries and wanted to share my thoughts with everybody,

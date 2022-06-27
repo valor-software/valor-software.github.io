@@ -1,3 +1,5 @@
+:imagesdir: ./
+
 At Valor Software, we, with the help of generous contributors, developed a set of open
 source projects, that allow developers to build apps quicker and more qualitative. This should be helpful for
 other software development companies, yeah. Also, we put a lot of effort into experimenting with automated testing
@@ -24,7 +26,7 @@ Creating scope of tests for Demo site might
 not seem like a complex task, because https://valor-software.com/ng2-charts/[Demo site^] contains only a few pages,
 but let's look a b-i-it deeper:
 
-image::assets/articles/testing-canvas-could-be-easier/5cac9625b32e397fc8d542c3_VhINC-U1hfiJ6IpgLQk_y7PCGNprGcBeGOps1QdrRi2TaALTEDcLWwdRyMmZF0DrB4L6KlfESRBtvsfb-ui52gTxDT_B1fP9jwAtzM_748d75ZK2DfTpVazZicu1h5flRfmWzpGF.png[image6]
+image::5cac9625b32e397fc8d542c3_VhINC-U1hfiJ6IpgLQk_y7PCGNprGcBeGOps1QdrRi2TaALTEDcLWwdRyMmZF0DrB4L6KlfESRBtvsfb-ui52gTxDT_B1fP9jwAtzM_748d75ZK2DfTpVazZicu1h5flRfmWzpGF.png[image6]
 
 Well, we have a single HTML element, which consists of graphic elements, and yeah it's the
 <canvas>. +
@@ -76,7 +78,7 @@ is ready, we can move forward. Oops, here goes the first issue. When Cypress tes
 everything seems to be okay. Our chart is visible. However, once we start going through the steps inside the
 Cypress browser, we'll see space instead of our chart.
 
-image::assets/articles/testing-canvas-could-be-easier/5cac972bf94f986a6fd4a96d_RdepyyO.gif[example gif]
+image::5cac972bf94f986a6fd4a96d_RdepyyO.gif[example gif]
 
 *It happens because of:*
 
@@ -84,7 +86,7 @@ Cypress takes snapshots as your tests run. To see exactly what happened at each 
 
 The same behavior can be seen on the Applitools screenshots:
 
-image::assets/articles/testing-canvas-could-be-easier/5cac976c51b2296b29aec8aa_3WWv2qk.png[image4]
+image::5cac976c51b2296b29aec8aa_3WWv2qk.png[image4]
 
 ==== Implementation step 2. Making real .png screenshots
 
@@ -145,7 +147,7 @@ All needed settings for chosen libraries and all tests can be found in ng2-chart
 
 If you still don't believe us, here's how Applitools Dashboard looks like:
 
-image::assets/articles/testing-canvas-could-be-easier/5cac986cf94f9810c4d4ac0c_nRUcQAt.png[image3]
+image::5cac986cf94f9810c4d4ac0c_nRUcQAt.png[image3]
 
 ...one more thing! Travis CI log, which will be created at each CI test run, can be found on https://travis-ci.org/valor-software/ng2-charts/builds/507755903?utm_source=github_status&utm_medium=notification[Valor Software Travis Dashboard^].
 

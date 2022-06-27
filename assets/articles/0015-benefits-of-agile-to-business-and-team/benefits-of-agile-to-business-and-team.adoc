@@ -1,3 +1,5 @@
+:imagesdir: ./
+
 When you deal with an outsourcing company for building a product, you are expecting
 quality service, a clear understanding of what's happening, and regular status updates. Of course, these criteria are vital for you because you pay for the work. Make sure that your initial agreement includes metrics of how to track the workflow process and results.
 
@@ -23,7 +25,7 @@ So let's take a look at the figures first. http://www.ambysoft.com/surveys/succe
 [.max-w-900]
 ._The success rates of IT development teams following various paradigms._
 [caption='']
-image::assets/articles/benefits-of-agile-to-business-and-team/5ddfd2d2bf3f25ffeeac9db6_ycPB1w3I9Oj89iS2E3de_SUHDi-8CYHE2c-fLcsYl27_u5amPG8zpI2bOD3OBgkexkdGV7QU3OHT6Rv01mnzXUHbH45j3gxK5VOdVnfkEl-01-lNBDPwuT71dV0wcjDgQWL061O-.png[]
+image::5ddfd2d2bf3f25ffeeac9db6_ycPB1w3I9Oj89iS2E3de_SUHDi-8CYHE2c-fLcsYl27_u5amPG8zpI2bOD3OBgkexkdGV7QU3OHT6Rv01mnzXUHbH45j3gxK5VOdVnfkEl-01-lNBDPwuT71dV0wcjDgQWL061O-.png[]
 
 So why is Agile so successful? Let's look into three Agile values that won us over.
 
@@ -39,14 +41,14 @@ Why? The main advantage is to provide a functioning product that is usable at an
 [.max-w-900]
 ._How to build a minimum viable product._
 [caption='']
-image::assets/articles/benefits-of-agile-to-business-and-team/5ddfd2d224feeb3789694282_Rw-EGmi5vTrDtEREArPvdlC4WtZ2L7EGwn6bcxWBRAQ_4eivB_hlMDEwCVCMPED9fjj9WFZFni5MSsy5iX8--NzjgX9nFcBx_YozBgMumpDruvdixbh0_4Vtu4TBqzO2sPZbw63v.png[]
+image::5ddfd2d224feeb3789694282_Rw-EGmi5vTrDtEREArPvdlC4WtZ2L7EGwn6bcxWBRAQ_4eivB_hlMDEwCVCMPED9fjj9WFZFni5MSsy5iX8--NzjgX9nFcBx_YozBgMumpDruvdixbh0_4Vtu4TBqzO2sPZbw63v.png[]
 
 Let's take a look at the first model of Harley Davidson bike:
 
 [.max-w-900]
 ._Proof of concept: testing the idea of a customized bicycle._
 [caption='']
-image::assets/articles/benefits-of-agile-to-business-and-team/5ddfd2d25d76df2fc42afd0c_GRBSY8CpQmtX6sErtOTiN8pg_lu3POPAiR2LhlFbY7NrIX83xTd_V5p4guVFWxWOF9eCWxjdBFTM86WzMg642VgXaWEJsqWWTbfVzg6kgTSyDNbsHP4Z5W5ntFqzFefRRPGc0jiP.png[]
+image::5ddfd2d25d76df2fc42afd0c_GRBSY8CpQmtX6sErtOTiN8pg_lu3POPAiR2LhlFbY7NrIX83xTd_V5p4guVFWxWOF9eCWxjdBFTM86WzMg642VgXaWEJsqWWTbfVzg6kgTSyDNbsHP4Z5W5ntFqzFefRRPGc0jiP.png[]
 
 It's a bike with a motor that allows people to move quicker than using just a bicycle. With
 this MVP, people's needs are satisfied, the idea is verified, and the business becomes successful. Then, the product is further developed iteratively to its final view:
@@ -54,7 +56,7 @@ this MVP, people's needs are satisfied, the idea is verified, and the business b
 [.max-w-900]
 ._Adding more and more features step by step lead to the iron monster available now._
 [caption='']
-image::assets/articles/benefits-of-agile-to-business-and-team/5ddfd2d3cd25be0e65b6491d_BQeHyltAqTs5jzqYgjqS3qroTF4zLmhAZ3cp5DM1KeMhxg5zTFO1zAxcx6Rf52Fij8CgOCm0_xQg2JzYDHyi7K-QBFPxxWUbpTFrAm2vTtbF6vNweRQb69qGDUpVo1u3qhTtHEM4.png[]
+image::5ddfd2d3cd25be0e65b6491d_BQeHyltAqTs5jzqYgjqS3qroTF4zLmhAZ3cp5DM1KeMhxg5zTFO1zAxcx6Rf52Fij8CgOCm0_xQg2JzYDHyi7K-QBFPxxWUbpTFrAm2vTtbF6vNweRQb69qGDUpVo1u3qhTtHEM4.png[]
 
 Suppose that the Harley-Davidson Motor Company created a final product without verifying the
 idea, and users didn't understand the value of the motorcycle and why its cost was so high. The creators of the bike, potentially, could have lost time and money spent on the whole product.
@@ -89,7 +91,7 @@ According to the classic approach, instead of continuous delivery, we learn only
 [.max-w-900]
 .Late learning sequence of product development in a waterfall fashion.
 [caption='']
-image::assets/articles/benefits-of-agile-to-business-and-team/5ddfd2d2df0bf0020fff0759_Rd46BgSYvkjqM_kCLOXosgvdmJqQRuWSayixGSCC_8V0_ZdyozE0HwcQfPii9xXoeaRR7qt9GVgftJCIgxgRqCBswmlkuqJOlbRXDEjobtvzBPnJ_JDZfDrm2OALrglWH3YdwsGU.png[]
+image::5ddfd2d2df0bf0020fff0759_Rd46BgSYvkjqM_kCLOXosgvdmJqQRuWSayixGSCC_8V0_ZdyozE0HwcQfPii9xXoeaRR7qt9GVgftJCIgxgRqCBswmlkuqJOlbRXDEjobtvzBPnJ_JDZfDrm2OALrglWH3YdwsGU.png[]
 
 With Agile, we move iteratively and show what we have done after each stage, thus, receive
 frequent feedback. Basically, every participant of the project shares invaluable knowledge:
@@ -101,7 +103,7 @@ frequent feedback. Basically, every participant of the project shares invaluable
 [.max-w-900]
 ._Applying the principle: Learn Early, Learn Often._
 [caption='']
-image::assets/articles/benefits-of-agile-to-business-and-team/5ddfd2d20ff52bfc9267396c_i9Ym3iok2mdBpfB6Y6Zbhwu1l_I3fIzD4IwnEAxoaoKpDr6R7qCLQzy3XcjqhKEmdH8GXoFyKyxAEhwlECBVGWZcDMUph7RbdjID8vO__l68HoloNwm1uqqPJQJFxV-_gsn8SKrZ.png[]
+image::5ddfd2d20ff52bfc9267396c_i9Ym3iok2mdBpfB6Y6Zbhwu1l_I3fIzD4IwnEAxoaoKpDr6R7qCLQzy3XcjqhKEmdH8GXoFyKyxAEhwlECBVGWZcDMUph7RbdjID8vO__l68HoloNwm1uqqPJQJFxV-_gsn8SKrZ.png[]
 
 As a result, we deliver a more qualitative and improved product phase by phase. Besides, the
 earlier we learn, the lower the costs for possible changes - for updates of the product, the composition of the team, directions to promote the product, and so on.
@@ -127,7 +129,7 @@ to organize the project^].
 [.max-w-900]
 ._Basic project board._
 [caption='']
-image::assets/articles/benefits-of-agile-to-business-and-team/5ddfd2d3bf3f25d111ac9dc7_YhJ5X3uQsyMbK51G4KbE5UpxaD58asz8sKeqB6Rz6ZvpmLneXJuf-cH4Pzdh_VxRd-5Qk1C2tU-0YkDsiMN5AKaR4xHrNXqVgUOubsixkIytbPgcbicx3nnOSM_xq-wBXHdElOoZ.jpeg[]
+image::5ddfd2d3bf3f25d111ac9dc7_YhJ5X3uQsyMbK51G4KbE5UpxaD58asz8sKeqB6Rz6ZvpmLneXJuf-cH4Pzdh_VxRd-5Qk1C2tU-0YkDsiMN5AKaR4xHrNXqVgUOubsixkIytbPgcbicx3nnOSM_xq-wBXHdElOoZ.jpeg[]
 
 === Planning
 
@@ -160,7 +162,7 @@ Continuous Integration (Delivery) and Continuous Deployment (CI/CD) practices al
 [.max-w-900]
 ._Quick risk management with CI/CD: constantly learning from small pieces of work._
 [caption='']
-image::assets/articles/benefits-of-agile-to-business-and-team/5ddfd2d35d76df42db2afd27_-Ie_tV6ycvHuv9TGENhoK3XfxcKPCudii1uIA6dM-5VnST1UTDdjmeEfg6cPXWFo7pBiV5le3VUVMBcN_wU08RikJJHwi97L-O0APfFYP3v6xnsxstO6Sx6u4okQ3_A3qX3Udnm8.png[]
+image::5ddfd2d35d76df42db2afd27_-Ie_tV6ycvHuv9TGENhoK3XfxcKPCudii1uIA6dM-5VnST1UTDdjmeEfg6cPXWFo7pBiV5le3VUVMBcN_wU08RikJJHwi97L-O0APfFYP3v6xnsxstO6Sx6u4okQ3_A3qX3Udnm8.png[]
 
 == Conclusion
 

@@ -1,3 +1,5 @@
+:imagesdir: ./
+
 ==== *Valor Software Proudly Announces Partnership with Zack Jackson, the Inventor and Co-Creator of Module Federation (MF), Aiming to Make Code Sharing More Straightforward and Independent by Popularizing, Enhancing, and Simplifying Implementation of Module Federation&nbsp;for Various Technologies Including Angular.*
 
 Valor Software, software services and consulting company, creators of https://valor-software.com/ngx-bootstrap/#/[ngx-bootstrap^] led by Dmitry Shekhovtsov, GDE in Angular and web technologies, open-source evangelist, advanced https://module-federation.github.io/[Module Federation^] practitioner, and Zack
@@ -8,7 +10,7 @@ implementation of Module Federation, a groundbreaking method of sharing code bet
 ==== *Personalities*
 
 [.image-content.max-w-200.m-auto.w-auto]
-image::assets/articles/announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor/624c946f4abecce4fa1196fd_Zack_Jackson.jpg[Zack_Jackson]
+image::624c946f4abecce4fa1196fd_Zack_Jackson.jpg[Zack_Jackson]
 
 Let’s take a closer look at the personalities of this cooperation, from not just a professional, but a personal
 angle. One of&nbsp; *Zack Jackson’s* biggest goals, inspirations, and drivers for life is his
@@ -24,7 +26,7 @@ active leisure, riding his snowmobile, and going camping. Between cats and dogs,
 and is the proud owner of a couple of French bulldogs.
 
 [.image-content.max-w-200.m-auto.w-auto]
-image::assets/articles/announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor/624c96a855e1ac84eced83b1_Dmitriy_Shekhovtsov.png[Dmitriy_Shekhovtsov]
+image::624c96a855e1ac84eced83b1_Dmitriy_Shekhovtsov.png[Dmitriy_Shekhovtsov]
 
 *Dmitriy Shekhovtsov* describes himself as a JavaScript (NodeJS + Angular) addict and Software
 architecture maniac. Being a person of a rather critical and rebellious nature, when working as an architect at

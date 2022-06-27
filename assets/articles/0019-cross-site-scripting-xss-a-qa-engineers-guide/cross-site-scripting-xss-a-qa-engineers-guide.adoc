@@ -1,3 +1,5 @@
+:imagesdir: ./
+
 I decided to write this article because despite XSS being a common and older vulnerability, many QA and developers know very little about it, what it really is, how to test for or fix it. Probably you've heard of XSS before, but don't really know much about it. You may be wondering what Cross-Site
 Scripting is, why you should test for it, or why it's important. Don't worry, we will cover everything you need to know in this article. By the end, you will have a general understanding of XSS, how to check for it, and how to
 prevent it. +
@@ -18,7 +20,7 @@ Let's take a look at a typical case for an XSS vulnerability using the image bel
 
 ._A visual representation of a typical XSS attack flow via email_
 [caption='']
-image::assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da1e179ca5c5487ce23_wIU_4DfFrUMKTwmIM7qoJSGOR9zFJT8xS0FXJz3_flyDEYSOWyN137EA2lJmuPI4s2Mw7daOOl_g0QfYvvJMZqQtWPvKwKyClFUjdyA3Bvc59tEEKDliYDnUABlaSQm-IVntwATa.png[]
+image::5f366da1e179ca5c5487ce23_wIU_4DfFrUMKTwmIM7qoJSGOR9zFJT8xS0FXJz3_flyDEYSOWyN137EA2lJmuPI4s2Mw7daOOl_g0QfYvvJMZqQtWPvKwKyClFUjdyA3Bvc59tEEKDliYDnUABlaSQm-IVntwATa.png[]
 
 . Here, we have a case where an attacker has modified a link with malicious content. As an example, we can say the link is for a video sharing site and has a keylogger attached to it. The attacker emails it to an unsuspecting victim with an intriguing title 'Cutest cat ever'.
 . The victim opens the email and clicks the link.
@@ -29,7 +31,7 @@ Okay, so that's an interesting case for spam emails, but many people know not to
 
 ._An example of a stored XSS attack flow._
 [caption='']
-image::assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da141480acf2ab8f9d4_ffCbT9ZWavqT3EnWuEmoblsHmGseY8uqtM8CndDGIgmdy-2oWNMFrfKu8fuAZNddYwzskMn1suqfaCkQeVepV1hrbDdT6hL50W5_EP1rfk4AGE6bV5vPJbz5aqhe3y4sJWuXTZ5J.png[]
+image::5f366da141480acf2ab8f9d4_ffCbT9ZWavqT3EnWuEmoblsHmGseY8uqtM8CndDGIgmdy-2oWNMFrfKu8fuAZNddYwzskMn1suqfaCkQeVepV1hrbDdT6hL50W5_EP1rfk4AGE6bV5vPJbz5aqhe3y4sJWuXTZ5J.png[]
 
 . In this situation, an attacker posts a comment on a site (such as a forum or social media page) which
 contains malicious code.
@@ -54,7 +56,7 @@ Stored XSS (most severe):
 For this article, we are going to focus on the basic flows for manual testing each type of XSS
 vulnerability.
 
-image::assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da25c702f8d7932f10a_4VQSX6wMY9roBktyIlD8TFERsNjpn-wDevjm5TMZQtCvpqXlOtm8qMaoaU0QKgcBQ8JwDL1xUL7IlTgx4BAz1CVLC0otC6MbX6PrSaY0DxDlJPupEO_uoPaB02gU2p0S3MP2_bW4.png[]
+image::5f366da25c702f8d7932f10a_4VQSX6wMY9roBktyIlD8TFERsNjpn-wDevjm5TMZQtCvpqXlOtm8qMaoaU0QKgcBQ8JwDL1xUL7IlTgx4BAz1CVLC0otC6MbX6PrSaY0DxDlJPupEO_uoPaB02gU2p0S3MP2_bW4.png[]
 
 == Why do we need to test for XSS vulnerabilities?
 
@@ -107,17 +109,17 @@ Let's take this one step further by breaking down each step while looking at an 
 
 Here we can see that there's a search bar, we will start there.
 
-image::assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da269768da8652a4b39__rGoPEGzFyxyZfRxAPaAsAgFeer9ZjcXrmZQBXODWWNeRWCQBS7X6MaaQL6eoMNTZiAVh0BWZ-HmDJBSyu696jhvp20ybhR8cz35roiIbOu-Af-RIbTi2Wy4EXb_XyC4NpfpcpNM.png[]
+image::5f366da269768da8652a4b39__rGoPEGzFyxyZfRxAPaAsAgFeer9ZjcXrmZQBXODWWNeRWCQBS7X6MaaQL6eoMNTZiAVh0BWZ-HmDJBSyu696jhvp20ybhR8cz35roiIbOu-Af-RIbTi2Wy4EXb_XyC4NpfpcpNM.png[]
 
 *Step 2: Check the normal output of this field.* +
 We'll make a simple search for "apple" and check the output.
 
-image::assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da150972d7e426336cc_sWeKBHf3Sucw3O2yDL9Hz0LNZRp9xs9undm-ScSGZXJa9b4vMHOnYWq9NJM9rayLLzukqeRyLvqRLBa0wMFdVG3YCdgnRm5TNreMxir-OpzbZLcnSKN__GfJbj9ZUBdJLtlZumez.png[]
+image::5f366da150972d7e426336cc_sWeKBHf3Sucw3O2yDL9Hz0LNZRp9xs9undm-ScSGZXJa9b4vMHOnYWq9NJM9rayLLzukqeRyLvqRLBa0wMFdVG3YCdgnRm5TNreMxir-OpzbZLcnSKN__GfJbj9ZUBdJLtlZumez.png[]
 
 *Step 3: Try a simple HTML tag*. +
 Now, we will slightly change our search to *<h1> apple*. This is a quick way to determine if an input needs further testing. If the output is modified, then there is a high probability that more complex scripts will run. That being said, a lack of change in the output doesn't mean that the input is safe.
 
-image::assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da22add8d19a1319043_Z3CqftxBaSp5UAk4auW7R0_3SZPh54GMlwAX5deX21wuhB-VOQjn-p7vKfn33DKQwbyQ6g3RsDHqF7vx_EkA8x-nPnnkOX9epjEcmDLJj4xh3oh05cWtsV9z2RsHooALYKAcN_E3.png[]
+image::5f366da22add8d19a1319043_Z3CqftxBaSp5UAk4auW7R0_3SZPh54GMlwAX5deX21wuhB-VOQjn-p7vKfn33DKQwbyQ6g3RsDHqF7vx_EkA8x-nPnnkOX9epjEcmDLJj4xh3oh05cWtsV9z2RsHooALYKAcN_E3.png[]
 
 Look at that! The output is different than before! This tells us that we definitely
 need to spend more time testing this input. +
@@ -125,20 +127,20 @@ need to spend more time testing this input. +
 
 Now that we have a good reason to continue testing this input, let's try again with another script. There are many scripts you could choose from, but I find that it's easier to use those which will produce an alert on the screen. That is why we will try *<script> alert("XSS")</script> apple*.
 
-image::assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da1de3f7057cde5ffda_ipDUDgMKrmu9YCYviBAJg5qmOQIjC6CACi2s4pEtTrmRYGcN5TlgaNbCVzQ3k2msXX6skGxkn8v-bD7rfLsm1TBIkN7PlCCGuNwz3rp56i-XL44StyIyx_7EhMKzJlev6_3QKJrw.png[]
+image::5f366da1de3f7057cde5ffda_ipDUDgMKrmu9YCYviBAJg5qmOQIjC6CACi2s4pEtTrmRYGcN5TlgaNbCVzQ3k2msXX6skGxkn8v-bD7rfLsm1TBIkN7PlCCGuNwz3rp56i-XL44StyIyx_7EhMKzJlev6_3QKJrw.png[]
 
 Ok, so that didn't work. But we can't give up so easily. Let's try another! +
 *Repeat Step 4: Try another script*. +
 This time we'll try *<img src="" onerror=alert('XSS')> apple*.
 
-image::assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da2ef0245316890163b_cDFHUZwHZoaS-NMMRKBTJ8xfS5s7-4Hah3s-nW4ajFoIwcTMt1BS11ZHMHFnrK1pbXXb382dtcJoA-cT9pjUrNNezn5WKGf8Mb5FQPvIRVQj1gSO2QeGebJ5WvzWvjbtKKOiApAD.png[]
+image::5f366da2ef0245316890163b_cDFHUZwHZoaS-NMMRKBTJ8xfS5s7-4Hah3s-nW4ajFoIwcTMt1BS11ZHMHFnrK1pbXXb382dtcJoA-cT9pjUrNNezn5WKGf8Mb5FQPvIRVQj1gSO2QeGebJ5WvzWvjbtKKOiApAD.png[]
 
 Woah! Notice how this time we were able to add a broken image to the page. That's great, but our alert still didn't appear. We need to keep trying. +
 *Repeat Step 4: Try another script*.
 
 Now we will try *<iframe src="javascript:alert(`xss`)"> apple*.
 
-image::assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da2fa45d01b8d8eea65_gk8HsgxR5pkEkZPja5L00dmGwEV4bAImkUIXjBEUEg8csKO1p2z69xz3tJCrNzS5HPtND3DHTX0008HVwzM5YHZKjuacOWr1JmD8_DMmmAx_xXr_9OM5_P5-NTzQYDD4gcu-OZnk.png[]
+image::5f366da2fa45d01b8d8eea65_gk8HsgxR5pkEkZPja5L00dmGwEV4bAImkUIXjBEUEg8csKO1p2z69xz3tJCrNzS5HPtND3DHTX0008HVwzM5YHZKjuacOWr1JmD8_DMmmAx_xXr_9OM5_P5-NTzQYDD4gcu-OZnk.png[]
 
 Finally! We have injected an iframe into the DOM and successfully run the corresponding alert script.
 
@@ -163,7 +165,7 @@ Here we have a simple site which welcomes the user with their name and displays 
 
 ._This example is provided by the https://owasp.org/www-project-web-security-testing-guide/[OWASP testing guide^]_.
 [caption='']
-image::assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da33bea2a7a56161e53_hxunvZOnEKcFVPiMzrLx-EBdYsyOYwtgCL70MhI3FnOw4ZFvuRnm6Sz4vittiPCOr0WzOV60dRycPJxvgls9NYs-GlUBFAbEKeCY-or9gEUKDgwP_ExOLwurHEN1gFpkXPKxy2nM.png[]
+image::5f366da33bea2a7a56161e53_hxunvZOnEKcFVPiMzrLx-EBdYsyOYwtgCL70MhI3FnOw4ZFvuRnm6Sz4vittiPCOr0WzOV60dRycPJxvgls9NYs-GlUBFAbEKeCY-or9gEUKDgwP_ExOLwurHEN1gFpkXPKxy2nM.png[]
 
 "We can see already that there's a variable (query parameter) in the HTTP request which is
 displayed on the *page(user=MySmith)* - we will start by using this variable to attack the
@@ -178,7 +180,7 @@ Now we'll try more complex scripts and check the output. For this example, we wi
 
 ._This example is provided by the https://owasp.org/www-project-web-security-testing-guide/[OWASP     testing guide^]_.
 [caption='']
-image::assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f3a386d18ce2431beea9182_Screenshot%20(4).png[]
+image::5f3a386d18ce2431beea9182_Screenshot%20(4).png[]
 
 "Success! As you can see, the script was executed in the user's browser. We also want to
 draw your attention to the fact that the original webpage looks normal - a user would have no idea they

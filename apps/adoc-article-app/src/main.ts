@@ -19,7 +19,8 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
         const folderFiles = (await (fs.readdir(`${articlesFolderPath}/${folder.name}`, {withFileTypes: true}))).map(async file => {
             const extension = path.extname(file.name).split('.')[1];
             if ( extension === 'adoc') {
-                const content = await fs.readFile(`${articlesFolderPath}/${folder.name}/${file.name}`, 'utf8');
+                let content = await fs.readFile(`${articlesFolderPath}/${folder.name}/${file.name}`, 'utf8');
+                content = content.replace(':imagesdir: ./', `:imagesdir: assets/articles/${dirName}`);
                 const htmlContent = await asciidoctor.convert(content);
                 if (!fs.existsSync(`apps/valor-software-site/src/assets/articles/${dirName}`)) {
                     await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => {return;});

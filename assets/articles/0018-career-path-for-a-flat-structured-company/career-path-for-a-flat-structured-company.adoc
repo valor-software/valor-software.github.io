@@ -1,3 +1,5 @@
+:imagesdir: ./
+
 A flat-structured company we're going to talk about is us, your humble servant, Valor
 Software. In thisarticle, we want to share with you our direct experience in building a continuous growth system based on a toolcalled Career Path and implementing it in both our company and Renaizant - the app we developed.
 But let'sstart with the backstory of why we decided to delve into building the career growth management
@@ -57,7 +59,7 @@ Having evaluated the jobs, we placed all the chains in a single table:
 
 ._An example of presenting a company's hierarchy when jobs are grouped into career tracks and job families and positioned according to bands &amp grades classification_.
 [caption='']
-image::assets/articles/career-path-for-a-flat-structured-company/5e9571b719faa77fab57695c_yAHtJUenv-xEkt6sxGtlmEwVffUsez8JbxwVB_qPxMxKl8rD2Xg_yih0vpTd1MzEiWW5fnxNBRdEBigQraLFqRoO4HyY0Wd0MPw7qWoh25qjVCmtnTf3iWB3Q7L3_RvGidKG5MGG.png[]
+image::5e9571b719faa77fab57695c_yAHtJUenv-xEkt6sxGtlmEwVffUsez8JbxwVB_qPxMxKl8rD2Xg_yih0vpTd1MzEiWW5fnxNBRdEBigQraLFqRoO4HyY0Wd0MPw7qWoh25qjVCmtnTf3iWB3Q7L3_RvGidKG5MGG.png[]
 
 As a result, we got a "skeleton" of our system in the form of bands and grades.
 
@@ -67,7 +69,7 @@ The next step was adding the info on the required experience and open seats for 
 
 ._Adding more details to let employees find the right next role for them: info on each job and potential next positions._
 [caption='']
-image::assets/articles/career-path-for-a-flat-structured-company/5e9571b8b0a7137b6ee70f29_qLKO7fGfJxdSx7D1gaJXDAKLCthFfTkYzdTu2DZjru8UrEBHWWiZONMGr-GjuyUxTgfQ7lKCQOFEl2aaOLdXJeGIQuvD-3VWdJVAt1e-K1jeVttq6YbQ7avHBOyhD7b7a8VW7OYh.png[]
+image::5e9571b8b0a7137b6ee70f29_qLKO7fGfJxdSx7D1gaJXDAKLCthFfTkYzdTu2DZjru8UrEBHWWiZONMGr-GjuyUxTgfQ7lKCQOFEl2aaOLdXJeGIQuvD-3VWdJVAt1e-K1jeVttq6YbQ7avHBOyhD7b7a8VW7OYh.png[]
 
 Finally, for now, we identified and attached the required skills to each position. Now, this is
 not justa linear diagram but a full-fledged roadmap showing:
@@ -85,7 +87,7 @@ related fields staying in the current position but earning more, and multi-skill
 
 ._Eventually! Summary of employee's career path: the current, next, and desired positions, along with the corresponding skill assessments._
 [caption='']
-image::assets/articles/career-path-for-a-flat-structured-company/5e9571b8b13e2d576ef04029_QMyO5RBecD097ucdWYXEXzxTib02_9uSofGlISsGdHfnHsRQt3fNEdQwComdS_ilhxwQtHXU4zi-FfHh-v_QtXW0rjEVfdDLE7N7vyEYz8_bqzjUkxm-01rQ2vxEqg6vv2IuC-FU.png[]
+image::5e9571b8b13e2d576ef04029_QMyO5RBecD097ucdWYXEXzxTib02_9uSofGlISsGdHfnHsRQt3fNEdQwComdS_ilhxwQtHXU4zi-FfHh-v_QtXW0rjEVfdDLE7N7vyEYz8_bqzjUkxm-01rQ2vxEqg6vv2IuC-FU.png[]
 
 Now that employees plan their career path, they can see who has their desired position and ask
 the secolleagues for information and advice, find out what goals they set for improving skills, how long it took, who was their mentor, and so on.

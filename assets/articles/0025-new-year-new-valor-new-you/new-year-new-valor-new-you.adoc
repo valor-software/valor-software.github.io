@@ -1,3 +1,5 @@
+:imagesdir: ./
+
 A long time ago in a galaxy far, far away, Valor Software once worked in an
 apartment-like office, like any great startup before it. It's the Slavic rendition of working from a garage. As
 time flew Valor moved to a more spacious place, located near a very brutalist-looking building (see pictures
@@ -7,7 +9,7 @@ building. We also enjoyed, maybe just a bit too much, the tiger roars during wor
 
 .The circus for the show that must go on
 [caption='']
-image::assets/articles/new-year-new-valor-new-you/606dadf2c9f500855a20e8d3_01.png[]
+image::606dadf2c9f500855a20e8d3_01.png[]
 
 We loved being close to animals to such an extent that we adopted 3 beautiful cats, our own mini
 tigers, which turned out to be one of the most efficient workplace sellers for us. Alas, we've outgrown our
@@ -15,7 +17,7 @@ two-winged castle. At the end of the day, we had to find a place as homey as our
 
 .PJSC "Ukrtelecom"
 [caption='']
-image::assets/articles/new-year-new-valor-new-you/6033bcdcd3b25b24f24cae3a_DHfmb6mcHISxljiIFaoAX0785gPX5GEdbypAK8ZD6exZh4e4zCSIcpClUQEhdJHvwLNkDmodFNU7Klg9_axOQ205e5Vh8kNYvW7DYH58MgyKzjfDUFlhJZ3JuwVjMmIt_YbMA7qD.png[]
+image::6033bcdcd3b25b24f24cae3a_DHfmb6mcHISxljiIFaoAX0785gPX5GEdbypAK8ZD6exZh4e4zCSIcpClUQEhdJHvwLNkDmodFNU7Klg9_axOQ205e5Vh8kNYvW7DYH58MgyKzjfDUFlhJZ3JuwVjMmIt_YbMA7qD.png[]
 
 Moving to a new space, our founders wanted to make each and every single Valorian felt
 comfortable. This office is an extension of their internal feeling of coziness, calm, and inspiration. Let's
@@ -24,7 +26,7 @@ in an elevator 36 inches wide and 48 inches deep? Nobody asked for a panic attac
 
 .The three cats (Valor's angels)
 [caption='']
-image::assets/articles/new-year-new-valor-new-you/606da136e4ec3cff5fce5412_01%202.jpg[]
+image::606da136e4ec3cff5fce5412_01%202.jpg[]
 
 While modern companies try to bribe engineers with the latest and greatest furniture,
 Michelin-starred dishes, and treadmills that actually run for the runner, Valor keeps it simple. There's no
@@ -40,7 +42,7 @@ back to work renewed. It's all in the new office!
 
 .Massage room
 [caption='']
-image::assets/articles/new-year-new-valor-new-you/606dbd812f4360551885236f_8.jpg[]
+image::606dbd812f4360551885236f_8.jpg[]
 
 It sounds pretty reasonable that seeing a horizon or at least the ability to see far in front of
 you relaxes eyes and delivers a new portion of dopamine to your brain. We loved seeing tigers, lions, and
@@ -49,7 +51,7 @@ ideas.
 
 .City view from the terrace
 [caption='']
-image::assets/articles/new-year-new-valor-new-you/606da484a9bccc702014f2f0_2.jpg[]
+image::606da484a9bccc702014f2f0_2.jpg[]
 
 Remember those cats we adopted earlier on? They deserve a separate space in our lives and in this
 piece of text. The three of them, warm, loving, and constantly looking for visitors will be glad if you check
@@ -61,7 +63,7 @@ in Valor Software.
 
 .Meeting room
 [caption='']
-image::assets/articles/new-year-new-valor-new-you/606da6be5990f00f0babd77d_3.jpg[]
+image::606da6be5990f00f0babd77d_3.jpg[]
 
 A good thing about our office life is that Valor is always vibrating and evolving. As more people
 join, the rainbow gets new shades and twists. Everyone can contribute with whatever it is they are good at.
@@ -75,7 +77,7 @@ paragraph.
 
 .Holy Annunciation Cathedral
 [caption='']
-image::assets/articles/new-year-new-valor-new-you/6033bcdfd3b25b69734cafd8_KCYGvZ8DleX_oRI2rzok0Yhf5mvKKrCSOCKJ3Y6kwBlJTiTVkF4hCbHgWr2PwVYQGDSUdvUuB7h5E4HbUPm2FT0iRHh29vvLWgweYqWxThJWku258BcaRvCR4vj4jXjcJOtkPV1K.png[]
+image::6033bcdfd3b25b69734cafd8_KCYGvZ8DleX_oRI2rzok0Yhf5mvKKrCSOCKJ3Y6kwBlJTiTVkF4hCbHgWr2PwVYQGDSUdvUuB7h5E4HbUPm2FT0iRHh29vvLWgweYqWxThJWku258BcaRvCR4vj4jXjcJOtkPV1K.png[]
 
 === Plans
 
@@ -85,7 +87,7 @@ have three courses in a row and tables long enough to retain that precious perso
 
 .Temporary canteen and the gorgeous stairs
 [caption='']
-image::assets/articles/new-year-new-valor-new-you/606daab198ab98e55f44292c_4.jpg[]
+image::606daab198ab98e55f44292c_4.jpg[]
 
 Also, we pay special attention to a conference space to make it soundproof, roomy, cozy, and
 good-looking. Wait for it, and you'll see this epic concrete-seasoned location ready for visitors on the
@@ -98,14 +100,14 @@ faces.
 
 .Co-working space
 [caption='']
-image::assets/articles/new-year-new-valor-new-you/606dab2400e8a37778ad44b5_5.jpg[]
+image::606dab2400e8a37778ad44b5_5.jpg[]
 
 What is it that you're missing at your current place? Feel free to share, and it's highly
 possible that Valor Software already offers this for years and years :-)
 
 .Dmitriy Shekhovtsov, Valor's CEO
 [caption='']
-image::assets/articles/new-year-new-valor-new-you/606dac479eb573776f2361a9_6.jpg[]
+image::606dac479eb573776f2361a9_6.jpg[]
 
 Conclusions:
 
@@ -127,6 +129,6 @@ Pieces of advice to organize the place you'll enjoy staying at:
 
 .How would cozy look like
 [caption='']
-image::assets/articles/new-year-new-valor-new-you/606dacf49eb5732c22236489_7.jpg[]
+image::606dacf49eb5732c22236489_7.jpg[]
 
 P.S. Many thanks to https://www.instagram.com/vit.shulga/[Vitaliy Shulga^] who kindly provided us with great pictures of the city views. You're doing an amazing job!

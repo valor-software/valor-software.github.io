@@ -1,3 +1,5 @@
+:imagesdir: ./
+
 Hi! My name is Angelina, and I'm a DevOps Engineer at Valor Software. With the help
 of this article, we'll set up your GCP environment to work in tandem with Terraform. I'll guide you through the
 setup of a basic cluster. For this, I picked the services that I use daily within my DevOps routine, since they are

@@ -1,3 +1,5 @@
+:imagesdir: ./
+
 === *This article is part of a series:*
 
 * Part 1: Context of the Project, User Persona, Search for Participants.
