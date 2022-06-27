@@ -48,6 +48,7 @@
     "@angular/cli": "~12.2.0",
     "@angular/compiler-cli": "^12.2.0",
     "@angular/language-service": "^12.2.0",
+    "@gammastream/scully-plugin-http404": "^1.0.4",
     "@nrwl/cli": "13.1.4",
     "@nrwl/cypress": "13.1.4",
     "@nrwl/eslint-plugin-nx": "13.1.4",
