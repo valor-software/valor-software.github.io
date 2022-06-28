@@ -1,0 +1,18 @@
+<div class="flex-column lg:flex justify-between gap-4">
+  <div  *ngFor="let card of technologiesCards">
+    <div class="bg-grey lg:py-14 lg:min-h-50 py-7 lg:px-14 lg:px-7 flex justify-between w-full flex-col">
+      <div class="md:w-45%">
+        <p
+          class="font-bold text-light_title_col md:text-large block mr-3.5  pl-6 text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+          {{card.title}}</p>
+      </div>
+      <div class="flex flex-wrap justify-center lg:justify-between items-center">
+        <div *ngFor="let technology of card.technologies" class="flex-column justify-between text-center">
+          <img [src]="technology.src" [alt]="technology.title + ' logo'" class="lg:min-w-70% lg:min-h-70 px-4 max-w-2">
+          <p class="leading-normal text-grey_font_col lg:mb-8 my-4"
+            [ngClass]="{'lg:mt-0 lg:mb-0 max-w-90% lg:max-w-80% m-auto tracking-tighter': technology.wrapText}">{{technology.title}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -42,7 +42,8 @@ module.exports = {
       light_green: '#77CE9A',
       green: '#658B80',
       light_blue: '#71A5D2',
-      popover_bg: '#282828'
+      popover_bg: '#282828',
+      medium_grey_bg: "#717171"
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -80,7 +81,9 @@ module.exports = {
         '20': '20px',
         '105': '105px',
         '80': '80px',
-        '250': '250px'
+        '250': '250px',
+        '40': '40px',
+        '16': '16px'
       },
       minWidth: {
         '585': '585px',
@@ -135,7 +138,8 @@ module.exports = {
       },
       borderRadius: {
         '20': '20px',
-        '12': '12px'
+        '12': '12px',
+        '6': '6px'
       },
       spacing: {
         '6.75': '6.75rem'
@@ -154,7 +158,8 @@ module.exports = {
         '90': '90px',
         '50': '50px',
         '130': '130px',
-        '75': '75px'
+        '75': '75px',
+        '104': '104px',
       },
       minHeight: {
         '725': '725px',
@@ -171,7 +176,8 @@ module.exports = {
         '90': '90px',
         '50': '50px',
         '115': '115px',
-        '75': '75px'
+        '75': '75px',
+        '56': '56px'
       },
       zIndex: {
         '1': '1'

@@ -1,0 +1,222 @@
+<section class="first-section landing-section">
+    <div class=" pb-5 flex-column lg:flex justify-center lg:justify-between items-center pt-16 lg:pt-0"
+        style="max-height: 100%;">
+        <div class="w-4/12 m-auto">
+            <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">Terminus
+            </h1>
+            <p class="leading-normal text-grey_font_col text-16 lg:mb-8 mb-14">Terminus is the only account-based
+                engagement
+                platform built to deliver more pipeline and revenue through multi-channel account-based marketing (ABM).
+            </p>
+
+            <p class="leading-normal text-16 text-grey_font_col lg:mb-8 mb-14">
+                With multiple product acquisitions over the years, Terminus has a very interesting mix of complexity and
+                growth that really allowed the Valor Software team to shine. As Terminus has grown, we have been able to
+                come alongside them and help break down organizational silos and spread knowledge.</p>
+
+            <div class="flex-column lg:flex justify-start items-center">
+                <button class="w-full md:w-auto flex lg:mr-6 mb-6">
+                    <a [routerLink]="'/projects'" class="btn-pink w-full flex justify-center items-center">Visit
+                        the site
+                        <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+                </button>
+                <button class="w-full md:w-auto flex lg:mr-6 mb-6">
+                    <a [routerLink]="'/projects'" class="btn-dark-pink w-full flex justify-center items-center">Dribble
+                        <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+                </button>
+
+                <button class="w-full md:w-auto flex lg:mr-6 mb-6">
+                    <a [routerLink]="'/projects'" class="btn-blue w-full flex justify-center items-center">Behance
+                        <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+                </button>
+            </div>
+        </div>
+        <div class="hidden lg:block">
+            <img src="assets/img/bg-img/terminus_page/header_bg.svg" alt="">
+        </div>
+
+        <div class="block lg:hidden m-auto">
+            <img class="m-auto" src="assets/img/bg-img/terminus_page/header_sm_bg.svg" alt="">
+        </div>
+    </div>
+</section>
+
+<section class="landing-section">
+    <h1 class="main-title">Deliverables</h1>
+    <div class="container">
+        <div class="container px-4  ">
+            <h2 class="text-dar_grey_font_col text-left text-24 lg:text-40 mb-14 m-auto -ml-5 lg:-ml-14 w-10/12">
+                The Valor <b class="text-feedback_font_col">team</b> had a chance to <b
+                    class="text-feedback_font_col">contribute</b> to multiple modules of the <b
+                    class="text-feedback_font_col">Terminus</b> platform
+                with
+                <b class="text-feedback_font_col">development</b>
+                and <b class="text-feedback_font_col">modernization</b> activities.
+            </h2>
+            <div class="-ml-5 lg:-ml-10 mt-3 lg:mt-2 green-circle"></div>
+            <div class="w-9/12">
+                <h2 class="text-feedback_font_col text-left  text-24 lg:text-40 font-bold mb-4">
+                    Development and maintenance of the Ad Experiences module</h2>
+                <p class="text-dar_grey_font_col text-left text-14 mb-14">We’re helping to enhance the
+                    capabilities of the module for targeted ad placement that allows users to run ad campaigns across
+                    nearly
+                    70
+                    different networks and over hundreds of thousands of websites. In particular, we implemented a
+                    completely
+                    new logic behind the reporting system that allows deriving exactly the data users need from the data
+                    lake
+                    and transforming it into handy yet detailed reports. Also, we’re extending the functionality of Ad
+                    Experiences and making it even more intuitive and user-friendly.</p>
+            </div>
+            <h2 class="text-feedback_font_col text-left leading-56 text-24 lg:text-40 font-bold mb-7">
+                Technologies:
+            </h2>
+        </div>
+        <technologies-card></technologies-card>
+    </div>
+</section>
+
+
+<section class="landing-section">
+    <challenge-card *ngFor="let challenge of initialChallenges" [challengeCard]="challenge"></challenge-card>
+
+    <div class="container">
+
+        <div class="flex-column lg:flex justify-between gap-4">
+            <div>
+                <div
+                    class="bg-grey lg:py-14 lg:min-h-50 py-7 lg:px-14 lg:px-7 flex justify-between mb-8 w-full flex-col">
+                    <div class="md:w-45%">
+                        <p
+                            class="font-bold text-light_title_col md:text-large block mr-3.5  pl-6 text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+                            Campaign performance</p>
+                    </div>
+                    <div class="flex flex-wrap justify-center lg:justify-between items-center gap-4">
+
+                        <img src="assets/img/bg-img/terminus_page/campaign_performance_1.svg"
+                            alt="campaign_performance_1" class="lg:min-w-70% lg:min-h-70 px-4 max-w-2">
+
+                        <img src="assets/img/bg-img/terminus_page/campaign_performance_2.svg"
+                            alt="campaign_performance_2" class="lg:min-w-70% lg:min-h-70 px-4 max-w-2">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="leading-normal text-grey_font_col lg:mb-8 mb-14 lg:ml-14 lg:w-7/12"> We’ve also added a new option to
+            aggregate data on
+            numerous campaigns at once and view expenses.
+        </p>
+    </div>
+
+
+    <div class="container">
+        <div>
+            <div class="bg-grey lg:py-14 lg:min-h-50 py-7 lg:px-14 lg:px-7 flex justify-between mb-8 w-full flex-col">
+                <div class="md:w-45%">
+                    <p
+                        class="font-bold text-light_title_col md:text-large block mr-3.5  pl-6 text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+                        Overview</p>
+                </div>
+
+                <swiper [config]="swiperConfig" class="pink_swiper">
+                    <ng-template swiperSlide *ngFor="let img of overviewImages">
+
+                        <div class="max-h-full   md:max-w-full mb-6 md:mb-0">
+                            <img [src]="img" alt="campaign_performance_2" class="">
+                        </div>
+
+                    </ng-template>
+                </swiper>
+
+            </div>
+        </div>
+
+        <p class="leading-normal text-grey_font_col lg:mb-8 mb-14 lg:ml-14 lg:w-7/12"> Finally, we’ve created a new
+            homepage for Ad Experiences with a modernized layout and improved usability and added numerous endpoints
+            that describe the work of components
+        </p>
+    </div>
+
+    <div class="container mb-14">
+        <div>
+            <div class="bg-grey lg:py-14 lg:min-h-50 py-7 lg:px-14 lg:px-7 flex justify-between mb-8 w-full flex-col">
+                <div class="md:w-45%">
+                    <p
+                        class="font-bold text-light_title_col md:text-large block mr-3.5  pl-6 text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+                        Report</p>
+                </div>
+
+                <swiper [config]="swiperConfig" class="pink_swiper">
+                    <ng-template swiperSlide *ngFor="let img of reportImages">
+
+                        <div class="max-h-full   md:max-w-full mb-6 md:mb-0">
+                            <img [src]="img" alt="campaign_performance_2" class="">
+                        </div>
+
+                    </ng-template>
+                </swiper>
+
+            </div>
+        </div>
+
+        <div class="bg-green p-4 lg:p-14">
+            <p
+                class="font-bold text-white md:text-large block mr-3.5 mt-7  text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+                Impact</p>
+            <ul class="list-disc leading-normal text-white text-20  lg:mb-8 mb-4 md:w-8/12">
+                <li>More powerful campaigns with newly added functionality and deepened analytics on target audience
+                    engagement</li>
+                <li>Improved targeting of prospects thanks to advanced filters and parameters</li>
+                <li>New homepage and modernized UX and UI contribute to a holistic user experience</li>
+                <li>Test coverage with medium tests for integration.</li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="container mb-14">
+        <div class="-ml-5 lg:-ml-14 mt-3 lg:mt-2 green-circle m"></div>
+        <div class="lg:w-9/12">
+            <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4">
+                Migration to Angular and modernization of the Data Studio and Measurement Studio</h2>
+            <p class="text-dar_grey_font_col text-left text-16  mb-14">We’re helping to enhance the
+                capabilities of the module for targeted ad placement that allows users to run ad campaigns across
+                nearly
+                70
+                different networks and over hundreds of thousands of websites. In particular, we implemented a
+                completely
+                new logic behind the reporting system that allows deriving exactly the data users need from the data
+                lake
+                and transforming it into handy yet detailed reports. Also, we’re extending the functionality of Ad
+                Experiences and making it even more intuitive and user-friendly.</p>
+        </div>
+        <h2 class="text-feedback_font_col text-left leading-56 text-24 lg:text-40 font-bold mb-7">
+            Technologies:
+        </h2>
+
+        <div class="bg-grey lg:py-14 lg:min-h-50 py-7 lg:px-14 lg:px-7 flex justify-between w-full flex-col">
+            <div class="flex flex-wrap justify-center lg:justify-start gap-7 items-center">
+                <div class="flex-column justify-between text-center">
+                    <img src="assets/img/bg-img/terminus_page/angularjs_logo.svg" alt="AngularJs logo"
+                        class="lg:min-w-70% lg:min-h-70  max-w-2">
+                    <p class="leading-normal text-grey_font_col my-4">AngularJs</p>
+                </div>
+                <div class="flex-column justify-between text-center">
+                    <img src="assets/img/bg-img/terminus_page/angular_logo.svg" alt="Angular logo"
+                        class="lg:min-w-70% lg:min-h-70  max-w-2">
+                    <p class="leading-normal text-grey_font_col my-4">Angular</p>
+                </div>
+                <div class="flex-column justify-between text-center">
+                    <img src="assets/img/bg-img/terminus_page/nx_logo.svg" alt="Nx logo"
+                        class="lg:min-w-70% lg:min-h-70  max-w-2">
+                    <p class="leading-normal text-grey_font_col my-4">Nx</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <challenge-card [challengeCard]="challengeSubSection"></challenge-card>
+    </div>
+</section>
