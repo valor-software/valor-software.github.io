@@ -1,4 +1,4 @@
-:imagesdir: ../../apps/valor-software-site/src/assets/img/instruction/
+:imagesdir: ../apps/valor-software-site/src/assets/img/instruction/
 
 = Add new article
 
