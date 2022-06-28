@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 One of SPA's (single page application) issues is poor indexing in search engines and
 search optimization in general. Specifically, because Сlient-side rendering typical for JavaScript SPAs isn't

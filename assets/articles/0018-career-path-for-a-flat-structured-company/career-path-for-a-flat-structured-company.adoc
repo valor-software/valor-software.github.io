@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 A flat-structured company we're going to talk about is us, your humble servant, Valor
 Software. In thisarticle, we want to share with you our direct experience in building a continuous growth system based on a toolcalled Career Path and implementing it in both our company and Renaizant - the app we developed.

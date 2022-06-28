@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 A long time ago in a galaxy far, far away, Valor Software once worked in an
 apartment-like office, like any great startup before it. It's the Slavic rendition of working from a garage. As

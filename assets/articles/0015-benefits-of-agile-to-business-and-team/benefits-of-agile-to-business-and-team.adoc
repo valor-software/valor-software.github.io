@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 When you deal with an outsourcing company for building a product, you are expecting
 quality service, a clear understanding of what's happening, and regular status updates. Of course, these criteria are vital for you because you pay for the work. Make sure that your initial agreement includes metrics of how to track the workflow process and results.

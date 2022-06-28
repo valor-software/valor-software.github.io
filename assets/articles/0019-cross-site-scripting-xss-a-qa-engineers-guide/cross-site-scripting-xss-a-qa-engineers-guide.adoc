@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 I decided to write this article because despite XSS being a common and older vulnerability, many QA and developers know very little about it, what it really is, how to test for or fix it. Probably you've heard of XSS before, but don't really know much about it. You may be wondering what Cross-Site
 Scripting is, why you should test for it, or why it's important. Don't worry, we will cover everything you need to know in this article. By the end, you will have a general understanding of XSS, how to check for it, and how to

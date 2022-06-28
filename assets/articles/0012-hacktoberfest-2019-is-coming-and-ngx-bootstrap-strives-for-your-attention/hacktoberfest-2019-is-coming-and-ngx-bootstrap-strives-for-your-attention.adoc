@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 The latitudes and longitudes won't get on our way - open source is boundless and
 big-hearted. Thanks to Hacktoberfest, we can unite, buddy up, and even get treated for loving open source.

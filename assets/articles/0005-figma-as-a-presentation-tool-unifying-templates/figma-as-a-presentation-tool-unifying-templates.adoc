@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 The presentation is one of the most popular means of visually conveying information to
 an audience. Presentations are used everywhere by various specialists in various fields, because of the ease of

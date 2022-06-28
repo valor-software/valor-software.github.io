@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 Firebase has released the long awaited Preview channel functionality, which allows
 for the testing of updates. All Firebase (not Firestore!) users can benefit from this hosting feature. And you may

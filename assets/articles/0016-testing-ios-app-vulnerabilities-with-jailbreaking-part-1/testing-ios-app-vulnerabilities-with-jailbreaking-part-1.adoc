@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 While our main expertise is Angular &amp Web development, we create mobile applications
 as well. Today we want to talk about testing vulnerabilities in iOS apps - penetration testing (or simply

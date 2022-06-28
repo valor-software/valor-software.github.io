@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 NgRx needs practically no introduction in the current state of Angular
 applications. It allows you to manage your app’s state easily and make your UI react to the changes seamlessly. This

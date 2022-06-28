@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 Let's start with a short background overview of how this task came on my plate. Why we could not effectively
 highlight paragraphs, sentences, and words. And what kind of a text editor the project required.

@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 You have your project, your idea, your metaphorical baby that you want to create. You're
 ready to set out on the journey of creating it, and you start looking for a team to join you in bringing this idea

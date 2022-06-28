@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 We love tools that automate our work - we can do more with fewer efforts, season it with
 some open-source love and, oh boy, we're gonna use it for sure. However, open-source software is a

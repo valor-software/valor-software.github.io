@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 It's challenging to start a new business with limited time and energy at your disposal.
 While having energetic staff members and solid business objectives are key in securing early milestones, mastering

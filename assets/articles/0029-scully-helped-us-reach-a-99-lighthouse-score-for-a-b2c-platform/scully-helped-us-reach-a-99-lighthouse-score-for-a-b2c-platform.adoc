@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 You may have heard of https://jamstack.org/what-is-jamstack/[JAMstack^]. It recently entered top charts
 of technology choice for the web because of its ease of use, performance, and flexibility. Scully, a static site

@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 Almost every movie place in our city offers an app to search for movies and buy tickets. So, you need to use several apps in parallel, you lose time comparing movie sessions and prices to make
 the right choice. My task was to fix this and make this movie escape easy and convenient. I thought of one and only app that would display all the movie places and movies available. It would also allow for picking the movie from all the possible options in the city and purchasing them online.

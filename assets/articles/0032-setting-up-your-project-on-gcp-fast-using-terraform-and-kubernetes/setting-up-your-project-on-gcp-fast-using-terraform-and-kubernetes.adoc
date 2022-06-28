@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 Hi! My name is Angelina, and I'm a DevOps Engineer at Valor Software. With the help
 of this article, we'll set up your GCP environment to work in tandem with Terraform. I'll guide you through the

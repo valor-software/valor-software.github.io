@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 Today, I’m going to tell you all about setting up and using https://artillery.io/[Artillery.io^] on your projects. We have a lot of popular testing tools like JMeter, Gatling, LoadNinja, etc. So you might be wondering why I’ve chosen Artillery. Well, I’m going to show its advantages and share handy usage tips later in the article.
 

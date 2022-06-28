@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 I design sites in Webflow every day, and I enjoy it. Still, sometimes, I stumble upon
 interesting corner cases that Webflow can't handle by itself yet, so I have to hand code a little. And yes, I'm a

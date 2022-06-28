@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 Did you know that only one in 10 startups succeed? https://s3.amazonaws.com/startupcompass-public/StartupGenomeReport2_Why_Startups_Fail_v2.pdf[The research by UC Berkeley & Stanford and other contributors^] says that over 90% of startups fail within their first
 three years. Those who succeed, still often come across near-death experience.

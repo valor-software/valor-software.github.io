@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 ==== *Valor Software Proudly Announces Partnership with Zack Jackson, the Inventor and Co-Creator of Module Federation (MF), Aiming to Make Code Sharing More Straightforward and Independent by Popularizing, Enhancing, and Simplifying Implementation of Module Federation&nbsp;for Various Technologies Including Angular.*
 

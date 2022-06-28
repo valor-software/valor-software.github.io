@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 The world of testing is moving further and deeper towards automated tests. Naturally,
 more and more new tools and approaches are emerging. To keep up with innovation and at the same time understand

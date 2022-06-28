@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 Valor Software is not only a software development company but also a great contributor to
 the Angular development community: being creators of https://valor-software.com/ngx-bootstrap[ngx-bootstrap^], we

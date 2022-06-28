@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 Whenever we talk about web development and particularly web-application security, we
 can't walk past these two terms - authentication and authorization. In this article, I want to teach you how to

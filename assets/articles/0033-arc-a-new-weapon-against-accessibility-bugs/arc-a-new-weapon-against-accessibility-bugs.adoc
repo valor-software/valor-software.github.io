@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 Hello, my name is Maxym, I am QA Automation Engineer at Valor Software, and today I'll
 guide you through ARC - a platform for accessibility testing. I'll help you with setting it up and with creating a couple of scenarios. Also, I'll make a short comparison between the

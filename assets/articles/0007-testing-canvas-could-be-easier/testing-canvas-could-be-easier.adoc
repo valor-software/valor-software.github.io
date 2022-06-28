@@ -1,4 +1,4 @@
-:imagesdir: ./
+
 
 At Valor Software, we, with the help of generous contributors, developed a set of open
 source projects, that allow developers to build apps quicker and more qualitative. This should be helpful for
