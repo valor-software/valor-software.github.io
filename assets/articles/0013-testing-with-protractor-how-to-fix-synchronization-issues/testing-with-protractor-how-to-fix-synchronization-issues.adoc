@@ -1,3 +1,5 @@
+
+
 We love tools that automate our work - we can do more with fewer efforts, season it with
 some open-source love and, oh boy, we're gonna use it for sure. However, open-source software is a
 community-driven approach, there may be hardly any information about it on the internet or no insights at all. If
@@ -124,7 +126,7 @@ To better understand which parts of an application you may need to rewrite, see 
 
 .Examples of detected code parts
 [caption='']
-image::assets/articles/testing-with-protractor-how-to-fix-synchronization-issues/5dbacaa2bbcbc1610e7123fa_Examples%20of%20detected%20code%20parts.png[]
+image::5dbacaa2bbcbc1610e7123fa_Examples%20of%20detected%20code%20parts.png[]
 
 == Conclusion
 Needless to say that using open-source tools makes our lives easier. Unfortunately, when working with a new

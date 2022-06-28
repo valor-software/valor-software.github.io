@@ -1,3 +1,5 @@
+
+
 A couple of months ago, our customer approached me with an interesting task that
 appeared not complicated at first glance. I needed to create *a simple web app with a Grammarly-like view
 based on a WYSIWYG HTML editor*. This app should count different text units like paragraphs, sentences,

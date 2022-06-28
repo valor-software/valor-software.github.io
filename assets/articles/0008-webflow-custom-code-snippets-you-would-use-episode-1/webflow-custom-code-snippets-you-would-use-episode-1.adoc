@@ -1,3 +1,5 @@
+
+
 I design sites in Webflow every day, and I enjoy it. Still, sometimes, I stumble upon
 interesting corner cases that Webflow can't handle by itself yet, so I have to hand code a little. And yes, I'm a
 designer who codes from time to time. Working as a part of the outsource development company brings many
@@ -14,12 +16,12 @@ browsers like Safari browser on both Mac OS X and iOS show standard ligatures by
 
 .The most popular example of font ligatures is a combination of the following letters: fi, fl, ff, ffi, and ffl.
 [caption='']
-image::assets/articles/webflow-custom-code-snippets-you-would-use-episode-1/5cd2bfebbfa1c94d95309544_ligature1.jpg[Removing font Ligature]
+image::5cd2bfebbfa1c94d95309544_ligature1.jpg[Removing font Ligature]
 
 If you have expanded or collapsed tracking (CSS: Letter-spacing) in the font you use, you will
 see that some letters are defined as one symbol:
 
-image::assets/articles/webflow-custom-code-snippets-you-would-use-episode-1/5cd2c0297065d90ea7ec6a14_ligature2.jpg[Removing font Ligature]
+image::5cd2c0297065d90ea7ec6a14_ligature2.jpg[Removing font Ligature]
 
 I bet you'll want to disable Ligatures - use the following custom CSS code for the entire
 website or just for a specific selector by a class name:
@@ -35,7 +37,7 @@ website or just for a specific selector by a class name:
 
 .Check https://font-ligatures.webflow.io/[the live web example^] I've made in Webflow to see the difference.
 [caption='']
-image::assets/articles/webflow-custom-code-snippets-you-would-use-episode-1/5cd2c3d2f8fc0b1bce9f30c9_ligature3.gif[Font Ligature Example]
+image::5cd2c3d2f8fc0b1bce9f30c9_ligature3.gif[Font Ligature Example]
 
 Learn more about http://blog.fonts.com/2016/06/30/to-ligature-or-not-to-ligature/[ligatures issues^] described by Jason Tselentis, Associate Professor at Winthrop University's Department of Design.
 
@@ -47,7 +49,7 @@ To make all text elements on a page readable and legible without zooming, disabl
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-image::assets/articles/webflow-custom-code-snippets-you-would-use-episode-1/5cd2c282f8fc0b6f9c9f2c25_mobile-scaling.jpg[Preventing scaling on mobile]
+image::5cd2c282f8fc0b6f9c9f2c25_mobile-scaling.jpg[Preventing scaling on mobile]
 
 Want to go deeper and prevent scale effect only on input click? Check https://www.dynamo6.com/how-to-prevent-unwanted-zooming-on-mobile-devices/[article on dynamo6^] as well.
 
@@ -60,7 +62,7 @@ re-rendered and re-adjust since the dimensions have changed. Which is bad for us
 This issue was mentioned so many times in different articles and forums, but I would like to mention
 https://css-tricks.com/the-trick-to-viewport-units-on-mobile/[one^] where I take the solution from. Here's the magic you'll create:
 
-image::assets/articles/webflow-custom-code-snippets-you-would-use-episode-1/5cd2c30f578360a8346d8578_100vh.jpg[100VH on mobile]
+image::5cd2c30f578360a8346d8578_100vh.jpg[100VH on mobile]
 
 As you can see, social icons get cropped at the bottom, but we want to see them without
 scrolling. Check out how it looks https://100vh.webflow.io/[on mobile^].
@@ -138,14 +140,14 @@ To add Open Graph Image, you need to:
 * Create an image with recommended dimensions - at least 1200px by 630px and with 1.91:1 aspect ratio.
 * Upload it to Webflow.
 
-image::assets/articles/webflow-custom-code-snippets-you-would-use-episode-1/5cd2c6d1316b12b03ad0c4a7_open-graph-1.jpg[Webflow Open Graph Image]
+image::5cd2c6d1316b12b03ad0c4a7_open-graph-1.jpg[Webflow Open Graph Image]
 
 * Open it in a new tab as shown on the image above.
 * Copy its URL from a browser's address bar.
 
 .The Open Graph preview.
 [caption='']
-image::assets/articles/webflow-custom-code-snippets-you-would-use-episode-1/5cd2c7037065d98c9cec7dd1_open-graph-2.jpg[Webflow Open Graph Image]
+image::5cd2c7037065d98c9cec7dd1_open-graph-2.jpg[Webflow Open Graph Image]
 
 * Paste the link to the Open Graph Image URL field for the required page as shown on the image.
 
@@ -186,7 +188,7 @@ button is pressed and then runs the same action as the *.modal__closeclass*:
 
 .Try it live on https://99ui-8.webflow.io/[this example^].
 [caption='']
-image::assets/articles/webflow-custom-code-snippets-you-would-use-episode-1/5cd44050d94ad4128974fd0c_escbtn-sm.gif[example]
+image::5cd44050d94ad4128974fd0c_escbtn-sm.gif[example]
 
 Btw, note that *.keypress()* doesn't work on MacBook Pro with touch bar, so use *.keydown()* instead.
 
@@ -203,7 +205,7 @@ for seeing what you select. Use this script to customize that:
      background: #173686; /* Gecko Browsers */
     }
 
-image::assets/articles/webflow-custom-code-snippets-you-would-use-episode-1/5cd2c8ba578360ef956da542_custom-selection.jpg[Customizing text selection color]
+image::5cd2c8ba578360ef956da542_custom-selection.jpg[Customizing text selection color]
 
 That's it for the first episode. Follow us on the Web or subscribe to get more code
 snippets and tricks! Feel free to share custom scripts you use in the comment section below, or let us know if

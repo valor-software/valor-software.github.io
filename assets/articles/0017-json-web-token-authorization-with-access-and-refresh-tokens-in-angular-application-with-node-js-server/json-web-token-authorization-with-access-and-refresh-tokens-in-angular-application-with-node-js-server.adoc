@@ -1,3 +1,5 @@
+
+
 Whenever we talk about web development and particularly web-application security, we
 can't walk past these two terms - authentication and authorization. In this article, I want to teach you how to
 implement JSON Web Token (JWT) authorization with access and refresh tokens in your Angular application. Since
@@ -24,7 +26,7 @@ Let's look at the scheme to get a general understanding of how authorization wit
 
 ._Authorization with access and refresh tokens._
 [caption=""]
-image::assets/articles/json-web-token-authorization-with-access-and-refresh-tokens-in-angular-application-with-node-js-server/5e456e6a9522e72386a3d109_D-zJVfpIrJ-Ji17cz4XsxFhXbJ7M6u0l9t-0fnzVVEN_O9HqCLyb-kzVV9PD3VQepkw2G6MmVTIidM6kTZ_-qbQVrLppqWNrV0pue1FyXWgkgwdE1sjVb6ZFp8WM_hFEBmnwSc_5.png[]
+image::5e456e6a9522e72386a3d109_D-zJVfpIrJ-Ji17cz4XsxFhXbJ7M6u0l9t-0fnzVVEN_O9HqCLyb-kzVV9PD3VQepkw2G6MmVTIidM6kTZ_-qbQVrLppqWNrV0pue1FyXWgkgwdE1sjVb6ZFp8WM_hFEBmnwSc_5.png[]
 
 As you can see, the user receives both access and refresh tokens from the server. The access token is used each time we want to get protected data from our server, but usually developers send it with every request. You can do this using the https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers[HTTP Authorization request
 header^].
@@ -56,7 +58,7 @@ experiment. It consists of server and client parts. The client part is small and
 just to demonstrate the authorization for an Angular 8 application - a home page, a profile page, and a login
 page. The profile page is available only if users are logged in.
 
-image::assets/articles/json-web-token-authorization-with-access-and-refresh-tokens-in-angular-application-with-node-js-server/5e456e6e2fec8556e02f3341_T30FMx7gF5n-sSnAg81DpPmcLju5wKNKl5U0YeDyuuaAG4UZDqI9iL7VaM5kZuQ6WUSxzzgDLibThgVfo3fg7qZvbXBsRstL6L9epE3LUIE1Q-CwZPHPWGxE9jONVo_VivhLKd__.gif[]
+image::5e456e6e2fec8556e02f3341_T30FMx7gF5n-sSnAg81DpPmcLju5wKNKl5U0YeDyuuaAG4UZDqI9iL7VaM5kZuQ6WUSxzzgDLibThgVfo3fg7qZvbXBsRstL6L9epE3LUIE1Q-CwZPHPWGxE9jONVo_VivhLKd__.gif[]
 
 Here is a list of technologies I've used for the application:
 
@@ -274,7 +276,7 @@ Path: https://github.com/IraErshova/angular-authorization/blob/step-2/client/src
 
 Great! Let’s log in and check what’s in the local storage. The result should look like this:
 
-image::assets/articles/json-web-token-authorization-with-access-and-refresh-tokens-in-angular-application-with-node-js-server/5e456e6a9fe97358c72813ef_7GCuS1cbD_HahA8YFMkdU9pSjr-FUebYprhgkReozezZK40LXqzasa-MPAio_CUxUWnLi6VkfdoM6BZVHDVViAdvcdVn5aNAq31H_b-BYbwwyDseMAr7MDRHiXImdle3NfPFwht5.png[]
+image::5e456e6a9fe97358c72813ef_7GCuS1cbD_HahA8YFMkdU9pSjr-FUebYprhgkReozezZK40LXqzasa-MPAio_CUxUWnLi6VkfdoM6BZVHDVViAdvcdVn5aNAq31H_b-BYbwwyDseMAr7MDRHiXImdle3NfPFwht5.png[]
 
 Also, don't forget to remove tokens from the local storage on logout.
 
@@ -319,7 +321,7 @@ Awesome! Let's check our new functionality - log in and go to the profile page. 
 tab, you can see a request for a job list. If you click on it, you'll see more information about the request.
 If everything is correct, you'll see our Authorization header in the Headers tab.
 
-image::assets/articles/json-web-token-authorization-with-access-and-refresh-tokens-in-angular-application-with-node-js-server/5e456e6af2cbe27e2f88d6f1_mYVaqA9S2g77V5DwY2sja-yotNBM2pJDALNDYSVigOqZYnt7sNHxd8B2eelr1SgU1BBVATuX_65zyAQ4suSOmxnpvxedaGtUCFFmkGgfr8wVHcUQ1R3qzTSdAnpJ_tjynPuL7C08.png[]
+image::5e456e6af2cbe27e2f88d6f1_mYVaqA9S2g77V5DwY2sja-yotNBM2pJDALNDYSVigOqZYnt7sNHxd8B2eelr1SgU1BBVATuX_65zyAQ4suSOmxnpvxedaGtUCFFmkGgfr8wVHcUQ1R3qzTSdAnpJ_tjynPuL7C08.png[]
 
 The next step is to implement a token check to verify access to the server data.
 

@@ -1,3 +1,5 @@
+
+
 We’re happy to announce that ngx-bootstrap v7.0.0 is officially released! The Valor
 Software team has been working hard to bring you a truly stable and feature-packed release, and now we’re thrilled
 to share the major updates and new functionality.

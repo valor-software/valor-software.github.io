@@ -1,3 +1,5 @@
+
+
 Did you know that only one in 10 startups succeed? https://s3.amazonaws.com/startupcompass-public/StartupGenomeReport2_Why_Startups_Fail_v2.pdf[The research by UC Berkeley & Stanford and other contributors^] says that over 90% of startups fail within their first
 three years. Those who succeed, still often come across near-death experience.
 
@@ -19,7 +21,7 @@ higher in complex and complicated projects than in chaos.
 
 .https://en.wikipedia.org/wiki/Cynefin_framework[_The Cynefin framework_^] _provides a 'sense of place' from which to analyze which project management methodology should work better for your project_
 [caption='']
-image::assets/articles/the-4-biggest-lessons-we-learned-while-building-a-startup-product-as-an-outsource-company/5d70ec55c5dc92ececbab582_YDoHhsL8jJs4yJ183udqYIxYeVFlyMtLgo9KHP5w3wZMMZuGuEvf9yy7Kqkoj_Sf68H3G3DYoqJ3Xe-d49LBv6I-t1ydWpxUPXlq4BxY2iuIqcFMPAsJ6Ih-VjJLwDKoBc5GPkAw.png[]
+image::5d70ec55c5dc92ececbab582_YDoHhsL8jJs4yJ183udqYIxYeVFlyMtLgo9KHP5w3wZMMZuGuEvf9yy7Kqkoj_Sf68H3G3DYoqJ3Xe-d49LBv6I-t1ydWpxUPXlq4BxY2iuIqcFMPAsJ6Ih-VjJLwDKoBc5GPkAw.png[]
 
 We want to talk about four main lessons we learned which will help you drive your project
 from chaos to complicated and complex, and therefore, manage it.
@@ -44,7 +46,7 @@ Product Backlog management can be decomposed into the following activities:
 
 ._Well, so many tasks - this seems to be a full-time job!_
 [caption='']
-image::assets/articles/the-4-biggest-lessons-we-learned-while-building-a-startup-product-as-an-outsource-company/5d70ec55f504968a773a9d1c_wQV3zvuCMP-QZ72OuYpN6HM4TibMNwxnCiF2JRr9n8IBEe_WqxSdHspCs3MWKyqH8-X4QG4r2hNa3ZyZIBoR75uJDQUdiPCw9lMlvHDpKBrlXRqHDb4znUZJGIPzDO81CsL25ARE.png[]
+image::5d70ec55f504968a773a9d1c_wQV3zvuCMP-QZ72OuYpN6HM4TibMNwxnCiF2JRr9n8IBEe_WqxSdHspCs3MWKyqH8-X4QG4r2hNa3ZyZIBoR75uJDQUdiPCw9lMlvHDpKBrlXRqHDb4znUZJGIPzDO81CsL25ARE.png[]
 
 Let's imagine there isn't a single person responsible for these activities. Is all the
 information circulating between all the Product-related people? Aren't there delays in communicating essential
@@ -158,7 +160,7 @@ the Product overstuffed on the discovery stage:
 
 ._Lines of code written by stage_
 [caption='']
-image::assets/articles/the-4-biggest-lessons-we-learned-while-building-a-startup-product-as-an-outsource-company/5d70ec55dc2d3b392dd943f4_pJ2v8MMK8OTVPX5BjMkjOtI2BFZWlS5CvR30cNW9tkinLTnJ_0fIBsRa-QSryfAylOCbd2O80s7CbwYSpPzmqyq5OmUpTbc_NttCYX_Q7zIaCarXadRAtMF5zKadxr5WTOGJ6rl8.png[]
+image::5d70ec55dc2d3b392dd943f4_pJ2v8MMK8OTVPX5BjMkjOtI2BFZWlS5CvR30cNW9tkinLTnJ_0fIBsRa-QSryfAylOCbd2O80s7CbwYSpPzmqyq5OmUpTbc_NttCYX_Q7zIaCarXadRAtMF5zKadxr5WTOGJ6rl8.png[]
 
 This leads us to another Agile pillar - incremental delivery. It makes sense to build and
 ship an MVP - Minimum Viable Product - as soon as possible and expand the product feature by feature for the

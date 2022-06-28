@@ -13,11 +13,11 @@ Here is the problem: both Sketch and Figma tools have vertical alignment setting
 text frame. If you have a text frame with a default line height, you won't notice the issue. You will bump into it
 when you set a line height, which is essential when you work with text styles.
 
-image::assets/articles/figma-vs-sketch-text-alignment-comparison/5c4edc047c1ca4b81406e86c_C5WfyuShFIOmXjh1p4zTfprlg2s_NuAOx2RAxqikxdR6f1QkbBif1bgs-s25qxp_0rvFIZt5klAiYhTQDcsK4MLU3NQv5fxVunwU_29YGib5BR-7qOBimSaNv5Vx3GbApt6Ntu8H.png[The problem #1: both Sketch and Figma tools have vertical alignment settings for a text frame.]
+image::5c4edc047c1ca4b81406e86c_C5WfyuShFIOmXjh1p4zTfprlg2s_NuAOx2RAxqikxdR6f1QkbBif1bgs-s25qxp_0rvFIZt5klAiYhTQDcsK4MLU3NQv5fxVunwU_29YGib5BR-7qOBimSaNv5Vx3GbApt6Ntu8H.png[The problem #1: both Sketch and Figma tools have vertical alignment settings for a text frame.]
 
 Let's see what happens with the text frame when you set a line height.
 
-image::assets/articles/figma-vs-sketch-text-alignment-comparison/5c4edc04348539202fcb8066_4bueN9KXUju5VRs-R_Rl8qwMUhcb3cImyAnxTlyaCAneY4tKCu394R2X8u3zLO3muwCyD8xR8NiqZ1FPcJy4ME677KsDfik8kuiuo3HD4ceFaPG_RyGNLb8cpaCozX7OA6H5brDl.png[What happens to the text frame when you set the line height]
+image::5c4edc04348539202fcb8066_4bueN9KXUju5VRs-R_Rl8qwMUhcb3cImyAnxTlyaCAneY4tKCu394R2X8u3zLO3muwCyD8xR8NiqZ1FPcJy4ME677KsDfik8kuiuo3HD4ceFaPG_RyGNLb8cpaCozX7OA6H5brDl.png[What happens to the text frame when you set the line height]
 
 As you can notice, the Figma text frame behaves differently from Sketch and Web. The typeface is
 stuck to the top of the text frame. Meanwhile, the Sketch typeface is aligned by the middle of the text frame,
@@ -26,12 +26,12 @@ which seems to be correct because the way it behaves on the Web is the same.
 As a solution, you can
 manually align the typeface in the middle. It may seem you are done.
 
-image::assets/articles/figma-vs-sketch-text-alignment-comparison/5c4edc047c1ca46dc006e86d_ET_6LcJOj2gMhxb6Yyo6thcpHOiO9aRA3f_QxczPXEMFAB88v1gwTahl9BBddEuashKBZhy_-cicics4k4oZKUMV2Nz4_bADqOzjsqE9_6WwMOromTtKtk_yW57M2gQh86L9fsaG.png[The Figma text frame behaves differently from Sketch and Webflow]
+image::5c4edc047c1ca46dc006e86d_ET_6LcJOj2gMhxb6Yyo6thcpHOiO9aRA3f_QxczPXEMFAB88v1gwTahl9BBddEuashKBZhy_-cicics4k4oZKUMV2Nz4_bADqOzjsqE9_6WwMOromTtKtk_yW57M2gQh86L9fsaG.png[The Figma text frame behaves differently from Sketch and Webflow]
 
 However, let's have a look at the following example and see how it affects you while you're
 working on a component. Just a reminder, you can't change element positioning inside an instance in Figma.
 
-image::assets/articles/figma-vs-sketch-text-alignment-comparison/5c4edc04dfbd6ca7a8277245_fVGdQ2Ujp3zEIyuarEBAjTsXuIdgsu8TV3d-BWHDiq8gQyynOMaNa0GJicnKmrrFWcCLJCAUGg8yjR4yDjhKDOVLZhQwJK29yiuwFX8ijPCkxrlpi6OxVfEtklltfamA2LWXtMSd.png[The following example how it affects you while you are working with a component.]
+image::5c4edc04dfbd6ca7a8277245_fVGdQ2Ujp3zEIyuarEBAjTsXuIdgsu8TV3d-BWHDiq8gQyynOMaNa0GJicnKmrrFWcCLJCAUGg8yjR4yDjhKDOVLZhQwJK29yiuwFX8ijPCkxrlpi6OxVfEtklltfamA2LWXtMSd.png[The following example how it affects you while you are working with a component.]
 
 In the example, we have the master component on the left side where we applied the solution. So it looks like it works correctly, but when you start working with an instance, and you have more than one line of text, you will face this issue.
 
@@ -45,7 +45,7 @@ the height first, and only then you will be able to play around with the alignme
 know that you've changed the height of the text frame so now you can customize the alignment inside your text
 frame with fixed dimensions.
 
-image::assets/articles/figma-vs-sketch-text-alignment-comparison/5c4edc04e346b768bfb24eec_tHswHVEs9uvxlA7YEmKemsf53RDPf4bLcvE2ora2pec9pr3COaZJEaK8HBWm3iLWuUIIVl1A0jJZ3i_3jHOyMfifiKQqt8Nf-CmqjEsCPFwSVAdaXrmgw60etKJ4qjy6MFDhOTUY.png[Sketch text-frame]
+image::5c4edc04e346b768bfb24eec_tHswHVEs9uvxlA7YEmKemsf53RDPf4bLcvE2ora2pec9pr3COaZJEaK8HBWm3iLWuUIIVl1A0jJZ3i_3jHOyMfifiKQqt8Nf-CmqjEsCPFwSVAdaXrmgw60etKJ4qjy6MFDhOTUY.png[Sketch text-frame]
 
 So, if we look at how a Sketch text frame behaves and how it perfectly maps to the Web after
 markup, it's not clear to me, and I'm sure for other experts, why a Figma's text frame works differently. It
@@ -59,7 +59,7 @@ but makes me a little annoyed. To select a text frame you can't just click on th
 have to target the typeface inside. As a workaround, you can make a small selection inside the frame but,
 anyway, to move the text frame you have to pull the typeface.
 
-image::assets/articles/figma-vs-sketch-text-alignment-comparison/5c4edc04dfbd6c9cd1277246_yTBfpVSA4SncK_CeOQhA_nQc27o88-Bv9i8_cHUb6ExzOY4ofDALulU6JjSMstB7XTuxMWttxcN5iQ_rKB-PXAfBc41EpB-YwQuqnIgE5XalzoLVoQ4JJcHQNwoHN63HX7V_M_gp.png[You can't just click on the entire text-frame area, you have to target the typeface inside.]
+image::5c4edc04dfbd6c9cd1277246_yTBfpVSA4SncK_CeOQhA_nQc27o88-Bv9i8_cHUb6ExzOY4ofDALulU6JjSMstB7XTuxMWttxcN5iQ_rKB-PXAfBc41EpB-YwQuqnIgE5XalzoLVoQ4JJcHQNwoHN63HX7V_M_gp.png[You can't just click on the entire text-frame area, you have to target the typeface inside.]
 
 ==== Conclusion: Sketch or Figma
 
