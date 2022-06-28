@@ -1,9 +1,9 @@
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
-import { IPortfolio, GetPortfolioService } from "@valor-software/portfolio";
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { DomSanitizer } from '@angular/platform-browser';
+import { IPortfolio, GetPortfolioService } from "@valor-software/common-docs";
 import {checkHTMLExtension, titleRefactoring} from "@valor-software/common-docs";
 
 @Component({
@@ -86,8 +86,8 @@ export class ProjectComponent implements OnDestroy{
         });
     }
 
-    route(link: string) {
-        this.router.navigate(['projects', titleRefactoring(link)]);
+    getRouteLink(link: string): string {
+        return titleRefactoring(link);
     }
 
     getRespSrc(link: string): string {

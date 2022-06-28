@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IPortfolio } from "./portfolio.interface";
-import { PORTFOLIO_LIST } from "./portfolioList.token";
-import {titleRefactoring, checkHTMLExtension} from "./titleRefactoringUtil";
+import { IPortfolio } from "../models/portfolio.interface";
+import { PORTFOLIO_LIST } from "../tokens/portfolioList.token";
+import {titleRefactoring, checkHTMLExtension} from "../utils/titleRefactoringUtil";
 
 
 @Injectable({providedIn: 'platform'})

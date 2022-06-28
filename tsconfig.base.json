@@ -42,9 +42,6 @@
       "@valor-software/home-page": [
         "libs/route-pages/home-page/src/index.ts"
       ],
-      "@valor-software/portfolio": [
-        "libs/portfolio/src/index.ts"
-      ],
       "@valor-software/services-page": [
         "libs/route-pages/services-page/src/index.ts"
       ]

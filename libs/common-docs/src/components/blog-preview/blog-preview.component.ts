@@ -3,7 +3,7 @@ import { GetArticlesService } from "../../services/getArticles.service";
 import { IArticle } from "../../models/article.interface";
 import { forkJoin, Subscription } from "rxjs";
 import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
-import {Router} from "@angular/router";
+import {titleRefactoring} from "../../utils/titleRefactoringUtil";
 SwiperCore.use([Pagination]);
 
 @Component({
@@ -37,7 +37,6 @@ export class BlogPreviewComponent implements OnDestroy, OnInit{
 
     constructor(
         private getArticles: GetArticlesService,
-        private router: Router
     ) {}
 
     ngOnInit() {
@@ -58,12 +57,7 @@ export class BlogPreviewComponent implements OnDestroy, OnInit{
         this.$articles?.unsubscribe();
     }
 
-    route(title: string) {
-        if (!title) {
-            return;
-        }
-
-        const link = this.getArticles.getRefactoredTitle(title);
-        this.router.navigate(['articles', link]);
+    getRouteLink(link: string): string {
+        return titleRefactoring(link);
     }
 }
