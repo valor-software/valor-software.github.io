@@ -1,4 +1,4 @@
-import {Component, ViewChild, ChangeDetectorRef, HostListener} from '@angular/core';
+import {Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NpmStatisticService } from "./getNpmStatistic.service";
 import SwiperCore, { Pagination, Mousewheel, SwiperOptions  } from "swiper";
