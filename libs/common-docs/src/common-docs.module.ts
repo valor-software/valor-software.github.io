@@ -23,6 +23,7 @@ import { ArticlesRouteService } from './services/articlesRoute.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { GetPortfolioService } from "@valor-software/portfolio";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
+import { TechnologiesComponent } from './components/technologies/technologies.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -55,7 +56,8 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
     ShowHideDirective,
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
-    CustomSlicePipe
+    CustomSlicePipe,
+    TechnologiesComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -68,7 +70,8 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
     ShowHideDirective,
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
-    CustomSlicePipe
+    CustomSlicePipe,
+    TechnologiesComponent
   ],
   providers: [ModalService, SendEmailService, ArticlesRouteService, GetArticlesService, GetPortfolioService,
     {

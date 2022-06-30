@@ -48,8 +48,8 @@
 
 <section class="landing-section">
   <h1 class="main-title">Background</h1>
-  <div class="bg-gray-100  lg:flex lg:justify-center">
-    <div class="lg:mx-20 lg:flex">
+  <div class="container">
+    <div class="lg:flex lg:justify-center">
       <div class="lg:flex justify-center align-center hidden lg:block flex-1">
         <img class="w-2/3 xl:w-1/2" src="assets/img/bg-img/ashes_page/ashes_logo.svg" alt="" />
       </div>
@@ -87,8 +87,8 @@
 
 <section class="landing-section">
   <h1 class="main-title">Challenge</h1>
-  <div class="bg-gray-100  lg:flex lg:justify-center">
-    <div class="lg:mx-20 lg:flex">
+  <div class="container">
+    <div class="lg:flex lg:justify-center">
       <div class="px-6 lg:w-2/3">
         <p class="mt-4 font-workSans text-grey_font_col">
           <span class="block mb-4">
@@ -115,5 +115,190 @@
       </div>
     </div>
   </div>
+</section>
 
+<section class="landing-section">
+  <h1 class="main-title">Deliverables</h1>
+  <div class="container">
+    <div class="container px-4  ">
+      <h2 class="text-dar_grey_font_col text-left text-24 lg:text-40 mb-14 w-10/12">
+        The Valor team has
+        <b class="text-feedback_font_col">contributed</b>
+        to several
+        <b class="text-feedback_font_col">development</b>
+        and
+        <b class="text-feedback_font_col">modernization</b>
+        directions for
+        <b class="text-feedback_font_col">Ashes Of Creation</b>.
+      </h2>
+
+      <div class="ml-6 md:ml-8 flex mb-10">
+        <div class="w-6 md:w-8">
+          <div class="mt-3 lg:mt-2 green-circle"></div>
+        </div>
+        <div class="flex-1">
+          <div class="w-9/12">
+            <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4">
+              A Brand New UI/UX and a New Web Platform
+            </h2>
+            <p class="text-dar_grey_font_col text-left text-14 mb-14">
+              We took our in-depth knowledge of the MMORPG’s industry and our knowledge of eCommerce and web development
+              and
+              brought those together to give our customers a new web platform.
+            </p>
+          </div>
+
+          <h2 class="text-feedback_font_col text-left leading-56 text-24 lg:text-40 font-bold mb-7">
+            Technologies & services:
+          </h2>
+          <valor-technologies [technologyNames]="technologies"></valor-technologies>
+
+          <div class="bg-green p-4 lg:p-10 mt-12">
+            <p
+              class="font-bold text-white md:text-40 block mr-3.5 mt-7  text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+              Impact
+            </p>
+            <ul class="list-disc pl-5 leading-normal text-white text-20  lg:mb-8 mb-4 md:w-8/12">
+              <li>Better reliability for updates</li>
+              <li>Performance that matches the latest web standards – 99 Lighthouse score</li>
+              <li>Improved UX</li>
+              <li>Better Google indexation</li>
+              <li>Less complexity and deeper integrations with third-party services, e.g. Discord</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="ml-6 md:ml-8 flex mb-10">
+        <div class="w-6 md:w-8">
+          <div class="mt-3 lg:mt-2 green-circle"></div>
+        </div>
+        <div class="flex-1">
+          <div class="w-9/12">
+            <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4">
+              Modernization of a Single Sign-On Authentication (SSO)
+            </h2>
+            <p class="text-dar_grey_font_col text-left text-14 mb-14">
+              As the project has grown remarkably, we had to ensure that their authentication and authorization setup
+              can guarantee the highest security and data protection. Aiming to reduce the number of databases that
+              added complexity to their existing solution, increase app security and eliminate obsolete codebase, we
+              decided to build a new single sign-on (SSO).
+            </p>
+          </div>
+          <img class="mb-14" src="assets/img/bg-img/ashes_page/sso_bg.svg" alt="SSO img">
+
+          <h2 class="text-feedback_font_col text-left leading-56 text-24 lg:text-40 font-bold mb-7">
+            Technologies & services:
+          </h2>
+          <valor-technologies [technologyNames]="ssoTechnologies"></valor-technologies>
+
+          <div class="bg-green p-4 lg:p-10 mt-12">
+            <p
+              class="font-bold text-white md:text-40 block mr-3.5 mt-7  text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+              Impact
+            </p>
+            <ul class="list-disc pl-5 leading-normal text-white text-20  lg:mb-8 mb-4 md:w-8/12">
+              <li>Higher readability and reliability of the platform</li>
+              <li>Improved interactions with the database and SSO calls</li>
+              <li>Higher platform visibility and improved troubleshooting</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="ml-6 md:ml-8 flex mb-10">
+        <div class="w-6 md:w-8">
+          <div class="mt-3 lg:mt-2 green-circle"></div>
+        </div>
+        <div class="flex-1">
+          <div class="w-9/12">
+            <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4">
+              Transition to Nx Monorepo
+            </h2>
+            <p class="text-dar_grey_font_col text-left text-14 mb-14">
+              Embracing code sharing between applications, simplified deployments, and generally less pain in life,
+              we've introduced Nx. While standardizing code and libraries, Nx eliminates a chance for "spaghetti" code
+              and allows to store all the applications of AoC in one shared repository. This and the fact that Nx gives
+              engineers exclusive control of builds and dependencies enhanced the team performance. Now, instead of
+              testing the whole platform, they can build and test only the projects affected by the change in Nx
+              Monorepo.
+            </p>
+          </div>
+
+          <img class="mb-14" src="assets/img/bg-img/ashes_page/nx_bg.svg" alt="nx img">
+        </div>
+      </div>
+
+      <div class="ml-6 md:ml-8 flex mb-10">
+        <div class="w-6 md:w-8">
+          <div class="mt-3 lg:mt-2 green-circle"></div>
+        </div>
+        <div class="flex-1">
+          <div class="w-9/12">
+            <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4">
+              Automated content updates
+            </h2>
+            <p class="text-dar_grey_font_col text-left text-14 mb-14">
+              More importantly, we’ve automated the flow for content updates, allowing Content Managers to push updates
+              from Contentful directly to a new Scully build once they press Publish. Before, it was impossible without
+              engineers who had to manually clear cache and make a deployment.
+            </p>
+          </div>
+
+          <img class="mb-14" src="assets/img/bg-img/ashes_page/automated_bg.svg" alt="automated content updates img">
+
+          <h2 class="text-feedback_font_col text-left leading-56 text-24 lg:text-40 font-bold mb-7">
+            Technologies & services:
+          </h2>
+          <valor-technologies [technologyNames]="automatedTechnologies"></valor-technologies>
+
+          <div class="bg-green p-4 lg:p-10 mt-12">
+            <p
+              class="font-bold text-white md:text-40 block mr-3.5 mt-7  text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+              Impact
+            </p>
+            <ul class="list-disc pl-5 leading-normal text-white text-20  lg:mb-8 mb-4 md:w-8/12">
+              <li>Advanced automation and faster content updates</li>
+              <li>Reduced number of repositories</li>
+              <li>Code is modular and can be reused</li>
+              <li>Code structure and quality meets industry best practices</li>
+              <li>Improved code documentation, faster onboarding for new engineers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="ml-6 md:ml-8 flex mb-10">
+        <div class="w-6 md:w-8">
+          <div class="mt-3 lg:mt-2 green-circle"></div>
+        </div>
+        <div class="flex-1">
+          <div class="w-9/12">
+            <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4">
+              Deployment of Payment Systems
+            </h2>
+            <p class="text-dar_grey_font_col text-left text-14 mb-14">
+              To provide users with more payment options, we integrated PayPal and Stripe payment systems into the AoC
+              web platform.
+            </p>
+          </div>
+
+          <img class="mb-14" src="assets/img/bg-img/ashes_page/payment_bg.svg" alt="payment systems img">
+
+          <div class="bg-green p-4 lg:p-10">
+            <p
+              class="font-bold text-white md:text-40 block mr-3.5 mt-7  text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+              Impact
+            </p>
+            <ul class="list-disc pl-5 leading-normal text-white text-20  lg:mb-8 mb-4 md:w-8/12">
+              <li>Saved money for processing charges, as Xsolla, their existing solution, charges 5% of transactions</li>
+              <li>With these integrations, we increased the availability of AoC products for users located worldwide</li>
+              <li>Also, we increased the security of online purchases as Stripe and PayPal prevent credit card fraud.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
