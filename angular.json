@@ -462,7 +462,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "apps/valor-software-site/src/favicon.ico",
-              "apps/valor-software-site/src/assets"
+              "apps/valor-software-site/src/assets",
+              "robots.txt"
             ],
             "styles": [
               "apps/valor-software-site/src/assets/styles/styles.scss",
@@ -472,7 +473,6 @@
           },
           "configurations": {
             "production": {
-              "sourceMap": true,
               "budgets": [
                 {
                   "type": "initial",
