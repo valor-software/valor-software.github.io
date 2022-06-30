@@ -4,18 +4,17 @@ import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { DomSanitizer } from '@angular/platform-browser';
 import { IPortfolio, GetPortfolioService } from "@valor-software/common-docs";
-import {checkHTMLExtension, titleRefactoring} from "@valor-software/common-docs";
+import { checkHTMLExtension, titleRefactoring } from "@valor-software/common-docs";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'project',
     templateUrl: 'project.component.html'
 })
-export class ProjectComponent implements OnDestroy{
-    changeBreadCrumbTitle?: {path: string, title: string}[];
+export class ProjectComponent implements OnDestroy {
+    changeBreadCrumbTitle?: { path: string, title: string }[];
     project?: IPortfolio;
     $routEvents?: Subscription;
-    nextProject?: IPortfolio;
 
     constructor(
         private router: Router,
@@ -46,7 +45,6 @@ export class ProjectComponent implements OnDestroy{
                 title: res.name
             }];
             this.project = res;
-            this.initNextProject();
         }, error => {
             console.log('error', error);
             this.router.navigate(['/404']);
@@ -61,31 +59,6 @@ export class ProjectComponent implements OnDestroy{
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
-    initNextProject() {
-        let index = this.getProjectsServ.getTitleIndex(this.router.parseUrl(this.router.url).root.children.primary.segments[1].path);
-        if (!index && index !== 0) {
-            return;
-        }
-
-        const refactoredTitles = this.getProjectsServ.getRefactoredList() || [];
-        const projectList = [...refactoredTitles].reverse();
-        if (!projectList || !projectList.length) {
-            return;
-        }
-
-        if (index === projectList.length) {
-            index = 0;
-        }
-
-        if (!projectList[index]) {
-            return;
-        }
-
-        this.getProjectsServ.getPortfolioRequest(projectList[index]).subscribe(res => {
-            this.nextProject = res;
-        });
-    }
-
     getRouteLink(link: string): string {
         return titleRefactoring(link);
     }
@@ -95,12 +68,12 @@ export class ProjectComponent implements OnDestroy{
         return `${arr[0]}_resp.${arr[1]}`;
     }
 
-    changeSrc(event: Event, link:string) {
+    changeSrc(event: Event, link: string) {
         (event.target as HTMLImageElement).src = link;
         this.cdr.detectChanges();
     }
 
-    checkLength(arr: Array<any>, number:number): boolean {
+    checkLength(arr: Array<any>, number: number): boolean {
         return arr?.length > number;
     }
 
