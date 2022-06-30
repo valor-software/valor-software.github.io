@@ -1,0 +1,13 @@
+<img-comparison-slider class="img-comparison-slider" *ngIf="comparisonImg">
+  <figure slot="first" class="before">
+    <img width="100%" [src]="comparisonImg.beforeImg">
+    <figcaption>{{comparisonImg.beforeText || 'Before'}}
+    </figcaption>
+  </figure>
+  <figure slot="second" class="after">
+    <img width="100%" [src]="comparisonImg.afterImg">
+    <figcaption>{{comparisonImg.afterText || 'After'}}
+    </figcaption>
+  </figure>
+  <img slot="handle" class="custom-handle" height="100%" width="100%" src="assets/img/icons/arrow-circle.svg">
+</img-comparison-slider>

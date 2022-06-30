@@ -79,3 +79,87 @@ pre, code {
 
 
 
+.img-comparison-slider {
+  --divider-width: 4px;
+  --divider-color: #989898;
+  --default-handle-opacity: 0;
+
+  .before,
+  .after {
+    margin: 0;
+  }
+
+  .before figcaption,
+  .after figcaption {
+    width: 104px;
+    height: 56px;
+    text-align: center;
+    background: #222222;
+    border-radius: 6px;
+    color: #fff;
+    padding: 16px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 100%;
+
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 24px;
+
+    letter-spacing: -1px;
+
+    color: #FFFFFF;
+  }
+
+  .before figcaption {
+    left: 48px;
+    bottom: 0px !important;
+    right: auto;
+    top: auto;
+  }
+
+  .after figcaption {
+    left: auto;
+    bottom: 0px !important;
+    right: 48px;
+    top: auto;
+  }
+
+  .custom-handle {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+
+    transform: translateX(-0.5px);
+  }
+
+  .custom-divider {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .handle-container {
+    transform: translateX(50%);
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+}
