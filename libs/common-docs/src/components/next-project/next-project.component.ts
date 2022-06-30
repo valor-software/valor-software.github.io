@@ -31,8 +31,6 @@ export class NextProjectComponent {
   }
 
   initNextProject() {
-    console.log('this.router.parseUrl(this.router.url)', this.router.parseUrl(this.router.url));
-    console.log('this.router.parseUrl(this.router.url).root.children.primary', this.router.parseUrl(this.router.url).root.children.primary);
     let index = this.getProjectsServ.getTitleIndex(this.router.parseUrl(this.router.url).root.children.primary.segments[1].path);
     if (!index && index !== 0) {
       return;
