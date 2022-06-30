@@ -1,3 +1,5 @@
+
+
 === *This article is part of a series:*
 
 * link:articles/incorporating-user-research-on-live-projects-part-1[Part 1]: Context of the Project, User Persona, Search for Participants.
@@ -62,7 +64,7 @@ uniting observations, ideas, quotations - everything we have got during our stud
 of similarity and affinity. So we basically make groups of information pieces that have something in common.
 Then we label these clusters.
 
-image::assets/articles/incorporating-user-research-on-live-projects-part-3/602d30aedb95e53e379845b0_Screenshot%202021-02-17%20at%2017.04.46.png[]
+image::602d30aedb95e53e379845b0_Screenshot%202021-02-17%20at%2017.04.46.png[]
 
 So what was the process in our case?
 
@@ -78,7 +80,7 @@ It was a real mess, and the next step I should have done - is clustering all the
 
 The result we had:
 
-image::assets/articles/incorporating-user-research-on-live-projects-part-3/602d311c50d1afa87f7b9a8b_Dashboard_Valor_Article.png[]
+image::602d311c50d1afa87f7b9a8b_Dashboard_Valor_Article.png[]
 
 ==== *Uncovered key problems and needs*
 
@@ -111,7 +113,7 @@ could bundle into the feature. Note - it is much better to try this activity wit
 approaches and solutions. Such workshops help teams be on the same page while working on the discovery and
 ideation stage of the product/feature/enhancement development, and increase engagement.
 
-image::assets/articles/incorporating-user-research-on-live-projects-part-3/602d3171edfb057611b4af47_Suggestions_to_features_Valor_Article.png[]
+image::602d3171edfb057611b4af47_Suggestions_to_features_Valor_Article.png[]
 
 ==== Report preparation
 
@@ -126,16 +128,16 @@ etc.)
 
 Here you can read some pieces of the report:
 
-image::assets/articles/incorporating-user-research-on-live-projects-part-3/602d332035a63cae6a2a5add_Screenshot%202021-02-17%20at%2017.13.55.png[]
+image::602d332035a63cae6a2a5add_Screenshot%202021-02-17%20at%2017.13.55.png[]
 
-image::assets/articles/incorporating-user-research-on-live-projects-part-3/602d33315a65342f18e62de6_Screenshot%202021-02-17%20at%2017.14.16.png[]
+image::602d33315a65342f18e62de6_Screenshot%202021-02-17%20at%2017.14.16.png[]
 
 Based on the insights we have worked on the informational structure of the feature so
 that we can implement it later on in the wireframes.
 
 _Informational structure:_
 
-image::assets/articles/incorporating-user-research-on-live-projects-part-3/602d342436e881bef3b5f207_Dashboard_Ideas_Valor_Article.png[]
+image::602d342436e881bef3b5f207_Dashboard_Ideas_Valor_Article.png[]
 
 The report with supplying materials, as competitors' analysis, initial hypothesis,
 informational structure, and widget ideas was presented to the product owner and QA lead of the team and then
@@ -148,9 +150,9 @@ sent to other team members. The next step was wireframes creation. Mostly we foc
 
 I can give you a small glance on the following work we have done:
 
-image::assets/articles/incorporating-user-research-on-live-projects-part-3/602d34b9d09df20364e94a26_sketch.jpg[]
+image::602d34b9d09df20364e94a26_sketch.jpg[]
 
-image::assets/articles/incorporating-user-research-on-live-projects-part-3/602d34cd36e88114a6b66b14_showreel.png[]
+image::602d34cd36e88114a6b66b14_showreel.png[]
 
 But wireframing is another big part of the process, going apart from the research stage
 of the project.

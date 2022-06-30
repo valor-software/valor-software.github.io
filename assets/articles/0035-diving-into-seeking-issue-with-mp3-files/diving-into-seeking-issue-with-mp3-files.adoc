@@ -1,3 +1,5 @@
+
+
 Hey, I'm Eduardo and I'm an Angular developer at Valor Software. Some time ago we
 thought it would be useful to share some observations and discoveries we make while solving different issues. And
 this time I'll contribute to "Valor Bites" short posts rubric with how I approached solving an MP3 tracks playing

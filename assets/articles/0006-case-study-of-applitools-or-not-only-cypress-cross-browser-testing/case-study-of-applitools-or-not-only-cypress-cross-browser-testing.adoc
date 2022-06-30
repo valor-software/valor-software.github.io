@@ -1,3 +1,5 @@
+
+
 The world of testing is moving further and deeper towards automated tests. Naturally,
 more and more new tools and approaches are emerging. To keep up with innovation and at the same time understand
 which of the approaches or tools are best suited precisely in this situation, you need to continually experiment,
@@ -169,7 +171,7 @@ Find each demo snippet, which consists of the demo component itself and two tabs
 
     cy.get('ng-sample-box').each(demo => {
 
-image::assets/articles/case-study-of-applitools-or-not-only-cypress-cross-browser-testing/5cab2e647177dc01b8d79c43_IaNO13CuCwBG6QvLn0cpMlOwcVqfi9TXLk_OMRojE1FGHdA2Ir-A8DqxNNJ08Qc3-mVo5mboraTgc6rffkffQm6F3yeFrd3BfshS7V04zrzoGYUnmpUofvrKpE5MYhWqRtPxhwi8.png[Bootstrap example]
+image::5cab2e647177dc01b8d79c43_IaNO13CuCwBG6QvLn0cpMlOwcVqfi9TXLk_OMRojE1FGHdA2Ir-A8DqxNNJ08Qc3-mVo5mboraTgc6rffkffQm6F3yeFrd3BfshS7V04zrzoGYUnmpUofvrKpE5MYhWqRtPxhwi8.png[Bootstrap example]
 
 Now we can define the sub-title of each Demo, which we'll test. Let's turn to the parent of
 the component that we've found and find 'h3' header there.
@@ -211,7 +213,7 @@ If that's not enough, you can get more information about the _matchLevel_ parame
 helps you understand which tests failed and what functionality you should recheck or fix. You'll see this info
 in the Applitools Dashboard according to our configuration:
 
-image::assets/articles/case-study-of-applitools-or-not-only-cypress-cross-browser-testing/5cab32d43be192e8aa80ebec_ATDeleG.png[image7]
+image::5cab32d43be192e8aa80ebec_ATDeleG.png[image7]
 
 Also, let's not forget about cross-browser testing, so be sure to indicate the browsers:
 
@@ -252,14 +254,14 @@ Once our tests are finished, we need to tell Applitools about it:
 
     APPLITOOLS_API_KEY=myKey npm run cy:run:snapshot
 
-image::assets/articles/case-study-of-applitools-or-not-only-cypress-cross-browser-testing/5cab3423f8e012b814e70c56_ECro61m.png[image5]
+image::5cab3423f8e012b814e70c56_ECro61m.png[image5]
 
 Applitools Dashboard shows the baseline images (which will be taken at the first test run and
 will be considered as a reference result) and images from the current test run.
 
 If there are some differences, then the comparison logic, based on AI, will detect changes and show them to you:
 
-image::assets/articles/case-study-of-applitools-or-not-only-cypress-cross-browser-testing/5cab34427177dceb5bd7b918_YYUXA9z.png[image2]
+image::5cab34427177dceb5bd7b918_YYUXA9z.png[image2]
 
 If we want to update our baseline images, we need to go to the Dashboard and accept the
 differences which were found during the latest test run. This helps you keep the latest reference images
