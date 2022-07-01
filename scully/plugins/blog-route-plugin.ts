@@ -1,10 +1,19 @@
 import { HandledRoute, registerPlugin } from "@scullyio/scully";
-import { articlesList } from "../../apps/valor-software-site/src/assets/blog/articles.list";
+import { articlesRefactoringTitlesList } from "../../assets/articles/articlesList";
+import { linksFromOldSite } from "../../assets/articles/brokenRoutes";
 
 function blogRoutePlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    const routes = articlesList.map((item: string) => {
-        return {route: `/blog/${item}`};
+    const oldLinks = Object.keys(linksFromOldSite);
+    const routes = [];
+    articlesRefactoringTitlesList.map((item: string) => {
+        routes.push({route: `/articles/${item}`});
+        routes.push({route: `/articles/${item}.html`});
+    });
+
+    oldLinks.map(item => {
+        routes.push({route: `/articles/${item}`});
     })
+
     return Promise.resolve(routes);
 }
 

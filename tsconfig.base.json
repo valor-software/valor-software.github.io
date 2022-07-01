@@ -21,6 +21,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@valor-software/blog-portfolio": [
+        "libs/route-pages/blog-portfolio/src/index.ts"
+      ],
       "@valor-software/ashes-page": [
         "libs/route-pages/ashes-page/src/index.ts"
       ],
@@ -42,14 +45,8 @@
       "@valor-software/home-page": [
         "libs/route-pages/home-page/src/index.ts"
       ],
-      "@valor-software/portfolio": [
-        "libs/portfolio/src/index.ts"
-      ],
       "@valor-software/services-page": [
         "libs/route-pages/services-page/src/index.ts"
-      ],
-      "@valor-software/blog-portfolio": [
-        "libs/route-pages/blog-portfolio/src/index.ts"
       ]
     }
   },

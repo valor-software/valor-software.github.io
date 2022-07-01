@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopoverComponent } from './components/popover/popover.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -19,10 +19,10 @@ import { SwiperModule } from "swiper/angular";
 import { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
 import { BlogPortfolioItemComponent } from './components/blog-preview/blog-portfolio-item.component';
 import { GetArticlesService } from './services/getArticles.service';
-import { ArticlesRouteService } from './services/articlesRoute.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
-import { GetPortfolioService } from "@valor-software/portfolio";
+import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
+import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
@@ -35,13 +35,17 @@ export { ModalService } from './services/modal.service';
 export { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.component';
 export { ShowHideDirective } from './directives/showHide.directive';
 export { GetArticlesService } from './services/getArticles.service';
-export { ArticlesRouteService } from './services/articlesRoute.service';
 export { IArticle } from './models/article.interface';
 export { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
 export { BlogPortfolioItemComponent } from './components/blog-preview/blog-portfolio-item.component';
-export { ARTICLES_LIST } from './tokens/articlesList.token';
+export { ARTICLES_LIST, ARTICLES_REFACTORED_TITLE_LIST } from './tokens/articlesList.token';
 export { SeoService } from './services/seo.service';
 export { CustomSlicePipe } from './pipes/customSlice.pipe';
+export { PORTFOLIO_LIST } from './tokens/portfolioList.token';
+export { IPortfolio } from './models/portfolio.interface';
+export { GetPortfolioService } from './services/getPortfolio.service';
+export { titleRefactoring, checkHTMLExtension} from './utils/titleRefactoringUtil';
+export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 
 @NgModule({
   declarations: [
@@ -57,7 +61,8 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
-    TechnologiesComponent
+    ComparisonSliderComponent,
+    TechnologiesComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -71,13 +76,15 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
+    ComparisonSliderComponent,
     TechnologiesComponent
   ],
-  providers: [ModalService, SendEmailService, ArticlesRouteService, GetArticlesService, GetPortfolioService,
+  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',
     }
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CommonDocsModule {}

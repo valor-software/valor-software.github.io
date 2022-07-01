@@ -15,8 +15,10 @@
             </div>
         </div>
     </section>
-    <section class="landing-section">
-        <div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010" [innerHTML]="checkHTML(article.content)" (click)="routLink($event)"></div>
+    <section class="landing-section" *ngIf="article.content">
+        <div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010">
+            <div class="max-w-full" [innerHTML]="checkHTML(article.content)" (click)="routLink($event)"></div>
+        </div>
     </section>
     <section class="landing-section">
         <div class="container">

@@ -1,0 +1,525 @@
+<div class="paragraph">
+<p>Facing bugs is usual for web application development. If your team ignores tests or you
+do not test the code, issues in the project become evident and over time they can become a total blocker and
+eventually kill your project. Therefore, in many teams, there is a testing engineer who catches bugs and reports
+them to the team.</p>
+</div>
+<div class="paragraph">
+<p>We, as a reliable software vendor, don&#8217;t want to undermine customer confidence in us,
+so we incorporated Cypress.io - a platform for automatic testing to find and correct errors on time.</p>
+</div>
+<div class="sect4">
+<h5 id="_table_of_contents">Table of contents</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Why we love Cypress</p>
+</li>
+<li>
+<p>Parallelization task</p>
+</li>
+<li>
+<p>Instruments, Source data, Implementation plan</p>
+</li>
+<li>
+<p>Solution: Green phase</p>
+</li>
+<li>
+<p>Solution: Yellow phase</p>
+</li>
+<li>
+<p>Results</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_why_we_love_cypress">Why we love Cypress</h4>
+<div class="paragraph">
+<p>There are many ways to test, yet in this article, we would like to limit ourselves to two of them - e2e and integration testing. The Cypress.io platform is excellent for testing
+web-application interfaces. Its main task is to check how the client part interacts with the server part, and the individual components of the page interact with each other.</p>
+</div>
+<div class="paragraph">
+<p><strong>Platform benefits:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Can be quickly built into the project.</p>
+</li>
+<li>
+<p>Supports all levels of tests (e2e, integration, unit).</p>
+</li>
+<li>
+<p>Takes snapshots for each test step for easy debugging.</p>
+</li>
+<li>
+<p>Able to access every web-page object in the DOM.</p>
+</li>
+<li>
+<p>When expecting any condition, Cypress tries to check it a few times, before sending failures after the 1st
+try.</p>
+</li>
+<li>
+<p>Able to work with our favorite continuous integration system (TravisCI).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cypress works on a predetermined scenario. Even if you haven&#8217;t written tests before, clear documentation will help you start.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parallel_testing">Parallel testing</h4>
+<div class="paragraph">
+<p>Now to the most exciting part - parallelization. Here&#8217;s a brief extract from the official documentation explaining what parallelization is and why it is needed:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>If your project has a large number of tests, it can take a long time for tests to complete running
+serially on one machine. Running tests in parallel across many virtual machines can save your team time and
+money when running tests in Continuous Integration (CI).</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>As we said earlier, Cypress has great docset, even with examples, and parallelization is not an exception: <a href="https://docs.cypress.io/guides/guides/parallelization.html" target="_blank" rel="noopener">official documentation</a>
+provides you with step by step description about the parallel run. However, because of our specific basic project data, which includes many instances, types of
+tests, and scopes, implementation has been a tough process for us. Let&#8217;s move through the main steps and
+issues, which we&#8217;ve faced, and find a solution for each of them :)</p>
+</div>
+<div class="paragraph">
+<p><strong>Goal</strong>: Decrease time to run e2e tests, speed up CI builds.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_instruments_source_data_implementation_plan">Instruments, Source data, Implementation plan</h4>
+<div class="paragraph">
+<p><strong>Instruments:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://cypress.io" target="_blank" rel="noopener">Cypress</a></p>
+</li>
+<li>
+<p><a href="https://www.cypress.io/dashboard/" target="_blank" rel="noopener">Cypress Dashboard</a></p>
+</li>
+<li>
+<p>TypeScript for test code</p>
+</li>
+<li>
+<p><a href="https://github.com/cypress-io/cypress-webpack-preprocessor" target="_blank" rel="noopener">cypress/webpack-preprocessor</a> - a plugin for compiling</p>
+</li>
+<li>
+<p><a href="https://github.com/TypeStrong/ts-loader" target="_blank" rel="noopener">ts-loader</a> - TypeScript loader for Webpack</p>
+</li>
+<li>
+<p><a href="https://travis-ci.org" target="_blank" rel="noopener">Travis</a> - CI tool.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Source data:</strong></p>
+</div>
+<div class="paragraph">
+<p>There are two scopes of e2e automated tests in the project:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Integration (about 70 tests)</p>
+</li>
+<li>
+<p>Full (about 450 tests at the time of this writing).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are also a few instances, which should be tested by e2e tests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>localhost:4200</p>
+</li>
+<li>
+<p><a href="https://ngx-universal.herokuapp.com/#/" target="_blank" rel="noopener">ngx-universal.herokuapp.com</a></p>
+</li>
+<li>
+<p><a href="http://ngx-bootstrap-latest.surge.sh/#/" target="_blank" rel="noopener">ngx-bootstrap-latest.surge.sh</a></p>
+</li>
+<li>
+<p><a href="https://valor-software.com/ngx-bootstrap/#/" target="_blank" rel="noopener">valor-software.com/ngx-bootstrap</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Parallelization implementation plan:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Integration of e2e tests running for each PR (pull request) for the local build</p>
+</li>
+<li>
+<p>Integration and full e2e tests running for each merge to <code>development</code> branch at automatically deployed
+build into two different instances (two different URLs)</p>
+</li>
+<li>
+<p>Integration and full e2e tests running for each new release for a production instance (the third URL).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This plan can be visually presented as a timeline:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5cacae969ffb28e551a5ff58_Screenshot%20from%202019-04-09%2017-38-54.png" alt="The plan presented as a timeline^">
+</div>
+</div>
+<div class="paragraph">
+<p>We&#8217;re going to describe parallelization implementation in two phases: green and yellow.</p>
+</div>
+<div class="paragraph">
+<p><strong>Solution: Green phase</strong></p>
+</div>
+<div class="paragraph">
+<p>The green phase consists of two steps, so there don&#8217;t seem to be any complications:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a few extra settings to the cypress.json:</p>
+<div class="literalblock">
+<div class="content">
+<pre>"video": false, (for quick run)
+"projectId": "yourID", (for link CY dashboard service to each run)</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Make a command for CI run with additional parameters:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>your command&#8201;&#8212;&#8201;--record --key $CY_KEY --parallel</p>
+</div>
+<div class="paragraph">
+<p>A-and that&#8217;s it, these are the whole settings to be added (according to the documentation). However, in real
+life&#8230;&#8203; in real life, we got a huge travis.yml and a little misbehavior.</p>
+</div>
+<div class="paragraph">
+<p>Before parallelization, our Travis configuration looked like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    - script:
+    ng serve --prod &amp; $(npm bin)/wait-on http-get://$URL
+    npm run cy:run:smoke
+    kill $(jobs -p) || true
+    name: "Run cypress smoke testing"
+    env: URL=localhost:4200/#</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To be clear, this script builds project locally, waits until the app is up and running, runs tests, and
+finally kills all processes when they are finished. For these needs you can also use the <a href="https://github.com/bahmutov/start-server-and-test" target="_blank" rel="noopener">start-server-and-test</a> library.</p>
+</div>
+<div class="paragraph">
+<p>After adding parameters for parallelization, our Travis config looks like:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5cab18d1f8e0122074e675cd_f7xbhesGwc6bnK96npjdBOHv30bhgOxPp1Zvrjugs5BvMIs80tptMSQRq5Sfd8iOgyabnt48zlXbtoEaiwz2pH4r-sRw4miJAZIvRjcgPW_68KUlniyBv7EIIHuDZjSrpZZRgAe7.png" alt="Travis config">
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the number of our threads will be three. So we need to have three machines on Travis
+for running all these tests. When our CI run finishes, we&#8217;ll see list of scripts which we&#8217;ve ran and amount of
+time spent by each Travis machine during start, test run, and kill:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98b78cd784214e809596d7_dDlLB0L_DjPrGd-SOAebWu5jcTfFvMbt4EcpiUxDhZSBJT06QmcGS8jxw7cyxpBHZ9o60JjIyRcSj3kLeBuTbYDkzy3ckAjwHdnlbD4BrUrYRgGjDGFmb4jHJNrGHuE1MV_NJVIJ.png" alt="The list of scripts which we&#8217;ve ran and amount of time spent by each Travis machine during start" width="test run" height="and kill">
+</div>
+</div>
+<div class="paragraph">
+<p>Time, which is displayed on Travis, was spent on starting the machine, installing development
+packages, building the library and Demo application, and running test.</p>
+</div>
+<div class="paragraph">
+<p>It looks like there&#8217;s no
+problem at all, but on the CI Dashboard we&#8217;ll see that only two machines took part in the test run. The
+Dashboard also shows us time, which was spent for the direct test run: 2:26 minutes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98b78c6929126465bb7749_5jJAhf0_shpDqdSn5RoXQHSQjoxJgYqInP2mS6QlMp-JAW-selWm2CuF37meAav1-vICO4nryz75ihbtEa_T1VbeAsa6X9O6fM3E2x9TKDRcKFVg_bgJTgUI9Ws8SZ-P_EgupHNo.png" alt="The Dashboard shows time" width="which was spent for the direct test run.">
+</div>
+</div>
+<div class="paragraph">
+<p>If we dive deeper into the job on the third Travis machine, we&#8217;ll see that the job actually has
+started, but not in time:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5ca7390f89cf383d85edc1a7_9ZBi8xYYrDUZCPkf3fWQpZVhYtVVxmhvvzJhqwkiMPDfw2j9XDapV9pmQ1XFoWAcrRfmcF4qoAB43Uhu7bFjzmXtO6k8JBnU4kneguPRkMMuTJ9jK_kn0Jiw_jFRvRYEv5gELRel.png" alt="Screen. The job actually has started" width="but not in time">
+</div>
+</div>
+<div class="paragraph">
+<p>What happened?</p>
+</div>
+<div class="paragraph">
+<p>Travis machines are ready to run the tests, but not simultaneously.</p>
+</div>
+<div class="paragraph">
+<p>The first machine can start at 01:00:00, the second one at 01:02:00, and the third one
+will start at 01:05:00. And if your test run takes less than five minutes, then the third thread will be
+empty. It didn&#8217;t even get to run one little test :"(</p>
+</div>
+<div class="paragraph">
+<p><strong>Solution: Yellow phase</strong></p>
+</div>
+<div class="paragraph">
+<p>At this stage, all we have to do is to add similar commands and configuration for
+other instances. Because of the similarities of the test scope, we just set an additional parameter for
+changing base URL, and add a new function for running tests which we&#8217;ll reuse in each stage:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>testPostDeploy: &amp;testPostDeploy
+script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --key $CY_KEY --parallel --group $GROUP_NAME</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is a very common function, which is applied to the next parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CYPRESS_baseUrl - one of our instances from the matrix above</p>
+</li>
+<li>
+<p>--record - sends results to the Dashboard</p>
+</li>
+<li>
+<p>--key - determines which account from the dashboard we will use</p>
+</li>
+<li>
+<p>--parallel - runs our tests in parallel</p>
+</li>
+<li>
+<p>--group - combines tests in different groups.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In each script we need to define BASE_URL and GROUP_NAME parameters, as other parameters are defined
+globally already.</p>
+</div>
+<div class="paragraph">
+<p>And you may be surprised with following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>npm run cy:run:all</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command unfolded means the following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cy:run:all": "cypress run --config integrationFolder=cypress"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>"Why surprised?" you ask, okay, look:</p>
+</div>
+<div class="paragraph">
+<p>Because each test scope lives in a separate directory with
+the appropriate name: 'integration' and 'full.' To run these tests altogether, just set the global directory
+for the run. Also, make sure to exclude all unnecessary directories and files from this run (using
+"ignoreTestFiles"parameter in cypress.json), or, otherwise, you could get an error like: "The tests were
+unable to run: Oops&#8230;&#8203;we found an error preparing this test file: &#8230;&#8203;"</p>
+</div>
+<div class="paragraph">
+<p>Instead of specifying the folder, you could use --specs parameter with a global pattern, like:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cypress run --config integrationFolder=cypress --spec '**/*_spec.ts</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Our configuration for the first instance looks like this now:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>name: "Cypress suit run on SSR 1thread"
+env:
+- GROUP_NAME=3x-electron
+- BASE_URL=https://ngx-universal.herokuapp.com/#/
+&lt;&lt;: *testPostDeploy
+- script:
+name: "Cypress suit run on SSR 2thread"
+env:
+- GROUP_NAME=3x-electron
+- BASE_URL=https://ngx-universal.herokuapp.com/#/
+&lt;&lt;: *testPostDeploy
+- script:
+name: "Cypress suit run on SSR 3thread"
+env:
+- GROUP_NAME=3x-electron
+- BASE_URL=https://ngx-universal.herokuapp.com/#/
+&lt;&lt;: *testPostDeploy</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Just to remind you, Travis stages run consistently, and Travis jobs inside one stage run in parallel. This
+provides the possibility to run tests on different machines inside the first stage. You can add as many
+scripts as you need, and each of the scripts will run in their separate thread.</p>
+</div>
+<div class="paragraph">
+<p>In our example above,
+integration and the full test scope will run in three threads.</p>
+</div>
+<div class="paragraph">
+<p>To finish what we have started, we need to add a similar configuration for the two remaining instances.</p>
+</div>
+<div class="paragraph">
+<p>Okay, imagine that&#8217;s done, But what do we have now? Of course, an error:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>"The run you are attempting to access is already complete and will not accept new groups."</em></p>
+</div>
+</blockquote>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98b78c544edd8398605408_TkxUBkM5og4kOIbqBEqQhXxo4ICR9yi7_u6oPMscqTWXrcLkbaSuIpszjavnieBG1zjx0IJXP3Vm2Yv7zOzZtFr1V-GX_FWognMnu6LTRNPmYdm2s1yIauaOxnbNmNYg6m4wj_X-.png" alt="The Error">
+</div>
+</div>
+<div class="paragraph">
+<p>What is the reason for this mess?</p>
+</div>
+<div class="paragraph">
+<p>Cypress uses ci-build-id and groups flags for grouping
+our tests into test runs. So you need to set unique build-ids and unique groups inside each Travis stage.</p>
+</div>
+<div class="paragraph">
+<p>To resolve this inconvenience, set different values for --group flag and --ci-build-id flag inside each
+Travis stage. As a result, our function should look similar to the following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>testPostDeploy: &amp;testPostDeploy
+script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --key $CY_KEY --parallel --group $GROUP_NAME --ci-build-id PostDeploy-$GROUP_NAME-$TRAVIS_BUILD_ID</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Another way to solve this issue is to set a "run completion delay" - the time that the run waits for new
+groups before completing (in seconds). All you need is to go to the Dashboard =&amp;gt Project =&amp;gt Settings and
+set this time into "Parallelization"section:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5cadabdc417d96b167228524_Screenshot%20from%202019-04-10%2011-33-22.png" alt="Set this time into &amp;quot Parallelization&amp;quot section">
+</div>
+</div>
+<div class="paragraph">
+<p>However, when we thought that we were done, an unpredictable phase of stabilization emerges.</p>
+</div>
+<div class="paragraph">
+<p>In our case, when the number of tests reached 400+, we were greeted with a "FATAL ERROR: CALL_AND_RETRY_LAST
+Allocation failed - JavaScript heap out of memory" issue.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5ca738fe04fdce4d0e9235c9_YREV9zf5eOjr4GFXmy76Z3ms9_-sgH_GixYnLGgjifRO6rZTaFWYCeAI9qAY91ZC9q0yjB5RqQUwrqZWMXqwCHCyRbVa9P62-uSbk94s8k_egn2GpjTEmtU8gYlN3R9Gr7rlG4Qn.png" alt="Greeted with a FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory issue.">
+</div>
+</div>
+<div class="paragraph">
+<p>To deal with this issue, we&#8217;ve checked <a href="https://github.com/cypress-io/cypress/issues/2316" target="_blank" rel="noopener">Cypress GitHub bug tracker</a> and found a solution there! According to provided information, we need to add an extra option for ts-loader, like so:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    loader: 'ts-loader',
+    options: {
+        transpileOnly: true
+    }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And magic happens.. It a.c.t.u.a.l.l.y works, phew!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98b78cd784213e1e9596d8_2TLQijarlStUBS8zl89d5nPI-ODRPKvhOmXojaArDa5jTjkcFGE6Q4O7R-dg1ZwYZIizTBLNYRXCZ6ijSmbWyj9TO1zkpCeOOe03qaBWrONlCEjLpwab_xE-qyWU8c20COgMCe9C.png" alt="add an extra option for ts-loader">
+</div>
+</div>
+<div class="paragraph">
+<p>According to our results from the following screenshot, our 522 tests took about 10 minutes. Note
+that the biggest specs were run first and the smallest were latest.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98b78d544edde73b605409_l1PcV6xixQCMNa1M0l3Qs_Vdw5Lzyw4UuRP2wPUBw556P79s3Rf_Meq3otSupxU2out5Gf_tjj513ojmrsZfnWziLFtmXONFnzhw7Kqf6FnWcrVAnOU84wPoR37P-mtZwLuNGkBh.png" alt="The results">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Results</strong></p>
+</div>
+<div class="paragraph">
+<p>While we were implementing parallelization, the number of our
+tests increased several times. However, let&#8217;s count the average time (in minutes) that it takes to run them
+(this statistic actual for the period from February to March of 2019).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98eff8de94e85e2807f5c5_rh1xcaXL1IYqJQNMxZTQbEdKKd63SX9HCxVbj3bI9AgYwwUIj4DO1KRo0N2Qz_AdoEVoiYC-TyF1kCtlMu2VFJZTisC7rJcBOqiNYehCF7oSIRaLRjgyRJmQwTTRJoUT2wGF_-tz.png" alt="The statistic actual for the period from February to March of 2019).">
+</div>
+</div>
+<div class="paragraph">
+<p>These are just words. Where is the proof?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://dashboard.cypress.io/#/projects/5mm2dy/runs" target="_blank" rel="noopener">NGX-bootstrap Cypress Dashboard with the history of test runs</a></p>
+</li>
+<li>
+<p><a href="https://github.com/valor-software/ngx-bootstrap/tree/development/cypress" target="_blank" rel="noopener">Main cypress directory with tests</a></p>
+</li>
+<li>
+<p><a href="https://github.com/valor-software/ngx-bootstrap/blob/development/.travis.yml" target="_blank" rel="noopener">Latest Travis configuration</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Useful information</strong></p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/cypress-io/cypress-example-kitchensink/blob/master/.travis.yml" target="_blank" rel="noopener">Parallelization example</a> provided <a href="https://dashboard.cypress.io/#/projects/4b7344/runs/2929/specs" target="_blank" rel="noopener">officially by CY</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Thank you words</strong></p>
+</div>
+<div class="paragraph">
+<p>The biggest kudos go to the Cypress team for supplying us with a free plan to try out the
+Cypress Parallelization feature for our <a href="https://valor-software.com/ngx-bootstrap/#/" target="_blank" rel="noopener">ngx-bootstrap</a>
+open-source library and a huge thanks to everyone who contributed!</p>
+</div>
+</div>

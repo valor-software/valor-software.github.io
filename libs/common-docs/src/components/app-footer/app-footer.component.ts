@@ -10,7 +10,8 @@ import { ContactModalComponent } from "../contact-modal/contactModal.components"
 export class AppFooterComponent {
     constructor(
         private modalService: ModalService<ContactModalComponent>
-    ) {}
+    ) {
+    }
 
     openModal() {
         this.modalService.open(ContactModalComponent);

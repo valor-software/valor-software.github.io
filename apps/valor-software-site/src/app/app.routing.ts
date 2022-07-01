@@ -23,12 +23,32 @@ export const routes: Routes = [
     loadChildren: () => import('@valor-software/careers').then(m => m.CareersModule)
   },
   {
-    path: 'blog',
+    path: 'articles',
     loadChildren: () => import('@valor-software/blog-portfolio').then(m => m.BlogPortfolioModule)
   },
   {
-    path: 'portfolio',
+    path: 'projects',
     loadChildren: () => import('@valor-software/blog-portfolio').then(m => m.BlogPortfolioModule)
+  },
+  {
+    path: 'all-vacancies',
+    redirectTo: 'careers'
+  },
+  {
+    path:'approach.html',
+    redirectTo: 'services'
+  },
+  {
+    path: 'approach',
+    redirectTo: 'services'
+  },
+  {
+    path: 'careers.html',
+    redirectTo: 'careers'
+  },
+  {
+    path: 'services.html',
+    redirectTo: 'services'
   },
   {
     path: '**',

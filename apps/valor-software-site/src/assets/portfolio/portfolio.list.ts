@@ -1,13 +1,13 @@
-export const portfolioList = [
+export const projectsList = [
     'CareerBuilder',
     'Zuora',
-    'Dollar_Street',
-    'Liberty_Flights',
+    'Dollar Street',
+    'Liberty Flights',
     'Souqalmal',
     'Priceshredder',
-    'Gapminder_Offline',
+    'Gapminder Offline',
     'TablesReady',
-    'Breethe_Sleep___Meditation',
+    'Breethe: Sleep & Meditation',
     'StackBlitz',
     'Renaizant',
     'Cinnabon',

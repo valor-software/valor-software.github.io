@@ -3,18 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
 import { AppComponent } from './app.component';
-import {CommonDocsModule, ARTICLES_LIST, SeoService} from '@valor-software/common-docs';
+import { CommonDocsModule, ARTICLES_LIST, SeoService, PORTFOLIO_LIST, ARTICLES_REFACTORED_TITLE_LIST, OLD_ROUTES_FROM_OLD_SITE } from '@valor-software/common-docs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScullyLibModule } from '@scullyio/ng-lib';
-import { articlesList } from "../assets/blog/articles.list";
-import { PORTFOLIO_LIST } from "@valor-software/portfolio";
-import { portfolioList } from "../assets/portfolio/portfolio.list";
+import { articlesList, articlesRefactoringTitlesList } from "../../../../assets/articles/articlesList";
+import { projectsList } from "../assets/portfolio/portfolio.list";
+import { linksFromOldSite } from "../../../../assets/articles/brokenRoutes";
 import { NotFoundComponent } from './404.component';
 
 @NgModule({
   declarations: [
-      AppComponent,
-      NotFoundComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +26,9 @@ import { NotFoundComponent } from './404.component';
   providers: [
     SeoService,
     { provide: ARTICLES_LIST, useValue: articlesList },
-    { provide: PORTFOLIO_LIST, useValue: portfolioList },
+    { provide: ARTICLES_REFACTORED_TITLE_LIST, useValue: articlesRefactoringTitlesList },
+    { provide: PORTFOLIO_LIST, useValue: projectsList },
+    { provide: OLD_ROUTES_FROM_OLD_SITE, useValue: linksFromOldSite },
   ],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,15 @@
+{
+  "author": "Artur Olshansky",
+  "order": 10,
+  "domains": [
+    "dev_quality_assurance",
+    "sales_marketing"
+  ],
+  "authorImg": "assets/articles/angular-and-seo-structured-data-for-rich-snippets/5ca74ca8397726bd74f14334_ava-Artur%20Olshanskyi.jpg",
+  "language": "en",
+  "bgImg": "assets/articles/angular-and-seo-structured-data-for-rich-snippets/5f69bf947232f9fd9653bd75_art-8.jpg",
+  "title": "Angular and SEO: Structured Data for Rich Snippets",
+  "position": "JS Developer",
+  "date": "Thu Jul 18 2019 13:53:56 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "We’ll show you how to make your Angular SPA more user-friendly with the help of Structured Data—a set of rules for data formatting proposed by Google."
+}

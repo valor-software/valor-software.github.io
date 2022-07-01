@@ -4,7 +4,11 @@
             class="article_swiper"
     >
         <ng-template swiperSlide *ngFor="let article of articles">
-            <blog-portfolio-item class="w-full cursor-pointer" [article]="article" (click)="route(article.title)"></blog-portfolio-item>
+            <ng-container *ngIf="article && article.title">
+                <a class="block w-full cursor-pointer" href="javascript:void(0)" [routerLink]="['/articles', getRouteLink(article.title)]">
+                    <blog-portfolio-item [article]="article"></blog-portfolio-item>
+                </a>
+            </ng-container>
         </ng-template>
     </swiper>
 </ng-container>

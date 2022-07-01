@@ -1,10 +1,10 @@
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
-import { IPortfolio, GetPortfolioService } from "@valor-software/portfolio";
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { DomSanitizer } from '@angular/platform-browser';
-import { BlogPortfolioRouteService } from "./services/route.service";
+import { IPortfolio, GetPortfolioService } from "@valor-software/common-docs";
+import {checkHTMLExtension, titleRefactoring} from "@valor-software/common-docs";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -21,7 +21,6 @@ export class ProjectComponent implements OnDestroy{
         private router: Router,
         private getProjectsServ: GetPortfolioService,
         private sanitizer: DomSanitizer,
-        private projectRoute: BlogPortfolioRouteService,
         private cdr: ChangeDetectorRef,
 
     ) {
@@ -35,24 +34,23 @@ export class ProjectComponent implements OnDestroy{
     }
 
     checkRoutePath() {
-        const artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
+        let artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
         if (!artTitle) {
-            this.router.navigate(['/portfolio']);
+            this.router.navigate(['/404']);
         }
 
-        if (artTitle) {
-            this.getProjectsServ.getPortfolioRequest(artTitle).subscribe((res: IPortfolio) => {
-                this.changeBreadCrumbTitle = [{
-                    path: artTitle,
-                    title: res.name
-                }];
-                this.project = res;
-                this.initNextProject();
-            }, error => {
-                console.log('error', error);
-                this.router.navigate(['/portfolio']);
-            });
-        }
+        artTitle = checkHTMLExtension(artTitle);
+        this.getProjectsServ.getPortfolioRequest(artTitle).subscribe((res: IPortfolio) => {
+            this.changeBreadCrumbTitle = [{
+                path: this.router.parseUrl(this.router.url).root.children.primary.segments[1].path,
+                title: res.name
+            }];
+            this.project = res;
+            this.initNextProject();
+        }, error => {
+            console.log('error', error);
+            this.router.navigate(['/404']);
+        });
     }
 
     getSafeUrl(url?: string) {
@@ -64,28 +62,32 @@ export class ProjectComponent implements OnDestroy{
     }
 
     initNextProject() {
-        const array = this.getProjectsServ.getProjectList();
-        if (!array) {
-            return;
-        }
-
-        let index = array.findIndex(item => item === this.changeBreadCrumbTitle?.[0]?.path);
-
+        let index = this.getProjectsServ.getTitleIndex(this.router.parseUrl(this.router.url).root.children.primary.segments[1].path);
         if (!index && index !== 0) {
             return;
         }
 
-        index++;
-        if (index > array?.length - 1) {
+        const refactoredTitles = this.getProjectsServ.getRefactoredList() || [];
+        const projectList = [...refactoredTitles].reverse();
+        if (!projectList || !projectList.length) {
+            return;
+        }
+
+        if (index === projectList.length) {
             index = 0;
         }
-        this.getProjectsServ.getPortfolioRequest(array[index]).subscribe(res => {
+
+        if (!projectList[index]) {
+            return;
+        }
+
+        this.getProjectsServ.getPortfolioRequest(projectList[index]).subscribe(res => {
             this.nextProject = res;
         });
     }
 
-    route(link: string) {
-        this.projectRoute.route(link, false);
+    getRouteLink(link: string): string {
+        return titleRefactoring(link);
     }
 
     getRespSrc(link: string): string {

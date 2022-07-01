@@ -10,10 +10,10 @@ export const config: ScullyConfig = {
   projectName: "valor-software-site",
   outDir: './dist/valor-software-site',
   routes: {
-    '/blog/:id': {
+    '/articles/:id': {
       type: 'blogRoute',
     },
-    '/portfolio/:id': {
+    '/projects/:id': {
       type: 'portfolioRoute',
     }
   }

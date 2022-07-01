@@ -1,10 +1,12 @@
-import { Injectable, Inject } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import {filter} from "rxjs/operators";
-import {NavigationEnd, Router, UrlSegment} from "@angular/router";
-import {Observable, Subscription} from "rxjs";
-import {GetArticlesService} from "./getArticles.service";
-import { GetPortfolioService } from "@valor-software/portfolio";
+import { GetArticlesService } from "./getArticles.service";
+import { GetPortfolioService } from "./getPortfolio.service";
+import { filter } from "rxjs/operators";
+import { NavigationEnd, Router, UrlSegment } from "@angular/router";
+import { Observable, Subscription } from "rxjs";
+import { checkHTMLExtension } from "../utils/titleRefactoringUtil";
+import { OLD_ROUTES_FROM_OLD_SITE } from "../tokens/linksFromOldSite.token";
 
 const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue: string, content: string }[]} = {
     '/': [
@@ -83,7 +85,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             content: 'Services - Valor Software'
         }
     ],
-    'portfolio': [
+    'projects': [
         {
             nameType: 'meta',
             name: 'name',
@@ -159,7 +161,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             content: 'Careers - Valor Software'
         }
     ],
-    'blog': [
+    'articles': [
         {
             nameType: 'meta',
             name: 'name',
@@ -355,8 +357,8 @@ enum routeValues {
     default = '/',
     clients = 'clients',
     services = 'services',
-    blog = 'blog',
-    portfolio = 'portfolio',
+    articles = 'articles',
+    projects = 'projects',
     careers = 'careers'
 
 };
@@ -365,14 +367,17 @@ enum routeValues {
 export class SeoService {
     metaList: typeof ex = ex;
     $routEvents: Subscription;
+    brokenArticlesRoutes?: {[key: string]: string};
 
     constructor(
         private titleService: Title,
         private metaTagService: Meta,
         private router: Router,
         private getArticle: GetArticlesService,
-        private getPortfolio: GetPortfolioService
+        private getPortfolio: GetPortfolioService,
+        @Inject(OLD_ROUTES_FROM_OLD_SITE) linkList: {[key: string]: string},
     ){
+        this.brokenArticlesRoutes = linkList;
         this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
             const url = this.router.parseUrl(this.router.url).root.children?.primary?.segments;
             this.initCurrentTags(this.editRouteUrl(url));
@@ -386,7 +391,7 @@ export class SeoService {
 
         if (value?.length > 1) {
             let info;
-            if (value[0].path === 'blog') {
+            if (value[0].path === 'articles') {
                 this.getBlogInfo(value[1].path).subscribe(res => {
                     this.initCurrentTagsWithParams({
                         title: res.title,
@@ -395,8 +400,8 @@ export class SeoService {
                 });
             }
 
-            if (value[0].path === 'portfolio') {
-                this.getProjectInfo(value[1].path).subscribe(res => {
+            if (value[0].path === 'projects') {
+                this.getProjectInfo(value[1].path)?.subscribe(res => {
                     this.initCurrentTagsWithParams({
                         title: res.name,
                         description: res.description
@@ -448,11 +453,16 @@ export class SeoService {
     }
 
     getBlogInfo(title: string): Observable<any> {
-        return this.getArticle.getArticleRequest(title);
+        let requestLink = title;
+        if (this.brokenArticlesRoutes && this.brokenArticlesRoutes[title]) {
+            requestLink = this.brokenArticlesRoutes[title];
+        }
+
+        return this.getArticle.getArticleRequest(checkHTMLExtension(requestLink));
     }
 
-    getProjectInfo(title: string): Observable<any> {
-        return this.getPortfolio.getPortfolioRequest(title);
+    getProjectInfo(title: string): Observable<any> | undefined {
+        return this.getPortfolio.getPortfolioRequest(checkHTMLExtension(title));
     }
 
     initCurrentTagsWithParams(value: {title: string, description: string}) {
