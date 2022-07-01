@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { SwiperOptions } from 'swiper';
 
 export interface IDefaultValuesText {
   title?: string;
-  description?: string;
+  description?: string[];
 }
 
 export interface IChallengeCard {
@@ -11,6 +12,7 @@ export interface IChallengeCard {
   solution: IDefaultValuesText;
   src?: string;
   imgCarrousel?: string[];
+  comparisonImg?: IComparisonImage;
   footer?: IChallengeFooter;
   subSection?: IChallengeSubSection;
 }
@@ -19,11 +21,22 @@ export interface IChallengeFooter extends IDefaultValuesText {
   list?: string[];
 }
 
+export interface IComparisonImage {
+  before: {
+    src: string;
+    title?: string;
+  },
+  after: {
+    src: string;
+    title?: string;
+  }
+}
 export interface IChallengeSubSection extends IDefaultValuesText {
-  imgs: {
+  imgs?: {
     title: string,
     src: string,
   }[];
+  video?: string;
 }
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -45,4 +58,16 @@ export class ChallengeCardComponent {
       clickable: true
     },
   };
+
+  constructor(
+    private sanitizer: DomSanitizer,
+  ) { }
+
+  getSafeUrl(url?: string) {
+    if (!url) {
+      return '';
+    };
+
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 }
