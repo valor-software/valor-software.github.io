@@ -12,9 +12,13 @@ export const routes = [
                 component: GeneralPageComponent
             },
             {
+                path: 'terminus',
+                loadChildren: () => import('@valor-software/terminus-page').then(m => m.TerminusPageModule)
+            },
+            {
                 path: ':id',
                 component: GeneralItemComponent
-            }
+            },
         ]
     }
 ];

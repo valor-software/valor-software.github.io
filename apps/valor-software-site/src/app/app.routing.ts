@@ -31,10 +31,6 @@ export const routes: Routes = [
     loadChildren: () => import('@valor-software/blog-portfolio').then(m => m.BlogPortfolioModule)
   },
   {
-    path: 'terminus',
-    loadChildren: () => import('@valor-software/terminus-page').then(m => m.TerminusPageModule)
-  },
-  {
     path: 'all-vacancies',
     redirectTo: 'careers'
   },

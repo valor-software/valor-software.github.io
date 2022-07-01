@@ -43,7 +43,8 @@ module.exports = {
       green: '#658B80',
       light_blue: '#71A5D2',
       popover_bg: '#282828',
-      medium_grey_bg: "#717171"
+      medium_grey_bg: "#717171",
+      real_dark_grey: '#222222'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -142,7 +143,8 @@ module.exports = {
         '6': '6px'
       },
       spacing: {
-        '6.75': '6.75rem'
+        '6.75': '6.75rem',
+        '18': '72px'
       },
       width: {
         '1225': '1225px',
@@ -160,6 +162,8 @@ module.exports = {
         '130': '130px',
         '75': '75px',
         '104': '104px',
+        '80%': '80%',
+        '62': '62px',
       },
       minHeight: {
         '725': '725px',
