@@ -29,4 +29,19 @@ export class AshesPageComponent {
     Technologies.Scully,
     Technologies.GithubActions
   ];
+
+  loginComparison = {
+    beforeImg: 'assets/img/bg-img/ashes_page/login_old.png',
+    afterImg: 'assets/img/bg-img/ashes_page/login_new.png'
+  };
+
+  itemsComparison = {
+    beforeImg: 'assets/img/bg-img/ashes_page/items_old.png',
+    afterImg: 'assets/img/bg-img/ashes_page/items_new.png'
+  };
+
+  checkoutComparison = {
+    beforeImg: 'assets/img/bg-img/ashes_page/checkout_old.png',
+    afterImg: 'assets/img/bg-img/ashes_page/checkout_new.png'
+  };
 }
