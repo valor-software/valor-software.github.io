@@ -23,6 +23,7 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
+import { NextProjectComponent } from './components/next-project/next-project.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -60,7 +61,8 @@ export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
-    ComparisonSliderComponent
+    ComparisonSliderComponent,
+    NextProjectComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -74,7 +76,8 @@ export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
-    ComparisonSliderComponent
+    ComparisonSliderComponent,
+    NextProjectComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
