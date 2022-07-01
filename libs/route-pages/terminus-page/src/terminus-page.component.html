@@ -1,13 +1,11 @@
 <section class="first-section landing-section pb-0  mx-5 lg:mr-0">
-    <div class="container">
-        <ng-container *ngIf="changeBreadCrumbTitle?.length">
-            <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block"></breadCrumbs>
-        </ng-container>
-    </div>
     <div class="flex-column lg:flex justify-center lg:justify-between items-center mb-18 pt-16 lg:pt-0"
         style="max-height: 100%;">
 
-        <div class="lg:w-4/12 lg:m-auto mb-18">
+        <div class="lg:w-4/12 md:mx-auto md:mt-0 mb-18">
+            <ng-container *ngIf="changeBreadCrumbTitle?.length">
+                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block md:mb-24"></breadCrumbs>
+            </ng-container>
             <h1 class="text-light_title_col md:text-64 text-40 md:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
                 Terminus
             </h1>
@@ -288,3 +286,4 @@
         </div>
     </div>
 </section>
+<next-project></next-project>
