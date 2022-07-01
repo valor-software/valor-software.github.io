@@ -39,6 +39,13 @@
   }">
   </comparison-slider>
 
+
+  <div class="mb-7 md:w-9/12"  *ngIf="challengeCard.subSection && challengeCard.subSection.description">
+    <p class="leading-normal text-20 text-grey_font_col mb-6 md:mb-10"
+      *ngFor="let description of challengeCard.subSection.description"> {{description}}
+    </p>
+  </div>
+
   <div class="bg-popover_bg px-4 pb-4 pt-6 mb-7" *ngIf="challengeCard.subSection && challengeCard.subSection.imgs">
     <div class="flex flex-wrap justify-center lg:justify-center gap-6 items-center">
       <div *ngFor="let img of challengeCard.subSection.imgs">
