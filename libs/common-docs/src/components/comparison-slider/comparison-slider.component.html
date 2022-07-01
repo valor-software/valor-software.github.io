@@ -1,13 +1,20 @@
-<img-comparison-slider class="img-comparison-slider" *ngIf="comparisonImg">
-  <figure slot="first" class="before">
-    <img width="100%" [src]="comparisonImg.beforeImg">
-    <figcaption>{{comparisonImg.beforeText || 'Before'}}
-    </figcaption>
-  </figure>
-  <figure slot="second" class="after">
-    <img width="100%" [src]="comparisonImg.afterImg">
-    <figcaption>{{comparisonImg.afterText || 'After'}}
-    </figcaption>
-  </figure>
-  <img slot="handle" class="custom-handle" height="100%" width="100%" src="assets/img/icons/arrow-circle.svg">
-</img-comparison-slider>
+<div *ngIf="comparisonImg" class="mb-10 md:mb-0">
+  <img-comparison-slider class="img-comparison-slider">
+    <figure slot="first" class="before m-0 ">
+      <img width="100%" [src]="comparisonImg.beforeImg">
+    </figure>
+    <figure slot="second" class="after m-0 ">
+      <img width="100%" [src]="comparisonImg.afterImg">
+    </figure>
+    <img slot="handle" class="self-center left-0 top-0 text-center m-autow-fullh-full "  src="assets/img/icons/arrow-circle.svg">
+  </img-comparison-slider>
+  <div class="relative flex justify-between bottom-10n md:bottom-24 px-12">
+    <div class="w-62 h-8 md:w-104 md:h-14 text-center bg-light_title_col md:bg-real_dark_grey rounded-6 p-2 md:p-4 ">
+      <p class="text-16 md:text-24 text-real_dark_grey md:text-white leading-4 md:leading-6">{{comparisonImg.beforeText || 'Before'}}</p>
+    </div>
+
+    <div class="w-62 h-8 md:w-104 md:h-14 text-center bg-light_title_col md:bg-real_dark_grey rounded-6 p-2 md:p-4">
+      <p class="text-16 md:text-24 text-real_dark_grey md:text-white leading-4 md:leading-6">{{comparisonImg.afterText || 'After'}}</p>
+    </div>
+  </div>
+</div>
