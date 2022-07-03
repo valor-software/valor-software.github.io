@@ -2,19 +2,20 @@
     <div class="flex-column lg:flex justify-center lg:justify-between items-center mb-18 pt-16 lg:pt-0"
         style="max-height: 100%;">
 
-        <div class="lg:w-4/12 md:mx-auto md:mt-0 mb-18">
+        <div class="md:w-4/12 md:mx-auto md:mt-0 mb-18">
             <ng-container *ngIf="changeBreadCrumbTitle?.length">
-                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block md:mb-24"></breadCrumbs>
+                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block md:mb-24">
+                </breadCrumbs>
             </ng-container>
             <h1 class="text-light_title_col md:text-64 text-40 md:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
                 Terminus
             </h1>
-            <p class="leading-normal text-grey_font_col text-16 mb-10">Terminus is the only account-based
+            <p class="leading-6 text-grey_font_col text-16 mb-10">Terminus is the only account-based
                 engagement
                 platform built to deliver more pipeline and revenue through multi-channel account-based marketing (ABM).
             </p>
 
-            <p class="leading-normal text-16 text-grey_font_col lg:mb-8 mb-18">
+            <p class="leading-6 text-grey_font_col text-16 lg:mb-8 mb-18">
                 With multiple product acquisitions over the years, Terminus has a very interesting mix of complexity and
                 growth that really allowed the Valor Software team to shine. As Terminus has grown, we have been able to
                 come alongside them and help break down organizational silos and spread knowledge.</p>
@@ -97,8 +98,7 @@
                 <div
                     class="bg-grey lg:py-14 lg:min-h-50 py-7 lg:px-14 lg:px-7 flex justify-between mb-8 w-full flex-col">
                     <div class="md:w-45%">
-                        <p
-                            class="font-bold text-light_title_col md:text-large block mr-3.5  pl-6 text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+                        <p class="font-bold text-light_title_col md:text-24 pl-6 text-left mt-6 mt-0 text-20  mb-6">
                             Campaign performance</p>
                     </div>
                     <div class="flex flex-wrap justify-center lg:justify-between items-center gap-4">
@@ -124,8 +124,7 @@
         <div>
             <div class="bg-grey lg:py-14 lg:min-h-50 py-7 lg:px-14 lg:px-7 flex justify-between mb-8 w-full flex-col">
                 <div class="md:w-45%">
-                    <p
-                        class="font-bold text-light_title_col md:text-large block mr-3.5  pl-6 text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+                    <p class="font-bold text-light_title_col md:text-24 pl-6 text-left mt-6 mt-0 text-20  mb-6">
                         Overview</p>
                 </div>
 
@@ -152,8 +151,7 @@
         <div>
             <div class="bg-grey lg:py-14 lg:min-h-50 py-7 lg:px-14 lg:px-7 flex justify-between mb-8 w-full flex-col">
                 <div class="md:w-45%">
-                    <p
-                        class="font-bold text-light_title_col md:text-large block mr-3.5  pl-6 text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+                    <p class="font-bold text-light_title_col md:text-24 pl-6 text-left mt-6 mt-0 text-20  mb-6">
                         Report</p>
                 </div>
 
@@ -170,11 +168,10 @@
             </div>
         </div>
 
-        <div class="bg-green p-4 lg:p-14">
-            <p
-                class="font-bold text-white md:text-large block mr-3.5 mt-7  text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+        <div class="bg-green p-4 lg:p-10">
+            <p class="font-bold text-white  text-20 md:text-40 block mr-3.5 text-left mb-6 mt-0  md:leading-44 ">
                 Impact</p>
-            <ul class="list-disc list-inside leading-normal text-white text-20  lg:mb-8 mb-4 md:w-8/12">
+            <ul class="list-disc  lg:list-outside list-inside leading-normal text-white text-16 md:text-20 w-9/12">
                 <li>More powerful campaigns with newly added functionality and deepened analytics on target audience
                     engagement</li>
                 <li>Improved targeting of prospects thanks to advanced filters and parameters</li>
@@ -188,18 +185,14 @@
     <div class="container mb-14">
         <div class="-ml-5 md:-ml-8 lg:-ml-14 mt-3 md:mt-1 lg:mt-2 green-circle m"></div>
         <div class="lg:w-9/12">
-            <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4">
+            <h2 class="text-feedback_font_col text-left text-32 lg:text-40 font-bold mb-4">
                 Migration to Angular and modernization of the Data Studio and Measurement Studio</h2>
-            <p class="text-dar_grey_font_col text-left text-16  mb-14">We’re helping to enhance the
-                capabilities of the module for targeted ad placement that allows users to run ad campaigns across
-                nearly
-                70
-                different networks and over hundreds of thousands of websites. In particular, we implemented a
-                completely
-                new logic behind the reporting system that allows deriving exactly the data users need from the data
-                lake
-                and transforming it into handy yet detailed reports. Also, we’re extending the functionality of Ad
-                Experiences and making it even more intuitive and user-friendly.</p>
+            <p class="text-dar_grey_font_col text-left text-16  mb-14">Terminus Data Studio allows defining and finding
+                the most relevant audiences to target sales and marketing campaigns at maximum efficiency. Users get
+                access to deep firmographic data on 70 million businesses provided by Terminus and build custom target
+                account lists! While Measurement Studio helps users measure and streamline their entire revenue
+                strategy. We’ve had a great deal of success here in migrating the applications to modern Angular rails
+                and reorganizing the codebase for higher visibility and usability.</p>
         </div>
         <h2 class="text-feedback_font_col text-left leading-56 text-24 lg:text-40 font-bold mb-7">
             Technologies:
@@ -213,9 +206,9 @@
 
     <div class="container mb-14">
         <div class="-ml-5 lg:-ml-14 mt-3 lg:mt-2 green-circle m"></div>
+        <h2 class="text-feedback_font_col text-left text-32 lg:text-40 font-bold mb-4 lg:w-8/12">
+            New cloud service for the Email Experiences module</h2>
         <div class="lg:w-9/12">
-            <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4">
-                New cloud service for the Email Experiences module</h2>
             <p class="text-dar_grey_font_col text-left text-16  mb-7">Email Experiences equips users with a set of
                 dynamic tools to create unique emailing campaigns with customized messages and banners. Powerful
                 insights on prospects’ interaction with the emails help teams skyrocket their marketing strategy and
@@ -238,9 +231,9 @@
 
     <div class="container mb-14">
         <div class="-ml-5 md:-ml-8 lg:-ml-14 mt-3 md:mt-1 lg:mt-2 green-circle m"></div>
-        <div class="lg:w-9/12">
-            <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4">
-                Brand New functionality for Chat Experiences</h2>
+        <h2 class="text-feedback_font_col text-left text-32 lg:text-40 font-bold mb-4 lg:w-8/12">
+            Brand New functionality for Chat Experiences</h2>
+            <div class="lg:w-9/12">
             <p class="text-dar_grey_font_col text-left text-16  mb-7">Terminus Chat Experiences transforms how companies
                 engage with their prospects and customers. The Terminus chatbot creates a more relevant buyer journey
                 the moment someone lands on a website. With Chat Experiences, convert more qualified visitors, route

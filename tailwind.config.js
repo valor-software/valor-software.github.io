@@ -6,8 +6,19 @@ module.exports = {
   purge: {
     content: [
       './apps/valor-software-site/src/**/*.{html,ts}',
-      './libs/**/src/**/*.{html,ts}'
-    ]
+      './libs/**/src/**/*.{html,ts}',
+    ],
+    safelist: [
+      'lg:justify-start',
+      'lg:justify-center',
+      'lg:justify-between',
+      'md:justify-start',
+      'md:justify-center',
+      'md:justify-between',
+      'justify-start',
+      'justify-center',
+      'justify-between',
+    ],
   },
   darkMode: 'class',
   theme: {
@@ -165,7 +176,8 @@ module.exports = {
         '75': '75px',
         '104': '104px',
         '80%': '80%',
-        '62': '62px'
+        '62': '62px',
+        '74': '74px'
       },
       minHeight: {
         '725': '725px',
@@ -183,7 +195,8 @@ module.exports = {
         '50': '50px',
         '115': '115px',
         '75': '75px',
-        '56': '56px'
+        '56': '56px',
+        '74': '74px'
       },
       zIndex: {
         '1': '1'
@@ -193,5 +206,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'),require('@tailwindcss/typography'), require('@tailwindcss/ui')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/ui')],
 };

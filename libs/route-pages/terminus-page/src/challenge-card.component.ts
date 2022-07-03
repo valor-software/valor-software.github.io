@@ -11,6 +11,7 @@ export interface IChallengeCard {
   challenge: IDefaultValuesText;
   solution: IDefaultValuesText;
   src?: string;
+  smallImg?: boolean;
   imgCarrousel?: string[];
   comparisonImg?: IComparisonImage;
   footer?: IChallengeFooter;

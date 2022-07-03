@@ -1,29 +1,27 @@
 <div class="bg-grey lg:p-10 lg:min-h-50 p-4 flex justify-between mb-8 w-full flex-col " *ngIf="challengeCard">
-  <div class="">
 
-    <div class="mb-7 md:w-9/12">
-      <p
-        class="font-bold text-light_title_col text-20 md:text-40 block mr-3.5  text-left mt-6 mt-0  md:leading-44 mb-4 md:mb-6">
-        {{challengeCard.challenge.title}}</p>
-      <p class="leading-normal text-16 text-grey_font_col mb-6 md:mb-10"
-        *ngFor="let description of challengeCard.challenge.description"> {{description}}
-      </p>
-    </div>
-
-    <div class="mb-7 md:w-80%">
-      <p
-        class="font-bold text-light_title_col text-20 md:text-40 block mr-3.5  text-left mt-6 mt-0  md:leading-44 mb-4 md:mb-6">
-        {{challengeCard.solution.title}}</p>
-      <p class="leading-normal text-16 text-grey_font_col mb-6 md:mb-10"
-        *ngFor="let description of challengeCard.solution.description"> {{description}}
-      </p>
-    </div>
-
+  <div class="mb-7 md:w-80%">
+    <p
+      class="font-bold text-light_title_col text-20 md:text-40 block mr-3.5  text-left mt-6 mt-0  md:leading-44 mb-4 md:mb-6">
+      {{challengeCard.challenge.title}}</p>
+    <p class="leading-normal text-16 text-grey_font_col mb-6 md:mb-10"
+      *ngFor="let description of challengeCard.challenge.description"> {{description}}
+    </p>
   </div>
 
-  <img *ngIf="challengeCard.src" [src]="challengeCard.src" [alt]="challengeCard.challenge.title + ' img'" class="mb-12">
+  <div class="mb-2 md:w-80%">
+    <p
+      class="font-bold text-light_title_col text-20 md:text-40 block mr-3.5  text-left mt-6 mt-0  md:leading-44 mb-4 md:mb-6">
+      {{challengeCard.solution.title}}</p>
+    <p class="leading-normal text-16 text-grey_font_col mb-6 md:mb-10"
+      *ngFor="let description of challengeCard.solution.description"> {{description}}
+    </p>
+  </div>
 
-  <swiper [config]="swiperConfig" class="pink_swiper" *ngIf="challengeCard.imgCarrousel">
+  <img *ngIf="challengeCard.src" [src]="challengeCard.src" [alt]="challengeCard.challenge.title + ' img'"
+    class="mb-12 self-center" [ngClass]="challengeCard.smallImg? 'lg:w-1/2': ''">
+
+  <swiper [config]="swiperConfig" class="pink_swiper p-0" *ngIf="challengeCard.imgCarrousel">
     <ng-template swiperSlide *ngFor="let img of challengeCard.imgCarrousel">
 
       <div class="max-h-full  md:max-w-full mb-6 md:mb-0">
@@ -39,8 +37,7 @@
   }">
   </comparison-slider>
 
-
-  <div class="mb-7 md:w-9/12"  *ngIf="challengeCard.subSection && challengeCard.subSection.description">
+  <div class="mb-7 md:w-9/12" *ngIf="challengeCard.subSection && challengeCard.subSection.description">
     <p class="leading-normal text-20 text-grey_font_col mb-6 md:mb-10"
       *ngFor="let description of challengeCard.subSection.description"> {{description}}
     </p>
@@ -69,13 +66,13 @@
   </div>
 
   <div class="bg-green p-4 lg:p-10" *ngIf="challengeCard.footer">
-    <p class="font-bold text-white  text-20 md:text-40 block mr-3.5 text-left mt-6 mt-0  md:leading-44 ">
+    <p class="font-bold text-white  text-20 md:text-40 block mr-3.5 text-left mb-6 mt-0  md:leading-44 ">
       {{challengeCard.footer.title}}</p>
-    <p class="leading-normal text-16 md:text-20 text-white mb-6 md:mb-10 md:w-10/12"
+    <p class="leading-normal text-16 md:text-20 text-white md:w-10/12"
       *ngFor="let description of challengeCard.footer.description"> {{description}}
     </p>
 
-    <ul *ngIf="challengeCard.footer.list" class="list-disc list-inside	 leading-normal text-white text-16 md:text-20">
+    <ul *ngIf="challengeCard.footer.list" class="list-disc list-inside lg:list-outside  leading-normal text-white text-16 md:text-20 w-10/12">
       <li *ngFor="let item of challengeCard.footer.list">{{item}}</li>
     </ul>
   </div>

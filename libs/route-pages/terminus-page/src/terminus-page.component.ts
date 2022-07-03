@@ -59,7 +59,6 @@ const dataAndMeasurementChallenge: IChallengeCard = {
             "Simplified process of development and more accessible testing with the Angular CLI",
             "90% Unit test coverage!!"]
     },
-    src: 'assets/img/bg-img/terminus_page/challenge_1.svg',
     comparisonImg: {
         before: { src: 'assets/img/bg-img/terminus_page/campaign_trends_before.png', title: 'Before' },
         after: { src: 'assets/img/bg-img/terminus_page/campaign_trends_after.png', title: 'After' }
@@ -87,6 +86,7 @@ const cloudChallenge: IChallengeCard = {
             'Improved performance and stability']
     },
     src: 'assets/img/bg-img/terminus_page/cloud_challenge.svg',
+    smallImg: true
 };
 
 const newFunctionalitiesChallenge: IChallengeCard = {
@@ -202,8 +202,8 @@ const migrationTechnologies: ITechnologiesCard[] = [
                 title: "AngularJs"
             },
             {
-                src: "assets/img/technologies/active/angular.png",
-                title: "Angular"
+                src: "assets/img/technologies/active/angular11.png",
+                title: "Angular 11"
             },
             {
                 src: "assets/img/technologies/active/nx.png",
