@@ -2,8 +2,8 @@
 
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { GetPortfolioService, IPortfolio, titleRefactoring } from '@valor-software/common-docs';
 import 'img-comparison-slider';
+import { GetPortfolioService, IPortfolio, titleRefactoring } from '../../common-docs.module';
 
 export interface IComparisonSlider {
   beforeImg: string;
