@@ -65,7 +65,7 @@ const dataAndMeasurementChallenge: IChallengeCard = {
     },
     subSection: {
         description: ['To make Angular codebase even lighter and simplify app management, our team’s initiative was to implement Nx. It makes an application a set of libraries that can serve different modules of the system with no extra code required. Also, we boosted the app performance.'],
-        imgs: [{ src: 'assets/img/bg-img/terminus_page/before_solution.svg', title: 'Before' }, { src: 'assets/img/bg-img/terminus_page/after_solution.svg', title: 'After' }]
+        imgs: [{ src: 'assets/img/bg-img/terminus_page/highlighted_before.png', title: 'Before' }, { src: 'assets/img/bg-img/terminus_page/highlighted_after.png', title: 'After' }]
     }
 };
 

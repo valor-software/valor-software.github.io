@@ -44,7 +44,7 @@
   </div>
 
   <div class="bg-popover_bg px-4 pb-4 pt-6 mb-7" *ngIf="challengeCard.subSection && challengeCard.subSection.imgs">
-    <div class="flex flex-wrap justify-center lg:justify-center gap-6 items-center">
+    <div class="flex  justify-center lg:justify-center gap-2 lg:gap-6 items-center">
       <div *ngFor="let img of challengeCard.subSection.imgs">
         <div class="flex-column justify-between text-center ">
           <img [src]="img.src" [alt]="img.title">

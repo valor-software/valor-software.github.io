@@ -1,13 +1,13 @@
-<section class="first-section landing-section pb-0  mx-5 lg:mr-0">
+<section class="first-section landing-section pb-0  mx-5 lg:mx-0">
     <div class="flex-column lg:flex justify-center lg:justify-between items-center mb-18 pt-16 lg:pt-0"
         style="max-height: 100%;">
 
-        <div class="md:w-4/12 md:mx-auto md:mt-0 mb-18">
+        <div class="lg:w-4/12 lg:mx-auto md:mt-0 mb-18">
             <ng-container *ngIf="changeBreadCrumbTitle?.length">
-                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block md:mb-24">
+                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
                 </breadCrumbs>
             </ng-container>
-            <h1 class="text-light_title_col md:text-64 text-40 md:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+            <h1 class="text-light_title_col lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
                 Terminus
             </h1>
             <p class="leading-6 text-grey_font_col text-16 mb-10">Terminus is the only account-based
@@ -22,17 +22,8 @@
 
             <div class="flex-column lg:flex justify-start items-center">
                 <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
-                    <a [routerLink]="'/projects'" class="btn-pink w-full flex justify-center items-center">Visit
+                    <a href="https://terminus.com/" target="_blank" class="btn-pink w-full flex justify-center items-center">Visit
                         the site
-                        <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
-                </button>
-                <button class="w-full lg:w-auto flex lg:mr-6 mb-4">
-                    <a [routerLink]="'/projects'" class="btn-dark-pink w-full flex justify-center items-center">Dribble
-                        <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
-                </button>
-
-                <button class="w-full lg:w-auto flex lg:mr-6 mb-4">
-                    <a [routerLink]="'/projects'" class="btn-blue w-full flex justify-center items-center">Behance
                         <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
                 </button>
             </div>
@@ -61,7 +52,7 @@
     </div>
 </section>
 
-<section class="landing-section py-0 mb-6 lg:mb-12 ml-12 mr-5">
+<section class="landing-section py-0 mb-6 lg:mb-12 ml-12 mr-5 md:mx-0">
     <div class="container ">
         <div class="lg:px-4 ">
             <div class="-ml-5 md:-ml-8 lg:-ml-10 mt-2  green-circle"></div>
@@ -88,7 +79,7 @@
 </section>
 
 
-<section class="landing-section py-0 ml-12 mr-5">
+<section class="landing-section py-0 ml-12 mr-5 md:mx-0">
 
     <div class="container">
         <challenge-card *ngFor="let challenge of initialChallenges" [challengeCard]="challenge"></challenge-card>
@@ -233,7 +224,7 @@
         <div class="-ml-5 md:-ml-8 lg:-ml-14 mt-3 md:mt-1 lg:mt-2 green-circle m"></div>
         <h2 class="text-feedback_font_col text-left text-32 lg:text-40 font-bold mb-4 lg:w-8/12">
             Brand New functionality for Chat Experiences</h2>
-            <div class="lg:w-9/12">
+        <div class="lg:w-9/12">
             <p class="text-dar_grey_font_col text-left text-16  mb-7">Terminus Chat Experiences transforms how companies
                 engage with their prospects and customers. The Terminus chatbot creates a more relevant buyer journey
                 the moment someone lands on a website. With Chat Experiences, convert more qualified visitors, route
@@ -255,7 +246,7 @@
     </div>
 </section>
 
-<section class="landing-section ml-12 mr-5">
+<section class="landing-section ml-12 mr-5 md:mx-0">
     <h1 class="main-title">Future</h1>
     <div class="container">
         <div class=" flex-column justify-center lg:flex lg?justify-between ">
