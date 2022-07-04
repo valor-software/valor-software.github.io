@@ -1,58 +1,91 @@
-import { Component } from "@angular/core";
-import { Technologies } from "@valor-software/common-docs";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { GetPortfolioService, IPortfolio, Technologies, titleRefactoring } from "@valor-software/common-docs";
+import { Observable } from "rxjs";
+
+const ROUTE = 'ashes-of-creation';
+
+interface Deliverable {
+  text: string
+  description: string
+  technologies: Technologies[]
+  impact: string[]
+  comparisons: { beforeImg: string, afterImg: string }[]
+  bgImg: string
+  centerButton?: { text: string, link: string }
+}
+
+interface Feedback {
+  text: string
+  img: string
+  author: string
+  position: string
+}
+
+type AshesPortfolio = IPortfolio & {
+  deliverables: Deliverable[],
+  feedback: Feedback
+  background: string[]
+  challenge: string[]
+};
 
 @Component({
   selector: "ashes-page",
   templateUrl: "./ashes-page.component.html"
 })
-export class AshesPageComponent {
-  changeBreadCrumbTitle?: { path: string, title: string }[] = [{ path: "ashes", title: "Ashes of Creation" }];
-
-  comparisons = [
-    {
-      beforeImg: 'assets/img/bg-img/ashes_page/login_old.png',
-      afterImg: 'assets/img/bg-img/ashes_page/login_new.png'
-    },
-    {
-      beforeImg: 'assets/img/bg-img/ashes_page/items_old.png',
-      afterImg: 'assets/img/bg-img/ashes_page/items_new.png'
-    },
-    {
-      beforeImg: 'assets/img/bg-img/ashes_page/checkout_old.png',
-      afterImg: 'assets/img/bg-img/ashes_page/checkout_new.png'
-    }
-  ];
-
-
-  technologies: Technologies[] = [
-    Technologies.JavaScript,
-    Technologies.Scully,
-    Technologies.GAnalytics,
-    Technologies.EcommerceMarketing,
-    Technologies.Tailwind
-  ];
-  ssoTechnologies: Technologies[] = [
-    Technologies.NodeJs,
-    Technologies.Aws,
-    Technologies.NestJs,
-    Technologies.PostgreSql,
-    Technologies.MongoDb,
-    Technologies.Sentry,
-    Technologies.AzurePlayFab,
-  ];
+export class AshesPageComponent implements OnInit {
+  changeBreadCrumbTitle?: { path: string, title: string }[] = [{ path: ROUTE, title: "Ashes of Creation" }];
 
   imageSliderButtonClasses = 'bg-yellow_bg_col color-black';
 
-  automatedTechnologies: Technologies[] = [
-    Technologies.Contentful,
-    Technologies.Scully,
-    Technologies.GithubActions
-  ];
+  project$: Observable<AshesPortfolio> = this.getProjectsServ.getPortfolioRequest(ROUTE);
+  nextProject?: IPortfolio;
 
-  feedback = {
-    text: 'We’ve been working with Valor, and they have been doing some amazing stuff with the website. They have a great dedicated team of professionals who we have had an absolute pleasure working with to help support our platform needs. Those who might be in the enterprise business and need technical support and web development support, I would give a major shout-out to the Valor team. They’re doing a great job!',
-    img: 'assets/img/feedback/ashes_of_creation.jpg',
-    author: 'Steven Sharif',
-    position: 'the Creative Director of Ashes of Creation'
-  };
+  constructor(
+    private getProjectsServ: GetPortfolioService,
+    private cdr: ChangeDetectorRef
+    ) {
+  }
+
+  public ngOnInit() {
+    this.initNextProject();
+  }
+
+  initNextProject() {
+    let index = this.getProjectsServ.getTitleIndex(ROUTE);
+    if (!index && index !== 0) {
+      return;
+    }
+
+    const refactoredTitles = this.getProjectsServ.getRefactoredList() || [];
+    const projectList = [...refactoredTitles].reverse();
+    if (!projectList || !projectList.length) {
+      return;
+    }
+
+    if (index === projectList.length) {
+      index = 0;
+    }
+
+    if (!projectList[index]) {
+      return;
+    }
+
+    this.getProjectsServ.getPortfolioRequest(projectList[index]).subscribe(res => {
+      this.nextProject = res;
+    });
+  }
+
+  getRouteLink(link: string): string {
+    return titleRefactoring(link);
+  }
+
+  getRespSrc(link: string): string {
+    const arr = link.split('.');
+    return `${arr[0]}_resp.${arr[1]}`;
+  }
+
+  changeSrc(event: Event, link:string) {
+    (event.target as HTMLImageElement).src = link;
+    this.cdr.detectChanges();
+  }
 }

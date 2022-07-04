@@ -12,7 +12,7 @@ export const routes = [
         component: GeneralPageComponent
       },
       {
-        path: 'ashes',
+        path: 'ashes-of-creation',
         loadChildren: () => import('@valor-software/ashes-page').then(m => m.AshesPageModule)
       },
       {
