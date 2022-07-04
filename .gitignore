@@ -46,6 +46,7 @@ firebase-debug.log
 .firebase
 
 # .js and .map.js files
+scully.valor-software-site.config.js
 **/assets/**/*.js.map
 **/assets/**/*.js
 libs/common-docs/src/**/*.js.map
