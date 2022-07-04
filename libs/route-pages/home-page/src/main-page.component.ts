@@ -1,39 +1,39 @@
-import {Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NpmStatisticService } from "./getNpmStatistic.service";
-import SwiperCore, { Pagination, Mousewheel, SwiperOptions  } from "swiper";
+import SwiperCore, { Pagination, Mousewheel, SwiperOptions } from "swiper";
 import { forkJoin, Subscription } from "rxjs";
-import { GetPortfolioService, IPortfolio } from "@valor-software/common-docs";
+import { GetPortfolioService, IEexpandableCard, IPortfolio } from "@valor-software/common-docs";
 import { titleRefactoring } from "@valor-software/common-docs";
 SwiperCore.use([Mousewheel, Pagination]);
 
-const slideModel = [
+const slideModel: IEexpandableCard[] = [
     {
-        title: '<span>To nurture</span> professional<br>growth',
+        title: '<span>To nurture</span> professional growth',
         list: [
             'Culture of self-development',
-            'Time for skill-up and self-study',
-            'Cultivation of knowledge-sharing',
-            'Contribution to open source'
+            'Time for skill-up as part of the schedule',
+            'Internal and external knowledge-sharing',
+            'Contribution to open-source'
         ],
         imgSource: 'assets/img/bg-img/landing_slide/slide_1.svg'
     },
     {
-        title: '<span>To make</span> outsourcing<br><span>more</span> human',
+        title: '<span>To make</span> outsourcing <span>more</span> human',
         list: [
-            'Improved communication',
+            'Increased communication',
             'Decreased bureaucracy',
-            'Human-centred organization',
+            'Flat company structure',
             'We’re all partners, inside the company and with clients'
         ],
         imgSource: 'assets/img/bg-img/landing_slide/slide_2.svg'
     },
     {
-        title: '<span>To</span> make <span>the most<br> complex </span>ideas<span> live</span>',
+        title: '<span>To</span> make <span>the most complex </span>ideas<span> live</span>',
         list: [
             'Pushing technology to its limits',
             'Building unique expertise within the company',
-            'Mastering cutting-edge tools',
+            'Mastering edge technologies',
             'Always finding the way to meet clients’ business needs'
         ],
         imgSource: 'assets/img/bg-img/landing_slide/slide_3.svg'
@@ -227,7 +227,7 @@ const OpenSourceSlidesModel = [
     templateUrl: './main-page.component.html'
 })
 export class MainPageComponent {
-
+    cards = slideModel;
     slides: typeof slideModel = slideModel;
     swiperConfig: SwiperOptions = {
         slidesPerView: 1,
@@ -319,7 +319,7 @@ export class MainPageComponent {
     }
 
     setActiveTechnology(id: string): boolean {
-        this.technologiesList.map( item => {
+        this.technologiesList.map(item => {
             item.active = !item.disabled && item.id === id;
         });
         return this.technologiesList.some(item => item.active);
@@ -345,6 +345,6 @@ export class MainPageComponent {
             return true;
         }
 
-        return window.innerHeight > 800 && window.devicePixelRatio*100 === 100;
+        return window.innerHeight > 800 && window.devicePixelRatio * 100 === 100;
     }
 }
