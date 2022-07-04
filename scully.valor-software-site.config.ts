@@ -4,6 +4,7 @@ import { ScullyConfig } from '@scullyio/scully';
 import '@scullyio/scully-plugin-puppeteer';
 import './scully/plugins/blog-route-plugin';
 import './scully/plugins/portfolio-route-plugin';
+import './scully/plugins/sitemap-plugin';
 
 export const config: ScullyConfig = {
   projectRoot: "./apps/valor-software-site/src",
