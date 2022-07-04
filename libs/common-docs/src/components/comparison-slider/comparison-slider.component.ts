@@ -15,5 +15,5 @@ export interface IComparisonSlider {
 })
 export class ComparisonSliderComponent {
   @Input() comparisonImg?: IComparisonSlider;
-  
+  @Input() buttonClasses?: string;
 }
