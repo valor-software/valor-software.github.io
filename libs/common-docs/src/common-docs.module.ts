@@ -45,7 +45,7 @@ export { IPortfolio } from './models/portfolio.interface';
 export { GetPortfolioService } from './services/getPortfolio.service';
 export { titleRefactoring, checkHTMLExtension} from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
-
+export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 @NgModule({
   declarations: [
     PopoverComponent,
