@@ -87,8 +87,10 @@
 <section class="landing-section">
     <h1 class="main-title">Businesses</h1>
     <div class="container">
-        <h3 class="w-10/12 md:font-40 tracking-tightest text-20 md:text-large  text-light_title_col leading-28 md:leading-44 mb-10">
-            <span>Depending on </span>business <span>maturity, we try to </span>anticipate<span> and cover the most common</span>
+        <h3
+            class="w-10/12 md:font-40 tracking-tightest text-20 md:text-large  text-light_title_col leading-28 md:leading-44 mb-10">
+            <span>Depending on </span>business <span>maturity, we try to </span>anticipate<span> and cover the most
+                common</span>
             challenges
             <span>companies face.</span>
         </h3>
@@ -99,73 +101,44 @@
 <section class="landing-section" id="open-source">
     <h1 class="main-title">Open Source</h1>
     <div class="container flex flex-col flex-wrap lg:flex-row">
-        <h2 class="md:text-large text-32 lg:text-56 text-light_title_col lg:leading-66 leading-44 mb-8 w-full">
-            <span>Proudly</span> contributing<br><span>to</span> open source
-        </h2>
-        <p class="lg:max-w-50% text-grey_font_col">We try to maintain equilibrium between the value we take from open
-            source and what we give back. So we proudly sponsor promising technologies, contribute with our knowledge to
-            make tools handier, and build open code solutions to ease engineers’ daily routines.</p>
-        <div class="hidden lg:block">
-            <swiper [config]="verticalSwiperConfig" class="verticalSwiper mt-10">
-                <ng-template swiperSlide *ngFor="let slide of openSourceSlides">
-                    <div class="flex justify-between w-full h-full">
-                        <div class="max-w-380 w-80 leading-44 h-full flex flex-col justify-between items-start">
-                            <div>
-                                <p class="font-bold text-large text-light_title_col mb-8" [innerHTML]="slide.title"></p>
-                                <p class="text-light_title_col text-xl mb-6">{{slide.description}}</p>
-                                <ul class="list-disc text-grey_font_col pl-5">
-                                    <li class="leading-4 mb-4" *ngFor="let item of slide.list">{{item}}</li>
-                                </ul>
-                            </div>
-                            <button class="flex justify-between"><a class="btn-pink flex justify-between items-center"
-                                    [href]="slide.link" rel="noopener" target="_blank">Visit {{slide.name}}<img
-                                        src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
-                        </div>
-                        <div class="max-w-65% flex flex-col justify-center items-center text-light_title_col">
-                            <img [src]="slide.img" style="width: 100%; height: 100%" [alt]="slide.name + 'icon'">
-                            <ng-container *ngIf="slide.downloads">
-                                <p class="text-xl">Monthly downloads</p>
-                                <p class="text-large" *ngIf="!slide.npmLink">{{slide.downloads | number}}</p>
-                                <p class="text-large cursor-pointer" *ngIf="slide.npmLink"><a [href]="slide.npmLink"
-                                        rel="noopener" target="_blank">{{slide.downloads | number}}</a></p>
-                            </ng-container>
-                        </div>
-                    </div>
-                </ng-template>
-            </swiper>
-        </div>
-        <div class="block lg:hidden w-full mt-8">
-            <swiper [config]="swiperConfig" [initialSlide]="0" class="pink_swiper">
-                <ng-template swiperSlide *ngFor="let slide of openSourceSlides">
-                    <div class="w-full h-full">
-                        <div class="leading-44 flex flex-col justify-between items-start">
-                            <div>
-                                <p class="font-bold text-24 leading-28 text-light_title_col mb-8"
-                                    [innerHTML]="slide.title"></p>
-                                <p class="text-light_title_col text-xl mb-6">{{slide.description}}</p>
+        <h3 class="md:text-large text-32 lg:text-56 text-light_title_col lg:leading-66 leading-44 mb-8 w-full">
+            <span>Proudly</span> contributing<span> to</span> open source
+        </h3>
+        <p class="lg:w-10/12 text-grey_font_col tracking-tightest mb-32">We try to maintain equilibrium between the
+            value we take from
+            open-source and what we give back. So we proudly sponsor promising technologies, contribute with our
+            knowledge to make tools handier, and build open code solutions to ease engineers’ daily routines.</p>
 
-                                <ul class="list-disc text-grey_font_col pl-5">
-                                    <li *ngFor="let item of slide.list">{{item}}</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div
-                            class="flex flex-col justify-center items-center text-light_title_col max-w-85% mt-6 mx-auto">
-                            <img [src]="slide.img" style="width: 100%; height: 100%" [alt]="slide.name + 'icon'">
-                            <ng-container *ngIf="slide.downloads">
-                                <p class="text-xl">Monthly downloads</p>
-                                <p class="text-large" *ngIf="!slide.npmLink">{{slide.downloads | number}}</p>
-                                <p class="text-large cursor-pointer" *ngIf="slide.npmLink"><a [href]="slide.npmLink"
-                                        rel="noopener" target="_blank">{{slide.downloads | number}}</a></p>
-                            </ng-container>
-                        </div>
-                        <button class="flex justify-center w-full mt-24"><a
-                                class="btn-pink flex justify-between items-center" [href]="slide.link" rel="noopener"
-                                target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2"
-                                    alt=""></a></button>
+        <div [ngClass]="{'flex-row-reverse': slide.reverse } " class="md:flex flex-column justify-between w-full h-full gap-14 mb-32" *ngFor="let slide of openSourceSlides">
+            <div class="leading-44 w-full h-full flex flex-col justify-between items-start ">
+                <div class="mb-8">
+                    <div class="w-full flex flex-col justify-center items-center text-light_title_col md:hidden block">
+                        <img [src]="slide.img" 
+                            style="width: 100%; height: 100%" [alt]="slide.name + 'icon'">
                     </div>
-                </ng-template>
-            </swiper>
+                    <p class="w-full font-40 font-bold text-large text-light_title_col mb-4" [innerHTML]="slide.title">
+                    </p>
+                    <p class="text-light_title_col text-xl mb-8 w-full">{{slide.description}}</p>
+                    <ul class="list-disc text-grey_font_col pl-5">
+                        <li class="leading-4 mb-4" *ngFor="let item of slide.list">{{item}}</li>
+                    </ul>
+                </div>
+                <button class="flex justify-center w-full md:w-214"><a class="btn-pink flex justify-center items-center md:w-214 w-full"
+                        [href]="slide.link" rel="noopener" target="_blank"><p class="tracking-tightest">Visit {{slide.name}}</p><img
+                            src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
+            </div>
+            <div class="w-full flex flex-col justify-center items-center text-light_title_col hidden md:block">
+                <ng-container *ngIf="slide.downloads">
+                    <div class="border-2 p-4 rounded-md">
+                        <p class="text-xl">Monthly downloads</p>
+                        <p class="text-large" *ngIf="!slide.npmLink">{{slide.downloads | number}}</p>
+                        <p class="text-large cursor-pointer" *ngIf="slide.npmLink"><a [href]="slide.npmLink"
+                                rel="noopener" target="_blank">{{slide.downloads | number}}</a></p>
+                    </div>
+                </ng-container>
+                <img [src]="slide.img"  [ngClass]="{'relative bottom-24': slide.downloads }"
+                    style="width: 100%; height: 100%" [alt]="slide.name + 'icon'">
+            </div>
         </div>
     </div>
 </section>

@@ -193,30 +193,31 @@ const ServicesModel = [
 
 const OpenSourceSlidesModel = [
     {
-        title: 'We’ve built<br> ngx-bootstrap<br> library',
+        title: 'We built<br> ngx-bootstrap library',
         description: 'Bootstrap components powered by Angular',
         list: ['Flexibility', 'Tinker-friendly code', 'In-depth documentation', 'Lots of demo'],
         name: 'ngx-bootstrap',
-        img: 'assets/img/bg-img/open-source/ngx-bootstrap.svg',
+        img: 'assets/img/bg-img/open-source/ngx_bootstrap_new.svg',
         link: 'https://valor-software.com/ngx-bootstrap/#/',
         npmLink: 'https://www.npmjs.com/package/ngx-bootstrap',
         downloads: 0
     },
     {
-        title: 'We sponsor<br>NestJS<br> framework',
+        title: 'We sponsor<br>NestJS framework',
         description: 'A progressive Node.js framework for building efficient, reliable, and scalable server-side applications',
         list: ['Modular architecture', 'Scalability', 'Compatibility with server-side apps', 'Ability to serve multiple endpoints'],
         name: 'NestJS',
-        img: 'assets/img/bg-img/open-source/nestjs.svg',
+        img: 'assets/img/bg-img/open-source/nestjs_new.svg',
         link: 'https://nestjs.com/',
-        downloads: 0
+        downloads: 0,
+        reverse: true
     },
     {
         title: 'We contribute<br>to NativeScript',
-        description: 'NativeScript empowers you to access native platform APIs from JavaScript directly',
+        description: 'Empower JavaScript with native APIs. Liberate your development by using platform APIs directly without leaving your love for JavaScript aside.',
         list: ['Flexible', 'Regular updates', 'Compatible', 'Inspires animations'],
         name: 'NativeScript',
-        img: 'assets/img/bg-img/open-source/nativescript.svg',
+        img: 'assets/img/bg-img/open-source/nativescript_new.svg',
         link: 'https://nativescript.org/partners/',
         downloads: 0
     }
