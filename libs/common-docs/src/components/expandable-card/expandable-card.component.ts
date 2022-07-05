@@ -2,7 +2,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 
 
-export interface IEexpandableCard {
+export interface IExpandableCard {
   title: string;
   list: string[];
   imgSource: string;
@@ -31,7 +31,7 @@ export interface IEexpandableCard {
   ],
 })
 export class ExpandableCardComponent implements OnInit {
-  @Input() cards?: IEexpandableCard[];
+  @Input() cards?: IExpandableCard[];
 
 
 

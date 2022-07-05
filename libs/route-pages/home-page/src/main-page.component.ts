@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { NpmStatisticService } from "./getNpmStatistic.service";
 import SwiperCore, { Pagination, Mousewheel, SwiperOptions } from "swiper";
 import { forkJoin, Subscription } from "rxjs";
-import { GetPortfolioService, IEexpandableCard, IPortfolio } from "@valor-software/common-docs";
+import { GetPortfolioService, IExpandableCard, IPortfolio } from "@valor-software/common-docs";
 import { titleRefactoring } from "@valor-software/common-docs";
+import { IBusinessesCard } from './businesses-card.component';
 SwiperCore.use([Mousewheel, Pagination]);
 
-const slideModel: IEexpandableCard[] = [
+const slideModel: IExpandableCard[] = [
     {
         title: '<span>To nurture</span> professional growth',
         list: [
@@ -54,7 +55,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/react.png',
         activeImg: 'assets/img/technologies/active/react.png',
         blockedImg: 'assets/img/technologies/blocked/react.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -62,7 +63,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/react_native.png',
         activeImg: 'assets/img/technologies/active/react_native.png',
         blockedImg: 'assets/img/technologies/blocked/react_native.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -70,7 +71,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/ruby.png',
         activeImg: 'assets/img/technologies/active/ruby.png',
         blockedImg: 'assets/img/technologies/blocked/ruby.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -78,7 +79,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/vue.png',
         activeImg: 'assets/img/technologies/active/vue.png',
         blockedImg: 'assets/img/technologies/blocked/vue.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -86,7 +87,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/nest_js.png',
         activeImg: 'assets/img/technologies/active/nest_js.png',
         blockedImg: 'assets/img/technologies/blocked/nest_js.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -94,7 +95,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/python.png',
         activeImg: 'assets/img/technologies/active/python.png',
         blockedImg: 'assets/img/technologies/blocked/python.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -102,7 +103,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/go.png',
         activeImg: 'assets/img/technologies/active/go.png',
         blockedImg: 'assets/img/technologies/blocked/go.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -110,7 +111,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/ionic.png',
         activeImg: 'assets/img/technologies/active/ionic.png',
         blockedImg: 'assets/img/technologies/blocked/ionic.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -118,7 +119,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/native_script.png',
         activeImg: 'assets/img/technologies/active/native_script.png',
         blockedImg: 'assets/img/technologies/blocked/native_script.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -126,7 +127,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/google_cloud.png',
         activeImg: 'assets/img/technologies/active/google_cloud.png',
         blockedImg: 'assets/img/technologies/blocked/google_cloud.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -134,7 +135,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/firebase.png',
         activeImg: 'assets/img/technologies/active/firebase.png',
         blockedImg: 'assets/img/technologies/blocked/firebase.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -142,7 +143,7 @@ const technologiesList = [
         img: 'assets/img/technologies/not_active/heroku.png',
         activeImg: 'assets/img/technologies/active/heroku.png',
         blockedImg: 'assets/img/technologies/blocked/heroku.png',
-        active: false,
+        active: true,
         disabled: false
     },
     {
@@ -221,6 +222,37 @@ const OpenSourceSlidesModel = [
     }
 ];
 
+const businessList: IBusinessesCard[] = [
+    {
+        title: "Startups",
+        description: ["We’ll transform your idea into a brand and a product that will have its market niche, killing features, and loyal audience."],
+        buttonTitle: "Visit page",
+        link: "",
+        imgSource: "assets/img/bg-img/businesses_img/startup.png"
+    },
+    {
+        title: "Enterprises",
+        description: ["Helping you switch from legacy systems, we’ll choose the optimal technology that will serve your business needs now and in the future."],
+        buttonTitle: "Learn more",
+        link: "",
+        imgSource: "assets/img/bg-img/businesses_img/enterprise.png"
+    },
+    {
+        title: "Small to medium",
+        description: ["We make progress transparent and predictable, so you can forecast the result after every development stage and plan your budget for the next business turn."],
+        buttonTitle: "View details",
+        link: "",
+        imgSource: "assets/img/bg-img/businesses_img/small_to_medium.png"
+    },
+    {
+        title: "Non-profits",
+        description: ["When strict timing and budget are as critical as the product quality, we’ll deliver the required scope within the given timeframe and make sure to address changes instantly."],
+        buttonTitle: "Explore now",
+        link: "",
+        imgSource: "assets/img/bg-img/businesses_img/non_profits.png"
+    },
+];
+
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'main-page',
@@ -266,6 +298,7 @@ export class MainPageComponent {
         },
     };
 
+    businessList: IBusinessesCard[] = businessList;
     technologiesList: typeof technologiesList = technologiesList;
     sortedProjectsAmount = 4;
     showSocial = false;

@@ -34,38 +34,13 @@
     </div>
 </section>
 
-<section class="landing-section pt-16 lg:!pt-0">
-    <h1 class="main-title">Priorities</h1>
-    <div>
-        <swiper [config]="swiperConfig" class="pink_swiper">
-            <ng-template swiperSlide *ngFor="let slide of slides">
-                <div>
-                    <h2 [innerHTML]="slide.title"
-                        class=" swiper-no-swiping md:text-large font-bold md:font-regular text-2xl text-light_title_col leading-28 md:leading-44 mb-8">
-                    </h2>
-                    <ul class="list-disc text-grey_font_col pl-5 swiper-no-swiping">
-                        <li *ngFor="let item of slide.list" class="mb-4 swiper-no-swiping">{{item}}</li>
-                    </ul>
-                    <button class="flex justify-center md:justify-between mt-10 w-full md:w-auto">
-                        <a [routerLink]="['articles']" class="btn-pink flex justify-center w-full">Visit blog <img
-                                src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
-                    </button>
-                </div>
-                <div class="max-w-140 md:max-w-full mb-6 md:mb-0">
-                    <img [src]="slide.imgSource" style="width: 100%; height: 100%" alt="slide img">
-                </div>
-            </ng-template>
-        </swiper>
-    </div>
-</section>
-
 <section class="landing-section" id="technologies">
     <h1 class="main-title">Technology</h1>
     <div class="container flex justify-between flex-col lg:flex-row">
         <div class="lg:bg-grey xl:py-16 xl:px-7 w-full max-w-455 bg-transparent mx-auto lg:mr-8">
             <div class="grid grid-cols-4">
                 <div *ngFor="let technology of technologiesList; index as i"
-                    class="border-2 transition-all p-2.5 flex items-center mb-5 lg:mb-9 w-75 h-75"
+                    class="border-2 transition-all p-2.5 flex items-center mb-5 lg:mb-9 w-74 h-74"
                     [ngClass]="{'active border-pink': technology.active, 'border-transparent': !technology.active, 'mr-5 xl:mr-7': !checkIndex(i), 'cursor-pointer': !technology.disabled, 'cursor-not-allowed': technology.disabled}"
                     (click)="getSortProjects(technology.id)" changeSrcOnHover [check]="technology.active"
                     [defaultSrc]="technology.disabled ? '' : technology.img"
@@ -75,12 +50,15 @@
                         [alt]="technology.id" class="mx-auto" style="width: 100%; height: 100%">
                 </div>
             </div>
-
+            <button class="mx-auto flex mt-8 btn-pink flex justify-center items-center" routerLink="/"
+                fragment="open-source">
+                Check our open source Contributions<img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt="">
+            </button>
         </div>
         <div class="lg:max-w-735 w-full flex flex-col justify-between max-w-455 mx-auto">
-            <div class="flex flex-wrap justify-between">
+            <div class="flex flex-wrap justify-between gap-5">
                 <div *ngFor="let project of sortProjects"
-                    class="lg:w-48% w-full relative  mb-8 cursor-pointer lg:h-300 border-grey_bg border-2 hover:border-pink">
+                    class="lg:w-48% w-full relative cursor-pointer lg:h-311 border-grey_bg border-2 hover:border-pink">
                     <a href="javaScript:void(0)" [routerLink]="['projects', projectRoute(project.name)]">
                         <img [src]="project.previewImg" [alt]="project.name" style="width: 100%; height: 100%"
                             class="w-full h-full object-cover">
@@ -96,10 +74,6 @@
                     </a>
                 </div>
             </div>
-            <button class="mx-auto flex">
-                <a [routerLink]="'/projects'" class="btn-pink flex justify-center items-center">Visit portfolio <img
-                        src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
-            </button>
         </div>
     </div>
 </section>
@@ -109,7 +83,20 @@
         <services-block [preview]="true"></services-block>
     </div>
 </section>
+
 <section class="landing-section">
+    <h1 class="main-title">Businesses</h1>
+    <div class="container">
+        <h3 class="w-10/12 md:font-40 tracking-tightest text-20 md:text-large  text-light_title_col leading-28 md:leading-44 mb-10">
+            <span>Depending on </span>business <span>maturity, we try to </span>anticipate<span> and cover the most common</span>
+            challenges
+            <span>companies face.</span>
+        </h3>
+        <businesses-card [cards]="businessList"></businesses-card>
+    </div>
+</section>
+
+<section class="landing-section" id="open-source">
     <h1 class="main-title">Open Source</h1>
     <div class="container flex flex-col flex-wrap lg:flex-row">
         <h2 class="md:text-large text-32 lg:text-56 text-light_title_col lg:leading-66 leading-44 mb-8 w-full">

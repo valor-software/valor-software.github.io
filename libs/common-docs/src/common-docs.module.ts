@@ -46,7 +46,7 @@ export { GetPortfolioService } from './services/getPortfolio.service';
 export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
-export { IEexpandableCard } from './components/expandable-card/expandable-card.component';
+export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
 @NgModule({
   declarations: [
     PopoverComponent,
