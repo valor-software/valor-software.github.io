@@ -23,6 +23,7 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
+import { NewFeedbackComponent } from './components/new-feedback/new-feedback.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -47,6 +48,8 @@ export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUt
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
+export { NewFeedbackComponent } from './components/new-feedback/new-feedback.component';
+
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -61,7 +64,8 @@ export { IExpandableCard  } from './components/expandable-card/expandable-card.c
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
-    ExpandableCardComponent
+    ExpandableCardComponent,
+    NewFeedbackComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -75,7 +79,8 @@ export { IExpandableCard  } from './components/expandable-card/expandable-card.c
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
-    ExpandableCardComponent
+    ExpandableCardComponent,
+    NewFeedbackComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {

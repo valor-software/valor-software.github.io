@@ -110,7 +110,7 @@
             knowledge to make tools handier, and build open code solutions to ease engineers’ daily routines.</p>
 
         <div [ngClass]="{'flex-row-reverse': slide.reverse } " class="md:flex flex-column justify-between w-full h-full gap-14 mb-32" *ngFor="let slide of openSourceSlides">
-            <div class="leading-44 w-full h-full flex flex-col justify-between items-start ">
+            <div class="leading-44 md:w-10/12 h-full flex flex-col justify-between items-start ">
                 <div class="mb-8">
                     <div class="w-full flex flex-col justify-center items-center text-light_title_col md:hidden block">
                         <img [src]="slide.img" 
@@ -127,9 +127,9 @@
                         [href]="slide.link" rel="noopener" target="_blank"><p class="tracking-tightest">Visit {{slide.name}}</p><img
                             src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
             </div>
-            <div class="w-full flex flex-col justify-center items-center text-light_title_col hidden md:block">
+            <div class="w-full flex flex-col justify-center text-center items-center text-light_title_col hidden md:block">
                 <ng-container *ngIf="slide.downloads">
-                    <div class="border-2 p-4 rounded-md">
+                    <div class="m-auto w-5/12 border-2 p-2 rounded-md">
                         <p class="text-xl">Monthly downloads</p>
                         <p class="text-large" *ngIf="!slide.npmLink">{{slide.downloads | number}}</p>
                         <p class="text-large cursor-pointer" *ngIf="slide.npmLink"><a [href]="slide.npmLink"
@@ -137,7 +137,7 @@
                     </div>
                 </ng-container>
                 <img [src]="slide.img"  [ngClass]="{'relative bottom-24': slide.downloads }"
-                    style="width: 100%; height: 100%" [alt]="slide.name + 'icon'">
+                    style="width: 100%;" [alt]="slide.name + 'icon'">
             </div>
         </div>
     </div>
@@ -145,7 +145,7 @@
 
 <section class="landing-section" id="feedback">
     <h1 class="main-title">Feedback</h1>
-    <div class="container">
-        <feedback></feedback>
+    <div class="container lg:w-1400">
+        <new-feedback></new-feedback>
     </div>
 </section>
