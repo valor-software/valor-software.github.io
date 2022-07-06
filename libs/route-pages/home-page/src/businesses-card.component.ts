@@ -4,7 +4,7 @@ export interface IBusinessesCard {
   title: string;
   description: string[];
   buttonTitle: string;
-  link: string;
+  route: string;
   imgSource: string;
 }
 

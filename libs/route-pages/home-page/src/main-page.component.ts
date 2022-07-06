@@ -228,28 +228,28 @@ const businessList: IBusinessesCard[] = [
         title: "Startups",
         description: ["We’ll transform your idea into a brand and a product that will have its market niche, killing features, and loyal audience."],
         buttonTitle: "Visit page",
-        link: "",
+        route: "clients/startups",
         imgSource: "assets/img/bg-img/businesses_img/startup.png"
     },
     {
         title: "Enterprises",
         description: ["Helping you switch from legacy systems, we’ll choose the optimal technology that will serve your business needs now and in the future."],
         buttonTitle: "Learn more",
-        link: "",
+        route: "clients/enterprises",
         imgSource: "assets/img/bg-img/businesses_img/enterprise.png"
     },
     {
         title: "Small to medium",
         description: ["We make progress transparent and predictable, so you can forecast the result after every development stage and plan your budget for the next business turn."],
         buttonTitle: "View details",
-        link: "",
+        route: "clients/smbs",
         imgSource: "assets/img/bg-img/businesses_img/small_to_medium.png"
     },
     {
         title: "Non-profits",
         description: ["When strict timing and budget are as critical as the product quality, we’ll deliver the required scope within the given timeframe and make sure to address changes instantly."],
         buttonTitle: "Explore now",
-        link: "",
+        route: "clients/non-profit",
         imgSource: "assets/img/bg-img/businesses_img/non_profits.png"
     },
 ];
