@@ -52,7 +52,7 @@ export class NewFeedbackComponent implements AfterViewInit {
         mousewheel: {
             releaseOnEdges: true
         },
-        autoHeight: true,
+        autoHeight: false,
         pagination: {
             clickable: true
         }
@@ -95,6 +95,7 @@ export class NewFeedbackComponent implements AfterViewInit {
         } else {
             this.showMoreList.splice(index, 1);
         }
+        
         this.cdr.detectChanges();
     }
 }
