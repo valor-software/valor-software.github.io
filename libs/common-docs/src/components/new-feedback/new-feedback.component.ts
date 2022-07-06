@@ -1,26 +1,28 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
 import { feedBack, IFeedBack } from "./new-feedback.model";
 import { SwiperComponent } from "swiper/angular";
-import SwiperCore, { Pagination, Mousewheel, SwiperOptions  } from "swiper";
+import SwiperCore, { Pagination, Mousewheel, SwiperOptions } from "swiper";
 SwiperCore.use([Mousewheel, Pagination]);
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'new-feedback',
-    templateUrl: './new-feedback.component.html'
+    templateUrl: './new-feedback.component.html',
 })
-export class NewFeedbackComponent implements AfterViewInit{
+export class NewFeedbackComponent implements AfterViewInit {
+    showMoreList: number[] = [];
+
     @Input() set startFrom(value: string) {
         if (value) {
             const index = this.feedbackList.findIndex(item => item.author === value);
             this.startFromIndex = index > 0 ? index : 0;
         }
 
-        if(this.swiperRef && this.startFromIndex) {
+        if (this.swiperRef && this.startFromIndex) {
             this.swiperRef.swiperRef.slideTo(this.startFromIndex);
         }
 
-        if(this.swiperRefResp && this.startFromIndex) {
+        if (this.swiperRefResp && this.startFromIndex) {
             this.swiperRefResp.swiperRef.slideTo(this.startFromIndex);
         }
     };
@@ -55,12 +57,12 @@ export class NewFeedbackComponent implements AfterViewInit{
             clickable: true
         }
     };
-   
+
     currentFeedBackIndex = 0;
 
     constructor(
         private cdr: ChangeDetectorRef,
-    ) {}
+    ) { }
 
     showIndex(value: any) {
         this.currentFeedBackIndex = value.activeIndex;
@@ -76,12 +78,23 @@ export class NewFeedbackComponent implements AfterViewInit{
     }
 
     ngAfterViewInit() {
-        if(this.swiperRef && this.startFromIndex) {
+        if (this.swiperRef && this.startFromIndex) {
             this.swiperRef.swiperRef.slideTo(this.startFromIndex);
         }
 
-        if(this.swiperRefResp && this.startFromIndex) {
+        if (this.swiperRefResp && this.startFromIndex) {
             this.swiperRefResp.swiperRef.slideTo(this.startFromIndex);
         }
+    }
+
+    setShowMore(id: number) {
+        const index = this.showMoreList.findIndex(val => val === id);
+
+        if (index < 0) {
+            this.showMoreList.push(id);
+        } else {
+            this.showMoreList.splice(index, 1);
+        }
+        this.cdr.detectChanges();
     }
 }
