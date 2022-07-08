@@ -203,6 +203,24 @@
       "sourceRoot": "libs/route-pages/ashes-page/src",
       "prefix": "ashes",
       "targets": {
+        "build": {
+          "executor": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/route-pages/ashes-page"
+          ],
+          "options": {
+            "project": "libs/route-pages/ashes-page/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/route-pages/ashes-page/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/route-pages/ashes-page/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
         "test": {
           "executor": "@nrwl/jest:jest",
           "outputs": [
