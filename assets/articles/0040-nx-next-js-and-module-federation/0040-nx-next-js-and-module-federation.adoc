@@ -90,7 +90,7 @@ npx create-nx-workspace@latest --preset=next
 
 An interactive terminal will guide you through the creation process, you can follow as I did below:
 
-image::2%20(1).png[]
+image::terminal-guide.png[]
 
 Once this is done, you must wait for the workspace (monorepo) to be created and the project's dependencies to be downloaded after that you can open vscode in the workspace root, in my case: +
 code ./nextjs-nx-module-federation
@@ -250,6 +250,8 @@ export function Page() { +
 
 Now you can see the following result
 
+image::Welcome-to-store!.png[]
+
 === Creating hooks
 
 One of the powers of nextjs-mf is the federation of functions, including hooks. An important detail is that we cannot import hooks asynchronously, which leads us to adopt a solution where we import functions using require and the page or component that uses the hook being loaded lazily/asynchronously, what we call top-level-await. +
@@ -350,6 +352,8 @@ export default Page;
 
 Now you can see the following result
 
+image::Welcome-to-cutom-hook.gif[]
+
 Some errors at the time of writing this article may be occurring, so if in doubt, consider looking at https://github.com/BrunoS3D/nextjs-nx-module-federation[this project^] I created as a proof of concept, I'm actively working with Zackary to make it up to date and functional.
 
 === Deploying projects on Vercel
@@ -358,8 +362,12 @@ The procedure that we are going to perform now will be done at https://vercel.co
 We can carry out the process in two ways: by https://vercel.com/new[interface^] or by https://vercel.com/cli[CLI^], but to facilitate the process we will do it by the interface, you just need to host the project on https://github.com/[GitHub^] so that we can import it in a few clicks, once the project is on GitHub you can open https://vercel.com/new[this page^] on Vercel to deploy the first application… exactly, although it's a monorepo, we're going to configure everything so that separate deployments are made. +
 First, we will deploy the checkout app because it has fewer dependencies, for that select the repository as in the following image and click on the button to import it:
 
+image::Import-Git-repository.png[]
+
 Choose a name for the application on the screen that opens but remember that we are still going to do the same step for the app store so define a different name for each project. +
 We must change some commands for the project build in the "Build and Output Settings" tab, for this, check the override option and leave the fields as shown below:
+
+image::Build-output-settings.png[]
 
 Build command (checkout) +
 npx nx build checkout --prod
@@ -377,6 +385,8 @@ dist/apps/store/.next
 
 Once that's done, we can click on the "Deploy" button. Again, you'll notice that the build resulted in an error, but that doesn't matter, the important thing is that we now have the two URLs of the two projects and we can use them to configure our environment. Now go to the settings panel of each application and set the following environment variables
 
+image::Environment-variables.png[]
+
 Note that I am using a URL of the “deployment” that I made of my app store, you must do it with the URL that Vercel generated for yours, remember to define the two environment variables NEXT_PUBLIC_CHECKOUT_URL and NEXT_PUBLIC_STORE_URL each with its respective URL of production.
 
 === Private dependencies with Vercel
@@ -393,6 +403,8 @@ Error: Command "npm install" exited with 1
 This happens because Vercel does not have the necessary credentials to access a package that is in a private repository, to give access to the repository we need to configure an environment variable called NPM_RC, the value of this variable must be the same as what is inside the ~/.npmrc file which was created when we used the npm login command. +
 To do so, just create a new variable in Vercel's environment variables settings panel called NPM_RC and insert the entire contents of the ~/.npmrc file, if you have any doubts read https://vercel.com/support/articles/using-private-dependencies-with-vercel[this document^]. +
 Finally, you can open the “Deployments” tab and “Redeploy” your application!
+
+image::deployments-redeploy.png[]
 
 Navigating to the application store URL you can see the button whose source code is in the checkout project being "federated" to our site.
 
