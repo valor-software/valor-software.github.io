@@ -88,8 +88,9 @@ Once this is done, navigate to a directory where you want to create the project 
 npx create-nx-workspace@latest --preset=next
 
 An interactive terminal will guide you through the creation process, you can follow as I did below:
+[caption='']
+image:: https://raw.githubusercontent.com/valor-software/valor-software.github.io/new-blog-article--branch/assets/articles/0040-nx-next-js-and-module-federation/terminal-guide.png[]
 
-image:
 Once this is done, you must wait for the workspace (monorepo) to be created and the project's dependencies to be downloaded after that you can open vscode in the workspace root, in my case: +
 code ./nextjs-nx-module-federation
 
