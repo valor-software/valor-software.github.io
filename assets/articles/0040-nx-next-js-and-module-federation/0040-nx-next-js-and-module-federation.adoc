@@ -48,6 +48,7 @@ Well, as we saw earlier it is possible to divide some web applications into micr
 * Centralization of dependency management
 * Code reuse between applications due to dependency centralization
 * Transparency as we can see all code from a single workspace
+
 ==== Cons
 
 * .git folder can end up getting big due to a high number of contributions, because the whole team is contributing commits in the same project
@@ -57,7 +58,7 @@ Looking at the benefits and the context, I saw that it would be an excellent opp
 
 === Next.js
 
-It is indisputable that currently https://nextjs.org/[Next.js^] is one of the web frameworks that has been gaining more and more adoption in recent times and all this is due to the range of features such as server-side rendering, static image optimization, file-system routing, API routes and https://nextjs.org/docs/basic-features/data-fetching/overview[data-fetching^] strategies he proposes. Next.js is an awesome tool, but we'll assume you already know it and skip to the next part.
+It is indisputable that currently https://nextjs.org/[Next.js^] is one of the web frameworks that has been gaining more and more adoption in recent times and all this is due to the range of features such as server-side rendering, static optimization, file-system routing, API routes and https://nextjs.org/docs/basic-features/data-fetching/overview[data-fetching^] strategies he proposes. Next.js is an awesome tool, but we'll assume you already know it and skip to the next part.
 
 === Nx + Next.js
 
@@ -88,8 +89,8 @@ Once this is done, navigate to a directory where you want to create the project 
 npx create-nx-workspace@latest --preset=next
 
 An interactive terminal will guide you through the creation process, you can follow as I did below:
-[caption='']
-image:: https://raw.githubusercontent.com/valor-software/valor-software.github.io/new-blog-article--branch/assets/articles/0040-nx-next-js-and-module-federation/terminal-guide.png[]
+
+image:: 2%20(1).png[]
 
 Once this is done, you must wait for the workspace (monorepo) to be created and the project's dependencies to be downloaded after that you can open vscode in the workspace root, in my case: +
 code ./nextjs-nx-module-federation
