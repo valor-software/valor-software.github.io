@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -22,5 +23,7 @@ import { Component } from '@angular/core';
     `
 })
 export class NotFoundComponent {
-
+    constructor(private titleService: Title){
+            this.titleService.setTitle('404 error | Valor Software');
+    }
 }
