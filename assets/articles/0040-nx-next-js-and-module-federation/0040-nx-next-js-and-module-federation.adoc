@@ -1,26 +1,26 @@
 == Nx, Next.js, and Module Federation (EN-US)
 
-=== Index
+=== Table of Contents
 
-* https://www.notion.so/Micro-Frontends-5d726f745a47465582b6632567cbd7d4[*Micro Frontends^]*
-* https://www.notion.so/Nx-and-monorepos-f43e5aa2d4894b8485421351ea44c620[Nx and monorepos^]
-** https://www.notion.so/Pros-c1502a091a9a4eff8622f3360146ee07[Pros^]
-** https://www.notion.so/Cons-a8338b4d5fba478e8b911c112dc1be8e[Cons^]
-* https://www.notion.so/Next-js-90a18097ddaa42d9a7f1491a212d96f1[Next.js^]
-* https://www.notion.so/Nx-Next-js-6d9c2e5cb0644849a76eee7e52d1b409[Nx + Next.js^]
-* https://www.notion.so/Module-Federation-44f3a7479add4c6ab4c6a9b046936810[Module Federation^]
-* https://www.notion.so/Next-js-Module-Federation-a1ecf2e749a249aa8c0a077227733c3b[Next.js + Module Federation^]
-* https://www.notion.so/About-the-project-899c9a31f6244b728fa5575144ba828a[About the project^]
-* https://www.notion.so/Starting-the-project-ee207b3206714a91aba495f2aeba1fe9[Starting the project^]
-* https://www.notion.so/Generating-new-pages-9fe3266daa6d419b9b15dfdd4f6341e7[Generating new pages^]
-* https://www.notion.so/Generating-new-applications-5e43bc9a6a084bf8b02fddb6f388c253[Generating new applications^]
-* https://www.notion.so/Running-in-the-development-environment-6e2812ff85e54ba49bfc670eb9e8cfdf[*Running in the development environment^]*
-* https://www.notion.so/Generating-new-components-6b5f2928619448bea247979a8b562186[Generating new components^]
-* https://www.notion.so/Installing-nextjs-mf-c3ae3763ddbc45a0ae8997741a254b0e[Installing nextjs-mf^]
-* https://www.notion.so/Creating-hooks-1b1dce103764422a869dad7a3daaffbe[Creating hooks^]
-* https://www.notion.so/Deploying-projects-on-Vercel-6656bc3152624fd1a4125c8542e32fa5[Deploying projects on Vercel^]
-* https://www.notion.so/Private-dependencies-with-Vercel-42c6e1b46c8545aeb4324a311e98c696[*Private dependencies with Vercel^]*
-* https://www.notion.so/References-192e0b253fbe499b94df0c5d8c4b1f5c[References^]
+* Micro Frontends
+* Nx and monorepos
+** Pros
+** Cons
+* Next.js
+* Nx + Next.js
+* Module Federation
+* Next.js + Module Federation
+* About the project
+* Starting the project
+* Generating new pages
+* Generating new applications
+* Running in the development environment
+* Generating new components
+* Installing nextjs-mf
+* Creating hooks
+* Deploying projects on Vercel
+* Private dependencies with Vercel
+* References
 
 === Micro Frontends
 
