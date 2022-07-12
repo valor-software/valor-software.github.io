@@ -52,11 +52,11 @@ Well, as we saw earlier it is possible to divide some web applications into micr
 * .git folder can end up getting big due to a high number of contributions, because the whole team is contributing commits in the same project
 * Increase of build time of some applications depending on the dependency level and size of shared files/data
 * No permission granularity, since the entire team needs to have access to the monorepo, the power to restrict the access of certain users to certain parts of the application is lost
-Looking at the benefits and the context, I saw that it would be an excellent opportunity to usehttps://nx.dev/[https://nx.dev/[ ]]https://nx.dev/[Nx^] as a manager for our project. Nx is a monorepo manager with a huge range ofhttps://nx.dev/community#create-nx-plugin[https://nx.dev/community#create-nx-plugin[ ]]https://nx.dev/community#create-nx-plugin[plugins^] to facilitate the creation of new applications, libraries, tests, build execution, lint standardization, centralization, dependency management, and many other features.
+Looking at the benefits and the context, I saw that it would be an excellent opportunity to use https://nx.dev/[Nx^] as a manager for our project. Nx is a monorepo manager with a huge range of https://nx.dev/community#create-nx-plugin[plugins^] to facilitate the creation of new applications, libraries, tests, build execution, lint standardization, centralization, dependency management, and many other features.
 
 === Next.js
 
-It is indisputable that currently https://nextjs.org/[https://nextjs.org/[ ]]https://nextjs.org/[Next.js^] is one of the web frameworks that has been gaining more and more adoption in recent times and all this is due to the range of features such as server-side rendering, static image optimization, file-system routing, API routes andhttps://nextjs.org/docs/basic-features/data-fetching/overview[https://nextjs.org/docs/basic-features/data-fetching/overview[ ]]https://nextjs.org/docs/basic-features/data-fetching/overview[data-fetching^] strategies he proposes. Next.js is an awesome tool, but we'll assume you already know it and skip to the next part.
+It is indisputable that currently https://nextjs.org/[Next.js^] is one of the web frameworks that has been gaining more and more adoption in recent times and all this is due to the range of features such as server-side rendering, static image optimization, file-system routing, API routes and https://nextjs.org/docs/basic-features/data-fetching/overview[data-fetching^] strategies he proposes. Next.js is an awesome tool, but we'll assume you already know it and skip to the next part.
 
 === Nx + Next.js
 
@@ -64,14 +64,14 @@ According to the Nx team, their development philosophy is very similar to Visual
 
 === Module Federation
 
-Module Federation is ahttps://webpack.js.org/concepts/module-federation[https://webpack.js.org/concepts/module-federation[ ]]https://webpack.js.org/concepts/module-federation[Webpack 5^] feature that has arrived to make it possible to share parts of an application to another at runtime. This makes it possible for multiple applications compiled with webpack to repurpose parts of their code as the user interacts with them, which takes us to the next step.
+Module Federation is a https://webpack.js.org/concepts/module-federation[Webpack 5^] feature that has arrived to make it possible to share parts of an application to another at runtime. This makes it possible for multiple applications compiled with webpack to repurpose parts of their code as the user interacts with them, which takes us to the next step.
 
 === Next.js + Module Federation
 
 Let's start with our first example of this article where we talk about an eCommerce application, now imagine that our marketing team decides to create a mega Black Friday campaign and decides to change several parts of our application by inserting different components with dynamic banners, carousels, countdowns, themed offers, etc… this would probably be a headache for all teams responsible for our microfrontend applications since each one would have to implement the new requirements of the marketing team in their projects and that would have to be very well tested and synchronized so that everything went right and nothing could be released ahead of time… Anyway, all this could easily generate a lot of work and a lot of headache for the team, but that's where the very powerful Module Federation comes in. +
 Thanks to it, only one team would be in responsible for developing the new components along with their respective logic, and the rest of the team would only be responsible for implementing the use of these new complements, which could bring with them, hooks, components in React, among others. +
-Unfortunately, implementing and using the Module Federation features of Webpack with Next.js is not that easy, as you would need to deeply understand how both tools work to be able to create a solution that facilitates the integration between the two. Fortunately, there is already a solution and has several features including support for SSR (server-side rendering), these tools are calledhttps://app.privjs.com/package?pkg=@module-federation/nextjs-mf[https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[ ]]https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] andhttps://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[ ]]https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] and together we are going to explore a proof-of-concept application that I created to show you the power of these tools together. +
-<aside> ⚠️ Attention: for the application to work with Module Federation features you need to have access to thehttps://app.privjs.com/package?pkg=@module-federation/nextjs-mf[https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[ ]]https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] orhttps://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[ ]]https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] plugin which currently requires a paid license! +
+Unfortunately, implementing and using the Module Federation features of Webpack with Next.js is not that easy, as you would need to deeply understand how both tools work to be able to create a solution that facilitates the integration between the two. Fortunately, there is already a solution and has several features including support for SSR (server-side rendering), these tools are called https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] and https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] and together we are going to explore a proof-of-concept application that I created to show you the power of these tools together. +
+<aside> ⚠️ Attention: for the application to work with Module Federation features you need to have access to the https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] or https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] plugin which currently requires a paid license! +
 </aside>
 
 === About the project
@@ -83,9 +83,323 @@ This project will show, how to create the basis for a fully scalable application
 Initially, we will need to install Nx in our environment to handle the commands needed to manage our monorepo. To do this, open a terminal and run: +
 npm i -g nx
 
-Once this is done, navigate to a directory where you want to create the project and run the command below, this command will usehttps://nx.dev/packages/next[https://nx.dev/packages/next[ ]]https://nx.dev/packages/next[@nrwl/next^] to create our workspace (monorepo) and our first application: +
+Once this is done, navigate to a directory where you want to create the project and run the command below, this command will use https://nx.dev/packages/next[@nrwl/next^] to create our workspace (monorepo) and our first application: +
 npx create-nx-workspace@latest --preset=next
 
 An interactive terminal will guide you through the creation process, you can follow as I did below:
 
-image::data:image/png;base64,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
+image:
+Once this is done, you must wait for the workspace (monorepo) to be created and the project's dependencies to be downloaded after that you can open vscode in the workspace root, in my case: +
+code ./nextjs-nx-module-federation
+
+Looking at the file explorer you can see that the project has a structure similar to this: +
+├── apps +
+│   ├── store (...) +
+│   └── store-e2e (...) +
+├── babel.config.json +
+├── jest.config.ts +
+├── jest.preset.js +
+├── libs +
+├── nx.json +
+├── package.json +
+├── package-lock.json +
+├── README.md +
+├── tools +
+│   ├── generators (...) +
+│   └── tsconfig.tools.json +
+├── tsconfig.base.json +
+└── workspace.json
+
+Note that our application in Next.js is inside the apps folder, this folder will contain all the other applications you are going to create, we can also see other configuration files of our workspace. It is important to note that there is only one node_modules folder in the entire project, this happens because all dependencies will be in one place, at the root of the repository.
+
+=== Generating new pages
+
+The https://nx.dev/packages/next[@nrwl/next^] plugin has several https://nx.dev/packages/next#generators[generators^], and commands that serve to automate the creation of pages, components, and other common structures in the project. +
+Knowing this we will create our first page using a generator called page for this run the following command in the terminal +
+nx g @nrwl/next:page home --project=store
+
+<aside> ℹ️ Note that we use the --project flag to indicate to the generator in which project the new page should be created. +
+</aside> +
+This will generate a page called home which will be located at +
+apps/store/pages/home/index.tsx
+
+=== Generating new applications
+
+Now we will need to create another application, which we will call checkout. Unlike the first application we created together with the workspace, we will need to use the following command to create a new Next.js application in the current workspace: +
+nx g @nrwl/next:app checkout
+
+Your apps folder should look like this: +
+├── apps +
+│   ├── checkout (...) +
+│   ├── checkout-e2e (...) +
+│   ├── store (...) +
+│   └── store-e2e (...) +
+...
+
+=== Running in the development environment
+
+To see our changes running, we will need to run the following command in the terminal: +
+nx serve store
+
+<aside> ℹ️ serve is an https://nx.dev/packages/next#executors[executor^] command +
+</aside> +
+Also, we can run all applications at the same time using: +
+nx run-many --target=serve --all
+
+<aside> ℹ️ Note that we use the --target flag to indicate to nx which executor we want to run on all projects. +
+</aside>
+
+=== Generating new components
+
+As we saw earlier, we have the possibility to create structures in our application using the Nx CLI tool, now we are going to create a simple button component in the checkout project, that execute the following command: +
+nx g @nrwl/next:component buy-button --project=checkout
+
+Now let's edit the component in the directory below so that it looks like https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/main/apps/checkout/components/buy-button/buy-button.tsx[this^] +
+apps/checkout/components/buy-button/buy-button.tsx +
+We'll use this simple app checkout component in the app store to exemplify code sharing with Module Federation and that takes us to the next step.
+
+=== Installing nextjs-mf
+
+<aside> ⚠️ Attention: for the application to work with Module Federation features you need to have access to the https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[[nextjs-ssr^] plugin which currently requires a paid license! +
+</aside> +
+To install the tool, we need to login to https://privjs.com/[PrivJs^] using npm, to do so, run the following command: +
+npm login --registry <https://r.privjs.com>
+
+Once this is done a file containing your credentials will be saved in ~/.npmrc. Now you can install nextjs-mf using the command below: +
+npm install @module-federation/nextjs-mf --registry <https://r.privjs.com>
+
+Now we will need to modify our next.config.js file in both projects so that the installed plugin can work, for that open the following files:
+
+* apps/store/next.config.js
+* apps/checkout/next.config.js
+You will see that in them we have an Nx plugin being used, we will need to maintain it, for that, make the files of each project similar to these:
+
+* https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/b20485c501c8c8353aca9b7a2b0bbf376c43348d/apps/store/next.config.js[store/next.config.js^]
+* https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/b20485c501c8c8353aca9b7a2b0bbf376c43348d/apps/checkout/next.config.js[checkout/next.config.js^]
+You will notice that we have two environment variables being used in this file, we will need to define them in each project so create a .env.development.local file in each project and leave each file with the following values: +
+NEXT_PUBLIC_CHECKOUT_URL=http://localhost:4200 +
+NEXT_PUBLIC_STORE_URL=http://localhost:4300
+
+So far no new changes can be noticed, but we can already use the Module Federation resources, but before that, we will make some modifications in our development environment so that applications can communicate without generating warnings in the console by local port collision, to this open and edit the following files: +
+apps/store/project.json +
+{ +
+  // ... +
+  "targets": { +
+    // ... +
+    "serve": { +
+      // ... +
+      "options": { +
+        "buildTarget": "checkout:build", +
+        "dev": true, +
+        "port": 4300 +
+      }, +
+      // ... +
+    }, +
+    // ... +
+}
+
+apps/checkout/project.json +
+{ +
+  // ... +
+  "targets": { +
+    // ... +
+    "serve": { +
+      // ... +
+      "options": { +
+        "buildTarget": "checkout:build", +
+        "dev": true, +
+        "port": 4200 +
+      }, +
+      // ... +
+    }, +
+    // ... +
+}
+
+In order for the component to be federated, we must add it to the next.config.js file, open the file and add a new entry in the exposes object: +
+module.exports = withFederatedSidecar({ +
+  // ... +
+  exposes: { +
+    './buy-button': './components/buy-button/buy-button.tsx', +
+  }, +
+  // ... +
+})(nxNextConfig);
+
+Now with everything configured, we must restart any next process that is running and we are going to import the button component that we created in the checkout project in the store project using the Module Federation resources, for that open the home page that we created in the store project and import the Next.js https://nextjs.org/docs/advanced-features/dynamic-import[dynamic^] function as shown below: +
+import dynamic from 'next/dynamic';
+
+This function will help us to import the component only on the client-side, so add the following code snippet on the page: +
+const BuyButton = dynamic( +
+  async () => import('checkout/buy-button'), +
+  { +
+    ssr: false, +
+  } +
+);
+
+And then we can use the component in the page content +
+export function Page() { +
+  return ( +
+    <div className={styles['container']}> +
+      <h1>Welcome to Store!</h1> +
+      <BuyButton onClick={() => alert('Hello, Module Federation!')}>Add to Cart</BuyButton> +
+    </div> +
+  ); +
+}
+
+Now you can see the following result
+
+=== Creating hooks
+
+One of the powers of nextjs-mf is the federation of functions, including hooks. An important detail is that we cannot import hooks asynchronously, which leads us to adopt a solution where we import functions using require and the page or component that uses the hook being loaded lazily/asynchronously, what we call top-level-await. +
+First, we will need to create a hook, for that, we are going to make a simple state function. Create a file in the checkout app in apps/checkout/hooks/useAddToCart.ts and insert the code below in the file: +
+import { useState } from 'react';
+
+export default function useAddToCartHook() { +
+  const [itemsCount, setItemsCount] = useState<number>(0); +
+  return { +
+    itemsCount, +
+    addToCart: () => setItemsCount((i) => i + 1), +
+    clearCart: () => setItemsCount(0), +
+  }; +
+}
+
+Once this is done, add the file to the list of modules exposed in the next.config.js file: +
+module.exports = withFederatedSidecar({ +
+  // ... +
+  exposes: { +
+    './buy-button': './components/buy-button/buy-button.tsx', +
+		'./useAddToCartHook': './hooks/useAddToCart.ts' +
+  }, +
+  // ... +
+})(nxNextConfig);
+
+To import the hook, let's create a new page that will be imported asynchronously, for that create a new folder in the store app called async-pages. Create a custom-hook.tsx file that will be our page inside the async-pages folder, then add the following code to the file: +
+// typing for the hook +
+type UseAddToCartHookType = () => UseAddToCartHookResultType;
+
+// hook function return typing +
+type UseAddToCartHookResultType = { +
+  itemsCount: number; +
+  addToCart: () => void; +
+  clearCart: () => void; +
+};
+
+// hook default value +
+let useAddToCartHook = (() => ({})) as UseAddToCartHookType;
+
+// import the hook only on the client-side +
+if (process.browser) { +
+  useAddToCartHook = require('checkout/useAddToCartHook').default; +
+}
+
+export function Page() { +
+	// on server side extracts the values as undefined +
+	// on the client side extracts the hook values +
+  const { itemsCount, addToCart, clearCart } = +
+    useAddToCartHook() as UseAddToCartHookResultType;
+
+  return ( +
+    <div> +
+      <h1>Welcome to Custom Hook!</h1>
+
+      <p> +
+        Item Count: <strong>{itemsCount}</strong> +
+      </p> +
+      <button onClick={addToCart}>Add to Cart</button> +
+      <button onClick={clearCart}>Clear Cart</button> +
+    </div> +
+  ); +
+}
+
+// here you can use the getInitialProps function normally +
+// it will be called on both server-side and client-side +
+Page.getInitialProps = async (/*ctx*/) => { +
+  return {}; +
+};
+
+export default Page;
+
+Now we need to create a page in the pages folder that loads our page asynchronously, for that use the command below: +
+nx g @nrwl/next:page custom-hook --project=store
+
+Now open the newly created page file and add the following code +
+import dynamic from 'next/dynamic'; +
+import type { NextPage, NextPageContext } from 'next';
+
+// import functions from page in synchronously way +
+const page = import('../../async-pages/custom-hook');
+
+// lazy import the page component +
+const Page = dynamic( +
+  () => import('../../async-pages/custom-hook') +
+) as NextPage;
+
+Page.getInitialProps = async (ctx: NextPageContext) => { +
+	// capture the getInitialProps function from the page +
+  const getInitialProps = ((await page).default as NextPage)?.getInitialProps; +
+  if (getInitialProps) { +
+		// if the function exists, call the function on server-side and client-side +
+    return getInitialProps(ctx); +
+  } +
+  return {}; +
+};
+
+export default Page;
+
+Now you can see the following result
+
+Some errors at the time of writing this article may be occurring, so if in doubt, consider looking at https://github.com/BrunoS3D/nextjs-nx-module-federation[this project^] I created as a proof of concept, I'm actively working with Zackary to make it up to date and functional.
+
+=== Deploying projects on Vercel
+
+The procedure that we are going to perform now will be done at https://vercel.com/[Vercel^], but we can replicate it without much difficulty on other serverless hosting platforms such as https://www.netlify.com/[Netlify^],https://docs.amplify.aws/guides/hosting/nextjs/q/platform/js/[AWS Amplify^], and Serverless with ahttps://www.serverless.com/plugins/serverless-nextjs-plugin[plugin^] for Next.js or even in a https://en.wikipedia.org/wiki/Self-hosting_(web_services)[self-hosted^] way using Docker with a private server. +
+We can carry out the process in two ways: by https://vercel.com/new[interface^] or by https://vercel.com/cli[CLI^], but to facilitate the process we will do it by the interface, you just need to host the project on https://github.com/[GitHub^] so that we can import it in a few clicks, once the project is on GitHub you can open https://vercel.com/new[this page^] on Vercel to deploy the first application… exactly, although it's a monorepo, we're going to configure everything so that separate deployments are made. +
+First, we will deploy the checkout app because it has fewer dependencies, for that select the repository as in the following image and click on the button to import it:
+
+Choose a name for the application on the screen that opens but remember that we are still going to do the same step for the app store so define a different name for each project. +
+We must change some commands for the project build in the "Build and Output Settings" tab, for this, check the override option and leave the fields as shown below:
+
+Build command (checkout) +
+npx nx build checkout --prod
+
+Output directory (checkout) +
+dist/apps/checkout/.next
+
+For now, let's skip the environment variables section, as we don't have the URLs where the applications will be hosted, we can click on the "Deploy" button. You may notice that we may have an error during the build, but don't worry if that happens, we'll solve this soon. +
+Now we are going to deploy our app store and we are going to do the same steps as before, just changing some fields on the "Build and Output Settings" tab. +
+Build command (store) +
+npx nx build store --prod
+
+Output directory (store) +
+dist/apps/store/.next
+
+Once that's done, we can click on the "Deploy" button. Again, you'll notice that the build resulted in an error, but that doesn't matter, the important thing is that we now have the two URLs of the two projects and we can use them to configure our environment. Now go to the settings panel of each application and set the following environment variables
+
+Note that I am using a URL of the “deployment” that I made of my app store, you must do it with the URL that Vercel generated for yours, remember to define the two environment variables NEXT_PUBLIC_CHECKOUT_URL and NEXT_PUBLIC_STORE_URL each with its respective URL of production.
+
+=== Private dependencies with Vercel
+
+If you open the project build logs, you will notice that in both the error is the same, probably something like this +
+npm ERR! 403 403 Forbidden - GET <https://r.privjs.com/@module-federation%2fnextjs-mf/-/nextjs-mf-3.5.0.tgz> - You must be logged in to install/publish packages. +
+npm ERR! 403 In most cases, you or one of your dependencies are requesting +
+npm ERR! 403 a package version that is forbidden by your security policy, or +
+npm ERR! 403 on a server you do not have access to. +
+npm ERR! A complete log of this run can be found in: +
+npm ERR!     /vercel/.npm/_logs/2022-06-24T21_11_19_939Z-debug-0.log +
+Error: Command "npm install" exited with 1
+
+This happens because Vercel does not have the necessary credentials to access a package that is in a private repository, to give access to the repository we need to configure an environment variable called NPM_RC, the value of this variable must be the same as what is inside the ~/.npmrc file which was created when we used the npm login command. +
+To do so, just create a new variable in Vercel's environment variables settings panel called NPM_RC and insert the entire contents of the ~/.npmrc file, if you have any doubts read https://vercel.com/support/articles/using-private-dependencies-with-vercel[this document^]. +
+Finally, you can open the “Deployments” tab and “Redeploy” your application!
+
+Navigating to the application store URL you can see the button whose source code is in the checkout project being "federated" to our site.
+
+=== References
+
+https://www.thoughtworks.com/radar/techniques/micro-frontends[Thoughtworks - Micro frontends^] +
+https://medium.com/localizalabs/module-federation-o-futuro-do-microfrontend-4fed87983ec2[Module Federation — O futuro do microfrontend^] +
+https://micro-frontends.org/[What are Micro Frontends?^] +
+https://www.youtube.com/watch?v=-ei6RqZilYI[Webpack 5 Module Federation - Zack Jackson - CityJS Conf 2020:^] +
+https://betterprogramming.pub/the-pros-and-cons-monorepos-explained-f86c998392e1[The Pros and Cons of Monorepos, Explained^] +
+https://github.com/module-federation/module-federation-examples/tree/master/nextjs[Next.js with Module Federation^] +
+https://vercel.com/support/articles/using-private-dependencies-with-vercel[How do I use private dependencies with Vercel?^] +
+https://nx.dev/packages/next[Nx with Next.js^]
