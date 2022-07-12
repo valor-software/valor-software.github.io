@@ -1,4 +1,4 @@
-== Nx, Next.js, and Module Federation (EN-US)
+== Nx, Next.js, and Module Federation
 
 === Table of Contents
 
