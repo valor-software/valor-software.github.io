@@ -4,6 +4,7 @@
   "domains": [
     "dev_quality_assurance"
   ],
+  "authorImg": "assets/articles/0040-nx-next-js-and-module-federation/Bruno_Silva.png",
   "language": "en",
   "bgImg": "assets/articles/0040-nx-next-js-and-module-federation/2 (1).png",
   "title": "Nx, Next.js, and Module Federation",
