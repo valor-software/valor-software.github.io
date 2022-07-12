@@ -34,6 +34,7 @@ First, let's talk about what a micro frontend is and what are its benefits. Micr
 * Upload page
 * Forum (for students to interact with tutors)
 * Account Settings pages (for students and tutors)
+
 Imagine that each of these features can be easily split into microservices when it comes to the backend, but most of the time the frontend ends up being a kind of “monolith” containing a single stack and forcing the entire team to stay in sync at all times. that a new feature goes into production. Can you see this? Clearly, we could split each part of this eCommerce into distinct applications for smaller teams with unique responsibilities and possibly different stacks. Think about it, the team responsible for the checkout could work *100% focused* on improving the user's shopping experience flow, reducing noise that made them give up on the purchase, or for example the catalog and institutional team (landing page) that could work on different marketing fronts, as well as the team responsible for the video area of the platform, which would be focused on ensuring speed / high quality in the delivery of classes to students. +
 Anyway, there are many examples that we could cite about the use of micro frontends, but as the purpose of this article is to be a little more practical, let's skip this part and if you are more interested in understanding the advantages of using micro frontends, I suggest you read more about it in https://micro-frontends.org/[this article^].
 
