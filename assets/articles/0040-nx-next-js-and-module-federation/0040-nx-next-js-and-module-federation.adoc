@@ -118,12 +118,15 @@ Note that our application in Next.js is inside the apps folder, this folder will
 === Generating new pages
 
 The https://nx.dev/packages/next[@nrwl/next^] plugin has several https://nx.dev/packages/next#generators[generators^], and commands that serve to automate the creation of pages, components, and other common structures in the project. +
-Knowing this we will create our first page using a generator called page for this run the following command in the terminal +
+Knowing this we will create our first page using a generator called page for this run the following command in the terminal 
++
 nx g @nrwl/next:page home --project=store
 
-<aside> ℹ️ Note that we use the --project flag to indicate to the generator in which project the new page should be created. +
+<aside> ℹ️ Note that we use the --project flag to indicate to the generator in which project the new page should be created. 
++
 </aside> +
-This will generate a page called home which will be located at +
+This will generate a page called home which will be located at 
++
 apps/store/pages/home/index.tsx
 
 === Generating new applications
