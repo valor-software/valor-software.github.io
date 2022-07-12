@@ -73,8 +73,9 @@ Module Federation is a https://webpack.js.org/concepts/module-federation[Webpack
 Let's start with our first example of this article where we talk about an eCommerce application, now imagine that our marketing team decides to create a mega Black Friday campaign and decides to change several parts of our application by inserting different components with dynamic banners, carousels, countdowns, themed offers, etc… this would probably be a headache for all teams responsible for our microfrontend applications since each one would have to implement the new requirements of the marketing team in their projects and that would have to be very well tested and synchronized so that everything went right and nothing could be released ahead of time… Anyway, all this could easily generate a lot of work and a lot of headache for the team, but that's where the very powerful Module Federation comes in. +
 Thanks to it, only one team would be in responsible for developing the new components along with their respective logic, and the rest of the team would only be responsible for implementing the use of these new complements, which could bring with them, hooks, components in React, among others. +
 Unfortunately, implementing and using the Module Federation features of Webpack with Next.js is not that easy, as you would need to deeply understand how both tools work to be able to create a solution that facilitates the integration between the two. Fortunately, there is already a solution and has several features including support for SSR (server-side rendering), these tools are called https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] and https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] and together we are going to explore a proof-of-concept application that I created to show you the power of these tools together. +
-<aside> ⚠️ Attention: for the application to work with Module Federation features you need to have access to the https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] or https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] plugin which currently requires a paid license! +
-</aside>
+----
+⚠️ Attention: for the application to work with Module Federation features you need to have access to the https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] or https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] plugin which currently requires a paid license! 
+----
 
 === About the project
 
@@ -82,20 +83,27 @@ This project will show, how to create the basis for a fully scalable application
 
 === Starting the project
 
-Initially, we will need to install Nx in our environment to handle the commands needed to manage our monorepo. To do this, open a terminal and run: +
+Initially, we will need to install Nx in our environment to handle the commands needed to manage our monorepo. To do this, open a terminal and run: 
+----
 npm i -g nx
+----
 
-Once this is done, navigate to a directory where you want to create the project and run the command below, this command will use https://nx.dev/packages/next[@nrwl/next^] to create our workspace (monorepo) and our first application: +
+Once this is done, navigate to a directory where you want to create the project and run the command below, this command will use https://nx.dev/packages/next[@nrwl/next^] to create our workspace (monorepo) and our first application: 
+----
 npx create-nx-workspace@latest --preset=next
+----
 
 An interactive terminal will guide you through the creation process, you can follow as I did below:
 
 image::terminal-guide.png[]
 
-Once this is done, you must wait for the workspace (monorepo) to be created and the project's dependencies to be downloaded after that you can open vscode in the workspace root, in my case: +
+Once this is done, you must wait for the workspace (monorepo) to be created and the project's dependencies to be downloaded after that you can open vscode in the workspace root, in my case: 
+----
 code ./nextjs-nx-module-federation
+----
 
-Looking at the file explorer you can see that the project has a structure similar to this: +
+Looking at the file explorer you can see that the project has a structure similar to this: 
+----
 ├── apps +
 │   ├── store (...) +
 │   └── store-e2e (...) +
@@ -112,6 +120,7 @@ Looking at the file explorer you can see that the project has a structure simila
 │   └── tsconfig.tools.json +
 ├── tsconfig.base.json +
 └── workspace.json
+----
 
 Note that our application in Next.js is inside the apps folder, this folder will contain all the other applications you are going to create, we can also see other configuration files of our workspace. It is important to note that there is only one node_modules folder in the entire project, this happens because all dependencies will be in one place, at the root of the repository.
 
@@ -122,53 +131,75 @@ Knowing this we will create our first page using a generator called page for thi
 ----
 nx g @nrwl/next:page home --project=store
 ----
-<aside> ℹ️ Note that we use the --project flag to indicate to the generator in which project the new page should be created. 
-+</aside> +
+
+----
+ℹ️ Note that we use the --project flag to indicate to the generator in which project the new page should be created. 
+----
+
 This will generate a page called home which will be located at 
 +
 apps/store/pages/home/index.tsx
 
 === Generating new applications
 
-Now we will need to create another application, which we will call checkout. Unlike the first application we created together with the workspace, we will need to use the following command to create a new Next.js application in the current workspace: +
+Now we will need to create another application, which we will call checkout. Unlike the first application we created together with the workspace, we will need to use the following command to create a new Next.js application in the current workspace: 
+----
 nx g @nrwl/next:app checkout
+----
 
-Your apps folder should look like this: +
+Your apps folder should look like this: 
+----
 ├── apps +
 │   ├── checkout (...) +
 │   ├── checkout-e2e (...) +
 │   ├── store (...) +
 │   └── store-e2e (...) +
 ...
+----
 
 === Running in the development environment
 
-To see our changes running, we will need to run the following command in the terminal: +
+To see our changes running, we will need to run the following command in the terminal: 
+----
 nx serve store
+----
 
-<aside> ℹ️ serve is an https://nx.dev/packages/next#executors[executor^] command +
-</aside> +
-Also, we can run all applications at the same time using: +
+----
+ℹ️ serve is an https://nx.dev/packages/next#executors[executor^] command
+----
+
+Also, we can run all applications at the same time using:
+----
 nx run-many --target=serve --all
+----
 
-<aside> ℹ️ Note that we use the --target flag to indicate to nx which executor we want to run on all projects. +
-</aside>
+----
+ℹ️ Note that we use the --target flag to indicate to nx which executor we want to run on all projects. 
+----
 
 === Generating new components
 
-As we saw earlier, we have the possibility to create structures in our application using the Nx CLI tool, now we are going to create a simple button component in the checkout project, that execute the following command: +
+As we saw earlier, we have the possibility to create structures in our application using the Nx CLI tool, now we are going to create a simple button component in the checkout project, that execute the following command: 
+----
 nx g @nrwl/next:component buy-button --project=checkout
+----
 
-Now let's edit the component in the directory below so that it looks like https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/main/apps/checkout/components/buy-button/buy-button.tsx[this^] +
-apps/checkout/components/buy-button/buy-button.tsx +
+Now let's edit the component in the directory below so that it looks like https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/main/apps/checkout/components/buy-button/buy-button.tsx[this^] 
+----
+apps/checkout/components/buy-button/buy-button.tsx
+----
+
 We'll use this simple app checkout component in the app store to exemplify code sharing with Module Federation and that takes us to the next step.
 
 === Installing nextjs-mf
 
-<aside> ⚠️ Attention: for the application to work with Module Federation features you need to have access to the https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[[nextjs-ssr^] plugin which currently requires a paid license! +
-</aside> +
-To install the tool, we need to login to https://privjs.com/[PrivJs^] using npm, to do so, run the following command: +
+----
+⚠️ Attention: for the application to work with Module Federation features you need to have access to the https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[[nextjs-ssr^] plugin which currently requires a paid license! 
+----
+To install the tool, we need to login to https://privjs.com/[PrivJs^] using npm, to do so, run the following command:
+----
 npm login --registry <https://r.privjs.com>
+----
 
 Once this is done a file containing your credentials will be saved in ~/.npmrc. Now you can install nextjs-mf using the command below: +
 npm install @module-federation/nextjs-mf --registry <https://r.privjs.com>
@@ -181,11 +212,14 @@ You will see that in them we have an Nx plugin being used, we will need to maint
 
 * https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/b20485c501c8c8353aca9b7a2b0bbf376c43348d/apps/store/next.config.js[store/next.config.js^]
 * https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/b20485c501c8c8353aca9b7a2b0bbf376c43348d/apps/checkout/next.config.js[checkout/next.config.js^]
-You will notice that we have two environment variables being used in this file, we will need to define them in each project so create a .env.development.local file in each project and leave each file with the following values: +
-NEXT_PUBLIC_CHECKOUT_URL=http://localhost:4200 +
+You will notice that we have two environment variables being used in this file, we will need to define them in each project so create a .env.development.local file in each project and leave each file with the following values: 
+----
+NEXT_PUBLIC_CHECKOUT_URL=http://localhost:4200
 NEXT_PUBLIC_STORE_URL=http://localhost:4300
+----
 
-So far no new changes can be noticed, but we can already use the Module Federation resources, but before that, we will make some modifications in our development environment so that applications can communicate without generating warnings in the console by local port collision, to this open and edit the following files: +
+So far no new changes can be noticed, but we can already use the Module Federation resources, but before that, we will make some modifications in our development environment so that applications can communicate without generating warnings in the console by local port collision, to this open and edit the following files:
+----
 apps/store/project.json +
 { +
   // ... +
@@ -219,8 +253,10 @@ apps/checkout/project.json +
     }, +
     // ... +
 }
+----
 
-In order for the component to be federated, we must add it to the next.config.js file, open the file and add a new entry in the exposes object: +
+In order for the component to be federated, we must add it to the next.config.js file, open the file and add a new entry in the exposes object: 
+----
 module.exports = withFederatedSidecar({ +
   // ... +
   exposes: { +
@@ -228,19 +264,23 @@ module.exports = withFederatedSidecar({ +
   }, +
   // ... +
 })(nxNextConfig);
+----
 
 Now with everything configured, we must restart any next process that is running and we are going to import the button component that we created in the checkout project in the store project using the Module Federation resources, for that open the home page that we created in the store project and import the Next.js https://nextjs.org/docs/advanced-features/dynamic-import[dynamic^] function as shown below: +
 import dynamic from 'next/dynamic';
 
-This function will help us to import the component only on the client-side, so add the following code snippet on the page: +
+This function will help us to import the component only on the client-side, so add the following code snippet on the page:
+----
 const BuyButton = dynamic( +
   async () => import('checkout/buy-button'), +
   { +
     ssr: false, +
   } +
 );
+----
 
-And then we can use the component in the page content +
+And then we can use the component in the page content
+----
 export function Page() { +
   return ( +
     <div className={styles['container']}> +
@@ -249,6 +289,7 @@ export function Page() { +
     </div> +
   ); +
 }
+----
 
 Now you can see the following result
 
@@ -257,7 +298,8 @@ image::Welcome-to-store!.png[]
 === Creating hooks
 
 One of the powers of nextjs-mf is the federation of functions, including hooks. An important detail is that we cannot import hooks asynchronously, which leads us to adopt a solution where we import functions using require and the page or component that uses the hook being loaded lazily/asynchronously, what we call top-level-await. +
-First, we will need to create a hook, for that, we are going to make a simple state function. Create a file in the checkout app in apps/checkout/hooks/useAddToCart.ts and insert the code below in the file: +
+First, we will need to create a hook, for that, we are going to make a simple state function. Create a file in the checkout app in apps/checkout/hooks/useAddToCart.ts and insert the code below in the file:
+----
 import { useState } from 'react';
 
 export default function useAddToCartHook() { +
@@ -268,8 +310,10 @@ export default function useAddToCartHook() { +
     clearCart: () => setItemsCount(0), +
   }; +
 }
+----
 
-Once this is done, add the file to the list of modules exposed in the next.config.js file: +
+Once this is done, add the file to the list of modules exposed in the next.config.js file: 
+----
 module.exports = withFederatedSidecar({ +
   // ... +
   exposes: { +
@@ -278,8 +322,10 @@ module.exports = withFederatedSidecar({ +
   }, +
   // ... +
 })(nxNextConfig);
+----
 
-To import the hook, let's create a new page that will be imported asynchronously, for that create a new folder in the store app called async-pages. Create a custom-hook.tsx file that will be our page inside the async-pages folder, then add the following code to the file: +
+To import the hook, let's create a new page that will be imported asynchronously, for that create a new folder in the store app called async-pages. Create a custom-hook.tsx file that will be our page inside the async-pages folder, then add the following code to the file: 
+----
 // typing for the hook +
 type UseAddToCartHookType = () => UseAddToCartHookResultType;
 
@@ -324,11 +370,13 @@ Page.getInitialProps = async (/*ctx*/) => { +
 };
 
 export default Page;
+----
 
 Now we need to create a page in the pages folder that loads our page asynchronously, for that use the command below: +
 nx g @nrwl/next:page custom-hook --project=store
 
-Now open the newly created page file and add the following code +
+Now open the newly created page file and add the following code
+----
 import dynamic from 'next/dynamic'; +
 import type { NextPage, NextPageContext } from 'next';
 
@@ -351,6 +399,7 @@ Page.getInitialProps = async (ctx: NextPageContext) => { +
 };
 
 export default Page;
+----
 
 Now you can see the following result
 
@@ -371,19 +420,27 @@ We must change some commands for the project build in the "Build and Output Sett
 
 image::Build-output-settings.png[]
 
-Build command (checkout) +
+Build command (checkout)
+----
 npx nx build checkout --prod
+----
 
-Output directory (checkout) +
+Output directory (checkout) 
+----
 dist/apps/checkout/.next
+----
 
 For now, let's skip the environment variables section, as we don't have the URLs where the applications will be hosted, we can click on the "Deploy" button. You may notice that we may have an error during the build, but don't worry if that happens, we'll solve this soon. +
 Now we are going to deploy our app store and we are going to do the same steps as before, just changing some fields on the "Build and Output Settings" tab. +
-Build command (store) +
+Build command (store)
+----
 npx nx build store --prod
+----
 
-Output directory (store) +
+Output directory (store) 
+----
 dist/apps/store/.next
+----
 
 Once that's done, we can click on the "Deploy" button. Again, you'll notice that the build resulted in an error, but that doesn't matter, the important thing is that we now have the two URLs of the two projects and we can use them to configure our environment. Now go to the settings panel of each application and set the following environment variables
 
@@ -394,13 +451,15 @@ Note that I am using a URL of the “deployment” that I made of my app store, 
 === Private dependencies with Vercel
 
 If you open the project build logs, you will notice that in both the error is the same, probably something like this +
-npm ERR! 403 403 Forbidden - GET <https://r.privjs.com/@module-federation%2fnextjs-mf/-/nextjs-mf-3.5.0.tgz> - You must be logged in to install/publish packages. +
+npm ERR! 403 403 Forbidden - GET <https://r.privjs.com/@module-federation%2fnextjs-mf/-/nextjs-mf-3.5.0.tgz> - You must be logged in to install/publish packages.
+----
 npm ERR! 403 In most cases, you or one of your dependencies are requesting +
 npm ERR! 403 a package version that is forbidden by your security policy, or +
 npm ERR! 403 on a server you do not have access to. +
 npm ERR! A complete log of this run can be found in: +
 npm ERR!     /vercel/.npm/_logs/2022-06-24T21_11_19_939Z-debug-0.log +
 Error: Command "npm install" exited with 1
+----
 
 This happens because Vercel does not have the necessary credentials to access a package that is in a private repository, to give access to the repository we need to configure an environment variable called NPM_RC, the value of this variable must be the same as what is inside the ~/.npmrc file which was created when we used the npm login command. +
 To do so, just create a new variable in Vercel's environment variables settings panel called NPM_RC and insert the entire contents of the ~/.npmrc file, if you have any doubts read https://vercel.com/support/articles/using-private-dependencies-with-vercel[this document^]. +
