@@ -122,12 +122,12 @@ Looking at the file explorer you can see that the project has a structure simila
 └── workspace.json
 ----
 
-Note that our application in Next.js is inside the apps folder, this folder will contain all the other applications you are going to create, we can also see other configuration files of our workspace. It is important to note that there is only one node_modules folder in the entire project, this happens because all dependencies will be in one place, at the root of the repository.
+Note that our application in Next.js is inside the "apps" folder, this folder will contain all the other applications you are going to create, we can also see other configuration files of our workspace. It is important to note that there is only one "node_modules" folder in the entire project, this happens because all dependencies will be in one place, at the root of the repository.
 
 === Generating new pages
 
 The https://nx.dev/packages/next[@nrwl/next^] plugin has several https://nx.dev/packages/next#generators[generators^], and commands that serve to automate the creation of pages, components, and other common structures in the project. +
-Knowing this we will create our first page using a generator called page for this run the following command in the terminal 
+Knowing this we will create our first page using a generator called "page" for this run the following command in the terminal 
 ----
 nx g @nrwl/next:page home --project=store
 ----
@@ -136,18 +136,18 @@ nx g @nrwl/next:page home --project=store
 ℹ️ Note that we use the --project flag to indicate to the generator in which project the new page should be created. 
 ----
 
-This will generate a page called home which will be located at 
+This will generate a page called "home" which will be located at 
 +
 apps/store/pages/home/index.tsx
 
 === Generating new applications
 
-Now we will need to create another application, which we will call checkout. Unlike the first application we created together with the workspace, we will need to use the following command to create a new Next.js application in the current workspace: 
+Now we will need to create another application, which we will call "checkout". Unlike the first application we created together with the workspace, we will need to use the following command to create a new Next.js application in the current workspace: 
 ----
 nx g @nrwl/next:app checkout
 ----
 
-Your apps folder should look like this: 
+Your "apps" folder should look like this: 
 ----
 ├── apps +
 │   ├── checkout (...) +
@@ -179,7 +179,7 @@ nx run-many --target=serve --all
 
 === Generating new components
 
-As we saw earlier, we have the possibility to create structures in our application using the Nx CLI tool, now we are going to create a simple button component in the checkout project, that execute the following command: 
+As we saw earlier, we have the possibility to create structures in our application using the Nx CLI tool, now we are going to create a simple button component in the "checkout" project, that execute the following command: 
 ----
 nx g @nrwl/next:component buy-button --project=checkout
 ----
@@ -189,7 +189,7 @@ Now let's edit the component in the directory below so that it looks like https:
 apps/checkout/components/buy-button/buy-button.tsx
 ----
 
-We'll use this simple app checkout component in the app store to exemplify code sharing with Module Federation and that takes us to the next step.
+We'll use this simple app "checkout" component in the app "store" to exemplify code sharing with Module Federation and that takes us to the next step.
 
 === Installing nextjs-mf
 
@@ -204,7 +204,7 @@ npm login --registry <https://r.privjs.com>
 Once this is done a file containing your credentials will be saved in ~/.npmrc. Now you can install nextjs-mf using the command below: +
 npm install @module-federation/nextjs-mf --registry <https://r.privjs.com>
 
-Now we will need to modify our next.config.js file in both projects so that the installed plugin can work, for that open the following files:
+Now we will need to modify our "next.config.js" file in both projects so that the installed plugin can work, for that open the following files:
 
 * apps/store/next.config.js
 * apps/checkout/next.config.js
@@ -212,15 +212,17 @@ You will see that in them we have an Nx plugin being used, we will need to maint
 
 * https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/b20485c501c8c8353aca9b7a2b0bbf376c43348d/apps/store/next.config.js[store/next.config.js^]
 * https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/b20485c501c8c8353aca9b7a2b0bbf376c43348d/apps/checkout/next.config.js[checkout/next.config.js^]
-You will notice that we have two environment variables being used in this file, we will need to define them in each project so create a .env.development.local file in each project and leave each file with the following values: 
+You will notice that we have two environment variables being used in this file, we will need to define them in each project so create a
+".env.development.local" file in each project and leave each file with the following values: 
 ----
 NEXT_PUBLIC_CHECKOUT_URL=http://localhost:4200
 NEXT_PUBLIC_STORE_URL=http://localhost:4300
 ----
 
 So far no new changes can be noticed, but we can already use the Module Federation resources, but before that, we will make some modifications in our development environment so that applications can communicate without generating warnings in the console by local port collision, to this open and edit the following files:
+
+"apps/store/project.json"
 ----
-apps/store/project.json +
 { +
   // ... +
   "targets": { +
@@ -236,8 +238,10 @@ apps/store/project.json +
     }, +
     // ... +
 }
+----
 
-apps/checkout/project.json +
+"apps/checkout/project.json"
+----
 { +
   // ... +
   "targets": { +
@@ -255,7 +259,7 @@ apps/checkout/project.json +
 }
 ----
 
-In order for the component to be federated, we must add it to the next.config.js file, open the file and add a new entry in the exposes object: 
+In order for the component to be federated, we must add it to the "next.config.js" file, open the file and add a new entry in the "exposes" object: 
 ----
 module.exports = withFederatedSidecar({ +
   // ... +
@@ -266,8 +270,10 @@ module.exports = withFederatedSidecar({ +
 })(nxNextConfig);
 ----
 
-Now with everything configured, we must restart any next process that is running and we are going to import the button component that we created in the checkout project in the store project using the Module Federation resources, for that open the home page that we created in the store project and import the Next.js https://nextjs.org/docs/advanced-features/dynamic-import[dynamic^] function as shown below: +
+Now with everything configured, we must restart any next process that is running and we are going to import the button component that we created in the "checkout" project in the "store" project using the Module Federation resources, for that open the "home" page that we created in the "store" project and import the Next.js https://nextjs.org/docs/advanced-features/dynamic-import[dynamic^] function as shown below:
+----
 import dynamic from 'next/dynamic';
+----
 
 This function will help us to import the component only on the client-side, so add the following code snippet on the page:
 ----
@@ -297,8 +303,8 @@ image::Welcome-to-store!.png[]
 
 === Creating hooks
 
-One of the powers of nextjs-mf is the federation of functions, including hooks. An important detail is that we cannot import hooks asynchronously, which leads us to adopt a solution where we import functions using require and the page or component that uses the hook being loaded lazily/asynchronously, what we call top-level-await. +
-First, we will need to create a hook, for that, we are going to make a simple state function. Create a file in the checkout app in apps/checkout/hooks/useAddToCart.ts and insert the code below in the file:
+One of the powers of nextjs-mf is the federation of functions, including hooks. An important detail is that we cannot import hooks asynchronously, which leads us to adopt a solution where we import functions using "require" and the page or component that uses the hook being loaded lazily/asynchronously, what we call "top-level-await". +
+First, we will need to create a hook, for that, we are going to make a simple state function. Create a file in the "checkout" app in "apps/checkout/hooks/useAddToCart.ts" and insert the code below in the file:
 ----
 import { useState } from 'react';
 
@@ -312,7 +318,7 @@ export default function useAddToCartHook() { +
 }
 ----
 
-Once this is done, add the file to the list of modules exposed in the next.config.js file: 
+Once this is done, add the file to the list of modules exposed in the "next.config.js" file: 
 ----
 module.exports = withFederatedSidecar({ +
   // ... +
@@ -372,8 +378,10 @@ Page.getInitialProps = async (/*ctx*/) => { +
 export default Page;
 ----
 
-Now we need to create a page in the pages folder that loads our page asynchronously, for that use the command below: +
+Now we need to create a page in the "pages" folder that loads our page asynchronously, for that use the command below:
+----
 nx g @nrwl/next:page custom-hook --project=store
+----
 
 Now open the newly created page file and add the following code
 ----
@@ -411,11 +419,11 @@ Some errors at the time of writing this article may be occurring, so if in doubt
 
 The procedure that we are going to perform now will be done at https://vercel.com/[Vercel^], but we can replicate it without much difficulty on other serverless hosting platforms such as https://www.netlify.com/[Netlify^], https://docs.amplify.aws/guides/hosting/nextjs/q/platform/js/[AWS Amplify^], and Serverless with a https://www.serverless.com/plugins/serverless-nextjs-plugin[plugin^] for Next.js or even in a https://en.wikipedia.org/wiki/Self-hosting_(web_services)[self-hosted^] way using Docker with a private server. +
 We can carry out the process in two ways: by https://vercel.com/new[interface^] or by https://vercel.com/cli[CLI^], but to facilitate the process we will do it by the interface, you just need to host the project on https://github.com/[GitHub^] so that we can import it in a few clicks, once the project is on GitHub you can open https://vercel.com/new[this page^] on Vercel to deploy the first application… exactly, although it's a monorepo, we're going to configure everything so that separate deployments are made. +
-First, we will deploy the checkout app because it has fewer dependencies, for that select the repository as in the following image and click on the button to import it:
+First, we will deploy the "checkout" app because it has fewer dependencies, for that select the repository as in the following image and click on the button to import it:
 
 image::Import-Git-repository.png[]
 
-Choose a name for the application on the screen that opens but remember that we are still going to do the same step for the app store so define a different name for each project. +
+Choose a name for the application on the screen that opens but remember that we are still going to do the same step for the app "store" so define a different name for each project. +
 We must change some commands for the project build in the "Build and Output Settings" tab, for this, check the override option and leave the fields as shown below:
 
 image::Build-output-settings.png[]
@@ -431,7 +439,7 @@ dist/apps/checkout/.next
 ----
 
 For now, let's skip the environment variables section, as we don't have the URLs where the applications will be hosted, we can click on the "Deploy" button. You may notice that we may have an error during the build, but don't worry if that happens, we'll solve this soon. +
-Now we are going to deploy our app store and we are going to do the same steps as before, just changing some fields on the "Build and Output Settings" tab. +
+Now we are going to deploy our app "store" and we are going to do the same steps as before, just changing some fields on the "Build and Output Settings" tab. +
 Build command (store)
 ----
 npx nx build store --prod
@@ -446,7 +454,7 @@ Once that's done, we can click on the "Deploy" button. Again, you'll notice that
 
 image::Environment-variables.png[]
 
-Note that I am using a URL of the “deployment” that I made of my app store, you must do it with the URL that Vercel generated for yours, remember to define the two environment variables NEXT_PUBLIC_CHECKOUT_URL and NEXT_PUBLIC_STORE_URL each with its respective URL of production.
+Note that I am using a URL of the “deployment” that I made of my app store, you must do it with the URL that Vercel generated for yours, remember to define the two environment variables "NEXT_PUBLIC_CHECKOUT_URL" and "NEXT_PUBLIC_STORE_URL" each with its respective URL of production.
 
 === Private dependencies with Vercel
 
@@ -461,13 +469,13 @@ npm ERR!     /vercel/.npm/_logs/2022-06-24T21_11_19_939Z-debug-0.log +
 Error: Command "npm install" exited with 1
 ----
 
-This happens because Vercel does not have the necessary credentials to access a package that is in a private repository, to give access to the repository we need to configure an environment variable called NPM_RC, the value of this variable must be the same as what is inside the ~/.npmrc file which was created when we used the npm login command. +
-To do so, just create a new variable in Vercel's environment variables settings panel called NPM_RC and insert the entire contents of the ~/.npmrc file, if you have any doubts read https://vercel.com/support/articles/using-private-dependencies-with-vercel[this document^]. +
+This happens because Vercel does not have the necessary credentials to access a package that is in a private repository, to give access to the repository we need to configure an environment variable called "NPM_RC", the value of this variable must be the same as what is inside the "~/.npmrc" file which was created when we used the "npm login" command. +
+To do so, just create a new variable in Vercel's environment variables settings panel called "NPM_RC" and insert the entire contents of the "~/.npmrc" file, if you have any doubts read https://vercel.com/support/articles/using-private-dependencies-with-vercel[this document^]. +
 Finally, you can open the “Deployments” tab and “Redeploy” your application!
 
 image::deployments-redeploy.png[]
 
-Navigating to the application store URL you can see the button whose source code is in the checkout project being "federated" to our site.
+Navigating to the application "store" URL you can see the button whose source code is in the "checkout" project being "federated" to our site.
 
 === References
 
