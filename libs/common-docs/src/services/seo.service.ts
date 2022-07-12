@@ -1,12 +1,12 @@
-import { Injectable, Inject } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import {filter} from "rxjs/operators";
-import {NavigationEnd, Router, UrlSegment} from "@angular/router";
-import {Observable, Subscription} from "rxjs";
-import {GetArticlesService} from "./getArticles.service";
-import { GetPortfolioService } from "@valor-software/portfolio";
+import { GetArticlesService } from "./getArticles.service";
+import { GetPortfolioService } from "./getPortfolio.service";
+import { filter } from "rxjs/operators";
+import { NavigationEnd, Router, UrlSegment } from "@angular/router";
+import { Observable, Subscription } from "rxjs";
 import { checkHTMLExtension } from "../utils/titleRefactoringUtil";
-import {OLD_ROUTES_FROM_OLD_SITE} from "../tokens/linksFromOldSite.token";
+import { OLD_ROUTES_FROM_OLD_SITE } from "../tokens/linksFromOldSite.token";
 
 const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue: string, content: string }[]} = {
     '/': [

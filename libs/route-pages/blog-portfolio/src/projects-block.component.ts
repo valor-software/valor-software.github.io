@@ -1,7 +1,6 @@
 import {ChangeDetectorRef, Component, Input } from '@angular/core';
-import { IPortfolio } from "@valor-software/portfolio";
 import { Router } from "@angular/router";
-import { titleRefactoring } from "@valor-software/common-docs";
+import {IPortfolio, titleRefactoring} from '@valor-software/common-docs';
 
 const SortList = {
     all_projects: 'All Projects',
@@ -74,8 +73,8 @@ export class ProjectsBlockComponent {
         return !!(this.sortProjects?.length && this.sortProjects?.length > 8);
     }
 
-    route(title: string) {
-        this.router.navigate(['projects', titleRefactoring(title)]);
+    getRouteLink(link: string): any {
+        return titleRefactoring(link);
     }
 
     updateProjects(projects: IPortfolio[]) {

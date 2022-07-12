@@ -2,8 +2,13 @@ import { Component, OnDestroy, Type } from '@angular/core';
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { forkJoin, Subscription } from "rxjs";
-import { GetArticlesService, IArticle } from "@valor-software/common-docs";
-import { GetPortfolioService, IPortfolio } from "@valor-software/portfolio";
+import {
+    GetArticlesService,
+    IArticle,
+    GetPortfolioService,
+    IPortfolio,
+    titleRefactoring
+} from "@valor-software/common-docs";
 import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
 
 SwiperCore.use([Pagination]);
@@ -80,18 +85,8 @@ export class GeneralPageComponent implements OnDestroy{
         return value.slice(0,4);
     }
 
-    route(link?: string) {
-        if (!link) {
-            return;
-        }
-
-        if (this.isBlogPage()) {
-            const title = this.getArticlesServ.getRefactoredTitle(link);
-            this.router.navigate(['articles', title]);
-            return;
-        }
-
-        this.router.navigate(['projects', this.getPortfolio.getRefactoredTitle(link)]);
+    getRouteLink(link: string): any {
+        return titleRefactoring(link);
     }
 
     filterFirstItems() {

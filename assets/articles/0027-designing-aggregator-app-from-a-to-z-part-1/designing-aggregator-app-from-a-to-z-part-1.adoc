@@ -1,9 +1,11 @@
+
+
 Almost every movie place in our city offers an app to search for movies and buy tickets. So, you need to use several apps in parallel, you lose time comparing movie sessions and prices to make
 the right choice. My task was to fix this and make this movie escape easy and convenient. I thought of one and only app that would display all the movie places and movies available. It would also allow for picking the movie from all the possible options in the city and purchasing them online.
 
 In this article, I'll share how to design an app and lead you through every stage from user research to mock-up. Learn how to gather the information you need and create a splashing design based on users' pains and preferences. And, good luck with your beginnings :)
 
-image::assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6a92141388b7d2d9fe1_rOQ11ZZYkhE9Vg2brc3x94XaGdOQOuxUr6UbDK_Q2_RGn3JMBmOr_xGuJ6P2qaFQUh09hjAIfy8V9cs9NuBontVyETUHEFCY7Vnlaj5_Xd5pIrzmtDIUQRDVQxDm5U3uVyvn5V_o.png[]
+image::60a4c6a92141388b7d2d9fe1_rOQ11ZZYkhE9Vg2brc3x94XaGdOQOuxUr6UbDK_Q2_RGn3JMBmOr_xGuJ6P2qaFQUh09hjAIfy8V9cs9NuBontVyETUHEFCY7Vnlaj5_Xd5pIrzmtDIUQRDVQxDm5U3uVyvn5V_o.png[]
 
 == *Stage 1: Designing the product*
 
@@ -34,7 +36,7 @@ In my research I applied the following instruments and sources for gathering the
 
 I started my research of the target audience with an online survey. In this my friends, colleagues, fellow students and even people I don't really know were of great help. I spread my questionnaire through Facebook, Telegram, and Slack. I used Google Forms for gathering answers, and then - Excel file for results.
 
-image::assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6aa73388525fb870fce_UYbecSSTNeXh7Fgts8d9TA67cV4cZOWV9yeDgmFgNkO7sre49QezHdWEUCVFx_YDphP2mZEHprkBRKQLbSU3ZOjcTTvQwpVap9B1tLgdY6fQBXKatoq28fpp7lcslSUTQbpDlCFE.png[]
+image::60a4c6aa73388525fb870fce_UYbecSSTNeXh7Fgts8d9TA67cV4cZOWV9yeDgmFgNkO7sre49QezHdWEUCVFx_YDphP2mZEHprkBRKQLbSU3ZOjcTTvQwpVap9B1tLgdY6fQBXKatoq28fpp7lcslSUTQbpDlCFE.png[]
 
 ==== *Questions in my online questionnaire:*
 
@@ -144,13 +146,13 @@ role of a user. I visited 2 movie places in my city, Planeta Kino and Multiplex.
 observe the visitors, their behavior in front of the checkout, the ticket purchase process, the cashier's
 behavior, also the tech they're using to provide a better service.
 
-image::assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6a95a35bad1845e403e_kdcxokWRD4f4YwSbFnLVZMI6DhlJPVz6eM_XM_bAZ6lJ5CUW0QlLoT9tCvayHYHmP5aojg8FXIKQCfuIAa-QFt-nwIWGPCEHRCoH5PGDNwaVdZ99HcCUKiE_JPrfwE0nLkTa0OjF.png[]
+image::60a4c6a95a35bad1845e403e_kdcxokWRD4f4YwSbFnLVZMI6DhlJPVz6eM_XM_bAZ6lJ5CUW0QlLoT9tCvayHYHmP5aojg8FXIKQCfuIAa-QFt-nwIWGPCEHRCoH5PGDNwaVdZ99HcCUKiE_JPrfwE0nLkTa0OjF.png[]
 
 I also got myself involved in this process by becoming a customer, I put myself in their shoes,
 and this helped me experience their journey. I started to understand the idea behind the communication with
 users, how important it is to feel their frustration to come up with a better solution.
 
-image::assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6a936aae43a296606d8_snSpiVfZFzG4i361ndi1l_ZguL_Ljjga4JRK_BV-6VEJnxjudeQRMoALL5bdN8sgs6PRUbEwLd2UYeVfwfNKUjd-JMojAfi1jS0Y6w9Zn7fCCrdW_eJQgM5n62VoSyfxmG-EYqxo.png[]
+image::60a4c6a936aae43a296606d8_snSpiVfZFzG4i361ndi1l_ZguL_Ljjga4JRK_BV-6VEJnxjudeQRMoALL5bdN8sgs6PRUbEwLd2UYeVfwfNKUjd-JMojAfi1jS0Y6w9Zn7fCCrdW_eJQgM5n62VoSyfxmG-EYqxo.png[]
 
 === 4. Competitors review and analysis
 
@@ -165,13 +167,13 @@ In the next part I'll start working with the user personas for our future produc
 As a result of the research phase, we should collect data on the future users in the form of a persona. I
 created a persona and listed her (his) frustration points, goals, and needs.
 
-image::assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a77fb9eeb30b6f14a5ec83_vV0XF4GoC2Qqls_1uVSQFgliPGLPdK3IMexI32Sqso4JWIYlLLn0hkeqAIy0aAxE1ak6dt6I5Hk9s70gWaV64yg9L7-kAFnHze-ubhvgqK0Nq9MHnQZlEtR7IoOP8o7wCvXvCBzI.png[]
+image::60a77fb9eeb30b6f14a5ec83_vV0XF4GoC2Qqls_1uVSQFgliPGLPdK3IMexI32Sqso4JWIYlLLn0hkeqAIy0aAxE1ak6dt6I5Hk9s70gWaV64yg9L7-kAFnHze-ubhvgqK0Nq9MHnQZlEtR7IoOP8o7wCvXvCBzI.png[]
 
 ==== *Ideas generation and future product requirements:*
 
 With the goal and needs of the target audience in mind I've generated ideas to cover each frustration point of the users.
 
-image::assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6a955362ee89da12c03_x-zN6UprZkZmEQxxNKgFEmYr1FSR_GU8C3bNpcK1Nxc_SGNFJaK9qXdO_kfKB2jvtIi2cXm4sMXmcR_Wv2tNp0nFZscw-JQlFflIQG7EhJFL-GHb5PzEdEatgwu4O7sg2-OWrbVH.png[]
+image::60a4c6a955362ee89da12c03_x-zN6UprZkZmEQxxNKgFEmYr1FSR_GU8C3bNpcK1Nxc_SGNFJaK9qXdO_kfKB2jvtIi2cXm4sMXmcR_Wv2tNp0nFZscw-JQlFflIQG7EhJFL-GHb5PzEdEatgwu4O7sg2-OWrbVH.png[]
 
 ==== User story:
 
@@ -193,7 +195,7 @@ easy access, and closed the app. Finally, time to get ready for the show!
 
 After a while, Alexander and his friend met at the movies and joined the line to enter the movie hall. Alexander prepared the tickets for scanning in the "Wallet". After the check, they took their seats and started watching the movie. BTW, it was a good piece. And Alexander gave it 5 out of 5 when received a request for evaluation from the App.
 
-image::assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6a911df140606adf18c_imMiWE1xIzeGdSFzm1CPQPayrn8ceU50kA1bQJUR3CMJBTVT5Gr5CxGiayB98irnxNgFmtFF97YwYD3LpH3igUNQLSbbRYo5RhGDM1f8vZs5g4tahQcAv83E4CxS2Ln7kKbunuQ7.png[]
+image::60a4c6a911df140606adf18c_imMiWE1xIzeGdSFzm1CPQPayrn8ceU50kA1bQJUR3CMJBTVT5Gr5CxGiayB98irnxNgFmtFF97YwYD3LpH3igUNQLSbbRYo5RhGDM1f8vZs5g4tahQcAv83E4CxS2Ln7kKbunuQ7.png[]
 
 *Story 2: Movie premiere (New user)*
 
@@ -208,7 +210,7 @@ After check-in, they entered the movie hall, took their seats, and started watch
 liked the movie very much. After watching, he received a notification from the App asking him to rate the
 movie. He gave it 5 out of 5.
 
-image::assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6aa2ddd2a47f40867ee_g3031GOYJKO7VaBSO0UM0lTYz7eKOZKpON4rEWo3VO54gWbUOuG0tJfHbtREnLP5vqWdJmC_3GQl6r0cOC15y1oRuQC2GZ-i8QeThcRlirAHQNG8ZZKrIgEnqWLPbMZIm9oQblvi.png[]
+image::60a4c6aa2ddd2a47f40867ee_g3031GOYJKO7VaBSO0UM0lTYz7eKOZKpON4rEWo3VO54gWbUOuG0tJfHbtREnLP5vqWdJmC_3GQl6r0cOC15y1oRuQC2GZ-i8QeThcRlirAHQNG8ZZKrIgEnqWLPbMZIm9oQblvi.png[]
 
 == What *I realized as I finished this stage*
 

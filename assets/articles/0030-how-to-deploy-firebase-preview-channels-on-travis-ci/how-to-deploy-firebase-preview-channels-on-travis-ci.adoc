@@ -1,3 +1,5 @@
+
+
 Firebase has released the long awaited Preview channel functionality, which allows
 for the testing of updates. All Firebase (not Firestore!) users can benefit from this hosting feature. And you may
 be asking what about Travis CI or other hosting users? Can they use preview channels as well?
@@ -189,7 +191,7 @@ command creates a new comment in a pull request (GitHub API, as well).
 As a result, I get the link with the comment to a preview channel. And, the comment we get from the
 previous operation comes from the person which token we use.
 
-image::assets/articles/how-to-deploy-firebase-preview-channels-on-travis-ci/60ec1e03db7c7b158aaa61f9_Fo06fCr0FS4nOMpv1cm_M5N0MmQuNTKNRJnnUnlegz87jJmLFwrK-FRZXA-R7ZAk0LfUuAWJpU1tviJ9P8iUy_FtGiXlDrp4Qgcq9oW9-u83GMMjgejrpt6rkPTHNNLWlG64wwkH.png[]
+image::60ec1e03db7c7b158aaa61f9_Fo06fCr0FS4nOMpv1cm_M5N0MmQuNTKNRJnnUnlegz87jJmLFwrK-FRZXA-R7ZAk0LfUuAWJpU1tviJ9P8iUy_FtGiXlDrp4Qgcq9oW9-u83GMMjgejrpt6rkPTHNNLWlG64wwkH.png[]
 
 === Any questions?
 

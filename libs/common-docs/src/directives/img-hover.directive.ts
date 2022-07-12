@@ -9,8 +9,9 @@ export class ImgHoverDirective {
     @Input() defaultSrc = '';
     @Input() check?: boolean;
 
-    @HostListener('mouseout')
-    onMouseLeave() {
+    @HostListener('mouseout',['$event'])
+    onMouseLeave(event: MouseEvent) {
+        event.preventDefault();
         if (!this.defaultSrc || this.check) {
             return;
         };
@@ -19,7 +20,8 @@ export class ImgHoverDirective {
     }
 
     @HostListener('mouseover')
-    onMouseOver() {
+    onMouseOver(event: MouseEvent) {
+        event.preventDefault();
         if (!this.activeSrc || this.check) {
             return;
         };

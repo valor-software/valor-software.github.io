@@ -5,6 +5,7 @@ import { getHttp404Plugin } from '@gammastream/scully-plugin-http404';
 import '@scullyio/scully-plugin-puppeteer';
 import './scully/plugins/blog-route-plugin';
 import './scully/plugins/portfolio-route-plugin';
+import './scully/plugins/sitemap-plugin';
 
 const Http404Plugin = getHttp404Plugin();
 

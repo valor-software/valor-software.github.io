@@ -42,7 +42,7 @@ performance geral do website: analisamos se o Scully foi capaz de ajudar, e como
 Scully a pontuação do Lighthouse foi de 56 para 99-100. Esse indicador inclui performance, acessibilidade, SEO e
 boas práticas, como pode ver na imagem abaixo.
 
-image::assets/articles/como-o-scully-nos-ajudou-a-atingir-99-pontos-no-lighthouse-para-uma-plataforma-b2c/60b0d1d54875f90c19c209ea_Eh8d9dD7OkG3ODiudMJ8UHZs2OmC87O3sYL3GsMQlcbPmGie0fNi_uqTD3o05BoOmwbb_DbUBxlKjfKUVq2e9FZw9AH_UGHmk73U2wDWOMi3jLABRRX1UjfDqCtWBxzLXvNQx79b.png[]
+image::60b0d1d54875f90c19c209ea_Eh8d9dD7OkG3ODiudMJ8UHZs2OmC87O3sYL3GsMQlcbPmGie0fNi_uqTD3o05BoOmwbb_DbUBxlKjfKUVq2e9FZw9AH_UGHmk73U2wDWOMi3jLABRRX1UjfDqCtWBxzLXvNQx79b.png[]
 
 ==== *Melhor indexação no Google - Como localizar a empresa no topo*
 
@@ -81,7 +81,7 @@ visível e ajudou novos usuários a encontrarem o site. Você pode ver o antes e
 parte vermelha, ela mostra momentos após a publicação, onde não éramos capazes de rastrear as atividades dos
 usuários).
 
-image::assets/articles/como-o-scully-nos-ajudou-a-atingir-99-pontos-no-lighthouse-para-uma-plataforma-b2c/60b0d1d5b45c99179c4dad71_pjjkxhvVDowJElf_ztEvzjnkmRdeziJG6VYbO_Zr6mjvUxUgnOTH7GhDc_tu7Hkh05N31S0L-f6HMf5LJ9901a3_ff5oQmMGZYGqqsEfrQ3Ui3OfDIDFkt1EDC0BhTv5H1onWPRg.png[]
+image::60b0d1d5b45c99179c4dad71_pjjkxhvVDowJElf_ztEvzjnkmRdeziJG6VYbO_Zr6mjvUxUgnOTH7GhDc_tu7Hkh05N31S0L-f6HMf5LJ9901a3_ff5oQmMGZYGqqsEfrQ3Ui3OfDIDFkt1EDC0BhTv5H1onWPRg.png[]
 
 *Como resultado*, a partir do momento que lançamos a nova plataforma, as vendas duplicaram.
 
@@ -127,7 +127,7 @@ construir essa conexão e adicioná-la sem nenhuma modificação:
 Utilize https://developers.google.com/tag-manager/quickstart[estas instruções^] para implementar
 o Google Tag Manager no seu site. Lá você encontrará o seguinte pedaço de código:
 
-image::assets/articles/como-o-scully-nos-ajudou-a-atingir-99-pontos-no-lighthouse-para-uma-plataforma-b2c/60bf4e6e2cdce6412d434a78_Screenshot%202021-06-08%20at%2013.58.26.png[]
+image::60bf4e6e2cdce6412d434a78_Screenshot%202021-06-08%20at%2013.58.26.png[]
 
 E https://www.analyticsmania.com/post/google-tag-manager-id/[esse artigo] te mostrará como obter seu Google Tag Manager ID.
 
@@ -139,7 +139,7 @@ package.json. Claro, o arquivo gerado é o default, então ainda existem algumas
 fazer. https://medium.com/ngconf/a-guide-to-custom-scully-plugins-5558993fd3f8[Esse guia sobre
 plugins no Scully] dá uma boa ideia sobre customização de plugins.
 
-image::assets/articles/como-o-scully-nos-ajudou-a-atingir-99-pontos-no-lighthouse-para-uma-plataforma-b2c/60b0d1d51c5fb97963e98cc3_2a4JxNNsn40mrnC1FODeMj6l1fsgYR2oCnVhykr7yvcjcZBmfMtmY3I-yFsuobT3RGRW17sQyEg2iIbhSVGs3RRhbyywxzM30dSuEBSCJ8jFRhBGgMTsnsOr6SfF0r6I9pi_FIVu.png[]
+image::60b0d1d51c5fb97963e98cc3_2a4JxNNsn40mrnC1FODeMj6l1fsgYR2oCnVhykr7yvcjcZBmfMtmY3I-yFsuobT3RGRW17sQyEg2iIbhSVGs3RRhbyywxzM30dSuEBSCJ8jFRhBGgMTsnsOr6SfF0r6I9pi_FIVu.png[]
 
 ==== *Sumário*
 

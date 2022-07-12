@@ -1,3 +1,5 @@
+
+
 === JS empowerment with native platform APIs
 
 As friends of the NativeScript community and preferred partners, we’re constantly trying to improve the
@@ -26,7 +28,7 @@ React Native and NativeScript are really complementary and quite interoperable.
 
 Visit https://www.npmjs.com/package/@valor/nativescript-websockets[npm to use the WebSocket plugin for NativeScript^], and scroll down to proceed with the Implementation part!
 
-image::assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/624495a97b77ab1729aaf5ad_ImplementingWebSocketspluginforNativeScriptusingReactNative.png[]
+image::624495a97b77ab1729aaf5ad_ImplementingWebSocketspluginforNativeScriptusingReactNative.png[]
 
 === Implementation
 
@@ -50,16 +52,16 @@ class.
 4. Started writing the WebSocket polyfill straight from JavaScript, which involved creating the Native delegate
 and calling a callback when these events happened.
 
-image::assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cb69e4e3c90fe6021a_PMgnLe2yiP1jYyiUv5NKPybCVSqytbUPMTXUhTR-yJME3Kn-mAFDzur9oT8PXJKf2fmtg7u-s4_G2DY_GNjQ4N6emmaQOdVu1hYvTygdT3deU05UeSzsVFLbmhVrJExAv95Jq-e7.png[]
+image::623a42cb69e4e3c90fe6021a_PMgnLe2yiP1jYyiUv5NKPybCVSqytbUPMTXUhTR-yJME3Kn-mAFDzur9oT8PXJKf2fmtg7u-s4_G2DY_GNjQ4N6emmaQOdVu1hYvTygdT3deU05UeSzsVFLbmhVrJExAv95Jq-e7.png[]
 
 [start=5]
 5. Made small adjustments related to data types and converted them to JavaScript types when needed.
 
-image::assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cb0ebeab71f2c50761_8p1Us1oMMyyU-0SljBp1qFD2OfVXEhEwwybcwOWqXXs7-apoo-2V2v_1yoMyJs1rq6SmZFYRz5UttPtYTEaaNOqtJOuCWig30NTq0JowlKejh-lQ63xFj0hMnn2X1n_FYbC4Hnbd.png[]
+image::623a42cb0ebeab71f2c50761_8p1Us1oMMyyU-0SljBp1qFD2OfVXEhEwwybcwOWqXXs7-apoo-2V2v_1yoMyJs1rq6SmZFYRz5UttPtYTEaaNOqtJOuCWig30NTq0JowlKejh-lQ63xFj0hMnn2X1n_FYbC4Hnbd.png[]
 
 And the remaining implementations were just a case of translating Objective-C to TypeScript:
 
-image::assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cb69e4e3df50e60223_Hjyt45ke5SI0QLPG86Hq2A5Qu4_C41q3bqCjl2ruKd8RJOweMparnsfEIiSkI7SEH7uwXUg3YPyf9sl6AYFOFNUH9z8FfT6-W_P0I0zIJG56u4qSyAlS1eBxwNc_hDpclAZalF_j.png[]
+image::623a42cb69e4e3df50e60223_Hjyt45ke5SI0QLPG86Hq2A5Qu4_C41q3bqCjl2ruKd8RJOweMparnsfEIiSkI7SEH7uwXUg3YPyf9sl6AYFOFNUH9z8FfT6-W_P0I0zIJG56u4qSyAlS1eBxwNc_hDpclAZalF_j.png[]
 
 One critical detail to remember about JavaScript while handling any platform API is that it’s single-threaded.
 Blocking calls will block the main thread, which is the reason we needed a native implementation on iOS. The iOS native implementation is responsible for receiving the calls, doing work on other threads, and then returning back to the main thread.
@@ -71,25 +73,25 @@ versatile (you have the choice), so we just decided to use TypeScript here.
 
 Another interesting detail with NativeScript is the sheer reduction in code to manage - originally this code was over 400 lines: https://github.com/facebook/react-native/blob/ff568b0b1f1b58af1fa5704e46e15a0cbd21dc48/ReactAndroid/src/main/java/com/facebook/react/modules/websocket/WebSocketModule.java[WebSocket module^]. And we were able to transform this into under 150 lines of easy to read JavaScript code. Below you can see a comparison between the original code for WebSocket module in Java and in NativeScript:
 
-image::assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42ccea549707f8460cfc_mNG1FlvyX9BRiWbpqZ2l4UFEsowliat4S2pI99t1mBbkoQ9B7ETZcQOHyEUaMbnMBLXN3TvuL8r6idnOF5GxttYs6YvAkSzySK4iGIi1mEhIWbQ4DTsbvq8htuvKPd7_J1Iqt8g9.png[]
+image::623a42ccea549707f8460cfc_mNG1FlvyX9BRiWbpqZ2l4UFEsowliat4S2pI99t1mBbkoQ9B7ETZcQOHyEUaMbnMBLXN3TvuL8r6idnOF5GxttYs6YvAkSzySK4iGIi1mEhIWbQ4DTsbvq8htuvKPd7_J1Iqt8g9.png[]
 
 A couple of conversions were needed for binary data. In React Native, binary data is converted to a base64 string in JavaScript and converted back to binary on send:
 
-image::assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cc9e2caa7d7c427b7c_2jiYD1tkMdH2YEgu7gWNBraisH658ep32-pQwduTpGmhFGYm6qYi_JwuT5jMdtVZZaXNKRnJIEqzwPIV8Hvxy9rHpzqDQYEuT2kaDkYIQHPwJ3L6VXo9fpINo7KNoK6j-HUHU2eT.png[]
+image::623a42cc9e2caa7d7c427b7c_2jiYD1tkMdH2YEgu7gWNBraisH658ep32-pQwduTpGmhFGYm6qYi_JwuT5jMdtVZZaXNKRnJIEqzwPIV8Hvxy9rHpzqDQYEuT2kaDkYIQHPwJ3L6VXo9fpINo7KNoK6j-HUHU2eT.png[]
 
 In NativeScript, we are able to manipulate native types directly, so we can do a simple conversion:
 
-image::assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cc2d8f2323614bd273_UEARQyIyD0QPch5a1QinnzlvWj-jS6jvKpx9pA10XYkfD2SclcTmF4Dur_b6oYhV3p93k8MWDAxBeZLS-ufD1q3TT1jcC5wbsv7lR8ptUk8Ha1jZrlpwfIAiuzrWAm90NFdTHXUa.png[]
+image::623a42cc2d8f2323614bd273_UEARQyIyD0QPch5a1QinnzlvWj-jS6jvKpx9pA10XYkfD2SclcTmF4Dur_b6oYhV3p93k8MWDAxBeZLS-ufD1q3TT1jcC5wbsv7lR8ptUk8Ha1jZrlpwfIAiuzrWAm90NFdTHXUa.png[]
 
 The same adjustments made to convert NSData to ArrayBuffer were needed for Android, but since Android doesn’t
 have a helper for it, we converted from ByteString:
 
-image::assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cc7af8ad80b589bdfa_Rm2Nwf4NadyoHz47ziuPxRLGmKW6Ix7J2w1AwtRVCZOxh0O7ueq86sJhv79aggIaHJ7tMZmsFxwqmBFOg-TXPqSP9skdzjh369zz3VpsP7y8pg1INhoR5gNXqgDU2Vp3gLVDpkkf.png[]
+image::623a42cc7af8ad80b589bdfa_Rm2Nwf4NadyoHz47ziuPxRLGmKW6Ix7J2w1AwtRVCZOxh0O7ueq86sJhv79aggIaHJ7tMZmsFxwqmBFOg-TXPqSP9skdzjh369zz3VpsP7y8pg1INhoR5gNXqgDU2Vp3gLVDpkkf.png[]
 
 And that’s it! We now have a nice API for WebSockets for both iOS and Android platforms with a well defined
 interface:
 
-image::assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42ccc95b0ab48627e629_T1Ykebxda4AImHnbUYH2yGANiKHQ0TwRk78PTj5arxl_nie5Y51KwoyOPfBBFD1avLME4OJRm08v_dhiwB1Xppk-fteOsVSDdYg-0c83-X0OwRe2jOuB1OaRPaFBt3lHNGBgfF95.png[]
+image::623a42ccc95b0ab48627e629_T1Ykebxda4AImHnbUYH2yGANiKHQ0TwRk78PTj5arxl_nie5Y51KwoyOPfBBFD1avLME4OJRm08v_dhiwB1Xppk-fteOsVSDdYg-0c83-X0OwRe2jOuB1OaRPaFBt3lHNGBgfF95.png[]
 
 Then it was just a matter of wiring up a simple WebSocket polyfill.
 

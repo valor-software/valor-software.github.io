@@ -1,3 +1,5 @@
+
+
 Valor Software is not only a software development company but also a great contributor to
 the Angular development community: being creators of https://valor-software.com/ngx-bootstrap[ngx-bootstrap^], we
 strive to improve our beloved library as Angular innovates. This time we worked on implementing Ivy renderer. Ivy
@@ -31,7 +33,7 @@ we now need to use _this.hostAdapter_ when searching for the line number.
 
 Unfortunately, the Angular team still hasn't proceeded to resolve the issue. So we had to temporarily https://en.wikipedia.org/wiki/Monkey_patch[monkey patch^] Angular to fix the issue.
 
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1b64d7aee43c6b794168f0_5d1b4eb3a694d6f8e4e182cb_01.png[Fix for:The host should not return a redirect source file from 'getSourceFile'^]
+image::5d1b64d7aee43c6b794168f0_5d1b4eb3a694d6f8e4e182cb_01.png[Fix for:The host should not return a redirect source file from 'getSourceFile'^]
 
 [start=2]
 2. ERROR in demo/src/+__ng_typecheck__+.ts(857,9): error TS2551: Property 'innerHtml' does not exist on type
@@ -93,37 +95,37 @@ reducement.
 
 After updating https://valor-software.com/ngx-bootstrap[ngx-bootstrap^] with Ivy support, we have reduced a bundle size by 12%.
 
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d3b07bf797cb8713fa8134f_Compiled_to_ES5_Bundle_size_reduced_by_12%25.png[Compiled to ES5: Bundle size reduced by 12%^]
+image::5d3b07bf797cb8713fa8134f_Compiled_to_ES5_Bundle_size_reduced_by_12%25.png[Compiled to ES5: Bundle size reduced by 12%^]
 
 Built with the View Engine:
 
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1c72392b2ad29a97466cdb_2%202.jpg[Chunks sizes for application, Built with the View Engine, compiled with ES5^]
+image::5d1c72392b2ad29a97466cdb_2%202.jpg[Chunks sizes for application, Built with the View Engine, compiled with ES5^]
 
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1b64d79f13c359cbae4cdb_5d1b53cdd7f015f62ec40dc1_d_Qx-minEOXzUIRUx6_soj8vZPT6MpIA2ZqiXtiGp33GO91bqKKGbGvfAGg2pMu2U_5GANViNnqtqvAwUDyZBjfQqkaC1gwIu1bAmwikT_HwUi96oSFYoQvptdSAvEHOAX0Zzum5.png[sizes for application, Built with the View Engine, compiled with ES5^]
+image::5d1b64d79f13c359cbae4cdb_5d1b53cdd7f015f62ec40dc1_d_Qx-minEOXzUIRUx6_soj8vZPT6MpIA2ZqiXtiGp33GO91bqKKGbGvfAGg2pMu2U_5GANViNnqtqvAwUDyZBjfQqkaC1gwIu1bAmwikT_HwUi96oSFYoQvptdSAvEHOAX0Zzum5.png[sizes for application, Built with the View Engine, compiled with ES5^]
 
 Built with Ivy:
 
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1c7544df18299104edc263_es5.jpg[Chunks sizes for application, Built with Ivy, compiled with ES5^]
+image::5d1c7544df18299104edc263_es5.jpg[Chunks sizes for application, Built with Ivy, compiled with ES5^]
 
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1b64d7b994130b84396f2b_5d1b55ceaee43ccbd940ee57_Screenshot%2520from%25202019-06-29%252012-23-42%2520copy.png[Modules sizes for application, Built with Ivy, compiled with ES5^]
+image::5d1b64d7b994130b84396f2b_5d1b55ceaee43ccbd940ee57_Screenshot%2520from%25202019-06-29%252012-23-42%2520copy.png[Modules sizes for application, Built with Ivy, compiled with ES5^]
 
 *Compiled to ES6*
 
 After building with Ivy, we have reduced a bundle by 13%.
 
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d3b07e167bbc72286749da7_Compiled_to_ES6_Bundle_size_reduced_by_13%25.png.png[Compiled to ES6: Bundle size reduced by 13%^]
+image::5d3b07e167bbc72286749da7_Compiled_to_ES6_Bundle_size_reduced_by_13%25.png.png[Compiled to ES6: Bundle size reduced by 13%^]
 
 Built with the View Engine:
 
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1c72632087660b19d5e2d8_2%2003.jpg[Chunks sizes for application, Built with the View Engine, compiled with ES6^]
+image::5d1c72632087660b19d5e2d8_2%2003.jpg[Chunks sizes for application, Built with the View Engine, compiled with ES6^]
 
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1b64d8a884d4423e7328b6_5d1b5963a884d461f172f537_06.png[sizes for application, Built with the View Engine, compiled with ES6^]
+image::5d1b64d8a884d4423e7328b6_5d1b5963a884d461f172f537_06.png[sizes for application, Built with the View Engine, compiled with ES6^]
 
 Built with Ivy:
 
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1c74808da84273fa95f22d_es6.jpg[Chunks sizes for application, Built with Ivy, compiled with ES6^]
+image::5d1c74808da84273fa95f22d_es6.jpg[Chunks sizes for application, Built with Ivy, compiled with ES6^]
 
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1b64d7aee43c167a4168f2_5d1b59dfd7f015b831c42c1a_08.png[Modules sizes for application, Built with Ivy, compiled with ES6^]
+image::5d1b64d7aee43c167a4168f2_5d1b59dfd7f015b831c42c1a_08.png[Modules sizes for application, Built with Ivy, compiled with ES6^]
 
 Unfortunately, after enabling server-side compression, Ivy didn't show us any signs of
 improvement. In general, the gzipped bundle size increased by 2%. If it has to do with tree shaking not
@@ -131,7 +133,7 @@ working correctly or not, we hope for this to be updated in the final Ivy versio
 
 ._Gzipped bundle size gained 2% after compilation with Ivy._
 [caption=""]
-image::assets/articles/ngx-bootstrap-angular-ivy-is-here/5d3b08050038410d478da705_Gzipped_Compiled_to_ES5_Bundle_size_increased_by_2%25.png[Gzipped: Bundle size increased by 2%^]
+image::5d3b08050038410d478da705_Gzipped_Compiled_to_ES5_Bundle_size_increased_by_2%25.png[Gzipped: Bundle size increased by 2%^]
 
 ==== What's next
 

@@ -15,7 +15,7 @@ export class ServicesBlockComponent {
         private router: Router
     ) {}
 
-    routeLink(link: string) {
-        this.router.navigate([`/${link}`]);
+    getRouteLink(link: string) {
+        return [`/${link}`];
     }
 }

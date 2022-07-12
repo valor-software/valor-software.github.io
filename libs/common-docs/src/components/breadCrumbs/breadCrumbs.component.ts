@@ -7,16 +7,17 @@ import { Router, UrlSegment } from "@angular/router";
     template:`
         <div *ngIf="segments && segments?.length && segments.length > 1">
             <div class="flex text-grey_font_col">
-                <p class="underline cursor-pointer" (click)="navigate()">Home</p>
+                <a href="javascript:void(0)" class="underline cursor-pointer" [routerLink]="[getRouteLink()]">Home</a>
                 <ng-container *ngFor="let segment of segments;let i = index">
                     <ng-container *ngIf="segment.title && segment.path">
                         <span>&nbsp;{{'>'}}&nbsp;</span>
-                        <p
-                                (click)="navigate(i)"
+                        <a
+                                href="javascript:void(0)"
+                                [routerLink]="[getRouteLink(i)]"
                                 [ngClass]="{'disabled': checkDisabled(i), 'underline cursor-pointer': !checkDisabled(i)}"
                         >
                             {{segment.title.toString() | titlecase}}
-                        </p>
+                        </a>
                     </ng-container>
                 </ng-container>
             </div>
@@ -62,24 +63,19 @@ export class BreadCrumbsComponent {
         });
     }
 
-    navigate(link?: number) {
-        if (!this.segments?.length) {
-            return;
-        }
-
-        if (!link && link !== 0) {
-            this.router.navigate(['/']);
-            return;
+    getRouteLink(link?: number): string {
+        if (!this.segments?.length || !link && link !== 0) {
+            return '/';
         }
 
         link++;
         if (link >= this.segments.length) {
-            return;
+            return '/';
         }
 
         const arr = this.segments.slice(0, link);
         const url = arr.map(url => url.path);
-        this.router.navigate([`/${url.join('/')}`]);
+        return `/${url.join('/')}`;
     }
 
     checkDisabled(index: number) {
