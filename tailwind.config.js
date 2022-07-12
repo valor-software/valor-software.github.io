@@ -54,7 +54,7 @@ module.exports = {
       green: '#658B80',
       light_blue: '#71A5D2',
       popover_bg: '#282828',
-      medium_grey_bg: "#717171",
+      medium_grey_bg: '#717171',
       real_dark_grey: '#222222'
     },
     borderColor: (theme) => ({
