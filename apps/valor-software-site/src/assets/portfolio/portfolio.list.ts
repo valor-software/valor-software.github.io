@@ -11,6 +11,7 @@ export const projectsList = [
     'StackBlitz',
     'Renaizant',
     'Cinnabon',
+    'Ashes Of Creation',
     'NgTalks',
     'Qualtrax',
     'ThisDot',
