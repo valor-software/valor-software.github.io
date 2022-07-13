@@ -3,16 +3,16 @@
 === Table of Contents
 
 :toc:
-= Micro Frontends
 
-= Nx and monorepos
+=== Micro Frontends
 
-** https://www.notion.so/Pros-c1502a091a9a4eff8622f3360146ee07[Pros]
-** https://www.notion.so/Cons-a8338b4d5fba478e8b911c112dc1be8e[Cons]
-* https://www.notion.so/Next-js-90a18097ddaa42d9a7f1491a212d96f1[Next.js]
-* https://www.notion.so/Nx-Next-js-6d9c2e5cb0644849a76eee7e52d1b409[Nx + Next.js]
-* https://www.notion.so/Module-Federation-44f3a7479add4c6ab4c6a9b046936810[Module Federation]
-* https://www.notion.so/Next-js-Module-Federation-a1ecf2e749a249aa8c0a077227733c3b[Next.js + Module Federation]
+* Nx and monorepos
+** Pros
+** Cons
+* Next.js
+* Nx + Next.js
+* Module Federation
+* Next.js + Module Federation
 * https://www.notion.so/About-the-project-899c9a31f6244b728fa5575144ba828a[About the project]
 * https://www.notion.so/Starting-the-project-ee207b3206714a91aba495f2aeba1fe9[Starting the project]
 * https://www.notion.so/Generating-new-pages-9fe3266daa6d419b9b15dfdd4f6341e7[Generating new pages]
