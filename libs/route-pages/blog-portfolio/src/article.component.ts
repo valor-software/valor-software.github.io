@@ -35,7 +35,7 @@ export class ArticleComponent implements OnDestroy {
     checkRoutePath() {
         let artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
         if (!artTitle) {
-            this.router.navigate(['/404']);
+            this.router.navigate(['404']);
         }
 
         if (artTitle) {
@@ -56,7 +56,7 @@ export class ArticleComponent implements OnDestroy {
                 }),
                 catchError(error => {
                     if (!this.article) {
-                        this.router.navigate(['/404']);
+                        this.router.navigate(['404']);
                     }
                     return of();
                 })
@@ -68,7 +68,7 @@ export class ArticleComponent implements OnDestroy {
                     this.addScriptsToHead();
                 }
             }, error => {
-                this.router.navigate(['/404']);
+            this.router.navigate(['404']);
             });
         }
     }
