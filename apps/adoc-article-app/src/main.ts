@@ -32,6 +32,7 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
                 const jsonData = await fs.readJSON(`${articlesFolderPath}/${folder.name}/${file.name}`);
                 articleOrder.add({
                     name: folder.name,
+                    assetsFolderName: dirName,
                     order: jsonData.order,
                     title: jsonData.title
                 });
@@ -61,7 +62,7 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
     const artList = orderArr.map(async article => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        articlesList.add(article.name);
+        articlesList.add(article.assetsFolderName);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         titleList.add(article.title);
