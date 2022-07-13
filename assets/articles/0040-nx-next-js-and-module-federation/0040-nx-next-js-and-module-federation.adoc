@@ -2,8 +2,8 @@
 
 === Table of Contents
 
-= Micro Frontends
 :toc: ①
+= Micro Frontends
 
 * https://www.notion.so/Nx-and-monorepos-f43e5aa2d4894b8485421351ea44c620[Nx and monorepos]
 ** https://www.notion.so/Pros-c1502a091a9a4eff8622f3360146ee07[Pros]
@@ -23,8 +23,8 @@
 * https://www.notion.so/Deploying-projects-on-Vercel-6656bc3152624fd1a4125c8542e32fa5[Deploying projects on Vercel]
 * https://www.notion.so/Private-dependencies-with-Vercel-42c6e1b46c8545aeb4324a311e98c696[https://www.notion.so/Private-dependencies-with-Vercel-42c6e1b46c8545aeb4324a311e98c696[P]]https://www.notion.so/Private-dependencies-with-Vercel-42c6e1b46c8545aeb4324a311e98c696[*rivate dependencies with Vercel]*
 
-=== Micro Frontends
 :toc: ①
+=== Micro Frontends
 
 You've probably heard about microservices and the number of benefits they bring to both the scalability of a backend application and the team that develops it. Now imagine if these same advantages could be brought to the frontend. Well, that's what we're going to talk about today. +
 First, let's talk about what a micro frontend is and what are its benefits. Micro frontends are a way to organize both an application and the team that develops it. Think about the following: a web application is usually composed of several resources, and depending on the size of the application it depends on certain synchrony between the teams that develop it so that new versions are released for production. Let's take an example: Imagine that we have an online course sales website and that website has the following features:
