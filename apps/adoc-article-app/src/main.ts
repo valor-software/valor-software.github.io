@@ -20,7 +20,12 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
             const extension = path.extname(file.name).split('.')[1];
             if ( extension === 'adoc') {
                 const content = await fs.readFile(`${articlesFolderPath}/${folder.name}/${file.name}`, 'utf8');
-                const htmlContent = await asciidoctor.convert(content, {attributes: {imagesdir: `assets/articles/${dirName}`}});
+                const convertDocAttributes = ['toc',`imagesdir=assets/articles/${dirName}`];
+                const tocInDoc = content.includes(':toc:');
+                if (tocInDoc) {
+                    convertDocAttributes.push('toc');
+                }
+                const htmlContent = await asciidoctor.convert(content, {attributes: convertDocAttributes});
                 if (!fs.existsSync(`apps/valor-software-site/src/assets/articles/${dirName}`)) {
                     await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => {return;});
                 }
