@@ -1,6 +1,4 @@
-== Nx, Next.js, and Module Federation
-
-=== Table of Contents
+== Table of Contents
 
 :toc:
 
