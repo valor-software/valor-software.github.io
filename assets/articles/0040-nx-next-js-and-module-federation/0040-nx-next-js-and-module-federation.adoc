@@ -3,27 +3,6 @@
 :toc:
 
 === Micro Frontends
-=== Nx and monorepos
-==== Pros
-==== Cons
-=== Next.js
-=== Nx + Next.js
-=== Module Federation
-=== Next.js + Module Federation
-=== About the project
-=== Starting the project
-=== Generating new pages
-=== Generating new applications
-=== Running in the development environment
-=== Generating new components
-=== Installing nextjs-mf
-=== Creating hooks
-=== Deploying projects on Vercel
-=== Private dependencies with Vercel
-
-
-
-=== Micro Frontends
 
 You've probably heard about microservices and the number of benefits they bring to both the scalability of a backend application and the team that develops it. Now imagine if these same advantages could be brought to the frontend. Well, that's what we're going to talk about today. +
 First, let's talk about what a micro frontend is and what are its benefits. Micro frontends are a way to organize both an application and the team that develops it. Think about the following: a web application is usually composed of several resources, and depending on the size of the application it depends on certain synchrony between the teams that develop it so that new versions are released for production. Let's take an example: Imagine that we have an online course sales website and that website has the following features:
