@@ -2,10 +2,12 @@
 
 === Table of Contents
 
-:toc: ①
 = Micro Frontends
+:toc: ①
 
-* https://www.notion.so/Nx-and-monorepos-f43e5aa2d4894b8485421351ea44c620[Nx and monorepos]
+= Nx and monorepos
+:toc: ②
+
 ** https://www.notion.so/Pros-c1502a091a9a4eff8622f3360146ee07[Pros]
 ** https://www.notion.so/Cons-a8338b4d5fba478e8b911c112dc1be8e[Cons]
 * https://www.notion.so/Next-js-90a18097ddaa42d9a7f1491a212d96f1[Next.js]
@@ -23,7 +25,6 @@
 * https://www.notion.so/Deploying-projects-on-Vercel-6656bc3152624fd1a4125c8542e32fa5[Deploying projects on Vercel]
 * https://www.notion.so/Private-dependencies-with-Vercel-42c6e1b46c8545aeb4324a311e98c696[https://www.notion.so/Private-dependencies-with-Vercel-42c6e1b46c8545aeb4324a311e98c696[P]]https://www.notion.so/Private-dependencies-with-Vercel-42c6e1b46c8545aeb4324a311e98c696[*rivate dependencies with Vercel]*
 
-:toc: ①
 === Micro Frontends
 
 You've probably heard about microservices and the number of benefits they bring to both the scalability of a backend application and the team that develops it. Now imagine if these same advantages could be brought to the frontend. Well, that's what we're going to talk about today. +
