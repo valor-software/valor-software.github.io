@@ -4,7 +4,7 @@
 
 :toc:
 
-* https://www.notion.so/Micro-Frontends-5d726f745a47465582b6632567cbd7d4[*Micro Frontends]*
+*Micro Frontends*
 * https://www.notion.so/Nx-and-monorepos-f43e5aa2d4894b8485421351ea44c620[Nx and monorepos]
 ** https://www.notion.so/Pros-c1502a091a9a4eff8622f3360146ee07[Pros]
 ** https://www.notion.so/Cons-a8338b4d5fba478e8b911c112dc1be8e[Cons]
