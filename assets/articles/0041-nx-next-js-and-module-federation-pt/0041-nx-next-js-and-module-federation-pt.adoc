@@ -155,9 +155,7 @@ Também, podemos rodar todas as aplicações ao mesmo tempo usando: +
 nx run-many --target=serve --all
 ----
 
-----
 ℹ️ Note que usamos a flag --target para indicar para o nx qual executor queremos executar em todos os projetos. + 
-----
 
 === Criando components
 
@@ -174,9 +172,8 @@ apps/checkout/components/buy-button/buy-button.tsx
 Usaremos esse simples componente do app checkout no app store para exemplificar o compartilhamento de código com Module Federation e isso nos leva para o próximo passo.
 
 === Instalando o nextjs-mf
-----
+
 ⚠️ Atenção para que a aplicação funcione com os recursos do Module Federation você precisa ter acesso ao plugin https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] ou https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] que atualmente requerem uma licença paga! +
-----
 
 Para instalar a ferramenta precisamos fazer login no https://privjs.com/[PrivJs^] usando o npm, para isso execute o comando a seguir: +
 ----
