@@ -1,389 +1,474 @@
-Micro Frontends
-You’ve probably heard about microservices and the number of benefits they bring to both the scalability of a backend application and the team that develops it. Now imagine if these same advantages could be brought to the frontend. Well, that’s what we’re going to talk about today.
-First, let’s talk about what a micro frontend is and what are its benefits. Micro frontends are a way to organize both an application and the team that develops it. Think about the following: a web application is usually composed of several resources, and depending on the size of the application it depends on certain synchrony between the teams that develop it so that new versions are released for production. Let’s take an example: Imagine that we have an online course sales website and that website has the following features:
+=== Micro Frontends
 
-Institutional page (landing page/marketing)
+Você provavelmente já deve ter ouvido falar em microsserviços e a quantidade de benefícios que eles trazem tanto para a escalabilidade de uma aplicação back-end quanto para o time que a desenvolve. Agora imagine se essas mesmas vantagens pudessem ser trazidas para o front-end. Bom é sobre isso que vamos falar hoje. +
+Primeiramente vamos falar sobre o que é um micro frontend e quais são seus benefícios. Micro frontend é uma forma de organizar tanto uma aplicação quanto o time que a desenvolve, pense no seguinte, uma aplicação web geralmente é composta de diversos recursos e dependendo do tamanho da aplicação ela depende de uma certa sincronia entre os times que a desenvolvem para que novas versões sejam lançadas para produção. Vamos a um exemplo: Imagine que temos um site de vendas de cursos online e nesse site tenha as seguintes funcionalidades:
 
-Catalog / advanced search
+* Página institucional (landing page/marketing)
+* Páginas de catálogo / busca avançada
+* Checkout (pagamento)
+* Páginas para assistir aos cursos
+* Página para upload de aulas
+* Páginas de perguntas e respostas (para alunos interagirem com tutores)
+* Páginas de configurações de conta de usuário para alunos e tutores
 
-Checkout
+Imagine que cada uma dessas funcionalidades podem ser facilmente divididas em microsserviços quando o assunto é back-end, mas na maioria das vezes o front-end acaba sendo uma espécie de “monolito” contendo uma única stack forçando o time inteiro a se manter sincronizado sempre que uma nova funcionalidade for para produção. Você enxerga isso? Claramente poderiamos dividir cada parte deste eCommerce em aplicações distintas para times menores com responsabilidades únicas e possivelmente stacks diferentes. Pense nisso o time que ficasse responsável pelo checkout poderia trabalhar *100% focado* em melhorias do fluxo de experiência de compra do usuário, diminuindo ruídos que o fizessem desistir da compra, ou por exemplo o time de catálogo e institucional (landing page) que poderiam trabalhar em frentes diferentes de marketing, bem como o time responsável pela área de vídeos da plataforma que estaria focado em garantir velocidade / alta qualidade na entrega de aulas para os alunos. +
 
-Courses player page
+Enfim, são muitos os exemplos que poderíamos citar sobre o uso de microfrontends, mas como o intuíto desse artigo é ser um pouco mais prático vamos pular essa parte e caso você tenha mais interesse em entender as vantagens de usar microfrontend sugiro que leia mais sobrehttps://micro-frontends.org/[https://micro-frontends.org/[ ]]https://micro-frontends.org/[nesse site].
 
-Upload page
+=== Nx e monorepos
 
-Forum (for students to interact with tutors)
+Bom, como vimos anteriormente é possível dividir algumas aplicações web em microfrontends o que, inicialmente, pode te trazer alguns questionamentos como: “Mas então eu preciso dividir todas as aplicações em repositórios separados? Imagina a dor de cabeça que vai ser testar tudo isso!” e é aí onde falaremos sobre mono repositórios. Mono repositório ou Monorepo é um único repositório do git que busca gerenciar todo o código fonte de uma organização/aplicação, isso nos trás uma série de vantagens e algumas desvantagens, aqui vão algumas delas:
 
-Account Settings pages (for students and tutors)
+==== Prós
 
-Imagine that each of these features can be easily split into microservices when it comes to the backend, but most of the time the frontend ends up being a kind of “monolith” containing a single stack and forcing the entire team to stay in sync at all times. that a new feature goes into production. Can you see this? Clearly, we could split each part of this eCommerce into distinct applications for smaller teams with unique responsibilities and possibly different stacks. Think about it, the team responsible for the checkout could work 100% focused on improving the user’s shopping experience flow, reducing noise that made them give up on the purchase, or for example the catalog and institutional team (landing page) that could work on different marketing fronts, as well as the team responsible for the video area of the platform, which would be focused on ensuring speed / high quality in the delivery of classes to students.
-Anyway, there are many examples that we could cite about the use of micro frontends, but as the purpose of this article is to be a little more practical, let’s skip this part and if you are more interested in understanding the advantages of using micro frontends, I suggest you read more about it in this article.
+* Padronização (lint) do código para todo o time
+* Gerenciamento de testes em um único lugar
+* Centralização do gerenciamento de dependências
+* Reutilização de código entre aplicações por conta da centralização de dependências
+* Transparência, pois podemos ver todo o código a partir de uma única workspace
 
-Nx and monorepos
-Well, as we saw earlier it is possible to divide some web applications into microfrontends which, initially, may bring you some questions such as: “But then I need to divide all applications into separate repositories? Imagine the headache it will be to test all this!” and that’s where we’ll talk about mono repositories. Mono repository or Monorepo is a single git repository that seeks to manage all the source code of an application, this brings us a series of advantages and some disadvantages, here are some of them:
+==== Contras
 
-Pros
-Standardization (lint) of the code for the entire team
+* Pasta .git pode acabar ficando grande por um elevado número de contribuíções, pelo fato de todo o time estar contribuíndo com commits no mesmo projeto
+* Aumento no tempo de build de algumas aplicações dependendo do nível de depenência e tamanho de arquivos/dados compartilhados
+* Perda do poder de restrição, uma vez que todo o time precisa ter acesso ao monorepo, perde-se o poder de restringir o acesso de certos usuários a certas partes da aplicação.
+Olhando para os benefícios e para o contexto vi que seria uma excelente oportunidade de utilizar ohttps://nx.dev/[https://nx.dev/[ ]]https://nx.dev/[Nx] como gerenciador para nosso projeto. Nx é um gerenciador de monorepos com uma gama imensa dehttps://nx.dev/community#create-nx-plugin[https://nx.dev/community#create-nx-plugin[ ]]https://nx.dev/community#create-nx-plugin[plugins] para facilitar a criação de novas aplicações, bibliotecas, testes, execução de builds, padronização de lint, centralização e gerenciamento de dependências e muitas outras funcionalidades.
 
-Test management in one place
+=== Next.js
 
-Centralization of dependency management
+É indiscutível que atualmente ohttps://nextjs.org/[https://nextjs.org/[ ]]https://nextjs.org/[Next.js] seja um dos frameworks web que vem ganhando mais e mais adoção nos últimos tempos e tudo isso se deve a gama de recursos como renderização do lado do servidor, otimização estática de imagens, rotas por sistema de arquivos, rotas de API e estratégias dehttps://nextjs.org/docs/basic-features/data-fetching/overview[https://nextjs.org/docs/basic-features/data-fetching/overview[ ]]https://nextjs.org/docs/basic-features/data-fetching/overview[data-fetching] que ele nos propõe. Next.js é uma ferramenta incrível, mas partiremos do princípio de que você já o conhece e pularemos para a próxima parte.
 
-Code reuse between applications due to dependency centralization
+=== Nx + Next.js
 
-Transparency as we can see all code from a single workspace
+Nx contém uma gama imensa dehttps://nx.dev/community#create-nx-plugin[https://nx.dev/community#create-nx-plugin[ ]]https://nx.dev/community#create-nx-plugin[plugins] para gerenciar diversos tipos de projetos, a ferramenta possui umahttps://nx.dev/getting-started/intro#philosophy[https://nx.dev/getting-started/intro#philosophy[ ]]https://nx.dev/getting-started/intro#philosophy[filosofia de desenvolvimento] muito parecida com a do Visual Studio Code. Segundo o próprio time, isso permite que o Nx possua muitas integrações, uma delas é ohttps://nx.dev/packages/next[https://nx.dev/packages/next[ ]]https://nx.dev/packages/next[*@nrwl/next]* que utilizaremos para criar e gerenciar nossas aplicações com Next.js.
 
-Cons
-.git folder can end up getting big due to a high number of contributions, because the whole team is contributing commits in the same project
+=== Module Federation
 
-Increase of build time of some applications depending on the dependency level and size of shared files/data
+Federação de módulos ou Module Federation, como vamos chamar a partir de agora, é uma funcionalidade dohttps://webpack.js.org/concepts/module-federation[https://webpack.js.org/concepts/module-federation[ ]]https://webpack.js.org/concepts/module-federation[Webpack 5] que chegou para tornar possível o compartilhamento de partes de uma aplicação a outra em tempo de execução. Isso possibilita que múltiplas aplicações compiladas usando webpack reaproveitem partes de seu código no momento em que o usuário interage com elas, o que nos leva para o próximo passo. +
+Ele facilita a integração de aplicações que no final são compiladas pra javascript padrão do browser e remover os percalços que a utilização de _iframes_ ou rotas compartilhadas no servidor web implica.
 
-No permission granularity, since the entire team needs to have access to the monorepo, the power to restrict the access of certain users to certain parts of the application is lost Looking at the benefits and the context, I saw that it would be an excellent opportunity to use Nx as a manager for our project. Nx is a monorepo manager with a huge range of plugins to facilitate the creation of new applications, libraries, tests, build execution, lint standardization, centralization, dependency management, and many other features.
+=== Next.js + Module Federation
 
-Next.js
-It is indisputable that currently Next.js is one of the web frameworks that has been gaining more and more adoption in recent times and all this is due to the range of features such as server-side rendering, static optimization, file-system routing, API routes and data-fetching strategies he proposes. Next.js is an awesome tool, but we’ll assume you already know it and skip to the next part.
+Vamos começar com o nosso primeiro exemplo desse artigo onde falamos sobre uma aplicação de um eCommerce. Agora imagine que a nossa equipe de marketing decida criar uma mega campanha de Black-Friday e decida mudar várias partes da nossa aplicação inserindo diversos componentes com banners dinâmicos, carrosséis, contadores regressivos, ofertas temáticas, etc… isso provavelmente seria uma dor de cabeça para todos os times responsáveis pelas aplicações do nosso microfrontend, de cara cada um teria que implementar as novas exigências do time de marketing em seus projetos e isso teria que ser muito bem testado e sincronizado para que tudo desse certo e nada pudesse ser divulgado antes da hora… Enfim, tudo isso poderia gerar facilmente um trabalho imenso e muita dor de cabeça para o time, mas é aí que entra o poderosíssimo Module Federation. +
 
-Nx + Next.js
-According to the Nx team, their development philosophy is very similar to Visual Studio Code’s, in which they focus on maintaining a powerful and generic tool, while extensions, or plugins, are fundamental for increasing your productivity with it. As such, @nrwl/next is the plugin that we will use to create and manage our applications with Next.js within our Nx workspace.
+Graças a ele apenas um time seria encarregado de desenvolver os novos componentes junto de suas respectivas lógicas, o resto do time seria apenas encarregado de implementar o uso desses novos complementos, que poderiam trazer consigo, hooks, componentes em React, entre outros. +
 
-Module Federation
-Module Federation is a Webpack 5 feature that has arrived to make it possible to share parts of an application to another at runtime. This makes it possible for multiple applications compiled with webpack to repurpose parts of their code as the user interacts with them, which takes us to the next step.
+Infelizmente implementar e utilizar os recursos do Module Federation do Webpack com Next.js não é tão fácil assim, você precisaria entender profundamente o funcionamento de ambas as ferramentas para conseguir criar uma solução que facilitasse a integração entre as duas, mas felizmente já existe uma solução e conta com diversas funcionalidades inclusive suporte à SSR (renderização do lado do servidor), essas ferramentas se chamamhttps://app.privjs.com/package?pkg=@module-federation/nextjs-mf[https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[ ]]https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf] ehttps://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[ ]]https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr] e juntos vamos explorar uma aplicação de prova de conceito que criei para te mostrar o poder dessas ferramentas unidas. +
 
-Next.js + Module Federation
-Let’s start with our first example of this article where we talk about an eCommerce application, now imagine that our marketing team decides to create a mega Black Friday campaign and decides to change several parts of our application by inserting different components with dynamic banners, carousels, countdowns, themed offers, etc… this would probably be a headache for all teams responsible for our microfrontend applications since each one would have to implement the new requirements of the marketing team in their projects and that would have to be very well tested and synchronized so that everything went right and nothing could be released ahead of time… Anyway, all this could easily generate a lot of work and a lot of headache for the team, but that’s where the very powerful Module Federation comes in.
+*⚠️ Atenção para que a aplicação funcione com os recursos do Module Federation você precisa ter acesso ao pluginhttps://app.privjs.com/package?pkg=@module-federation/nextjs-mf[https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[ ]]https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf] ouhttps://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[ ]]https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr] que atualmente requerem uma licença paga! +
 
-Thanks to it, only one team would be in responsible for developing the new components along with their respective logic, and the rest of the team would only be responsible for implementing the use of these new complements, which could bring with them, hooks, components in React, among others.
+=== Sobre o projeto que vamos criar
 
-Unfortunately, implementing and using the Module Federation features of Webpack with Next.js is not that easy, as you would need to deeply understand how both tools work to be able to create a solution that facilitates the integration between the two. Fortunately, there is already a solution and has several features including support for SSR (server-side rendering), these tools are called nextjs-mf and nextjs-ssr and together we are going to explore a proof-of-concept application that I created to show you the power of these tools together.
+O projeto que iremos criar mostrará, na prática, como criar a base uma aplicação totalmente escalável tanto em produção quanto em desenvolvimento. Nele vamos ver alguns pequenos exemplos de como as ferramentas citadas a cima podem ser usadas.
 
-*⚠️ Attention: for the application to work with Module Federation features you need to have access to the nextjs-mf or nextjs-ssr plugin which currently requires a paid license!
+=== Iniciando o projeto
 
-About the project
-This project will show, how to create the basis for a fully scalable application both in production and in development. In it, we will see some small examples of how the tools mentioned above can be used.
-
-Starting the project
-Initially, we will need to install Nx in our environment to handle the commands needed to manage our monorepo. To do this, open a terminal and run:
-
+Inicialmente precisaremos instalar o Nx no nosso ambiente para lidar com os comandos necessários para gerenciar nosso monorepo. Para isso abra o terminal e execute: +
+----
 npm i -g nx
-Once this is done, navigate to a directory where you want to create the project and run the command below, this command will use @nrwl/next to create our workspace (monorepo) and our first application:
+----
 
+Feito isso, navegue até um diretório onde você deseja criar o projeto e execute o comando abaixo, esse comando utilizará ohttps://nx.dev/packages/next[https://nx.dev/packages/next[ ]]https://nx.dev/packages/next[@nrwl/next] para criar nossa workspace (monorepo) e nossa primeira aplicação: +
+----
 npx create-nx-workspace@latest --preset=next
-An interactive terminal will guide you through the creation process, you can follow as I did below:
+----
 
-terminal guide
-Once this is done, you must wait for the workspace (monorepo) to be created and the project’s dependencies to be downloaded after that you can open vscode in the workspace root, in my case:
+Um terminal interativo irá guiar você no processo de criação, você pode seguir como eu fiz abaixo: +
 
+image::terminal-guide.png[]
+
+Feito isso você deverá esperar a criação do workspace (monorepo) e download das dependencias do projeto e após isso você poderá abrir o vscode na raiz do workspace, no meu caso: +
+----
 code ./nextjs-nx-module-federation
-Looking at the file explorer you can see that the project has a structure similar to this:
+----
 
-├── apps
-│   ├── store (...)
-│   └── store-e2e (...)
-├── babel.config.json
-├── jest.config.ts
-├── jest.preset.js
-├── libs
-├── nx.json
-├── package.json
-├── package-lock.json
-├── README.md
-├── tools
-│   ├── generators (...)
-│   └── tsconfig.tools.json
-├── tsconfig.base.json
+Olhando para o explorador de arquivos você poderá ver que o projeto possuí uma estrutura parecida com esta: +
+----
+├── apps 
+│   ├── store (...) 
+│   └── store-e2e (...) 
+├── babel.config.json 
+├── jest.config.ts 
+├── jest.preset.js 
+├── libs 
+├── nx.json 
+├── package.json 
+├── package-lock.json 
+├── README.md 
+├── tools 
+│   ├── generators (...) 
+│   └── tsconfig.tools.json 
+├── tsconfig.base.json 
 └── workspace.json
-Note that our application in Next.js is inside the "apps" folder, this folder will contain all the other applications you are going to create, we can also see other configuration files of our workspace. It is important to note that there is only one "node_modules" folder in the entire project, this happens because all dependencies will be in one place, at the root of the repository.
+----
 
-Generating new pages
-The @nrwl/next plugin has several generators, and commands that serve to automate the creation of pages, components, and other common structures in the project.
+Note que nossa aplicação em Next.js está dentro da pasta apps, essa pasta conterá todas as outras aplicações que você for criar, podemos ver também outros arquivos de configuração do nosso workspace. É importante notar só existe uma pasta node_modules em todo o projeto, isso acontece, por quê todas as dependencias ficarão em um único lugar, na raiz do repositório.
 
-Knowing this we will create our first page using a generator called "page" for this run the following command in the terminal
+=== Criando páginas
 
+O pluginhttps://nx.dev/packages/next[https://nx.dev/packages/next[ ]]https://nx.dev/packages/next[@nrwl/next] conta com várioshttps://nx.dev/packages/next#generators[https://nx.dev/packages/next#generators[ ]]https://nx.dev/packages/next#generators[geradores] (generators), comandos que servem para automatizar a criação de páginas, components e outras estruturas comuns no projeto. +
+
+Sabendo disso iremos criar nossa primeira página utilizando um gerador chamado page para isso execute o seguinte comando no terminal +
+----
 nx g @nrwl/next:page home --project=store
-ℹ️ Note that we use the --project flag to indicate to the generator in which project the new page should be created.
-This will generate a page called "home" which will be located at
+----
 
+----
+ℹ️ Note que usamos a flag --project para indicar para o gerador em qual projeto deve ser criado a nova página. +
+----
+
+Isso ira gerar uma página chamada home que estará localizada em +
+----
 apps/store/pages/home/index.tsx
-Generating new applications
-Now we will need to create another application, which we will call "checkout". Unlike the first application we created together with the workspace, we will need to use the following command to create a new Next.js application in the current workspace:
+----
 
+=== Criando outras aplicações
+
+Agora precisaremos criar uma outra aplicação, que vamos chamar de checkout. Diferente da primeira aplicação que criamos junto com o workspace precisaremos usar o seguinte comando para criar uma nova aplicação Next.js na workspace atual: +
+----
 nx g @nrwl/next:app checkout
-Your "apps" folder should look like this:
+----
 
-├── apps
-│   ├── checkout (...)
-│   ├── checkout-e2e (...)
-│   ├── store (...)
-│   └── store-e2e (...)
+=== Rodando o projeto em desenvolvimento
+
+----
+├── apps 
+│   ├── checkout (...) 
+│   ├── checkout-e2e (...) 
+│   ├── store (...) 
+│   └── store-e2e (...) 
 ...
-Running in the development environment
-To see our changes running, we will need to run the following command in the terminal:
+----
 
+=== Rodando o projeto em desenvolvimento
+
+Para seguir e podermos ver nossas alterações em execução vamos precisar executar o seguinte comando no terminal: +
+----
 nx serve store
-ℹ️ serve is an https://nx.dev/packages/next#executors[executor^] command
-Also, we can run all applications at the same time using:
+----
 
+----
+ℹ️ serve é um comando do tipohttps://nx.dev/packages/next#executors[https://nx.dev/packages/next#executors[ ]]https://nx.dev/packages/next#executors[executor] +
+----
+
+Também, podemos rodar todas as aplicações ao mesmo tempo usando: +
+----
 nx run-many --target=serve --all
-ℹ️ Note that we use the --target flag to indicate to nx which executor we want to run on all projects.
-Generating new components
-As we saw earlier, we have the possibility to create structures in our application using the Nx CLI tool, now we are going to create a simple button component in the "checkout" project, that execute the following command:
+----
 
+----
+ℹ️ Note que usamos a flag --target para indicar para o nx qual executor queremos executar em todos os projetos. + 
+----
+
+=== Criando components
+
+Como vimos anteriormente temos a possibilidade de criar estruturas na nossa aplicação usando a ferramenta de CLI do Nx, agora vamos criar um componente de botão simples no projeto checkout, para isso execute o seguinte comando: +
+----
 nx g @nrwl/next:component buy-button --project=checkout
-Now let’s edit the component in the directory below so that it looks like this
+----
 
+Agora vamos editar o componente no diretório abaixo para que ele se pareça comhttps://github.com/BrunoS3D/nextjs-nx-module-federation/blob/main/apps/checkout/components/buy-button/buy-button.tsx[https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/main/apps/checkout/components/buy-button/buy-button.tsx[ ]]https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/main/apps/checkout/components/buy-button/buy-button.tsx[este] +
+----
 apps/checkout/components/buy-button/buy-button.tsx
-We’ll use this simple app "checkout" component in the app "store" to exemplify code sharing with Module Federation and that takes us to the next step.
+----
 
-Installing nextjs-mf
-⚠️ Attention: for the application to work with Module Federation features you need to have access to the https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[[nextjs-ssr^] plugin which currently requires a paid license!
-To install the tool, we need to login to PrivJs using npm, to do so, run the following command:
+Usaremos esse simples componente do app checkout no app store para exemplificar o compartilhamento de código com Module Federation e isso nos leva para o próximo passo.
 
+=== Instalando o nextjs-mf
+----
+⚠️ Atenção para que a aplicação funcione com os recursos do Module Federation você precisa ter acesso ao pluginhttps://app.privjs.com/package?pkg=@module-federation/nextjs-mf[https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[ ]]https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf] ouhttps://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[ ]]https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr] que atualmente requerem uma licença paga! +
+----
+
+Para instalar a ferramenta precisamos fazer login nohttps://privjs.com/[https://privjs.com/[ ]]https://privjs.com/[PrivJs] usando o npm, para isso execute o comando a seguir: +
+----
 npm login --registry <https://r.privjs.com>
-Once this is done a file containing your credentials will be saved in ~/.npmrc. Now you can install nextjs-mf using the command below:
-npm install @module-federation/nextjs-mf --registry https://r.privjs.com
+----
 
-Now we will need to modify our "next.config.js" file in both projects so that the installed plugin can work, for that open the following files:
+Feito isso um arquivo contendo suas credenciais será salvo em ~/.npmrc. Agora você já pode instalar o nextjs-mf usando o comando abaixo: +
+npm install @module-federation/nextjs-mf --registry <https://r.privjs.com>
 
-apps/store/next.config.js
+Agora vamos precisar modificar nosso arquivo next.config.js nos dois projetos para que o plugin instalado possa funcionar, para isso abra os arquivos a seguir:
 
-apps/checkout/next.config.js You will see that in them we have an Nx plugin being used, we will need to maintain it, for that, make the files of each project similar to these:
+* apps/store/next.config.js
+* apps/checkout/next.config.js
+Você verá que neles temos um plugin do Nx sendo usado, precisaremos mantê-lo, para isso deixe os arquivos de cada projeto parecidos com estes:
 
-store/next.config.js
-
-checkout/next.config.js You will notice that we have two environment variables being used in this file, we will need to define them in each project so create a ".env.development.local" file in each project and leave each file with the following values:
-
+* https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/b20485c501c8c8353aca9b7a2b0bbf376c43348d/apps/store/next.config.js[store/next.config.js^]
+* https://github.com/BrunoS3D/nextjs-nx-module-federation/blob/b20485c501c8c8353aca9b7a2b0bbf376c43348d/apps/checkout/next.config.js[checkout/next.config.js^]
+Você poderá perceber que temos duas variáveis de ambiente sendo usadas nesse arquivo, precisaremos defini-las em cada projeto para isso crie um arquivo .env.development.local em cada projeto e deixe cada arquivo com os seguintes valores: +
+----
 NEXT_PUBLIC_CHECKOUT_URL=http://localhost:4200
 NEXT_PUBLIC_STORE_URL=http://localhost:4300
-So far no new changes can be noticed, but we can already use the Module Federation resources, but before that, we will make some modifications in our development environment so that applications can communicate without generating warnings in the console by local port collision, to this open and edit the following files:
+----
+
+Até agora nenhuma mudança nova poderá ser percebida, mas já podemos utilizar os recursos de do Module Federation, mas antes vamos fazer algumas modificações em nosso ambiente de desenvolvimento para que as aplicações possam se comunicar sem gerar avisos no console por colisão de porta local, para isso abra e edite os seguintes arquivos: +
 
 "apps/store/project.json"
-
-{
-  // ...
-  "targets": {
-    // ...
-    "serve": {
-      // ...
-      "options": {
-        "buildTarget": "checkout:build",
-        "dev": true,
-        "port": 4300
-      },
-      // ...
-    },
-    // ...
+----
+{ 
+  // ... 
+  "targets": { 
+    // ... 
+    "serve": { 
+      // ... 
+      "options": { 
+        "buildTarget": "checkout:build", 
+        "dev": true, 
+        "port": 4300 
+      }, 
+      // ... 
+    }, 
+    // ... 
 }
+----
+
 "apps/checkout/project.json"
-
-{
-  // ...
-  "targets": {
-    // ...
-    "serve": {
-      // ...
-      "options": {
-        "buildTarget": "checkout:build",
-        "dev": true,
-        "port": 4200
-      },
-      // ...
-    },
-    // ...
+----
+{ 
+  // ... 
+  "targets": { 
+    // ... 
+    "serve": { 
+      // ... 
+      "options": { 
+        "buildTarget": "checkout:build", 
+        "dev": true, 
+        "port": 4200 
+      }, 
+      // ... 
+    }, 
+    // ... 
 }
-In order for the component to be federated, we must add it to the "next.config.js" file, open the file and add a new entry in the "exposes" object:
+----
 
-module.exports = withFederatedSidecar({
-  // ...
-  exposes: {
-    './buy-button': './components/buy-button/buy-button.tsx',
-  },
-  // ...
+Agora, para que o componente possa ser federado devemos adicioná-lo no arquivo next.config.js abra o arquivo e adicione uma nova entrada no objeto exposes: +
+----
+module.exports = withFederatedSidecar({ 
+  // ... 
+  exposes: { 
+    './buy-button': './components/buy-button/buy-button.tsx', 
+  }, 
+  // ... 
 })(nxNextConfig);
-Now with everything configured, we must restart any next process that is running and we are going to import the button component that we created in the "checkout" project in the "store" project using the Module Federation resources, for that open the "home" page that we created in the "store" project and import the Next.js dynamic function as shown below:
+----
 
+Agora com tudo configurado, devemos reiniciar qualquer processo do next que esteja rodando e vamos importar o componente de botão que criamos no projeto checkout no projeto store usando os recursos do Module Federation, para isso abra a página home que criamos no projeto store e importe a funcãohttps://nextjs.org/docs/advanced-features/dynamic-import[https://nextjs.org/docs/advanced-features/dynamic-import[ ]]https://nextjs.org/docs/advanced-features/dynamic-import[dynamic] do Next.js como mostrado abaixo: +
+----
 import dynamic from 'next/dynamic';
-This function will help us to import the component only on the client-side, so add the following code snippet on the page:
+----
 
-const BuyButton = dynamic(
-  async () => import('checkout/buy-button'),
-  {
-    ssr: false,
-  }
+Essa função nos ajudará a importar o componente apenas no lado do cliente, para isso adicione o seguinte trecho de código na página: +
+----
+const BuyButton = dynamic( 
+  async () => import('checkout/buy-button'), 
+  { 
+    ssr: false, 
+  } 
 );
-And then we can use the component in the page content
+----
 
-export function Page() {
-  return (
-    <div className={styles['container']}>
-      <h1>Welcome to Store!</h1>
-      <BuyButton onClick={() => alert('Hello, Module Federation!')}>Add to Cart</BuyButton>
-    </div>
-  );
+E então poderemos utilizar o componente no conteúdo da página +
+----
+export function Page() { 
+  return ( 
+    <div className={styles['container']}> 
+      <h1>Welcome to Store!</h1> 
+      <BuyButton onClick={() => alert('Hello, Module Federation!')}>Add to Cart</BuyButton> 
+    </div> 
+  ); 
 }
-Now you can see the following result
+----
 
-Welcome to store!
-Creating hooks
-One of the powers of nextjs-mf is the federation of functions, including hooks. An important detail is that we cannot import hooks asynchronously, which leads us to adopt a solution where we import functions using "require" and the page or component that uses the hook being loaded lazily/asynchronously, what we call "top-level-await".
+Feito isso agora você poderá ver o seguinte resultado
 
-First, we will need to create a hook, for that, we are going to make a simple state function. Create a file in the "checkout" app in "apps/checkout/hooks/useAddToCart.ts" and insert the code below in the file:
+image::Welcome-to-store!.png[]
 
+=== Criando hooks
+
+Um dos poderes do nextjs-mf é a federação de funções, inclusive hooks. Um detalhe importante é que não podemos importar hooks de forma assíncrona o que nos leva a adotar uma solução onde importamos as funções usando require e a página ou componente que utiliza o hook sendo carregado de forma lazy/assíncrona o que chamamos de top-level-await. +
+
+Primeiramente, precisaremos criar um hook, para isso vamos fazer uma função com estado simples, crie um arquivo no app checkout em apps/checkout/hooks/useAddToCart.ts e insira o código abaixo no arquivo: +
+----
 import { useState } from 'react';
 
-export default function useAddToCartHook() {
-  const [itemsCount, setItemsCount] = useState<number>(0);
-  return {
-    itemsCount,
-    addToCart: () => setItemsCount((i) => i + 1),
-    clearCart: () => setItemsCount(0),
-  };
+export default function useAddToCartHook() { 
+  const [itemsCount, setItemsCount] = useState<number>(0); 
+  return { 
+    itemsCount, 
+    addToCart: () => setItemsCount((i) => i + 1), 
+    clearCart: () => setItemsCount(0), 
+  }; 
 }
-Once this is done, add the file to the list of modules exposed in the "next.config.js" file:
+----
 
-module.exports = withFederatedSidecar({
-  // ...
-  exposes: {
-    './buy-button': './components/buy-button/buy-button.tsx',
-		'./useAddToCartHook': './hooks/useAddToCart.ts'
-  },
-  // ...
+Feito isso, adicione o arquivo na lista de modulos expostos no arquivo next.config.js: +
+----
+module.exports = withFederatedSidecar({ 
+  // ... 
+  exposes: { 
+    './buy-button': './components/buy-button/buy-button.tsx', 
+		'./useAddToCartHook': './hooks/useAddToCart.ts' 
+  }, 
+  // ... 
 })(nxNextConfig);
-To import the hook, let’s create a new page that will be imported asynchronously, for that create a new folder in the store app called async-pages. Create a custom-hook.tsx file that will be our page inside the async-pages folder, then add the following code to the file:
+----
 
-// typing for the hook
+Agora para realizar a importação do hook vamos criar uma nova página que será importada de forma assíncrona, para isso crie uma nova pasta no app store chamada async-pages. Crie uma arquivo custom-hook.tsx que será nossa página dentro dessa pasta e adicione o seguinte código no arquivo: +
+----
+// tipagem para o hook +
 type UseAddToCartHookType = () => UseAddToCartHookResultType;
 
-// hook function return typing
-type UseAddToCartHookResultType = {
-  itemsCount: number;
-  addToCart: () => void;
-  clearCart: () => void;
+// tipagem de retorno da função do hook +
+type UseAddToCartHookResultType = { 
+  itemsCount: number; 
+  addToCart: () => void; 
+  clearCart: () => void; 
 };
 
-// hook default value
+// valor padrão do hook +
 let useAddToCartHook = (() => ({})) as UseAddToCartHookType;
 
-// import the hook only on the client-side
-if (process.browser) {
-  useAddToCartHook = require('checkout/useAddToCartHook').default;
+// importa o hook apenas no client-side +
+if (process.browser) { 
+  useAddToCartHook = require('checkout/useAddToCartHook').default; 
 }
 
-export function Page() {
-	// on server side extracts the values as undefined
-	// on the client side extracts the hook values
-  const { itemsCount, addToCart, clearCart } =
+export function Page() { 
+	// no lado do servidor extrai os valores como undefined +
+	// no lado do client extrai os valores do hook +
+  const { itemsCount, addToCart, clearCart } = 
     useAddToCartHook() as UseAddToCartHookResultType;
 
-  return (
-    <div>
+  return ( 
+    <div> 
       <h1>Welcome to Custom Hook!</h1>
 
-      <p>
-        Item Count: <strong>{itemsCount}</strong>
-      </p>
-      <button onClick={addToCart}>Add to Cart</button>
-      <button onClick={clearCart}>Clear Cart</button>
-    </div>
-  );
+      <p> 
+        Item Count: <strong>{itemsCount}</strong> 
+      </p> 
+      <button onClick={addToCart}>Add to Cart</button> 
+      <button onClick={clearCart}>Clear Cart</button> 
+    </div> 
+  ); 
 }
 
-// here you can use the getInitialProps function normally
-// it will be called on both server-side and client-side
-Page.getInitialProps = async (/*ctx*/) => {
-  return {};
+// aqui você pode usar a função normalmente +
+// ela será chamada tanto no server-side quanto no client-side +
+Page.getInitialProps = async (/*ctx*/) => { 
+  return {}; 
 };
 
 export default Page;
-Now we need to create a page in the "pages" folder that loads our page asynchronously, for that use the command below:
+----
 
+Agora precisamos criar uma página na pasta pages que carregue nossa página assíncrona, para isso utilize o comando abaixo: +
+----
 nx g @nrwl/next:page custom-hook --project=store
-Now open the newly created page file and add the following code
+----
 
-import dynamic from 'next/dynamic';
+Agora abra o arquivo da nova página criada e adicione o seguinte código +
+----
+import dynamic from 'next/dynamic'; 
 import type { NextPage, NextPageContext } from 'next';
 
-// import functions from page in synchronously way
+// import functions from page in synchronously way 
 const page = import('../../async-pages/custom-hook');
 
-// lazy import the page component
-const Page = dynamic(
-  () => import('../../async-pages/custom-hook')
+// lazy import the page component 
+const Page = dynamic( 
+  () => import('../../async-pages/custom-hook') 
 ) as NextPage;
 
-Page.getInitialProps = async (ctx: NextPageContext) => {
-	// capture the getInitialProps function from the page
-  const getInitialProps = ((await page).default as NextPage)?.getInitialProps;
-  if (getInitialProps) {
-		// if the function exists, call the function on server-side and client-side
-    return getInitialProps(ctx);
-  }
-  return {};
+Page.getInitialProps = async (ctx: NextPageContext) => { 
+	// capture the getInitialProps function from the page 
+  const getInitialProps = ((await page).default as NextPage)?.getInitialProps; 
+  if (getInitialProps) { 
+		// if the function exists, call the function on server-side and client-side 
+    return getInitialProps(ctx); 
+  } 
+  return {}; 
 };
 
 export default Page;
-Now you can see the following result
+----
 
-Welcome to cutom hook
-Some errors at the time of writing this article may be occurring, so if in doubt, consider looking at this project I created as a proof of concept, I’m actively working with Zackary to make it up to date and functional.
+Feito isso agora você poderá ver o seguinte resultado +
 
-Deploying projects on Vercel
-The procedure that we are going to perform now will be done at Vercel, but we can replicate it without much difficulty on other serverless hosting platforms such as Netlify, AWS Amplify, and Serverless with a plugin for Next.js or even in a self-hosted way using Docker with a private server.
-We can carry out the process in two ways: by interface or by CLI, but to facilitate the process we will do it by the interface, you just need to host the project on GitHub so that we can import it in a few clicks, once the project is on GitHub you can open this page on Vercel to deploy the first application… exactly, although it’s a monorepo, we’re going to configure everything so that separate deployments are made.
-First, we will deploy the "checkout" app because it has fewer dependencies, for that select the repository as in the following image and click on the button to import it:
+image::Welcome-to-cutom-hook.gif[]
 
-Import Git repository
-Choose a name for the application on the screen that opens but remember that we are still going to do the same step for the app "store" so define a different name for each project. We must change some commands for the project build in the "Build and Output Settings" tab, for this, check the override option and leave the fields as shown below:
+Alguns erros no momento em que escrevo esse artigo podem estar ocorrendo, por isso em caso de dúvidas, considere olharhttps://github.com/BrunoS3D/nextjs-nx-module-federation[https://github.com/BrunoS3D/nextjs-nx-module-federation[ ]]https://github.com/BrunoS3D/nextjs-nx-module-federation[esse projeto] que criei como prova de conceito, estou trabalhando ativamente com Zackary para deixá-lo atualizado e funcional.
 
-Build output settings
+=== Realizando o deploy dos projetos na Vercel
+
+O procedimento que iremos realizar agora será feito nahttps://vercel.com/[https://vercel.com/[ ]]https://vercel.com/[Vercel], mas podemos replicá-lo sem muitas dificuldades em outras plataformas de hospedagem serverless comohttps://www.netlify.com/[https://www.netlify.com/[ ]]https://www.netlify.com/[Netlify],https://docs.amplify.aws/guides/hosting/nextjs/q/platform/js/[https://docs.amplify.aws/guides/hosting/nextjs/q/platform/js/[ ]]https://docs.amplify.aws/guides/hosting/nextjs/q/platform/js/[AWS Amplify], Serverless comhttps://www.serverless.com/plugins/serverless-nextjs-plugin[https://www.serverless.com/plugins/serverless-nextjs-plugin[ ]]https://www.serverless.com/plugins/serverless-nextjs-plugin[plugin] para Next.js ou até mesmo de um jeitohttps://en.wikipedia.org/wiki/Self-hosting_(web_services)[https://en.wikipedia.org/wiki/Self-hosting_(web_services)[ ]]https://en.wikipedia.org/wiki/Self-hosting_(web_services)[self-hosted] usando Docker com um servidor privado. +
+Podemos realizar o processo de duas formas: porhttps://vercel.com/new[https://vercel.com/new[ ]]https://vercel.com/new[interface] ou porhttps://vercel.com/cli[https://vercel.com/cli[ ]]https://vercel.com/cli[CLI], mas para facilitar o processo vamos realizá-lo por interface, antes você só precisar hospedar o projeto nohttps://github.com/[https://github.com/[ ]]https://github.com/[GitHub] para que possamos importá-lo em poucos cliques, uma vez que o projeto esteja no GitHub você pode abrir essahttps://vercel.com/new[https://vercel.com/new[ ]]https://vercel.com/new[página] na Vercel para realizar o deploy da primeira aplicação… exatamente, embora seja um monorepo, vamos configurar tudo para que sejam feitos deploys separados. +
+Primeiramente iremos "deployar" o app checkout por possuir menos dependências, para isso selecione o repositório como na imagem a seguir e clique no botão para importá-lo: +
+
+image::Import-Git-repository.png[]
+
+Escolha um nome para a aplicação na tela em que se abrir mas lembre de que ainda vamos realizar o mesmo passo para o app store então defina um nome diferente para cada projeto. +
+Devemos mudar alguns comandos para o build do projeto na aba "Build and Output Settings”, para isso marque a opção override e deixe os campos como mostrado abaixo: +
+
+image::Build-output-settings.png[]
+
 Build command (checkout)
-
+----
 npx nx build checkout --prod
-Output directory (checkout)
+----
 
+Output directory (checkout) 
+----
 dist/apps/checkout/.next
-For now, let’s skip the environment variables section, as we don’t have the URLs where the applications will be hosted, we can click on the "Deploy" button. You may notice that we may have an error during the build, but don’t worry if that happens, we’ll solve this soon. Now we are going to deploy our app "store" and we are going to do the same steps as before, just changing some fields on the "Build and Output Settings" tab. Build command (store)
+----
 
+Por enquanto vamos pular a seção de váriáveis de ambiente, pois não temos as URLs onde as aplicações ficarão hospedadas, podemos clicar no botão "Deploy”. Você poderá notar que possivelmente teremos um erro durante a build, mas não se preocupe caso isso aconteça, logo resolveremos isso. +
+Agora iremos deployar nosso app store e vamos realizar os mesmos passos anteriormente, apenas mudando alguns campos na aba "Build and Output Settings” +
+Build command (store)
+----
 npx nx build store --prod
-Output directory (store)
+----
 
+Output directory (store) 
+----
 dist/apps/store/.next
-Once that’s done, we can click on the "Deploy" button. Again, you’ll notice that the build resulted in an error, but that doesn’t matter, the important thing is that we now have the two URLs of the two projects and we can use them to configure our environment. Now go to the settings panel of each application and set the following environment variables
+----
 
-Environment variables
-Note that I am using a URL of the “deployment” that I made of my app store, you must do it with the URL that Vercel generated for yours, remember to define the two environment variables "NEXT_PUBLIC_CHECKOUT_URL" and "NEXT_PUBLIC_STORE_URL" each with its respective URL of production.
+Feito isso, podemos clicar no botão "Deploy”. Novamente, você irá perceber que a build resultou em um erro, mas isso não importa o importante é que agora temos as duas URLs dos dois projetos e poderemos utilizá-las para configurar nossas váriveis de ambiente. Agora vá para o painel de configurações de cada aplicação e defina as seguintes variáveis de ambiente +
 
-Private dependencies with Vercel
-If you open the project build logs, you will notice that in both the error is the same, probably something like this
+image::Environment-variables.png[]
 
+Note que estou usando uma URL do “deployment” que fiz do meu app store você deverá fazer com a URL que a Vercel gerou para o seu, lembre-se de definir as duas variáveis de ambiente NEXT_PUBLIC_CHECKOUT_URL e NEXT_PUBLIC_STORE_URL cada uma com sua reespectiva URL de produção.
+
+=== Pacotes privados na Vercel
+
+Se você abrir os logs de build dos projeto, irá perceber que em ambos o erro é o mesmo, provavelmente seja algo parecido com isto +
+----
 npm ERR! 403 403 Forbidden - GET <https://r.privjs.com/@module-federation%2fnextjs-mf/-/nextjs-mf-3.5.0.tgz> - You must be logged in to install/publish packages.
-npm ERR! 403 In most cases, you or one of your dependencies are requesting
-npm ERR! 403 a package version that is forbidden by your security policy, or
-npm ERR! 403 on a server you do not have access to.
-npm ERR! A complete log of this run can be found in:
-npm ERR!     /vercel/.npm/_logs/2022-06-24T21_11_19_939Z-debug-0.log
+npm ERR! 403 In most cases, you or one of your dependencies are requesting 
+npm ERR! 403 a package version that is forbidden by your security policy, or 
+npm ERR! 403 on a server you do not have access to. 
+npm ERR! A complete log of this run can be found in: 
+npm ERR!     /vercel/.npm/_logs/2022-06-24T21_11_19_939Z-debug-0.log 
 Error: Command "npm install" exited with 1
-This happens because Vercel does not have the necessary credentials to access a package that is in a private repository, to give access to the repository we need to configure an environment variable called "NPM_RC", the value of this variable must be the same as what is inside the "~/.npmrc" file which was created when we used the "npm login" command.
+----
 
-To do so, just create a new variable in Vercel’s environment variables settings panel called "NPM_RC" and insert the entire contents of the "~/.npmrc" file, if you have any doubts read this document.
+Isso acontece, pois a Vercel não tem as credenciais necessárias para acessar um pacote que esteja em um repositório privado, para dar acesso ao repositório precisamos configurar uma variável de ambiente chamada NPM_RC o valor dessa variável deverá ser o mesmo que está dentro do arquivo ~/.npmrc que foi criado quando utilizamos o comando npm login. +
+Para isso basta criar uma variável nova no painel de configurações de variáveis de ambiente da Vercel chamada NPM_RC e inserir todo o conteúdo do arquivo ~/.npmrc, caso você tenha dúvidas leiahttps://vercel.com/support/articles/using-private-dependencies-with-vercel[https://vercel.com/support/articles/using-private-dependencies-with-vercel[ ]]https://vercel.com/support/articles/using-private-dependencies-with-vercel[este documento]. +
 
-Finally, you can open the “Deployments” tab and “Redeploy” your application!
+Finalmente você poderá abrir a aba de “Deployments” e “Redeployar” sua aplicação! +
 
-deployments redeploy
-Navigating to the application "store" URL you can see the button whose source code is in the "checkout" project being "federated" to our site.
+image::deployments-redeploy.png[]
 
-References
-Thoughtworks - Micro frontends
+Navegando para a URL da aplicação store você poderá ver o botão cujo código fonte se encontra no projeto checkout sendo "federado” para nosso site.
 
-Module Federation — O futuro do microfrontend
+=== Referências
 
-What are Micro Frontends?
+https://www.thoughtworks.com/radar/techniques/micro-frontends[Thoughtworks - Micro frontends] +
+https://medium.com/localizalabs/module-federation-o-futuro-do-microfrontend-4fed87983ec2[Module Federation — O futuro do microfrontend] +
+https://micro-frontends.org/[What are Micro Frontends?] +
+https://www.youtube.com/watch?v=-ei6RqZilYI[Webpack 5 Module Federation - Zack Jackson - CityJS Conf 2020:] +
+https://betterprogramming.pub/the-pros-and-cons-monorepos-explained-f86c998392e1[The Pros and Cons of Monorepos, Explained] +
+https://github.com/module-federation/module-federation-examples/tree/master/nextjs[Next.js with Module Federation] +
+https://vercel.com/support/articles/using-private-dependencies-with-vercel[How do I use private dependencies with Vercel?] +
+https://nx.dev/packages/next[Nx with Next.js]
 
-Webpack 5 Module Federation - Zack Jackson - CityJS Conf 2020:
-
-The Pros and Cons of Monorepos, Explained
-
-Next.js with Module Federation
-
-How do I use private dependencies with Vercel?
-
-Nx with Next.js
