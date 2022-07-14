@@ -53,7 +53,7 @@ Thanks to it, only one team would be in responsible for developing the new compo
 
 Unfortunately, implementing and using the Module Federation features of Webpack with Next.js is not that easy, as you would need to deeply understand how both tools work to be able to create a solution that facilitates the integration between the two. Fortunately, there is already a solution and has several features including support for SSR (server-side rendering), these tools are called https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] and https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] and together we are going to explore a proof-of-concept application that I created to show you the power of these tools together.
 
-*⚠️ Attention: for the application to work with Module Federation features you need to have access to the https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] or https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] plugin which currently requires a paid license! 
+⚠️ Attention: for the application to work with Module Federation features you need to have access to the https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] or https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] plugin which currently requires a paid license! 
 
 === About the project
 
@@ -100,7 +100,7 @@ Looking at the file explorer you can see that the project has a structure simila
 └── workspace.json
 ----
 
-Note that our application in Next.js is inside the "apps" folder, this folder will contain all the other applications you are going to create, we can also see other configuration files of our workspace. It is important to note that there is only one "node_modules" folder in the entire project, this happens because all dependencies will be in one place, at the root of the repository.
+ℹ️ Note that our application in Next.js is inside the "apps" folder, this folder will contain all the other applications you are going to create, we can also see other configuration files of our workspace. It is important to note that there is only one "node_modules" folder in the entire project, this happens because all dependencies will be in one place, at the root of the repository.
 
 === Generating new pages
 
@@ -111,9 +111,7 @@ Knowing this we will create our first page using a generator called "page" for t
 nx g @nrwl/next:page home --project=store
 ----
 
-----
 ℹ️ Note that we use the --project flag to indicate to the generator in which project the new page should be created. 
-----
 
 This will generate a page called "home" which will be located at 
 ----
@@ -144,18 +142,14 @@ To see our changes running, we will need to run the following command in the ter
 nx serve store
 ----
 
-----
 ℹ️ serve is an https://nx.dev/packages/next#executors[executor^] command
-----
 
 Also, we can run all applications at the same time using:
 ----
 nx run-many --target=serve --all
 ----
 
-----
-ℹ️ Note that we use the --target flag to indicate to nx which executor we want to run on all projects. 
-----
+ℹ️ Note that we use the --target flag to indicate to nx which executor we want to run on all projects.
 
 === Generating new components
 
