@@ -460,11 +460,11 @@ Navegando para a URL da aplicação store você poderá ver o botão cujo códig
 
 === Referências
 
-https://www.thoughtworks.com/radar/techniques/micro-frontends[Thoughtworks - Micro frontends^] +
-https://medium.com/localizalabs/module-federation-o-futuro-do-microfrontend-4fed87983ec2[Module Federation — O futuro do microfrontend^] +
-https://micro-frontends.org/[What are Micro Frontends?^] +
-https://www.youtube.com/watch?v=-ei6RqZilYI[Webpack 5 Module Federation - Zack Jackson - CityJS Conf 2020:^] +
-https://betterprogramming.pub/the-pros-and-cons-monorepos-explained-f86c998392e1[The Pros and Cons of Monorepos, Explained^] +
-https://github.com/module-federation/module-federation-examples/tree/master/nextjs[Next.js with Module Federation^] +
-https://vercel.com/support/articles/using-private-dependencies-with-vercel[How do I use private dependencies with Vercel?^] +
-https://nx.dev/packages/next[Nx with Next.js^]
+* https://www.thoughtworks.com/radar/techniques/micro-frontends[Thoughtworks - Micro frontends^] +
+* https://medium.com/localizalabs/module-federation-o-futuro-do-microfrontend-4fed87983ec2[Module Federation — O futuro do microfrontend^] +
+* https://micro-frontends.org/[What are Micro Frontends?^] +
+* https://www.youtube.com/watch?v=-ei6RqZilYI[Webpack 5 Module Federation - Zack Jackson - CityJS Conf 2020:^] +
+* https://betterprogramming.pub/the-pros-and-cons-monorepos-explained-f86c998392e1[The Pros and Cons of Monorepos, Explained^] +
+* https://github.com/module-federation/module-federation-examples/tree/master/nextjs[Next.js with Module Federation^] +
+* https://vercel.com/support/articles/using-private-dependencies-with-vercel[How do I use private dependencies with Vercel?^] +
+* https://nx.dev/packages/next[Nx with Next.js^]
