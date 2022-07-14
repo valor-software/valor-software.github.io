@@ -102,7 +102,7 @@ Olhando para o explorador de arquivos você poderá ver que o projeto possuí um
 └── workspace.json
 ----
 
-Note que nossa aplicação em Next.js está dentro da pasta apps, essa pasta conterá todas as outras aplicações que você for criar, podemos ver também outros arquivos de configuração do nosso workspace. É importante notar só existe uma pasta node_modules em todo o projeto, isso acontece, por quê todas as dependencias ficarão em um único lugar, na raiz do repositório.
+ℹ️ Note que nossa aplicação em Next.js está dentro da pasta apps, essa pasta conterá todas as outras aplicações que você for criar, podemos ver também outros arquivos de configuração do nosso workspace. É importante notar só existe uma pasta node_modules em todo o projeto, isso acontece, por quê todas as dependencias ficarão em um único lugar, na raiz do repositório.
 
 === Criando páginas
 
@@ -113,7 +113,7 @@ Sabendo disso iremos criar nossa primeira página utilizando um gerador chamado 
 nx g @nrwl/next:page home --project=store
 ----
 
-ℹ️ Note que usamos a flag --project para indicar para o gerador em qual projeto deve ser criado a nova página. +
+ℹ️ Note que usamos a flag --project para indicar para o gerador em qual projeto deve ser criado a nova página.
 
 
 Isso ira gerar uma página chamada home que estará localizada em +
@@ -146,9 +146,8 @@ Para seguir e podermos ver nossas alterações em execução vamos precisar exec
 nx serve store
 ----
 
-----
-ℹ️ serve é um comando do tipo https://nx.dev/packages/next#executors[executor^] +
-----
+ℹ️ serve é um comando do tipo https://nx.dev/packages/next#executors[executor^]
+
 
 Também, podemos rodar todas as aplicações ao mesmo tempo usando: +
 ----
