@@ -55,7 +55,7 @@ Graças a ele apenas um time seria encarregado de desenvolver os novos component
 
 Infelizmente implementar e utilizar os recursos do Module Federation do Webpack com Next.js não é tão fácil assim, você precisaria entender profundamente o funcionamento de ambas as ferramentas para conseguir criar uma solução que facilitasse a integração entre as duas, mas felizmente já existe uma solução e conta com diversas funcionalidades inclusive suporte à SSR (renderização do lado do servidor), essas ferramentas se chamam https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] e https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] e juntos vamos explorar uma aplicação de prova de conceito que criei para te mostrar o poder dessas ferramentas unidas. +
 
-*⚠️ Atenção para que a aplicação funcione com os recursos do Module Federation você precisa ter acesso ao plugin https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] ou https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] que atualmente requerem uma licença paga! +
+⚠️ Atenção para que a aplicação funcione com os recursos do Module Federation você precisa ter acesso ao plugin https://app.privjs.com/package?pkg=@module-federation/nextjs-mf[nextjs-mf^] ou https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr[nextjs-ssr^] que atualmente requerem uma licença paga! +
 
 === Sobre o projeto que vamos criar
 
