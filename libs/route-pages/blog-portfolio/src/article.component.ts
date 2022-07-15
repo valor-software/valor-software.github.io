@@ -90,7 +90,16 @@ export class ArticleComponent implements OnDestroy {
             event.preventDefault();
             const link = element.getAttribute('href');
 
-            const url = this.router.url.substring(0, this.router.url.indexOf('#'));
+            let url = this.router.url;
+
+            if (url.indexOf('#') > -1) {
+                url = url.substring(0, url.indexOf('#'));
+            }
+
+            if (url.indexOf('%23') > -1) {
+                url = url.substring(0, url.indexOf('%23'));
+            }
+
             if (link) {
                 this.router.navigate([url.trim() + '/'], { fragment: link.replace('#', '') });
             }
