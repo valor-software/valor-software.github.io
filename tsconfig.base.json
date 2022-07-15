@@ -24,9 +24,6 @@
       "@valor-software/blog-portfolio": [
         "libs/route-pages/blog-portfolio/src/index.ts"
       ],
-      "@valor-software/ashes-page": [
-        "libs/route-pages/ashes-page/src/index.ts"
-      ],
       "@valor-software/careers": [
         "libs/route-pages/careers/src/index.ts"
       ],
