@@ -1,5 +1,5 @@
-import {ChangeDetectorRef, Component, Input, OnDestroy} from '@angular/core';
-import {GetArticlesService, titleRefactoring} from "@valor-software/common-docs";
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
+import { GetArticlesService, titleRefactoring } from "@valor-software/common-docs";
 import { Subscription } from "rxjs";
 import { IArticle } from "@valor-software/common-docs";
 import { Router } from "@angular/router";
@@ -24,17 +24,17 @@ export const Languages = {
     selector: 'blog-block',
     templateUrl: './blog.component.html'
 })
-export class BlogComponent implements OnDestroy {
+export class BlogComponent implements OnDestroy, AfterViewInit {
     sortList: string[] = [];
-    sortLang: string[] =[];
+    sortLang: string[] = [];
     $articles?: Subscription;
     articles?: IArticle[];
     sortArticles?: IArticle[] = [];
-    activeIndex: string[] = ['en'];
+    activeIndex: string[] = [];
     showAll = false;
     isCollapsed = true;
 
-    @Input() set _articles (value: IArticle[]) {
+    @Input() set _articles(value: IArticle[]) {
         this.articles = Object.assign(value);
         this.sortArticles = Object.assign(value);
     }
@@ -47,6 +47,9 @@ export class BlogComponent implements OnDestroy {
         this.getSortKeys();
     }
 
+    ngAfterViewInit(): void {
+        this.toggleLanguage('en');
+    }
 
     getSortKeys() {
         const sortSet = new Set<string>();
