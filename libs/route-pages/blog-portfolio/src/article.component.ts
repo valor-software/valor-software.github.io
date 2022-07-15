@@ -85,6 +85,25 @@ export class ArticleComponent implements OnDestroy {
             const link = element.getAttribute('routerLink');
             this.router.navigate([link]);
         }
+
+        if (element.nodeName === 'A' && element.getAttribute('href')) {
+            event.preventDefault();
+            const link = element.getAttribute('href');
+
+            let url = this.router.url;
+
+            if (url.indexOf('#') > -1) {
+                url = url.substring(0, url.indexOf('#'));
+            }
+
+            if (url.indexOf('%23') > -1) {
+                url = url.substring(0, url.indexOf('%23'));
+            }
+
+            if (link) {
+                this.router.navigate([url.trim() + '/'], { fragment: link.replace('#', '') });
+            }
+        }
     }
 
     ngOnDestroy() {
