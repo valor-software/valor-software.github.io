@@ -2,7 +2,6 @@ export interface IPortfolio {
     name: string;
     link?: string;
     behanceLink?: string;
-    dribbleLink?: string;
     goalsImg?: string;
     solutionsImg?: string;
     webSort?: string[];
