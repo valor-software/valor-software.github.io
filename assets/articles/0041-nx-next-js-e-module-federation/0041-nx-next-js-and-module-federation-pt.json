@@ -4,10 +4,10 @@
   "domains": [
     "dev_quality_assurance"
   ],
-  "authorImg": "assets/articles/0041-nx-next-js-and-module-federation-pt/Bruno_Silva.png",
+  "authorImg": "assets/articles/nx-next-js-e-module-federation/Bruno_Silva.png",
   "language": "pt",
-  "bgImg": "assets/articles/0041-nx-next-js-and-module-federation-pt/2%20(1).png",
-  "title": "Nx, Next.js, and Module Federation",
+  "bgImg": "assets/articles/nx-next-js-e-module-federation/2%20(1).png",
+  "title": "Nx, Next.js, e Module Federation",
   "position": "Next.js developer",
   "date": "Thu Jun 14 2022 10:50:04 GMT+0000 (Coordinated Universal Time)",
   "seoDescription": "O projeto que iremos criar mostrará, na prática, como criar a base uma aplicação totalmente escalável tanto em produção quanto em desenvolvimento. Nele vamos ver alguns pequenos exemplos de como as ferramentas citadas a cima podem ser usadas."
