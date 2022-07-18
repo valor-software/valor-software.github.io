@@ -73,7 +73,7 @@
                      changeSrcOnHover [check]="technology.active" [defaultSrc]="technology.disabled ? '' : technology.img" [activeSrc]="technology.disabled ? '' : technology.activeImg"
                      (click)="setActiveTechnology(technology.id)"
                 >
-                    <img [src]="technology.disabled ? technology.blockedImg : technology.active ? technology.activeImg : technology.img" [alt]="technology.id" class="mx-auto" style="width: 100%; height: 100%">
+                    <img [src]="technology.disabled ? technology.blockedImg : technology.active ? technology.activeImg : technology.img" [alt]="technology.id" class="mx-auto" style="width: 100%;">
                 </div>
             </div>
 
