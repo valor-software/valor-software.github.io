@@ -38,9 +38,39 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-./scully.log
+scully.log
 
 firebase-debug.log
 .nx-cache
 /gh-pages
 .firebase
+
+# .js and .map.js files
+scully.valor-software-site.config.js
+**/assets/**/*.js.map
+**/assets/articles/*.js
+**/assets/fonts/*.js
+**/assets/images/*.js
+**/assets/img/*.js
+**/assets/portfolio/*.js
+**/assets/styles/*.js
+libs/common-docs/src/**/*.js.map
+libs/common-docs/src/**/*.js
+libs/feedback/src/**/*.js
+libs/feedback/src/**/*.js.map
+libs/file-uploader/src/**/*.js
+libs/file-uploader/src/**/*.js.map
+libs/portfolio/src/**/*.js
+libs/portfolio/src/**/*.js.map
+libs/route-pages/blog-portfolio/src/**/*.js
+libs/route-pages/blog-portfolio/src/**/*.js.map
+libs/route-pages/careers/src/**/*.js
+libs/route-pages/careers/src/**/*.js.map
+libs/route-pages/for-clients/src/**/*.js
+libs/route-pages/for-clients/src/**/*.js.map
+libs/route-pages/home-page/src/**/*.js
+libs/route-pages/home-page/src/**/*.js.map
+libs/route-pages/services-page/src/**/*.js
+libs/route-pages/services-page/src/**/*.js.map
+scully/**/*.js
+scully/**/*.js.map

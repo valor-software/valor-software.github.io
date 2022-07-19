@@ -1,0 +1,288 @@
+<div class="paragraph">
+<p>Let&#8217;s start with a short background overview of how this task came on my plate. Why we could not effectively
+highlight paragraphs, sentences, and words. And what kind of a text editor the project required.</p>
+</div>
+<div class="sect2">
+<h3 id="_before_the_struggle_and_the_win">Before the struggle and the win</h3>
+<div class="paragraph">
+<p>Here is what <a href="https://www.linkedin.com/in/waqas-younas/" target="_blank" rel="noopener">Waqas Younas</a>, the founder of
+the solution, and a Valor&#8217;s client says: "We recently developed an interesting product called <a href="http://www.homerwritingapp.com/" target="_blank" rel="noopener">Homer</a>. Homer is a web application. Its core function is to analyze text and give useful suggestions to make text simple, cogent, and clear. Homer does this in a somewhat unique way by highlighting paragraphs, sentences, and words based on some rules. When we set out to work on this we had to survey the existing text editors to ensure that we could effectively highlight
+paragraphs, sentences, and words. At first, this looked like regular front-end work. But upon a closer look, it
+seemed that there was no text editor available that offered all this functionality by exposing a user-friendly
+API.".</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_case">The case</h3>
+<div class="paragraph">
+<p>Some time ago I tackled an unusual issue. It was about text highlighting in the HTML-WYSIWYG editor. At the first
+glance, this issue looked like a usual front-end task. But when I read the full set of requirements for my
+current project, I understood that this would require creating something unique. At least it felt this way…</p>
+</div>
+<div class="paragraph">
+<p>The requirements were the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A user of the web application should be able to edit HTML markup in the WYSIWYG mode.</p>
+</li>
+<li>
+<p>Related paragraphs of text should be highlighted according to a set of specific rules.</p>
+</li>
+<li>
+<p>It should be possible to highlight sentences in any paragraph including already highlighted ones.</p>
+</li>
+<li>
+<p>It should be possible to highlight separate words in any sentence including already highlighted ones.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>I want to note that it was previously decided to use <a href="https://draftjs.org/" target="_blank" rel="noopener">DraftJS</a> as HTML-WYSIWYG implementation. Looking ahead I want to emphasize that I wasn&#8217;t going to “reinvent the wheel”.
+On the opposite, the first thing I did was a search for similar solutions. But to my astonishment, I haven’t
+found even a single similar solution.</p>
+</div>
+<div class="paragraph">
+<p>There is only one reasonable choice in this case — create everything from scratch.</p>
+</div>
+<div class="paragraph">
+<p>So, the final result should look somehow similar to the image below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/multi-highlighting-for-draftjs/6050ac8247cb436466fbc712_goal.png" alt="6050ac8247cb436466fbc712 goal">
+</div>
+</div>
+<div class="paragraph">
+<p>In the example above we see the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The first paragraph contains only highlighted words.</p>
+</li>
+<li>
+<p>The second one is highlighted in full using grey color and contains a yellow sentence with a blue-highlighted word inside.</p>
+</li>
+<li>
+<p>Also, the second paragraph contains a lot of highlighted words with different colors.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Before implementation, I decided to perform detailed research on how to highlight different fragments of text in DraftJS editor.</p>
+</div>
+<div class="paragraph">
+<p>The first useful thing that I found is <a href="https://draftjs.org/docs/advanced-topics-decorators/" target="_blank" rel="noopener">Decorators in DraftJS</a>. According to the information mentioned above, I should write code like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    // ...
+        import { Editor, EditorState, ContentState } from "draft-js";
+        import DraftPasteProcessor from "draft-js/lib/DraftPasteProcessor";
+
+        const compositeDecorator = new CompositeDecorator([
+            {
+                strategy: handleErrorWordStrategy,
+                component: HandleRedSpan,
+            },
+            {
+                strategy: hashtagWarningSentenceStrategy,
+                component: HandleYellowSpan,
+            },
+        ]);
+        const processedHTML = DraftPasteProcessor.processHTML('Hello world!');
+        const contentState = ContentState.createFromBlockArray(processedHTML);
+        const [editorState, setEditorState] = useState(
+            EditorState.createWithContent(contentState, compositeDecorator)
+        );
+    // ...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want more information on the topic, please, read the <a href="https://draftjs.org/docs/advanced-topics-decorators/" target="_blank" rel="noopener">Draft.js Decorators documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>I implemented the first basic example with <strong>CompositeDecorator</strong>. But my first attempt, as it
+sometimes happens, was not successful. Let me explain why. I provided a couple of strategies. Let’s say, the
+first strategy should highlight words in red color and the second one should highlight the whole background of
+the sentences in yellow. It seemed that my basic example worked well. But it worked only when highlighted
+fragments didn’t interfere with each other. Otherwise, some highlights were missing.</p>
+</div>
+<div class="paragraph">
+<p>I decided to change my approach regarding highlighting. First of all, there is only one easy way to implement
+highlighting in DraftJS. I’m talking about decorators. I found that <a href="https://github.com/Soreine/draft-js-simpledecorator" target="_blank" rel="noopener">SimpleDecorator for DraftJS</a> is the best approach to apply inline text highlighting for the same fragments.</p>
+</div>
+<div class="paragraph">
+<p>My second attempt turned out to be successful. I provided a simple and flexible solution as a decorator for
+DraftJS. If you want to see the source of the solution, please, visit <a href="https://github.com/buchslava/draft-js-multi-inline-highlight" target="_blank" rel="noopener">Multi-inline
+highlighting for DraftJS editor</a>. Also, you can try a working <a href="https://buchslava.github.io/draft-js-multi-inline-highlight-demo/" target="_blank" rel="noopener">example</a>. Also, its source code is available in <a href="https://github.com/buchslava/draft-js-multi-inline-highlight-demo">one of my repositories</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let me share some significant points regarding my solution. First of all, this solution is written using
+TypeScript. Secondly, I use <a href="https://rollupjs.org/guide/en/">rollup.js</a> as a module bundler. You can see its config <a href="https://github.com/buchslava/draft-js-multi-inline-highlight/blob/main/rollup.config.js">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let me explain how to use the solution:</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_import">Import</h3>
+<div class="literalblock">
+<div class="content">
+<pre>import React, { useRef, useState, useEffect } from "react";
+import { Editor, EditorState, ContentState, ContentBlock } from "draft-js";
+import {
+    MultiHighlightDecorator,
+    WordMatcher,
+    SentenceMatcher,
+    MultiHighlightConfig,
+} from "draft-js-multi-inline-highlight";</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Some important notes:</p>
+</div>
+<div class="paragraph">
+<p><strong>MultiHighlightDecorator</strong> - returns the decorator.</p>
+</div>
+<div class="paragraph">
+<p><strong>WordMatcher</strong> and <strong>SentenceMatcher</strong> allow to MultiHighlightDecorator to recognize
+different kinds of text fragments. They are “word” and “sentence” in our case. You can implement your own
+<strong>matcher</strong> if you want.</p>
+</div>
+<div class="paragraph">
+<p><strong>MultiHighlightConfig</strong> - allows us to declare what exactly and how it should be highlighted.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration">Configuration</h3>
+<div class="literalblock">
+<div class="content">
+<pre>const hightlightStyles = {
+    yellow: {
+        backgroundColor: "yellow",
+    },
+    red: {
+        color: "red",
+    },
+    blue: {
+        color: "blue",
+    },
+};
+const initHighlightConfig: MultiHighlightConfig = {
+    rules: [
+        {
+            content: ["His back begins to ache, but he knows he can bear it."],
+            style: "yellow",
+            matcher: SentenceMatcher,
+        },
+        {
+            content: ["and"],
+            style: "red",
+            matcher: WordMatcher,
+        },
+        {
+            content: ["pulled", "knows"],
+            style: "blue",
+            matcher: WordMatcher,
+        },
+    ],
+    styles: hightlightStyles,
+};</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The configuration above exactly means the following.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>There are 3 rules.</p>
+</li>
+<li>
+<p>The first one is regarding sentence highlighting. In this case, <strong>yellow</strong> style should be applied for each entrance of the following text <strong>His back begins to ache, but he knows he can bear it.</strong></p>
+</li>
+<li>
+<p>The second couple is regarding words highlighting. In this case, <strong>red</strong> style should be applied to the <strong>and</strong> word. Also, <strong>blue</strong> style should be applied for <strong>pulled</strong> and <strong>knows</strong> words.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_initialization">Initialization</h3>
+<div class="literalblock">
+<div class="content">
+<pre>const [highlightConfig, setHighlightConfig] = useState(
+    initHighlightConfig
+);
+const [editorState, setEditorState] = useState(
+    EditorState.createWithContent(
+        contentState,
+        MultiHighlightDecorator(highlightConfig)
+    )
+);</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_change_highlighting_state_according_to_the_new_configuration">Change highlighting state according to the new configuration</h3>
+<div class="paragraph">
+<p>The issue that <strong>initHighlightConfig</strong> above is static. Let’s say the text to be highlighted has
+changed. In this case, we should recreate an instance of <strong>MultiHighlightDecorator.</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>useEffect(() =&gt; {
+    if (highlightConfig) {
+        setEditorState(
+            EditorState.set(editorState, {
+                decorator: MultiHighlightDecorator(highlightConfig),
+            })
+        );
+    }
+}, [highlightConfig]);</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_known_issues">Known issues</h3>
+<div class="paragraph">
+<p>During this solution development, I discovered several serious issues. The first issue was regarding incorrect
+behavior when using <a href="https://github.com/draft-js-plugins/draft-js-plugins" target="_blank" rel="noopener">@draft-js-plugins/editor</a>.
+That’s why I used <strong>draft-js</strong> instead. Briefly, my solution does not work properly with the
+DraftJS plugin system.</p>
+</div>
+<div class="paragraph">
+<p>The second known issue is related to incorrect behavior in browsers on mobile phones when a user is editing
+highlighted text on the fly.</p>
+</div>
+<div class="paragraph">
+<p>Both of them are related to <a href="https://github.com/draft-js-plugins/draft-js-plugins" target="_blank" rel="noopener">@draft-js-plugins/editor</a>.
+I hope these issues will be fixed in the future.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_shortlist_of_links_you_need">Shortlist of links you need</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://draftjs.org/" target="_blank" rel="noopener">DraftJS editor</a></p>
+</li>
+<li>
+<p>Source code for this <a href="https://www.npmjs.com/package/draft-js-multi-inline-highlight" target="_blank" rel="noopener">solution -
+NPM</a></p>
+</li>
+<li>
+<p>Source code for the <a href="https://github.com/buchslava/draft-js-multi-inline-highlight-demo" target="_blank" rel="noopener">demo</a></p>
+</li>
+<li>
+<p>Working <a href="https://buchslava.github.io/draft-js-multi-inline-highlight-demo/" target="_blank" rel="noopener">example</a></p>
+</li>
+<li>
+<p>DraftJS <a href="https://github.com/Soreine/draft-js-simpledecorator" target="_blank" rel="noopener">Simple Decorator</a></p>
+</li>
+</ul>
+</div>
+</div>

@@ -2,16 +2,18 @@
     <div class="popover pt-10 px-10 z-20" [class.popover_show]="show">
         <div class="arrow"></div>
         <div class="flex justify-between flex-wrap">
-            <div class="w-45% cursor-pointer text-light_font_col mb-12" *ngFor="let item of popover_str" changeSrcOnHover [defaultSrc]="item.icon" [activeSrc]="item.activeIcon" [routerLink]="item.route" (click)="changeShow(false)">
-                <div class="flex mb-2.5">
-                    <div class="flex items-center">
-                        <img [src]="item.icon">
-                        <h3 class="ml-2.5">{{item.title}}</h3>
+            <div class="w-45% cursor-pointer text-light_font_col mb-12" *ngFor="let item of popover_str" changeSrcOnHover [defaultSrc]="item.icon" [activeSrc]="item.activeIcon" (click)="changeShow(false)">
+                <a href="javaScript:void(0)" [routerLink]="item.route">
+                    <div class="flex mb-2.5">
+                        <div class="flex items-center">
+                            <img [src]="item.icon">
+                            <h3 class="ml-2.5">{{item.title}}</h3>
+                        </div>
+                        <div *ngIf="!item.route" class="bg-yellow_bg_col rounded-2xl text-dark_font_col text-xs ml-5 self-center px-1.5" >
+                            Coming soon
+                        </div>
                     </div>
-                    <div *ngIf="!item.route" class="bg-yellow_bg_col rounded-2xl text-dark_font_col text-xs ml-5 self-center px-1.5" >
-                        Coming soon
-                    </div>
-                </div>
+                </a>
                 <div>
                     <p class="text-grey_font_col text-sm">{{item.description}}</p>
                 </div>
@@ -23,16 +25,18 @@
 
 <!--ADAPTIVE MENU-->
 <div class="adaptive-popover" [class.show]="show">
-    <div class="" *ngFor="let item of popover_str; index as i" [routerLink]="item.route" (click)="changeShow(false)">
-        <div class="flex" [class.mb-7]="i !== popover_str.length-1">
-            <div class="flex items-center">
-                <img [src]="item.icon">
-                <h3 class="ml-2.5 text-xl">{{item.title}}</h3>
+    <div class="" *ngFor="let item of popover_str; index as i" (click)="changeShow(false)">
+        <a href="javaScript:void(0)" [routerLink]="item.route">
+            <div class="flex" [class.mb-7]="i !== popover_str.length-1">
+                <div class="flex items-center">
+                    <img [src]="item.icon">
+                    <h3 class="ml-2.5 text-xl">{{item.title}}</h3>
+                </div>
+                <div *ngIf="!item.route" class="bg-yellow_bg_col rounded-2xl px-2 text-dark_font_col text-xs ml-5 self-center">
+                    Coming soon
+                </div>
             </div>
-            <div *ngIf="!item.route" class="bg-yellow_bg_col rounded-2xl px-2 text-dark_font_col text-xs ml-5 self-center">
-                Coming soon
-            </div>
-        </div>
+        </a>
     </div>
 </div>
 

@@ -1,0 +1,204 @@
+<div class="paragraph">
+<p>At Valor Software, we, with the help of generous contributors, developed a set of open
+source projects, that allow developers to build apps quicker and more qualitative. This should be helpful for
+other software development companies, yeah. Also, we put a lot of effort into experimenting with automated testing
+to make sure that those libraries work properly. That&#8217;s why now we&#8217;ll take a deep dive into our next experiment:
+testing &lt;canvas&gt; HTML elements.</p>
+</div>
+<div class="sect3">
+<h4 id="_project_description">Project description</h4>
+<div class="paragraph">
+<p>ng2-charts is a small library that contains Angular directives and provides the possibility to integrate a number of types of charts: line, bar, radar, pie, polarArea, doughnut, bubble, and scatter.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_source_data">Source data</h4>
+<div class="paragraph">
+<p>There are no UI/E2E tests at all.
+We only have a small number of unit tests out there.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_goal">Goal</h4>
+<div class="paragraph">
+<p>Quickly create the scope of UI or E2E
+tests to check basic charts on the Demo site.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_problems">Problems</h4>
+<div class="paragraph">
+<p>Creating scope of tests for Demo site might
+not seem like a complex task, because <a href="https://valor-software.com/ng2-charts/" target="_blank" rel="noopener">Demo site</a> contains only a few pages,
+but let&#8217;s look a b-i-it deeper:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/testing-canvas-could-be-easier/5cac9625b32e397fc8d542c3_VhINC-U1hfiJ6IpgLQk_y7PCGNprGcBeGOps1QdrRi2TaALTEDcLWwdRyMmZF0DrB4L6KlfESRBtvsfb-ui52gTxDT_B1fP9jwAtzM_748d75ZK2DfTpVazZicu1h5flRfmWzpGF.png" alt="image6">
+</div>
+</div>
+<div class="paragraph">
+<p>Well, we have a single HTML element, which consists of graphic elements, and yeah it&#8217;s the
+&lt;canvas&gt;.<br>
+FYI, according to MDN:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>canvas is an HTML element which can be used to draw graphics via scripting (usually JavaScript).
+This can, for instance, be used to draw graphs, combine photos, or create simple (and not so simple)
+animations&#8230;&#8203;</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>That means we can interact with elements using nothing but an imitation of mouse actions. Since our goal is
+to check for the standard basic functionality, image comparison should be enough.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_implementation_step_1_testing_main_page_with_cypress">Implementation step 1. Testing main page with Cypress</h4>
+<div class="literalblock">
+<div class="content">
+<pre>describe('Main Page', () =&gt; {
+    it(`navigate to main Demo page and check info`, () =&gt; {
+     const topBarSelector = 'mat-toolbar';
+     const mainContentSelector = 'main';
+     cy.visit(''); cy.get(topBarSelector).should('be.visible')
+      .eyesOpen({
+       appName: 'NG2-charts',
+       testName: `NG2-charts Main Page Top Bar`,
+       browser: browsers
+      })
+      .eyesCheckWindow({
+       sizeMode: 'selector',
+       selector: topBarSelector,
+       sendDom: false,
+      })
+      .eyesClose(); cy.get(mainContentSelector).should('be.visible')
+      .eyesOpen({
+       appName: 'NG2-charts',
+       testName: `NG2-charts Main Page Content`,
+       browser: browsers
+      })
+      .eyesCheckWindow({
+       sizeMode: 'selector',
+       selector: mainContentSelector,
+       sendDom: false,
+      })
+      .eyesClose();
+    });
+});</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now that the basic test which opens the page and checks two main elements to make sure their visible
+is ready, we can move forward. Oops, here goes the first issue. When Cypress test runs and finishes,
+everything seems to be okay. Our chart is visible. However, once we start going through the steps inside the
+Cypress browser, we&#8217;ll see space instead of our chart.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/testing-canvas-could-be-easier/5cac972bf94f986a6fd4a96d_RdepyyO.gif" alt="example gif">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>It happens because of:</strong></p>
+</div>
+<div class="paragraph">
+<p>Cypress takes snapshots as your tests run. To see exactly what happened at each step (according to official Cypress documentation), you have to hover over commands in the Command Log.</p>
+</div>
+<div class="paragraph">
+<p>The same behavior can be seen on the Applitools screenshots:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/testing-canvas-could-be-easier/5cac976c51b2296b29aec8aa_3WWv2qk.png" alt="image4">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_implementation_step_2_making_real_png_screenshots">Implementation step 2. Making real .png screenshots</h4>
+<div class="paragraph">
+<p>Instead of snapshots, we decided to make real .png screenshots and save them for later comparison with the reference images. With Cypress it&#8217;s easy as 1-2-3:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>describe('Charts', () =&gt; {
+    const componentsArray = [
+     {url: '/#LineChart', selector: 'app-line-chart'},
+     {url: '/#BarChart', selector: 'app-bar-chart'},
+     {url: '/#DoughnutChart', selector: 'app-doughnut-chart'},
+     {url: '/#RadarChart', selector: 'app-radar-chart'},
+     ];componentsArray.forEach(component =&gt; {
+     it(`${component.url}`, () =&gt; {
+      cy.visit(component.url);
+      cy.get(component.selector).find('canvas').screenshot();
+     });
+    });
+});</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We want to compare screenshots of charts only - the rest of the information can be covered by other types of more "stable"UI tests. That&#8217;s why we need to find the expected &lt;canvas&gt; element and only then take a screenshot. By default, these screenshots will be saved to <em>cypress/screenshots/testName/describeName&#8201;&#8212;&#8201;ItName.png</em>. According to our example above, we&#8217;ll have four images with unique names.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_implementation_step_3_comparing_screenshots">Implementation step 3. Comparing screenshots</h4>
+<div class="paragraph">
+<p>There are a lot of <a href="https://applitools.com/tutorials" target="_blank" rel="noopener">Applitools SDKs</a> out there, and the one that suits our needs is <a href="https://applitools.com/tutorials/selenium-javascript.html" target="_blank" rel="noopener">"Applitools Eyes Javascript SDK"</a>. This library provides us with the possibility to compare real images, work with them on the <a href="https://applitools.com/blog/getting-started-with-applitools-eyes-test-manager" target="_blank" rel="noopener">Applitools Dashboard</a> service without much of a hassle. Everything that is needed from us is to set an API key, choose an appropriate OS and hostingApp, and, of course, provide real images:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>var Eyes = require('eyes.images').Eyes;
+const fs = require('fs');
+const urls = ["#LineChart", "#BarChart", "#DoughnutChart", "#RadarChart"];var eyes = new Eyes();
+eyes.setApiKey(YourAPIKey’);
+eyes.setHostingApp("Chrome");
+eyes.setHostOS('MacOS latest');
+async function forEachAsync(array, callback) {
+    let i = 0;
+    for (; i &lt; array.length; i++) {
+         await callback(array[i], i, array);
+    }
+}
+const testResults = eyes.open("NG2-charts", "Charts comparison", {width: 1366, height: 768}).then(async function () {
+    return forEachAsync(urls, async (url) =&gt; {
+        const image = fs.readFileSync(`./cypress/screenshots/main-test.js/Charts -- ${url}.png`);
+        await eyes.checkImage(image, url);
+    });
+}).then(function () {
+    return eyes.close();
+});
+testResults.then(function (results) {
+    console.log("Results: ", results);
+});</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it! We&#8217;ve achieved our goal in no time and have stable and fully functional tests for quick demo check.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_yeah_well_but_wheres_the_proof">Yeah, well, but where&#8217;s the proof?</h4>
+<div class="paragraph">
+<p>All needed settings for chosen libraries and all tests can be found in ng2-charts <a href="https://github.com/valor-software/ng2-charts/pull/1072/files" target="_blank" rel="noopener">Valor Software repo in the appropriate PR</a>.</p>
+</div>
+<div class="paragraph">
+<p>If you still don&#8217;t believe us, here&#8217;s how Applitools Dashboard looks like:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/testing-canvas-could-be-easier/5cac986cf94f9810c4d4ac0c_nRUcQAt.png" alt="image3">
+</div>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;one more thing! Travis CI log, which will be created at each CI test run, can be found on <a href="https://travis-ci.org/valor-software/ng2-charts/builds/507755903?utm_source=github_status&amp;utm_medium=notification" target="_blank" rel="noopener">Valor Software Travis Dashboard</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Good news!</strong></p>
+</div>
+<div class="paragraph">
+<p>According to the <a href="https://applitools.com/" target="_blank" rel="noopener">Applitools</a> development team, they currently don&#8217;t support <em>canvas</em> elements in the Cypress plugin. However, they will support them in the future - this will make the whole testing process of <em>canvas</em> elements much easier.</p>
+</div>
+</div>

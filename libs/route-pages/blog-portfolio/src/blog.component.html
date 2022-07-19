@@ -54,12 +54,16 @@
         <div class="w-full flex flex-wrap justify-between">
             <ng-container *ngIf="!showAll && checkLength()">
                 <ng-container *ngFor="let art of sortArticles | slice:0:8">
-                    <blog-portfolio-item class="w-full lg:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-portfolio-item>
+                    <a href="javascript:void(0)" [routerLink]="getRouteLink(art.title)" class="w-full lg:w-45% cursor-pointer">
+                        <blog-portfolio-item [article]="art"></blog-portfolio-item>
+                    </a>
                 </ng-container>
             </ng-container>
             <ng-container *ngIf="showAll || !checkLength()">
                 <ng-container *ngFor="let art of sortArticles">
-                    <blog-portfolio-item class="w-full lg:w-45% cursor-pointer" [article]="art" (click)="route(art.title)"></blog-portfolio-item>
+                    <a href="javascript:void(0)" [routerLink]="getRouteLink(art.title)" class="w-full lg:w-45% cursor-pointer">
+                        <blog-portfolio-item [article]="art"></blog-portfolio-item>
+                    </a>
                 </ng-container>
             </ng-container>
         </div>

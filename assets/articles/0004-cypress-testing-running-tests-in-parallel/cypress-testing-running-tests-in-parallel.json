@@ -1,0 +1,15 @@
+{
+  "author": "Ludmila Nesvitiy",
+  "order": 4,
+  "domains": [
+    "dev_quality_assurance"
+  ],
+  "authorImg": "assets/articles/cypress-testing-running-tests-in-parallel/5f69eabbb804c9c13508347a_nesvitiy.jpg",
+  "language": "en",
+  "bgImg": "assets/articles/cypress-testing-running-tests-in-parallel/5c9babae27e0bf2553a92d62_pexels-photo-943096.jpeg",
+  "title": "Cypress testing: Running tests in parallel",
+  "position": "QA Automation Engineer",
+  "date": "Mon Mar 25 2019 11:12:34 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "We love testing; we love automating tests; we love running tests in parallel. Check out our Cypress guide for speedy and reliable testing.",
+  "contentUrl": true
+}

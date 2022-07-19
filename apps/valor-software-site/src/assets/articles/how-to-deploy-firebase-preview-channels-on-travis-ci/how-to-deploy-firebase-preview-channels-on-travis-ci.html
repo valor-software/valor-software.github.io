@@ -1,0 +1,313 @@
+<div class="paragraph">
+<p>Firebase has released the long awaited Preview channel functionality, which allows
+for the testing of updates. All Firebase (not Firestore!) users can benefit from this hosting feature. And you may
+be asking what about Travis CI or other hosting users? Can they use preview channels as well?</p>
+</div>
+<div class="paragraph">
+<p>At the time of this article&#8217;s publication, GitHub Actions does not yet natively provide automated procedures for Travis
+CI from GitHub. Below is a solution to use preview channels by Firebase with your existing <a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a> deployment environment.</p>
+</div>
+<div class="sect2">
+<h3 id="_check_updates_with_no_risk_for_users_experience">Check updates with no risk for users' experience</h3>
+<div class="paragraph">
+<p>Let&#8217;s face the truth, to check the behavior of your
+polished and tested updates on production, you had to actually push them to production. Then, in case something
+fails, - get back to a previous version. Application users might have noticed inappropriate system behavior, which
+is a pity. To get rid of this kind of working situation, we can now use preview channels. Apply this new Firebase
+feature to automatically deploy updates and see how they behave, with no risk for real users' experience. Also, you
+can comfortably leave comments for your updates, and amend them with your team. The best thing is that this
+temporary storage will remove itself after a preview channel link expires. No storage place taken!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_prerequisites">Prerequisites:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>You need to know Travis CI and have experience with the config file.</p>
+</li>
+<li>
+<p>You need to know how to write Bash scripts and know the right stage to run the Bash script for preview channels.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_steps_to_reproduce"><strong>Steps to reproduce:</strong></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new local repository.</p>
+</li>
+<li>
+<p>Create a new GitHub repository.</p>
+</li>
+<li>
+<p>Run 'git remote add' command to connect your local repository to GitHub repository.</p>
+</li>
+<li>
+<p><a href="https://firebase.google.com/docs/web/setup" target="_blank" rel="noopener">Set up Firebase</a> project.</p>
+</li>
+<li>
+<p><a href="https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github" target="_blank" rel="noopener">Set up Travis CI</a> for GitHub repository.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Set up configuration variables - add <a href="https://docs.travis-ci.com/user/environment-variables/"><strong>environment variables in Travis CI</strong></a>. The variables that you need to set up are the two access tokens to work with Firebase and
+GitHub:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To get FIREBASE_TOKEN, use the command: firebase login:ci</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the command doesn&#8217;t work, that&#8217;s probably because you don&#8217;t have firebase-tools installed.</p>
+</div>
+<div class="paragraph">
+<p>For installation, run the following command: npm i -g firebase-tools, or curl -sL <a href="https://firebase.tools/" target="_blank" rel="noopener">https://firebase.tools</a> | bash</p>
+</div>
+<div class="paragraph">
+<p>Then - run a firebase login command, then - firebase login:ci. The latter command gives you a Firebase access
+token that you want to use as a value for this step (To get FIREBASE_TOKEN&#8230;&#8203;).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get GITHUB_TOKEN using this link: <a href="https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token" target="_blank" rel="noopener">Creating a personal access token</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Then, apply this value for the GITHUB_TOKEN variable.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="6">
+<li>
+<p>In your local repository, run the 'firebase init hosting' command, choose your Firebase project from the
+list of already existed projects, and <a href="https://firebase.google.com/docs/hosting/full-config" target="_blank" rel="noopener">configure firebase.json file</a>.</p>
+</li>
+<li>
+<p>Create .travis.yml file in your local repository.</p>
+</li>
+<li>
+<p>Create a Bash script - <a href="https://devdocs.io/bash/" target="_blank" rel="noopener">https://devdocs.io/bash/</a>.</p>
+</li>
+<li>
+<p>Add job to .travis.yml file that should call the script that we&#8217;ve created as the step 8.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The job you need to insert into .travis.yml file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    stages:
+     - name: "Deploy to Firebase preview channel"
+       if: branch = master AND type = pull_request
+
+    jobs:
+    include:
+    - stage: "Deploy to Firebase preview channel"
+    skip_cleanup: true
+    provider: firebase
+    project: fir-project-dc47e
+    before_script:
+    - sudo apt-get install jq
+    - npm install firebase-tools -g
+    - npm run build:prod
+    script: bash deploy-to-firebase-preview-channels.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here fir-project-dc47e - an ID of your Firebase project</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="10">
+<li>
+<p>Push changes to GitHub and create a pull request.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now, back to solving our Travis CI issue and enabling its usage with the Preview channel Firebase
+functionality. Find the solution I came up with in the repository: <a href="https://github.com/NikitaGlukhi/travis-ci-and-firebase-preview-channels" target="_blank" rel="noopener">Travis CI and Firebase preview channels solution</a>.</p>
+</div>
+<div class="paragraph">
+<p>Or a brief version on gist: <a href="https://gist.github.com/NikitaGlukhi/f094a6a8e6812d104d779e37d6560705" target="_blank" rel="noopener"><strong>.travis.yml: preview channels deployment</strong></a>.</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;ll separate the script into pieces and describe every step below. To deploy successfully, please, follow my guidelines step by step.</p>
+</div>
+<div class="paragraph">
+<p>I start with a deployment to a preview channel:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>#!/usr/bin/env bash
+DEPLOY_TO_PREVIEW_CHANNEL_RESULT=$(firebase hosting:channel:deploy pr-$TRAVIS_PULL_REQUEST --expires 30d --token $FIREBASE_TOKEN --json)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After running the deploy command, I get a&amp;nbsp response with an object containing data, and I have the
+following as a result:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "status": "success",
+        "result": {
+        "fir-project-dc47e": {
+            "site": "fir-project-dc47e",
+            "url": "https://fir-project-dc47e--pr-1-t36vykr3.web.app",
+            "expireTime": "2021-01-08T09:27:24.847798020Z"
+        }
+    }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here fir-project-dc47e - an ID of your Firebase project</p>
+</div>
+<div class="paragraph">
+<p>I add this object to the
+DEPLOY_TO_PREVIEW_CHANNEL_RESULT variable. This object has a .result parameter containing all the data needed
+for future operations.</p>
+</div>
+<div class="paragraph">
+<p>Next, I select data from the .result parameter and add it to a
+separate variable that corresponds to the parameter name. This variable will contain an object with a key of
+ngx-bootstrap-demo.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>RESULT=`echo $&amp;#123;DEPLOY_TO_PREVIEW_CHANNEL_RESULT} | jq -r '.result'`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the next step, I extract fir-project-dc47e object from the RESULT variable:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>RESULT_DATA=`echo $&amp;#123;RESULT} | jq -r '."fir-project-dc47e"'`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following goes to RESULT_DATA:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "site": "fir-project-dc47e",
+    "url": "https://fir-project-dc47e--pr-1-t36vykr3.web.app",
+    "expireTime": "2021-01-08T09:27:24.847798020Z"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, I extract a website name from the RESULT_DATA variable. The result will go to the SITE variable:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>SITE=`echo ${RESULT_DATA} | jq -r '."site"'`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I extract a preview channel URL from RESULT_DATA variable, and the result goes to the URL variable:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>URL=`echo $&amp;#123;RESULT_DATA} | jq -r '."url"'`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then - extracting data with the expiration time from the RESULT_DATA variable. And, I write it down to the
+EXPIRE_TIME_UTC variable. UTC format is a default one, so I bring it to the needed format which is GMT, in my
+case.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>EXPIRE_TIME_UTC=`echo $&amp;#123;RESULT_DATA} | jq -r .expireTime`
+EXPIRE_TIME=$(TZ='GMT' date -d $EXPIRE_TIME_UTC +%c)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The NEW_COMMENT variable creates a text with a project name, link to a preview channel, and its life
+duration. I&#8217;ll add this text of the comment to a pull request later (TRAVIS_PULL_REQUEST/comments).</p>
+</div>
+<div class="paragraph">
+<p>Then, I extract all the comments from the pull request I want to work on, using the request to GitHub API. The
+result goes to the COMMENTS variable. The Objects array will have a description for each comment.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>COMMENTS=$(curl -H "Authorization: token $GITHUB_TOKEN" -X GET "https://api.github.com/repos/$TRAVIS_REPO_SLUG/issues/$TRAVIS_PULL_REQUEST/comments")</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I declare variables for test cycles. Using the SUBSTRING variable, I search for a comment that might have
+been added before to replace it with the latest one.</p>
+</div>
+<div class="paragraph">
+<p>COMMENT_ID equals -1 by default. In the future, I&#8217;ll assign a comment ID that I find to it. In case of no overlaps appeared, the value stays as default.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>SUBSTRING="Project: fir-project-dc47e"
+COMMENT_ID=-1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this cycle, I sort out the COMMENTS array, and extract the body of each comment - its text, and search
+for a substring in this body. If an overlap is detected, I take the comment ID and assign it to the COMMENT_ID
+variable. If no overlaps are detected, then nothing is assigned, the loop just runs as before.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>for row in $(echo "${COMMENTS}" | jq -r '.[] | @base64'); do
+echo ${row}
+    _jq() {
+        echo ${row} | base64 --decode | jq -r ${1}
+    }
+    BODY=$(_jq '.body')
+    if [[ ${BODY} == *"$SUBSTRING"* ]]; then
+        COMMENT_ID=$(_jq '.id')
+    fi
+done</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, I run a COMMENT_ID test, if it equals 0 or is more than 0, it means a&amp;nbsp comment like this
+exists, and I need to refresh it. Then, I refer to GitHub API (GITHUB_TOKEN). If there&#8217;s no comment - the
+command creates a new comment in a pull request (GitHub API, as well).</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>if [[ ${COMMENT_ID} -ge 0 ]];
+    then
+        curl -H "Authorization: token $GITHUB_TOKEN" -X PATCH -d "{\"body\": \"$NEW_COMMENT\"}" "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/comments/${COMMENT_ID}"
+    else
+        curl -H "Authorization: token $GITHUB_TOKEN" -X POST -d "{\"body\": \"$NEW_COMMENT\"}" "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments"
+fi</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As a result, I get the link with the comment to a preview channel. And, the comment we get from the
+previous operation comes from the person which token we use.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/how-to-deploy-firebase-preview-channels-on-travis-ci/60ec1e03db7c7b158aaa61f9_Fo06fCr0FS4nOMpv1cm_M5N0MmQuNTKNRJnnUnlegz87jJmLFwrK-FRZXA-R7ZAk0LfUuAWJpU1tviJ9P8iUy_FtGiXlDrp4Qgcq9oW9-u83GMMjgejrpt6rkPTHNNLWlG64wwkH.png" alt="60ec1e03db7c7b158aaa61f9 Fo06fCr0FS4nOMpv1cm M5N0MmQuNTKNRJnnUnlegz87jJmLFwrK FRZXA R7ZAk0LfUuAWJpU1tviJ9P8iUy FtGiXlDrp4Qgcq9oW9 u83GMMjgejrpt6rkPTHNNLWlG64wwkH">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_any_questions">Any questions?</h3>
+<div class="paragraph">
+<p>Feel free to contact me if you have any questions or troubles with deploying the script: <a href="mailto:nikita.glukhi@valor-software.com" target="_blank" rel="noopener">nikita.glukhi@valor-software.com</a>.</p>
+</div>
+</div>

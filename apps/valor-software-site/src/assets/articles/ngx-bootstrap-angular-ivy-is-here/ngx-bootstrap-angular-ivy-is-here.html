@@ -1,0 +1,271 @@
+<div class="paragraph">
+<p>Valor Software is not only a software development company but also a great contributor to
+the Angular development community: being creators of <a href="https://valor-software.com/ngx-bootstrap" target="_blank" rel="noopener">ngx-bootstrap</a>, we
+strive to improve our beloved library as Angular innovates. This time we worked on implementing Ivy renderer. Ivy
+is a complete rewrite of the renderer with the significant refactoring of the compiler enabling devs to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reach better build times (thanks to incremental compilation)</p>
+</li>
+<li>
+<p>Make a bundle smaller and faster, which will be especially useful for mobiles (with a generated code more
+compatible with tree shaking)</p>
+</li>
+<li>
+<p>Unlock new potential features (metaprogramming or higher order components, lazy loading of the component
+instead of modules, a new change detection system that is not based on zone.js, etc.)</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_road_to_success_implementing_ivy">Road To Success: Implementing Ivy</h4>
+<div class="paragraph">
+<p>According to the promising features above, we&#8217;ve had two goals in mind:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make ngx-bootstrap compatible with other projects, which are using ngx-bootstrap and ivy:enabled.&amp;nbsp</p>
+</li>
+<li>
+<p>Make all of our demos ivy:enabled-compatible.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In total, we spent about five days to achieve our goals with Ivy support (1 developer + 1 QA engineer).</p>
+</div>
+<div class="paragraph">
+<p>However, implementation was not an easy task. The first issue which we faced is that Ivy-ngcc doesn&#8217;t support
+the spread operator inside @NgModule. After <a href="https://github.com/valor-software/ngx-bootstrap/pull/5268/files#diff-768d8aaacb20fff9a181d4fe63e131bcL61" target="_blank" rel="noopener">removing it</a>, we&#8217;ve achieved our first goal and ngx-bootstrap <a href="https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md#510-2019-06-24" target="_blank" rel="noopener">began to support Ivy</a> from version 5.1.0.</p>
+</div>
+<div class="paragraph">
+<p>Ok, that&#8217;s better already. But we also have to update our demo app to Ivy compatible format. It was a bit
+harder to achieve: we faced several issues. Let&#8217;s go through them one by one:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The host should not return a redirect source file from 'getSourceFile' (related <a href="https://github.com/angular/angular/issues/22524" target="_blank" rel="noopener">Angular Issue</a>)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In the Angular 8, they&#8217;ve changed the TypeScript output to ES6, so instead of using <em>this.hostAdapter</em>
+we now need to use <em>this.hostAdapter</em> when searching for the line number.</p>
+</div>
+<div class="paragraph">
+<p>Unfortunately, the Angular team still hasn&#8217;t proceeded to resolve the issue. So we had to temporarily <a href="https://en.wikipedia.org/wiki/Monkey_patch" target="_blank" rel="noopener">monkey patch</a> Angular to fix the issue.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1b64d7aee43c6b794168f0_5d1b4eb3a694d6f8e4e182cb_01.png" alt="Fix for:The host should not return a redirect source file from 'getSourceFile'^">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>ERROR in demo/src/__ng_typecheck__.ts(857,9): error TS2551: Property 'innerHtml' does not exist on type
+'HTMLParagraphElement'.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The root cause of the second issue is that <a href="https://github.com/angular/angular/issues/31366" target="_blank" rel="noopener">'innerHtml' binding
+got broken since Angular 8.0.0</a>, as Angular 7 had no strict check for templates.</p>
+</div>
+<div class="paragraph">
+<p>To fix this, we&#8217;ve changed all occurrences of innerHtml to innerHTML.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Injecting the deprecated renderer (<a href="https://angular.io/api/core/Renderer" target="_blank" rel="noopener">Renderer</a>) is not supported, so we had
+to use <a href="https://angular.io/api/core/Renderer2" target="_blank" rel="noopener">Renderer2</a>.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>Can&#8217;t bind to 'ngClass'. Can&#8217;t bind to 'ngIf'</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Our library and demo application (which uses this library) live in a mono repo, so for the demo
+application to use the ngx-bootstrap library as if it were installed from npm packages, we had to <a href="https://medium.com/dailyjs/how-to-use-npm-link-7375b6219557" target="_blank" rel="noopener">link</a> our dist (compiled library) with the node_modules folder (named ngx-bootstrap)</p>
+</div>
+<div class="paragraph">
+<p>However, unfortunately, the dist binding to node_modules cannot be handled by Ivy, so the compiled
+ngx-bootstrap must be placed directly inside the node_modules.</p>
+</div>
+<div class="paragraph">
+<p>However, unfortunately, the dist binding to node_modules cannot be handled by Ivy, so the compiled
+ngx-bootstrap must be placed directly inside the node_modules.</p>
+</div>
+<div class="paragraph">
+<p>In our case, this caused the following errors:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Can&#8217;t bind to 'ngClass' since it isn&#8217;t a known property.</p>
+</li>
+<li>
+<p>Can&#8217;t bind to 'ngIf' since it isn&#8217;t a known property.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We dealt with those two by writing a <a href="https://github.com/valor-software/ngx-bootstrap/pull/5285/files#diff-b9cfc7f2cdf78a7f4b91a753d10865a2R28" target="_blank" rel="noopener">one-liner</a> that copies the entire folder and renames it.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>For some reason, 'host: style' option of decorator @Component became rewritten by the same option from the class from which we inherit. This is not described well in the official documentation. As a solution, we directly updated the host element styles using the renderer method.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="6">
+<li>
+<p>Issues with Unit Tests</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>We pay great attention to unit tests, and we mean it! We run tests for different browsers,
+operating systems, and we even run them for different Angular versions. So we wanted not only to fix all of
+them but also add separate stages with tests into our CI, which will check ngx-bootstrap with Ivy:enabled and
+disabled, respectively. Unit tests help us to make sure that we&#8217;re delivering the qualitative library to a
+massive audience of users.</p>
+</div>
+<div class="paragraph">
+<p>In the process of implementing Ivy, we&#8217;ve noticed that event triggering inside our tests is not working as
+expected:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>const directive = fixture.debugElement.query( By.directive(PopoverDirective));directive.triggerEventHandler('click', {});</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To resolve the issue, we used the cross-browser library for testing <a href="https://github.com/NetanelBasal/spectator" target="_blank" rel="noopener">@netbasal/spectator</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_show_me_the_numbers">Show Me the Numbers!</h4>
+<div class="paragraph">
+<p>Let&#8217;s see how we can benefit from using Ivy instead of the View Engine. For starters, we&#8217;ve tested bundle size
+reducement.</p>
+</div>
+<div class="paragraph">
+<p><strong>Compiled to ES5</strong></p>
+</div>
+<div class="paragraph">
+<p>After updating <a href="https://valor-software.com/ngx-bootstrap" target="_blank" rel="noopener">ngx-bootstrap</a> with Ivy support, we have reduced a bundle size by 12%.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d3b07bf797cb8713fa8134f_Compiled_to_ES5_Bundle_size_reduced_by_12%25.png" alt="Compiled to ES5: Bundle size reduced by 12%^">
+</div>
+</div>
+<div class="paragraph">
+<p>Built with the View Engine:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1c72392b2ad29a97466cdb_2%202.jpg" alt="Chunks sizes for application" width="Built with the View Engine" height="compiled with ES5^">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1b64d79f13c359cbae4cdb_5d1b53cdd7f015f62ec40dc1_d_Qx-minEOXzUIRUx6_soj8vZPT6MpIA2ZqiXtiGp33GO91bqKKGbGvfAGg2pMu2U_5GANViNnqtqvAwUDyZBjfQqkaC1gwIu1bAmwikT_HwUi96oSFYoQvptdSAvEHOAX0Zzum5.png" alt="sizes for application" width="Built with the View Engine" height="compiled with ES5^">
+</div>
+</div>
+<div class="paragraph">
+<p>Built with Ivy:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1c7544df18299104edc263_es5.jpg" alt="Chunks sizes for application" width="Built with Ivy" height="compiled with ES5^">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1b64d7b994130b84396f2b_5d1b55ceaee43ccbd940ee57_Screenshot%2520from%25202019-06-29%252012-23-42%2520copy.png" alt="Modules sizes for application" width="Built with Ivy" height="compiled with ES5^">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Compiled to ES6</strong></p>
+</div>
+<div class="paragraph">
+<p>After building with Ivy, we have reduced a bundle by 13%.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d3b07e167bbc72286749da7_Compiled_to_ES6_Bundle_size_reduced_by_13%25.png.png" alt="Compiled to ES6: Bundle size reduced by 13%^">
+</div>
+</div>
+<div class="paragraph">
+<p>Built with the View Engine:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1c72632087660b19d5e2d8_2%2003.jpg" alt="Chunks sizes for application" width="Built with the View Engine" height="compiled with ES6^">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1b64d8a884d4423e7328b6_5d1b5963a884d461f172f537_06.png" alt="sizes for application" width="Built with the View Engine" height="compiled with ES6^">
+</div>
+</div>
+<div class="paragraph">
+<p>Built with Ivy:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1c74808da84273fa95f22d_es6.jpg" alt="Chunks sizes for application" width="Built with Ivy" height="compiled with ES6^">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d1b64d7aee43c167a4168f2_5d1b59dfd7f015b831c42c1a_08.png" alt="Modules sizes for application" width="Built with Ivy" height="compiled with ES6^">
+</div>
+</div>
+<div class="paragraph">
+<p>Unfortunately, after enabling server-side compression, Ivy didn&#8217;t show us any signs of
+improvement. In general, the gzipped bundle size increased by 2%. If it has to do with tree shaking not
+working correctly or not, we hope for this to be updated in the final Ivy version.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/ngx-bootstrap-angular-ivy-is-here/5d3b08050038410d478da705_Gzipped_Compiled_to_ES5_Bundle_size_increased_by_2%25.png" alt="Gzipped: Bundle size increased by 2%^">
+</div>
+<div class="title"><em>Gzipped bundle size gained 2% after compilation with Ivy.</em></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_whats_next">What&#8217;s next</h4>
+<div class="paragraph">
+<p>The Angular core team is still working hard on Ivy. Therefore, we are confident that soon, all the issues we
+faced with Ivy will be fixed and official documentation will be shared and updated accordingly.</p>
+</div>
+<div class="paragraph">
+<p>Still, there&#8217;s no need to wait for the final release to start using Ivy-enabled ngx-bootstrap - we&#8217;ve released
+<a href="https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md#510-2019-06-24" target="_blank" rel="noopener">version 5.1.0</a>!</p>
+</div>
+<div class="paragraph">
+<p><strong>Vitaliy Makogon</strong><br>
+JavaScript Developer<br>
+<a href="https://twitter.com/mVitaliyd" target="_blank" rel="noopener">https://twitter.com/mVitaliyd</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Ludmila Nesvitiy</strong><br>
+QA Automation Engineer<br>
+<a href="https://twitter.com/LudmilaNes" target="_blank" rel="noopener">https://twitter.com/LudmilaNes</a></p>
+</div>
+</div>

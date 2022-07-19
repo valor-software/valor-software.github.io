@@ -1,9 +1,10 @@
-import {Component, ViewChild, ChangeDetectorRef, HostListener} from '@angular/core';
+import {Component, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NpmStatisticService } from "./getNpmStatistic.service";
 import SwiperCore, { Pagination, Mousewheel, SwiperOptions  } from "swiper";
-import {forkJoin, Subscription} from "rxjs";
-import {GetPortfolioService, IPortfolio, ProjectsRouteService} from "@valor-software/portfolio";
+import { forkJoin, Subscription } from "rxjs";
+import { GetPortfolioService, IPortfolio } from "@valor-software/common-docs";
+import { titleRefactoring } from "@valor-software/common-docs";
 SwiperCore.use([Mousewheel, Pagination]);
 
 const slideModel = [
@@ -225,7 +226,7 @@ const OpenSourceSlidesModel = [
     selector: 'main-page',
     templateUrl: './main-page.component.html'
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnDestroy {
 
     slides: typeof slideModel = slideModel;
     swiperConfig: SwiperOptions = {
@@ -279,8 +280,9 @@ export class MainPageComponent {
         private cdr: ChangeDetectorRef,
         protected router: Router,
         private getPortfolio: GetPortfolioService,
-        private projectRouteServ: ProjectsRouteService
     ) {
+        this.addScriptsToHead();
+        
         this.$portfolio = forkJoin(this.getPortfolio.getFullListOfPortfolio()).subscribe((res: IPortfolio[] | undefined) => {
             this.projects = res;
             this.sortProjects = res;
@@ -295,6 +297,10 @@ export class MainPageComponent {
             this.router.navigate(['.']);
         }
         this.setNpmStatistic();
+    }
+  
+    ngOnDestroy(): void {
+        this.removeOldMicroDAta();
     }
 
     setNpmStatistic() {
@@ -331,8 +337,8 @@ export class MainPageComponent {
         }
     }
 
-    projectRoute(name: string) {
-        this.projectRouteServ.route(name);
+    projectRoute(name: string): string {
+        return titleRefactoring(name);
     }
 
     checkIndex(index: number): boolean {
@@ -346,5 +352,40 @@ export class MainPageComponent {
         }
 
         return window.innerHeight > 800 && window.devicePixelRatio*100 === 100;
+    }
+
+    
+    addScriptsToHead() {
+        this.removeOldMicroDAta();
+
+        const head = document.getElementsByTagName('head')[0];
+        const script = document.createElement('script');
+        script.setAttribute('id', 'home-micro-data');
+        script.setAttribute('type', 'application/ld+json');
+        script.innerHTML = `
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Valor Software",
+            "url": "https://valor-software.com/",
+            "logo": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+            "sameAs": [
+              "https://valor-software.com/",
+              "https://github.com/valor-software",
+              "https://twitter.com/ValorSoft",
+              "https://www.linkedin.com/company/valor-software/about/",
+              "https://www.facebook.com/valorsoftware/"
+            ]
+          }
+        `;
+
+        head.insertBefore(script, head.firstChild);
+    }
+
+    removeOldMicroDAta() {
+        const oldMicroDAta = document.getElementById('home-micro-data');
+        if (oldMicroDAta) {
+            oldMicroDAta.remove();
+        }
     }
 }

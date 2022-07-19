@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -10,8 +11,8 @@ import { Component } from '@angular/core';
                     <h1 class="text-light_title_col text-8xl leading-100 md:text-250 md:leading-250 mb-4 font-bold">404</h1>
                     <p class="leading-40 text-grey_font_col text-center lg:text-left text-large font-bold mb-6">Ooops! You weren’t supposed to see this.</p>
                     <p class="text-base leading-6 text-light_title_col text-center lg:text-left">The page you’re looking for no longer exist. Return to the previous page and remember: you haven’t seen anything! </p>
-                    <button class="btn-pink w-full md:w-auto flex justify-center mt-8">
-                        <a [routerLink]="'/'"  class="w-full flex justify-center items-center">Go to the main page <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
+                    <button class="w-full md:w-auto flex justify-center mt-8">
+                        <a [routerLink]="'/'"  class="btn-pink w-full flex justify-center items-center">Go to the main page <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
                     </button>
                 </div>
                 <div class="hidden lg:flex items-end">
@@ -22,5 +23,7 @@ import { Component } from '@angular/core';
     `
 })
 export class NotFoundComponent {
-
+    constructor(private titleService: Title){
+            this.titleService.setTitle('404 error | Valor Software');
+    }
 }
