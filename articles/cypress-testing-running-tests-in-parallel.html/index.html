@@ -1,0 +1,617 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/cypress-testing-running-tests-in-parallel.html"
+            },
+            "headline": "Cypress testing: Running tests in parallel",
+            "description": "We love testing; we love automating tests; we love running tests in parallel. Check out our Cypress guide for speedy and reliable testing.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/cypress-testing-running-tests-in-parallel/5c9babae27e0bf2553a92d62_pexels-photo-943096.jpeg",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Ludmila Nesvitiy"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Mon Mar 25 2019 11:12:34 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Cypress testing: Running tests in parallel</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#e1e1e1}html{tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}body{font-family:inherit;line-height:inherit}*,:after,:before{box-sizing:border-box;border:0 solid}*,:after,:before{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty,/*!*/ /*!*/);--tw-brightness:var(--tw-empty,/*!*/ /*!*/);--tw-contrast:var(--tw-empty,/*!*/ /*!*/);--tw-grayscale:var(--tw-empty,/*!*/ /*!*/);--tw-hue-rotate:var(--tw-empty,/*!*/ /*!*/);--tw-invert:var(--tw-empty,/*!*/ /*!*/);--tw-saturate:var(--tw-empty,/*!*/ /*!*/);--tw-sepia:var(--tw-empty,/*!*/ /*!*/);--tw-drop-shadow:var(--tw-empty,/*!*/ /*!*/);--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css"></noscript><style></style><meta name="description" content="We love testing; we love automating tests; we love running tests in parallel. Check out our Cypress guide for speedy and reliable testing."><meta property="og:title" content="Cypress testing: Running tests in parallel"><meta property="og:description" content="We love testing; we love automating tests; we love running tests in parallel. Check out our Cypress guide for speedy and reliable testing."><meta property="twitter:title" content="Cypress testing: Running tests in parallel"><meta property="twitter:description" content="We love testing; we love automating tests; we love running tests in parallel. Check out our Cypress guide for speedy and reliable testing."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-bim-c35="" ng-version="12.2.16"><top-menu _ngcontent-bim-c35=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-bim-c35="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-bim-c35=""></router-outlet><general-item><article><section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div class="container flex items-center flex-col"><breadcrumbs class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Cypress Testing: Running Tests In Parallel </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p class="text-20 mb-4">March 25, 2019</p><p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Cypress testing: Running tests in parallel</p><div class="w-70 h-70 rounded-full overflow-hidden mb-4"><img class="w-full h-full object-cover" src="assets/articles/cypress-testing-running-tests-in-parallel/5f69eabbb804c9c13508347a_nesvitiy.jpg" alt="Ludmila Nesvitiy"></div><!----><p class="md:text-large text-24 mb-4">Ludmila Nesvitiy</p><!----><p class="text-20">QA Automation Engineer</p><!----></div></div></section><section class="landing-section"><div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div class="max-w-full"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel4">
+<li><a href="#_table_of_contents">Table of contents</a></li>
+<li><a href="#_why_we_love_cypress">Why we love Cypress</a></li>
+<li><a href="#_parallel_testing">Parallel testing</a></li>
+<li><a href="#_instruments_source_data_implementation_plan">Instruments, Source data, Implementation plan</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Facing bugs is usual for web application development. If your team ignores tests or you
+do not test the code, issues in the project become evident and over time they can become a total blocker and
+eventually kill your project. Therefore, in many teams, there is a testing engineer who catches bugs and reports
+them to the team.</p>
+</div>
+<div class="paragraph">
+<p>We, as a reliable software vendor, don’t want to undermine customer confidence in us,
+so we incorporated Cypress.io - a platform for automatic testing to find and correct errors on time.</p>
+</div>
+<div class="sect4">
+<h5 id="_table_of_contents">Table of contents</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Why we love Cypress</p>
+</li>
+<li>
+<p>Parallelization task</p>
+</li>
+<li>
+<p>Instruments, Source data, Implementation plan</p>
+</li>
+<li>
+<p>Solution: Green phase</p>
+</li>
+<li>
+<p>Solution: Yellow phase</p>
+</li>
+<li>
+<p>Results</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_why_we_love_cypress">Why we love Cypress</h4>
+<div class="paragraph">
+<p>There are many ways to test, yet in this article, we would like to limit ourselves to two of them - e2e and integration testing. The Cypress.io platform is excellent for testing
+web-application interfaces. Its main task is to check how the client part interacts with the server part, and the individual components of the page interact with each other.</p>
+</div>
+<div class="paragraph">
+<p><strong>Platform benefits:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Can be quickly built into the project.</p>
+</li>
+<li>
+<p>Supports all levels of tests (e2e, integration, unit).</p>
+</li>
+<li>
+<p>Takes snapshots for each test step for easy debugging.</p>
+</li>
+<li>
+<p>Able to access every web-page object in the DOM.</p>
+</li>
+<li>
+<p>When expecting any condition, Cypress tries to check it a few times, before sending failures after the 1st
+try.</p>
+</li>
+<li>
+<p>Able to work with our favorite continuous integration system (TravisCI).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cypress works on a predetermined scenario. Even if you haven’t written tests before, clear documentation will help you start.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parallel_testing">Parallel testing</h4>
+<div class="paragraph">
+<p>Now to the most exciting part - parallelization. Here’s a brief extract from the official documentation explaining what parallelization is and why it is needed:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>If your project has a large number of tests, it can take a long time for tests to complete running
+serially on one machine. Running tests in parallel across many virtual machines can save your team time and
+money when running tests in Continuous Integration (CI).</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>As we said earlier, Cypress has great docset, even with examples, and parallelization is not an exception: <a href="https://docs.cypress.io/guides/guides/parallelization.html" target="_blank" rel="noopener">official documentation</a>
+provides you with step by step description about the parallel run. However, because of our specific basic project data, which includes many instances, types of
+tests, and scopes, implementation has been a tough process for us. Let’s move through the main steps and
+issues, which we’ve faced, and find a solution for each of them :)</p>
+</div>
+<div class="paragraph">
+<p><strong>Goal</strong>: Decrease time to run e2e tests, speed up CI builds.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_instruments_source_data_implementation_plan">Instruments, Source data, Implementation plan</h4>
+<div class="paragraph">
+<p><strong>Instruments:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://cypress.io" target="_blank" rel="noopener">Cypress</a></p>
+</li>
+<li>
+<p><a href="https://www.cypress.io/dashboard/" target="_blank" rel="noopener">Cypress Dashboard</a></p>
+</li>
+<li>
+<p>TypeScript for test code</p>
+</li>
+<li>
+<p><a href="https://github.com/cypress-io/cypress-webpack-preprocessor" target="_blank" rel="noopener">cypress/webpack-preprocessor</a> - a plugin for compiling</p>
+</li>
+<li>
+<p><a href="https://github.com/TypeStrong/ts-loader" target="_blank" rel="noopener">ts-loader</a> - TypeScript loader for Webpack</p>
+</li>
+<li>
+<p><a href="https://travis-ci.org" target="_blank" rel="noopener">Travis</a> - CI tool.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Source data:</strong></p>
+</div>
+<div class="paragraph">
+<p>There are two scopes of e2e automated tests in the project:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Integration (about 70 tests)</p>
+</li>
+<li>
+<p>Full (about 450 tests at the time of this writing).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are also a few instances, which should be tested by e2e tests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>localhost:4200</p>
+</li>
+<li>
+<p><a href="https://ngx-universal.herokuapp.com/#/" target="_blank" rel="noopener">ngx-universal.herokuapp.com</a></p>
+</li>
+<li>
+<p><a href="http://ngx-bootstrap-latest.surge.sh/#/" target="_blank" rel="noopener">ngx-bootstrap-latest.surge.sh</a></p>
+</li>
+<li>
+<p><a href="https://valor-software.com/ngx-bootstrap/#/" target="_blank" rel="noopener">valor-software.com/ngx-bootstrap</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Parallelization implementation plan:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Integration of e2e tests running for each PR (pull request) for the local build</p>
+</li>
+<li>
+<p>Integration and full e2e tests running for each merge to <code>development</code> branch at automatically deployed
+build into two different instances (two different URLs)</p>
+</li>
+<li>
+<p>Integration and full e2e tests running for each new release for a production instance (the third URL).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This plan can be visually presented as a timeline:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5cacae969ffb28e551a5ff58_Screenshot%20from%202019-04-09%2017-38-54.png" alt="The plan presented as a timeline^">
+</div>
+</div>
+<div class="paragraph">
+<p>We’re going to describe parallelization implementation in two phases: green and yellow.</p>
+</div>
+<div class="paragraph">
+<p><strong>Solution: Green phase</strong></p>
+</div>
+<div class="paragraph">
+<p>The green phase consists of two steps, so there don’t seem to be any complications:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a few extra settings to the cypress.json:</p>
+<div class="literalblock">
+<div class="content">
+<pre>"video": false, (for quick run)
+"projectId": "yourID", (for link CY dashboard service to each run)</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Make a command for CI run with additional parameters:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>your command — --record --key $CY_KEY --parallel</p>
+</div>
+<div class="paragraph">
+<p>A-and that’s it, these are the whole settings to be added (according to the documentation). However, in real
+life…​ in real life, we got a huge travis.yml and a little misbehavior.</p>
+</div>
+<div class="paragraph">
+<p>Before parallelization, our Travis configuration looked like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    - script:
+    ng serve --prod &amp; $(npm bin)/wait-on http-get://$URL
+    npm run cy:run:smoke
+    kill $(jobs -p) || true
+    name: "Run cypress smoke testing"
+    env: URL=localhost:4200/#</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To be clear, this script builds project locally, waits until the app is up and running, runs tests, and
+finally kills all processes when they are finished. For these needs you can also use the <a href="https://github.com/bahmutov/start-server-and-test" target="_blank" rel="noopener">start-server-and-test</a> library.</p>
+</div>
+<div class="paragraph">
+<p>After adding parameters for parallelization, our Travis config looks like:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5cab18d1f8e0122074e675cd_f7xbhesGwc6bnK96npjdBOHv30bhgOxPp1Zvrjugs5BvMIs80tptMSQRq5Sfd8iOgyabnt48zlXbtoEaiwz2pH4r-sRw4miJAZIvRjcgPW_68KUlniyBv7EIIHuDZjSrpZZRgAe7.png" alt="Travis config">
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the number of our threads will be three. So we need to have three machines on Travis
+for running all these tests. When our CI run finishes, we’ll see list of scripts which we’ve ran and amount of
+time spent by each Travis machine during start, test run, and kill:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98b78cd784214e809596d7_dDlLB0L_DjPrGd-SOAebWu5jcTfFvMbt4EcpiUxDhZSBJT06QmcGS8jxw7cyxpBHZ9o60JjIyRcSj3kLeBuTbYDkzy3ckAjwHdnlbD4BrUrYRgGjDGFmb4jHJNrGHuE1MV_NJVIJ.png" alt="The list of scripts which we’ve ran and amount of time spent by each Travis machine during start" width="test run" height="and kill">
+</div>
+</div>
+<div class="paragraph">
+<p>Time, which is displayed on Travis, was spent on starting the machine, installing development
+packages, building the library and Demo application, and running test.</p>
+</div>
+<div class="paragraph">
+<p>It looks like there’s no
+problem at all, but on the CI Dashboard we’ll see that only two machines took part in the test run. The
+Dashboard also shows us time, which was spent for the direct test run: 2:26 minutes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98b78c6929126465bb7749_5jJAhf0_shpDqdSn5RoXQHSQjoxJgYqInP2mS6QlMp-JAW-selWm2CuF37meAav1-vICO4nryz75ihbtEa_T1VbeAsa6X9O6fM3E2x9TKDRcKFVg_bgJTgUI9Ws8SZ-P_EgupHNo.png" alt="The Dashboard shows time" width="which was spent for the direct test run.">
+</div>
+</div>
+<div class="paragraph">
+<p>If we dive deeper into the job on the third Travis machine, we’ll see that the job actually has
+started, but not in time:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5ca7390f89cf383d85edc1a7_9ZBi8xYYrDUZCPkf3fWQpZVhYtVVxmhvvzJhqwkiMPDfw2j9XDapV9pmQ1XFoWAcrRfmcF4qoAB43Uhu7bFjzmXtO6k8JBnU4kneguPRkMMuTJ9jK_kn0Jiw_jFRvRYEv5gELRel.png" alt="Screen. The job actually has started" width="but not in time">
+</div>
+</div>
+<div class="paragraph">
+<p>What happened?</p>
+</div>
+<div class="paragraph">
+<p>Travis machines are ready to run the tests, but not simultaneously.</p>
+</div>
+<div class="paragraph">
+<p>The first machine can start at 01:00:00, the second one at 01:02:00, and the third one
+will start at 01:05:00. And if your test run takes less than five minutes, then the third thread will be
+empty. It didn’t even get to run one little test :"(</p>
+</div>
+<div class="paragraph">
+<p><strong>Solution: Yellow phase</strong></p>
+</div>
+<div class="paragraph">
+<p>At this stage, all we have to do is to add similar commands and configuration for
+other instances. Because of the similarities of the test scope, we just set an additional parameter for
+changing base URL, and add a new function for running tests which we’ll reuse in each stage:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>testPostDeploy: &amp;testPostDeploy
+script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --key $CY_KEY --parallel --group $GROUP_NAME</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is a very common function, which is applied to the next parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CYPRESS_baseUrl - one of our instances from the matrix above</p>
+</li>
+<li>
+<p>--record - sends results to the Dashboard</p>
+</li>
+<li>
+<p>--key - determines which account from the dashboard we will use</p>
+</li>
+<li>
+<p>--parallel - runs our tests in parallel</p>
+</li>
+<li>
+<p>--group - combines tests in different groups.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In each script we need to define BASE_URL and GROUP_NAME parameters, as other parameters are defined
+globally already.</p>
+</div>
+<div class="paragraph">
+<p>And you may be surprised with following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>npm run cy:run:all</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command unfolded means the following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cy:run:all": "cypress run --config integrationFolder=cypress"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>"Why surprised?" you ask, okay, look:</p>
+</div>
+<div class="paragraph">
+<p>Because each test scope lives in a separate directory with
+the appropriate name: 'integration' and 'full.' To run these tests altogether, just set the global directory
+for the run. Also, make sure to exclude all unnecessary directories and files from this run (using
+"ignoreTestFiles"parameter in cypress.json), or, otherwise, you could get an error like: "The tests were
+unable to run: Oops…​we found an error preparing this test file: …​"</p>
+</div>
+<div class="paragraph">
+<p>Instead of specifying the folder, you could use --specs parameter with a global pattern, like:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cypress run --config integrationFolder=cypress --spec '**/*_spec.ts</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Our configuration for the first instance looks like this now:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>name: "Cypress suit run on SSR 1thread"
+env:
+- GROUP_NAME=3x-electron
+- BASE_URL=https://ngx-universal.herokuapp.com/#/
+&lt;&lt;: *testPostDeploy
+- script:
+name: "Cypress suit run on SSR 2thread"
+env:
+- GROUP_NAME=3x-electron
+- BASE_URL=https://ngx-universal.herokuapp.com/#/
+&lt;&lt;: *testPostDeploy
+- script:
+name: "Cypress suit run on SSR 3thread"
+env:
+- GROUP_NAME=3x-electron
+- BASE_URL=https://ngx-universal.herokuapp.com/#/
+&lt;&lt;: *testPostDeploy</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Just to remind you, Travis stages run consistently, and Travis jobs inside one stage run in parallel. This
+provides the possibility to run tests on different machines inside the first stage. You can add as many
+scripts as you need, and each of the scripts will run in their separate thread.</p>
+</div>
+<div class="paragraph">
+<p>In our example above,
+integration and the full test scope will run in three threads.</p>
+</div>
+<div class="paragraph">
+<p>To finish what we have started, we need to add a similar configuration for the two remaining instances.</p>
+</div>
+<div class="paragraph">
+<p>Okay, imagine that’s done, But what do we have now? Of course, an error:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>"The run you are attempting to access is already complete and will not accept new groups."</em></p>
+</div>
+</blockquote>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98b78c544edd8398605408_TkxUBkM5og4kOIbqBEqQhXxo4ICR9yi7_u6oPMscqTWXrcLkbaSuIpszjavnieBG1zjx0IJXP3Vm2Yv7zOzZtFr1V-GX_FWognMnu6LTRNPmYdm2s1yIauaOxnbNmNYg6m4wj_X-.png" alt="The Error">
+</div>
+</div>
+<div class="paragraph">
+<p>What is the reason for this mess?</p>
+</div>
+<div class="paragraph">
+<p>Cypress uses ci-build-id and groups flags for grouping
+our tests into test runs. So you need to set unique build-ids and unique groups inside each Travis stage.</p>
+</div>
+<div class="paragraph">
+<p>To resolve this inconvenience, set different values for --group flag and --ci-build-id flag inside each
+Travis stage. As a result, our function should look similar to the following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>testPostDeploy: &amp;testPostDeploy
+script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --key $CY_KEY --parallel --group $GROUP_NAME --ci-build-id PostDeploy-$GROUP_NAME-$TRAVIS_BUILD_ID</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Another way to solve this issue is to set a "run completion delay" - the time that the run waits for new
+groups before completing (in seconds). All you need is to go to the Dashboard =&amp;gt Project =&amp;gt Settings and
+set this time into "Parallelization"section:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5cadabdc417d96b167228524_Screenshot%20from%202019-04-10%2011-33-22.png" alt="Set this time into &amp;quot Parallelization&amp;quot section">
+</div>
+</div>
+<div class="paragraph">
+<p>However, when we thought that we were done, an unpredictable phase of stabilization emerges.</p>
+</div>
+<div class="paragraph">
+<p>In our case, when the number of tests reached 400+, we were greeted with a "FATAL ERROR: CALL_AND_RETRY_LAST
+Allocation failed - JavaScript heap out of memory" issue.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5ca738fe04fdce4d0e9235c9_YREV9zf5eOjr4GFXmy76Z3ms9_-sgH_GixYnLGgjifRO6rZTaFWYCeAI9qAY91ZC9q0yjB5RqQUwrqZWMXqwCHCyRbVa9P62-uSbk94s8k_egn2GpjTEmtU8gYlN3R9Gr7rlG4Qn.png" alt="Greeted with a FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory issue.">
+</div>
+</div>
+<div class="paragraph">
+<p>To deal with this issue, we’ve checked <a href="https://github.com/cypress-io/cypress/issues/2316" target="_blank" rel="noopener">Cypress GitHub bug tracker</a> and found a solution there! According to provided information, we need to add an extra option for ts-loader, like so:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    loader: 'ts-loader',
+    options: {
+        transpileOnly: true
+    }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And magic happens.. It a.c.t.u.a.l.l.y works, phew!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98b78cd784213e1e9596d8_2TLQijarlStUBS8zl89d5nPI-ODRPKvhOmXojaArDa5jTjkcFGE6Q4O7R-dg1ZwYZIizTBLNYRXCZ6ijSmbWyj9TO1zkpCeOOe03qaBWrONlCEjLpwab_xE-qyWU8c20COgMCe9C.png" alt="add an extra option for ts-loader">
+</div>
+</div>
+<div class="paragraph">
+<p>According to our results from the following screenshot, our 522 tests took about 10 minutes. Note
+that the biggest specs were run first and the smallest were latest.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98b78d544edde73b605409_l1PcV6xixQCMNa1M0l3Qs_Vdw5Lzyw4UuRP2wPUBw556P79s3Rf_Meq3otSupxU2out5Gf_tjj513ojmrsZfnWziLFtmXONFnzhw7Kqf6FnWcrVAnOU84wPoR37P-mtZwLuNGkBh.png" alt="The results">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Results</strong></p>
+</div>
+<div class="paragraph">
+<p>While we were implementing parallelization, the number of our
+tests increased several times. However, let’s count the average time (in minutes) that it takes to run them
+(this statistic actual for the period from February to March of 2019).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cypress-testing-running-tests-in-parallel/5c98eff8de94e85e2807f5c5_rh1xcaXL1IYqJQNMxZTQbEdKKd63SX9HCxVbj3bI9AgYwwUIj4DO1KRo0N2Qz_AdoEVoiYC-TyF1kCtlMu2VFJZTisC7rJcBOqiNYehCF7oSIRaLRjgyRJmQwTTRJoUT2wGF_-tz.png" alt="The statistic actual for the period from February to March of 2019).">
+</div>
+</div>
+<div class="paragraph">
+<p>These are just words. Where is the proof?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://dashboard.cypress.io/#/projects/5mm2dy/runs" target="_blank" rel="noopener">NGX-bootstrap Cypress Dashboard with the history of test runs</a></p>
+</li>
+<li>
+<p><a href="https://github.com/valor-software/ngx-bootstrap/tree/development/cypress" target="_blank" rel="noopener">Main cypress directory with tests</a></p>
+</li>
+<li>
+<p><a href="https://github.com/valor-software/ngx-bootstrap/blob/development/.travis.yml" target="_blank" rel="noopener">Latest Travis configuration</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Useful information</strong></p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/cypress-io/cypress-example-kitchensink/blob/master/.travis.yml" target="_blank" rel="noopener">Parallelization example</a> provided <a href="https://dashboard.cypress.io/#/projects/4b7344/runs/2929/specs" target="_blank" rel="noopener">officially by CY</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Thank you words</strong></p>
+</div>
+<div class="paragraph">
+<p>The biggest kudos go to the Cypress team for supplying us with a free plan to try out the
+Cypress Parallelization feature for our <a href="https://valor-software.com/ngx-bootstrap/#/" target="_blank" rel="noopener">ngx-bootstrap</a>
+open-source library and a huge thanks to everyone who contributed!</p>
+</div>
+</div></div></div></section><!----><section class="landing-section"><div class="container"><h1 class="main-title double">More Articles</h1><blog-preview><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-e-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-e-module-federation/2%20(1).png" alt="Nx, Next.js, e Module Federation"></div><div class="text-container"><p>Nx, Next.js, e Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-and-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-and-module-federation/2%20(1).png" alt="Nx, Next.js, and Module Federation"></div><div class="text-container"><p>Nx, Next.js, and Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/debugging-ngrx-in-nativescript-with-redux-devtools" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png" alt="Debugging NgRx in NativeScript with Redux DevTools"></div><div class="text-container"><p>Debugging NgRx in NativeScript with Redux DevTools</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-bim-c35=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.824a489ad669cfd21327.js" defer=""></script><script src="polyfills.2ff19d9baa01044da760.js" defer=""></script><script src="main.fee1b9601e512d529cb6.js" defer=""></script>
+
+</body></html>

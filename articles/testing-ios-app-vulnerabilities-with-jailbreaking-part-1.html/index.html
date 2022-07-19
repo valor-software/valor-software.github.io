@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/testing-ios-app-vulnerabilities-with-jailbreaking-part-1.html"
+            },
+            "headline": "Testing iOS App Vulnerabilities with Jailbreaking. Part 1.",
+            "description": "Today we will introduce you to Jailbreaking—hacking iOS device—for testing vulnerabilities in your app.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/testing-ios-app-vulnerabilities-with-jailbreaking-part-1/5f69be37bcaae8d4d334f8d4_art-4.jpg",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Dmitriy Zhemchugov"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Thu Dec 26 2019 14:17:38 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Testing iOS App Vulnerabilities with Jailbreaking. Part 1.</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#e1e1e1}html{tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}body{font-family:inherit;line-height:inherit}*,:after,:before{box-sizing:border-box;border:0 solid}*,:after,:before{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty,/*!*/ /*!*/);--tw-brightness:var(--tw-empty,/*!*/ /*!*/);--tw-contrast:var(--tw-empty,/*!*/ /*!*/);--tw-grayscale:var(--tw-empty,/*!*/ /*!*/);--tw-hue-rotate:var(--tw-empty,/*!*/ /*!*/);--tw-invert:var(--tw-empty,/*!*/ /*!*/);--tw-saturate:var(--tw-empty,/*!*/ /*!*/);--tw-sepia:var(--tw-empty,/*!*/ /*!*/);--tw-drop-shadow:var(--tw-empty,/*!*/ /*!*/);--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css"></noscript><style></style><meta name="description" content="Today we will introduce you to Jailbreaking—hacking iOS device—for testing vulnerabilities in your app."><meta property="og:title" content="Testing iOS App Vulnerabilities with Jailbreaking. Part 1."><meta property="og:description" content="Today we will introduce you to Jailbreaking—hacking iOS device—for testing vulnerabilities in your app."><meta property="twitter:title" content="Testing iOS App Vulnerabilities with Jailbreaking. Part 1."><meta property="twitter:description" content="Today we will introduce you to Jailbreaking—hacking iOS device—for testing vulnerabilities in your app."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-stf-c35="" ng-version="12.2.16"><top-menu _ngcontent-stf-c35=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-stf-c35="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-stf-c35=""></router-outlet><general-item><article><section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div class="container flex items-center flex-col"><breadcrumbs class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Testing Ios App Vulnerabilities With Jailbreaking. Part 1. </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p class="text-20 mb-4">December 26, 2019</p><p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Testing iOS App Vulnerabilities with Jailbreaking. Part 1.</p><div class="w-70 h-70 rounded-full overflow-hidden mb-4"><img class="w-full h-full object-cover" src="assets/articles/testing-ios-app-vulnerabilities-with-jailbreaking-part-1/5f69c139ad11997382022d15_jemchugov.jpg" alt="Dmitriy Zhemchugov"></div><!----><p class="md:text-large text-24 mb-4">Dmitriy Zhemchugov</p><!----><p class="text-20">QA Engineer</p><!----></div></div></section><section class="landing-section"><div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div class="max-w-full"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_ios_and_jailbreaking">iOS and Jailbreaking</a></li>
+<li><a href="#_why_does_my_app_need_testing_with_jailbreaking">Why does my app need testing with Jailbreaking?</a></li>
+<li><a href="#_why_jailbreaking_is_dangerous_for_your_device">Why jailbreaking is dangerous for your device?</a></li>
+<li><a href="#_how_to_jailbreak_idevice_for_penetration_testing">How to jailbreak iDevice for penetration testing?</a></li>
+<li><a href="#_conclusion">Conclusion</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>While our main expertise is Angular &amp;amp Web development, we create mobile applications
+as well. Today we want to talk about testing vulnerabilities in iOS apps - penetration testing (or simply
+pentesting). In this article, we’ll introduce you to pentesting and preparing device for it and then, in the next
+article, show you how to detect vulnerabilities themselves.</p>
+</div>
+<div class="sect1">
+<h2 id="_ios_and_jailbreaking">iOS and Jailbreaking</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>iOS is designed with a particular emphasis on security. All third party applications run in their sandboxes - secure
+environments that isolate their data, not allowing any manipulation of files from other applications or the
+operating system. Although, an app can access special shared data, like photos from the album or contact data, but
+it is not possible for an app to directly access files written by other apps. There’s nowhere to turn - the app
+can’t go beyond its sandbox and steal or break some other app.</p>
+</div>
+<div class="paragraph">
+<p>By default, iDevices - all Apple devices
+running iOS - are not allowed to install apps from any source except the official <a href="https://en.wikipedia.org/wiki/Apple_App_Store" target="_blank" rel="noopener">Apple App Store</a>. Apple is careful to ensure
+that no malware gets there, and approves applications only after studying their code.</p>
+</div>
+<div class="paragraph">
+<p>The only exception is
+jailbroken devices. Jailbreaking permits root access - absolute power - in Apple’s mobile operating system,
+allowing the installation of external, potentially harmful, software. Jailbreaking gives a lot of work to Apple
+developers: they need to improve iOS security constantly and close new vulnerabilities. They even regularly pay
+hackers to find new holes.</p>
+</div>
+<div class="paragraph">
+<p>iOS becomes more and more invulnerable every day. While iOS 13 was released on
+September 19, 2019, <a href="https://checkra.in/">the app to jailbreak device with iOS 13</a> is just in its
+beta version. The latest stable version of iOS to have a stable jailbreaking available to the public is 12.4.</p>
+</div>
+<div class="paragraph">
+<p>Besides, a lot of users continue using previous iOS versions and devices with it:
+<strong>iPhone</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/testing-ios-app-vulnerabilities-with-jailbreaking-part-1/5e04c0bc52e2d0735d7730cc_Un82qXnMJHP0THO6PSv_ImjUGJDt6ZNbEOgJmuHu8b0V_hleFx1bqfhD4SgxZrtJQvurPfUJQ9vNwEhYcGPuX0RoOBofNNS3rBMp9vBxtrKGvzDtpSnp0juSG374BoyitMdyauTi.png" alt="5e04c0bc52e2d0735d7730cc Un82qXnMJHP0THO6PSv ImjUGJDt6ZNbEOgJmuHu8b0V hleFx1bqfhD4SgxZrtJQvurPfUJQ9vNwEhYcGPuX0RoOBofNNS3rBMp9vBxtrKGvzDtpSnp0juSG374BoyitMdyauTi">
+</div>
+<div class="title"><em>38% of <strong>all devices</strong> use iOS 12, <a href="https://developer.apple.com/support/app-store/" target="_blank" rel="noopener">as measured by the App Store</a>on October 15, 2019.</em></div>
+</div>
+<div class="paragraph">
+<p><strong>iPad</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/testing-ios-app-vulnerabilities-with-jailbreaking-part-1/5e05dd1e664aac73888e0226_58uC6tNAESc-hiTunvY2fsvyiY9m8DnXzaYf9OWrFCWRpFbymokaOokXfJzAXRtc_C_ZSGRBJVR3PKDbzX6r6lsprKQow9rmLi3EF2b-hZEcGoKSTJrJPpvKrLB2TJa7jcuwEUSh.png" alt="5e05dd1e664aac73888e0226 58uC6tNAESc hiTunvY2fsvyiY9m8DnXzaYf9OWrFCWRpFbymokaOokXfJzAXRtc C ZSGRBJVR3PKDbzX6r6lsprKQow9rmLi3EF2b hZEcGoKSTJrJPpvKrLB2TJa7jcuwEUSh">
+</div>
+<div class="title"><em>41% of <strong>all devices</strong> use iOS 12, <a href="https://developer.apple.com/support/app-store/" target="_blank" rel="noopener">as measured by the App Store</a> on October 15, 2019.</em></div>
+</div>
+<div class="paragraph">
+<p>As long as there are users of older operating systems and you distribute an
+application that supports older iOS versions, your app should be checked for security vulnerabilities. The old
+versions are still commonly used, so jailbreaking remains a topical subject.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_does_my_app_need_testing_with_jailbreaking">Why does my app need testing with Jailbreaking?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jailbreaking allows finding vulnerabilities that can cause financial damage
+to the app owner. Hackers can deprive the business of its income or steal from you. Here are just several
+possible situations:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In-app purchase fraud. If in-app purchases is your monetization strategy, protecting them should be your
+first-priority pentesting item. On the jailbroken device, the user can change in-app purchase server to
+the local storage and then make all in-app purchases for free.</p>
+</li>
+<li>
+<p>Ad blocking. <a href="https://www.businessofapps.com/data/app-statistics/" target="_blank" rel="noopener">90% of iOS App Store apps are
+free</a>, and the easiest way to make money with a free app is through advertising. The hint here is to
+remove ads from the app with the help of jailbreak app store’s ad blocker.</p>
+</li>
+<li>
+<p>Data leakage. For example, stealing data from your app’s users may lead to a decline in the reputation and
+fall of stocks.</p>
+</li>
+<li>
+<p>Data spoofing. The hackers can make fake or brand unsafe sites be shown as premium domains within app
+adds.</p>
+</li>
+<li>
+<p>Intercepted control of your app. Imagine your app controls wireless lighting equipment. If the app is
+hacked, the control of the equipment is overtaken.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For more detailed information on possible risks see <a href="https://www.owasp.org/index.php/Mobile_Top_10_2016-Top_10" target="_blank" rel="noopener">OWASP Top 10 Mobile Risks, the Year 2016</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_jailbreaking_is_dangerous_for_your_device">Why jailbreaking is dangerous for your device?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As well as your app may be affected by hackers, jailbreaking puts the device you’re testing on at risk. Make sure that the test device or its apps don’t have important sensitive data (e.g. make sure you don’t have a bank app installed) before you start - it may be damaged or stolen too. Therefore, we recommend using a separate device for such testing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_jailbreak_idevice_for_penetration_testing">How to jailbreak iDevice for penetration testing?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Depending on the iOS version, <a href="https://canijailbreak.com/" target="_blank" rel="noopener">jailbreaking method will vary and require installation from your PC</a>. Let’s review how to jailbreak iOS 12.4 without connection to PC:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Pre-requisites:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Remove any iOS 12.4 OTA update file from Settings -&amp;gt Storage and reboot your device.</p>
+</li>
+<li>
+<p>Make sure to create a backup of all important data on your device before jailbreaking.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Download latest Unc0ver:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to <a href="http://ignition.fun/" target="_blank" rel="noopener">ignition.fun</a> on your iDevice.</p>
+</li>
+<li>
+<p>Use the search bar to find Unc0ver.</p>
+</li>
+<li>
+<p>Tap on Get followed by Install.</p>
+</li>
+<li>
+<p>Wait for the app to download and install it.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Trust certificate:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Head over to Settings → General → Profile.</p>
+</li>
+<li>
+<p>Tap the developer’s name and trust the certificate.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>Jailbreak the device:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Open Unc0ver.</p>
+</li>
+<li>
+<p>Tap the Jailbreak button.</p>
+</li>
+<li>
+<p>Wait for the app to do its job: your iDevice will respring during the process after which you should see
+the Cydia (jailbreak app store for iDevices) icon on your home screen.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>*NOTE:*If the app ends up freezing, wait for a few minutes. In case that does not work,
+reboot your iDevice and then repeat the above steps.</p>
+</div>
+<div class="paragraph">
+<p>Since Cydia is no longer being actively updated, you can install an alternative store that was developed to fill the gap - <a href="https://getsileo.app/" target="_blank" rel="noopener">Sileo</a>,
+which works for iOS11 or newer.</p>
+</div>
+<div class="paragraph">
+<p>Cydia and Sileo will allow downloading of tweaks - mini-apps that
+initially were intended to add more features for iOS users (like customizing the interface look) but later
+included tools to hit vulnerabilities of your app. Besides Store’s tweaks, your app can also be harmed by
+self-written injections. Hackers are more likely to write their tweaks for a particular app to crack it. This
+will be a narrow expensive professional work.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The iDevices are famed for their
+focus on safety. By default, any downloaded application will not interfere with other apps without user
+confirmation, so possibilities of accessing sensitive data are limited by design. But there is a loophole -
+jailbreaking - hacking Apple protection system to gain full access&amp;nbsp to the user’s device. Users can set
+non-approved software and have a deeper access to all installed applications.</p>
+</div>
+<div class="paragraph">
+<p>Jailbreaking adds work not only to the Apple team but also to iOS app developers and test engineers. If your business can potentially suffer from application-related financial loss, you should check your application for the possibility of hackers to do anything harmful via&amp;nbsp the jailbroken device. Almost every app is potentially vulnerable - not just apps with in-app purchases or other money-related features.</p>
+</div>
+<div class="paragraph">
+<p>Jailbreaking is possible on all iOS versions up to 13. Since Apple is continuously working on security, the quantity of iOS vulnerabilities is
+getting smaller and smaller. Still, you should pay attention to the statistics of different old iOS versions -
+if users don’t use some old iOS version, don’t bother supporting it. There will be fewer chances to crack it
+and less work for&amp;nbsp a developer and test engineer to work through vulnerabilities available only on
+jailbroken devices.</p>
+</div>
+<div class="paragraph">
+<p>Having introduced you to iOS app vulnerabilities, we will later talk about
+penetration testing (or simply pentesting) to cover several test cases.</p>
+</div>
+<div class="paragraph">
+<p>Stay on guard, fellas!</p>
+</div>
+</div>
+</div></div></div></section><!----><section class="landing-section"><div class="container"><h1 class="main-title double">More Articles</h1><blog-preview><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-e-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-e-module-federation/2%20(1).png" alt="Nx, Next.js, e Module Federation"></div><div class="text-container"><p>Nx, Next.js, e Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-and-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-and-module-federation/2%20(1).png" alt="Nx, Next.js, and Module Federation"></div><div class="text-container"><p>Nx, Next.js, and Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/debugging-ngrx-in-nativescript-with-redux-devtools" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png" alt="Debugging NgRx in NativeScript with Redux DevTools"></div><div class="text-container"><p>Debugging NgRx in NativeScript with Redux DevTools</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-stf-c35=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.824a489ad669cfd21327.js" defer=""></script><script src="polyfills.2ff19d9baa01044da760.js" defer=""></script><script src="main.fee1b9601e512d529cb6.js" defer=""></script>
+
+</body></html>

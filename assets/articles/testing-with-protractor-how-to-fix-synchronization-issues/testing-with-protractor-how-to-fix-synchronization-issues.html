@@ -1,0 +1,236 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_angular_cant_be_found_on_the_page_error">"Angular can&#8217;t be found on the page" error</a></li>
+<li><a href="#_waiting_for_angular_timeout_error">"Waiting for Angular" timeout error</a>
+<ul class="sectlevel3">
+<li><a href="#_angularjs"><em>AngularJS</em></a></li>
+<li><a href="#_angular"><em>Angular</em></a></li>
+</ul>
+</li>
+<li><a href="#_examples_of_detected_code_parts">Examples of detected code parts</a></li>
+<li><a href="#_conclusion">Conclusion</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We love tools that automate our work - we can do more with fewer efforts, season it with
+some open-source love and, oh boy, we&#8217;re gonna use it for sure. However, open-source software is a
+community-driven approach, there may be hardly any information about it on the internet or no insights at all. If
+you face errors that cannot be solved or don&#8217;t have enough understanding of the tool while exploring, you can give
+up on the tool without discovering all its useful features.</p>
+</div>
+<div class="paragraph">
+<p>We want to delve into two possible synchronization issues you may face while working with <a href="http://www.protractortest.org/#/" target="_blank" rel="noopener">Protractor</a> - an end-to-end test framework for Angular and AngularJS apps. The good news is that there&#8217;s official documentation from the Protractor team, but the bad news is that it didn&#8217;t help us to solve these issues, so we&#8217;ll share the solution we came up with.</p>
+</div>
+<div class="sect1">
+<h2 id="_angular_cant_be_found_on_the_page_error">"Angular can&#8217;t be found on the page" error</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s check the basic solution <a href="http://www.protractortest.org/#/faq#angular-can-t-be-found-on-my-page" target="_blank" rel="noopener">Protractor FAQ</a> provides:</p>
+</div>
+<div class="paragraph">
+<p><em>Protractor supports Angular and AngularJS 1.0.6/1.1.4 and higher - check that your version of Angular is
+upgraded.</em></p>
+</div>
+<div class="paragraph">
+<p><em>For AngularJS apps, the angular variable is expected to be available in the global context. To check this,
+try opening Chrome DevTools or Firefox and see if angular is defined.</em></p>
+</div>
+<div class="paragraph">
+<p><em>For Angular apps, you should see a global method getAllAngularTestabilities.</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_waiting_for_angular_timeout_error">"Waiting for Angular" timeout error</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Asynchronous and multicomponent WebDriver tests may cause various timeout errors in a Protractor test. One of
+them can be the "Waiting for Angular" error. Here&#8217;s the information from <a href="http://www.protractortest.org/#/timeouts#how-to-disable-waiting-for-angular" target="_blank" rel="noopener">Protractor&#8217;s Documentation</a>:</p>
+</div>
+<div class="paragraph">
+<p><em>Before performing any action, Protractor waits until there are no pending asynchronous tasks in your
+Angular application. This means that all timeouts and HTTP requests are finished.</em></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>An error in your test results will look like this:&amp;nbsp Timed out waiting for asynchronous Angular
+tasks to finish after 11 seconds.</em></p>
+</li>
+<li>
+<p><em>Default timeout: 11 seconds</em></p>
+</li>
+<li>
+<p><em>How to change: Add allScriptsTimeout: timeout_in_millis to your Protractor configuration file.</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>You may also need to fix this problem by investigating and fixing an issue on the application level.</em></p>
+</div>
+<div class="sect3">
+<h4 id="_angularjs"><em>AngularJS</em></h4>
+<div class="paragraph">
+<p><em>If your AngularJS application continuously polls $timeout or $http, Protractor will wait indefinitely and
+time out. To fix infinite timeout, you should use the</em> <a href="https://github.com/angular/angular.js/blob/master/src/ng/interval.js"><em>$interval</em></a> <em>for
+anything that polls continuously (<strong>Note:</strong> $interval was introduced in
+Angular 1.2rc3).</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_angular"><em>Angular</em></h4>
+<div class="paragraph">
+<p><em>For Angular apps, Protractor will wait until the <a href="https://medium.com/@MertzAlertz/what-the-hell-is-zone-js-and-why-is-it-in-my-angular-2-6ff28bcf943e" target="_blank" rel="noopener">Angular
+    Zone</a> stabilizes. This means long-running async operations will block your test from
+continuing. To work around this, run the following tasks outside of the Angular Zone.</em></p>
+</div>
+<div class="paragraph">
+<p><em>Example:</em></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>this.ngZone.runOutsideAngular(() =&gt; {
+ setTimeout(() =&gt; {
+  // Changes here will not propagate into your view.
+  this.ngZone.run(() =&gt; {
+   // Run inside the ngZone to trigger change detection.
+  });
+ }, REALLY_LONG_DELAY);
+});</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a small test containing one action to navigate the page and one assertion that displays an
+element.</p>
+</li>
+<li>
+<p>Detect the reason for the issue:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>if ('You are sure that all your application is written with Angular, but you get the error “Angular could not be found on the page”') {
+ try {
+  browser.waitForAngularEnabled(false);
+  browser.get('/your-page.html');
+  expect(element(by.id('logo')).isDisplayed()).toBeTruthy();
+// If this code works, check out examples of detected code parts below in this article.
+ }
+}else if ('You are not sure that all your application is written with Angular') {
+ try {
+  checkItManuallyforAngularJS = 'For AngularJS apps, the angular variable is expected to be available in the global context. Try opening Chrome DevTools or Firefox and see if Angular is defined.';
+  checkItManuallyforAngular = 'For Angular apps, you should see a global method getAllAngularTestabilities.';
+ }
+// Can't manually check? Check the hints on identifying technologies the site is built on*
+}else if ('You are sure that the main part of your application is written with Angular, but login page (or any other) isn’t.') {
+ try {
+  browser.waitForAngularEnabled(false);
+  browser.get('/non-angular-login-page.html');  element(by.id('username')).sendKeys('Jane');
+  element(by.id('password')).sendKeys('1234');
+  element(by.id('button')).click();  browser.waitForAngularEnabled(true);
+  browser.get('/page-containing-angular.html');
+ }
+}</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/29950213/how-can-i-tell-whether-a-web-app-was-built-using-angular-or-other-technologies" target="_blank" rel="noopener">Here are the hints on identifying technologies the site is built on</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As a result, you should know which part of the application is written using Angular and which part is not.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>For each part of the app that isn&#8217;t written using Angular, use the following function:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>browser.waitForAngularEnabled(false);</p>
+</div>
+<div class="paragraph">
+<p>Also, don&#8217;t forget to enable synchronization when you&#8217;re done working with the non-Angular parts. Here&#8217;s the code:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>browser.waitForAngularEnabled(true);</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>Detect code that needs to be rewritten:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Try to investigate which part of the code always tries to do regular actions, which one is
+detecting user actions, and which always triggers change detection:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Find all <em>setInterval</em> functions, <em>Observable.timers</em>, timers, etc.</p>
+</li>
+<li>
+<p>Comment out all found parts, build the application, and run the small test (be sure to enable&amp;nbsp
+synchronization).</p>
+</li>
+<li>
+<p>Repeat steps 4.a and 4.b until the test passes.</p>
+</li>
+<li>
+<p>Go back to commented code lines. By process of elimination, uncomment all parts which are not related to
+synchronization.</p>
+</li>
+<li>
+<p>When all parts of the code which blocked synchronization earlier have been detected, rewrite the code -
+import ngZone to the component and use the <em>runOutsideAngular</em> function.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples_of_detected_code_parts">Examples of detected code parts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To better understand which parts of an application you may need to rewrite, see the examples below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/testing-with-protractor-how-to-fix-synchronization-issues/5dbacaa2bbcbc1610e7123fa_Examples%20of%20detected%20code%20parts.png" alt="5dbacaa2bbcbc1610e7123fa Examples%20of%20detected%20code%20parts">
+</div>
+<div class="title">Examples of detected code parts</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Needless to say that using open-source tools makes our lives easier. Unfortunately, when working with a new
+tool, you may often face various issues and don&#8217;t have the right example of fixing them. Lack of exhaustive
+documentation and speedy support can be challenging at times.</p>
+</div>
+<div class="paragraph">
+<p>Specializing in Angular web development, we need to find more and more relevant best practices to follow.
+Earlier, we talked about <a href="https://valor-software.com/persons/ludmila-nesvitiy.html" target="_blank" rel="noopener">Cypress
+testing</a>, and in this article we dived into synchronization issues that might occur while testing
+Angular-based apps with <a href="http://www.protractortest.org/#/" target="_blank" rel="noopener">Protractor</a>.</p>
+</div>
+<div class="paragraph">
+<p>We hope that you&#8217;ll enjoy working with Protractor even more after reading this article! We wish you good luck with conquering new QA-horizons!</p>
+</div>
+</div>
+</div>

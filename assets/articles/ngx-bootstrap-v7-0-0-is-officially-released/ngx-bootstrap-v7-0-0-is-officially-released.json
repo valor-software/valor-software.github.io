@@ -1,0 +1,9 @@
+{
+  "title": "ngx-bootstrap v7.0.0 is officially released!",
+  "order": 31,
+  "domains": ["dev_quality_assurance", "sales_marketing", "other"],
+  "language": "en",
+  "bgImg": "assets/articles/ngx-bootstrap-v7-0-0-is-officially-released/60fa8f01dac70bb9ea4da278_Ngx-slide-1.png",
+  "date": "Fri Jul 23 2021 09:59:45 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "We’re happy to announce that ngx-bootstrap v7.0.0 is officially released! We added support of Angular 11 and 12 in parallel! Now you can easily migrate to the latest versions of Angular."
+}

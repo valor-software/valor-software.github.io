@@ -1,0 +1,585 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/case-study-of-applitools-or-not-only-cypress-cross-browser-testing.html"
+            },
+            "headline": "Case study of Applitools or not only Cypress cross-browser testing",
+            "description": "It’s a story about automated testing of the graphic user interface, including pixel-perfect and cross-browser Cypress testing, using Applitools.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/case-study-of-applitools-or-not-only-cypress-cross-browser-testing/5f69eb8d290981334341012c_art-11.jpeg",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Ludmila Nesvitiy"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Mon Apr 08 2019 10:50:04 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Case study of Applitools or not only Cypress cross-browser testing</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#e1e1e1}html{tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}body{font-family:inherit;line-height:inherit}*,:after,:before{box-sizing:border-box;border:0 solid}*,:after,:before{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty,/*!*/ /*!*/);--tw-brightness:var(--tw-empty,/*!*/ /*!*/);--tw-contrast:var(--tw-empty,/*!*/ /*!*/);--tw-grayscale:var(--tw-empty,/*!*/ /*!*/);--tw-hue-rotate:var(--tw-empty,/*!*/ /*!*/);--tw-invert:var(--tw-empty,/*!*/ /*!*/);--tw-saturate:var(--tw-empty,/*!*/ /*!*/);--tw-sepia:var(--tw-empty,/*!*/ /*!*/);--tw-drop-shadow:var(--tw-empty,/*!*/ /*!*/);--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css"></noscript><style></style><meta name="description" content="It’s a story about automated testing of the graphic user interface, including pixel-perfect and cross-browser Cypress testing, using Applitools."><meta property="og:title" content="Case study of Applitools or not only Cypress cross-browser testing"><meta property="og:description" content="It’s a story about automated testing of the graphic user interface, including pixel-perfect and cross-browser Cypress testing, using Applitools."><meta property="twitter:title" content="Case study of Applitools or not only Cypress cross-browser testing"><meta property="twitter:description" content="It’s a story about automated testing of the graphic user interface, including pixel-perfect and cross-browser Cypress testing, using Applitools."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-oax-c35="" ng-version="12.2.16"><top-menu _ngcontent-oax-c35=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-oax-c35="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-oax-c35=""></router-outlet><general-item><article><section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div class="container flex items-center flex-col"><breadcrumbs class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Case Study Of Applitools Or Not Only Cypress Cross-browser Testing </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p class="text-20 mb-4">April 8, 2019</p><p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Case study of Applitools or not only Cypress cross-browser testing</p><div class="w-70 h-70 rounded-full overflow-hidden mb-4"><img class="w-full h-full object-cover" src="assets/articles/case-study-of-applitools-or-not-only-cypress-cross-browser-testing/5f69eabbb804c9c13508347a_nesvitiy.jpg" alt="Ludmila Nesvitiy"></div><!----><p class="md:text-large text-24 mb-4">Ludmila Nesvitiy</p><!----><p class="text-20">QA Automation Engineer</p><!----></div></div></section><section class="landing-section"><div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div class="max-w-full"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel3">
+<li><a href="#_set_up_applitools_eyes">Set up Applitools Eyes</a></li>
+<li><a href="#_write_your_test_for_visual_testing">Write your test for visual testing</a></li>
+<li><a href="#_run_our_test_and_observe_the_results">Run our test and observe the results</a></li>
+<li><a href="#_summary">Summary</a></li>
+<li><a href="#_afterwords">Afterwords</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The world of testing is moving further and deeper towards automated tests. Naturally,
+more and more new tools and approaches are emerging. To keep up with innovation and at the same time understand
+which of the approaches or tools are best suited precisely in this situation, you need to continually experiment,
+try new applications, libraries, and technologies.</p>
+</div>
+<div class="paragraph">
+<p>As a testing engineer in the automation field, I
+understand that most functional testing types could and should be automated. But what about non-functional? UI
+testing, pixel-perfect, usability testing - can also be automated. Surprised? Then this article is for you,
+because it’s a story about automated testing of the graphic user interface, including pixel-perfect and
+cross-browser Cypress testing, using <a href="https://applitools.com" target="_blank" rel="noopener">Applitools</a>.</p>
+</div>
+<div class="paragraph">
+<p>According to official documentation, Applitools is a
+multi-functional application that provides a lot of interesting features for test engineers, developers, product
+owners, managers, etc. We wanted to implement just a few of the provided features to our <a href="https://valor-software.com/ngx-bootstrap/#" target="_blank" rel="noopener">ngx-bootstrap</a> library, specifically:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Screenshot comparisons using artificial intelligence</p>
+</li>
+<li>
+<p>Applitools dashboard for managing snapshot tests</p>
+</li>
+<li>
+<p>Cross-browser and cross-device testing for already implemented Cypress tests.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All tasks above are interdependent on each other and therefore should be done at one time. On a side note:
+we’re implying that Cypress is already installed and that all functionality is covered by e2e-Cypress tests.
+If you need help with the basic setup and configuration of Cypress, we advice to follow the <a href="https://docs.cypress.io/guides/getting-started/installing-cypress.html" target="_blank" rel="noopener">official Getting Started article</a>. To keep things straight, let’s move through all steps and set up the Applitools plugin for Cypress:</p>
+</div>
+<div class="sect3">
+<h4 id="_set_up_applitools_eyes">Set up Applitools Eyes</h4>
+<div class="paragraph">
+<p>We already had a large scope of Cypress tests, so they just needed several additions:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="1">
+<li>
+<p>Add the Applitools plugin to the <em>cypress/plugins/index.js</em> file by specifying
+<strong>eyes.cypress</strong> module:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>require('@applitools/eyes.cypress')(module);</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Import all possible Applitools commands to the <em>cypress/support/index.js</em> file:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>import './commands'</p>
+</div>
+<div class="paragraph">
+<p><strong>Note</strong> In the basic setup, you can do steps #1 and #2 by just running '` <em>npx eyes-setup</em> ’
+after installing the Eyes Cypress npm package.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Add Applitools eyes as an additional library to the dependencies and run <strong><em>npm i</em></strong> command in the terminal:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>"@applitools/eyes.cypress": "3.4.2"</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>Add the appropriate command to the package.json in the src folder (we’ll explain what it does, don’t be
+scared):</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>"cy:run:snapshot": "APPLITOOLS_SHOW_LOGS=1 APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress/snapshot"</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>APPLITOOLS_SHOW_LOGS=1 - throws additional logs to the console (can be helpful when you need to
+investigate the reason for failures locally and on the CI).</p>
+</li>
+<li>
+<p>APPLITOOLS_CONCURRENCY=100 - specifies the amount of available concurrent sessions in your price plan.
+<strong>Note</strong> Default value is 0.</p>
+</li>
+<li>
+<p>--config integrationFolder=cypress/snapshot - makes Cypress run only snapshot tests in this scope.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you want to run Cypress tests without Applitools and you don’t want to get any warnings from Applitools
+such as in the image below, add the APPLITOOLS_CONCURRENCY=100 parameter to the appropriate Cypress
+command.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><strong>Important notice:</strong> the default behavior for free accounts is that the Applitools
+visual tests are run with a concurrency value of 1. This means that the visual tests don’t run in parallel,
+and therefore are slower.</p>
+</div>
+<div class="paragraph">
+<p>If your account does support a higher level of concurrency, it’s possible to pass
+a different value by specifying ‘concurrency:X’ in the applitools.config.js file.</p>
+</div>
+<div class="paragraph">
+<p>Check <a href="https://www.npmjs.com/package/@applitools/eyes.cypress#concurrency" target="_blank" rel="noopener">more information on how to configure the concurrency level</a></p>
+</div>
+<div class="paragraph">
+<p>If you are interested in speeding up your visual tests, contact <a href="http://sdr@applitools.com/" target="_blank" rel="noopener">sdr@applitools.com</a> to get a trial account and a higher level of concurrency.</p>
+</div>
+</blockquote>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_write_your_test_for_visual_testing">Write your test for visual testing</h4>
+<div class="paragraph">
+<p>To begin with, let’s look how the <a href="https://github.com/valor-software/ngx-bootstrap/blob/development/cypress/snapshot/snapshot_spec.js" target="_blank" rel="noopener">fully functional tes</a>  looks like:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    import { DatepickerPo } from '../support/datepicker.po';
+    import { DropdownsPo } from '../support/dropdowns.po';
+    import { ModalsPo } from '../support/modals.po';
+    import { TabsPo } from '../support/tabs.po';
+    import { TypeaheadPo } from '../support/typeahead.po';
+    describe('Snapshot test', () =&gt; {
+        const componentsArray = [
+            new DatepickerPo(),
+            new DropdownsPo(),
+            new ModalsPo(),
+            new TypeaheadPo(),
+            new TabsPo()
+        ];
+        componentsArray.forEach(page =&gt; {
+            it(`navigate to each Demo and check example: ${page.pageUrl}`, () =&gt; {
+            page.navigateTo();
+            cy.get('ng-sample-box').each(demo =&gt; {
+                const subtitle = demo.parent().find('h3').text();   cy.wrap(demo).find(`.bd-example`)
+                .eyesOpen({
+                    appName: 'NGX-bootstrap',
+                    concurrency: 5,
+                    matchLevel: 'Strict',
+                    testName: `${page.pageUrl} - ${subtitle}`,
+                    browser: [
+                        {
+                            name: 'chrome',
+                            width: 360,
+                            height: 640
+                        },
+                        {
+                            name: 'firefox',
+                            width: 360,
+                            height: 640
+                        },
+                        {
+                            name: 'firefox',
+                            width: 1366,
+                            height: 768
+                        }
+                    ]
+                })
+                .eyesCheckWindow({
+                    sizeMode: 'selector',
+                    selector: `.bd-example`,
+                    tag: `${page.pageUrl}-${subtitle}`,
+                    sendDom: false,
+                })
+                .eyesClose();
+            });
+        });
+    });
+});</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s analyze it step by step because it’s much code to grasp at one sitting.</p>
+</div>
+<div class="paragraph">
+<p>Firstly, we need to
+declare an array of objects. Each Page Object has its unique URL for navigation and the set of methods for our
+test.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>const componentsArray = [new DatepickerPo(),new DropdownsPo(),new TabsPo()];</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Take each object using forEach loop.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>componentsArray.forEach(page =&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Invoke URL name, which will make a descriptive test name and tell you what the name of the current testing page is.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>it('navigate to each Demo and check example: ${page.pageUrl}', () =&gt; {</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Navigate to a page to start testing:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>page.navigateTo();</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Method navigateTo() is implemented using cy.visit command, which will take our pageUrl, add it to baseUrl, and form an appropriate URL to navigate.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>navigateTo() {
+    const bsVersionRoute = Cypress.env('bsVersion') ? `?_bsVersion=bs${Cypress.env('bsVersion')}` : '';
+    cy.visit(`${ this.pageUrl }${bsVersionRoute}`);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Okay, but what is <em>bsVersionRoute</em> doing there? This is just a specification of the testing process
+for the ngx-bootstrap library, due to the extended range of supported Bootstrap versions.</p>
+</div>
+<div class="paragraph">
+<p><em>bsVersionRoute</em> parameter will tell Cypress which bootstrap version should be tested:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://valor-software.com/ngx-bootstrap/#/datepicker" target="_blank" rel="noopener">Bootstrap 4</a> version (default one)</p>
+</li>
+<li>
+<p><a href="https://valor-software.com/ngx-bootstrap/#/datepicker?_bsVersion=bs3" target="_blank" rel="noopener">Bootstrap 3</a> version</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Find each demo snippet, which consists of the demo component itself and two tabs with additional info:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cy.get('ng-sample-box').each(demo =&gt; {</pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/case-study-of-applitools-or-not-only-cypress-cross-browser-testing/5cab2e647177dc01b8d79c43_IaNO13CuCwBG6QvLn0cpMlOwcVqfi9TXLk_OMRojE1FGHdA2Ir-A8DqxNNJ08Qc3-mVo5mboraTgc6rffkffQm6F3yeFrd3BfshS7V04zrzoGYUnmpUofvrKpE5MYhWqRtPxhwi8.png" alt="Bootstrap example">
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can define the sub-title of each Demo, which we’ll test. Let’s turn to the parent of
+the component that we’ve found and find 'h3' header there.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>const subtitle = demo.parent().find('h3').text();</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <em>ng-sample-box</em> component contains a template and component source. In our test, we don’t need
+any information from tabs, so we’ll work solely with the .bd-example class.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cy.wrap(demo).find(`.bd-example`)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Oooh! Now we can open Applitools eyes and begin "staring"at our demo. Remember we said that these tasks
+are interdependent at the beginning of an article? Here we can also define the settings for our next task, in
+which we want to see the results on the Applitools Dashboard:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>eyesOpen({
+    appName: 'NGX-bootstrap',
+    matchLevel: 'Strict',
+    testName: `${page.pageUrl} - ${subtitle}`,</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>appName</strong>, as the name
+suggests, is an application name that’ll be shown on the Dashboard in "Apps &amp;amp Tests" menu. Also, we’ll
+group all our test results according to this parameter.</p>
+</li>
+<li>
+<p><strong>matchLevel</strong> parameter sets
+the level of image comparison. The default match level is "Strict". If you would like to use a different
+match level, you should specify it right here.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Some other comparison levels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Exact</strong> - pixel to pixel comparison.</p>
+</li>
+<li>
+<p><strong>Strict</strong> - comparison for everything, what the user can visually detect, including content and color.</p>
+</li>
+<li>
+<p><strong>Content</strong> - same as Strict, but without color comparison.</p>
+</li>
+<li>
+<p><strong>Layout</strong> - compares elements structure.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If that’s not enough, you can get more information about the <em>matchLevel</em> parameter at <a href="https://help.applitools.com/hc/en-us/articles/360007188591-Match-Levels" target="_blank" rel="noopener">official Applitoos blog</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p><strong>testName</strong> parameter
+helps you understand which tests failed and what functionality you should recheck or fix. You’ll see this info
+in the Applitools Dashboard according to our configuration:</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/case-study-of-applitools-or-not-only-cypress-cross-browser-testing/5cab32d43be192e8aa80ebec_ATDeleG.png" alt="image7">
+</div>
+</div>
+<div class="paragraph">
+<p>Also, let’s not forget about cross-browser testing, so be sure to indicate the browsers:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>browser: [{
+    name: 'chrome',
+    width: 360,
+    height: 640
+},
+{
+    name: 'firefox',
+    width: 1366,
+    height: 768
+}]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To be clear, as of now, the Applitools plugin provides the possibility to test in Firefox, Chrome, IE, Edge.
+In the nearest future, Safari and many other browsers are going to be supported. In the meantime, you can
+already set different screen resolutions using width and height settings.</p>
+</div>
+<div class="paragraph">
+<p>Now, when we’re almost done, let Applitools know that we’re ready to start testing:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>.eyesCheckWindow({
+    sizeMode: 'selector',
+    selector: `.bd-example`,
+    tag: `${page.pageUrl}-${subtitle}`,
+    sendDom: false,
+})</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>sizeMode</strong> parameter defines which part of our window will be checked. List of available options: full-page, viewport, selector, region. You can find the official description of each option in the <a href="https://github.com/applitools/eyes-cypress/blob/master/README.md#arguments-to-cyeyescheckwindow" target="_blank" rel="noopener">appropriate section of official documentation</a>.</p>
+</li>
+<li>
+<p><strong>selector</strong> parameter will work only if you set the <em>sizeMode: 'selector.'</em> The value
+should be a valid CSS-selector or XPath to an appropriate component/block/part which you want to test.</p>
+</li>
+<li>
+<p><strong>tag</strong> parameter groups test results by tag in the dashboard.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Once our tests are finished, we need to tell Applitools about it:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>.eyesClose();</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_run_our_test_and_observe_the_results">Run our test and observe the results</h4>
+<div class="literalblock">
+<div class="content">
+<pre>APPLITOOLS_API_KEY=myKey npm run cy:run:snapshot</pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/case-study-of-applitools-or-not-only-cypress-cross-browser-testing/5cab3423f8e012b814e70c56_ECro61m.png" alt="image5">
+</div>
+</div>
+<div class="paragraph">
+<p>Applitools Dashboard shows the baseline images (which will be taken at the first test run and
+will be considered as a reference result) and images from the current test run.</p>
+</div>
+<div class="paragraph">
+<p>If there are some differences, then the comparison logic, based on AI, will detect changes and show them to you:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/case-study-of-applitools-or-not-only-cypress-cross-browser-testing/5cab34427177dceb5bd7b918_YYUXA9z.png" alt="image2">
+</div>
+</div>
+<div class="paragraph">
+<p>If we want to update our baseline images, we need to go to the Dashboard and accept the
+differences which were found during the latest test run. This helps you keep the latest reference images
+versions up-to-date.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_summary">Summary</h4>
+<div class="paragraph">
+<p>We’ve implemented <strong>cross-browser</strong> and <strong>cross-device</strong> testing for our demo application, using our default testing library (Cypress) with the additional Applitools plugin. Now we can be sure that each part of our UI works properly. Okay, but everything couldn’t be that good and painless, could it? Let’s take a look at some of the pros and cons:</p>
+</div>
+<div class="sect4">
+<h5 id="_pros">PROS</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to set up, short time for implementation</p>
+</li>
+<li>
+<p>AI-powered image comparison technology</p>
+</li>
+<li>
+<p>A wide spectrum of available settings for image comparison</p>
+</li>
+<li>
+<p>Possibility to manage reference images in the dashboard</p>
+</li>
+<li>
+<p>Great test result management: find them, group them, remove, etc.</p>
+</li>
+<li>
+<p>Responsive support team, who took all our wishes into account.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_cons">CONS</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Not as many browsers available for testing as we would like (BUT, while our article was passing through
+several levels of verification, the Applitools development team has already made support for IE and Edge
+and will soon have Safari as well).</p>
+</li>
+<li>
+<p>TypeScript support is coming soon. Check the <a href="https://applitools.com/tutorials" target="_blank" rel="noopener">list of tutorials</a>, maybe
+it already exists.</p>
+</li>
+<li>
+<p>From time to time, error logs in the console aren’t that descriptive.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_afterwords">Afterwords</h4>
+<div class="paragraph">
+<p>A big THANK YOU to <a href="https://applitools.com/" target="_blank" rel="noopener">Applitools</a>
+and <a href="https://www.thisdot.co/" target="_blank" rel="noopener">This Dot Labs</a> teams for their ongoing support during our testing journey and for providing the possibility to test all this out. It was a blast!</p>
+</div>
+</div></div></div></section><!----><section class="landing-section"><div class="container"><h1 class="main-title double">More Articles</h1><blog-preview><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-e-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-e-module-federation/2%20(1).png" alt="Nx, Next.js, e Module Federation"></div><div class="text-container"><p>Nx, Next.js, e Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-and-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-and-module-federation/2%20(1).png" alt="Nx, Next.js, and Module Federation"></div><div class="text-container"><p>Nx, Next.js, and Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/debugging-ngrx-in-nativescript-with-redux-devtools" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png" alt="Debugging NgRx in NativeScript with Redux DevTools"></div><div class="text-container"><p>Debugging NgRx in NativeScript with Redux DevTools</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-oax-c35=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.824a489ad669cfd21327.js" defer=""></script><script src="polyfills.2ff19d9baa01044da760.js" defer=""></script><script src="main.fee1b9601e512d529cb6.js" defer=""></script>
+
+</body></html>

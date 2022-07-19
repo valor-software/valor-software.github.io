@@ -1,0 +1,432 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/setting-up-your-project-on-gcp-fast-using-terraform-and-kubernetes.html"
+            },
+            "headline": "Setting up your project on GCP fast using Terraform and Kubernetes",
+            "description": "In this article, I’ll lead you through a set-up of infrastructure on Google Cloud using Terraform.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/setting-up-your-project-on-gcp-fast-using-terraform-and-kubernetes/61125e68768c8f5cb09151a1_Blog4.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Angelina Shemrikovych"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Thu Jul 29 2021 13:15:26 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Setting up your project on GCP fast using Terraform and Kubernetes</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#e1e1e1}html{tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}body{font-family:inherit;line-height:inherit}*,:after,:before{box-sizing:border-box;border:0 solid}*,:after,:before{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty,/*!*/ /*!*/);--tw-brightness:var(--tw-empty,/*!*/ /*!*/);--tw-contrast:var(--tw-empty,/*!*/ /*!*/);--tw-grayscale:var(--tw-empty,/*!*/ /*!*/);--tw-hue-rotate:var(--tw-empty,/*!*/ /*!*/);--tw-invert:var(--tw-empty,/*!*/ /*!*/);--tw-saturate:var(--tw-empty,/*!*/ /*!*/);--tw-sepia:var(--tw-empty,/*!*/ /*!*/);--tw-drop-shadow:var(--tw-empty,/*!*/ /*!*/);--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css"></noscript><style></style><meta name="description" content="In this article, I’ll lead you through a set-up of infrastructure on Google Cloud using Terraform."><meta property="og:title" content="Setting up your project on GCP fast using Terraform and Kubernetes"><meta property="og:description" content="In this article, I’ll lead you through a set-up of infrastructure on Google Cloud using Terraform."><meta property="twitter:title" content="Setting up your project on GCP fast using Terraform and Kubernetes"><meta property="twitter:description" content="In this article, I’ll lead you through a set-up of infrastructure on Google Cloud using Terraform."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-owe-c35="" ng-version="12.2.16"><top-menu _ngcontent-owe-c35=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-owe-c35="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-owe-c35=""></router-outlet><general-item><article><section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div class="container flex items-center flex-col"><breadcrumbs class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Setting Up Your Project On Gcp Fast Using Terraform And Kubernetes </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p class="text-20 mb-4">July 29, 2021</p><p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Setting up your project on GCP fast using Terraform and Kubernetes</p><div class="w-70 h-70 rounded-full overflow-hidden mb-4"><img class="w-full h-full object-cover" src="assets/articles/setting-up-your-project-on-gcp-fast-using-terraform-and-kubernetes/61125f1d8cab4f4c14ad9066_Angelina-Shemrikovych.png" alt="Angelina Shemrikovych"></div><!----><p class="md:text-large text-24 mb-4">Angelina Shemrikovych</p><!----><p class="text-20">DevOps Engineer</p><!----></div></div></section><section class="landing-section"><div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div class="max-w-full"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel2">
+<li><a href="#_automated_setup_with_terraform"><strong>Automated setup with Terraform</strong></a></li>
+<li><a href="#_kubernetes_on_google_cloud_platform"><strong>Kubernetes on Google Cloud Platform</strong></a></li>
+<li><a href="#_before_you_begin"><strong>Before you begin</strong></a></li>
+<li><a href="#_terraform_and_gcp_setup_step_by_step"><strong>Terraform and GCP setup step-by-step</strong></a></li>
+<li><a href="#_good_job"><strong>Good job!</strong></a></li>
+<li><a href="#_useful_links"><strong>Useful links</strong></a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Hi! My name is Angelina, and I’m a DevOps Engineer at Valor Software. With the help
+of this article, we’ll set up your GCP environment to work in tandem with Terraform. I’ll guide you through the
+setup of a basic cluster. For this, I picked the services that I use daily within my DevOps routine, since they are
+optimal for your typical project setup. Let me explain myself here! By typical I mean common projects that are
+natural (habitual) for your company or industry. In this case, I bet you’d appreciate a chance to build the
+environment once and clone it for future projects. That’s exactly the way you can go with the services I offer
+below. So, once you learn the basics for the project setup in this stack, you’ll be able to run new ones in the
+cloud in no time.</p>
+</div>
+<div class="sect2">
+<h3 id="_automated_setup_with_terraform"><strong>Automated setup with Terraform</strong></h3>
+<div class="paragraph">
+<p>When we
+need to set up a cloud infrastructure for the project, we want to make it quickly. That’s when automation tools
+come
+to help. <a href="https://www.terraform.io/" target="_blank" rel="noopener">Terraform</a> is one of the instruments that
+serve for automated setup, and it is compatible with more than 70 providers, which is beyond handy. Besides,
+Terraform is pretty straightforward to get along with thanks to its declarative language. You don’t need to get
+used
+to a completely different CLI, like in cases when you switch to another cloud provider.</p>
+</div>
+<div class="paragraph">
+<p>Why I suggest
+picking Terraform from the great variety of services is because it’s perfect for creating reusable
+infrastructures.
+You can also clone the existing infrastructure and apply it to your next project, with small alterations if
+needed.
+This benefit of reusability, together with the security that Terraform provides, makes it a first-choice
+technology
+for solving my daily tasks. BTW, it’s also the right place for keeping electronic keys and hidden or encrypted
+variables.</p>
+</div>
+<div class="paragraph">
+<p>Another good point is that Terraform allows for managing several cloud infrastructures
+from different providers in parallel with minimal time and effort spent.</p>
+</div>
+<div class="paragraph">
+<p>In this article, I’ll lead
+you through setting up infrastructure on Google Cloud using Terraform, so buckle up!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kubernetes_on_google_cloud_platform"><strong>Kubernetes on Google Cloud Platform</strong></h3>
+<div class="paragraph">
+<p>Being one of the native Google products, Kubernetes is integrated
+into GCP quite as is, with no alterations. So you can conveniently set it up and manage it through the GCP CLI
+or
+with the help of external instruments like Terraform.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_before_you_begin"><strong>Before you begin</strong></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects" target="_blank" rel="noopener">Create a Google Cloud project</a></p>
+</li>
+<li>
+<p><a href="https://cloud.google.com/iam/docs/creating-managing-service-account-keys" target="_blank" rel="noopener">Create a service account key</a> and download it in JSON format</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_terraform_and_gcp_setup_step_by_step"><strong>Terraform and GCP setup step-by-step</strong></h3>
+<div class="paragraph">
+<p>Create a new directory for the
+project and create a main.tf file for the Terraform config, and populate it with the following content:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>provider "google" {
+    credentials = file("CREDENTIALS_FILE.json")
+    project = "your-project"
+    region = "us-west1"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before we jump to the next step of creating a configuration file, we should remember to keep data (e.g.
+keys, project names) in separate files. This way we ensure project security and give ourselves a chance to reuse
+the configuration in the future. So, locate the project name, region, and credentials file in a separate file
+with variables.</p>
+</div>
+<div class="paragraph">
+<p>First, create a variables.tf file and declare variables for it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    variable "credentials" {
+        type = string
+    }
+
+    variable "project" {
+        type = string
+    }
+
+    variable "region" {
+        type = string
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Add the variables' values to secrets.tfvars:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>credentials = "CREDENTIALS_FILE.json"
+project     = "your-project"
+region      = "us-west1"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then format your main.tf file like so:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>provider  "google" {
+    credentials = file(var.credentials)
+    project     = var.project
+    region      = var.region
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, when your variables are safe, you’ll be able to pick the needed files with variables instead of
+repeatedly typing in new data in the main file.</p>
+</div>
+<div class="paragraph">
+<p>With the <code><em>terraform init</em></code> command,
+you’re pulling up modules that you will need to proceed with further steps.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>terraform init</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you see this message, it’s a success! Hurray!</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Terraform has been initialised!</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the next step, you add variables to the variables.tf file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    variable "cluster_name" {
+      type = string
+    }
+
+    variable "cluster_zone" {
+        type = string
+    }
+
+    variable "app_name" {
+        type = string
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before creating a cluster, you should first add variables describing this particular cluster to the secrets.tfvars file:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cluster_name = “cluster-1”
+cluster_zone = “us-west1-a”
+app_name = “test”</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now add the cluster configuration to your main.tf file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    resource "google_container_cluster" "cluster-1" {
+      name =  var.cluster_name
+      location =  var.cluster_zone
+      initial_node_count = 3
+      node_config {
+         labels = {
+          app = var.app_name
+          }
+
+        tags = ["app", var.app_name]
+      }
+
+      timeouts {
+        create = "30m"
+        update = "40m"
+      }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the configuration, you define the cluster’s name, its location, and the number of nodes and their
+labels. The default namespace is the place where you create a cluster.</p>
+</div>
+<div class="paragraph">
+<p>To operate with the
+cluster and its components conveniently, you need to create an output.tf file, where you’ll add variables that
+will be displayed after running the <code><em>terraform apply</em></code> command. You can use them later by calling them
+during configuration.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>output "cluster" {  value = google_container_cluster.cluster-1.name}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now add a new resource which is deployment:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    resource "kubernetes_deployment" "example" {
+        metadata {
+            name = "terraform-example"
+            labels = {
+                app = var.app_name
+            }
+        }
+
+      spec {
+        replicas = 3
+
+        selector {
+          match_labels = {
+           app = var.app_name
+          }
+        }
+
+        template {
+          metadata {
+            labels = {
+             app = var.app_name
+            }
+          }
+
+          spec {
+            container {
+              image = "nginx:1.7.8"
+              name  = "example"
+
+              resources {
+                limits = {
+                  cpu = "0.5"
+                  memory = "512Mi"
+                }
+                requests = {
+                  cpu = "250m"
+                  memory = "50Mi"
+                }
+              }
+
+              liveness_probe {
+                http_get {
+                  path = "/"
+                  port = 80
+
+                  http_header {
+                    name  = "X-Custom-Header"
+                    value = "Awesome"
+                  }
+                }
+
+                initial_delay_seconds = 3
+                period_seconds = 3
+              }
+            }
+          }
+        }
+      }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the deployment configuration, you specify the number of replicas, tags, labels, an image that we’re
+going to use, as well as internal resources. Finally, you have it all ready for the first launch and go with
+this command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>terraform plan -var-file=secrets.tfvars</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this way, you check if the configuration is created properly and if you’re satisfied with the range of
+resources.</p>
+</div>
+<div class="paragraph">
+<p>When you’re quite sure that everything is correct, it’s time for the <code><em>terraform apply</em></code> command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>terraform apply -var-file=secrets.tfvars</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And don’t forget to specify the file with variables! At this stage, you’ll have to confirm your actions by
+running a <code><em>yes</em></code> command. Terraform will build your new GKE cluster on GCP. After the cluster is
+created, you’ll see the output list.</p>
+</div>
+<div class="paragraph">
+<p>For your convenience, in the future, you can split the
+config file into a few separate files. Place the provider block in the providers.tf file, and a
+"google_container_cluster" block” in the cluster.tf file.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_good_job"><strong>Good job!</strong></h3>
+<div class="paragraph">
+<p>You’re almost done with your journey, the cluster is up and running, and you
+can be (ugh) proud of yourself!</p>
+</div>
+<div class="paragraph">
+<p>For your future projects, you’ll be able to add more metrics
+and parameters when creating a resource. This will help you adjust your configuration for solving every
+particular task.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_useful_links"><strong>Useful links</strong></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects" target="_blank" rel="noopener">Create a Google Cloud
+project</a></p>
+</li>
+<li>
+<p><a href="http://about:blank" target="_blank" rel="noopener">Create a service account key using the Google Cloud Console</a></p>
+</li>
+</ul>
+</div>
+</div></div></div></section><!----><section class="landing-section"><div class="container"><h1 class="main-title double">More Articles</h1><blog-preview><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-e-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-e-module-federation/2%20(1).png" alt="Nx, Next.js, e Module Federation"></div><div class="text-container"><p>Nx, Next.js, e Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-and-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-and-module-federation/2%20(1).png" alt="Nx, Next.js, and Module Federation"></div><div class="text-container"><p>Nx, Next.js, and Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/debugging-ngrx-in-nativescript-with-redux-devtools" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png" alt="Debugging NgRx in NativeScript with Redux DevTools"></div><div class="text-container"><p>Debugging NgRx in NativeScript with Redux DevTools</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-owe-c35=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.824a489ad669cfd21327.js" defer=""></script><script src="polyfills.2ff19d9baa01044da760.js" defer=""></script><script src="main.fee1b9601e512d529cb6.js" defer=""></script>
+
+</body></html>

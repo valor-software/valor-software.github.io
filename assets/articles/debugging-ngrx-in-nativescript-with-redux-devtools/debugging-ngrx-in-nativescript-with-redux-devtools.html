@@ -1,0 +1,295 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel3">
+<li><a href="#_table_of_contents">Table of Contents:</a></li>
+<li><a href="#_connecting_redux_devtools_with_ngrx_for_nativescript"><strong>Connecting Redux DevTools with NgRx for NativeScript</strong></a></li>
+<li><a href="#_overriding_the_way_ngrx_fetches_the_redux_extension_implementation"><strong>Overriding the Way NgRx Fetches the Redux Extension Implementation</strong></a></li>
+<li><a href="#_nativescript_ngrx_devtools_plugin_features_review">Nativescript-ngrx-devtools Plugin: Features Review</a></li>
+<li><a href="#_how_to_use_the_plugin"><strong>How to Use the Plugin</strong></a></li>
+<li><a href="#_caveats"><strong>Caveats</strong></a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>NgRx needs practically no introduction in the current state of Angular
+applications. It allows you to manage your app’s state easily and make your UI react to the changes seamlessly. This
+tool is not exclusively for the web, so we can expect many NativeScript Angular applications to use it quite
+extensively.</p>
+</div>
+<div class="paragraph">
+<p>Although NgRx is amazing, it still adds certain complexity to your application that is often harder to debug. For
+such cases, using Redux DevTools becomes indispensable in the debugging process, as it allows you to have a
+clear view of your state and how it changes over time. Those features, alongside time travel and custom action
+dispatch, make it a very powerful tool.</p>
+</div>
+<div class="paragraph">
+<p>Many stacks have to implement their own way of integrating NgRx with Redux DevTools, for example, with Ionic, as
+Zack Barbuto describes in <a href="https://medium.com/nextfaze/remote-debugging-ngrx-store-with-ionic-74e367316193" target="_blank" rel="noopener">his article about remote debugging</a>. Also, thanks to our recent efforts on <a href="https://www.npmjs.com/package/@valor/nativescript-websockets" target="_blank" rel="noopener">WebSockets for NativeScript</a> (find the creation story <a href="https://valor-software.com/articles/implementing-websockets-plugin-for-nativescript.html" target="_blank" rel="noopener">on the blog</a>) and the chain webpack configuration added in @nativescript/webpack 5+,
+you can debug NgRx in NativeScript with ease. In this article I’ll tell you about our implementation details and
+how you can start using it right away.</p>
+</div>
+<div class="sect3">
+<h4 id="_table_of_contents">Table of Contents:</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Intro</p>
+</li>
+<li>
+<p>Connecting Redux DevTools with NgRx for NativeScript</p>
+</li>
+<li>
+<p>Overriding the way NgRx fetches the Redux extension implementation</p>
+</li>
+<li>
+<p>Nativescript-ngrx-devtools plugin: features review</p>
+</li>
+<li>
+<p>How to use the Plugin, steps to reproduce for debugging</p>
+</li>
+<li>
+<p>Caveats</p>
+</li>
+<li>
+<p>Useful Links</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_connecting_redux_devtools_with_ngrx_for_nativescript"><strong>Connecting Redux DevTools with NgRx for NativeScript</strong></h3>
+<div class="paragraph">
+<p>NgRx relies on the Redux DevTools Extension to be defined in the window and implement a specific (and relatively
+simple) interface. Redux Remote DevTools provides an option to connect to it remotely through SocketCluster,
+which uses WebSockets. Thankfully, we can now use <a href="https://www.npmjs.com/package/@valor/nativescript-websockets" target="_blank" rel="noopener">the WebSockets plugin</a>to polyfill them.</p>
+</div>
+<div class="paragraph">
+<p>This approach is not new, and part of our implementation can be credited to <a href="https://github.com/zalmoxisus" target="_blank" rel="noopener">Zalmoxis</a> and his <a href="https://github.com/zalmoxisus/remotedev" target="_blank" rel="noopener">remote debugging method</a>. Not all node or
+browser libraries support NativeScript, but we can make most of them work with it. Since NS isn’t either “node”
+or “browser” but a combination of multiple APIs common to both, libraries that support both platforms might be
+usable here. SocketCluster is one of those libraries that work perfectly with NativeScript as long as we use the
+browser implementation. As a result, we implemented a <a href="https://github.com/valor-software/nativescript-plugins/blob/3e6bb3ae819b697e78f299e1c2f891b15944316f/packages/nativescript-ngrx-devtools/package-alias-plugin.js">custom way</a> of reading <a href="https://github.com/defunctzombie/package-browser-field-spec" target="_blank" rel="noopener">the browser field
+        spec</a>, which is also nicely <a href="https://docs.npmjs.com/cli/v8/configuring-npm/package-json#browser" target="_blank" rel="noopener">described on npm</a> and applied the required file
+substitutions individually for the required libraries. This means we can now use the web version of
+SocketCluster freely in our implementation without fear that it’ll break existing applications.</p>
+</div>
+<div class="paragraph">
+<p>Taking inspiration from previously mentioned implementations of the extension interface, we built our own
+interface focusing on reliability and small footprint. This was done by converting it fully to RxJS, adding
+error handling, retrying failed connections, trying to connect to multiple default debugging IPs periodically,
+and making it all highly configurable. The result was a robust bridge between your application and the remote
+Redux DevTools so that you can focus less on the details and more on developing your application faster.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_overriding_the_way_ngrx_fetches_the_redux_extension_implementation"><strong>Overriding the Way NgRx Fetches the Redux Extension Implementation</strong></h3>
+<div class="paragraph">
+<p>Once we finished writing the Redux DevTools Extension interface, we needed to provide it to NgRx. Unfortunately,
+NgRx gets this information from the ['__REDUX_DEVTOOLS_EXTENSION__’] window, which isn’t available in
+NativeScript. Polyfilling “window” is not the best approach either, as it could also lead to unintended side
+effects due to many libraries checking if a window exists to determine if they’re running in a browser
+environment or not. With a <a href="https://github.com/ngrx/platform/pull/3338" target="_blank" rel="noopener">PR to NgRx</a>,
+we were able to export the required symbol to override the way NgRx fetches the extension
+implementation.<br>
+As a side note, this change isn’t retroactive, but the plugin code has a workaround for
+cases when this symbol is not defined, so you can use it with older versions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nativescript_ngrx_devtools_plugin_features_review">Nativescript-ngrx-devtools Plugin: Features Review</h3>
+<div class="paragraph">
+<p>Below is the overview of key plugin features, so you get to know it better before the installation.
+The beginning of work with the plugin:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912c3d5f2cb23f29c42a55_gif_new_0.00_0.08.gif" alt="62912c3d5f2cb23f29c42a55 gif new 0.00 0.08">
+</div>
+</div>
+<div class="paragraph">
+<p>Plugin replays the state after skipping actions:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912ca5e43915527626e57e_gif_new_0.20_0.26.gif" alt="62912ca5e43915527626e57e gif new 0.20 0.26">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912cb55f2cb2100dc483fa_gif_new_0.34_0.39.gif" alt="62912cb55f2cb2100dc483fa gif new 0.34 0.39">
+</div>
+</div>
+<div class="paragraph">
+<p>The increment with delay:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912ce8bcb2ef3d71fdb1c2_gif_new_0.43_0.50.gif" alt="62912ce8bcb2ef3d71fdb1c2 gif new 0.43 0.50">
+</div>
+</div>
+<div class="paragraph">
+<p>Dispatching a custom action:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912d0dc56f59ad5441affa_gif_new_1.21_1.29.gif" alt="62912d0dc56f59ad5441affa gif new 1.21 1.29">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use_the_plugin"><strong>How to Use the Plugin</strong></h3>
+<div class="paragraph">
+<p>To start using the plugin, first ensure to install both: it and our WebSockets Polyfill:</p>
+</div>
+<div class="sect5">
+<h6 id="_npm_i_valornativescript_ngrx_devtools"><a href="https://market.nativescript.org/plugins/@valor/nativescript-ngrx-devtools/" target="_blank" rel="noopener">npm i @valor/nativescript-ngrx-devtools</a><br></h6>
+
+</div>
+<div class="sect5">
+<h6 id="_valornativescript_websockets"><a href="https://www.npmjs.com/package/@valor/nativescript-websockets" target="_blank" rel="noopener">@valor/nativescript-websockets</a></h6>
+<div class="paragraph">
+<p>In your polyfills.ts, ensure that websockets is properly polyfilled after nativescript’s globals:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>/**
+ * NativeScript Polyfills
+ */
+// Install @nativescript/core polyfills (XHR, setTimeout, requestAnimationFrame)
+import '@nativescript/core/globals';
+import '@valor/nativescript-websockets'; // add this line!</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can then import the modules of your application and start using it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@NgModule({
+    imports: [
+        NativeScriptModule,
+        StoreModule.forRoot(
+            {
+                counter: reducer,
+            },
+            {
+                initialState: {
+                    counter: initialState,
+                },
+            }
+        ),
+   ...(__DEV__ ? [ // ensure this code is tree shaken in prod
+         StoreDevtoolsModule.instrument(),
+         NativeScriptNgRxDevtoolsModule.forRoot()
+      ] : []),
+
+ ],
+ declarations: [AppComponent],
+ bootstrap: [AppComponent],
+ schemas: [NO_ERRORS_SCHEMA],
+})
+export class AppModule {}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default the plugin will attempt to connect to many IP addresses that NativeScript automatically detects from
+__NS_DEV_HOST_IPS__ on port 8000, but those can be configured in the options object in
+NativeScriptNgRxDevtoolsModule.forRoot(options).</p>
+</div>
+<div class="paragraph">
+<p>After configuring our remote devtools, you can just start debugging!</p>
+</div>
+<div class="paragraph">
+<p><strong>Steps to Reproduce for Debugging:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_npm_i_g_redux_devtoolscli">npm i -g @redux-devtools/cli</h6>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Then</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_redux_devtools_open">redux-devtools --open</h6>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open ‘Settings’ in the redux-devtools UI and ensure ‘connect local’ is checked and you&#8217;re going to use port
+8000 which is default, then save those settings.</p>
+</li>
+<li>
+<p>Run a NativeScript app and start debugging.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_caveats"><strong>Caveats</strong></h3>
+<div class="paragraph">
+<p>Redux DevTools already has a couple of caveats on the web, like having it crash by storing certain kinds of
+non-serializable objects. This also applies to NativeScript, and the fact that ignoring those caveats can also
+crash your app makes them even worse. Here&#8217;s an example from one of the projects we&#8217;re working on now. When
+testing the plugin on a large mobile app that has modals with high-definition images, we noticed that the app
+would crash due to a memory lack. The issue was that the action that was sent to the DevTools, contained a
+reference to the modal itself, so it was never garbage collected, and every time it opened, the memory would
+increase. Connecting to the DevTools also made the app take a performance hit as it was trying to serialize
+massive objects.</p>
+</div>
+<div class="paragraph">
+<p>The solution, in this case, is to use actionSanitizer and stateSanitizer to make sure your state and actions
+contain only serializable data.</p>
+</div>
+<div class="paragraph">
+<p>How it works with the plugin:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/62912d353578300d651ee074_gif_new_0.52_0.58.gif" alt="62912d353578300d651ee074 gif new 0.52 0.58">
+</div>
+</div>
+<div class="paragraph">
+<p>Find more on this topic from the <a href="https://dev.to/migsarnavarro/use-sanitizers-to-avoid-redux-devtools-crash-67p" target="_blank" rel="noopener">Use sanitizers to avoid Redux Devtools crash</a> article by Migzar Navarro and the <a href="https://v7.ngrx.io/guide/store-devtools/config" target="_blank" rel="noopener">NgRx official guide</a>. Also worth
+mentioning that it’s critical to ensure you’re using webpack flags, not to bundle the DevTools in production. As
+they have a memory overhead you don’t want in production apps.<br>
+That&#8217;s all I wanted to tell in this article. Hope, it was useful, and you&#8217;ll enjoy using the plugin!</p>
+</div>
+<div class="sect3">
+<h4 id="_useful_links"><strong>Useful Links</strong></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.npmjs.com/package/@valor/nativescript-websockets" target="_blank" rel="noopener">nativescript-websockets</a> plugin</p>
+</li>
+<li>
+<p><a href="https://www.npmjs.com/package/@valor/nativescript-ngrx-devtools" target="_blank" rel="noopener">nativescript-ngrx-devtools</a> plugin</p>
+</li>
+<li>
+<p><a href="https://github.com/valor-software/nativescript-plugins/blob/3e6bb3ae819b697e78f299e1c2f891b15944316f/packages/nativescript-ngrx-devtools/package-alias-plugin.js" target="_blank" rel="noopener">package-alias-plugin.js</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/nextfaze/remote-debugging-ngrx-store-with-ionic-74e367316193" target="_blank" rel="noopener">Remote Debugging @ngrx/store with Ionic</a> article by Zack Barbuto</p>
+</li>
+<li>
+<p><a href="https://github.com/zalmoxisus/remotedev" target="_blank" rel="noopener">Remote debugging method</a> by Zalmoxis</p>
+</li>
+<li>
+<p><a href="https://docs.npmjs.com/cli/v8/configuring-npm/package-json#browser" target="_blank" rel="noopener">Configuring npm -package-json</a> documentation</p>
+</li>
+<li>
+<p><a href="https://github.com/defunctzombie/package-browser-field-spec" target="_blank" rel="noopener">The browser field when packaging modules for client side use</a> spec</p>
+</li>
+</ul>
+</div>
+</div>
+</div>

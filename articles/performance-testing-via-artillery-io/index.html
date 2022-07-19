@@ -1,0 +1,559 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/performance-testing-via-artillery-io"
+            },
+            "headline": "Performance Testing via Artillery.io",
+            "description": "Today, I’m going to tell you all about setting up and using Artillery.io on your projects. This Node.js tool makes performance and load testing faster and more reliable. I'll guide you through configuration, rules for writing test scenarios, authorization, and reporting in Artillery.io. So, you'll be able to start performance testing on your project right away using a free Artillery plan!",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/performance-testing-via-artillery-io/620a7b778e6da44e06f3394c_Performance_testing_Valor-software.jpg",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Dmitriy Zhemchugov"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Tue Jan 18 2022 09:59:45 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Performance Testing via Artillery.io</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#e1e1e1}html{tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}body{font-family:inherit;line-height:inherit}*,:after,:before{box-sizing:border-box;border:0 solid}*,:after,:before{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty,/*!*/ /*!*/);--tw-brightness:var(--tw-empty,/*!*/ /*!*/);--tw-contrast:var(--tw-empty,/*!*/ /*!*/);--tw-grayscale:var(--tw-empty,/*!*/ /*!*/);--tw-hue-rotate:var(--tw-empty,/*!*/ /*!*/);--tw-invert:var(--tw-empty,/*!*/ /*!*/);--tw-saturate:var(--tw-empty,/*!*/ /*!*/);--tw-sepia:var(--tw-empty,/*!*/ /*!*/);--tw-drop-shadow:var(--tw-empty,/*!*/ /*!*/);--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css"></noscript><style></style><meta name="description" content="Today, I’m going to tell you all about setting up and using Artillery.io on your projects. This Node.js tool makes performance and load testing faster and more reliable. I'll guide you through configuration, rules for writing test scenarios, authorization, and reporting in Artillery.io. So, you'll be able to start performance testing on your project right away using a free Artillery plan!"><meta property="og:title" content="Performance Testing via Artillery.io"><meta property="og:description" content="Today, I’m going to tell you all about setting up and using Artillery.io on your projects. This Node.js tool makes performance and load testing faster and more reliable. I'll guide you through configuration, rules for writing test scenarios, authorization, and reporting in Artillery.io. So, you'll be able to start performance testing on your project right away using a free Artillery plan!"><meta property="twitter:title" content="Performance Testing via Artillery.io"><meta property="twitter:description" content="Today, I’m going to tell you all about setting up and using Artillery.io on your projects. This Node.js tool makes performance and load testing faster and more reliable. I'll guide you through configuration, rules for writing test scenarios, authorization, and reporting in Artillery.io. So, you'll be able to start performance testing on your project right away using a free Artillery plan!"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-akh-c35="" ng-version="12.2.16"><top-menu _ngcontent-akh-c35=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-akh-c35="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-akh-c35=""></router-outlet><general-item><article><section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div class="container flex items-center flex-col"><breadcrumbs class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Performance Testing Via Artillery.io </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p class="text-20 mb-4">January 18, 2022</p><p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Performance Testing via Artillery.io</p><div class="w-70 h-70 rounded-full overflow-hidden mb-4"><img class="w-full h-full object-cover" src="assets/articles/performance-testing-via-artillery-io/5f69c139ad11997382022d15_jemchugov.jpg" alt="Dmitriy Zhemchugov"></div><!----><p class="md:text-large text-24 mb-4">Dmitriy Zhemchugov</p><!----><p class="text-20">QA Engineer</p><!----></div></div></section><section class="landing-section"><div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div class="max-w-full"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_why_artillery_io"><strong>Why Artillery.io?</strong></a>
+<ul class="sectlevel3">
+<li><a href="#_1_node_js_tool"><strong>1. Node.js tool</strong></a></li>
+<li><a href="#_2_broad_support_of_protocols_frameworks_and_libraries"><strong>2. Broad support of protocols, frameworks, and libraries</strong></a></li>
+<li><a href="#_3_yaml_format"><strong>3. YAML format</strong></a></li>
+<li><a href="#_4_accessible_scenarios"><strong>4. Accessible scenarios</strong></a></li>
+<li><a href="#_5_easy_integration"><strong>5. Easy integration</strong></a></li>
+<li><a href="#_6_detailed_reports"><strong>6. Detailed reports</strong></a></li>
+<li><a href="#_7_artillery_docs"><strong>7. Artillery Docs</strong></a></li>
+</ul>
+</li>
+<li><a href="#_how_does_artillery_io_work"><strong>How does Artillery.io work?</strong></a>
+<ul class="sectlevel3">
+<li><a href="#_install"><strong>Install</strong></a></li>
+<li><a href="#_fast_test"><strong>Fast test</strong></a></li>
+<li><a href="#_config"><strong>Config</strong></a></li>
+<li><a href="#_phases_in_the_config"><strong>Phases in the config</strong></a></li>
+<li><a href="#_plugins"><strong>Plugins</strong></a></li>
+<li><a href="#_scenario"><strong>Scenario</strong></a></li>
+<li><a href="#_authentication"><strong>Authentication</strong></a></li>
+</ul>
+</li>
+<li><a href="#_final_thoughts"><strong>Final thoughts</strong></a></li>
+<li><a href="#_useful_links"><strong>Useful Links</strong></a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Today, I’m going to tell you all about setting up and using <a href="https://artillery.io/" target="_blank" rel="noopener">Artillery.io</a> on your projects. We have a lot of popular testing tools like JMeter, Gatling, LoadNinja, etc. So you might be wondering why I’ve chosen Artillery. Well, I’m going to show its advantages and share handy usage tips later in the article.</p>
+</div>
+<div class="paragraph">
+<p>Artillery.io is a modern performance testing software that is powerful yet quite simple to
+navigate. It suits different types of performance testing, on local machines and as part of <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="noopener">CI</a>. What’s even better?
+– Artillery provides <a href="https://www.artillery.io/pricing" target="_blank" rel="noopener">a free ‘Dev’ option</a> if you want to test the waters before diving in. So, let’s make some exploration!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/61e6b6dbef2e1c7bbd4aa6a7_biofiRwiFxpiSWFpLnazIYPCle0dSTw7n-o_5JqBXU2M3gBTTzM_tkByXqjU50wy-lh3HE_M6odcvhrltnNTq-dHMT3cdd2RBMFJE17Dj-XkJwXJAXqSrIY6un_HfQg_wzNiovD_3_FW-XftCg.jpeg" alt="61e6b6dbef2e1c7bbd4aa6a7 biofiRwiFxpiSWFpLnazIYPCle0dSTw7n o 5JqBXU2M3gBTTzM tkByXqjU50wy lh3HE M6odcvhrltnNTq dHMT3cdd2RBMFJE17Dj XkJwXJAXqSrIY6un HfQg wzNiovD 3 FW XftCg">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_artillery_io"><strong>Why Artillery.io?</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Artillery offers many services that make performance and load testing faster and more reliable. Now let me
+outline a few reasons why I choose to use it over the better-known software.</p>
+</div>
+<div class="sect3">
+<h4 id="_1_node_js_tool"><strong>1. Node.js tool</strong></h4>
+<div class="paragraph">
+<p>Java-based tools can be complicated and time-consuming to work with. Artillery.io is a Node.js tool with a basic
+<a href="https://en.wikipedia.org/wiki/Command-line_interface" target="_blank" rel="noopener">СLI</a>, which is a far simpler way to run performance tests.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2_broad_support_of_protocols_frameworks_and_libraries"><strong>2. Broad support of protocols, frameworks, and libraries</strong></h4>
+<div class="paragraph">
+<p>Out of the box, Artillery.io will support:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.artillery.io/docs/guides/guides/http-reference" target="_blank" rel="noopener">HTTP</a></p>
+</li>
+<li>
+<p><a href="https://www.artillery.io/docs/guides/guides/socketio-reference" target="_blank" rel="noopener">Socket.IO</a></p>
+</li>
+<li>
+<p><a href="https://www.artillery.io/docs/guides/guides/ws-reference" target="_blank" rel="noopener">WebSocket</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>However, you can use Artillery.io to test any stack, thanks to the plugin interface. Here are a few examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Apache Kafka</p>
+</li>
+<li>
+<p>Amazon Kinesis</p>
+</li>
+<li>
+<p><a href="https://www.artillery.io/docs/guides/plugins/plugin-hls" target="_blank" rel="noopener">HLS</a> (HTTP Live Streaming)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_3_yaml_format"><strong>3. YAML format</strong></h4>
+<div class="paragraph">
+<p>Unlike popular competitors’ testing tools, Artillery.io writes tests in YAML format which makes them readable and
+easy to understand. Artillery also supports a JSON format for testing.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_4_accessible_scenarios"><strong>4. Accessible scenarios</strong></h4>
+<div class="paragraph">
+<p>With Artillery’s scenarios and phases, you can build more flexible tests and cover multiple use cases in
+parallel. Also, it takes you just a few steps and conditions to set up tests for complex user behaviours.
+Finally, it’s easy to reuse scenarios for comparison and future testing.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_easy_integration"><strong>5. Easy integration</strong></h4>
+<div class="paragraph">
+<p>Artillery.io seamlessly integrates with CI (for example, check the <a href="https://artillery.io/docs/guides/integration-guides/github-actions.html" target="_blank" rel="noopener">integration guide for GitHub Actions</a>), making the process very organized. It also <a href="https://artillery.io/docs/guides/guides/docker.html" target="_blank" rel="noopener">works with Docker</a>, so you can run your Artillery tests inside a Docker container.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_detailed_reports"><strong>6. Detailed reports</strong></h4>
+<div class="paragraph">
+<p>After running tests, you can create a JSON report through the --output flag. Also, you can generate an HTML
+report out of JSON to save it as a file or export it to your browser. Find details on reporting in the Scenario
+section below.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_7_artillery_docs"><strong>7. Artillery Docs</strong></h4>
+<div class="paragraph">
+<p>Artillery provides <a href="https://artillery.io/docs/guides/overview/welcome.html" target="_blank" rel="noopener">numerous documents</a> to browse for instructions and other useful info. This helps you get the performance testing
+software up and running much smoother than with other similar tools. Also, you can look up support from other
+developers on <a href="https://github.com/artilleryio/artillery/discussions" target="_blank" rel="noopener">community forums</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/61e6b6dac135a26d7c224c86_FEcA8iQh4priOp2EIgpa41pwJFHtkcxiPlfx3Z1YRrUWU7tvH9Ddve5UY9cWYyGrullTwo97KCHgZlRZqFxCZEg5ZsjWa3U7JF_nXQ9qTiNak2NGp1VBAI4GlJlPrslAFZRUoWSztiw7iLknhw.jpeg" alt="61e6b6dac135a26d7c224c86 FEcA8iQh4priOp2EIgpa41pwJFHtkcxiPlfx3Z1YRrUWU7tvH9Ddve5UY9cWYyGrullTwo97KCHgZlRZqFxCZEg5ZsjWa3U7JF nXQ9qTiNak2NGp1VBAI4GlJlPrslAFZRUoWSztiw7iLknhw">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_does_artillery_io_work"><strong>How does Artillery.io work?</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I’m going to walk you through some basic commands to get started with Artillery.io using <a href="https://valor-software.com/ngx-bootstrap/#/" target="_blank" rel="noopener">ngx-bootstrap</a> in my examples.
+Ngx-bootstrap, together with other community libraries, were created by <a href="https://valor-software.com/" target="_blank" rel="noopener">Valor Software</a>,
+the company where I’m working. And as we have hundreds of thousands of engineers using our products monthly, we
+need scalable performance testing to make sure everything runs smoothly. So, let’s get started!</p>
+</div>
+<div class="paragraph">
+<p>First, you need to install the latest version of the software.</p>
+</div>
+<div class="sect3">
+<h4 id="_install"><strong>Install</strong></h4>
+<div class="paragraph">
+<p>To install the latest version, enter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>npm install -g artillery@latest</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fast_test"><strong>Fast test</strong></h4>
+<div class="paragraph">
+<p>To run a fast test, enter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>artillery quick --count 15 -n 30 https://valor-software.com/ngx-bootstrap/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this command, the test will run 15 virtual users with each of them making 30 HTTP GET requests to the URL
+address that you specified.</p>
+</div>
+<div class="paragraph">
+<p>This command also supports other flags to configure your fast tests:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/61e6dc58268ada7b2baa7189_n3n85QBpLJnNRmjf2KmGI6Vd_0JXn6sZ4Pt_Jf3TihpGe9xpzK-Wmr_icfmr1P6GTAg9FYkctA1jx8N_gREo4dv9UxUOAZ2IlHXmzBXPy7PtsMEL3n7wDT0wzyuknHe2GBVN_5i9.png" alt="61e6dc58268ada7b2baa7189 n3n85QBpLJnNRmjf2KmGI6Vd 0JXn6sZ4Pt Jf3TihpGe9xpzK Wmr icfmr1P6GTAg9FYkctA1jx8N gREo4dv9UxUOAZ2IlHXmzBXPy7PtsMEL3n7wDT0wzyuknHe2GBVN 5i9">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a list of possible configurations of the <strong>run</strong> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/61e6dcc8f56ef40c91343a66_D1wfiDO76AqAbf8YFECjCHzfM9qEMex5fwDqiesnrSbYTig01ZrrUzcRGEHaUDVNpoKzdOb3MmY5ItdD2k3dUJgYIa68uPmJ3uZRaIpP7o47rbJzZV1XPVJDh3qm-G5AC7seiycE.png" alt="61e6dcc8f56ef40c91343a66 D1wfiDO76AqAbf8YFECjCHzfM9qEMex5fwDqiesnrSbYTig01ZrrUzcRGEHaUDVNpoKzdOb3MmY5ItdD2k3dUJgYIa68uPmJ3uZRaIpP7o47rbJzZV1XPVJDh3qm G5AC7seiycE">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_config"><strong>Config</strong></h4>
+<div class="paragraph">
+<p>For standard test scenarios, you should create a ‘<strong>my.yml</strong>’ file with config.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/620a6caabc207815e5fd9851_B9QLpv1Xk2qcqHSwmTRK0jGv2uYYmLXg5kcfM-rLZAxoeW51olKqZ_gjZqWNvZLe9c_CAKFo3KluK6pEdblP7WYNgKwNZZHqI7CoIevcbLaGD8vM3iPfOlyE6u4FdJZejlnJF9GR.png" alt="620a6caabc207815e5fd9851 B9QLpv1Xk2qcqHSwmTRK0jGv2uYYmLXg5kcfM rLZAxoeW51olKqZ gjZqWNvZLe9c CAKFo3KluK6pEdblP7WYNgKwNZZHqI7CoIevcbLaGD8vM3iPfOlyE6u4FdJZejlnJF9GR">
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong>my.yml</strong> file should contain <strong>‘config:’</strong> paired with the target URL. To set up
+environments for your tests, you can write environments into the command after the target URL has been
+entered.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/620a6cdfcec6669ba3cb933a_2OBgp8-wSgsPmKlIKoaE8IgftkHZxI8U_Jir1xtLQqzXbsjjTIiXBxfTpt8VNBKqyo5SSZkR-JRXI1uoU2SiuHisygXLl-SuCcXYFzTToIluLozfi3DJe5Lp2-CXGvIpaNwaqYek.png" alt="620a6cdfcec6669ba3cb933a 2OBgp8 wSgsPmKlIKoaE8IgftkHZxI8U Jir1xtLQqzXbsjjTIiXBxfTpt8VNBKqyo5SSZkR JRXI1uoU2SiuHisygXLl SuCcXYFzTToIluLozfi3DJe5Lp2 CXGvIpaNwaqYek">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_phases_in_the_config"><strong>Phases in the config</strong></h4>
+<div class="paragraph">
+<p>Artillery.io allows you to enter multiple sequential load options for the application. The
+testing phase consists of several aspects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>duration</strong>: the time of one phase;</p>
+</li>
+<li>
+<p><strong>arrivalRate</strong>: the number of users added each second;</p>
+</li>
+<li>
+<p><strong>rampTo</strong>: up to how many users per second the load will grow by;</p>
+</li>
+<li>
+<p><strong>name</strong>: a name of the phases.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/620a6d49351453e1970bd6df_v2FiTu_ndt8HAMbHRAjIrf-6jXsA_fNg6BHksT1XywImEog5BjNvOEiK1UXmcBE0_mU_Yw3mDpUBT6hLaK_4yBl1pGB33iTZ35tNH2F_13n2E18w6aHzhwtCwCtCcSjUNe8JVO8_.png" alt="620a6d49351453e1970bd6df v2FiTu ndt8HAMbHRAjIrf 6jXsA fNg6BHksT1XywImEog5BjNvOEiK1UXmcBE0 mU Yw3mDpUBT6hLaK 4yBl1pGB33iTZ35tNH2F 13n2E18w6aHzhwtCwCtCcSjUNe8JVO8 ">
+</div>
+</div>
+<div class="paragraph">
+<p>If you only have one target URL, the different phases of the performance testing are placed right after it. If
+there are multiple environments, then you should add phases to each environment variable.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_plugins"><strong>Plugins</strong></h4>
+<div class="paragraph">
+<p>In the Artillery npm utility, you can find <a href="https://www.npmjs.com/search?q=artillery-plugin-&amp;page=0&amp;perPage=20" target="_blank" rel="noopener">lots of plugins</a> that can help you in your performance testing. Install <a href="https://www.npmjs.com/package/artillery-plugin-expect" target="_blank" rel="noopener"><em>artillery-plugin-expect</em></a> to compare the expected result with the actually received result.</p>
+</div>
+<div class="paragraph">
+<p>Then, after the phases inside the config, enter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>plugins:
+    expect: {}</pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/620a6f1f351453cf580c72ab_WW4O0hUrQygtMKCL41Y28O-QtSu_A4xItcAFeIUiNz7hCfipkstp6MpQW6dYvP4843dtb2JvwXQNSUT2ZXxfmQRG2ObvDBlzDtJtxu2jJUBdKnskDTkvYt-uGvLiAoQUONeTw-9O.png" alt="620a6f1f351453cf580c72ab WW4O0hUrQygtMKCL41Y28O QtSu A4xItcAFeIUiNz7hCfipkstp6MpQW6dYvP4843dtb2JvwXQNSUT2ZXxfmQRG2ObvDBlzDtJtxu2jJUBdKnskDTkvYt uGvLiAoQUONeTw 9O">
+</div>
+</div>
+<div class="paragraph">
+<p>Now, with the config completed, we can finally write some tests!</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_scenario"><strong>Scenario</strong></h4>
+<div class="paragraph">
+<p>All tests should be written in the <strong><code>scenarios</code></strong> section and should contain:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>GET, POST, PUT, DELETE, and some other commands;</p>
+</li>
+<li>
+<p>a URL for every endpoint;</p>
+</li>
+<li>
+<p>the body text in JSON format;</p>
+</li>
+<li>
+<p>all checks you want to run.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/620a6e00b9149a62042fd21e_BaWRTn2B9CtF3V0o2f4fuvZ34cxOvNTQeOByTklpYQ5KeY-SxgSEe2Rw5oZryDz1HaX9SlB3syP64qTHxPURlatPHPdMzqWr363JcLgzG3X4DwLGUvsejTsjg3Zt2WYq-F3Nd5kn.png" alt="620a6e00b9149a62042fd21e BaWRTn2B9CtF3V0o2f4fuvZ34cxOvNTQeOByTklpYQ5KeY SxgSEe2Rw5oZryDz1HaX9SlB3syP64qTHxPURlatPHPdMzqWr363JcLgzG3X4DwLGUvsejTsjg3Zt2WYq F3Nd5kn">
+</div>
+</div>
+<div class="paragraph">
+<p>To run tests, you should enter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>artillery run my.yml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run a test and then generate a report in a .txt file, run:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>artillery run -o first.txt my.yml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After generating a .txt report, to generate a second report in HTML, run the command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>artillery report first.txt</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here’s the report example:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/620677d1e5b37a5a34ac81b8_Artillery_report_Valor.jpg" alt="620677d1e5b37a5a34ac81b8 Artillery report Valor">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_authentication"><strong>Authentication</strong></h4>
+<div class="paragraph">
+<p>With Artillery.io, you can use basic authentication or get authorized by tokens uploading CSV
+with your credentials. Just pick an option that suits your project best.</p>
+</div>
+<div class="paragraph">
+<p>Check their <a href="https://artillery.io/docs/guides/guides/http-reference.html#Basic-Authentication" target="_blank" rel="noopener">official documentation</a> to find information on authentication and many other aspects of Artillery.io.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/620a317e6e04332776bf7cb9_JsWFVRbBNI_RNrtp_OeJl3b-y6LcxHFlEvmXqAqn8zZIKzTnOZrQhPWVs0K7eBjtntToigptblOB3ZPic7ot0Z-xcupUM-T__U2oS_NwljelN1fGeAJ26wwm0dgn9w0UTvvmkdQz.png" alt="620a317e6e04332776bf7cb9 JsWFVRbBNI RNrtp OeJl3b y6LcxHFlEvmXqAqn8zZIKzTnOZrQhPWVs0K7eBjtntToigptblOB3ZPic7ot0Z xcupUM T  U2oS NwljelN1fGeAJ26wwm0dgn9w0UTvvmkdQz">
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s first revise how you can get authorized by tokens. To upload a CSV file with credentials, you should add
+the following lines into the config file:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>payload</strong> – to use the payload functionality;</p>
+</li>
+<li>
+<p><strong>path</strong> – to write a path for the CSV file that Artillery needs to use;</p>
+</li>
+<li>
+<p><strong>fields</strong> – names of fields that you need to use.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/61e6b6dcab56b80f45de406b_ydhUhDNow7_XGKOXcFR-z8iechX2JWuaC6DH7NnsDFsT6lbZIcdD0PVyxfZVbmM390aVwnVobdEtLSW6hpJKjRE81cLu7ewXpXK0xjTNwo6M2mWOl3hAVsOb9T8M6_WGrnlj44Y7.png" alt="61e6b6dcab56b80f45de406b ydhUhDNow7 XGKOXcFR z8iechX2JWuaC6DH7NnsDFsT6lbZIcdD0PVyxfZVbmM390aVwnVobdEtLSW6hpJKjRE81cLu7ewXpXK0xjTNwo6M2mWOl3hAVsOb9T8M6 WGrnlj44Y7">
+</div>
+</div>
+<div class="paragraph">
+<p>See an example with a CSV file:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/61e6b6dcc135a22c44224d06_2C8yt_MSmdA8iiOuIsj5zaczDHbc_nDsfDlp3nelSyAn8KLgpRnIQUW8c5B7PYwgFRTawbEktVfhKzogHvXMkR05kVfZBo7fG6ofObMR77LxLnKE9HCv2tKnmJea74yyGLtzb5rV.png" alt="61e6b6dcc135a22c44224d06 2C8yt MSmdA8iiOuIsj5zaczDHbc nDsfDlp3nelSyAn8KLgpRnIQUW8c5B7PYwgFRTawbEktVfhKzogHvXMkR05kVfZBo7fG6ofObMR77LxLnKE9HCv2tKnmJea74yyGLtzb5rV">
+</div>
+</div>
+<div class="paragraph">
+<p>The second way to get authorized is through environment variables. And we have several options for this. The
+first one is to execute an <strong>export</strong> command in your console as below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/61e6b6dcc9a859cf8bd3b0a5_t5VlpO3PEXY0fx4Gz90oF2VhpSsmzK-j0Qli3mZeg4i2ZrhQ3RJvVCtrySPRwtpHUOc78fhISHne-SmjgNZPLK1ruEU63n5ufIqgNWeqlxbTLB3xArmN3gAkcN3MWkDpB62jDgOB.png" alt="61e6b6dcc9a859cf8bd3b0a5 t5VlpO3PEXY0fx4Gz90oF2VhpSsmzK j0Qli3mZeg4i2ZrhQ3RJvVCtrySPRwtpHUOc78fhISHne SmjgNZPLK1ruEU63n5ufIqgNWeqlxbTLB3xArmN3gAkcN3MWkDpB62jDgOB">
+</div>
+</div>
+<div class="paragraph">
+<p>And after it’s done, you can use your variable inside your yml file:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/61e6b6ddc9a8593889d3b180_emp-w2bZFybmHBqVjaig0JVYAMNpEF_9DVpUFTYQ0OuulveZ2qrR05mUZao_fGcNzKK7IpfJB2Gr7hb5kZG3878EvW-W75gku95b0KwqNK8rGEpWW0dyQGONPFiTbCJ0zbR3K558.png" alt="61e6b6ddc9a8593889d3b180 emp w2bZFybmHBqVjaig0JVYAMNpEF 9DVpUFTYQ0OuulveZ2qrR05mUZao fGcNzKK7IpfJB2Gr7hb5kZG3878EvW W75gku95b0KwqNK8rGEpWW0dyQGONPFiTbCJ0zbR3K558">
+</div>
+</div>
+<div class="paragraph">
+<p>Another option is to write a new script with an environment variable in your <strong>package.json</strong> file
+to execute your tests without typing the <strong>export</strong> variable in the terminal each time. It will
+look like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/61e6b6dc33effcb4ebfc94af_1FPnguaIeeWsyUgBiyhBUVYd1siQlEGlBGObLF_ae57qBDD7bpVhfb6NdyLCEfJ86mUvFcJtV4SdAdT7FIj43EgahM4g6kSJxfu8qs-pDuXwsDB1uxExTdxfyme9m5n79ziueQOY.png" alt="61e6b6dc33effcb4ebfc94af 1FPnguaIeeWsyUgBiyhBUVYd1siQlEGlBGObLF ae57qBDD7bpVhfb6NdyLCEfJ86mUvFcJtV4SdAdT7FIj43EgahM4g6kSJxfu8qs pDuXwsDB1uxExTdxfyme9m5n79ziueQOY">
+</div>
+</div>
+<div class="paragraph">
+<p>Then all you need to do is run this script in the terminal:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>npm run artillery:run</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, you can upload CSV to pass parameters for your test requests: GET, POST, PUT, etc.</p>
+</div>
+<div class="paragraph">
+<p>Check an example with POST:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/performance-testing-via-artillery-io/61e6b6dd62547e71c134018e_h_KGFTQfl8aK_2o2gRMbK89FdZXCkfTCX6r2yjtTLx2kZfiE1J26NyWLOZX-xyxJdGJ9So4u4lRSY4pKB2q0OhceVpSLwzYVBSfLTpVh_obAowo1Tvpwp-KEgbRt92MwipCWsc-r.png" alt="61e6b6dd62547e71c134018e h KGFTQfl8aK 2o2gRMbK89FdZXCkfTCX6r2yjtTLx2kZfiE1J26NyWLOZX xyxJdGJ9So4u4lRSY4pKB2q0OhceVpSLwzYVBSfLTpVh obAowo1Tvpwp KEgbRt92MwipCWsc r">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_final_thoughts"><strong>Final thoughts</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Artillery.io is an accessible and comprehensive tool that I use and can surely recommend for performance
+testing.</p>
+</div>
+<div class="paragraph">
+<p>With a free <a href="https://artillery.io/docs/guides/getting-started/installing-artillery.html" target="_blank" rel="noopener">Artillery
+Core</a> version, you can run tests from a local or virtual machine. And by switching to <a href="https://artillery.io/docs/guides/getting-started/installing-artillery-pro.html" target="_blank" rel="noopener">Artillery Pro</a>,
+you’re getting a self-hosted AWS performance testing platform.</p>
+</div>
+<div class="paragraph">
+<p>Other features of Artillery Pro include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>runs millions of tests per second across 13 geographical regions;</p>
+</li>
+<li>
+<p>works with existing security systems;</p>
+</li>
+<li>
+<p>no repeat charges or paid maintenance;</p>
+</li>
+<li>
+<p>VPC internal test services.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I hope this article has given you some clarity on Artillery’s software, and helped you make a choice regarding
+the performance testing tool you want to work with.</p>
+</div>
+<div class="paragraph">
+<p>In case you’re looking for help in software testing, or your project needs an advanced quality assurance pipeline
+– <a href="https://valor-software.com/contact.html" target="_blank" rel="noopener">drop us a line</a>!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_useful_links"><strong>Useful Links</strong></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.artillery.io/docs/guides/getting-started/installing-artillery" target="_blank" rel="noopener">Installation through npm utility guide</a></p>
+</li>
+<li>
+<p><a href="https://artillery.io/docs/guides/overview/welcome.html" target="_blank" rel="noopener">Artillery docs</a></p>
+</li>
+<li>
+<p><a href="https://www.npmjs.com/search?q=artillery-plugin-&amp;page=0&amp;perPage=20" target="_blank" rel="noopener">Artillery plugins on npm</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div></div></div></section><!----><section class="landing-section"><div class="container"><h1 class="main-title double">More Articles</h1><blog-preview><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-e-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-e-module-federation/2%20(1).png" alt="Nx, Next.js, e Module Federation"></div><div class="text-container"><p>Nx, Next.js, e Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-and-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-and-module-federation/2%20(1).png" alt="Nx, Next.js, and Module Federation"></div><div class="text-container"><p>Nx, Next.js, and Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/debugging-ngrx-in-nativescript-with-redux-devtools" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png" alt="Debugging NgRx in NativeScript with Redux DevTools"></div><div class="text-container"><p>Debugging NgRx in NativeScript with Redux DevTools</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-akh-c35=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.824a489ad669cfd21327.js" defer=""></script><script src="polyfills.2ff19d9baa01044da760.js" defer=""></script><script src="main.fee1b9601e512d529cb6.js" defer=""></script>
+
+</body></html>

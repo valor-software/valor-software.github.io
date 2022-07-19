@@ -1,0 +1,501 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/designing-aggregator-app-from-a-to-z-part-1.html"
+            },
+            "headline": "Designing Aggregator App from A to Z — Part 1",
+            "description": "In this second part of my Designing Aggregator App for Movie Tickets Purchase article, I’ll be talking about Design Interaction and Interface UI Design. Also, I’ll share my conclusions of all processes in general.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/designing-aggregator-app-from-a-to-z-part-1/60c712f3696d0adaf4fdf721_MyTicketsApp_Cover.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Hussein Al-attar"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Wed May 19 2021 08:27:24 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Designing Aggregator App from A to Z — Part 1</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#e1e1e1}html{tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}body{font-family:inherit;line-height:inherit}*,:after,:before{box-sizing:border-box;border:0 solid}*,:after,:before{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty,/*!*/ /*!*/);--tw-brightness:var(--tw-empty,/*!*/ /*!*/);--tw-contrast:var(--tw-empty,/*!*/ /*!*/);--tw-grayscale:var(--tw-empty,/*!*/ /*!*/);--tw-hue-rotate:var(--tw-empty,/*!*/ /*!*/);--tw-invert:var(--tw-empty,/*!*/ /*!*/);--tw-saturate:var(--tw-empty,/*!*/ /*!*/);--tw-sepia:var(--tw-empty,/*!*/ /*!*/);--tw-drop-shadow:var(--tw-empty,/*!*/ /*!*/);--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css"></noscript><style></style><meta name="description" content="In this second part of my Designing Aggregator App for Movie Tickets Purchase article, I’ll be talking about Design Interaction and Interface UI Design. Also, I’ll share my conclusions of all processes in general."><meta property="og:title" content="Designing Aggregator App from A to Z — Part 1"><meta property="og:description" content="In this second part of my Designing Aggregator App for Movie Tickets Purchase article, I’ll be talking about Design Interaction and Interface UI Design. Also, I’ll share my conclusions of all processes in general."><meta property="twitter:title" content="Designing Aggregator App from A to Z — Part 1"><meta property="twitter:description" content="In this second part of my Designing Aggregator App for Movie Tickets Purchase article, I’ll be talking about Design Interaction and Interface UI Design. Also, I’ll share my conclusions of all processes in general."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-ema-c35="" ng-version="12.2.16"><top-menu _ngcontent-ema-c35=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-ema-c35="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ema-c35=""></router-outlet><general-item><article><section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div class="container flex items-center flex-col"><breadcrumbs class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Designing Aggregator App From A To Z — Part 1 </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p class="text-20 mb-4">May 19, 2021</p><p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Designing Aggregator App from A to Z — Part 1</p><div class="w-70 h-70 rounded-full overflow-hidden mb-4"><img class="w-full h-full object-cover" src="assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c64a51fff6993992acef_Hussain.png" alt="Hussein Al-attar"></div><!----><p class="md:text-large text-24 mb-4">Hussein Al-attar</p><!----><p class="text-20">UI/UX Designer</p><!----></div></div></section><section class="landing-section"><div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div class="max-w-full"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_stage_1_designing_the_product"><strong>Stage 1: Designing the product</strong></a>
+<ul class="sectlevel3">
+<li><a href="#_business_goal"><strong>Business goal</strong></a></li>
+<li><a href="#_business_requirements"><strong>Business requirements:</strong></a></li>
+<li><a href="#_target_audience_research_and_analysis"><strong>Target audience research and analysis</strong></a></li>
+<li><a href="#_1_online_survey_with_google_forms">1. Online survey with Google Forms</a></li>
+<li><a href="#_2_live_interview">2. Live interview</a></li>
+<li><a href="#_3_field_research">3. Field research</a></li>
+<li><a href="#_4_competitors_review_and_analysis">4. Competitors review and analysis</a></li>
+</ul>
+</li>
+<li><a href="#_what_i_realized_as_i_finished_this_stage">What <strong>I realized as I finished this stage</strong></a></li>
+<li><a href="#_tools_applied">Tools <strong>applied</strong></a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Almost every movie place in our city offers an app to search for movies and buy tickets. So, you need to use several apps in parallel, you lose time comparing movie sessions and prices to make
+the right choice. My task was to fix this and make this movie escape easy and convenient. I thought of one and only app that would display all the movie places and movies available. It would also allow for picking the movie from all the possible options in the city and purchasing them online.</p>
+</div>
+<div class="paragraph">
+<p>In this article, I’ll share how to design an app and lead you through every stage from user research to mock-up. Learn how to gather the information you need and create a splashing design based on users' pains and preferences. And, good luck with your beginnings :)</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6a92141388b7d2d9fe1_rOQ11ZZYkhE9Vg2brc3x94XaGdOQOuxUr6UbDK_Q2_RGn3JMBmOr_xGuJ6P2qaFQUh09hjAIfy8V9cs9NuBontVyETUHEFCY7Vnlaj5_Xd5pIrzmtDIUQRDVQxDm5U3uVyvn5V_o.png" alt="60a4c6a92141388b7d2d9fe1 rOQ11ZZYkhE9Vg2brc3x94XaGdOQOuxUr6UbDK Q2 RGn3JMBmOr xGuJ6P2qaFQUh09hjAIfy8V9cs9NuBontVyETUHEFCY7Vnlaj5 Xd5pIrzmtDIUQRDVQxDm5U3uVyvn5V o">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stage_1_designing_the_product"><strong>Stage 1: Designing the product</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I attended the <a href="https://ux-clan.org/training/" target="_blank" rel="noopener">Digital Product Design</a> course, and my
+graduation task was to develop a mobile app that would merge all the movie places of all the biggest Ukrainian cities. This app will ease finding a film, movie session, best seats, and buying tickets. I went with the iOS platform for the app.</p>
+</div>
+<div class="sect3">
+<h4 id="_business_goal"><strong>Business goal</strong></h4>
+<div class="paragraph">
+<p>Sell movie tickets online</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_business_requirements"><strong>Business requirements:</strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Users have an opportunity to pick films according to the genre, prices, location of a movie place, movie session time, seats available, etc.</p>
+</li>
+<li>
+<p>Users have an opportunity for online ticket purchases.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_target_audience_research_and_analysis"><strong>Target audience research and analysis</strong></h4>
+<div class="paragraph">
+<p>People of 18 - 35 who attend movies a couple times a month due to the pandemic made up my target audience. They use smartphones and the Internet widely, and most of them work in the office.</p>
+</div>
+<div class="paragraph">
+<p>In my research I applied the following instruments and sources for gathering the information:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>An online survey in Google Forms that I ran on Facebook, Telegram, and via corporate Slack channel.</p>
+</li>
+<li>
+<p>Live interview with movie fans.</p>
+</li>
+<li>
+<p>Field research in the movie spot.</p>
+</li>
+<li>
+<p>Review and analysis of competitive apps like <a href="https://apps.apple.com/ua/app/%D0%BF%D0%BB%D0%B0%D0%BD%D0%B5%D1%82%D0%B0-%D0%BA%D1%96%D0%BD%D0%BE/id593841464?l=ru" target="_blank" rel="noopener">Planeta Kino</a>, <a href="https://apps.apple.com/ua/app/fander/id1185465114" target="_blank" rel="noopener">Fander</a>. I gathered feedback from live conversations about the mentioned apps, and checked the feedback on the App Store.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_online_survey_with_google_forms">1. Online survey with Google Forms</h3>
+<div class="paragraph">
+<p>I started my research of the target audience with an online survey. In this my friends, colleagues, fellow students and even people I don’t really know were of great help. I spread my questionnaire through Facebook, Telegram, and Slack. I used Google Forms for gathering answers, and then - Excel file for results.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6aa73388525fb870fce_UYbecSSTNeXh7Fgts8d9TA67cV4cZOWV9yeDgmFgNkO7sre49QezHdWEUCVFx_YDphP2mZEHprkBRKQLbSU3ZOjcTTvQwpVap9B1tLgdY6fQBXKatoq28fpp7lcslSUTQbpDlCFE.png" alt="60a4c6aa73388525fb870fce UYbecSSTNeXh7Fgts8d9TA67cV4cZOWV9yeDgmFgNkO7sre49QezHdWEUCVFx YDphP2mZEHprkBRKQLbSU3ZOjcTTvQwpVap9B1tLgdY6fQBXKatoq28fpp7lcslSUTQbpDlCFE">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_questions_in_my_online_questionnaire"><strong>Questions in my online questionnaire:</strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Why do you usually go to the movies?</p>
+</li>
+<li>
+<p>What are your criteria for picking films? How do you buy tickets?</p>
+</li>
+<li>
+<p>What obstacles do you face while picking a film, buying and paying for a ticket?</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_live_interview">2. Live interview</h3>
+<div class="paragraph">
+<p>For this stage I invited people I know and even those I don’t really know but they’re part of the design community. They agreed to participate after I shared the idea through the official Telegram channel of the design school where I studied.</p>
+</div>
+<div class="sect3">
+<h4 id="_questions_for_the_interview"><strong>Questions for the interview:</strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Do you attend movies? If yes, then what are you searching for there? If the answer to the first question is no, then I ask 'Why is that?'</p>
+</li>
+<li>
+<p>How do you pick films and buy tickets?</p>
+</li>
+<li>
+<p>What obstacles do you face while picking a film, buying and paying for a ticket?</p>
+</li>
+<li>
+<p>How often do you use your smartphone for that?</p>
+</li>
+<li>
+<p>What apps do you usually use?</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_outcome_from_a_couple_of_talks">The outcome from a couple of talks:'</h4>
+<div class="paragraph">
+<p><strong>Interviewee 1</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Name:</strong> Daniil</p>
+</div>
+<div class="paragraph">
+<p><strong>Age:</strong> 28</p>
+</div>
+<div class="paragraph">
+<p><strong>How often does he go to the movies</strong></p>
+</div>
+<div class="paragraph">
+<p>Daniil hasn’t been to the movies since the beginning of the pandemic. Before the pandemic, he attended movies from time to time with his family and friends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Motivation</strong></p>
+</div>
+<div class="paragraph">
+<p>He’s driven by the opportunity to rest from work and experience positive emotions.&amp;nbsp Daniil loves watching films on a big screen.</p>
+</div>
+<div class="paragraph">
+<p><strong>How he picks movies and buys tickets</strong></p>
+</div>
+<div class="paragraph">
+<p>He checks the title and the cover, reads the description, and watches
+the trailer. The latter uncovers about 50% of the plot, Daniil says.Then, he considers the feedback from
+the audience online. For picking films and purchasing tickets he goes with a <a href="https://apps.apple.com/us/app/%D0%B2%D0%BA%D0%B8%D0%BD%D0%BE-%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B0-%D0%B1%D0%B8%D0%BB%D0%B5%D1%82%D0%BE%D0%B2-%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD/id757872310" target="_blank" rel="noopener">Vkino</a> app.</p>
+</div>
+<div class="paragraph">
+<p><strong>Suggestions on how to improve the service</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add locations of the movies to the app to ease the choice for visitors.</p>
+</li>
+<li>
+<p>Add maps to build a route from the visitor’s locations to the movie place.</p>
+</li>
+<li>
+<p>Improve an online seats map to clearly show where the screen is.</p>
+</li>
+<li>
+<p>Connect the app to Apple and Google Pay to ease the purchase process.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Interviewee 2</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Name:</strong> Sophia</p>
+</div>
+<div class="paragraph">
+<p><strong>Age:</strong> 35
+<strong>How often does she go to the movies</strong></p>
+</div>
+<div class="paragraph">
+<p>Sophia never attended the movies since the pandemic, and she’s not really a huge fan.</p>
+</div>
+<div class="paragraph">
+<p><strong>Motivation</strong></p>
+</div>
+<div class="paragraph">
+<p>Spending time with her dear people, especially with the nephew who loves cartoons. Sophia prefers
+impressive special effects on a big screen and watching films right after the release.</p>
+</div>
+<div class="paragraph">
+<p><strong>How she picks movies and buys tickets</strong></p>
+</div>
+<div class="paragraph">
+<p>She checks the trailer on the movies' website or just somewhere on the Internet, then - buys tickets from the official website. Sophia generally finds it convenient unless they have troubles with the website (when it doesn’t work for a few days). Then she books tickets through the phone and then purchases them at the movies. She doesn’t use apps because that’s her partner’s prerogative.</p>
+</div>
+<div class="paragraph">
+<p><strong>Suggestions on how to improve the service</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create one and only app that would give information about every single movie place in the city, also - allow booking and purchasing tickets.</p>
+</li>
+<li>
+<p>Make it possible to purchase tickets through Apple and Google Pay with no need to add users' data every time.</p>
+</li>
+<li>
+<p>Make fewer registration steps on the way to the purchase.</p>
+</li>
+<li>
+<p>Provide an opportunity to buy popcorn and sodas through the app and pick them up
+at the movies with no queues (we could use a barcode or something like this for payment confirmation).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Interviewee 3</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Name:</strong> Mariia</p>
+</div>
+<div class="paragraph">
+<p><strong>Age:</strong> 20</p>
+</div>
+<div class="paragraph">
+<p><strong>How often does she go to the movies</strong></p>
+</div>
+<div class="paragraph">
+<p>She’s been to the movies a couple of times because of the pandemic. Before she used to go there monthly.</p>
+</div>
+<div class="paragraph">
+<p><strong>Motivation</strong></p>
+</div>
+<div class="paragraph">
+<p>It’s a nice way to have fun and relax with friends.</p>
+</div>
+<div class="paragraph">
+<p><strong>How she picks movies and buys tickets</strong></p>
+</div>
+<div class="paragraph">
+<p>She usually checks the trailer, searches for ads about the film, and considers her friends' feedback. Before she used <a href="https://multiplex.ua/cinema/kharkiv/dafi" class="bare">https://multiplex.ua/cinema/kharkiv/dafi</a>
+[Multiplex^] to pick a movie and purchase tickets as she used to live right next to this
+movie place. Now she lives downtown and prefers the Planeta Kino&amp;nbsp app. It provides a user-friendly
+interface, a great variety of films, and an Apple pay payment method.</p>
+</div>
+<div class="paragraph">
+<p>She’s frustrated because it takes time and effort to switch seats when you book tickets online. After the choice is made, she has to wait for 15-20 minutes till her previous order gets canceled. And someone can book the seats she wants while she’s waiting.</p>
+</div>
+<div class="paragraph">
+<p><strong>Suggestions on how to improve the service</strong><br>
+- Organise the catalogue of films the way we can see several options on one screen at once, this speeds up the search. Planeta Kino offers horizontal scrolling and shows just one film on a mobile screen.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Offer an easy way to change the booked seats for other ones before the purchase.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_field_research">3. Field research</h3>
+<div class="paragraph">
+<p>To feel the frustration users tend to feel while using apps, I communicated with them and tried myself in the
+role of a user. I visited 2 movie places in my city, Planeta Kino and Multiplex. This way, I was able to
+observe the visitors, their behavior in front of the checkout, the ticket purchase process, the cashier’s
+behavior, also the tech they’re using to provide a better service.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6a95a35bad1845e403e_kdcxokWRD4f4YwSbFnLVZMI6DhlJPVz6eM_XM_bAZ6lJ5CUW0QlLoT9tCvayHYHmP5aojg8FXIKQCfuIAa-QFt-nwIWGPCEHRCoH5PGDNwaVdZ99HcCUKiE_JPrfwE0nLkTa0OjF.png" alt="60a4c6a95a35bad1845e403e kdcxokWRD4f4YwSbFnLVZMI6DhlJPVz6eM XM bAZ6lJ5CUW0QlLoT9tCvayHYHmP5aojg8FXIKQCfuIAa QFt nwIWGPCEHRCoH5PGDNwaVdZ99HcCUKiE JPrfwE0nLkTa0OjF">
+</div>
+</div>
+<div class="paragraph">
+<p>I also got myself involved in this process by becoming a customer, I put myself in their shoes,
+and this helped me experience their journey. I started to understand the idea behind the communication with
+users, how important it is to feel their frustration to come up with a better solution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6a936aae43a296606d8_snSpiVfZFzG4i361ndi1l_ZguL_Ljjga4JRK_BV-6VEJnxjudeQRMoALL5bdN8sgs6PRUbEwLd2UYeVfwfNKUjd-JMojAfi1jS0Y6w9Zn7fCCrdW_eJQgM5n62VoSyfxmG-EYqxo.png" alt="60a4c6a936aae43a296606d8 snSpiVfZFzG4i361ndi1l ZguL Ljjga4JRK BV 6VEJnxjudeQRMoALL5bdN8sgs6PRUbEwLd2UYeVfwfNKUjd JMojAfi1jS0Y6w9Zn7fCCrdW eJQgM5n62VoSyfxmG EYqxo">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_competitors_review_and_analysis">4. Competitors review and analysis</h3>
+<div class="paragraph">
+<p>We have many applications for buying movie tickets. And I have selected the most popular and frequently used ones for my analysis: <a href="https://apps.apple.com/ua/app/%D0%BF%D0%BB%D0%B0%D0%BD%D0%B5%D1%82%D0%B0-%D0%BA%D1%96%D0%BD%D0%BE/id593841464?l=ru" target="_blank" rel="noopener">Planeta Kino</a>, <a href="https://apps.apple.com/ua/app/multiplex-cinema/id1160648734" &gt;"="" target="_blank" rel="noopener">Multiplex</a>, and <a href="https://apps.apple.com/ua/app/fander/id1185465114" &gt;"="" target="_blank" rel="noopener">Fander</a>.</p>
+</div>
+<div class="paragraph">
+<p>I installed these applications on my iPhone SE to analyze and test how they look and work, find their advantages, disadvantages that need to be avoided and, of course, saturate my brain with ideas and inspiration. And at the same time, I analyze user reviews of the applications in the App Store.</p>
+</div>
+<div class="paragraph">
+<p>In the next part I’ll start working with the user personas for our future product, their goals, needs and problems based on the results that I got earlier from the real users.</p>
+</div>
+<div class="sect3">
+<h4 id="_user_profile_and_requirements"><strong>User profile and requirements:</strong></h4>
+<div class="paragraph">
+<p>As a result of the research phase, we should collect data on the future users in the form of a persona. I
+created a persona and listed her (his) frustration points, goals, and needs.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a77fb9eeb30b6f14a5ec83_vV0XF4GoC2Qqls_1uVSQFgliPGLPdK3IMexI32Sqso4JWIYlLLn0hkeqAIy0aAxE1ak6dt6I5Hk9s70gWaV64yg9L7-kAFnHze-ubhvgqK0Nq9MHnQZlEtR7IoOP8o7wCvXvCBzI.png" alt="60a77fb9eeb30b6f14a5ec83 vV0XF4GoC2Qqls 1uVSQFgliPGLPdK3IMexI32Sqso4JWIYlLLn0hkeqAIy0aAxE1ak6dt6I5Hk9s70gWaV64yg9L7 kAFnHze ubhvgqK0Nq9MHnQZlEtR7IoOP8o7wCvXvCBzI">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ideas_generation_and_future_product_requirements"><strong>Ideas generation and future product requirements:</strong></h4>
+<div class="paragraph">
+<p>With the goal and needs of the target audience in mind I’ve generated ideas to cover each frustration point of the users.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6a955362ee89da12c03_x-zN6UprZkZmEQxxNKgFEmYr1FSR_GU8C3bNpcK1Nxc_SGNFJaK9qXdO_kfKB2jvtIi2cXm4sMXmcR_Wv2tNp0nFZscw-JQlFflIQG7EhJFL-GHb5PzEdEatgwu4O7sg2-OWrbVH.png" alt="60a4c6a955362ee89da12c03 x zN6UprZkZmEQxxNKgFEmYr1FSR GU8C3bNpcK1Nxc SGNFJaK9qXdO kfKB2jvtIi2cXm4sMXmcR Wv2tNp0nFZscw JQlFflIQG7EhJFL GHb5PzEdEatgwu4O7sg2 OWrbVH">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_user_story">User story:</h4>
+<div class="paragraph">
+<p>Designing a future product begins with the user story phase. At this stage, you need to describe the cases where the product will be used by different types of users. And that’s what I did.</p>
+</div>
+<div class="paragraph">
+<p>In the next part I’ll be creating the user stories (scenarios) of the most common cases
+of how users use the future product from the moment of opening the App till they achieve their goal.</p>
+</div>
+<div class="paragraph">
+<p><strong>Story 1: Evening at the movies (Regular user)</strong></p>
+</div>
+<div class="paragraph">
+<p>On the weekend, Alexander was thinking about how to spend the evening, somehow go out and have fun. He remembered that he had not visited the movies for a long time and decided to invite his best friend to go with him. Sure thing, the friend agreed
+:-)</p>
+</div>
+<div class="paragraph">
+<p>Alexander reached for his phone to find tickets online through the app. He checked the posters of
+the movies playing that day, and the new Justice League caught his eye. He watched the trailer, checked the
+movie story, and decided to go for it. He chose a movie place that was closest and a suitable session, picked
+seats for two, and paid for the tickets. Then, he checked the tickets', added them to 'Wallet' for quick and
+easy access, and closed the app. Finally, time to get ready for the show!</p>
+</div>
+<div class="paragraph">
+<p>After a while, Alexander and his friend met at the movies and joined the line to enter the movie hall. Alexander prepared the tickets for scanning in the "Wallet". After the check, they took their seats and started watching the movie. BTW, it was a good piece. And Alexander gave it 5 out of 5 when received a request for evaluation from the App.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6a911df140606adf18c_imMiWE1xIzeGdSFzm1CPQPayrn8ceU50kA1bQJUR3CMJBTVT5Gr5CxGiayB98irnxNgFmtFF97YwYD3LpH3igUNQLSbbRYo5RhGDM1f8vZs5g4tahQcAv83E4CxS2Ln7kKbunuQ7.png" alt="60a4c6a911df140606adf18c imMiWE1xIzeGdSFzm1CPQPayrn8ceU50kA1bQJUR3CMJBTVT5Gr5CxGiayB98irnxNgFmtFF97YwYD3LpH3igUNQLSbbRYo5RhGDM1f8vZs5g4tahQcAv83E4CxS2Ln7kKbunuQ7">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Story 2: Movie premiere (New user)</strong></p>
+</div>
+<div class="paragraph">
+<p>It was a usual working day. Alexander was on a lunch break, discussing the upcoming Justice League, which had been added to the future release at the movies. Everyone was looking forward to seeing it. The only way to get tickets for the premiere was to pre-order them online. He picked up his phone, downloaded the application, opened it, skipped the registration, and in no time found the movie he was seeking. He selected the movie place, session, and seats.
+Before he had a chance to pay for the tickets, the App asked for mandatory registration to complete the
+purchase. He’s registered in one tap with his Apple account. After the registration, he paid for the tickets,
+checked the ticket details, and closed the application.</p>
+</div>
+<div class="paragraph">
+<p>In three weeks, on the movie premiere day, Alexander and his friend met at the movies and stood in line in front of the entrance to the movie hall. Alexander opened the application, went to the 'Tickets' section, and prepared the tickets for scanning.</p>
+</div>
+<div class="paragraph">
+<p>After check-in, they entered the movie hall, took their seats, and started watching the movie. Alexander
+liked the movie very much. After watching, he received a notification from the App asking him to rate the
+movie. He gave it 5 out of 5.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-1/60a4c6aa2ddd2a47f40867ee_g3031GOYJKO7VaBSO0UM0lTYz7eKOZKpON4rEWo3VO54gWbUOuG0tJfHbtREnLP5vqWdJmC_3GQl6r0cOC15y1oRuQC2GZ-i8QeThcRlirAHQNG8ZZKrIgEnqWLPbMZIm9oQblvi.png" alt="60a4c6aa2ddd2a47f40867ee g3031GOYJKO7VaBSO0UM0lTYz7eKOZKpON4rEWo3VO54gWbUOuG0tJfHbtREnLP5vqWdJmC 3GQl6r0cOC15y1oRuQC2GZ i8QeThcRlirAHQNG8ZZKrIgEnqWLPbMZIm9oQblvi">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_i_realized_as_i_finished_this_stage">What <strong>I realized as I finished this stage</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first thing that came to my mind before starting this course is that it is complicated: how I will do it, it takes time, it’s difficult, etc. But as soon as the education started and I started delving into these processes, I realized that no successful product was made based on the business owners', designers', or developers' wishes. They’re all based on users' needs. I got not just an experience of a lifetime creating products for users, but also had a lot of fun in the journey!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tools_applied">Tools <strong>applied</strong></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>I used <a href="https://apps.apple.com/us/app/xmind-mind-map/id1286983622" target="_blank" rel="noopener">Xmind</a> to create the mind
+mapping and the functional structure, it’s a very handy app for UX designers, simple and easy to use.</p>
+</li>
+<li>
+<p>I used <a href="https://www.figma.com/" target="_blank" rel="noopener">Figma</a> to create the user flow (scenarios), wireframes, and
+of course the interface UI. It’s one of the greatest prototyping tools which is primarily web-based,
+with additional offline features enabled by desktop applications for macOS and Windows.</p>
+</li>
+</ol>
+</div>
+</div>
+</div></div></div></section><!----><section class="landing-section"><div class="container"><h1 class="main-title double">More Articles</h1><blog-preview><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-e-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-e-module-federation/2%20(1).png" alt="Nx, Next.js, e Module Federation"></div><div class="text-container"><p>Nx, Next.js, e Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-and-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-and-module-federation/2%20(1).png" alt="Nx, Next.js, and Module Federation"></div><div class="text-container"><p>Nx, Next.js, and Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/debugging-ngrx-in-nativescript-with-redux-devtools" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png" alt="Debugging NgRx in NativeScript with Redux DevTools"></div><div class="text-container"><p>Debugging NgRx in NativeScript with Redux DevTools</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-ema-c35=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.824a489ad669cfd21327.js" defer=""></script><script src="polyfills.2ff19d9baa01044da760.js" defer=""></script><script src="main.fee1b9601e512d529cb6.js" defer=""></script>
+
+</body></html>

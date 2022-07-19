@@ -1,0 +1,405 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/how-to-deploy-firebase-preview-channels-on-travis-ci.html"
+            },
+            "headline": "How to deploy Firebase Preview Channels on Travis CI",
+            "description": "At the time of this article’s publication, GitHub Actions does not yet natively provide automated procedures for Travis CI from GitHub. Here sharing the solution allowing usage of preview channels by Firebase with your existing Travis CI deployment environment.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/how-to-deploy-firebase-preview-channels-on-travis-ci/60eeac94c338b9c4039ad1c7_Blog.Cover.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Nikita Glukhi"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Mon Jul 12 2021 11:06:08 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>How to deploy Firebase Preview Channels on Travis CI</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#e1e1e1}html{tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}body{font-family:inherit;line-height:inherit}*,:after,:before{box-sizing:border-box;border:0 solid}*,:after,:before{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty,/*!*/ /*!*/);--tw-brightness:var(--tw-empty,/*!*/ /*!*/);--tw-contrast:var(--tw-empty,/*!*/ /*!*/);--tw-grayscale:var(--tw-empty,/*!*/ /*!*/);--tw-hue-rotate:var(--tw-empty,/*!*/ /*!*/);--tw-invert:var(--tw-empty,/*!*/ /*!*/);--tw-saturate:var(--tw-empty,/*!*/ /*!*/);--tw-sepia:var(--tw-empty,/*!*/ /*!*/);--tw-drop-shadow:var(--tw-empty,/*!*/ /*!*/);--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css"></noscript><style></style><meta name="description" content="At the time of this article’s publication, GitHub Actions does not yet natively provide automated procedures for Travis CI from GitHub. Here sharing the solution allowing usage of preview channels by Firebase with your existing Travis CI deployment environment."><meta property="og:title" content="How to deploy Firebase Preview Channels on Travis CI"><meta property="og:description" content="At the time of this article’s publication, GitHub Actions does not yet natively provide automated procedures for Travis CI from GitHub. Here sharing the solution allowing usage of preview channels by Firebase with your existing Travis CI deployment environment."><meta property="twitter:title" content="How to deploy Firebase Preview Channels on Travis CI"><meta property="twitter:description" content="At the time of this article’s publication, GitHub Actions does not yet natively provide automated procedures for Travis CI from GitHub. Here sharing the solution allowing usage of preview channels by Firebase with your existing Travis CI deployment environment."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-owx-c35="" ng-version="12.2.16"><top-menu _ngcontent-owx-c35=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-owx-c35="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-owx-c35=""></router-outlet><general-item><article><section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div class="container flex items-center flex-col"><breadcrumbs class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> How To Deploy Firebase Preview Channels On Travis Ci </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p class="text-20 mb-4">July 12, 2021</p><p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">How to deploy Firebase Preview Channels on Travis CI</p><div class="w-70 h-70 rounded-full overflow-hidden mb-4"><img class="w-full h-full object-cover" src="assets/articles/how-to-deploy-firebase-preview-channels-on-travis-ci/60ec55b99eacf88af1b82d95_Nikita_Glukhi.png" alt="Nikita Glukhi"></div><!----><p class="md:text-large text-24 mb-4">Nikita Glukhi</p><!----><p class="text-20">JS Developer</p><!----></div></div></section><section class="landing-section"><div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div class="max-w-full"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel2">
+<li><a href="#_check_updates_with_no_risk_for_users_experience">Check updates with no risk for users' experience</a></li>
+<li><a href="#_prerequisites">Prerequisites:</a></li>
+<li><a href="#_steps_to_reproduce"><strong>Steps to reproduce:</strong></a></li>
+<li><a href="#_any_questions">Any questions?</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Firebase has released the long awaited Preview channel functionality, which allows
+for the testing of updates. All Firebase (not Firestore!) users can benefit from this hosting feature. And you may
+be asking what about Travis CI or other hosting users? Can they use preview channels as well?</p>
+</div>
+<div class="paragraph">
+<p>At the time of this article’s publication, GitHub Actions does not yet natively provide automated procedures for Travis
+CI from GitHub. Below is a solution to use preview channels by Firebase with your existing <a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a> deployment environment.</p>
+</div>
+<div class="sect2">
+<h3 id="_check_updates_with_no_risk_for_users_experience">Check updates with no risk for users' experience</h3>
+<div class="paragraph">
+<p>Let’s face the truth, to check the behavior of your
+polished and tested updates on production, you had to actually push them to production. Then, in case something
+fails, - get back to a previous version. Application users might have noticed inappropriate system behavior, which
+is a pity. To get rid of this kind of working situation, we can now use preview channels. Apply this new Firebase
+feature to automatically deploy updates and see how they behave, with no risk for real users' experience. Also, you
+can comfortably leave comments for your updates, and amend them with your team. The best thing is that this
+temporary storage will remove itself after a preview channel link expires. No storage place taken!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_prerequisites">Prerequisites:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>You need to know Travis CI and have experience with the config file.</p>
+</li>
+<li>
+<p>You need to know how to write Bash scripts and know the right stage to run the Bash script for preview channels.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_steps_to_reproduce"><strong>Steps to reproduce:</strong></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new local repository.</p>
+</li>
+<li>
+<p>Create a new GitHub repository.</p>
+</li>
+<li>
+<p>Run 'git remote add' command to connect your local repository to GitHub repository.</p>
+</li>
+<li>
+<p><a href="https://firebase.google.com/docs/web/setup" target="_blank" rel="noopener">Set up Firebase</a> project.</p>
+</li>
+<li>
+<p><a href="https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github" target="_blank" rel="noopener">Set up Travis CI</a> for GitHub repository.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Set up configuration variables - add <a href="https://docs.travis-ci.com/user/environment-variables/"><strong>environment variables in Travis CI</strong></a>. The variables that you need to set up are the two access tokens to work with Firebase and
+GitHub:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To get FIREBASE_TOKEN, use the command: firebase login:ci</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the command doesn’t work, that’s probably because you don’t have firebase-tools installed.</p>
+</div>
+<div class="paragraph">
+<p>For installation, run the following command: npm i -g firebase-tools, or curl -sL <a href="https://firebase.tools/" target="_blank" rel="noopener">https://firebase.tools</a> | bash</p>
+</div>
+<div class="paragraph">
+<p>Then - run a firebase login command, then - firebase login:ci. The latter command gives you a Firebase access
+token that you want to use as a value for this step (To get FIREBASE_TOKEN…​).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get GITHUB_TOKEN using this link: <a href="https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token" target="_blank" rel="noopener">Creating a personal access token</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Then, apply this value for the GITHUB_TOKEN variable.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="6">
+<li>
+<p>In your local repository, run the 'firebase init hosting' command, choose your Firebase project from the
+list of already existed projects, and <a href="https://firebase.google.com/docs/hosting/full-config" target="_blank" rel="noopener">configure firebase.json file</a>.</p>
+</li>
+<li>
+<p>Create .travis.yml file in your local repository.</p>
+</li>
+<li>
+<p>Create a Bash script - <a href="https://devdocs.io/bash/" target="_blank" rel="noopener">https://devdocs.io/bash/</a>.</p>
+</li>
+<li>
+<p>Add job to .travis.yml file that should call the script that we’ve created as the step 8.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The job you need to insert into .travis.yml file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    stages:
+     - name: "Deploy to Firebase preview channel"
+       if: branch = master AND type = pull_request
+
+    jobs:
+    include:
+    - stage: "Deploy to Firebase preview channel"
+    skip_cleanup: true
+    provider: firebase
+    project: fir-project-dc47e
+    before_script:
+    - sudo apt-get install jq
+    - npm install firebase-tools -g
+    - npm run build:prod
+    script: bash deploy-to-firebase-preview-channels.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here fir-project-dc47e - an ID of your Firebase project</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="10">
+<li>
+<p>Push changes to GitHub and create a pull request.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now, back to solving our Travis CI issue and enabling its usage with the Preview channel Firebase
+functionality. Find the solution I came up with in the repository: <a href="https://github.com/NikitaGlukhi/travis-ci-and-firebase-preview-channels" target="_blank" rel="noopener">Travis CI and Firebase preview channels solution</a>.</p>
+</div>
+<div class="paragraph">
+<p>Or a brief version on gist: <a href="https://gist.github.com/NikitaGlukhi/f094a6a8e6812d104d779e37d6560705" target="_blank" rel="noopener"><strong>.travis.yml: preview channels deployment</strong></a>.</p>
+</div>
+<div class="paragraph">
+<p>I’ll separate the script into pieces and describe every step below. To deploy successfully, please, follow my guidelines step by step.</p>
+</div>
+<div class="paragraph">
+<p>I start with a deployment to a preview channel:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>#!/usr/bin/env bash
+DEPLOY_TO_PREVIEW_CHANNEL_RESULT=$(firebase hosting:channel:deploy pr-$TRAVIS_PULL_REQUEST --expires 30d --token $FIREBASE_TOKEN --json)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After running the deploy command, I get a&amp;nbsp response with an object containing data, and I have the
+following as a result:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "status": "success",
+        "result": {
+        "fir-project-dc47e": {
+            "site": "fir-project-dc47e",
+            "url": "https://fir-project-dc47e--pr-1-t36vykr3.web.app",
+            "expireTime": "2021-01-08T09:27:24.847798020Z"
+        }
+    }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here fir-project-dc47e - an ID of your Firebase project</p>
+</div>
+<div class="paragraph">
+<p>I add this object to the
+DEPLOY_TO_PREVIEW_CHANNEL_RESULT variable. This object has a .result parameter containing all the data needed
+for future operations.</p>
+</div>
+<div class="paragraph">
+<p>Next, I select data from the .result parameter and add it to a
+separate variable that corresponds to the parameter name. This variable will contain an object with a key of
+ngx-bootstrap-demo.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>RESULT=`echo $&amp;#123;DEPLOY_TO_PREVIEW_CHANNEL_RESULT} | jq -r '.result'`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the next step, I extract fir-project-dc47e object from the RESULT variable:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>RESULT_DATA=`echo $&amp;#123;RESULT} | jq -r '."fir-project-dc47e"'`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following goes to RESULT_DATA:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+    "site": "fir-project-dc47e",
+    "url": "https://fir-project-dc47e--pr-1-t36vykr3.web.app",
+    "expireTime": "2021-01-08T09:27:24.847798020Z"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, I extract a website name from the RESULT_DATA variable. The result will go to the SITE variable:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>SITE=`echo ${RESULT_DATA} | jq -r '."site"'`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I extract a preview channel URL from RESULT_DATA variable, and the result goes to the URL variable:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>URL=`echo $&amp;#123;RESULT_DATA} | jq -r '."url"'`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then - extracting data with the expiration time from the RESULT_DATA variable. And, I write it down to the
+EXPIRE_TIME_UTC variable. UTC format is a default one, so I bring it to the needed format which is GMT, in my
+case.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>EXPIRE_TIME_UTC=`echo $&amp;#123;RESULT_DATA} | jq -r .expireTime`
+EXPIRE_TIME=$(TZ='GMT' date -d $EXPIRE_TIME_UTC +%c)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The NEW_COMMENT variable creates a text with a project name, link to a preview channel, and its life
+duration. I’ll add this text of the comment to a pull request later (TRAVIS_PULL_REQUEST/comments).</p>
+</div>
+<div class="paragraph">
+<p>Then, I extract all the comments from the pull request I want to work on, using the request to GitHub API. The
+result goes to the COMMENTS variable. The Objects array will have a description for each comment.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>COMMENTS=$(curl -H "Authorization: token $GITHUB_TOKEN" -X GET "https://api.github.com/repos/$TRAVIS_REPO_SLUG/issues/$TRAVIS_PULL_REQUEST/comments")</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I declare variables for test cycles. Using the SUBSTRING variable, I search for a comment that might have
+been added before to replace it with the latest one.</p>
+</div>
+<div class="paragraph">
+<p>COMMENT_ID equals -1 by default. In the future, I’ll assign a comment ID that I find to it. In case of no overlaps appeared, the value stays as default.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>SUBSTRING="Project: fir-project-dc47e"
+COMMENT_ID=-1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this cycle, I sort out the COMMENTS array, and extract the body of each comment - its text, and search
+for a substring in this body. If an overlap is detected, I take the comment ID and assign it to the COMMENT_ID
+variable. If no overlaps are detected, then nothing is assigned, the loop just runs as before.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>for row in $(echo "${COMMENTS}" | jq -r '.[] | @base64'); do
+echo ${row}
+    _jq() {
+        echo ${row} | base64 --decode | jq -r ${1}
+    }
+    BODY=$(_jq '.body')
+    if [[ ${BODY} == *"$SUBSTRING"* ]]; then
+        COMMENT_ID=$(_jq '.id')
+    fi
+done</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, I run a COMMENT_ID test, if it equals 0 or is more than 0, it means a&amp;nbsp comment like this
+exists, and I need to refresh it. Then, I refer to GitHub API (GITHUB_TOKEN). If there’s no comment - the
+command creates a new comment in a pull request (GitHub API, as well).</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>if [[ ${COMMENT_ID} -ge 0 ]];
+    then
+        curl -H "Authorization: token $GITHUB_TOKEN" -X PATCH -d "{\"body\": \"$NEW_COMMENT\"}" "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/comments/${COMMENT_ID}"
+    else
+        curl -H "Authorization: token $GITHUB_TOKEN" -X POST -d "{\"body\": \"$NEW_COMMENT\"}" "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments"
+fi</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As a result, I get the link with the comment to a preview channel. And, the comment we get from the
+previous operation comes from the person which token we use.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/how-to-deploy-firebase-preview-channels-on-travis-ci/60ec1e03db7c7b158aaa61f9_Fo06fCr0FS4nOMpv1cm_M5N0MmQuNTKNRJnnUnlegz87jJmLFwrK-FRZXA-R7ZAk0LfUuAWJpU1tviJ9P8iUy_FtGiXlDrp4Qgcq9oW9-u83GMMjgejrpt6rkPTHNNLWlG64wwkH.png" alt="60ec1e03db7c7b158aaa61f9 Fo06fCr0FS4nOMpv1cm M5N0MmQuNTKNRJnnUnlegz87jJmLFwrK FRZXA R7ZAk0LfUuAWJpU1tviJ9P8iUy FtGiXlDrp4Qgcq9oW9 u83GMMjgejrpt6rkPTHNNLWlG64wwkH">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_any_questions">Any questions?</h3>
+<div class="paragraph">
+<p>Feel free to contact me if you have any questions or troubles with deploying the script: <a href="mailto:nikita.glukhi@valor-software.com" target="_blank" rel="noopener">nikita.glukhi@valor-software.com</a>.</p>
+</div>
+</div></div></div></section><!----><section class="landing-section"><div class="container"><h1 class="main-title double">More Articles</h1><blog-preview><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-e-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-e-module-federation/2%20(1).png" alt="Nx, Next.js, e Module Federation"></div><div class="text-container"><p>Nx, Next.js, e Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-and-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-and-module-federation/2%20(1).png" alt="Nx, Next.js, and Module Federation"></div><div class="text-container"><p>Nx, Next.js, and Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/debugging-ngrx-in-nativescript-with-redux-devtools" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png" alt="Debugging NgRx in NativeScript with Redux DevTools"></div><div class="text-container"><p>Debugging NgRx in NativeScript with Redux DevTools</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-owx-c35=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.824a489ad669cfd21327.js" defer=""></script><script src="polyfills.2ff19d9baa01044da760.js" defer=""></script><script src="main.fee1b9601e512d529cb6.js" defer=""></script>
+
+</body></html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/implementing-websockets-plugin-for-nativescript-using-react-native"
+            },
+            "headline": "Implementing WebSockets plugin for NativeScript using React Native",
+            "description": "WebSockets are frequently required for applications, be it for standard WebSocket communication, MQTT, debugging through Redux Remote Devtools, using socket.io, and sometimes even used internally on NativeScript itself. When researching the best solutions for a WebSocket polyfill, there were no implementations better and more battle-tested than React Native’s. With that in mind, we decided to use its approach and created a WebSocket plugin for NativeScript.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/624495a97b77ab1729aaf5ad_ImplementingWebSocketspluginforNativeScriptusingReactNative.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Eduardo Speroni"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Wed Mar 23 2022 13:53:56 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Implementing WebSockets plugin for NativeScript using React Native</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#e1e1e1}html{tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}body{font-family:inherit;line-height:inherit}*,:after,:before{box-sizing:border-box;border:0 solid}*,:after,:before{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty,/*!*/ /*!*/);--tw-brightness:var(--tw-empty,/*!*/ /*!*/);--tw-contrast:var(--tw-empty,/*!*/ /*!*/);--tw-grayscale:var(--tw-empty,/*!*/ /*!*/);--tw-hue-rotate:var(--tw-empty,/*!*/ /*!*/);--tw-invert:var(--tw-empty,/*!*/ /*!*/);--tw-saturate:var(--tw-empty,/*!*/ /*!*/);--tw-sepia:var(--tw-empty,/*!*/ /*!*/);--tw-drop-shadow:var(--tw-empty,/*!*/ /*!*/);--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css"></noscript><style></style><meta name="description" content="WebSockets are frequently required for applications, be it for standard WebSocket communication, MQTT, debugging through Redux Remote Devtools, using socket.io, and sometimes even used internally on NativeScript itself. When researching the best solutions for a WebSocket polyfill, there were no implementations better and more battle-tested than React Native’s. With that in mind, we decided to use its approach and created a WebSocket plugin for NativeScript."><meta property="og:title" content="Implementing WebSockets plugin for NativeScript using React Native"><meta property="og:description" content="WebSockets are frequently required for applications, be it for standard WebSocket communication, MQTT, debugging through Redux Remote Devtools, using socket.io, and sometimes even used internally on NativeScript itself. When researching the best solutions for a WebSocket polyfill, there were no implementations better and more battle-tested than React Native’s. With that in mind, we decided to use its approach and created a WebSocket plugin for NativeScript."><meta property="twitter:title" content="Implementing WebSockets plugin for NativeScript using React Native"><meta property="twitter:description" content="WebSockets are frequently required for applications, be it for standard WebSocket communication, MQTT, debugging through Redux Remote Devtools, using socket.io, and sometimes even used internally on NativeScript itself. When researching the best solutions for a WebSocket polyfill, there were no implementations better and more battle-tested than React Native’s. With that in mind, we decided to use its approach and created a WebSocket plugin for NativeScript."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-hrv-c35="" ng-version="12.2.16"><top-menu _ngcontent-hrv-c35=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-hrv-c35="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-hrv-c35=""></router-outlet><general-item><article><section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div class="container flex items-center flex-col"><breadcrumbs class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Implementing Websockets Plugin For Nativescript Using React Native </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p class="text-20 mb-4">March 23, 2022</p><p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Implementing WebSockets plugin for NativeScript using React Native</p><div class="w-70 h-70 rounded-full overflow-hidden mb-4"><img class="w-full h-full object-cover" src="assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/61fbaf8cc1e0c9364b36bffa_Eduardo_Speroni_Valor-Software.jpeg" alt="Eduardo Speroni"></div><!----><p class="md:text-large text-24 mb-4">Eduardo Speroni</p><!----><p class="text-20">Angular Developer</p><!----></div></div></section><section class="landing-section"><div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div class="max-w-full"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel2">
+<li><a href="#_js_empowerment_with_native_platform_apis">JS empowerment with native platform APIs</a></li>
+<li><a href="#_websocket_plugin_for_nativescript">WebSocket plugin for NativeScript</a></li>
+<li><a href="#_implementation">Implementation</a></li>
+<li><a href="#_not_to_compete_but_evolve_and_excel">Not to compete, but evolve and excel</a></li>
+<li><a href="#_useful_links">Useful links</a></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_js_empowerment_with_native_platform_apis">JS empowerment with native platform APIs</h3>
+<div class="paragraph">
+<p>As friends of the NativeScript community and preferred partners, we’re constantly trying to improve the
+NativeScript framework, community, and developer experience.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes it’s good to reiterate NativeScript’s goal: to empower JavaScript with native platform APIs. This has
+been the core focus for a while, and contrary to a common perspective among developers, NativeScript itself is
+actually not a competitor to other frameworks. Rather it is designed fundamentally to celebrate platforms while
+enhancing the entire JavaScript community (including other approaches, like React Native or Capacitor). As an
+example, @nativescript/capacitor allows you to use the full NativeScript capabilities within <a href="https://capacitorjs.com/" target="_blank" rel="noopener">Capacitor</a> itself.</p>
+</div>
+<div class="paragraph">
+<p>@nativescript/core is a JavaScript library that takes full advantage of what NativeScript offers (it’s merely
+just a glimpse of what is possible with NativeScript as a whole), and all the other flavors like
+@nativescript/angular, nativescript-vue, and react-nativescript are compliments to each framework itself.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_websocket_plugin_for_nativescript">WebSocket plugin for NativeScript</h3>
+<div class="paragraph">
+<p>WebSockets are frequently required for applications, be it for standard WebSocket communication, MQTT, debugging through Redux Remote Devtools, using socket.io, and sometimes even used internally on NativeScript itself.</p>
+</div>
+<div class="paragraph">
+<p>When researching the best solutions for a WebSocket polyfill, there were no implementations better and more
+battle-tested than React Native’s. With that in mind, we decided to use its approach with NativeScript.
+Something we later discovered to be surprisingly easy and painless due to the overall quality of the original
+implementation. There were only three functions that were not needed (logs and assertion helpers from the
+original implementation), but we reimplemented them to maintain a similar behavior. In the end, it proves that
+React Native and NativeScript are really complementary and quite interoperable.</p>
+</div>
+<div class="paragraph">
+<p>Visit <a href="https://www.npmjs.com/package/@valor/nativescript-websockets" target="_blank" rel="noopener">npm to use the WebSocket plugin for NativeScript</a>, and scroll down to proceed with the Implementation part!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/624495a97b77ab1729aaf5ad_ImplementingWebSocketspluginforNativeScriptusingReactNative.png" alt="624495a97b77ab1729aaf5ad ImplementingWebSocketspluginforNativeScriptusingReactNative">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implementation">Implementation</h3>
+<div class="paragraph">
+<p>Check <a href="https://github.com/valor-software/nativescript-plugins" target="_blank" rel="noopener">the original React Native
+implementation</a> from where we started. Except for a few functions, like RCTAssert, RCTAssertParam, and
+RCTLog, everything else just worked straight out of the box. Since NativeScript allows you to use platform APIs
+as they were designed (most often synchronously) and without the need for a bridge, we also could drop all
+related bridge code from the React Native implementation and adjust a few data handling items (eg. converting
+from NSData to ArrayBuffer).</p>
+</div>
+<div class="paragraph">
+<p><strong>Here are the steps we followed:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Created <a href="https://github.com/valor-software/nativescript-plugins" target="_blank" rel="noopener">a public workspace
+for NativeScript plugins</a> based on the NativeScript <a href="https://docs.nativescript.org/plugins/plugin-workspace-guide.html" target="_blank" rel="noopener">plugin workspace docs</a> and generated the plugin through Nx.</p>
+</li>
+<li>
+<p>Created a native-src with the Xcode project and built scripts, using the React Native approach.</p>
+</li>
+<li>
+<p>Ran <code>ns typings ios</code> from within the "apps/demo" folder to generate the typings for the RCTSRWebSocket
+class.</p>
+</li>
+<li>
+<p>Started writing the WebSocket polyfill straight from JavaScript, which involved creating the Native delegate
+and calling a callback when these events happened.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cb69e4e3c90fe6021a_PMgnLe2yiP1jYyiUv5NKPybCVSqytbUPMTXUhTR-yJME3Kn-mAFDzur9oT8PXJKf2fmtg7u-s4_G2DY_GNjQ4N6emmaQOdVu1hYvTygdT3deU05UeSzsVFLbmhVrJExAv95Jq-e7.png" alt="623a42cb69e4e3c90fe6021a PMgnLe2yiP1jYyiUv5NKPybCVSqytbUPMTXUhTR yJME3Kn mAFDzur9oT8PXJKf2fmtg7u s4 G2DY GNjQ4N6emmaQOdVu1hYvTygdT3deU05UeSzsVFLbmhVrJExAv95Jq e7">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>Made small adjustments related to data types and converted them to JavaScript types when needed.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cb0ebeab71f2c50761_8p1Us1oMMyyU-0SljBp1qFD2OfVXEhEwwybcwOWqXXs7-apoo-2V2v_1yoMyJs1rq6SmZFYRz5UttPtYTEaaNOqtJOuCWig30NTq0JowlKejh-lQ63xFj0hMnn2X1n_FYbC4Hnbd.png" alt="623a42cb0ebeab71f2c50761 8p1Us1oMMyyU 0SljBp1qFD2OfVXEhEwwybcwOWqXXs7 apoo 2V2v 1yoMyJs1rq6SmZFYRz5UttPtYTEaaNOqtJOuCWig30NTq0JowlKejh lQ63xFj0hMnn2X1n FYbC4Hnbd">
+</div>
+</div>
+<div class="paragraph">
+<p>And the remaining implementations were just a case of translating Objective-C to TypeScript:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cb69e4e3df50e60223_Hjyt45ke5SI0QLPG86Hq2A5Qu4_C41q3bqCjl2ruKd8RJOweMparnsfEIiSkI7SEH7uwXUg3YPyf9sl6AYFOFNUH9z8FfT6-W_P0I0zIJG56u4qSyAlS1eBxwNc_hDpclAZalF_j.png" alt="623a42cb69e4e3df50e60223 Hjyt45ke5SI0QLPG86Hq2A5Qu4 C41q3bqCjl2ruKd8RJOweMparnsfEIiSkI7SEH7uwXUg3YPyf9sl6AYFOFNUH9z8FfT6 W P0I0zIJG56u4qSyAlS1eBxwNc hDpclAZalF j">
+</div>
+</div>
+<div class="paragraph">
+<p>One critical detail to remember about JavaScript while handling any platform API is that it’s single-threaded.
+Blocking calls will block the main thread, which is the reason we needed a native implementation on iOS. The iOS native implementation is responsible for receiving the calls, doing work on other threads, and then returning back to the main thread.</p>
+</div>
+<div class="paragraph">
+<p>On the Android side, React Native uses OkHttp for its WebSockets, which already handles all the threading
+details, so we needed no native code at all! All we did here was translate the Java implementation to
+JavaScript. However, we could have used the .java "as-is" as well, which is where NativeScript is endlessly
+versatile (you have the choice), so we just decided to use TypeScript here.</p>
+</div>
+<div class="paragraph">
+<p>Another interesting detail with NativeScript is the sheer reduction in code to manage - originally this code was over 400 lines: <a href="https://github.com/facebook/react-native/blob/ff568b0b1f1b58af1fa5704e46e15a0cbd21dc48/ReactAndroid/src/main/java/com/facebook/react/modules/websocket/WebSocketModule.java" target="_blank" rel="noopener">WebSocket module</a>. And we were able to transform this into under 150 lines of easy to read JavaScript code. Below you can see a comparison between the original code for WebSocket module in Java and in NativeScript:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42ccea549707f8460cfc_mNG1FlvyX9BRiWbpqZ2l4UFEsowliat4S2pI99t1mBbkoQ9B7ETZcQOHyEUaMbnMBLXN3TvuL8r6idnOF5GxttYs6YvAkSzySK4iGIi1mEhIWbQ4DTsbvq8htuvKPd7_J1Iqt8g9.png" alt="623a42ccea549707f8460cfc mNG1FlvyX9BRiWbpqZ2l4UFEsowliat4S2pI99t1mBbkoQ9B7ETZcQOHyEUaMbnMBLXN3TvuL8r6idnOF5GxttYs6YvAkSzySK4iGIi1mEhIWbQ4DTsbvq8htuvKPd7 J1Iqt8g9">
+</div>
+</div>
+<div class="paragraph">
+<p>A couple of conversions were needed for binary data. In React Native, binary data is converted to a base64 string in JavaScript and converted back to binary on send:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cc9e2caa7d7c427b7c_2jiYD1tkMdH2YEgu7gWNBraisH658ep32-pQwduTpGmhFGYm6qYi_JwuT5jMdtVZZaXNKRnJIEqzwPIV8Hvxy9rHpzqDQYEuT2kaDkYIQHPwJ3L6VXo9fpINo7KNoK6j-HUHU2eT.png" alt="623a42cc9e2caa7d7c427b7c 2jiYD1tkMdH2YEgu7gWNBraisH658ep32 pQwduTpGmhFGYm6qYi JwuT5jMdtVZZaXNKRnJIEqzwPIV8Hvxy9rHpzqDQYEuT2kaDkYIQHPwJ3L6VXo9fpINo7KNoK6j HUHU2eT">
+</div>
+</div>
+<div class="paragraph">
+<p>In NativeScript, we are able to manipulate native types directly, so we can do a simple conversion:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cc2d8f2323614bd273_UEARQyIyD0QPch5a1QinnzlvWj-jS6jvKpx9pA10XYkfD2SclcTmF4Dur_b6oYhV3p93k8MWDAxBeZLS-ufD1q3TT1jcC5wbsv7lR8ptUk8Ha1jZrlpwfIAiuzrWAm90NFdTHXUa.png" alt="623a42cc2d8f2323614bd273 UEARQyIyD0QPch5a1QinnzlvWj jS6jvKpx9pA10XYkfD2SclcTmF4Dur b6oYhV3p93k8MWDAxBeZLS ufD1q3TT1jcC5wbsv7lR8ptUk8Ha1jZrlpwfIAiuzrWAm90NFdTHXUa">
+</div>
+</div>
+<div class="paragraph">
+<p>The same adjustments made to convert NSData to ArrayBuffer were needed for Android, but since Android doesn’t
+have a helper for it, we converted from ByteString:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42cc7af8ad80b589bdfa_Rm2Nwf4NadyoHz47ziuPxRLGmKW6Ix7J2w1AwtRVCZOxh0O7ueq86sJhv79aggIaHJ7tMZmsFxwqmBFOg-TXPqSP9skdzjh369zz3VpsP7y8pg1INhoR5gNXqgDU2Vp3gLVDpkkf.png" alt="623a42cc7af8ad80b589bdfa Rm2Nwf4NadyoHz47ziuPxRLGmKW6Ix7J2w1AwtRVCZOxh0O7ueq86sJhv79aggIaHJ7tMZmsFxwqmBFOg TXPqSP9skdzjh369zz3VpsP7y8pg1INhoR5gNXqgDU2Vp3gLVDpkkf">
+</div>
+</div>
+<div class="paragraph">
+<p>And that’s it! We now have a nice API for WebSockets for both iOS and Android platforms with a well defined
+interface:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/implementing-websockets-plugin-for-nativescript-using-react-native/623a42ccc95b0ab48627e629_T1Ykebxda4AImHnbUYH2yGANiKHQ0TwRk78PTj5arxl_nie5Y51KwoyOPfBBFD1avLME4OJRm08v_dhiwB1Xppk-fteOsVSDdYg-0c83-X0OwRe2jOuB1OaRPaFBt3lHNGBgfF95.png" alt="623a42ccc95b0ab48627e629 T1Ykebxda4AImHnbUYH2yGANiKHQ0TwRk78PTj5arxl nie5Y51KwoyOPfBBFD1avLME4OJRm08v dhiwB1Xppk fteOsVSDdYg 0c83 X0OwRe2jOuB1OaRPaFBt3lHNGBgfF95">
+</div>
+</div>
+<div class="paragraph">
+<p>Then it was just a matter of wiring up a simple WebSocket polyfill.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_not_to_compete_but_evolve_and_excel">Not to compete, but evolve and excel</h3>
+<div class="paragraph">
+<p>In conclusion, we want to underline that it is part of our mission as a company and engineers individually to
+contribute to open-source technologies and make them even better. This way, we can provide developers from
+around the world with more flexible and responsible options to build software products and overcome their daily challenges. Also, NativeScript is in no way competing with other JS frameworks and on the contrary can be applied in combination with other technologies, for example inside Capacitor by Ionic.</p>
+</div>
+<div class="paragraph">
+<p>Finally, we admire the quality with which WebSockets polyfill was implemented in React Native. The code structure with minimum dependencies allowed us to use it with NativeScript quite effortlessly.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_useful_links">Useful links</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.npmjs.com/package/@valor/nativescript-websockets" target="_blank" rel="noopener">WebSockets plugin for
+NativeScript on npm</a></p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank" rel="noopener">Connecting WebSocket
+through API</a></p>
+</li>
+<li>
+<p><a href="https://reactnative.dev/docs/network#websocket-support" target="_blank" rel="noopener">React Native documentation about WebSocket support</a></p>
+</li>
+<li>
+<p><a href="https://docs.nativescript.org/native-api-access.html" target="_blank" rel="noopener">Docs on native API access</a></p>
+</li>
+<li>
+<p><a href="https://docs.nativescript.org/advanced-concepts.html#adding-objectivec-swift-code" target="_blank" rel="noopener">Adding
+ObjectiveC/Swift code to NativeScript</a></p>
+</li>
+<li>
+<p><a href="https://docs.nativescript.org/advanced-concepts.html#ios-marshalling" target="_blank" rel="noopener">iOS marshalling</a></p>
+</li>
+</ul>
+</div>
+</div></div></div></section><!----><section class="landing-section"><div class="container"><h1 class="main-title double">More Articles</h1><blog-preview><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-e-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-e-module-federation/2%20(1).png" alt="Nx, Next.js, e Module Federation"></div><div class="text-container"><p>Nx, Next.js, e Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-and-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-and-module-federation/2%20(1).png" alt="Nx, Next.js, and Module Federation"></div><div class="text-container"><p>Nx, Next.js, and Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/debugging-ngrx-in-nativescript-with-redux-devtools" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png" alt="Debugging NgRx in NativeScript with Redux DevTools"></div><div class="text-container"><p>Debugging NgRx in NativeScript with Redux DevTools</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-hrv-c35=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.824a489ad669cfd21327.js" defer=""></script><script src="polyfills.2ff19d9baa01044da760.js" defer=""></script><script src="main.fee1b9601e512d529cb6.js" defer=""></script>
+
+</body></html>

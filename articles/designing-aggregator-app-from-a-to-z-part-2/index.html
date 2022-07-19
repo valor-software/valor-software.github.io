@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/designing-aggregator-app-from-a-to-z-part-2"
+            },
+            "headline": "Designing Aggregator App from A to Z – Part 2",
+            "description": "In this second part of my Designing Aggregator App for Movie Tickets Purchase article, I’ll be talking about Design Interaction and Interface UI Design. Also, I’ll share my conclusions of all processes in general.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/designing-aggregator-app-from-a-to-z-part-2/60c712f3696d0adaf4fdf721_MyTicketsApp_Cover.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Hussein Al-attar"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Wed May 19 2021 12:17:22 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Designing Aggregator App from A to Z – Part 2</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#e1e1e1}html{tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}body{font-family:inherit;line-height:inherit}*,:after,:before{box-sizing:border-box;border:0 solid}*,:after,:before{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty,/*!*/ /*!*/);--tw-brightness:var(--tw-empty,/*!*/ /*!*/);--tw-contrast:var(--tw-empty,/*!*/ /*!*/);--tw-grayscale:var(--tw-empty,/*!*/ /*!*/);--tw-hue-rotate:var(--tw-empty,/*!*/ /*!*/);--tw-invert:var(--tw-empty,/*!*/ /*!*/);--tw-saturate:var(--tw-empty,/*!*/ /*!*/);--tw-sepia:var(--tw-empty,/*!*/ /*!*/);--tw-drop-shadow:var(--tw-empty,/*!*/ /*!*/);--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.0c8701c5693d8845735e.css"></noscript><style></style><meta name="description" content="In this second part of my Designing Aggregator App for Movie Tickets Purchase article, I’ll be talking about Design Interaction and Interface UI Design. Also, I’ll share my conclusions of all processes in general."><meta property="og:title" content="Designing Aggregator App from A to Z – Part 2"><meta property="og:description" content="In this second part of my Designing Aggregator App for Movie Tickets Purchase article, I’ll be talking about Design Interaction and Interface UI Design. Also, I’ll share my conclusions of all processes in general."><meta property="twitter:title" content="Designing Aggregator App from A to Z – Part 2"><meta property="twitter:description" content="In this second part of my Designing Aggregator App for Movie Tickets Purchase article, I’ll be talking about Design Interaction and Interface UI Design. Also, I’ll share my conclusions of all processes in general."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-luf-c35="" ng-version="12.2.16"><top-menu _ngcontent-luf-c35=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div></a><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-luf-c35="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-luf-c35=""></router-outlet><general-item><article><section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div class="container flex items-center flex-col"><breadcrumbs class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Designing Aggregator App From A To Z – Part 2 </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p class="text-20 mb-4">May 19, 2021</p><p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Designing Aggregator App from A to Z – Part 2</p><div class="w-70 h-70 rounded-full overflow-hidden mb-4"><img class="w-full h-full object-cover" src="assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c64a51fff6993992acef_Hussain.png" alt="Hussein Al-attar"></div><!----><p class="md:text-large text-24 mb-4">Hussein Al-attar</p><!----><p class="text-20">UI/UX Designer</p><!----></div></div></section><section class="landing-section"><div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div class="max-w-full"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_stage_2_design_interaction">Stage 2: Design Interaction</a>
+<ul class="sectlevel3">
+<li><a href="#_technical_requirements_and_limitations"><strong>Technical requirements and limitations:</strong></a></li>
+<li><a href="#_user_journeys_structure_functionality_content"><strong>User journeys, structure, functionality, content</strong></a></li>
+<li><a href="#_sketches"><strong>Sketches</strong></a></li>
+<li><a href="#_design_interface_wireframes"><strong>Design Interface (Wireframes)</strong></a></li>
+<li><a href="#_navigation_map"><strong>Navigation map</strong></a></li>
+</ul>
+</li>
+<li><a href="#_stage_3_interface_ui_design"><strong>Stage 3: Interface UI Design</strong></a>
+<ul class="sectlevel3">
+<li><a href="#_dark_mode">Dark mode</a></li>
+<li><a href="#_light_mode">Light mode</a></li>
+</ul>
+</li>
+<li><a href="#_myticketsapp"><strong>MyTicketsApp</strong></a></li>
+<li><a href="#_my_conclusions"><strong>My conclusions</strong></a></li>
+<li><a href="#_tools_applied"><strong>Tools applied</strong></a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In this second part of my Designing Aggregator App for Movie Tickets Purchase article,
+I’ll be talking about Design Interaction and Interface UI Design. Also, I’ll share my conclusions of all processes in general.
+Check <a href="articles/designing-aggregator-app-from-a-to-z-part-1">the first part</a> if you missed it before you go on reading this one :-)</p>
+</div>
+<div class="sect1">
+<h2 id="_stage_2_design_interaction">Stage 2: Design Interaction</h2>
+<div class="sectionbody">
+<div class="sect3">
+<h4 id="_technical_requirements_and_limitations"><strong>Technical requirements and limitations:</strong></h4>
+<div class="paragraph">
+<p>Based on the results of the target audience research that I had gained earlier, I generated the technical and
+limitation requirements that will help us in the future development:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The service is designed for Android and iOS mobile platforms.</p>
+</li>
+<li>
+<p>The app offers two language options: Ukrainian and English.</p>
+</li>
+<li>
+<p>Authorizing is possible through Apple account and Google account.</p>
+</li>
+<li>
+<p>The system is a network of movies that has addresses and the ability to display movie places on the map
+and build a route to them.</p>
+</li>
+<li>
+<p>In addition to ticket purchases, the app offers a pre-purchase of popcorn and drinks with a bank card or
+in-app bonuses, and it is possible to skip this step.</p>
+</li>
+<li>
+<p>Users can find information on movie titles, actors, and directors.</p>
+</li>
+<li>
+<p>The app allows filtering films by genre, technology (2D-3D-4D), age of the audience, whether it’s released
+or coming soon, language, and movie location.</p>
+</li>
+<li>
+<p>Users can use wish lists to add and remove films.</p>
+</li>
+<li>
+<p>The system suggests voting for or against the film, then it generates suggestions for the user based on
+his or her preferences.</p>
+</li>
+<li>
+<p>The app provides notifications and the ability to turn them off if needed.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_user_journeys_structure_functionality_content"><strong>User journeys, structure, functionality, content</strong></h4>
+<div class="paragraph">
+<p>At this stage, I wrote out all the possible micro-scenarios, described the functionality and content for
+each screen, and formed the structure of the future product. This gave me a complete picture of the project.
+In addition, I wrote all of this out and worked on the structure. I focused on presenting information and
+considered the convenience of interaction, I didn’t need to think about what should be on each screen anymore.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c3588e08f01802d118bd_XTLXuI88sH-ENs4vpm26mRmh6oATP9B-OqhKJx0uJ7UQ_SC6y7kdAf1QbRu8AAofJw0CECzuBIEYiDF2FyfFI9Y9ZJsymFdaM6JHVUsHQifkBdgPRETk95rInoN6dW27BCjIsHnP.png" alt="60a4c3588e08f01802d118bd XTLXuI88sH ENs4vpm26mRmh6oATP9B OqhKJx0uJ7UQ SC6y7kdAf1QbRu8AAofJw0CECzuBIEYiDF2FyfFI9Y9ZJsymFdaM6JHVUsHQifkBdgPRETk95rInoN6dW27BCjIsHnP">
+</div>
+<div class="title">Scenario 1 ( Regular user)</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c35811008206018b2d99_PkgbwKkVJxHxENM_voQNQY46A6W1vlTiNGzOrWlUJxxv9WNPmtwySZLGBSp0_H2nNDha_z4xoEczLHcyArCNRidKQiYAyRm5qPwcb0p3w8qwJLRZEeoe8SCK68YnPnlXD0Wq-PIx.png" alt="60a4c35811008206018b2d99 PkgbwKkVJxHxENM voQNQY46A6W1vlTiNGzOrWlUJxxv9WNPmtwySZLGBSp0 H2nNDha z4xoEczLHcyArCNRidKQiYAyRm5qPwcb0p3w8qwJLRZEeoe8SCK68YnPnlXD0Wq PIx">
+</div>
+<div class="title">Scenario 2 ( New user)</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sketches"><strong>Sketches</strong></h4>
+<div class="paragraph">
+<p>At this stage the process of imagination and ideas generation of the&amp;nbsp future interface begins.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_design_interface_wireframes"><strong>Design Interface (Wireframes)</strong></h4>
+<div class="paragraph">
+<p>After having a basic and rough understanding of the number of application screens, we can start prototyping. I
+used Figma to create the Wireframes and also the clickable prototype.</p>
+</div>
+<div class="paragraph">
+<p>During the creation of the Wireframes, I used the IOS Human Interface Design library and guidelines to speed
+up the process and make it possible to use it in the UI part.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c358450d4c4bde7a86cf_1ORQJp0Gop8bmCNDoU4D2diPwM2KQQg5rauKyk6ggQPiMGYza5nBz6vUDBkXKpFLOZclYCeq1XUa0ndpSEqdyM1hg-Zmq1TFpVS6U09KJFMtYs3Ea1z5syUyQm6scIfEIXCNa1u8.png" alt="60a4c358450d4c4bde7a86cf 1ORQJp0Gop8bmCNDoU4D2diPwM2KQQg5rauKyk6ggQPiMGYza5nBz6vUDBkXKpFLOZclYCeq1XUa0ndpSEqdyM1hg Zmq1TFpVS6U09KJFMtYs3Ea1z5syUyQm6scIfEIXCNa1u8">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_navigation_map"><strong>Navigation map</strong></h4>
+<div class="paragraph">
+<p>At this stage, usually I create a navigation map, which includes all screens of the application with the error
+states, after that I pass on to the developers for further product development.</p>
+</div>
+<div class="paragraph">
+<p>In this situation, I chose one of the main scenarios and created a navigation map for it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-2/60a4c359976ee9684ea4e0c1_c4G_iNN0jU2xa9VpujMflQD6z-bFoxJhF3HCc4x9_RkuItohXrjuoS3fjvnQUDdO_OX4Uk8zpp-35G58Oacj-im2EmBAweAs3wR1JvXHMbAp7pk96sJHuID3dpfcrjJ1sVQHp-VS.png" alt="60a4c359976ee9684ea4e0c1 c4G iNN0jU2xa9VpujMflQD6z bFoxJhF3HCc4x9 RkuItohXrjuoS3fjvnQUDdO OX4Uk8zpp 35G58Oacj im2EmBAweAs3wR1JvXHMbAp7pk96sJHuID3dpfcrjJ1sVQHp VS">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stage_3_interface_ui_design"><strong>Stage 3: Interface UI Design</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now we begin to bring the beauty to life , create a palette of colors and UI elements of the application
+interface.</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe src="https://player.vimeo.com/video/556103163" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dark_mode">Dark mode</h4>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-2/60ae689a112c781f30e072d3_d7F2nXUGkJ9snrITRu6a0nwrKiS2UM6bZPqwY-qC5rdkv7EGlYWmX4kU0gqkY2EfZD5CvgUut88xwixzWCPehqS4HM0RVWMrm0CbP6nyfvFL1WCK0E-gFmF-QUAQX26vbYN4Von9.png" alt="60ae689a112c781f30e072d3 d7F2nXUGkJ9snrITRu6a0nwrKiS2UM6bZPqwY qC5rdkv7EGlYWmX4kU0gqkY2EfZD5CvgUut88xwixzWCPehqS4HM0RVWMrm0CbP6nyfvFL1WCK0E gFmF QUAQX26vbYN4Von9">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_light_mode">Light mode</h4>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/designing-aggregator-app-from-a-to-z-part-2/60ae6879b162b047e8cec0e9_3-QdG-kXOE6_Y83x8kSdQrV6v4CfIRM3uyRzK8IR-SYYGBV1XflLt_oDYgZ0h1mG6jPNqhD0tas3Hs2AUM9F-1bVnabn_qDWySrNK4pi0Z3nKAHDRqAJA5IZ2-AtwF4eBQ_7c_2e.png" alt="60ae6879b162b047e8cec0e9 3 QdG kXOE6 Y83x8kSdQrV6v4CfIRM3uyRzK8IR SYYGBV1XflLt oDYgZ0h1mG6jPNqhD0tas3Hs2AUM9F 1bVnabn qDWySrNK4pi0Z3nKAHDRqAJA5IZ2 AtwF4eBQ 7c 2e">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_myticketsapp"><strong>MyTicketsApp</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sharing with you the extended designs of the app on my Behance: <a href="https://www.behance.net/gallery/118512915/My-Tickets-App" target="_blank" rel="noopener">MyTicketsApp</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_my_conclusions"><strong>My conclusions</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Being a UX designer isn’t just about creating beautiful visualization and effects, it’s more than that. Sure,
+the final result should be visually attractive, but what’s more important is the usability of the
+product.</p>
+</div>
+<div class="paragraph">
+<p>After finishing the UX course I’m certain that creating any product based on users' feedback is the only way
+to go. Interacting with real users, understanding their problems and needs is an experience of a
+lifetime.</p>
+</div>
+<div class="paragraph">
+<p>Always remember you are creating for people. It is the path to a successful product since people are the soul
+of any solution in the market.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tools_applied"><strong>Tools applied</strong></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>I used <a href="https://apps.apple.com/us/app/xmind-mind-map/id1286983622" target="_blank" rel="noopener">Xmind</a> to create the mind mapping and the functional structure, it’s a very handy App for UX designers, it’s simple and easy to use.</p>
+</li>
+<li>
+<p>I used <a href="https://www.figma.com/" target="_blank" rel="noopener">Figma</a> to create the user flow (scenarios),
+wireframes and of course the interface UI. It’s one of the greatest prototyping tools which is primarily
+web-based, with additional offline features enabled by desktop applications for macOS and Windows.</p>
+</li>
+</ol>
+</div>
+</div>
+</div></div></div></section><!----><section class="landing-section"><div class="container"><h1 class="main-title double">More Articles</h1><blog-preview><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-e-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-e-module-federation/2%20(1).png" alt="Nx, Next.js, e Module Federation"></div><div class="text-container"><p>Nx, Next.js, e Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/nx-next-js-and-module-federation" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/nx-next-js-and-module-federation/2%20(1).png" alt="Nx, Next.js, and Module Federation"></div><div class="text-container"><p>Nx, Next.js, and Module Federation</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/debugging-ngrx-in-nativescript-with-redux-devtools" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png" alt="Debugging NgRx in NativeScript with Redux DevTools"></div><div class="text-container"><p>Debugging NgRx in NativeScript with Redux DevTools</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-luf-c35=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.824a489ad669cfd21327.js" defer=""></script><script src="polyfills.2ff19d9baa01044da760.js" defer=""></script><script src="main.fee1b9601e512d529cb6.js" defer=""></script>
+
+</body></html>
