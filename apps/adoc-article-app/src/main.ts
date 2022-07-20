@@ -67,7 +67,7 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
     const artList = orderArr.map(async article => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        articlesList.add(article.assetsFolderName);
+        articlesList.add(article.name);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         titleList.add(article.title);

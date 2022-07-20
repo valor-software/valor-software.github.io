@@ -1381,3 +1381,8 @@ handleUnknownRoute: "/assets/articles/0040-nx-next-js-and-module-federation/0040
 handleUnknownRoute: "/assets/articles/0040-nx-next-js-and-module-federation/0040-nx-next-js-and-module-federation.json", 404:""handleUnknownRoute: "/assets/articles/0039-debugging-ngrx-in-nativescript-with-redux-devtools/0039-debugging-ngrx-in-nativescript-with-redux-devtools.json", 404:""
 
 handleUnknownRoute: "/assets/articles/0038-announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor/0038-announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor.json", 404:""
+Using deprecated plugin type:"render"  use "postProcessByHtml" instead
+handleUnknownRoute: "/assets/articles/nx-next-js-e-module-federation/nx-next-js-e-module-federation.json", 404:""
+handleUnknownRoute: "/assets/articles/nx-next-js-e-module-federation/nx-next-js-e-module-federation.json", 404:""
+handleUnknownRoute: "/assets/articles/nx-next-js-e-module-federation/nx-next-js-e-module-federation.json", 404:""
+handleUnknownRoute: "/assets/articles/nx-next-js-e-module-federation/nx-next-js-e-module-federation.json", 404:""
