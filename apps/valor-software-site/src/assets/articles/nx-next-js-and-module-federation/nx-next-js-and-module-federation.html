@@ -1,9 +1,6 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_nx_next_js_and_module_federation">Nx, Next.js, and Module Federation</a>
 <ul class="sectlevel2">
-<li><a href="#_table_of_contents">Table of Contents</a></li>
 <li><a href="#_micro_frontends">Micro Frontends</a></li>
 <li><a href="#_nx_and_monorepos">Nx and monorepos</a></li>
 <li><a href="#_next_js">Next.js</a></li>
@@ -22,15 +19,6 @@
 <li><a href="#_private_dependencies_with_vercel">Private dependencies with Vercel</a></li>
 <li><a href="#_references">References</a></li>
 </ul>
-</li>
-</ul>
-</div>
-<div class="sect1">
-<h2 id="_nx_next_js_and_module_federation">Nx, Next.js, and Module Federation</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_table_of_contents">Table of Contents</h3>
-
 </div>
 <div class="sect2">
 <h3 id="_micro_frontends">Micro Frontends</h3>
@@ -143,7 +131,7 @@ Looking at the benefits and the context, I saw that it would be an excellent opp
 <p>Unfortunately, implementing and using the Module Federation features of Webpack with Next.js is not that easy, as you would need to deeply understand how both tools work to be able to create a solution that facilitates the integration between the two. Fortunately, there is already a solution and has several features including support for SSR (server-side rendering), these tools are called <a href="https://app.privjs.com/package?pkg=@module-federation/nextjs-mf" target="_blank" rel="noopener">nextjs-mf</a> and <a href="https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr" target="_blank" rel="noopener">nextjs-ssr</a> and together we are going to explore a proof-of-concept application that I created to show you the power of these tools together.</p>
 </div>
 <div class="paragraph">
-<p>*⚠️ Attention: for the application to work with Module Federation features you need to have access to the <a href="https://app.privjs.com/package?pkg=@module-federation/nextjs-mf" target="_blank" rel="noopener">nextjs-mf</a> or <a href="https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr" target="_blank" rel="noopener">nextjs-ssr</a> plugin which currently requires a paid license!</p>
+<p>⚠️ Attention: for the application to work with Module Federation features you need to have access to the <a href="https://app.privjs.com/package?pkg=@module-federation/nextjs-mf" target="_blank" rel="noopener">nextjs-mf</a> or <a href="https://app.privjs.com/package?pkg=@module-federation/nextjs-ssr" target="_blank" rel="noopener">nextjs-ssr</a> plugin which currently requires a paid license!</p>
 </div>
 </div>
 <div class="sect2">
@@ -210,7 +198,7 @@ Looking at the benefits and the context, I saw that it would be an excellent opp
 </div>
 </div>
 <div class="paragraph">
-<p>Note that our application in Next.js is inside the "apps" folder, this folder will contain all the other applications you are going to create, we can also see other configuration files of our workspace. It is important to note that there is only one "node_modules" folder in the entire project, this happens because all dependencies will be in one place, at the root of the repository.</p>
+<p>ℹ️ Note that our application in Next.js is inside the "apps" folder, this folder will contain all the other applications you are going to create, we can also see other configuration files of our workspace. It is important to note that there is only one "node_modules" folder in the entire project, this happens because all dependencies will be in one place, at the root of the repository.</p>
 </div>
 </div>
 <div class="sect2">
@@ -226,10 +214,8 @@ Looking at the benefits and the context, I saw that it would be an excellent opp
 <pre>nx g @nrwl/next:page home --project=store</pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>ℹ️ Note that we use the --project flag to indicate to the generator in which project the new page should be created.</pre>
-</div>
+<div class="paragraph">
+<p>ℹ️ Note that we use the --project flag to indicate to the generator in which project the new page should be created.</p>
 </div>
 <div class="paragraph">
 <p>This will generate a page called "home" which will be located at</p>
@@ -274,10 +260,8 @@ Looking at the benefits and the context, I saw that it would be an excellent opp
 <pre>nx serve store</pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>ℹ️ serve is an https://nx.dev/packages/next#executors[executor^] command</pre>
-</div>
+<div class="paragraph">
+<p>ℹ️ serve is an <a href="https://nx.dev/packages/next#executors" target="_blank" rel="noopener">executor</a> command</p>
 </div>
 <div class="paragraph">
 <p>Also, we can run all applications at the same time using:</p>
@@ -287,10 +271,8 @@ Looking at the benefits and the context, I saw that it would be an excellent opp
 <pre>nx run-many --target=serve --all</pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>ℹ️ Note that we use the --target flag to indicate to nx which executor we want to run on all projects.</pre>
-</div>
+<div class="paragraph">
+<p>ℹ️ Note that we use the --target flag to indicate to nx which executor we want to run on all projects.</p>
 </div>
 </div>
 <div class="sect2">
@@ -735,7 +717,5 @@ Error: Command "npm install" exited with 1</pre>
 <p><a href="https://nx.dev/packages/next" target="_blank" rel="noopener">Nx with Next.js</a></p>
 </li>
 </ul>
-</div>
-</div>
 </div>
 </div>

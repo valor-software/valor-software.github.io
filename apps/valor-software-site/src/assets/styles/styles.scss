@@ -77,5 +77,8 @@ pre, code {
   z-index: 1;
 }
 
-
-
+#toctitle {
+  @apply md:mt-12 mt-8 mb-8 md:text-large text-24  font-workSansBold;;
+  --tw-text-opacity: 1;
+  color: rgba(227, 227, 227, var(--tw-text-opacity));
+}
