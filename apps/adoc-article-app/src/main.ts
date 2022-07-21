@@ -20,7 +20,7 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
             const extension = path.extname(file.name).split('.')[1];
             if ( extension === 'adoc') {
                 const content = await fs.readFile(`${articlesFolderPath}/${folder.name}/${file.name}`, 'utf8');
-                const convertDocAttributes = ['toc',`imagesdir=assets/articles/${dirName}`];
+                const convertDocAttributes = [`imagesdir=assets/articles/${dirName}`];
                 const tocInDoc = content.includes(':toc:');
                 if (tocInDoc) {
                     convertDocAttributes.push('toc');
@@ -67,7 +67,7 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
     const artList = orderArr.map(async article => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        articlesList.add(article.assetsFolderName);
+        articlesList.add(article.name);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         titleList.add(article.title);

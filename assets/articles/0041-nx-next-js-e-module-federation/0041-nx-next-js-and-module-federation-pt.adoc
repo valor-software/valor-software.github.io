@@ -1,3 +1,5 @@
+:toc:
+
 === Micro Frontends
 
 Você provavelmente já deve ter ouvido falar em microsserviços e a quantidade de benefícios que eles trazem tanto para a escalabilidade de uma aplicação back-end quanto para o time que a desenvolve. Agora imagine se essas mesmas vantagens pudessem ser trazidas para o front-end. Bom é sobre isso que vamos falar hoje. +

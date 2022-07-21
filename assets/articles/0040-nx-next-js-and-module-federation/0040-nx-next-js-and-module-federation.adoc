@@ -1,3 +1,5 @@
+:toc:
+
 === Micro Frontends
 
 You've probably heard about microservices and the number of benefits they bring to both the scalability of a backend application and the team that develops it. Now imagine if these same advantages could be brought to the frontend. Well, that's what we're going to talk about today. +
