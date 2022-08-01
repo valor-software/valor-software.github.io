@@ -35,11 +35,19 @@
                         </div>
                         <div class="mb-8">
                             <p class="text-white text-sm mb-2.5">Email</p>
-                            <input class="text-input" type="email" formControlName="email" placeholder="Email">
+                            <input class="text-input"
+                                   type="email"
+                                   formControlName="email"
+                                   placeholder="Email"
+                                   [attr.disabled]="form.value.type ? null : ''">
                         </div>
                         <div>
                             <p class="text-white text-sm mb-2.5">Message</p>
-                            <textarea class="text-input h-36 resize-none" formControlName="message" placeholder="Type here ..."></textarea>
+                            <textarea class="text-input h-36 resize-none"
+                                      formControlName="message"
+                                      placeholder="Type here ..."
+                                      [attr.disabled]="form.value.type && !form.controls['email'].errors ? null : ''"
+                            ></textarea>
                         </div>
 <!--                        <file-uploader (filesChanged)="addFiles($event)"></file-uploader>-->
                         <button

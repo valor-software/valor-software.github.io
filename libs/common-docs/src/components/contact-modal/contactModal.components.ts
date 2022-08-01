@@ -1,10 +1,10 @@
-import {Component, OnDestroy} from '@angular/core';
-import { ModalService } from "../../services/modal.service";
-import { Subscription } from "rxjs";
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SendEmailService } from "../../services/senEmail.service";
+import { Component, OnDestroy } from '@angular/core';
+import { ModalService } from '../../services/modal.service';
+import { Subscription } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SendEmailService } from '../../services/senEmail.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
-import { IError, errorVocabulary} from './errors';
+import { errorVocabulary, IError } from './errors';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -39,7 +39,7 @@ export class ContactModalComponent implements OnDestroy {
         });
 
         const element = document.body.querySelector('.grecaptcha-badge') as HTMLElement;
-        if (element){
+        if (element) {
             element.style.display = 'block';
         }
     }
@@ -77,7 +77,7 @@ export class ContactModalComponent implements OnDestroy {
 
     ngOnDestroy() {
         const element = document.body.querySelector('.grecaptcha-badge') as HTMLElement;
-        if (element){
+        if (element) {
             element.style.display = 'none';
         }
         this.$reCaptchaSub?.unsubscribe();
