@@ -123,9 +123,12 @@
                         <li class="leading-4 mb-4" *ngFor="let item of slide.list">{{item}}</li>
                     </ul>
                 </div>
-                <button class="flex justify-center w-full md:w-214"><a class="btn-pink flex justify-center items-center md:w-214 w-full"
-                        [href]="slide.link" rel="noopener" target="_blank"><p class="tracking-tightest">Visit {{slide.name}}</p><img
-                            src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
+                <button class="flex justify-center w-full md:w-214">
+                    <a class="btn-pink flex justify-center items-center md:w-214 w-full" [href]="slide.link" rel="noopener" target="_blank">
+                        <p class="tracking-tightest"> {{ slide.button || 'Visit ' + slide.name }}</p>
+                        <img src="assets/img/icons/arrow.svg" class="ml-2" alt="">
+                    </a>
+                </button>
             </div>
             <div class="w-full flex flex-col justify-center text-center items-center text-light_title_col hidden md:block">
                 <ng-container *ngIf="slide.downloads">

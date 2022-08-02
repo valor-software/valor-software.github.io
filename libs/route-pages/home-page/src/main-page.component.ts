@@ -191,7 +191,19 @@ const ServicesModel = [
     }
 ];
 
-const OpenSourceSlidesModel = [
+interface IOpenSourceSlide {
+    title: string;
+    description: string;
+    list: string[];
+    name: string;
+    button?: string;
+    img: string;
+    link: string;
+    npmLink?: string;
+    downloads: number;
+    reverse?: boolean;
+}
+const OpenSourceSlidesModel: IOpenSourceSlide[] = [
     {
         title: 'We built<br> ngx-bootstrap library',
         description: 'Bootstrap components powered by Angular',
@@ -220,6 +232,17 @@ const OpenSourceSlidesModel = [
         img: 'assets/img/bg-img/open-source/nativescript_new.svg',
         link: 'https://nativescript.org/partners/',
         downloads: 0
+    },
+    {
+        title: 'We love Module Federation',
+        description: 'We contribute to and heavily use this ground breaking method of sharing code between and within applications.',
+        list: ['Better scalability', 'Independently-manageable apps', 'Reuse of apps, functions, components, or contents', 'No more divergent styles and duplicated components throughout parallel teams'],
+        name: 'Module Federation',
+        button: 'See what we\'re doing',
+        img: 'assets/img/bg-img/open-source/module_federation.svg',
+        link: 'https://valor-software.com/articles/announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor',
+        downloads: 0,
+        reverse: true
     }
 ];
 
@@ -304,7 +327,7 @@ export class MainPageComponent {
     sortedProjectsAmount = 4;
     showSocial = false;
     services: typeof ServicesModel = ServicesModel;
-    openSourceSlides: typeof OpenSourceSlidesModel = OpenSourceSlidesModel;
+    openSourceSlides: IOpenSourceSlide[] = OpenSourceSlidesModel;
     $portfolio: Subscription;
     projects?: IPortfolio[];
     sortProjects?: IPortfolio[];
