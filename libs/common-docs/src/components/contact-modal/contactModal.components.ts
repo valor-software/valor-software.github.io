@@ -75,6 +75,11 @@ export class ContactModalComponent implements OnDestroy {
         this.errorMessage = error;
     }
 
+    resetError() {
+        this.showError = false;
+        this.errorMessage = '';
+    }
+
     ngOnDestroy() {
         const element = document.body.querySelector('.grecaptcha-badge') as HTMLElement;
         if (element) {

@@ -68,9 +68,12 @@
                     <img class="hidden lg:block max-w-200 mt-10" src="assets/img/bg-img/get_in_touch.svg" alt="get in touch img">
                 </div>
             </div>
-    </div>
-        <div *ngIf="showSuccess || showError" class="w-full h-full md:h-5/6 flex justify-center items-center">
+        </div>
+        <div *ngIf="showSuccess || showError" class="w-full h-full md:h-5/6 flex flex-col place-content-around items-center">
+            <div class="invisible"></div>
             <result-modal [type]="showSuccess ? 'success' : 'error'" [errorMessage]="errorMessage"></result-modal>
+            <button *ngIf="showSuccess" class="btn-pink-border text-xs md:text-base" (click)="closeModal()">Done</button>
+            <button *ngIf="showError" class="btn-pink-border text-xs md:text-base" (click)="resetError()">Try Again</button>
         </div>
     </div>
 </div>
