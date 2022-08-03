@@ -77,6 +77,14 @@ pre, code {
   z-index: 1;
 }
 
+
+
+.img-comparison-slider {
+  --divider-width: 4px;
+  --divider-color: #989898;
+  --default-handle-opacity: 0;
+}
+
 #toctitle {
   @apply md:mt-12 mt-8 mb-8 md:text-large text-24  font-workSansBold;;
   --tw-text-opacity: 1;
