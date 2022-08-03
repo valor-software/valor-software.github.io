@@ -19,7 +19,7 @@ export class ImgHoverDirective {
         this.elementRef.nativeElement.getElementsByTagName('img')[0].setAttribute('src', this.defaultSrc);
     }
 
-    @HostListener('mouseover')
+    @HostListener('mouseover',['$event'])
     onMouseOver(event: MouseEvent) {
         event.preventDefault();
         if (!this.activeSrc || this.check) {

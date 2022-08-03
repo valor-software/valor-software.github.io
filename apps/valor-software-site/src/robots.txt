@@ -1,3 +1,4 @@
 User-Agent: *
 Allow: /
 
+Sitemap: http://valor-software.com/sitemap.xml

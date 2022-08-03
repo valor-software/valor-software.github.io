@@ -42,8 +42,7 @@ module.exports = {
       light_green: '#77CE9A',
       green: '#658B80',
       light_blue: '#71A5D2',
-      popover_bg: '#282828',
-      real_dark_grey: '#222222'
+      popover_bg: '#282828'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -81,8 +80,7 @@ module.exports = {
         '20': '20px',
         '105': '105px',
         '80': '80px',
-        '250': '250px',
-        '40': '40px'
+        '250': '250px'
       },
       minWidth: {
         '585': '585px',
@@ -142,9 +140,7 @@ module.exports = {
         '6': '6px'
       },
       spacing: {
-        '6.75': '6.75rem',
-        '24': '96px',
-        '10n': '-10px'
+        '6.75': '6.75rem'
       },
       width: {
         '1225': '1225px',
