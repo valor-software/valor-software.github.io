@@ -33,6 +33,13 @@ export const feedBack = [
         img: 'assets/img/feedback/tablesReady.jpg',
         author: 'Robert Shaw',
         position: 'CEO at Table\'s Ready'
+    },
+    {
+        project: 'Ashes Of Creation',
+        text: 'We’ve been working with Valor, and they have been doing some amazing stuff with the website. They have a great dedicated team of professionals who we have had an absolute pleasure working with to help support our platform needs. Those who might be in the enterprise business and need technical support and web development support, I would give a major shout-out to the Valor team. They’re doing a great job!',
+        img: 'assets/img/feedback/ashes_of_creation.jpg',
+        author: 'Steven Sharif',
+        position: 'the Creative Director of Ashes of Creation'
     }
 ];
 

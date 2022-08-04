@@ -22,13 +22,13 @@
                   <span>Visit the site</span>
                   <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
               </button>
-              <button class="btn-dark-pink w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
+              <button *ngIf="project.dribbleLink" class="btn-dark-pink w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
                 <a class="flex justify-center items-center" [href]="project.dribbleLink" target="_blank">
                   <span>Dribble</span>
                   <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt="">
                 </a>
               </button>
-              <button class="btn-blue w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
+              <button *ngIf="project.behanceLink" class="btn-blue w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
                 <a class="flex justify-center items-center" [href]="project.behanceLink" target="_blank">
                   <span>Behance</span>
                   <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt="">
@@ -55,7 +55,7 @@
         <div class="lg:flex justify-center align-center hidden lg:block flex-1">
           <img class="w-2/3 xl:w-1/2" src="assets/img/bg-img/ashes_page/ashes_logo.svg" alt="" />
         </div>
-        <div class="px-6 lg:flex-1">
+        <div class="pr-6 lg:flex-1">
           <p class="mt-4 font-workSans text-grey_font_col">
             <ng-container *ngFor="let ch of project.background">
               <span class="block mb-4">{{ch}}</span>
@@ -74,7 +74,7 @@
     <h1 class="main-title">Challenge</h1>
     <div class="container">
       <div class="lg:flex lg:justify-center">
-        <div class="px-6 lg:w-2/3">
+        <div class="pr-6 lg:w-2/3">
           <p class="mt-4 font-workSans text-grey_font_col">
             <ng-container *ngFor="let ch of project.challenge">
               <span class="block mb-4">{{ch}}</span>
@@ -92,124 +92,83 @@
   <section class="landing-section">
     <h1 class="main-title">Deliverables</h1>
     <div class="container">
-      <div class="container px-4  ">
-        <h2 class="text-dar_grey_font_col text-left text-24 lg:text-40 mb-14 w-10/12">
-          The Valor team has
-          <b class="text-feedback_font_col">contributed</b>
-          to several
-          <b class="text-feedback_font_col">development</b>
-          and
-          <b class="text-feedback_font_col">modernization</b>
-          directions for
-          <b class="text-feedback_font_col">Ashes Of Creation</b>.
-        </h2>
-
-        <ng-container *ngFor="let deliverable of project.deliverables">
-          <div class="ml-6 md:ml-8 flex mb-10">
-            <div class="w-6 md:w-8">
-              <div class="mt-3 lg:mt-2 green-circle"></div>
-            </div>
-            <div class="flex-1">
-              <div class="w-9/12">
-                <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4">
-                  {{deliverable.text}}
-                </h2>
-                <p class="text-dar_grey_font_col text-left text-14 mb-14">
-                  {{deliverable.description}}
-                </p>
-              </div>
-
-              <ng-container *ngIf="deliverable.comparisons">
-                <ng-container *ngFor="let comparison of deliverable.comparisons">
-                  <comparison-slider
-                    [comparisonImg]="comparison"
-                    [buttonClasses]="imageSliderButtonClasses">
-                  </comparison-slider>
-                </ng-container>
-              </ng-container>
-
-              <ng-container *ngIf="deliverable.centerButton">
-                <div class="flex justify-center mb-10">
-                  <button class="btn-pink w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
-                    <a class="flex justify-center items-center" [href]="deliverable.centerButton.link" target="_blank">
-                      <span>{{deliverable.centerButton.text}}</span>
-                      <img src="assets/img/icons/arrow.svg" class="ml-2 mb-2" alt=""></a>
-                  </button>
-                </div>
-              </ng-container>
-
-              <ng-container *ngIf="deliverable.bgImg">
-                <img class="mb-14" [src]="deliverable.bgImg" alt="">
-              </ng-container>
-
-              <ng-container *ngIf="deliverable.technologies">
-                <h2 class="text-feedback_font_col text-left leading-56 text-24 lg:text-40 font-bold mb-7">
-                  Technologies & services:
-                </h2>
-                <valor-technologies [technologyNames]="deliverable.technologies"></valor-technologies>
-              </ng-container>
-
-              <ng-container *ngIf="deliverable.impact">
-                <div class="bg-green p-4 lg:p-10 mt-12">
-                  <p
-                    class="font-bold text-white md:text-40 block mr-3.5 mt-7  text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
-                    Impact
-                  </p>
-                  <ul class="list-disc pl-5 leading-normal text-white text-20  lg:mb-8 mb-4 md:w-8/12">
-                    <li *ngFor="let impact of deliverable.impact">{{impact}}</li>
-                  </ul>
-
-                </div>
-              </ng-container>
-            </div>
+      <h2 class="text-dar_grey_font_col text-left text-24 lg:text-40 mb-14 w-10/12">
+        The Valor team has
+        <b class="text-feedback_font_col">contributed</b>
+        to several
+        <b class="text-feedback_font_col">development</b>
+        and
+        <b class="text-feedback_font_col">modernization</b>
+        directions for
+        <b class="text-feedback_font_col">Ashes Of Creation</b>.
+      </h2>
+      <ng-container *ngFor="let deliverable of project.deliverables">
+        <div class="ml-6 md:ml-8 flex mb-10">
+          <div class="w-6 md:w-8">
+            <div class="mt-3 lg:mt-2 green-circle"></div>
           </div>
-        </ng-container>
+          <div class="flex-1">
+            <div class="w-9/12">
+              <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4">
+                {{deliverable.text}}
+              </h2>
+              <p class="text-dar_grey_font_col text-left text-14 mb-14">
+                {{deliverable.description}}
+              </p>
+            </div>
 
-      </div>
+            <ng-container *ngIf="deliverable.comparisons">
+              <ng-container *ngFor="let comparison of deliverable.comparisons">
+                <comparison-slider
+                  [comparisonImg]="comparison"
+                  [buttonClasses]="imageSliderButtonClasses">
+                </comparison-slider>
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="deliverable.centerButton">
+              <div class="flex justify-center mb-10">
+                <button class="btn-pink w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
+                  <a class="flex justify-center items-center" [href]="deliverable.centerButton.link" target="_blank">
+                    <span>{{deliverable.centerButton.text}}</span>
+                    <img src="assets/img/icons/arrow.svg" class="ml-2 mb-2" alt=""></a>
+                </button>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="deliverable.bgImg">
+              <img class="mb-14" [src]="deliverable.bgImg" alt="">
+            </ng-container>
+
+            <ng-container *ngIf="deliverable.technologies">
+              <h2 class="text-feedback_font_col text-left leading-56 text-24 lg:text-40 font-bold mb-7">
+                Technologies & services:
+              </h2>
+              <valor-technologies [technologyNames]="deliverable.technologies"></valor-technologies>
+            </ng-container>
+
+            <ng-container *ngIf="deliverable.impact">
+              <div class="bg-green p-4 lg:p-10 mt-12">
+                <p
+                  class="font-bold text-white md:text-40 block mr-3.5 mt-7  text-left mt-6 mt-0 text-xl md:leading-44 mb-6">
+                  Impact
+                </p>
+                <ul class="list-disc pl-5 leading-normal text-white text-20  lg:mb-8 mb-4 md:w-8/12">
+                  <li *ngFor="let impact of deliverable.impact">{{impact}}</li>
+                </ul>
+
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </section>
 
-  <section class="landing-section">
+  <section class="landing-section hidden md:block">
     <h1 class="main-title">Feedback</h1>
     <div class="container">
-      <div class="flex justify-between flex-wrap flex-row hidden lg:block">
-        <div class="w-full">
-          <div class="flex justify-between">
-            <div class="w-65% flex flex-col justify-between">
-              <p class="text-32 text-white text-feedback_font_col leading-44 mb-8">
-                {{project.feedback.text}}
-              </p>
-              <div class="w-full flex justify-between">
-                <p>
-                  <span class="text-xl text-light_title_col">{{project.feedback.author}}</span><br>
-                  <span class="text-grey_font_col">{{project.feedback.position}}</span>
-                </p>
-              </div>
-            </div>
-            <div class="w-35% ml-10 flex items-start">
-              <img  [src]="project.feedback.img" alt="" class="w-full object-contain"
-                    style="max-width: 430px; max-height: 430px">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="w-full lg:hidden">
-        <div class="bg-grey pt-6 px-6 pb-2">
-          <div class="flex justify-center mb-4">
-            <img [src]="project.feedback.img" alt="" class="w-full object-contain" style="max-width: 290px; max-height: 290px">
-          </div>
-          <div class="flex flex-col justify-between">
-            <p class="text-20 text-feedback_font_col leading-6 lg:leading-44 mb-8">{{project.feedback.text}}</p>
-          </div>
-        </div>
-        <div class="w-full flex justify-between px-6 pt-2">
-          <p>
-            <span class="text-xl text-light_title_col">{{project.feedback.author}}</span><br>
-            <span class="text-grey_font_col">{{project.feedback.position}}</span>
-          </p>
-        </div>
-      </div>
+      <feedback></feedback>
     </div>
   </section>
 
