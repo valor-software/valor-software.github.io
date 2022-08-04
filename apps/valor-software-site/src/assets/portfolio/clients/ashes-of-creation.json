@@ -1,11 +1,38 @@
 {
   "name": "Ashes Of Creation",
-  "description": "A web platform and an online shop for the game studio working on the MMORPG Ashes of Creation.",
   "link": "https://ashesofcreation.com/",
-  "behanceLink": "https://ashesofcreation.com/",
-  "dribbleLink": "https://ashesofcreation.com/",
-  "previewImg": "assets/img/bg-img/ashes_page/sso_bg.svg",
+  "feedback": "Steven Sharif",
+  "sortTechnologies": ["aws", "nest_js"],
+  "previewImg": "assets/img/bg-img/ashes_page/header_bg_resp.png",
+  "description": "A web platform and an online shop for the game studio working on the MMORPG Ashes of Creation.",
+  "goals": [],
+  "solutions": [],
+  "outcome": "",
   "headerImg": "assets/img/bg-img/ashes_page/header_bg.svg",
+  "sortServices": ["web", "ui"],
+  "aspects": {
+    "type": [
+      "B2B",
+      "SaaS",
+      "Startup"
+    ],
+    "country": [
+      "USA"
+    ],
+    "technology_stack": [
+      "Node.js",
+      "AWS",
+      "Nest.js",
+      "PostgreSQL",
+      "MongoDB",
+      "Sentry",
+      "Azure PlayFab"
+    ],
+    "services_provided": [
+      "Frontend"
+    ]
+  },
+
   "background": [
     "Intrepid Studios, authors of the most anticipated MMORPG – Ashes of Creation, inspire unity and bring people together through the game. Avoiding pay-to-win or cash grab elements, they simply create games the way people want them to be, with great respect and devotion to the community.",
     "“I want to see the players dictate the direction of our story. I want to see the AoC world adapts and reacts to the player’s actions. Most importantly, I want to see a game built by gamers FOR gamers.” – says Steven Sharif, the Creative Director of Ashes of Creation, describing what stands behind the idea of AoC.",
@@ -103,11 +130,6 @@
       ],
       "bgImg": "assets/img/bg-img/ashes_page/payment_bg.svg"
     }
-  ],
-  "feedback": {
-    "text": "We’ve been working with Valor, and they have been doing some amazing stuff with the website. They have a great dedicated team of professionals who we have had an absolute pleasure working with to help support our platform needs. Those who might be in the enterprise business and need technical support and web development support, I would give a major shout-out to the Valor team. They’re doing a great job!",
-    "img": "assets/img/feedback/ashes_of_creation.jpg",
-    "author": "Steven Sharif",
-    "position": "the Creative Director of Ashes of Creation"
-  }
+  ]
 }
+
