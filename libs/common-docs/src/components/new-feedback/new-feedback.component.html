@@ -26,13 +26,13 @@
                         </div>
                     </div>
                 </div>
-                <button *ngIf="card.scrollHeight>400"
-                    class="flex mb-8 md:mb-0 btn-pink flex justify-center items-center" (click)="setShowMore(i)"
-                    fragment="open-source">{{ showMoreList.includes(i) ? 'Show less':
-                    'Show More' }}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""
-                        [ngClass]="{'-rotate-90': showMoreList.includes(i), 'rotate-90': !showMoreList.includes(i)}">
-                </button>
-
+                <div class="w-65% flex justify-end">
+                    <p *ngIf="card.scrollHeight>400"
+                        class="mt-10px mb-8 md:mb-0 text-20 text-grey_font_col underline" (click)="setShowMore(i)"
+                        fragment="open-source">{{ showMoreList.includes(i) ? 'Show less':
+                        'Show More' }}
+                    </p>
+                </div>
             </div>
         </ng-template>
     </swiper>
@@ -64,12 +64,11 @@
                         </div>
                     </div>
                 </div>
-                <button *ngIf="card.scrollHeight>652"
-                    class="m-auto w-full flex mb-0 btn-pink flex justify-center items-center" (click)="setShowMore(i)"
+                <p *ngIf="card.scrollHeight>652"
+                    class="text-center mt-10px mb-0 md:mb-0 text-20 text-grey_font_col underline" (click)="setShowMore(i)"
                     fragment="open-source">{{ showMoreList.includes(i) ? 'Show less':
-                    'Show More' }}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""
-                        [ngClass]="{'-rotate-90': showMoreList.includes(i), 'rotate-90': !showMoreList.includes(i)}">
-                </button>
+                    'Show More' }}
+                </p>
             </div>
         </ng-template>
     </swiper>

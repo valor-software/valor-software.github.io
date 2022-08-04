@@ -140,7 +140,8 @@ module.exports = {
         '6': '6px'
       },
       spacing: {
-        '6.75': '6.75rem'
+        '6.75': '6.75rem',
+        '10px': '10px'
       },
       width: {
         '1225': '1225px',
