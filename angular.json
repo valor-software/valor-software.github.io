@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 1,
   "defaultProject": "valor-software-site",
   "projects": {
     "adoc-article-app": {
@@ -462,7 +462,9 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "apps/valor-software-site/src/favicon.ico",
-              "apps/valor-software-site/src/assets"
+              "apps/valor-software-site/src/assets",
+              "apps/valor-software-site/src/robots.txt",
+              "apps/valor-software-site/src/sitemap.xml"
             ],
             "styles": [
               "apps/valor-software-site/src/assets/styles/styles.scss",
