@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { GetPortfolioService, IPortfolio, Technologies, titleRefactoring } from "@valor-software/common-docs";
 import { Observable } from "rxjs";
+import { DomSanitizer } from '@angular/platform-browser';
 
 const ROUTE = 'ashes-of-creation';
 
@@ -40,10 +41,13 @@ export class AshesPageComponent implements OnInit {
   project$: Observable<AshesPortfolio> = this.getProjectsServ.getPortfolioRequest(ROUTE);
   nextProject?: IPortfolio;
 
+  isFrameActive = false;
+
   constructor(
     private getProjectsServ: GetPortfolioService,
-    private cdr: ChangeDetectorRef
-    ) {
+    private cdr: ChangeDetectorRef,
+    private sanitizer: DomSanitizer
+  ) {
   }
 
   public ngOnInit() {
@@ -87,5 +91,20 @@ export class AshesPageComponent implements OnInit {
   changeSrc(event: Event, link:string) {
     (event.target as HTMLImageElement).src = link;
     this.cdr.detectChanges();
+  }
+
+  activateFrame() {
+    // start from inactive iframe to allow scrolling over iframe
+    if (!this.isFrameActive) {
+      this.isFrameActive = true;
+    }
+  }
+
+  getSafeUrl(url?: string) {
+    if (!url) {
+      return '';
+    }
+
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
