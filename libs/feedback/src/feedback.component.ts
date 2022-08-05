@@ -1,7 +1,7 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
 import { feedBack, IFeedBack } from "./feedback.model";
 import { SwiperComponent } from "swiper/angular";
-import SwiperCore, { Pagination, Mousewheel, SwiperOptions  } from "swiper";
+import SwiperCore, { Pagination, Mousewheel, SwiperOptions } from "swiper";
 SwiperCore.use([Mousewheel, Pagination]);
 
 @Component({
@@ -9,18 +9,20 @@ SwiperCore.use([Mousewheel, Pagination]);
     selector: 'feedback',
     templateUrl: './feedback.component.html'
 })
-export class FeedbackComponent implements AfterViewInit{
+export class FeedbackComponent implements AfterViewInit {
+    showMoreList: number[] = [];
+
     @Input() set startFrom(value: string) {
         if (value) {
             const index = this.feedbackList.findIndex(item => item.author === value);
             this.startFromIndex = index > 0 ? index : 0;
         }
 
-        if(this.swiperRef && this.startFromIndex) {
+        if (this.swiperRef && this.startFromIndex) {
             this.swiperRef.swiperRef.slideTo(this.startFromIndex);
         }
 
-        if(this.swiperRefResp && this.startFromIndex) {
+        if (this.swiperRefResp && this.startFromIndex) {
             this.swiperRefResp.swiperRef.slideTo(this.startFromIndex);
         }
     };
@@ -30,11 +32,15 @@ export class FeedbackComponent implements AfterViewInit{
     startFromIndex?: number;
 
     feedBackCarousel: SwiperOptions = {
-        slidesPerView: 1,
-        centeredSlides: true,
-        spaceBetween: 40,
+        slidesPerView: 1.2,
+        spaceBetween: 88,
+        centeredSlides: false,
+        initialSlide: 0,
         mousewheel: {
             releaseOnEdges: true
+        },
+        pagination: {
+            clickable: true
         },
         loop: false
     };
@@ -46,17 +52,17 @@ export class FeedbackComponent implements AfterViewInit{
         mousewheel: {
             releaseOnEdges: true
         },
-        autoHeight: true,
+        autoHeight: false,
         pagination: {
             clickable: true
         }
     };
-    currentFeedBackIndex = 0;
 
+    currentFeedBackIndex = 0;
 
     constructor(
         private cdr: ChangeDetectorRef,
-    ) {}
+    ) { }
 
     showIndex(value: any) {
         this.currentFeedBackIndex = value.activeIndex;
@@ -72,12 +78,24 @@ export class FeedbackComponent implements AfterViewInit{
     }
 
     ngAfterViewInit() {
-        if(this.swiperRef && this.startFromIndex) {
+        if (this.swiperRef && this.startFromIndex) {
             this.swiperRef.swiperRef.slideTo(this.startFromIndex);
         }
 
-        if(this.swiperRefResp && this.startFromIndex) {
+        if (this.swiperRefResp && this.startFromIndex) {
             this.swiperRefResp.swiperRef.slideTo(this.startFromIndex);
         }
+    }
+
+    setShowMore(id: number) {
+        const index = this.showMoreList.findIndex(val => val === id);
+
+        if (index < 0) {
+            this.showMoreList.push(id);
+        } else {
+            this.showMoreList.splice(index, 1);
+        }
+
+        this.cdr.detectChanges();
     }
 }

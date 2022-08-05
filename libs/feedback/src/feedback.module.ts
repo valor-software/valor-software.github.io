@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FeedbackComponent } from "./feedback.component";
 import {SwiperModule} from "swiper/angular";
 
-export { FeedbackComponent } from "./feedback.component";
-
 @NgModule({
     declarations: [FeedbackComponent],
     imports: [
