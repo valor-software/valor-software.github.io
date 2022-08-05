@@ -1,7 +1,8 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
-import { feedBack, IFeedBack } from "./feedback.model";
-import { SwiperComponent } from "swiper/angular";
-import SwiperCore, { Pagination, Mousewheel, SwiperOptions } from "swiper";
+import { ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
+import { feedBack, IFeedBack } from './feedback.model';
+import { SwiperComponent } from 'swiper/angular';
+import SwiperCore, { Mousewheel, Pagination, SwiperOptions } from 'swiper';
+
 SwiperCore.use([Mousewheel, Pagination]);
 
 @Component({
@@ -9,27 +10,18 @@ SwiperCore.use([Mousewheel, Pagination]);
     selector: 'feedback',
     templateUrl: './feedback.component.html'
 })
-export class FeedbackComponent implements AfterViewInit {
+export class FeedbackComponent {
     showMoreList: number[] = [];
 
     @Input() set startFrom(value: string) {
         if (value) {
-            const index = this.feedbackList.findIndex(item => item.author === value);
-            this.startFromIndex = index > 0 ? index : 0;
-        }
-
-        if (this.swiperRef && this.startFromIndex) {
-            this.swiperRef.swiperRef.slideTo(this.startFromIndex);
-        }
-
-        if (this.swiperRefResp && this.startFromIndex) {
-            this.swiperRefResp.swiperRef.slideTo(this.startFromIndex);
+            this.feedbackList = feedBack.filter(item => item.author === value);
         }
     };
+
     feedbackList: IFeedBack[] = feedBack;
-    @ViewChild("swiperRef", { static: false }) swiperRef?: SwiperComponent;
-    @ViewChild("swiperRefResp", { static: false }) swiperRefResp?: SwiperComponent;
-    startFromIndex?: number;
+    @ViewChild('swiperRef', { static: false }) swiperRef?: SwiperComponent;
+    @ViewChild('swiperRefResp', { static: false }) swiperRefResp?: SwiperComponent;
 
     feedBackCarousel: SwiperOptions = {
         slidesPerView: 1.2,
@@ -75,16 +67,6 @@ export class FeedbackComponent implements AfterViewInit {
 
     prevSlide() {
         this.swiperRef?.swiperRef.slidePrev();
-    }
-
-    ngAfterViewInit() {
-        if (this.swiperRef && this.startFromIndex) {
-            this.swiperRef.swiperRef.slideTo(this.startFromIndex);
-        }
-
-        if (this.swiperRefResp && this.startFromIndex) {
-            this.swiperRefResp.swiperRef.slideTo(this.startFromIndex);
-        }
     }
 
     setShowMore(id: number) {
