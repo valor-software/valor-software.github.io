@@ -301,12 +301,14 @@ li::marker {
     font-family: Work Sans;
     font-weight: 400;
     src: url(../fonts/work-sans/WorkSans-Regular.woff) format("woff");
+    font-display: swap;
   }
 
   @font-face {
     font-family: Work Sans-Bold;
     font-weight: 700;
     src: url(../fonts/work-sans/WorkSans-Bold.woff) format("woff");
+    font-display: swap;
   }
 }
 
