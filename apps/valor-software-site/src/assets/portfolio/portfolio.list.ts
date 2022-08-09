@@ -17,7 +17,6 @@ export const projectsList = [
     'ThisDot',
     'NgAtlanta',
     'Vizabi',
-    'Netifi',
     'Terminus',
+    'Netifi',
 ];
-

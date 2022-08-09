@@ -93,4 +93,3 @@ export { ComparisonSliderComponent } from './components/comparison-slider/compar
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CommonDocsModule {}
-
