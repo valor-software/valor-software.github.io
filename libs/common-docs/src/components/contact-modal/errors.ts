@@ -21,5 +21,6 @@ export const errorVocabulary = {
     FORM_NOT_FOUND: 'An invalid form\'s hashid was used to submit the form',
     NO_FILE_UPLOADS: 'File uploads are not supported for this form',
     TOO_MANY_FILES: 'The number of files uploaded exceeded attachment limits',
-    FILES_TOO_BIG: 'The uploaded file or files size exceeded the max size limit'
+    FILES_TOO_BIG: 'The uploaded file or files size exceeded the max size limit',
+    INVALID_EMAIL: 'You entered an invalid email'
 };

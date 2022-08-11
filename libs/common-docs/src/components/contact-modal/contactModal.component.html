@@ -40,6 +40,11 @@
                                    formControlName="email"
                                    placeholder="Email"
                                    [attr.disabled]="form.value.type ? null : ''">
+                            <ng-container *ngFor="let validation of validationMessages.email;">
+                                <small class="text-pink" *ngIf="hasFieldError(validation.type, 'email')">
+                                    {{ validation.message }}
+                                </small>
+                            </ng-container>
                         </div>
                         <div>
                             <p class="text-white text-sm mb-2.5">Message</p>
@@ -48,6 +53,11 @@
                                       placeholder="Type here ..."
                                       [attr.disabled]="form.value.type && !form.controls['email'].errors ? null : ''"
                             ></textarea>
+                            <ng-container *ngFor="let validation of validationMessages.message;">
+                                <small class="text-pink" *ngIf="hasFieldError(validation.type, 'message')">
+                                  {{ validation.message }}
+                                </small>
+                              </ng-container>
                         </div>
 <!--                        <file-uploader (filesChanged)="addFiles($event)"></file-uploader>-->
                         <button

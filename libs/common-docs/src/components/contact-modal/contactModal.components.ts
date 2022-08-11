@@ -27,6 +27,18 @@ export class ContactModalComponent implements OnDestroy {
     $reCaptchaSub?: Subscription;
     errorMessage?: string;
 
+    readonly validationMessages = {
+        email: [
+            { type: 'required', message: 'required field' },
+            { type: 'email', message: 'Please enter a valid email' }
+        ],
+        message: [
+            { type: 'required', message: 'required field' },
+            { type: 'minlength', message: 'The message must be longer than 5 characters' },
+            { type: 'maxlength', message: 'The message must be less than 1000 characters' }
+        ],
+    };
+
     constructor(
         private modalService: ModalService<ContactModalComponent>,
         private sendEmailServ: SendEmailService,
@@ -57,7 +69,8 @@ export class ContactModalComponent implements OnDestroy {
                     this.showSuccessModal();
                     this.recaptchaV3Service.execute('');
                 }, (error: IError) => {
-                    const errorText = errorVocabulary[error.error.errors[0].code as keyof typeof errorVocabulary] || error.error.errors[0].message;
+                    const code = error.error.errors[0].code === 'TYPE_EMAIL' ? 'INVALID_EMAIL' : error.error.errors[0].code;
+                    const errorText = errorVocabulary[code as keyof typeof errorVocabulary] || error.error.errors[0].message;
                     this.showErrorModal(errorText);
                 });
             });
@@ -86,5 +99,14 @@ export class ContactModalComponent implements OnDestroy {
             element.style.display = 'none';
         }
         this.$reCaptchaSub?.unsubscribe();
+    }
+
+    hasFieldError(validationType: string, field: string): boolean {
+        const formField = this.form.get(field);
+        if (formField) {
+            return formField.hasError(validationType) && (formField.dirty || formField.touched);
+        } else {
+            return false;
+        }
     }
 }
