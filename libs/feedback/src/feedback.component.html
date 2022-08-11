@@ -28,7 +28,7 @@
                 </div>
                 <div class="w-65% flex justify-end">
                     <p *ngIf="card.scrollHeight>400"
-                       class="mt-10px mb-8 md:mb-0 text-20 text-grey_font_col underline" (click)="setShowMore(i)"
+                       class="mt-10px mb-8 md:mb-0 text-20 text-grey_font_col underline cursor-pointer" (click)="setShowMore(i)"
                        fragment="open-source">{{ showMoreList.includes(i) ? 'Show less':
                       'Show More' }}
                     </p>
