@@ -22,6 +22,7 @@ import { GetArticlesService } from './services/getArticles.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
+import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
@@ -43,8 +44,10 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
 export { PORTFOLIO_LIST } from './tokens/portfolioList.token';
 export { IPortfolio } from './models/portfolio.interface';
 export { GetPortfolioService } from './services/getPortfolio.service';
-export { titleRefactoring, checkHTMLExtension} from './utils/titleRefactoringUtil';
+export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
+export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
+export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
 export { NextProjectComponent } from './components/next-project/next-project.component';
 @NgModule({
   declarations: [
@@ -60,7 +63,8 @@ export { NextProjectComponent } from './components/next-project/next-project.com
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
-    NextProjectComponent
+    NextProjectComponent,
+    ExpandableCardComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -74,7 +78,8 @@ export { NextProjectComponent } from './components/next-project/next-project.com
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
-    NextProjectComponent
+    NextProjectComponent,
+    ExpandableCardComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
@@ -83,4 +88,4 @@ export { NextProjectComponent } from './components/next-project/next-project.com
     }
   ]
 })
-export class CommonDocsModule {}
+export class CommonDocsModule { }
