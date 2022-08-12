@@ -22,6 +22,7 @@ import { GetArticlesService } from './services/getArticles.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
+import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
 
@@ -44,8 +45,10 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
 export { PORTFOLIO_LIST } from './tokens/portfolioList.token';
 export { IPortfolio } from './models/portfolio.interface';
 export { GetPortfolioService } from './services/getPortfolio.service';
-export { titleRefactoring, checkHTMLExtension} from './utils/titleRefactoringUtil';
+export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
+export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
+export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
 
 @NgModule({
   declarations: [
@@ -61,8 +64,9 @@ export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
+    ExpandableCardComponent,
     ComparisonSliderComponent,
-    TechnologiesComponent,
+    TechnologiesComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -77,7 +81,8 @@ export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
     BlogPortfolioItemComponent,
     CustomSlicePipe,
     ComparisonSliderComponent,
-    TechnologiesComponent
+    TechnologiesComponent,
+    ExpandableCardComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
@@ -87,4 +92,4 @@ export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CommonDocsModule {}
+export class CommonDocsModule { }
