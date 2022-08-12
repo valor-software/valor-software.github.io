@@ -22,6 +22,7 @@ import { GetArticlesService } from './services/getArticles.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
+import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
 export { PopoverComponent } from './components/popover/popover.component';
@@ -47,6 +48,8 @@ export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUt
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 export { NextProjectComponent } from './components/next-project/next-project.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
+export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
+export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,8 @@ export { ComparisonSliderComponent } from './components/comparison-slider/compar
     BlogPortfolioItemComponent,
     CustomSlicePipe,
     ComparisonSliderComponent,
-    NextProjectComponent
+    NextProjectComponent,
+    ExpandableCardComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -78,7 +82,8 @@ export { ComparisonSliderComponent } from './components/comparison-slider/compar
     BlogPortfolioItemComponent,
     CustomSlicePipe,
     ComparisonSliderComponent,
-    NextProjectComponent
+    NextProjectComponent,
+    ExpandableCardComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
