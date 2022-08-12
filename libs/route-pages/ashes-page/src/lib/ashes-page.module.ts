@@ -12,8 +12,8 @@ import { FeedbackModule } from '@valor-software/feedback';
   imports: [
     CommonModule,
     CommonDocsModule,
-    FeedbackModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FeedbackModule
   ]
 })
 export class AshesPageModule {

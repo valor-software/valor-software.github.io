@@ -165,10 +165,10 @@
     </div>
   </section>
 
-  <section class="landing-section hidden md:block">
+  <section class="landing-section hidden md:block"  *ngIf="project.feedback">
     <h1 class="main-title">Feedback</h1>
     <div class="container">
-      <feedback></feedback>
+      <feedback [startFrom]="project.feedback" ></feedback>
     </div>
   </section>
 
