@@ -108,6 +108,7 @@ const newFunctionalitiesChallenge: IChallengeCard = {
     subSection: {
         description: ['Now Chat Experiences offers even more options for customization to users: the opportunity to create bots powered by artificial intelligence and unique playbooks for different audiences.'],
         video: "https://embed-fastly.wistia.com/deliveries/32ab3ecde4d919f46485278952e0a36a8cef0790/file.mp4",
+        video_poster:'assets/img/bg-img/terminus_page/video_poster.png'
     }
 };
 

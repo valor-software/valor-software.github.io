@@ -38,6 +38,7 @@ export interface IChallengeSubSection extends IDefaultValuesText {
     src: string,
   }[];
   video?: string;
+  video_poster?: string;
 }
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
