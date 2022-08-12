@@ -1,7 +1,7 @@
 
 
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { GetPortfolioService, IPortfolio, titleRefactoring } from '../../common-docs.module';
 
 export interface IComparisonSlider {
@@ -23,6 +23,11 @@ export class NextProjectComponent {
     private router: Router,
   ) {
     this.initNextProject();
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.initNextProject();
+      }
+    });
   }
 
   getRouteLink(link: string): string {
