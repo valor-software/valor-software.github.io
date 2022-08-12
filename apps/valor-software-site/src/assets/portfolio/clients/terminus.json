@@ -4,5 +4,10 @@
   "link": "https://terminus.com/",
   "previewImg": "assets/img/bg-img/terminus_page/bg_article.png",
   "headerImg": "assets/img/bg-img/terminus_page/header_bg.svg",
-  "sortServices": ["web"]
+  "sortServices": ["web"],
+  "sortTechnologies":  ["angular", "ngrx", "amcharts", "jest", "cypress", "ruby", "aws", "postgreSQL", "rspec", "go"],
+  "aspects": {
+    "technology_stack": ["angular", "ngrx", "amcharts", "jest", "cypress", "ruby", "aws", "postgreSQL", "rspec", "go"],
+    "services_provided": ["Frontend", "Backend"]
+  }
 }
