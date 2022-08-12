@@ -35,11 +35,29 @@
                         </div>
                         <div class="mb-8">
                             <p class="text-white text-sm mb-2.5">Email</p>
-                            <input class="text-input" type="email" formControlName="email" placeholder="Email">
+                            <input class="text-input"
+                                   type="email"
+                                   formControlName="email"
+                                   placeholder="Email"
+                                   [attr.disabled]="form.value.type ? null : ''">
+                            <ng-container *ngFor="let validation of validationMessages.email;">
+                                <small class="text-pink" *ngIf="hasFieldError(validation.type, 'email')">
+                                    {{ validation.message }}
+                                </small>
+                            </ng-container>
                         </div>
                         <div>
                             <p class="text-white text-sm mb-2.5">Message</p>
-                            <textarea class="text-input h-36 resize-none" formControlName="message" placeholder="Type here ..."></textarea>
+                            <textarea class="text-input h-36 resize-none"
+                                      formControlName="message"
+                                      placeholder="Type here ..."
+                                      [attr.disabled]="form.value.type && !form.controls['email'].errors ? null : ''"
+                            ></textarea>
+                            <ng-container *ngFor="let validation of validationMessages.message;">
+                                <small class="text-pink" *ngIf="hasFieldError(validation.type, 'message')">
+                                  {{ validation.message }}
+                                </small>
+                              </ng-container>
                         </div>
 <!--                        <file-uploader (filesChanged)="addFiles($event)"></file-uploader>-->
                         <button
@@ -60,9 +78,12 @@
                     <img class="hidden lg:block max-w-200 mt-10" src="assets/img/bg-img/get_in_touch.svg" alt="get in touch img">
                 </div>
             </div>
-    </div>
-        <div *ngIf="showSuccess || showError" class="w-full h-full md:h-5/6 flex justify-center items-center">
+        </div>
+        <div *ngIf="showSuccess || showError" class="w-full h-full md:h-5/6 flex flex-col place-content-around items-center">
+            <div class="invisible"></div>
             <result-modal [type]="showSuccess ? 'success' : 'error'" [errorMessage]="errorMessage"></result-modal>
+            <button *ngIf="showSuccess" class="btn-pink-border text-xs md:text-base" (click)="closeModal()">Done</button>
+            <button *ngIf="showError" class="btn-pink-border text-xs md:text-base" (click)="resetError()">Try Again</button>
         </div>
     </div>
 </div>
