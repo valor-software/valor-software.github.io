@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopoverComponent } from './components/popover/popover.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -24,8 +24,6 @@ import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
-import { TechnologiesComponent } from './components/technologies/technologies.component';
-
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
 export { ImgHoverDirective } from './directives/img-hover.directive';
@@ -45,7 +43,7 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
 export { PORTFOLIO_LIST } from './tokens/portfolioList.token';
 export { IPortfolio } from './models/portfolio.interface';
 export { GetPortfolioService } from './services/getPortfolio.service';
-export { titleRefactoring, checkHTMLExtension} from './utils/titleRefactoringUtil';
+export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 export { NextProjectComponent } from './components/next-project/next-project.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
@@ -65,8 +63,7 @@ export { ComparisonSliderComponent } from './components/comparison-slider/compar
     BlogPortfolioItemComponent,
     CustomSlicePipe,
     ComparisonSliderComponent,
-    NextProjectComponent,
-    TechnologiesComponent,
+    NextProjectComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -81,15 +78,13 @@ export { ComparisonSliderComponent } from './components/comparison-slider/compar
     BlogPortfolioItemComponent,
     CustomSlicePipe,
     ComparisonSliderComponent,
-    NextProjectComponent,
-    TechnologiesComponent
+    NextProjectComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',
     }
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  ]
 })
-export class CommonDocsModule {}
+export class CommonDocsModule { }

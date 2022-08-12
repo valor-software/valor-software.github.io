@@ -35,7 +35,7 @@ export class ArticleComponent implements OnDestroy {
     checkRoutePath() {
         let artTitle = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
         if (!artTitle) {
-            this.router.navigate(['/404']);
+            this.router.navigate(['404']);
         }
 
         if (artTitle) {
@@ -56,7 +56,7 @@ export class ArticleComponent implements OnDestroy {
                 }),
                 catchError(error => {
                     if (!this.article) {
-                        this.router.navigate(['/404']);
+                        this.router.navigate(['404']);
                     }
                     return of();
                 })
@@ -68,7 +68,7 @@ export class ArticleComponent implements OnDestroy {
                     this.addScriptsToHead();
                 }
             }, error => {
-                this.router.navigate(['/404']);
+                this.router.navigate(['404']);
             });
         }
     }
@@ -85,11 +85,30 @@ export class ArticleComponent implements OnDestroy {
             const link = element.getAttribute('routerLink');
             this.router.navigate([link]);
         }
+
+        if (element.nodeName === 'A' && element.getAttribute('href')) {
+            const link = element.getAttribute('href');
+            if (link.includes('#')) {
+                event.preventDefault();
+                let url = this.router.url;
+                if (url.indexOf('#') > -1) {
+                    url = url.substring(0, url.indexOf('#'));
+                }
+
+                if (url.indexOf('%23') > -1) {
+                    url = url.substring(0, url.indexOf('%23'));
+                }
+
+                if (link) {
+                    this.router.navigate([url.trim() + '/'], { fragment: link.replace('#', '') });
+                }
+            }
+        }
     }
 
     ngOnDestroy() {
         this.$routEvents?.unsubscribe();
-        this.removeOldMicroDAta(); 
+        this.removeOldMicroDAta();
     }
 
     addScriptsToHead() {

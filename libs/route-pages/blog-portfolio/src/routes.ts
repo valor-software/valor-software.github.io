@@ -13,10 +13,6 @@ export const routes = [
                 
             },
             {
-              path: 'ashes-of-creation',
-              loadChildren: () => import('@valor-software/ashes-page').then(m => m.AshesPageModule)
-            },
-            {
                 path: 'terminus',
                 loadChildren: () => import('@valor-software/terminus-page').then(m => m.TerminusPageModule)
             },
