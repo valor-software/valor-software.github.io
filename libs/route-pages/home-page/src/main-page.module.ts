@@ -7,12 +7,14 @@ import { CommonDocsModule, GetPortfolioService } from '@valor-software/common-do
 import { NpmStatisticService } from './getNpmStatistic.service';
 import { MainPageComponent } from "./main-page.component";
 import { FeedbackModule } from "@valor-software/feedback";
+import { BusinessesCardComponent } from './businesses-card.component';
 
 export { MainPageComponent } from "./main-page.component";
 
 @NgModule({
     declarations: [
-        MainPageComponent
+        MainPageComponent,
+        BusinessesCardComponent
     ],
     imports: [
         CommonModule,
