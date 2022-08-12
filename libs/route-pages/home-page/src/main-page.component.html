@@ -1,180 +1,154 @@
-<section [class.h-screen-40]="checkFirstSectionHeight()" [class.md:h-screen-70]="checkFirstSectionHeight()" class="landing-section flex flex-col items-center pt-12 first-section pb-0">
-    <div class="container flex flex-col justify-between h-full pb-5" style="max-height: 100%;">
-        <div class="flex-col lg:flex-row flex justify-between w-full lg:items-center pt-16 lg:pt-0" style="max-height: 100%;">
-            <div class="flex items-start max-w-30% mr-16">
-                <div class="hidden lg:flex flex-col justify-between items-start">
-                    <h1 class="text-light_title_col text-64 leading-66 mb-12 font-bold">Led<br> by a Google<br>Developer Expert</h1>
-                    <p class="leading-normal text-grey_font_col mb-8">Valor Software is more than just a software development company. We’re a team of people driven by innovation who pull off the impossible with the blend of the brightest technological minds and bleeding-edge technologies.</p>
-                    <button class="btn-pink flex justify-between" routerLink="/" fragment="feedback">Our clients’ feedback <img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt=""></button>
-                </div>
-            </div>
-            <div class="flex justify-end relative">
-                <h1 class="flex md:items-center absolute inset-0 block z-1 lg:hidden text-light_title_col text-large sm:text-64 sm:leading-66 leading-40 font-bold max-w-65%">Led by a Google Developer Expert</h1>
+<section [class.h-screen-40]="checkFirstSectionHeight()" [class.md:h-screen-70]="checkFirstSectionHeight()"
+    class="landing-section flex flex-col items-center pt-12 first-section pb-0">
+    <div class="container md:flex flex-column space-between">
+        <div class="lg:flex flex-col items-start self-center">
+            <img src="assets/img/bg-img/main_page/main_page_mobile_bg.png" alt="Dmitriy Shekhovtsov photo"
+                class="block lg:hidden h-full w-full max-h-700 object-contain my-10" style="width: 100%; height: 100%">
 
-                <div class="img-filter w-auto lg:h-full lg:max-w-full max-w-65% self-end">
-                    <img src="assets/img/bg-img/boss_2.jpg" alt="Dmitriy Shekhovtsov photo" class="h-full w-full max-h-700 object-contain lg:object-cover" style="width: 100%; height: 100%">
-                </div>
-                <div class="lg:flex items-end mb-32 ml-16 hidden">
-                    <div>
-                        <div>
-                            <a href="https://www.linkedin.com/company/valor-software/about/" rel="noopener" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/linkedin.svg" style="width: 100%; height: 100%" alt="linkedin icon"></a>
-                            <a href="https://www.instagram.com/valor.software/" rel="noopener" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/instagram.svg" style="width: 100%; height: 100%" alt="instagram icon"></a>
-                            <a href="https://twitter.com/ValorSoft" rel="noopener" target="_blank" class="mb-5 block"><img src="assets/img/icons/social/twitter.svg" style="width: 100%; height: 100%" alt="twitter icon"></a>
-                            <div [collapse]="!showSocial">
-                            <a href="https://dribbble.com/valor-labs" rel="noopener" target="_blank" class="block mb-5"><img src="assets/img/icons/social/dribble.svg" style="width: 100%; height: 100%" alt="dribble icon"></a>
-                            <a href="https://www.behance.net/ValorSoftware" rel="noopener" target="_blank" class="block mb-5"><img src="assets/img/icons/social/behance.svg" style="width: 100%; height: 100%" alt="behance icon"></a>
-                            <a href="https://www.facebook.com/valorsoftware/" rel="noopener" target="_blank" class="block mb-5"><img src="assets/img/icons/social/facebook.svg" style="width: 100%; height: 100%" alt="facebook icon"></a>
-                            <a href="https://github.com/valor-software" rel="noopener" target="_blank" class="block mb-5"><img src="assets/img/icons/social/github.svg" style="width: 100%; height: 100%" alt="youtube icon"></a>
-                            </div>
-                        </div>
-                        <div class="light-arrow big cursor-pointer" [class.-rotate-45]="showSocial" (click)="showSocial=!showSocial" style="margin-left: 5px"></div>
-                    </div>
-                </div>
-            </div>
-            <p class="block lg:hidden leading-normal text-grey_font_col mt-8">Valor Software is more than just a software development company. We’re a team of people driven by innovation who pull off the impossible with the blend of the brightest technological minds and edge technologies.</p>
-            <button class="mt-14 block lg:hidden btn-pink flex justify-center w-full sm:w-auto sm:mx-auto sm:self-baseline md:mt-4" routerLink="." fragment="feedback">Our client’s feedback <img style="height: 100%" src="assets/img/icons/arrow.svg" class="ml-2 rotate-90"  alt=""></button>
+            <h1 class="font-bold text-light_title_col text-4xl leading-44 md:leading-66 md:text-64 mb-8 md:w-11/12 ">Led
+                by
+                a Google Developer
+                Expert</h1>
+            <p class="leading-6 text-grey_font_col lg:mb-8 mb-14">Valor Software is more than just a software
+                development
+                company. We’re a team of people driven by
+                innovation
+                who pull off the impossible with the blend of the brightest technological minds and edge technologies.
+            </p>
+            <button class="btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto" routerLink="/"
+                fragment="technologies">Review our tech
+                stack <img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt=""></button>
         </div>
+
+        <img src="assets/img/bg-img/main_page/main_page_bg.png" alt="Dmitriy Shekhovtsov photo"
+            class="hidden lg:block h-full w-full max-h-700 object-contain lg:object-cover"
+            style="width: 100%; height: 100%">
     </div>
+
 </section>
 
 <section class="landing-section pt-16 lg:!pt-0">
     <h1 class="main-title">Priorities</h1>
-    <div>
-        <swiper
-                [config]="swiperConfig"
-                class="pink_swiper"
-        >
-            <ng-template swiperSlide *ngFor="let slide of slides">
-                <div>
-                    <h2 [innerHTML]="slide.title" class=" swiper-no-swiping md:text-large font-bold md:font-regular text-2xl text-light_title_col leading-28 md:leading-44 mb-8"></h2>
-                    <ul class="list-disc text-grey_font_col pl-5 swiper-no-swiping">
-                        <li *ngFor="let item of slide.list" class="mb-4 swiper-no-swiping">{{item}}</li>
-                    </ul>
-                    <button class="flex justify-center md:justify-between mt-10 w-full md:w-auto">
-                        <a [routerLink]="['articles']" class="btn-pink flex justify-center w-full">Visit blog <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
-                    </button>
-                </div>
-                <div class="max-w-140 md:max-w-full mb-6 md:mb-0">
-                    <img [src]="slide.imgSource" style="width: 100%; height: 100%" alt="slide img">
-                </div>
-            </ng-template>
-        </swiper>
+    <div class="md:w-1296 m-auto">
+        <expandable-card [cards]="cards"></expandable-card>
     </div>
 </section>
 
-<section class="landing-section">
+<section class="landing-section" id="technologies">
     <h1 class="main-title">Technology</h1>
     <div class="container flex justify-between flex-col lg:flex-row">
         <div class="lg:bg-grey xl:py-16 xl:px-7 w-full max-w-455 bg-transparent mx-auto lg:mr-8">
             <div class="grid grid-cols-4">
                 <div *ngFor="let technology of technologiesList; index as i"
-                    class="border-2 transition-all p-2.5 flex items-center mb-5 lg:mb-9 w-75 h-75"
-                     [ngClass]="{'active border-pink': technology.active, 'border-transparent': !technology.active, 'mr-5 xl:mr-7': !checkIndex(i), 'cursor-pointer': !technology.disabled, 'cursor-not-allowed': technology.disabled}" (click)="getSortProjects(technology.id)"
-                     changeSrcOnHover [check]="technology.active" [defaultSrc]="technology.disabled ? '' : technology.img" [activeSrc]="technology.disabled ? '' : technology.activeImg"
-                     (click)="setActiveTechnology(technology.id)"
-                >
-                    <img [src]="technology.disabled ? technology.blockedImg : technology.active ? technology.activeImg : technology.img" [alt]="technology.id" class="mx-auto" style="width: 100%;">
+                    class="border-2 transition-all p-2.5 flex items-center mb-5 lg:mb-9 w-74 h-74"
+                    [ngClass]="{'active border-pink': technology.active, 'border-transparent': !technology.active, 'mr-5 xl:mr-7': !checkIndex(i), 'cursor-pointer': !technology.disabled, 'cursor-not-allowed': technology.disabled}"
+                    (click)="getSortProjects(technology.id)" changeSrcOnHover [check]="technology.active"
+                    [defaultSrc]="technology.disabled ? '' : technology.img"
+                    [activeSrc]="technology.disabled ? '' : technology.activeImg"
+                    (click)="setActiveTechnology(technology.id)">
+                    <img [src]="technology.disabled ? technology.blockedImg : technology.active ? technology.activeImg : technology.img"
+                        [alt]="technology.id" class="mx-auto" style="width: 100%">
                 </div>
             </div>
-
+            <button class="mx-auto flex mt-8 mb-8 md:mb-0 btn-pink flex justify-center items-center" routerLink="/"
+                fragment="open-source">
+                Check our open source Contributions<img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt="">
+            </button>
         </div>
         <div class="lg:max-w-735 w-full flex flex-col justify-between max-w-455 mx-auto">
-            <div class="flex flex-wrap justify-between">
-                <div *ngFor="let project of sortProjects"  class="lg:w-48% w-full relative  mb-8 cursor-pointer lg:h-300 border-grey_bg border-2 hover:border-pink">
+            <div class="flex flex-wrap justify-between gap-5">
+                <div *ngFor="let project of sortProjects"
+                    class="lg:w-48% w-full relative cursor-pointer lg:h-311 border-grey_bg border-2 hover:border-pink">
                     <a href="javaScript:void(0)" [routerLink]="['projects', projectRoute(project.name)]">
-                        <img [src]="project.previewImg" [alt]="project.name" style="width: 100%; height: 100%" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 flex flex-col justify-end p-6 w-full h-full" [style.background]="'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)'">
-                            <p class="font-bold text-light_title_col text-xl mb-2 text-center lg:text-left">{{project.name}}</p>
+                        <img [src]="project.previewImg" [alt]="project.name" style="width: 100%; height: 100%"
+                            class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex flex-col justify-end p-6 w-full h-full"
+                            [style.background]="'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)'">
+                            <p class="font-bold text-light_title_col text-xl mb-2 text-center lg:text-left">
+                                {{project.name}}</p>
                             <div class="hidden lg:flex flex-wrap">
-                                <span *ngFor="let item of project.aspects.technology_stack | slice:0:3" class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2 hover:text-grey_bg hover:bg-light_title_col transition-colors">{{item}}</span>
+                                <span *ngFor="let item of project.aspects.technology_stack | slice:0:3"
+                                    class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2 hover:text-grey_bg hover:bg-light_title_col transition-colors">{{item}}</span>
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
-            <button class="mx-auto flex">
-                <a [routerLink]="'/projects'" class="btn-pink flex justify-center items-center">Visit portfolio <img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
-            </button>
         </div>
     </div>
 </section>
 <section class="landing-section">
-    <h1 class="main-title">Services</h1>
+    <h1 class="main-title mt-0">Services</h1>
     <div class="container">
         <services-block [preview]="true"></services-block>
     </div>
 </section>
-<section class="landing-section">
-    <h1 class="main-title">Open Source</h1>
-    <div class="container flex flex-col flex-wrap lg:flex-row">
-        <h2 class="md:text-large text-32 lg:text-56 text-light_title_col lg:leading-66 leading-44 mb-8 w-full"><span>Proudly</span> contributing<br><span>to</span> open source</h2>
-        <p class="lg:max-w-50% text-grey_font_col">We try to maintain equilibrium between the value we take from open source and what we give back. So we proudly sponsor promising technologies, contribute with our knowledge to make tools handier, and build open code solutions to ease engineers’ daily routines.</p>
-        <div class="hidden lg:block">
-            <swiper
-                    [config]="verticalSwiperConfig"
-                    class="verticalSwiper mt-10"
-            >
-                <ng-template swiperSlide *ngFor="let slide of openSourceSlides">
-                    <div class="flex justify-between w-full h-full">
-                        <div class="max-w-380 w-80 leading-44 h-full flex flex-col justify-between items-start">
-                            <div>
-                                <p class="font-bold text-large text-light_title_col mb-8" [innerHTML]="slide.title"></p>
-                                <p class="text-light_title_col text-xl mb-6">{{slide.description}}</p>
-                                <ul class="list-disc text-grey_font_col pl-5">
-                                    <li class="leading-4 mb-4" *ngFor="let item of slide.list">{{item}}</li>
-                                </ul>
-                            </div>
-                            <button class="flex justify-between"><a class="btn-pink flex justify-between items-center" [href]="slide.link" rel="noopener" target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
-                        </div>
-                        <div class="max-w-65% flex flex-col justify-center items-center text-light_title_col">
-                            <img [src]="slide.img" style="width: 100%; height: 100%" [alt]="slide.name + 'icon'">
-                            <ng-container *ngIf="slide.downloads">
-                                <p class="text-xl">Monthly downloads</p>
-                                <p class="text-large" *ngIf="!slide.npmLink">{{slide.downloads | number}}</p>
-                                <p class="text-large cursor-pointer" *ngIf="slide.npmLink"><a [href]="slide.npmLink" rel="noopener" target="_blank">{{slide.downloads | number}}</a></p>
-                            </ng-container>
-                        </div>
-                    </div>
-                </ng-template>
-            </swiper>
-        </div>
-        <div class="block lg:hidden w-full mt-8">
-            <swiper
-                    [config]="swiperConfig"
-                    [initialSlide]="0"
-                    class="pink_swiper"
-            >
-                <ng-template swiperSlide *ngFor="let slide of openSourceSlides">
-                    <div class="w-full h-full">
-                        <div class="leading-44 flex flex-col justify-between items-start">
-                            <div>
-                                <p class="font-bold text-24 leading-28 text-light_title_col mb-8" [innerHTML]="slide.title"></p>
-                                <p class="text-light_title_col text-xl mb-6">{{slide.description}}</p>
 
-                                <ul class="list-disc text-grey_font_col pl-5">
-                                    <li *ngFor="let item of slide.list">{{item}}</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="flex flex-col justify-center items-center text-light_title_col max-w-85% mt-6 mx-auto">
-                            <img [src]="slide.img" style="width: 100%; height: 100%" [alt]="slide.name + 'icon'">
-                            <ng-container *ngIf="slide.downloads">
-                                <p class="text-xl">Monthly downloads</p>
-                                <p class="text-large" *ngIf="!slide.npmLink">{{slide.downloads | number}}</p>
-                                <p class="text-large cursor-pointer" *ngIf="slide.npmLink"><a [href]="slide.npmLink" rel="noopener" target="_blank">{{slide.downloads | number}}</a></p>
-                            </ng-container>
-                        </div>
-                        <button class="flex justify-center w-full mt-24"><a class="btn-pink flex justify-between items-center" [href]="slide.link" rel="noopener" target="_blank">Visit {{slide.name}}<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a></button>
+<section class="landing-section">
+    <h1 class="main-title mt-0">Businesses</h1>
+    <div class="container">
+        <h3
+            class="w-10/12 md:font-40 tracking-tightest text-20 md:text-large  text-light_title_col leading-28 md:leading-44 mb-10">
+            <span>Depending on </span>business <span>maturity, we try to </span>anticipate<span> and cover the most
+                common</span>
+            challenges
+            <span>companies face.</span>
+        </h3>
+        <businesses-card [cards]="businessList"></businesses-card>
+    </div>
+</section>
+
+<section class="landing-section" id="open-source">
+    <h1 class="main-title mt-0">Open Source</h1>
+    <div class="container flex flex-col flex-wrap lg:flex-row">
+        <h3 class="md:text-large text-32 lg:text-56 text-light_title_col lg:leading-66 leading-44 mb-8 w-full">
+            <span>Proudly</span> contributing<span> to</span> open source
+        </h3>
+        <p class="lg:w-10/12 text-grey_font_col tracking-tightest">We try to maintain equilibrium between the
+            value we take from
+            open-source and what we give back. So we proudly sponsor promising technologies, contribute with our
+            knowledge to make tools handier, and build open code solutions to ease engineers’ daily routines.</p>
+
+        <div [ngClass]="{'flex-row-reverse': slide.reverse } " class="md:flex flex-column justify-between w-full h-full gap-14 mt-32" *ngFor="let slide of openSourceSlides">
+            <div class="leading-44 md:w-10/12 h-full flex flex-col justify-between items-start ">
+                <div class="mb-8">
+                    <div class="w-full flex flex-col justify-center items-center text-light_title_col md:hidden block">
+                        <img [src]="slide.img" 
+                            style="width: 100%; height: 100%" [alt]="slide.name + 'icon'">
                     </div>
-                </ng-template>
-            </swiper>
+                    <p class="w-full font-40 font-bold text-large text-light_title_col mb-4" [innerHTML]="slide.title">
+                    </p>
+                    <p class="text-light_title_col text-xl mb-8 w-full">{{slide.description}}</p>
+                    <ul class="list-disc text-grey_font_col pl-5">
+                        <li class="leading-4 mb-4" *ngFor="let item of slide.list">{{item}}</li>
+                    </ul>
+                </div>
+                <button class="flex justify-center w-full md:w-214">
+                    <a class="btn-pink flex justify-center items-center md:w-214 w-full" [href]="slide.link" rel="noopener" target="_blank">
+                        <p class="tracking-tightest"> {{ slide.button || 'Visit ' + slide.name }}</p>
+                        <img src="assets/img/icons/arrow.svg" class="ml-2" alt="">
+                    </a>
+                </button>
+            </div>
+            <div class="w-full flex flex-col justify-center text-center items-center text-light_title_col hidden md:block">
+                <ng-container *ngIf="slide.downloads">
+                    <div class="m-auto w-5/12 border-2 p-2 rounded-md">
+                        <p class="text-xl">Monthly downloads</p>
+                        <p class="text-large" *ngIf="!slide.npmLink">{{slide.downloads | number}}</p>
+                        <p class="text-large cursor-pointer" *ngIf="slide.npmLink"><a [href]="slide.npmLink"
+                                rel="noopener" target="_blank">{{slide.downloads | number}}</a></p>
+                    </div>
+                </ng-container>
+                <img [src]="slide.img"  [ngClass]="{'relative bottom-24': slide.downloads }"
+                    style="width: 100%;" [alt]="slide.name + 'icon'">
+            </div>
         </div>
-        </div>
+    </div>
 </section>
 
 <section class="landing-section" id="feedback">
-    <h1 class="main-title">Feedback</h1>
-    <div class="container">
-       <feedback></feedback>
+    <h1 class="main-title ">Feedback</h1>
+    <div class="container lg:w-1400">
+        <feedback></feedback>
     </div>
 </section>

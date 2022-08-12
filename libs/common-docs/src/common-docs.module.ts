@@ -22,6 +22,7 @@ import { GetArticlesService } from './services/getArticles.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
+import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
@@ -43,8 +44,10 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
 export { PORTFOLIO_LIST } from './tokens/portfolioList.token';
 export { IPortfolio } from './models/portfolio.interface';
 export { GetPortfolioService } from './services/getPortfolio.service';
-export { titleRefactoring, checkHTMLExtension} from './utils/titleRefactoringUtil';
+export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
+export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
+export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 
 @NgModule({
@@ -61,6 +64,7 @@ export { ComparisonSliderComponent } from './components/comparison-slider/compar
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
+    ExpandableCardComponent,
     ComparisonSliderComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
@@ -75,6 +79,7 @@ export { ComparisonSliderComponent } from './components/comparison-slider/compar
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
+    ExpandableCardComponent,
     ComparisonSliderComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
@@ -85,4 +90,4 @@ export { ComparisonSliderComponent } from './components/comparison-slider/compar
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CommonDocsModule {}
+export class CommonDocsModule { }
