@@ -51,6 +51,11 @@ export const routes: Routes = [
     redirectTo: 'services'
   },
   {
+    path: 'blog/Announcing_strategic_partnership_with_Zack_Jackson,_the_Module_Federation_inventor',
+    redirectTo: 'articles/announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }
