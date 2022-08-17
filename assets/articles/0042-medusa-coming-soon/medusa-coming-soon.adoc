@@ -1,0 +1,5 @@
+== Orchestrate your frontend components with visual dependency graphs
+
+Manage federated applications and modules, control explicit versions of any previous build or commit per consuming app, track the performance and many more! 
+
+Become an early bird subscriber for https://www.medusa.codes/[Medusa^] – a dashboard for federated apps.
