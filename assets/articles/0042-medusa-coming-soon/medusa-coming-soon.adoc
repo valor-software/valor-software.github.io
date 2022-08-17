@@ -15,3 +15,5 @@ https://www.youtube.com/channel/UCeaGpsnPy_UBcfWLt3anCDw[Medusa^] on YouTube
 https://www.youtube.com/watch?v=8Zz7i-FPIec&t=185s[Intro to Module Federation with Medusa^]
 https://youtu.be/d1SS7KAsbdY?t=2047[Webpack Module Federation in-depth^] with Zack Jackson
 https://www.youtube.com/watch?v=RS3t5obRQZ0[Federated Modules Dashboard preview^]
+
+image::tw__1500x500-profile-cover-midnight.png[]
