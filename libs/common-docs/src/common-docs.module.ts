@@ -24,6 +24,7 @@ import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
+import { NextProjectComponent } from './components/next-project/next-project.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -49,7 +50,7 @@ export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
-
+export { NextProjectComponent } from './components/next-project/next-project.component';
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -64,6 +65,7 @@ export { ComparisonSliderComponent } from './components/comparison-slider/compar
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
+    NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent
   ],
@@ -79,6 +81,7 @@ export { ComparisonSliderComponent } from './components/comparison-slider/compar
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
+    NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent
   ],
