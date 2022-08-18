@@ -4,19 +4,23 @@ import { GeneralItemComponent } from "./general-item.component";
 
 export const routes = [
   {
-    path: "",
+    path: '',
     children: [
       {
-        path: "",
-        pathMatch: "full",
+        path: '',
+        pathMatch: 'full',
         component: GeneralPageComponent
+      },
+      {
+        path: 'terminus',
+        loadChildren: () => import('@valor-software/terminus-page').then(m => m.TerminusPageModule)
       },
       {
         path: 'ashes-of-creation',
         loadChildren: () => import('@valor-software/ashes-page').then(m => m.AshesPageModule)
       },
       {
-        path: ":id",
+        path: ':id',
         component: GeneralItemComponent
       }
     ]

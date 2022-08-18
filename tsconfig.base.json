@@ -47,6 +47,9 @@
       ],
       "@valor-software/services-page": [
         "libs/route-pages/services-page/src/index.ts"
+      ],
+      "@valor-software/terminus-page": [
+        "libs/route-pages/terminus-page/src/index.ts"
       ]
     }
   },

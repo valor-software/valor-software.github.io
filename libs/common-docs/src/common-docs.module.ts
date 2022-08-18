@@ -24,6 +24,7 @@ import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
+import { NextProjectComponent } from './components/next-project/next-project.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
@@ -48,7 +49,9 @@ export { GetPortfolioService } from './services/getPortfolio.service';
 export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
-export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
+export { IExpandableCard } from './components/expandable-card/expandable-card.component';
+export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
+export { NextProjectComponent } from './components/next-project/next-project.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,7 @@ export { IExpandableCard  } from './components/expandable-card/expandable-card.c
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
+    NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent,
     TechnologiesComponent
@@ -80,9 +84,10 @@ export { IExpandableCard  } from './components/expandable-card/expandable-card.c
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
+    NextProjectComponent,
+    ExpandableCardComponent,
     ComparisonSliderComponent,
-    TechnologiesComponent,
-    ExpandableCardComponent
+    TechnologiesComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {

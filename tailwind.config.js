@@ -6,8 +6,19 @@ module.exports = {
   purge: {
     content: [
       './apps/valor-software-site/src/**/*.{html,ts}',
-      './libs/**/src/**/*.{html,ts}'
-    ]
+      './libs/**/src/**/*.{html,ts}',
+    ],
+    safelist: [
+      'lg:justify-start',
+      'lg:justify-center',
+      'lg:justify-between',
+      'md:justify-start',
+      'md:justify-center',
+      'md:justify-between',
+      'justify-start',
+      'justify-center',
+      'justify-between',
+    ],
   },
   darkMode: 'class',
   theme: {
@@ -43,7 +54,8 @@ module.exports = {
       green: '#658B80',
       light_blue: '#71A5D2',
       popover_bg: '#282828',
-      real_dark_grey: '#222222'
+      real_dark_grey: '#222222',
+      medium_grey_bg: '#717171'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -82,7 +94,8 @@ module.exports = {
         '105': '105px',
         '80': '80px',
         '250': '250px',
-        '40': '40px'
+        '40': '40px',
+        '16': '16px'
       },
       minWidth: {
         '585': '585px',
@@ -168,6 +181,7 @@ module.exports = {
         '1400': '1400px',
         '104': '104px',
         '62': '62px',
+        '80%': '80%'
       },
       minHeight: {
         '725': '725px',
@@ -190,7 +204,8 @@ module.exports = {
         '74': '74px',
         '310': '310px',
         '610': '610px',
-        '570': '570px'
+        '570': '570px',
+        '56': '56px'
       },
       zIndex: {
         '1': '1'
@@ -203,5 +218,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'),require('@tailwindcss/typography'), require('@tailwindcss/ui')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/ui')],
 };

@@ -33,13 +33,12 @@ type AshesPortfolio = IPortfolio & {
   selector: "ashes-page",
   templateUrl: "./ashes-page.component.html"
 })
-export class AshesPageComponent implements OnInit {
+export class AshesPageComponent {
   changeBreadCrumbTitle?: { path: string, title: string }[] = [{ path: ROUTE, title: "Ashes of Creation" }];
 
   imageSliderButtonClasses = 'bg-yellow_bg_col color-black';
 
   project$: Observable<AshesPortfolio> = this.getProjectsServ.getPortfolioRequest(ROUTE);
-  nextProject?: IPortfolio;
 
   isFrameActive = false;
 
@@ -48,35 +47,6 @@ export class AshesPageComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private sanitizer: DomSanitizer
   ) {
-  }
-
-  public ngOnInit() {
-    this.initNextProject();
-  }
-
-  initNextProject() {
-    let index = this.getProjectsServ.getTitleIndex(ROUTE);
-    if (!index && index !== 0) {
-      return;
-    }
-
-    const refactoredTitles = this.getProjectsServ.getRefactoredList() || [];
-    const projectList = [...refactoredTitles].reverse();
-    if (!projectList || !projectList.length) {
-      return;
-    }
-
-    if (index === projectList.length) {
-      index = 0;
-    }
-
-    if (!projectList[index]) {
-      return;
-    }
-
-    this.getProjectsServ.getPortfolioRequest(projectList[index]).subscribe(res => {
-      this.nextProject = res;
-    });
   }
 
   getRouteLink(link: string): string {
@@ -88,7 +58,7 @@ export class AshesPageComponent implements OnInit {
     return `${arr[0]}_resp.${arr[1]}`;
   }
 
-  changeSrc(event: Event, link:string) {
+  changeSrc(event: Event, link: string) {
     (event.target as HTMLImageElement).src = link;
     this.cdr.detectChanges();
   }

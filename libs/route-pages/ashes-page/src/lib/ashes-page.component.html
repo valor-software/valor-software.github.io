@@ -182,31 +182,5 @@
       ></iframe>
   </div>
 
-  <section class="landing-section" *ngIf="nextProject">
-    <h1 class="main-title">Next Project</h1>
-    <div class="container">
-      <div class="w-full max-w-80% mx-auto">
-        <a class="block mb-10 zoom-img-scale cursor-pointer" href="javascript:void(0)" [routerLink]="['/projects', getRouteLink(nextProject.name)]">
-          <div>
-            <img [src]="nextProject.previewImg" [alt]="nextProject.name+' image'" class="w-full h-full object-cover">
-          </div>
-        </a>
-        <div class="flex flex-col">
-          <a class="block mb-12 cursor-pointer" href="javascript:void(0)" [routerLink]="['/projects', getRouteLink(nextProject.name)]">
-            <div>
-              <p *ngIf="nextProject.sortServices.includes('web')" class="text-header_font_col text-sm md:text-20">Website</p>
-              <div class="flex">
-                <p class="text-light_title_col font-bold text-24 lg:text-56 mr-4">{{nextProject.name}}</p>
-                <img src="assets/img/icons/arrow.svg" class="ml-2 w-35" alt="">
-              </div>
-            </div>
-          </a>
-
-          <button class="w-full md:w-auto flex items-center self-end">
-            <a class="btn-pink flex justify-center items-center mx-auto" [routerLink]="'/projects'">Visit all projects<img src="assets/img/icons/arrow.svg" class="ml-2" alt=""></a>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
+  <next-project></next-project>
 </ng-container>
