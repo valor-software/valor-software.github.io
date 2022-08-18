@@ -173,11 +173,11 @@
   </section>
 
   <div *ngIf="project.video"
-       class="container cursor-pointer" style="position:relative; padding-top:56.25%"
+       class="container cursor-pointer"
        (click)="activateFrame()"
   >
       <iframe [src]="getSafeUrl(project.video)"
-              style="position:absolute; top:0; left:0; width:100%; height:100%;" allowfullscreen
+              style=" width: 100%; height:80vh;" allowfullscreen
               [style.pointer-events]="isFrameActive ? 'auto' : 'none'"
       ></iframe>
   </div>
