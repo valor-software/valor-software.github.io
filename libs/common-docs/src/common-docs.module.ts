@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopoverComponent } from './components/popover/popover.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -22,6 +22,9 @@ import { GetArticlesService } from './services/getArticles.service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { GetPortfolioService } from "./services/getPortfolio.service";
 import { CustomSlicePipe } from './pipes/customSlice.pipe';
+import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
+import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
+import { NextProjectComponent } from './components/next-project/next-project.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -42,9 +45,12 @@ export { CustomSlicePipe } from './pipes/customSlice.pipe';
 export { PORTFOLIO_LIST } from './tokens/portfolioList.token';
 export { IPortfolio } from './models/portfolio.interface';
 export { GetPortfolioService } from './services/getPortfolio.service';
-export { titleRefactoring, checkHTMLExtension} from './utils/titleRefactoringUtil';
+export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
-
+export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
+export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
+export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
+export { NextProjectComponent } from './components/next-project/next-project.component';
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -58,7 +64,10 @@ export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
     ShowHideDirective,
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
-    CustomSlicePipe
+    CustomSlicePipe,
+    NextProjectComponent,
+    ExpandableCardComponent,
+    ComparisonSliderComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -72,12 +81,16 @@ export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
+    NextProjectComponent,
+    ExpandableCardComponent,
+    ComparisonSliderComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',
     }
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CommonDocsModule {}
+export class CommonDocsModule { }

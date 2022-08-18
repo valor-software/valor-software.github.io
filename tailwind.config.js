@@ -6,8 +6,19 @@ module.exports = {
   purge: {
     content: [
       './apps/valor-software-site/src/**/*.{html,ts}',
-      './libs/**/src/**/*.{html,ts}'
-    ]
+      './libs/**/src/**/*.{html,ts}',
+    ],
+    safelist: [
+      'lg:justify-start',
+      'lg:justify-center',
+      'lg:justify-between',
+      'md:justify-start',
+      'md:justify-center',
+      'md:justify-between',
+      'justify-start',
+      'justify-center',
+      'justify-between',
+    ],
   },
   darkMode: 'class',
   theme: {
@@ -42,7 +53,9 @@ module.exports = {
       light_green: '#77CE9A',
       green: '#658B80',
       light_blue: '#71A5D2',
-      popover_bg: '#282828'
+      popover_bg: '#282828',
+      medium_grey_bg: '#717171',
+      real_dark_grey: '#222222'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -80,7 +93,9 @@ module.exports = {
         '20': '20px',
         '105': '105px',
         '80': '80px',
-        '250': '250px'
+        '250': '250px',
+        '40': '40px',
+        '16': '16px'
       },
       minWidth: {
         '585': '585px',
@@ -135,10 +150,15 @@ module.exports = {
       },
       borderRadius: {
         '20': '20px',
-        '12': '12px'
+        '12': '12px',
+        '32': '32px',
+        '6': '6px'
       },
       spacing: {
-        '6.75': '6.75rem'
+        '6.75': '6.75rem',
+        '10px': '10px',
+        '24': '96px',
+        '10n': '-10px'
       },
       width: {
         '1225': '1225px',
@@ -154,7 +174,14 @@ module.exports = {
         '90': '90px',
         '50': '50px',
         '130': '130px',
-        '75': '75px'
+        '75': '75px',
+        '1296': '1296px',
+        '214': '214px',
+        '1400': '1400px',
+        '104': '104px',
+        '80%': '80%',
+        '62': '62px',
+        '74': '74px'
       },
       minHeight: {
         '725': '725px',
@@ -171,15 +198,25 @@ module.exports = {
         '90': '90px',
         '50': '50px',
         '115': '115px',
-        '75': '75px'
+        '75': '75px',
+        '56': '56px',
+        '74': '74px',
+        '106': '106px',
+        '311': '311px',
+        '310': '310px',
+        '610': '610px',
+        '570': '570px'
       },
       zIndex: {
         '1': '1'
+      },
+      letterSpacing: {
+        tightest: '-1px',
       }
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'),require('@tailwindcss/typography'), require('@tailwindcss/ui')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/ui')],
 };
