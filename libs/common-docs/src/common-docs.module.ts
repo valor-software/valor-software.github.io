@@ -25,6 +25,7 @@ import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
+
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
 export { ImgHoverDirective } from './directives/img-hover.directive';
@@ -46,11 +47,10 @@ export { IPortfolio } from './models/portfolio.interface';
 export { GetPortfolioService } from './services/getPortfolio.service';
 export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
-export { NextProjectComponent } from './components/next-project/next-project.component';
-export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
-
+export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
+export { NextProjectComponent } from './components/next-project/next-project.component';
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -65,9 +65,9 @@ export { IExpandableCard  } from './components/expandable-card/expandable-card.c
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
-    ComparisonSliderComponent,
     NextProjectComponent,
-    ExpandableCardComponent
+    ExpandableCardComponent,
+    ComparisonSliderComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -81,9 +81,9 @@ export { IExpandableCard  } from './components/expandable-card/expandable-card.c
     BlogPreviewComponent,
     BlogPortfolioItemComponent,
     CustomSlicePipe,
-    ComparisonSliderComponent,
     NextProjectComponent,
-    ExpandableCardComponent
+    ExpandableCardComponent,
+    ComparisonSliderComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
