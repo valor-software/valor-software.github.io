@@ -60,7 +60,7 @@
   <div *ngIf="challengeCard.subSection && challengeCard.subSection.video">
 
     <video width="100%" controls class="mb-7" [poster]="challengeCard.subSection.video_poster"> 
-      <source [src]="getSafeUrl(challengeCard.subSection.video)" type="video/mp4">
+      <source [src]="utilService.getSafeUrl(challengeCard.subSection.video)" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>

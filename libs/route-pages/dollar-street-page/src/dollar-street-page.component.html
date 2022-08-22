@@ -1,0 +1,182 @@
+<section class="first-section landing-section pb-0  mx-5 lg:mx-0">
+    <div class="flex-column lg:flex justify-center lg:justify-between items-center mb-18 pt-16 lg:pt-0"
+        style="max-height: 100%;">
+
+        <div class="lg:w-4/12 lg:mx-auto md:mt-0 mb-18">
+            <ng-container *ngIf="changeBreadCrumbTitle?.length">
+                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
+                </breadCrumbs>
+            </ng-container>
+            <h1 class="text-light_title_col lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+                Dollar Street
+            </h1>
+            <p class="leading-6 text-grey_font_col text-16 mb-10">A web platform that addresses xenophobia by giving
+                a
+                chance to explore how families live all across the globe.
+            </p>
+
+            <div class="flex-column lg:flex justify-start items-center">
+                <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
+                    <a href="https://www.gapminder.org/dollar-street" target="_blank"
+                        class="btn-pink w-full flex justify-center items-center">Visit
+                        the site
+                        <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+                </button>
+            </div>
+        </div>
+        <div class="hidden lg:block">
+            <img src="assets\img\portfolio/dollarstreet_header.png" alt="">
+        </div>
+
+        <div class="block lg:hidden m-auto ">
+            <img class="m-auto" src="assets\img\portfolio/dollarstreet_header_resp.png" alt="">
+        </div>
+    </div>
+
+</section>
+
+<section class="landing-section py-0 mb-6 lg:mb-12 ml-12 mr-5 md:mx-0">
+    <h1 class="main-title lg:mb-10 ">Background</h1>
+    <div class="container ">
+        <div class="lg:flex flex-column justify-between lg:gap-72 mb-10">
+            <img class="m-auto" src="assets\img\bg-img\dollar_street_page\dollar_street_bg.png" alt="">
+
+            <div class="lg:mt-0 mt-8">
+                <p class="text-grey_font_col text-left leading-6 text-16 mb-8">
+                    We all live with different fears and some of them are completely irrational, like the fear of
+                    subways or pigeons. But there’s a fear that is not just unhelpful but narrows the way people
+                    perceive the world and interact with others. Unfortunately, xenophobia or fear of foreigners and
+                    strangers still exists, and Anna Rosling, a co-founder of Gapminder and one of Bill Gates'
+                    Heroines
+                    in the Field, has tried to fight this fear creatively – with a Dollar Street platform.
+                </p>
+                <p class="text-grey_font_col text-left leading-6 text-16 mb-8">
+                    A team of photographers has documented over 200 homes in around 50 countries and collected over
+                    30,000 photos
+                    to show the lives of ordinary families from many different angles. You can see everything from
+                    cooking utensils to toothbrushes owned by people at various income levels. As a result, things
+                    appear to be not as strange or different as they might look from the news or “common” opinions
+                    and
+                    prejudices.
+                </p>
+                <p class="text-grey_font_col text-left leading-6 text-16">
+                    Valor is proud to be entrusted with building this project from scratch, which took
+                    place in 2014, and its further support and maintenance. Just glad to be part of it!
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-1">
+            <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-6 ">
+                Technologies & services:</h2>
+            <technologies-card *ngIf="technologies" [technologiesCards]="technologies"></technologies-card>
+        </div>
+    </div>
+</section>
+
+<section class="landing-section py-0 mb-6 lg:mb-12 ml-12 mr-5 md:mx-0">
+    <h1 class="main-title lg:mb-10 ">Deliverables</h1>
+    <div class="container ">
+        <div class="lg:px-4 lg:flex flex-column justify-between lg:mb-144 mb-10 gap-72">
+            <div>
+                <div class="-ml-5 md:-ml-8 lg:-ml-10 mt-2 green-circle"></div>
+                <div class=" lg:mb-10 mb-8">
+                    <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-4 ">
+                        Development of the Platform and the Admin Panel</h2>
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest mb-8">
+                        Initially, we worked on moving the pictures and the descriptions of each family
+                        participating in
+                        the
+                        project to the database and then – to the AWS cloud. The next step was to create the admin
+                        panel
+                        for
+                        Dollar Street with the three main branches: things, places, and data management.
+                    </p>
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                        Alongside the work on the admin panel, we cooperated with the client on the website design
+                        creation.
+                        They already had some workarounds, and the Valor’s designer contributed to the designs’
+                        finalization
+                        and implementation.
+                    </p>
+                </div>
+            </div>
+            <img class="m-auto" src="assets\img\bg-img\dollar_street_page\deliverables_bg.png" alt="">
+
+        </div>
+        <div class="mb-72">
+            <impact-card [impactCardList]="admPanelImpactList"></impact-card>
+        </div>
+
+        <div class="lg:px-4 mb-6 lg:w-8/12">
+            <div class="-ml-5 md:-ml-8 lg:-ml-10 mt-2 green-circle"></div>
+            <div class=" lg:mb-10 mb-8">
+                <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-4 ">
+                    The Website Stabilization and Transition to Angular
+                </h2>
+                <p class="text-grey_font_col text-left text-16 tracking-tightest mb-8">
+                    Once the platform was released, Dollar Street got a crazy amount of attention, including the
+                    Twitter post of Bill Gates sharing a link to the app. It was pretty unexpected, and the website
+                    got overwhelmed with the load, so we had to do smth with its ability to overcome stress tests
+                    when the traffic is high.
+                </p>
+                <p class="text-grey_font_col text-left text-16 tracking-tightest mb-8">
+                    According to Google Analytics, the number of attendants worldwide varied between 5 and 10
+                    million! To quickly stabilize the site, Valor’s engineers made a replica of 3 instances on
+                    clusters in MongoDB Cloud. For a long-term solution, we set up Kubernetes on Google Cloud
+                    Services, dockerized the app, set up auto-scaling, and added Cloudflare for cache, since the
+                    site is static.
+                </p>
+                <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                    <b>Visuals</b>
+                    <br>
+                    We used AngularJS for building the first version of Dollar Street. Later we moved it to Angular
+                    2, then – to Angular 7, and until now, we’ve continued updating the Angular versions to the
+                    newest (currently, Angular 13).
+                </p>
+            </div>
+        </div>
+        <div class="mb-72">
+            <impact-card [impactCardList]="angularTransactionImpactList"></impact-card>
+        </div>
+
+        <div class="lg:px-4 mb-12 lg:w-8/12">
+            <div class="-ml-5 md:-ml-8 lg:-ml-10 mt-2 green-circle"></div>
+            <div class=" lg:mb-10 mb-8">
+                <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-4 ">
+                    Added New Features Including Blog
+                </h2>
+                <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                    We’ve added a range of features that made Dollar Street more interactive and exciting to
+                    explore.
+                    For instance, a video feature contributes to a better view of the families’ households and helps
+                    get
+                    a bigger picture of the way people live their day-to-day life on the other side of the globe.
+                    Also,
+                    we’ve developed a blog and added comparison, so you can filter the feed based on keywords,
+                    people’s
+                    locations, average income, etc., and make a comparison on various parameters.
+                </p>
+            </div>
+        </div>
+
+        <video width="100%" controls class="mb-12">
+            <source
+                [src]="utilService.getSafeUrl('https://media.dollarstreet.org/5fd0458ff2d9500e43593455/4ecf9ca6d277cd0125e54a3b1d1858f1/videos/video.mp4')"
+                type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="mb-72">
+            <impact-card [impactCardList]="newFeaturesList"></impact-card>
+        </div>
+    </div>
+</section>
+
+<section *ngIf="(project$ | async)?.feedback as feedback">
+    <h1 class="main-title">Feedback</h1>
+    <div class="container">
+        <feedback [startFrom]="feedback"></feedback>
+    </div>
+</section>
+<next-project></next-project>
