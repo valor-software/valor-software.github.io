@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopoverComponent } from './components/popover/popover.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -25,6 +25,9 @@ import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
+import { UtilService } from './services/utils.service';
+import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
+import { FeedbackModule } from '@valor-software/feedback';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -48,9 +51,14 @@ export { GetPortfolioService } from './services/getPortfolio.service';
 export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
-export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
+export { IExpandableCard } from './components/expandable-card/expandable-card.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 export { NextProjectComponent } from './components/next-project/next-project.component';
+export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
+export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
+
+export { UtilService } from './services/utils.service';
+
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -67,7 +75,8 @@ export { NextProjectComponent } from './components/next-project/next-project.com
     CustomSlicePipe,
     NextProjectComponent,
     ExpandableCardComponent,
-    ComparisonSliderComponent
+    ComparisonSliderComponent,
+    TechnologiesCardComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -83,9 +92,10 @@ export { NextProjectComponent } from './components/next-project/next-project.com
     CustomSlicePipe,
     NextProjectComponent,
     ExpandableCardComponent,
-    ComparisonSliderComponent
+    ComparisonSliderComponent,
+    TechnologiesCardComponent
   ],
-  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
+  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, UtilService,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',

@@ -1,0 +1,88 @@
+<section class="first-section landing-section pb-0  mx-5 lg:mx-0">
+    <div class="flex-column lg:flex justify-center lg:justify-between items-center mb-18 pt-16 lg:pt-0"
+        style="max-height: 100%;">
+
+        <div class="lg:w-4/12 lg:mx-auto md:mt-0 mb-18">
+            <ng-container *ngIf="changeBreadCrumbTitle?.length">
+                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
+                </breadCrumbs>
+            </ng-container>
+            <h1 class="text-light_title_col lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+                TablesReady
+            </h1>
+            <p class="leading-6 text-grey_font_col text-16 mb-8">
+                TablesReady is a waitlist service that allows users to
+                easily manage waitlists, order backlogs, and other waiting scenarios relevant to their industry. Using
+                guests' cell phones instead of expensive pager systems, TR helps business owners save time and money.
+            </p>
+
+            <div class="flex-column lg:flex justify-start items-center">
+                <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
+                    <a href="https://www.tablesready.com/" target="_blank"
+                        class="btn-pink w-full flex justify-center items-center">Visit
+                        the site
+                        <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+                </button>
+            </div>
+        </div>
+        <div class="hidden lg:block">
+            <img src="assets/img/portfolio/tablesReady_header.png" alt="">
+        </div>
+
+        <div class="block lg:hidden m-auto ">
+            <img class="m-auto" src="assets/img/portfolio/tablesReady_header_resp.png" alt="">
+        </div>
+    </div>
+    <h1 class="main-title lg:mb-10 ">Background</h1>
+    <div class="container ">
+        <div class="lg:flex flex-column justify-between gap-72 mb-10">
+            <div class="m-auto">
+                <div class="m-auto" *ngIf="(project$ | async) as project">
+                    <div style="width: 60vh; max-width: 100%;" *ngIf="project.video && project.iframe"
+                        class="iframe-box m-auto">
+                        <iframe scrolling="no" frameborder="0" [src]="utilService.getSafeUrl(project.video)"
+                            allowfullscreen="true"></iframe>
+
+                    </div>
+                    <div *ngIf="project.video && !project.iframe">
+                        <video width="100%" controls>
+                            <source [src]="utilService.getSafeUrl(project.video)" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p class="leading-6 text-grey_font_col text-16 mb-8">
+                    At the moment we started our collaboration more than 7 years ago, the client had an idea, a product
+                    vision, basic designs, and the architecture plus code that needed optimization and integration of
+                    new concepts. The first Valor-built app version utilized PHP and AngularJS, but as time went by, we
+                    implemented several crucial modernizations. Also, we've reached a great deal of success with
+                    analytics that help track average wait times, busy hours, and walk-ins.
+                </p>
+                <p class="leading-6 text-grey_font_col text-16 mb-8">
+                    <b>Key Features List:</b><br>
+                    – Guests can join a waitlist or make reservations, also book services with a TR link or by SMS
+                    registration <br>
+                    – TablesReady sends automated SMS reminders about the upcoming bookings <br>
+                    – Line management functionality, ability to create and manage guests’ profiles <br>
+                    – Analytics and statistics of peak hours, wait times, and service delivery timelines
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-1">
+            <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-6 ">
+                Technologies & services:</h2>
+            <technologies-card *ngIf="technologies" [technologiesCards]="technologies"></technologies-card>
+        </div>
+    </div>
+</section>
+
+<section *ngIf="(project$ | async)?.feedback as feedback">
+    <h1 class="main-title">Feedback</h1>
+    <div class="container">
+        <feedback [startFrom]="feedback"></feedback>
+    </div>
+</section>
+
+<next-project></next-project>

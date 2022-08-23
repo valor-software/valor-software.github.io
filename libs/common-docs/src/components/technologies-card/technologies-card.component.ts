@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-
 export interface ITechnologiesCard {
   title?: string;
   technologies: ITechnologies[];
