@@ -16,6 +16,8 @@ SwiperCore.use([Pagination]);
 export class TablesReadyPageComponent {
     project$: Observable<IPortfolio> = this.getProjectsServ.getPortfolioRequest('tablesready');
 
+    imageSliderButtonClasses = 'bg-yellow_bg_col color-black';
+
     changeBreadCrumbTitle: { path: string, title: string, excludePath?: boolean }[] = [
         {
             path: 'projects',
@@ -73,7 +75,7 @@ export class TablesReadyPageComponent {
                 {
                     src: "assets/img/technologies/active/aws.png",
                     title: "AWS"
-                },       
+                },
                 {
                     src: "assets/img/technologies/others/twilio.png",
                     title: "Twilio"
@@ -85,7 +87,7 @@ export class TablesReadyPageComponent {
                 {
                     src: "assets/img/technologies/others/d3.png",
                     title: "D3.js"
-                },             
+                },
                 {
                     src: "assets/img/technologies/others/redis.png",
                     title: "Redis"
@@ -101,7 +103,35 @@ export class TablesReadyPageComponent {
             ]
         }
     ];
-    
+
+    migrationImpactList = [
+        ["Increased performance of the TablesReady platform"],
+        ["Simplified integration of new features"],
+        ["Clear and manageable codebase"],
+        ["Improved error handling"]
+    ];
+
+    newFunctionalityImpactList = [
+        ["Greater customization as users can pick optimal subscription plans and switch between them at any moment"],
+        ["Higher clients’ satisfaction with the app as they can manage their expenses more efficiently"]
+    ];
+
+    modernUiImpactList = [
+        ["Improved user experience with the platform"],
+        ["Intuitive interface that saves time for managing orders and lines"]
+    ];
+
+    modernUi1 = {
+        beforeImg: 'assets/img/bg-img/tablesready_page/modern_ui_old_1.png',
+        afterImg: 'assets/img/bg-img/tablesready_page/modern_ui_new_1.jpg'
+    };
+
+    modernUi2 = {
+        beforeImg: 'assets/img/bg-img/tablesready_page/modern_ui_old_2.png',
+        afterImg: 'assets/img/bg-img/tablesready_page/modern_ui_new_2.jpg'
+    };
+
+
     constructor(
         public utilService: UtilService,
         private getProjectsServ: GetPortfolioService

@@ -1,5 +1,5 @@
 <section class="first-section landing-section pb-0  mx-5 lg:mx-0">
-    <div class="flex-column lg:flex justify-center lg:justify-between items-center mb-18 pt-16 lg:pt-0"
+    <div class="flex lg:flex-row flex-col justify-center lg:justify-between items-center mb-18 pt-16 lg:pt-0"
         style="max-height: 100%;">
 
         <div class="lg:w-4/12 lg:mx-auto md:mt-0 mb-18">
@@ -16,7 +16,7 @@
                 guests' cell phones instead of expensive pager systems, TR helps business owners save time and money.
             </p>
 
-            <div class="flex-column lg:flex justify-start items-center">
+            <div class="flex lg:flex-row flex-col justify-start items-center">
                 <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
                     <a href="https://www.tablesready.com/" target="_blank"
                         class="btn-pink w-full flex justify-center items-center">Visit
@@ -35,23 +35,15 @@
     </div>
     <h1 class="main-title lg:mb-10 ">Background</h1>
     <div class="container ">
-        <div class="lg:flex flex-column justify-between gap-72 mb-10">
-            <div class="m-auto">
-                <div class="m-auto" *ngIf="(project$ | async) as project">
-                    <div style="width: 60vh; max-width: 100%;" *ngIf="project.video && project.iframe"
-                        class="iframe-box m-auto">
-                        <iframe scrolling="no" frameborder="0" [src]="utilService.getSafeUrl(project.video)"
-                            allowfullscreen="true"></iframe>
-
-                    </div>
-                    <div *ngIf="project.video && !project.iframe">
-                        <video width="100%" controls>
-                            <source [src]="utilService.getSafeUrl(project.video)" type="video/mp4">
-                        </video>
-                    </div>
+        <div class="flex lg:flex-row flex-col justify-between gap-72 mb-10">
+            <div class="m-auto ">
+                <div style="width: 60vh; max-width: 100%;" class="iframe-box m-auto">
+                    <iframe scrolling="no" frameborder="0"
+                        [src]="utilService.getSafeUrl('https://player.vimeo.com/video/265817851?h=ff6a01b4d5')"
+                        allowfullscreen="true"></iframe>
                 </div>
             </div>
-            <div>
+            <div class="lg:mt-0 mt-8">
                 <p class="leading-6 text-grey_font_col text-16 mb-8">
                     At the moment we started our collaboration more than 7 years ago, the client had an idea, a product
                     vision, basic designs, and the architecture plus code that needed optimization and integration of
@@ -71,9 +63,124 @@
         </div>
 
         <div class="mt-1">
-            <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-6 ">
+            <h2 class="text-light_title_col text-left text-32 lg:text-40 font-bold mb-6 ">
                 Technologies & services:</h2>
             <technologies-card *ngIf="technologies" [technologiesCards]="technologies"></technologies-card>
+        </div>
+    </div>
+</section>
+
+<section class="mb-28">
+    <h1 class="main-title mb-10">Deliverables</h1>
+    <div class="container">
+        <h2
+            class="text-dar_grey_font_col text-left text-24 lg:text-40 lg:mb-16 mb-18 m-auto lg:-ml-5 lg:-ml-14 lg:w-10/12 leading-44 tracking-tightest mb-8">
+            In time, we felt the necessity to breathe
+            <b class="text-feedback_font_col">new life into the platform</b> – boost its ability to scale and
+            serve bigger audiences. <b class="text-feedback_font_col">Moving TablesReady to newer frameworks</b>
+            would give our clients <b class="text-feedback_font_col">more opportunities</b>
+            to develop the product and quite <b class="text-feedback_font_col">effortlessly integrate new
+                features</b> into it.
+        </h2>
+
+
+        <div class="lg:-ml-5 md:-ml-8 lg:-ml-10 mt-2  green-circle"></div>
+        <div class="lg:mb-10 mb-8">
+            <h2 class="text-light_title_col text-left text-32 lg:text-40 ml-5 lg:ml-0 font-bold lg:mb-4 mb-8">
+                Migration to Node.js and Angular</h2>
+
+            <div class="flex lg:flex-row flex-col justify-between lg:mb-36 mb-8 lg:gap-72">
+                <div>
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest mb-6">
+                        We migrated the code of the application from PHP to Node.js, and from AngularJS to Angular
+                        correspondingly, which brought greater flexibility and many more benefits listed below.
+                        Another
+                        part
+                        of this big transformation was switching from the MongoDB database to PostgreSQL, which was
+                        a
+                        bit
+                        challenging but worth every effort.
+                    </p>
+
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest mb-6">
+                        <b>Challenge:</b> As we had to move the application from a
+                        non-relational database to relational, accurate work with data was a must. We had to make
+                        sure
+                        nothing got lost because of the transition, and this consumed time and required domain
+                        expertise.
+                    </p>
+
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest mb-6">
+                        <b>Solution:</b> Even though the major part of the transition was automated, we also applied
+                        manual
+                        schema mapping to ensure accurate data migration.
+                    </p>
+                </div>
+                <img class="m-auto" src="assets\img\bg-img\tablesready_page\deliverables_bg.png" alt="">
+            </div>
+        </div>
+
+
+        <div class="mb-72">
+            <impact-card [impactCardList]="migrationImpactList"></impact-card>
+        </div>
+
+        <div class="lg:-ml-5 md:-ml-8 lg:-ml-10 mt-2 green-circle"></div>
+        <div class=" lg:mb-10 mb-12">
+            <h2 class="text-light_title_col text-left ml-5 lg:ml-0 text-32 lg:text-40 font-bold mb-4 ">
+                New functionality</h2>
+            <p class="text-grey_font_col text-left text-16 tracking-tightest mb-8 lg:w-65%">
+                Our client wanted to give more freedom and flexibility to the TablesReady audience in terms of managing
+                subscriptions and getting the most out of the platform for every particular business. Initially, users
+                had two plans to choose from: a paid subscription and an enterprise plan, both with a free trial period.
+                Valor’s team has added new functionality to the admin panel that allows users to subscribe to a free
+                plan or pick the most suitable among several Premium plans depending on their guests’ turnover. Also,
+                users now can set up the subscription types and switch between plans on their own!
+            </p>
+        </div>
+
+        <div class="mb-72">
+            <impact-card class="mb-72" [impactCardList]="newFunctionalityImpactList"></impact-card>
+        </div>
+
+        <div class="lg:-ml-5 md:-ml-8 lg:-ml-10 mt-2 green-circle"></div>
+        <div class="lg:mb-10 mb-12 lg:w-65%">
+            <h2 class="text-light_title_col text-left lg:ml-0 ml-5  text-32 lg:text-40 font-bold mb-4 ">
+                Modernized UI</h2>
+            <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                We also delivered a new UI for TablesReady that meets the latest requirements for web products on the
+                market and gives users smooth flow throughout the system. Another important feature was adding a dark
+                mode for the app, which users truly adore.
+            </p>
+        </div>
+
+        <comparison-slider [buttonClasses]="imageSliderButtonClasses" [comparisonImg]="modernUi1">
+        </comparison-slider>
+
+        <comparison-slider [buttonClasses]="imageSliderButtonClasses" [comparisonImg]="modernUi2">
+        </comparison-slider>
+
+        <img class="m-auto lg:mb-28 mb-8" src="assets\img\bg-img\tablesready_page\modern_ui_dark_1.jpg" alt="">
+
+        <img class="m-auto lg:mb-28 mb-8" src="assets\img\bg-img\tablesready_page\modern_ui_dark_2.jpg" alt="">
+
+        <impact-card [impactCardList]="modernUiImpactList"></impact-card>
+    </div>
+</section>
+
+<section class="lg:mb-28 mb-8">
+    <h1 class="main-title mb-10">Future</h1>
+    <div class="container">
+        <div class="flex lg:flex-row flex-col justify-between">
+            <p class="text-grey_font_col text-left text-16 tracking-tightest lg:w-7/12">
+                Among numerous plans for the future, the reorganization of the accounts structure is possibly the
+                biggest and the most substantial one. Currently, there is a one-to-one relationship between accounts and
+                locations, but we will make that a 1-to-many relationship. This will bring business accounts the
+                opportunity to have multiple points of sales, with each having its own subscription model. Looking
+                forward to this new feature, and to describing it in the next reviews!
+            </p>
+
+            <img class="lg:-mt-56" src="assets\img\bg-img\tablesready_page\future_bg.png" alt="">
         </div>
     </div>
 </section>
