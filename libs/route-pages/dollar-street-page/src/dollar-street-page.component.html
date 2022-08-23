@@ -47,8 +47,11 @@
                     subways or pigeons. But there’s a fear that is not just unhelpful but narrows the way people
                     perceive the world and interact with others. Unfortunately, xenophobia or fear of foreigners and
                     strangers still exists, and Anna Rosling, a co-founder of Gapminder and one of Bill Gates'
-                    Heroines
-                    in the Field, has tried to fight this fear creatively – with a Dollar Street platform.
+                    <a class="underline decoration-solid font-bold"
+                        href="https://www.gatesnotes.com/About-Bill-Gates/These-Heroes-Are-Saving-the-World?utm_content=bufferb7b56&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer"
+                        target="_blank">Heroines in the Field</a>, has tried to fight this fear creatively – with a
+                    Dollar Street
+                    platform.
                 </p>
                 <p class="text-grey_font_col text-left leading-6 text-16 mb-8">
                     A team of photographers has documented over 200 homes in around 50 countries and collected over
@@ -107,34 +110,38 @@
         <div class="mb-72">
             <impact-card [impactCardList]="admPanelImpactList"></impact-card>
         </div>
-
-        <div class="lg:px-4 mb-6 lg:w-8/12">
-            <div class="-ml-5 md:-ml-8 lg:-ml-10 mt-2 green-circle"></div>
-            <div class=" lg:mb-10 mb-8">
-                <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-4 ">
-                    The Website Stabilization and Transition to Angular
-                </h2>
-                <p class="text-grey_font_col text-left text-16 tracking-tightest mb-8">
-                    Once the platform was released, Dollar Street got a crazy amount of attention, including the
-                    Twitter post of Bill Gates sharing a link to the app. It was pretty unexpected, and the website
-                    got overwhelmed with the load, so we had to do smth with its ability to overcome stress tests
-                    when the traffic is high.
-                </p>
-                <p class="text-grey_font_col text-left text-16 tracking-tightest mb-8">
-                    According to Google Analytics, the number of attendants worldwide varied between 5 and 10
-                    million! To quickly stabilize the site, Valor’s engineers made a replica of 3 instances on
-                    clusters in MongoDB Cloud. For a long-term solution, we set up Kubernetes on Google Cloud
-                    Services, dockerized the app, set up auto-scaling, and added Cloudflare for cache, since the
-                    site is static.
-                </p>
-                <p class="text-grey_font_col text-left text-16 tracking-tightest">
-                    <b>Visuals</b>
-                    <br>
-                    We used AngularJS for building the first version of Dollar Street. Later we moved it to Angular
-                    2, then – to Angular 7, and until now, we’ve continued updating the Angular versions to the
-                    newest (currently, Angular 13).
-                </p>
+        <div class="lg:flex flex-column justify-between gap-8 lg:mb-0 mb-10">
+            <div class="lg:px-4 mb-6 lg:w-8/12">
+                <div class="-ml-5 md:-ml-8 lg:-ml-10 mt-2 green-circle"></div>
+                <div class=" lg:mb-10 mb-8">
+                    <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-4 ">
+                        The Website Stabilization and Transition to Angular
+                    </h2>
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest mb-8">
+                        Once the platform was released, Dollar Street got a crazy amount of attention, including the
+                        <a href="https://twitter.com/billgates/status/994913765295575041?lang=el" target="_blank"
+                            class="underline decoration-solid font-bold">Twitter post of Bill Gates</a> sharing a link
+                        to
+                        the app. It was pretty unexpected, and the website
+                        got overwhelmed with the load, so we had to do smth with its ability to overcome stress tests
+                        when the traffic is high.
+                    </p>
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest mb-8">
+                        According to Google Analytics, the number of attendants worldwide varied between 5 and 10
+                        million! To quickly stabilize the site, Valor’s engineers made a replica of 3 instances on
+                        clusters in MongoDB Cloud. For a long-term solution, we set up Kubernetes on Google Cloud
+                        Services, dockerized the app, set up auto-scaling, and added Cloudflare for cache, since the
+                        site is static.
+                    </p>
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                        We used AngularJS for building the first version of Dollar Street. Later we moved it to Angular
+                        2, then – to Angular 7, and until now, we’ve continued updating the Angular versions to the
+                        newest (currently, Angular 13).
+                    </p>
+                </div>
             </div>
+            <img  class="m-auto lg:w-3/12 w-8/12" src="assets\img\bg-img\dollar_street_page\angular-icon.svg" alt="">
+
         </div>
         <div class="mb-72">
             <impact-card [impactCardList]="angularTransactionImpactList"></impact-card>

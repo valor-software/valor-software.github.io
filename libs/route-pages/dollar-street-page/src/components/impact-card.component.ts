@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   templateUrl: './impact-card.component.html'
 })
 export class ImpactCardComponent {
-  @Input() impactCardList?: string[];
+  @Input() impactCardList?: string[][];
 
 }

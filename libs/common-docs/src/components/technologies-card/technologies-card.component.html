@@ -3,17 +3,17 @@
     <div class=" lg:mb-0 lg:min-h-50 flex justify-between w-full flex-col w-full">
       <div class="md:w-45%" *ngIf="card.title">
         <p
-          class="font-bold text-light_title_col lg:text-32 block mr-3.5 text-20  text-left mt-6 mt-0  md:leading-44 mb-6">
+          class="font-bold text-light_title_col lg:text-32 block mr-3.5 text-20 text-left mt-6 mt-0  md:leading-44 mb-6">
           {{card.title}}</p>
       </div>
       <div class="flex flex-wrap items-center lg:gap-6"
         [ngClass]="[ card.lgJustify ? 'lg:justify-' + card.lgJustify : '', card.mdJustify ? 'md:justify-' + card.mdJustify : '', card.smJustify ? 'justify-' + card.smJustify : '']">
-        <div *ngFor="let technology of card.technologies" class="flex-column justify-between text-center">
-          <div class="w-74 h-74 m-auto flex">
+        <div *ngFor="let technology of card.technologies" class="flex-column justify-between text-center"
+          [ngClass]="{'m-0 w-110 tracking-tighter': technology.wrapText}">
+          <div class="w-74 h-74 m-auto">
             <img [src]="technology.src" [alt]="technology.title + ' logo'" class="m-auto">
           </div>
-          <p class="leading-normal text-light_title_col m-auto text-16"
-            [ngClass]="{'lg:mt-0 lg:mb-0 max-w-90% lg:max-w-80% tracking-tighter': technology.wrapText}">
+          <p class="leading-normal text-light_title_col m-auto text-16">
             {{technology.title}}</p>
         </div>
       </div>

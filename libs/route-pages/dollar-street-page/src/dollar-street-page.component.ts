@@ -26,22 +26,22 @@ export class DollarStreetPageComponent {
     ];
 
     admPanelImpactList = [
-        "Simple and user-friendly platform with great navigation",
-        "Easy to manage admin panel that allows updating content effortlessly",
-        "Cool platform’s look and feel"
+        ["Simple and user-friendly platform with great navigation"],
+        ["Easy to manage admin panel that allows updating content effortlessly"],
+        ["Cool platform’s look and feel"]
     ];
 
     angularTransactionImpactList = [
-        "Stabilized platform and enabled its good performance on extremely huge amounts of data",
-        "Improved scalability and performance",
-        "Simplified maintenance of Dollar Street"
+        ["Stabilized platform and enabled its good performance", "on extremely huge amounts of data"],
+        ["Improved scalability and performance"],
+        ["Simplified maintenance of Dollar Street"]
     ];
 
     newFeaturesList = [
-        "Improved perception of the website content with the video feature added",
-        "Powerful analytical environment implemented",
-        "Streamlined UX and more insights into people’s lives with the extended filter",
-        "Multiple language support – 16 languages!"
+        ["Improved perception of the website content with the video feature added"],
+        ["Powerful analytical environment implemented"],
+        ["Streamlined UX and more insights into people’s lives with the extended filter"],
+        ["Multiple language support – 16 languages!"]
     ];
 
     technologies: ITechnologiesCard[] = [
@@ -95,7 +95,7 @@ export class DollarStreetPageComponent {
                 },
                 {
                     src: "assets/img/technologies/active/angular.png",
-                    title: "Angular Cli"
+                    title: "Angular CLI"
                 },
                 {
                     src: "assets/img/technologies/others/image_magic.png",
