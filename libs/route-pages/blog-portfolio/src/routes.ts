@@ -17,6 +17,10 @@ export const routes = [
                 loadChildren: () => import('@valor-software/terminus-page').then(m => m.TerminusPageModule)
             },
             {
+                path: 'liberty-flights',
+                loadChildren: () => import('@valor-software/liberty-flights-page').then(m => m.LibertyFlightsPageModule)
+            },
+            {
                 path: ':id',
                 component: GeneralItemComponent
             },

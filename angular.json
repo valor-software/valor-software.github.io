@@ -491,6 +491,55 @@
         "common-docs"
       ]
     },
+    "route-pages-liberty-flights-page": {
+      "projectType": "library",
+      "root": "libs/route-pages/liberty-flights-page",
+      "sourceRoot": "libs/route-pages/liberty-flights-page/src",
+      "prefix": "valor-software-site-base",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/route-pages/liberty-flights-page"
+          ],
+          "options": {
+            "project": "libs/route-pages/liberty-flights-page/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/route-pages/liberty-flights-page/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/route-pages/liberty-flights-page/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/route-pages/liberty-flights-page"
+          ],
+          "options": {
+            "jestConfig": "libs/route-pages/liberty-flights-page/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/route-pages/liberty-flights-page/src/**/*.ts",
+              "libs/route-pages/liberty-flights-page/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": [
+        "common-docs"
+      ]
+    },
     "valor-software-site": {
       "projectType": "application",
       "root": "apps/valor-software-site",

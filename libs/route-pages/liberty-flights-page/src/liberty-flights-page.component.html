@@ -1,0 +1,208 @@
+<section class="first-section landing-section pb-0  mx-5 lg:mx-0">
+    <div class="flex-column lg:flex justify-center lg:justify-between items-center mb-18 pt-16 lg:pt-0"
+        style="max-height: 100%;">
+        <div class="lg:w-4/12 lg:mx-auto md:mt-0 mb-18">
+            <ng-container *ngIf="changeBreadCrumbTitle?.length">
+                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
+                </breadCrumbs>
+            </ng-container>
+            <h1 class="text-light_title_col lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+                Liberty Flights
+            </h1>
+            <p class="leading-6 text-grey_font_col text-16 mb-10">
+                An online store of UK made premium vaping devices and kits.
+            </p>
+            <div class="flex-column lg:flex justify-start items-center">
+                <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
+                    <a href="https://www.liberty-flights.co.uk/" target="_blank"
+                        class="btn-pink w-full flex justify-center items-center">Visit
+                        the site
+                        <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+                </button>
+            </div>
+        </div>
+        <div class="hidden lg:block">
+            <img src="assets/img/portfolio/liberty_header.png" alt="">
+        </div>
+
+        <div class="block lg:hidden m-auto ">
+            <img class="m-auto" src="assets/img/portfolio/liberty_header_resp.png" alt="">
+        </div>
+    </div>
+</section>
+
+<section>
+    <h1 class="main-title lg:mb-10 ">Background</h1>
+    <div class="container ">
+        <div class="flex lg:flex-row flex-col justify-between lg:gap-24 gap-8 mt-10 mb-10">
+            <div class="m-auto">
+                <p class="leading-6 text-grey_font_col text-16 mb-8">
+                    Liberty Flights is a leading specialist in the vape industry, established in 2009. They specialize
+                    in the UK-made premium E-Liquid and quality vaping devices and are recognized as one of the highest
+                    quality manufacturers and suppliers of vape liquids and electronic cigarettes by customers across
+                    the globe.
+                </p>
+                <p class="leading-6 text-grey_font_col text-16">
+                    When we started working with Liberty Flights, the client had been looking for ways to expand.
+                    Anticipating the need for convenient scaling and maintenance of the website, our first move was to
+                    migrate the platform from ASP.NET to Nest.js. Later we had great success in increasing the page view
+                    rates by at least 40% and decreasing bounce rates as we tuned SEO score and the platform usability.
+                </p>
+            </div>
+            <img src="assets/img/bg-img/liberty_flights_page/background_bg.png" alt="liberty_flights_background"
+                class="lg:w-5/12 m-auto">
+        </div>
+
+        <div class="mt-1">
+            <h2 class="text-light_title_col text-left text-32 lg:text-40 font-bold mb-6 ">
+                Technologies & services:</h2>
+            <technologies-card [technologiesCards]="technologiesCards"></technologies-card>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h1 class="main-title lg:mb-10 ">Deliverables</h1>
+
+    <div class="container ">
+        <div class="md:-ml-8 lg:-ml-10 mt-2  green-circle"></div>
+        <div class="lg:w-8/12 lg:mb-10 mb-8">
+            <h2 class="text-light_title_col text-left lg:m-l0 ml-5 text-32 lg:text-40 font-bold mb-4 ">
+                A new SEO-friendly design and a mobile version released
+            </h2>
+            <p class="text-grey_font_col text-left text-16">
+                Initially the client wanted to redesign the banners on the website, but having analyzed the website
+                design in detail, we came to a conclusion that a complete renewal is the way to go. Valor suggested
+                a new color scheme, new fonts, product cards, and users' profiles, and then adopted banners to the
+                new style.
+            </p>
+        </div>
+
+        <swiper [config]="swiperConfig" class="pink_swiper auto-height-swiper mb-16">
+            <ng-template swiperSlide *ngFor="let img of seoStyleImages">
+
+                <div class=" h-full w-full m-auto">
+                    <img [src]="img" alt="SEO-friendly" class="m-auto w-full ">
+                </div>
+            </ng-template>
+        </swiper>
+
+        <div class="lg:w-8/12 lg:mb-10 mb-8">
+
+            <p class="text-grey_font_col text-left text-16">
+                While redesigning the platform, we also analyzed user data from Google Analytics and noticed that most
+                of Liberty Flights’ clients visit the website using mobile devices. So we developed a mobile version of
+                the platform.
+            </p>
+        </div>
+
+        <swiper [config]="swiperConfig" class="pink_swiper auto-height-swiper mb-16">
+            <ng-template swiperSlide *ngFor="let img of mobileImages">
+
+                <div class=" h-full w-full m-auto">
+                    <img [src]="img" alt="SEO-friendly" class="m-auto w-full ">
+                </div>
+            </ng-template>
+        </swiper>
+
+        <div class="mb-16">
+            <impact-card [impactCardList]="seoImpactList"></impact-card>
+        </div>
+
+        <div class="md:-ml-8 lg:-ml-10 mt-2  green-circle"></div>
+        <div class="lg:w-8/12 lg:mb-16 mb-8">
+            <h2 class="text-light_title_col text-left text-32 lg:ml-0 ml-5 lg:text-40 font-bold mb-4 ">
+                Migrated the site from ASP.NET to Angular & Nest.js
+            </h2>
+            <p class="text-grey_font_col text-left text-16">
+                To simplify the future work with the website and reduce development time, maintenance effort, and bugs,
+                we moved Liberty Flights to Nest.js. The framework has a diverse ecosystem with plenty of well-supported
+                packages and test frameworks the project can benefit from. Even though we had huge reasons for this
+                migration, it also became one of the biggest challenges for the Valor team.
+            </p>
+        </div>
+
+        <challenge-card [challengeCard]="migrationChallenge"></challenge-card>
+
+        <div class="md:-ml-8 lg:-ml-10 mt-2  green-circle"></div>
+        <div class="lg:w-8/12 mb-8 mb-8">
+            <h2 class="text-light_title_col text-left text-32 lg:ml-0 ml-5 lg:text-40 font-bold mb-4 ">
+                SEO optimization
+            </h2>
+            <p class="text-grey_font_col text-left text-16">
+                To improve the visibility and searchability of Liberty Flights, we’ve optimized the on-site content and
+                created crowd marketing campaigns to increase the conversion rates. In a nutshell, the following
+                activities helped users to find out about LF and start using the service:
+            </p>
+        </div>
+
+        <div *ngFor="let item of seoOptimizationList; let i = index">
+            <div class="flex flex-col">
+                <div class="flex flex-row gap-6">
+                    <p class=" text-12 text-large text-green font-bold"> {{i + 1}}</p>
+                    <p class="text-light_title_col text-left text-xl font-bold ml-2 my-auto">
+                        {{item}}
+                    </p>
+                </div>
+                <div class="ml-2 bg-green h-6 w-0.5" *ngIf="i !== (seoOptimizationList.length - 1)">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="my-8">
+            <impact-card [impactCardList]="seoOptimizationImpactList"></impact-card>
+        </div>
+
+        <div class="md:-ml-8 lg:-ml-10 mt-2  green-circle"></div>
+        <div class="lg:w-65% mb-8 mb-8">
+            <h2 class="text-light_title_col text-left text-32 lg:ml-0 ml-5 lg:text-40 font-bold mb-4 ">
+                Switched from Load Balancer to GCP
+            </h2>
+            <p class="text-grey_font_col text-left text-16 mb-8">
+                Since the website traffic depends on numerous factors like the day of the week, time, etc., the traffic
+                rates aren’t stable, and peak loads wave-likely vary. We had to ensure the LF platform could perform
+                stably during the peak loads while remaining cost-effective for our client.
+            </p>
+
+            <p class="text-grey_font_col text-left text-16">
+                Having analyzed user and peak loads, we moved servers to Google Cloud Platform (GCP), which helps
+                Liberty Flights balance the number of nodes used depending on the number of users. When they have users’
+                growth, extra nodes roll out on GCP automatically.
+            </p>
+        </div>
+
+        <div class="mb-10 md:mb-12">
+            <impact-card [impactCardList]="balancerToGCPImpactList"></impact-card>
+        </div>
+
+        <div class="md:-ml-8 lg:-ml-10 mt-2  green-circle"></div>
+        <div class="lg:w-65% mb-8 mb-8">
+            <h2 class="text-light_title_col text-left text-32 lg:ml-0 ml-5 lg:text-40 font-bold mb-4 ">
+                Delivered numerous features to improve usability
+            </h2>
+            <p class="text-grey_font_col text-left text-16 mb-8">
+                Valor Software has added some new functionality that improved the user experience with the platform and
+                simplified the purchase flow.
+            </p>
+
+            <div class="px-5 lg:px-0">
+                <div *ngFor="let item of deliveredFeatureList;let i = index" class="pb-6 md:pb-10 relative"
+                    [class.border-l-2]="i<deliveredFeatureList.length-1"
+                    [class.border-l-green]="i<deliveredFeatureList.length-1">
+                    <div class="green-circle"></div>
+                    <div class="max-w-fit lg:max-w-400 ml-12 text-light_title_col">
+                        <p class="font-bold leading-6 md:leading-8 mb-4 text-24 md:text-32">{{item.title}}</p>
+                        <p class="text-grey_font_col">{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-10 md:mb-12">
+            <impact-card [impactCardList]="deliveredFeaturesImpactList"></impact-card>
+        </div>
+    </div>
+</section>
+
+
+<next-project></next-project>

@@ -47,6 +47,9 @@
       ],
       "@valor-software/terminus-page": [
         "libs/route-pages/terminus-page/src/index.ts"
+      ],
+      "@valor-software/liberty-flights-page": [
+        "libs/route-pages/liberty-flights-page/src/index.ts"
       ]
     }
   },
