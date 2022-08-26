@@ -60,8 +60,7 @@ jobs:
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
-      - run: |
-          npx ng build --runner cloud --prod
+      - run: npx ng build --runner cloud --prod
           
 
   # run linting
