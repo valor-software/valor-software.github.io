@@ -8,7 +8,7 @@ Seattle, Wa., Aug 22, 2022, Zackary Jackson, co-creator of https://webpack.js.or
 
 Medusa creates an environment where software developers finally have visibility into their module federation-powered and distributed micro frontends. Additionally, Medusa will provide, for the first time, the ability to control federated applications, at runtime, with unparalleled ease.
 
-_“We believe that software engineering teams should be able to work with visibility, autonomy, confidence, and independence without sacrificing the stability and quality of their product. We believe software releases should be safe, fast, and immutable” – Zack Jackson_ 
+_**“We believe that software engineering teams should be able to work with visibility, autonomy, confidence, and independence without sacrificing the stability and quality of their product. We believe software releases should be safe, fast, and immutable”** – Zack Jackson_ 
 
 In an increasingly distributed world, software development and business teams are looking to be able to ship more value to their customers, more often and with more reliability. Medusa provides those teams the ability to deploy in both an evergreen mode, while also having the ability to set specific versions of remote modules for reliability. This flexibility allows teams to move fast and be able to nearly instantly upgrade or roll back their platforms without having to redeploy. 
 
