@@ -1,7 +1,7 @@
 = Zackary Jackson with Valor Software, officially launch Medusa, the only commercial available SaaS platform for Federated Micro Frontend Applications
 
 <p align="center">
-  <img width="600" height="200" src="medusa-logo--combined--midnight--dark.png">
+  <image::"medusa-logo--combined--midnight--dark.png">
 </p>
 
 Providing previously impossible visibility and control over federated applications, Medusa is a critical tool for any team working with Federated Micro Frontends
