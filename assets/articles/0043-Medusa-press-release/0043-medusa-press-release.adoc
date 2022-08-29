@@ -1,7 +1,5 @@
 = Zackary Jackson with Valor Software, officially launch Medusa, the only commercial available SaaS platform for Federated Micro Frontend Applications
 
-  image::medusa-logo--combined--midnight--dark.png[]
-
 Providing previously impossible visibility and control over federated applications, Medusa is a critical tool for any team working with Federated Micro Frontends
 
 Seattle, Wa., Aug 22, 2022, Zackary Jackson, co-creator of https://webpack.js.org/concepts/module-federation/[Webpack Module Federation], co-author of https://module-federation.myshopify.com/products/practical-module-federation[Practical Module Federation], and Webpack Core Team member and https://www.linkedin.com/in/zackary-jackson-81845a35/[Principal Engineer at Lululemon], together with Valor Software as https://valor-software.com/articles/announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor[exclusive partners] for Module Federation support have launched their first collaborative SaaS offering, https://medusa.codes/[Medusa].
