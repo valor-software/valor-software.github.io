@@ -1,8 +1,10 @@
 = Zackary Jackson with Valor Software, officially launch Medusa, the only commercial available SaaS platform for Federated Micro Frontend Applications
 
+image::tw__1500x500-profile-cover-midnight.png[]
+
 Providing previously impossible visibility and control over federated applications, Medusa is a critical tool for any team working with Federated Micro Frontends
 
-Seattle, Wa., Aug 22, 2022, Zackary Jackson, co-creator of https://webpack.js.org/concepts/module-federation/[Webpack Module Federation], co-author of https://module-federation.myshopify.com/products/practical-module-federation[Practical Module Federation], and Webpack Core Team member and https://www.linkedin.com/in/zackary-jackson-81845a35/[Principal Engineer at Lululemon], together with Valor Software as https://valor-software.com/articles/announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor[exclusive partners] for Module Federation support have launched their first collaborative SaaS offering, https://medusa.codes/[Medusa].
+Seattle, Wa., Aug 22, 2022, Zackary Jackson, co-creator of https://webpack.js.org/concepts/module-federation/[Webpack Module Federation^], co-author of https://module-federation.myshopify.com/products/practical-module-federation[Practical Module Federation^], and Webpack Core Team member and https://www.linkedin.com/in/zackary-jackson-81845a35/[Principal Engineer at Lululemon^], together with Valor Software as https://valor-software.com/articles/announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor[exclusive partners^] for Module Federation support have launched their first collaborative SaaS offering, https://medusa.codes/[Medusa^].
 
 Medusa creates an environment where software developers finally have visibility into their module federation-powered and distributed micro frontends. Additionally, Medusa will provide, for the first time, the ability to control federated applications, at runtime, with unparalleled ease.
 
@@ -14,9 +16,9 @@ Understanding what team is pulling in a dependency in a distributed environment 
 
 === About Valor Software:
 
-Founded in 2013 by https://www.linkedin.com/in/valorkin/[Dmitriy Shekhovtsov] (Dima) as a MEAN stack software development firm, https://valor-software.com/[Valor] has evolved into a globally renowned software development and consulting firm with over 130 individuals working on Full Stack development with a primary focus on all things TypeScript from 5 continents. 
+Founded in 2013 by https://www.linkedin.com/in/valorkin/[Dmitriy Shekhovtsov^] (Dima) as a MEAN stack software development firm, https://valor-software.com/[Valor^] has evolved into a globally renowned software development and consulting firm with over 130 individuals working on Full Stack development with a primary focus on all things TypeScript from 5 continents. 
 
-With experience in startups, Fortune 25 organizations, and Global NGOs, and Dima who together with https://www.linkedin.com/in/manfred-steyer-84645821/[Manfred Steyer] brought Module Federation support into the Angular CLI leading to its popularity in the Angular community, Valor is uniquely positioned to create the Medusa SaaS platform from both a technology perspective but also a product positioning perspective. 
+With experience in startups, Fortune 25 organizations, and Global NGOs, and Dima who together with https://www.linkedin.com/in/manfred-steyer-84645821/[Manfred Steyer^] brought Module Federation support into the Angular CLI leading to its popularity in the Angular community, Valor is uniquely positioned to create the Medusa SaaS platform from both a technology perspective but also a product positioning perspective. 
 
 === Media Contact:
 
