@@ -78,7 +78,7 @@
             </p>
         </div>
 
-        <swiper [config]="swiperConfig" class="pink_swiper auto-height-swiper mb-16">
+        <swiper [config]="swiperConfig" class="pink_swiper mb-16">
             <ng-template swiperSlide *ngFor="let img of seoStyleImages">
 
                 <div class=" h-full w-full m-auto">
@@ -96,7 +96,7 @@
             </p>
         </div>
 
-        <swiper [config]="swiperConfig" class="pink_swiper auto-height-swiper mb-16">
+        <swiper [config]="swiperConfig" class="pink_swiper mb-16">
             <ng-template swiperSlide *ngFor="let img of mobileImages">
 
                 <div class=" h-full w-full m-auto">
@@ -147,7 +147,6 @@
                 <div class="ml-2 bg-green h-6 w-0.5" *ngIf="i !== (seoOptimizationList.length - 1)">
                 </div>
             </div>
-
         </div>
 
         <div class="my-8">
@@ -187,13 +186,20 @@
             </p>
 
             <div class="px-5 lg:px-0">
-                <div *ngFor="let item of deliveredFeatureList;let i = index" class="pb-6 md:pb-10 relative"
-                    [class.border-l-2]="i<deliveredFeatureList.length-1"
-                    [class.border-l-green]="i<deliveredFeatureList.length-1">
-                    <div class="green-circle"></div>
-                    <div class="max-w-fit lg:max-w-400 ml-12 text-light_title_col">
-                        <p class="font-bold leading-6 md:leading-8 mb-4 text-24 md:text-32">{{item.title}}</p>
-                        <p class="text-grey_font_col">{{item.description}}</p>
+                <div *ngFor="let item of deliveredFeatureList; let i = index">
+                    <div class="flex flex-row">
+                        <div class="flex flex-col">
+                            <p class="m-auto text-12 text-large text-green font-bold -mt-3"> {{i + 1}}</p>
+                            <div class="m-auto bg-green h-full w-0.5 mb-4"
+                                *ngIf="i !== (deliveredFeatureList.length - 1)">
+                            </div>
+                        </div>
+                        <div class="flex flex-col max-w-fit lg:max-w-400 ml-8 text-light_title_col">
+                            <p class="font-bold leading-6 md:leading-8 mb-4 text-24 md:text-32">
+                                {{item.title}}
+                            </p>
+                            <p class="text-grey_font_col mb-8">{{item.description}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
