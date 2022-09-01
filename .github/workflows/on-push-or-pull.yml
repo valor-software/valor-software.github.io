@@ -62,7 +62,6 @@ jobs:
           key: dist-${{ github.run_id }}
       - run: |
           npx ng build --runner cloud --prod
-          npx scully --prod --scanRoutes --project=valor-software-site
 
   # run linting
   linting:
