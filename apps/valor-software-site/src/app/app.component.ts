@@ -1,9 +1,10 @@
 import { Component, Inject, HostListener, OnDestroy, AfterViewInit } from '@angular/core';
-import { SeoService } from "@valor-software/common-docs";
+import { SeoService, titleRefactoring } from "@valor-software/common-docs";
 import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { filter, pairwise } from "rxjs/operators";
 import { Subscription } from "rxjs";
+import { linksFromOldSite } from 'assets/articles/brokenRoutes';
 
 const notFoundPageUrl = '/404';
 
@@ -18,6 +19,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
     $routeEvents?: Subscription;
     $routerEventNavigationEnd: Subscription;
     showFooterAndHeader = true;
+    $routeEventsRecognized?: Subscription;
 
     @HostListener('window:beforeunload') private onReload() {
         window.sessionStorage.setItem('scrollPosition', window.scrollY.toString());
@@ -72,10 +74,50 @@ export class AppComponent implements OnDestroy, AfterViewInit {
 
                 this.scrollToPosition(0);
             });
+
+        this.$routeEventsRecognized = this.router.events
+            .pipe(filter((evt: any) => evt instanceof RoutesRecognized))
+            .subscribe((events: RoutesRecognized) => {
+                const currentUrl = events.url;
+                const urlFragments: string[] = currentUrl.split('/');
+
+                urlFragments[1] = urlFragments[1] === 'blog' ? 'articles' :
+                    urlFragments[1] === 'portfolio' ? 'projects' : urlFragments[1];
+
+                if (currentUrl.includes('/blog/')) {
+                    if (urlFragments.length > 2) {
+                        const title = linksFromOldSite[urlFragments[2] as keyof typeof linksFromOldSite];
+                        if (title) {
+                            urlFragments[2] = title;
+                        }
+                    }
+                    this.router.navigateByUrl(urlFragments.join('/'), { replaceUrl: true });
+                    return;
+                }
+
+                if (currentUrl.includes('/portfolio/')) {
+                    if (urlFragments.length > 2) {
+                        urlFragments[2] = titleRefactoring(urlFragments[2]);
+                    }
+                    this.router.navigateByUrl(urlFragments.join('/'), { replaceUrl: true });
+                    return;
+                }
+
+                if (currentUrl.includes('/all-vacancies/')) {
+                    this.router.navigateByUrl('/careers', { replaceUrl: true });
+                    return;
+                }
+
+                if (currentUrl.includes('/persons/')) {
+                    this.router.navigateByUrl('/', { replaceUrl: true });
+                    return;
+                }
+            });
     }
 
     ngOnDestroy() {
         this.$routeEvents?.unsubscribe();
         this.$routerEventNavigationEnd?.unsubscribe();
+        this.$routeEventsRecognized?.unsubscribe();
     }
 }
