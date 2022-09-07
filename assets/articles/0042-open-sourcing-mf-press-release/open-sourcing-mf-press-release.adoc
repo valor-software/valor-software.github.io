@@ -1,6 +1,6 @@
 = Next.js Module Federation and Module Federation SSR plugins are being open-sourced
 
-image::assets/articles/MF.png[]
+image::MF.png[]
 
 Seattle, Wa., Sep 6, 2022, https://github.com/scriptedalchemy[Zackary Jackson^], co-creator of https://webpack.js.org/concepts/module-federation/[Webpack Module Federation^], co-author of https://module-federation.myshopify.com/products/practical-module-federation[Practical Module Federation^], and Webpack Core Team member and https://www.linkedin.com/in/zackary-jackson-81845a35/[Principal Engineer at Lululemon^], together with Valor Software as https://valor-software.com/articles/announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor[exclusive partners^] for Module Federation have open-sourced two plugins as one new Module Federation Package.
 
