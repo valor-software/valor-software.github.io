@@ -1,0 +1,14 @@
+{
+  "author": "Zackary Chapple",
+  "order": 42,
+  "domains": [
+    "dev_quality_assurance"
+  ],
+  "authorImg": "assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/61fbaf8cc1e0c9364b36bffa_Eduardo_Speroni_Valor-Software.jpeg",
+  "language": "en",
+  "bgImg": "assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png",
+  "title": "Next.js Module Federation and Module Federation SSR plugins are being open-sourced",
+  "position": "Chief Revenue Officer",
+  "date": "Tue Jun 7 2022",
+  "seoDescription": "Previously only available as a private licensed and paid package hosted on PrivJsS both plugins will now be available for free on NPM"
+}
