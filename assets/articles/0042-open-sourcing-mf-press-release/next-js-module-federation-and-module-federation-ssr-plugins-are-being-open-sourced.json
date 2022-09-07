@@ -4,9 +4,9 @@
   "domains": [
     "dev_quality_assurance"
   ],
-  "authorImg": "assets/articles/Zackary_Chapple.jpeg",
+  "authorImg": "assets/articles/0042-open-sourcing-mf-press-release/Zackary_Chapple.jpeg",
   "language": "en",
-  "bgImg": "assets/articles/MF.png",
+  "bgImg": "assets/articles/0042-open-sourcing-mf-press-release/MF_cover.png",
   "title": "Next.js Module Federation and Module Federation SSR plugins are being open-sourced",
   "position": "Chief Revenue Officer",
   "date": "Wed Sep 6 2022",
