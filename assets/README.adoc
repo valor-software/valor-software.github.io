@@ -39,7 +39,7 @@ As example the title of new article is 'Debugging NgRx in NativeScript with Redu
 
 So, the name of folder for new article should be: 0040-debugging-ngrx-in-nativescript-with-redux-devtools
 
-== IMPORTANT ABOUT THE NAMING:_
+=== IMPORTANT ABOUT THE NAMING:
 
 - the title of the artcile should be the same as the folder name
 - the files's names (json and adoc) should be the same as the folder name but without the number at the beginning
