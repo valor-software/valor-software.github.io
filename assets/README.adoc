@@ -39,6 +39,11 @@ As example the title of new article is 'Debugging NgRx in NativeScript with Redu
 
 So, the name of folder for new article should be: 0040-debugging-ngrx-in-nativescript-with-redux-devtools
 
+IMPORTANT ABOUT THE NAMING:
+- the titckle of the artcile should be the same as the folder name
+- the files's names (json and adoc) should be the same as the folder name but without the number at the beginning
+- finally, when you give a path to the image in the adoc and json - use the link after "assets/..." but without the number (ex.0040). just the file name
+
 For displaying one article we need two files. <br>One file contains technical characters of article and article's author. This file should be with .json extension. It should be located in folder which you have created previously for new article.<br>
 The second file contains content of the article in adoc format. This file should be with .adoc extension. It should be located in the same place as a file with .json extension. +
 Both these files can have different names.
