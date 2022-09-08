@@ -62,8 +62,54 @@ jobs:
           key: dist-${{ github.run_id }}
       - run: |
           npx ng build --runner cloud --prod
+
+      - name: Push Build to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "webapp.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+    
+  release: 
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.17.0'
+      - uses: actions/cache@v2
+        with:
+          path: ${{ env.CACHE_NODE_MODULES_PATH }}
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@v2
+        with:
+          path: ${{ env.CACHE_DIST_PATH }}
+          key: dist-${{ github.run_id }}
+      - uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          repo: "[USERNAME]/[REPO]"
+          version: "latest"
+          file: "webapp.zip"
+          target: "webapp.zip"
+          token: ${{ secrets.GITHUB_PAT }}
+
+      - name: create dist directory
+        run: mkdir -p dist/webapp
+
+      - name: Decompress
+        uses: TonyBogdanov/zip@1.0
+        with:
+            args: unzip -qq ./webapp.zip -d ./dist/webapp
+
+      - run: |
           npx scully --prod --scanRoutes --project=valor-software-site
 
+      - name: Push Build to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "webapp.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
   # run linting
   linting:
     runs-on: ubuntu-latest
