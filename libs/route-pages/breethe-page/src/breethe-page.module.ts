@@ -1,23 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TerminusPageComponent } from "./terminus-page.component";
+import { BreethePageComponent } from "./breethe-page.component";
 import { routes } from "./routes";
 import { RouterModule, Routes } from "@angular/router";
 import { CommonDocsModule } from '@valor-software/common-docs';
 import { SwiperModule } from "swiper/angular";
-import { ChallengeCardComponent } from './challenge-card.component';
+import { DeliverableCardComponent } from './deliverable-card.component';
+import { FeedbackModule } from '@valor-software/feedback';
 
-export { TerminusPageComponent } from "./terminus-page.component";
+export { BreethePageComponent } from "./breethe-page.component";
 
 @NgModule({
-    declarations: [TerminusPageComponent, ChallengeCardComponent],
+    declarations: [BreethePageComponent, DeliverableCardComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
         CommonDocsModule,
-        SwiperModule
+        SwiperModule,
+        FeedbackModule
     ]
 })
-export class TerminusPageModule {
+export class BreethePageModule {
     static routes: Routes = routes;
 }

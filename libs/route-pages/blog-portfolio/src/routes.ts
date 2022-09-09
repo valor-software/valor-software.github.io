@@ -17,6 +17,10 @@ export const routes = [
                 loadChildren: () => import('@valor-software/terminus-page').then(m => m.TerminusPageModule)
             },
             {
+                path: 'breethe',
+                loadChildren: () => import('@valor-software/breethe-page').then(m => m.BreethePageModule)
+            },
+            {
                 path: ':id',
                 component: GeneralItemComponent
             },

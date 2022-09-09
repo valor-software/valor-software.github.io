@@ -25,6 +25,8 @@ import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
+import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
+import { ImpactCardComponent } from './components/impact-card/impact-card.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -51,6 +53,9 @@ export { ExpandableCardComponent } from './components/expandable-card/expandable
 export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 export { NextProjectComponent } from './components/next-project/next-project.component';
+export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
+export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
+export { ImpactCardComponent } from './components/impact-card/impact-card.component';
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -67,7 +72,9 @@ export { NextProjectComponent } from './components/next-project/next-project.com
     CustomSlicePipe,
     NextProjectComponent,
     ExpandableCardComponent,
-    ComparisonSliderComponent
+    ComparisonSliderComponent,
+    TechnologiesCardComponent,
+    ImpactCardComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -83,7 +90,9 @@ export { NextProjectComponent } from './components/next-project/next-project.com
     CustomSlicePipe,
     NextProjectComponent,
     ExpandableCardComponent,
-    ComparisonSliderComponent
+    ComparisonSliderComponent,
+    TechnologiesCardComponent,
+    ImpactCardComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
