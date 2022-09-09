@@ -9,7 +9,7 @@ export const projectsList = [
     'Priceshredder',
     'Gapminder Offline',
     'TablesReady',
-    'Breethe: Sleep & Meditation',
+    'Breethe',
     'StackBlitz',
     'Renaizant',
     'Cinnabon',
