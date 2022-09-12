@@ -4,9 +4,9 @@ import { Component, Input } from '@angular/core';
 export interface ITechnologiesCard {
   title?: string;
   technologies: ITechnologies[];
-  smJustify: 'center' | 'start' | 'between';
-  mdJustify?: 'center' | 'start' | 'between';
-  lgJustify: 'center' | 'start' | 'between';
+  smJustify: 'center' | 'start' | 'between' | 'evenly';
+  mdJustify?: 'center' | 'start' | 'between'| 'evenly';
+  lgJustify: 'center' | 'start' | 'between'| 'evenly';
 }
 
 export interface ITechnologies {

@@ -13,7 +13,7 @@ SwiperCore.use([Pagination]);
 export class BreethePageComponent {
     technologiesCard: ITechnologiesCard[] = [
         {
-            smJustify: 'center',
+            smJustify: 'evenly',
             lgJustify: 'start',
             technologies: [
                 {
