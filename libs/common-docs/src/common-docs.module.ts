@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopoverComponent } from './components/popover/popover.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -26,6 +26,7 @@ import { ExpandableCardComponent } from './components/expandable-card/expandable
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
 import { TraitsCardComponent } from './components/services-components/traits-cards/traits-cards.component';
+import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -49,12 +50,13 @@ export { GetPortfolioService } from './services/getPortfolio.service';
 export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
-export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
+export { IExpandableCard } from './components/expandable-card/expandable-card.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 export { NextProjectComponent } from './components/next-project/next-project.component';
 export { TraitsCardComponent } from './components/services-components/traits-cards/traits-cards.component';
 export { ITraitsCard } from './components/services-components/traits-cards/traits-cards.component';
-
+export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
+export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -72,7 +74,8 @@ export { ITraitsCard } from './components/services-components/traits-cards/trait
     NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent,
-    TraitsCardComponent
+    TraitsCardComponent,
+    TechnologiesCardComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -89,7 +92,8 @@ export { ITraitsCard } from './components/services-components/traits-cards/trait
     NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent,
-    TraitsCardComponent
+    TraitsCardComponent,
+    TechnologiesCardComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
