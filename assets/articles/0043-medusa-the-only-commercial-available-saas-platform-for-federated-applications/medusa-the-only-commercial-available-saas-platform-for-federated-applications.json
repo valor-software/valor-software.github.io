@@ -1,6 +1,6 @@
 {
   "author": "Zackary Chapple",
-  "order": 43,
+  "order": 44,
   "domains": [
     "dev_quality_assurance"
   ],
@@ -9,6 +9,6 @@
   "bgImg": "assets/articles/medusa-the-only-commercial-available-saas-platform-for-federated-applications/tw__1500x500-profile-cover-midnight.png",
   "title": "Medusa – the Only Commercial Available SaaS Platform for Federated Applications",
   "position": "Leading growth for Sales, Marketing, and Product",
-  "date": "Mon Aug 29 2022 10:50:04 GMT+0000 (Coordinated Universal Time)",
+  "date": "Mon Sep 12 2022 10:50:04 GMT+0000 (Coordinated Universal Time)",
   "seoDescription": " Medusa creates an environment where software developers finally have the visibility into their module federation powered and distributed micro frontends."
 }
