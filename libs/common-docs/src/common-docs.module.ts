@@ -25,6 +25,7 @@ import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
+import { TraitsCardComponent } from './components/services-components/traits-cards/traits-cards.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -51,6 +52,9 @@ export { ExpandableCardComponent } from './components/expandable-card/expandable
 export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 export { NextProjectComponent } from './components/next-project/next-project.component';
+export { TraitsCardComponent } from './components/services-components/traits-cards/traits-cards.component';
+export { ITraitsCard } from './components/services-components/traits-cards/traits-cards.component';
+
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -67,7 +71,8 @@ export { NextProjectComponent } from './components/next-project/next-project.com
     CustomSlicePipe,
     NextProjectComponent,
     ExpandableCardComponent,
-    ComparisonSliderComponent
+    ComparisonSliderComponent,
+    TraitsCardComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -83,7 +88,8 @@ export { NextProjectComponent } from './components/next-project/next-project.com
     CustomSlicePipe,
     NextProjectComponent,
     ExpandableCardComponent,
-    ComparisonSliderComponent
+    ComparisonSliderComponent,
+    TraitsCardComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
