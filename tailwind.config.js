@@ -212,6 +212,9 @@ module.exports = {
       },
       letterSpacing: {
         tightest: '-1px',
+      },
+      gridTemplateColumns: {
+        '2': 'repeat(2, minmax(0, 1fr))',
       }
     },
   },
