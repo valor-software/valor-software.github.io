@@ -25,11 +25,11 @@ export class BreethePageComponent {
                     title: "Angular 14"
                 },
                 {
-                    src: "assets/img/technologies/active/core_js.png",
+                    src: "assets/img/technologies/others/core_js.png",
                     title: "core-js"
                 },
                 {
-                    src: "assets/img/technologies/active/jquery.png",
+                    src: "assets/img/technologies/others/jquery.png",
                     title: "jQuery"
                 },
                 {
