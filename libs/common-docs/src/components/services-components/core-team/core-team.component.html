@@ -1,0 +1,16 @@
+<ng-container *ngIf="coreTeams">
+  <section class="lg:mb-32">
+    <h1 class="main-title">Core Team</h1>
+    <div class="container ">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-y-10 md:gap-x-2 lg:gap-x-6 lg:gap-y-16 ">
+        <div *ngFor="let member of coreTeams" class="flex flex-col justify-center">
+          <div class="w-335 h-335 lg:w-392 lg:h-392 flex justify-center m-auto bg-grey mb-4 lg:mb-6">
+            <img class="min-w-335 min-h-335 lg:min-w-392 lg:min-h-392 m-auto" [src]="member.img || 'assets/core-team/img/placeholder.png'">
+          </div>
+          <h2 class="text-light_title_col text-32 lg:text-40 mb-2 font-bold tracking-tightest text-center">{{member.name}}</h2>
+          <p class="leading-6 text-grey_font_col text-2xl lg:text-32 mb-4 tracking-tightest text-center">{{member.position}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-container>

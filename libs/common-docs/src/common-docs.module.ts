@@ -29,6 +29,8 @@ import { TraitsCardComponent } from './components/services-components/traits-car
 import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 import { VerticalServicesCardComponent } from './components/services-components/vertical-services-card/vertical-services-card.component';
 import { GetVerticalServices } from './services/getVerticalServices.service';
+import { getCoreTeamServices } from './services/getCoreTeam.service';
+import { CoreTeamsComponent } from './components/services-components/core-team/core-team.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -60,8 +62,11 @@ export { ITraitsCard } from './components/services-components/traits-cards/trait
 export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
 export { VerticalServicesCardComponent } from './components/services-components/vertical-services-card/vertical-services-card.component';
-export { IVerticalServicesCard  } from './components/services-components/vertical-services-card/vertical-services-card.component';
+export { IVerticalServicesCard } from './components/services-components/vertical-services-card/vertical-services-card.component';
 export { GetVerticalServices } from './services/getVerticalServices.service';
+export { getCoreTeamServices } from './services/getCoreTeam.service';
+export { CoreTeamsComponent } from './components/services-components/core-team/core-team.component';
+export { ICoreTeam } from './components/services-components/core-team/core-team.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +88,7 @@ export { GetVerticalServices } from './services/getVerticalServices.service';
     TraitsCardComponent,
     TechnologiesCardComponent,
     VerticalServicesCardComponent,
+    CoreTeamsComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -101,9 +107,10 @@ export { GetVerticalServices } from './services/getVerticalServices.service';
     ComparisonSliderComponent,
     TraitsCardComponent,
     TechnologiesCardComponent,
-    VerticalServicesCardComponent
+    VerticalServicesCardComponent,
+    CoreTeamsComponent
   ],
-  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, GetVerticalServices,
+  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, GetVerticalServices, getCoreTeamServices,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',
