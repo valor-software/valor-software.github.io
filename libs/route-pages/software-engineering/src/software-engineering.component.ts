@@ -60,7 +60,7 @@ export class SoftwareEngineeringComponent {
 
     ];
 
-     technologiesCards: ITechnologiesCard[] = [
+    technologiesCards: ITechnologiesCard[] = [
         {
             title: 'Frontend',
             smJustify: 'center',
@@ -68,12 +68,10 @@ export class SoftwareEngineeringComponent {
             technologies: [
                 {
                     src: "assets/img/technologies/others/type_script.png",
-                   
                 },
                 {
                     src: "assets/img/technologies/active/react.png",
                 },
-    
                 {
                     src: "assets/img/technologies/active/angular.png",
                 },
@@ -92,12 +90,10 @@ export class SoftwareEngineeringComponent {
             technologies: [
                 {
                     src: "assets/img/technologies/active/nest_js.png",
-                   
                 },
                 {
                     src: "assets/img/technologies/others/express.png",
                 },
-    
                 {
                     src: "assets/img/technologies/active/ruby.png",
                 },
@@ -135,7 +131,6 @@ export class SoftwareEngineeringComponent {
                 {
                     src: "assets/img/technologies/others/ionic.png",
                 },
-    
                 {
                     src: "assets/img/technologies/others/java.png",
                 },
