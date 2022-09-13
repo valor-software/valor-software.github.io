@@ -31,6 +31,7 @@ import { VerticalServicesCardComponent } from './components/services-components/
 import { GetVerticalServices } from './services/getVerticalServices.service';
 import { getCoreTeamServices } from './services/getCoreTeam.service';
 import { CoreTeamsComponent } from './components/services-components/core-team/core-team.component';
+import { ServiceHelpCardCardComponent } from './components/services-components/service-help-card/service-help-card.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -88,7 +89,9 @@ export { ICoreTeam } from './components/services-components/core-team/core-team.
     TraitsCardComponent,
     TechnologiesCardComponent,
     VerticalServicesCardComponent,
-    CoreTeamsComponent
+    CoreTeamsComponent,
+    ServiceHelpCardCardComponent
+
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -108,7 +111,8 @@ export { ICoreTeam } from './components/services-components/core-team/core-team.
     TraitsCardComponent,
     TechnologiesCardComponent,
     VerticalServicesCardComponent,
-    CoreTeamsComponent
+    CoreTeamsComponent,
+    ServiceHelpCardCardComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, GetVerticalServices, getCoreTeamServices,
     {
