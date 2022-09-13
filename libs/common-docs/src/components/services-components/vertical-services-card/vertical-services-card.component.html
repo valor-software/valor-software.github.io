@@ -1,0 +1,36 @@
+<ng-container *ngIf="verticalServiceCards">
+  <section class="lg:mb-32">
+    <h1 class="main-title">Verticals</h1>
+    <div class="container ">
+      <div *ngFor="let service of verticalServiceCards; let i = index" class="flex flex-col gap-12 lg:gap-10 mb-14"
+        [ngClass]="i%2 ? 'lg:flex-row-reverse justify-start' : 'lg:flex-row justify-start'">
+        <div class="mx-5">
+          <div class="flex flex-col">
+            <p
+              class="text-dark_title_col_updated text-80 leading-80 lg:leading-100 font-bold lg:text-100 mb-2 lg:mb-4 ">
+              0{{ i+1}}
+            </p>
+            <h2 class="text-light_title_col text-2xl lg:text-40 mb-6 font-bold tracking-tightest">{{service.title}}
+            </h2>
+            <p class=" leading-6 text-grey_font_col text-16 mb-15 lg:mb-6 tracking-tightest"
+              *ngIf="service.description">
+              {{service.description}}</p>
+            <img class="lg:hidden block m-auto mb-15" [src]="service.img" [alt]="service.title + ' icon'">
+            <h2 *ngIf="service.items && service.items.length > 0"
+              class="text-light_title_col text-2xl lg:text-40 mb-6 font-bold tracking-tightest">
+              Related projects:
+            </h2>
+            <ul class="list-disc text-grey_font_col pl-5" *ngIf="service && service.items">
+              <li *ngFor="let item of service?.items">
+                <a target="_blank" [routerLink]="item.url"
+                  class="leading-6 text-grey_font_col text-xl mb-4 tracking-tightest"
+                  [ngClass]="{'underline': item.url, 'text-pink': item.highlight}">{{item.title}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <img class="lg:block hidden h-312 w-629 m-auto" [src]="service.img" [alt]="service.title + ' icon'">
+      </div>
+    </div>
+  </section>
+</ng-container>
