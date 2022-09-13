@@ -1,0 +1,99 @@
+[
+  {
+    "img": "assets/vertical-services/img/b2b.png",
+    "title": "B2B SaaS",
+    "description": "Efficient solutions for organizations to improve the work environment, streamline and automate business processes, and increase productivity.",
+    "items": [
+      {
+        "title": "Terminus",
+        "url": "/projects/terminus"
+      },
+      {
+        "title": "Career Builder (for Recruiters)",
+        "url": "/projects/careerbuilder"
+      },
+      {
+        "title": "Honcho (secure communication)"
+      },
+      {
+        "title": "Vizabi (chats and visualization tools)",
+        "url": "/projects/vizabi"
+      },
+      {
+        "title": "Qualtrax",
+        "url": "/projects/qualtrax"
+      }
+    ]
+  },
+  {
+    "img": "assets/vertical-services/img/education.png",
+    "title": "Education",
+    "subtitle": "Related projects:",
+    "description": "Learner-facing software to help businesses, schools, universities, and non-profit organizations inspire and digitize learning, increase students’ engagement, and make knowledge accessible.",
+    "items": [
+      {
+        "title": "Xello"
+      }
+    ]
+  },
+  {
+    "img": "assets/vertical-services/img/travel-hospitality.png",
+    "title": "Travel & hospitality",
+    "subtitle": "Related projects:",
+    "description": "User-friendly web and mobile solutions that are easily integrated with in-use systems and third-party services to ensure a superb experience for guests.",
+    "items": [
+      {
+        "title": "TablesReady",
+        "url": "/projects/tablesready"
+      },
+      {
+        "title": "Alaina (AMER) - travel app"
+      }
+    ]
+  },
+  {
+    "img": "assets/vertical-services/img/global-impact.png",
+    "title": "Global impact & awareness",
+    "subtitle": "Related projects:",
+    "description": "Socially meaningful solutions that help organizations improve people’s lives, inspire humanity, integrity, and experience exchange.",
+    "items": [
+      {
+        "title": "WFP - application for volunteers"
+      },
+      {
+        "title": "Dollar Street",
+        "url": "/projects/dollar-street"
+      }
+    ]
+  },
+  {
+    "img": "assets/vertical-services/img/b2c.png",
+    "title": "B2C SaaS",
+    "subtitle": "Related projects:",
+    "description": "Web and mobile platforms that allow selling products and services to individual customers.",
+    "items": [
+      {
+        "title": "LibertyFlights",
+        "url": "/projects/liberty-flights"
+      },
+      {
+        "title": "Breethe (sleep and meditation)",
+        "url": "/projects/breethe-sleep-meditation"
+      }
+    ]
+  },
+  {
+    "img": "assets/vertical-services/img/gaming.png",
+    "title": "Gaming & entertainment",
+    "subtitle": "Related projects:",
+    "description": "Innovation-driven solutions that combine cutting-edge technologies and the boldest ideas brought to life to grant unforgettable experiences for the audience.",
+    "items": [
+      {
+        "title": "Ashes of Creation"
+      },
+      {
+        "title": "Blackout (sleep and meditation)"
+      }
+    ]
+  }
+]

@@ -27,6 +27,8 @@ import { ComparisonSliderComponent } from './components/comparison-slider/compar
 import { NextProjectComponent } from './components/next-project/next-project.component';
 import { TraitsCardComponent } from './components/services-components/traits-cards/traits-cards.component';
 import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
+import { VerticalServicesCardComponent } from './components/services-components/vertical-services-card/vertical-services-card.component';
+import { GetVerticalServices } from './services/getVerticalServices.service';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -57,6 +59,10 @@ export { TraitsCardComponent } from './components/services-components/traits-car
 export { ITraitsCard } from './components/services-components/traits-cards/traits-cards.component';
 export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
+export { VerticalServicesCardComponent } from './components/services-components/vertical-services-card/vertical-services-card.component';
+export { IVerticalServicesCard  } from './components/services-components/vertical-services-card/vertical-services-card.component';
+export { GetVerticalServices } from './services/getVerticalServices.service';
+
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -75,7 +81,8 @@ export { ITechnologiesCard } from './components/technologies-card/technologies-c
     ExpandableCardComponent,
     ComparisonSliderComponent,
     TraitsCardComponent,
-    TechnologiesCardComponent
+    TechnologiesCardComponent,
+    VerticalServicesCardComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -93,9 +100,10 @@ export { ITechnologiesCard } from './components/technologies-card/technologies-c
     ExpandableCardComponent,
     ComparisonSliderComponent,
     TraitsCardComponent,
-    TechnologiesCardComponent
+    TechnologiesCardComponent,
+    VerticalServicesCardComponent
   ],
-  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
+  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, GetVerticalServices,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',
