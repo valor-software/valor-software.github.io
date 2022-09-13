@@ -63,7 +63,7 @@ export class SoftwareEngineeringComponent {
     technologiesCards: ITechnologiesCard[] = [
         {
             title: 'Frontend',
-            smJustify: 'center',
+            smJustify: 'between',
             lgJustify: 'start',
             technologies: [
                 {
@@ -85,7 +85,7 @@ export class SoftwareEngineeringComponent {
         },
         {
             title: 'Backend',
-            smJustify: 'center',
+            smJustify: 'between',
             lgJustify: 'start',
             technologies: [
                 {
@@ -119,7 +119,7 @@ export class SoftwareEngineeringComponent {
         },
         {
             title: 'Mobile',
-            smJustify: 'center',
+            smJustify: 'between',
             lgJustify: 'start',
             technologies: [
                 {
