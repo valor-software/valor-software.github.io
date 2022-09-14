@@ -491,55 +491,6 @@
         "common-docs"
       ]
     },
-    "route-pages-software-engineering": {
-      "projectType": "library",
-      "root": "libs/route-pages/software-engineering",
-      "sourceRoot": "libs/route-pages/software-engineering/src",
-      "prefix": "valor-software-site-base",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/route-pages/software-engineering"
-          ],
-          "options": {
-            "project": "libs/route-pages/software-engineering/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/route-pages/software-engineering/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/route-pages/software-engineering/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/route-pages/software-engineering"
-          ],
-          "options": {
-            "jestConfig": "libs/route-pages/software-engineering/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/route-pages/software-engineering/src/**/*.ts",
-              "libs/route-pages/software-engineering/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": [
-        "common-docs"
-      ]
-    },
     "valor-software-site": {
       "projectType": "application",
       "root": "apps/valor-software-site",
