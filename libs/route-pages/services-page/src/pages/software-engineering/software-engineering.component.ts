@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ITechnologiesCard, ITraitsCard } from '@valor-software/common-docs';
+import { ITechnologiesCard } from '@valor-software/common-docs';
 import SwiperCore, { Pagination } from "swiper";
-
+import { IServicesHeader } from '../../components/service-header-card/service-header-card.component';
+import { ITraitsCard } from '../../components/traits-cards/traits-cards.component';
 
 SwiperCore.use([Pagination]);
 
@@ -11,16 +12,19 @@ SwiperCore.use([Pagination]);
     templateUrl: './software-engineering.component.html'
 })
 export class SoftwareEngineeringComponent {
-    changeBreadCrumbTitle: { path: string, title: string, excludePath?: boolean }[] = [
-        {
-            path: 'services',
-            title: 'Services',
+
+    servicesHeader: IServicesHeader = {
+        title: 'Software Engineering',
+        descriptions: ['Staying ahead of the technology curve, we cover frontend, backend, and mobile development. Get an advanced and easily-maintainable product that grants high responsiveness and a smooth user journey.'],
+        img: 'assets/img/bg-img/services_img/services_2.svg',
+        button: {
+            title: 'Get a free session with an expert'
         },
-        {
+        bradCrumb: {
             path: 'software-engineering',
             title: 'Software Engineering'
         }
-    ];
+    };
 
     headerCards: ITraitsCard[] = [
         {

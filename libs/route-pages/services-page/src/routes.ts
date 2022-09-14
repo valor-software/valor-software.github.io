@@ -1,10 +1,10 @@
-import {ServicesPageComponent} from "./services-page.component";
+import { SoftwareEngineeringComponent } from './pages/software-engineering/software-engineering.component';
+import { ServicesPageComponent } from "./services-page.component";
 
 export const routes = [
   { path: '', component: ServicesPageComponent },
   {
-    path: 'software-engineering',
-    loadChildren: () => import('@valor-software/software-engineering').then(m => m.SoftwareEngineeringModule)
-},
+    path: 'software-engineering', component: SoftwareEngineeringComponent
+  },
 ];
 
