@@ -25,13 +25,7 @@ import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
-import { TraitsCardComponent } from './components/services-components/traits-cards/traits-cards.component';
 import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
-import { VerticalServicesCardComponent } from './components/services-components/vertical-services-card/vertical-services-card.component';
-import { GetVerticalServices } from './services/getVerticalServices.service';
-import { getCoreTeamServices } from './services/getCoreTeam.service';
-import { CoreTeamsComponent } from './components/services-components/core-team/core-team.component';
-import { ServiceHelpCardCardComponent } from './components/services-components/service-help-card/service-help-card.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -58,16 +52,8 @@ export { ExpandableCardComponent } from './components/expandable-card/expandable
 export { IExpandableCard } from './components/expandable-card/expandable-card.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 export { NextProjectComponent } from './components/next-project/next-project.component';
-export { TraitsCardComponent } from './components/services-components/traits-cards/traits-cards.component';
-export { ITraitsCard } from './components/services-components/traits-cards/traits-cards.component';
 export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
-export { VerticalServicesCardComponent } from './components/services-components/vertical-services-card/vertical-services-card.component';
-export { IVerticalServicesCard } from './components/services-components/vertical-services-card/vertical-services-card.component';
-export { GetVerticalServices } from './services/getVerticalServices.service';
-export { getCoreTeamServices } from './services/getCoreTeam.service';
-export { CoreTeamsComponent } from './components/services-components/core-team/core-team.component';
-export { ICoreTeam } from './components/services-components/core-team/core-team.component';
 
 @NgModule({
   declarations: [
@@ -86,12 +72,7 @@ export { ICoreTeam } from './components/services-components/core-team/core-team.
     NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent,
-    TraitsCardComponent,
     TechnologiesCardComponent,
-    VerticalServicesCardComponent,
-    CoreTeamsComponent,
-    ServiceHelpCardCardComponent
-
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -108,13 +89,9 @@ export { ICoreTeam } from './components/services-components/core-team/core-team.
     NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent,
-    TraitsCardComponent,
     TechnologiesCardComponent,
-    VerticalServicesCardComponent,
-    CoreTeamsComponent,
-    ServiceHelpCardCardComponent
   ],
-  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, GetVerticalServices, getCoreTeamServices,
+  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',

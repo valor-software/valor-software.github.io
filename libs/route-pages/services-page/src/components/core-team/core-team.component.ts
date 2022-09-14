@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { getCoreTeamServices } from '@valor-software/common-docs';
 import { Subscription } from 'rxjs';
+import { getCoreTeamServices } from '../../services/getCoreTeam.service';
 
 export interface ICoreTeam {
   name: string;

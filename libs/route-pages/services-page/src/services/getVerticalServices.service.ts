@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IVerticalServicesCard } from '../common-docs.module';
+import { IVerticalServicesCard } from '../components/vertical-services-card/vertical-services-card.component';
 
 @Injectable({ providedIn: 'platform' })
 export class GetVerticalServices {
