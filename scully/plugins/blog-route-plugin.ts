@@ -7,7 +7,7 @@ function blogRoutePlugin(route: string, config = {}): Promise<HandledRoute[]> {
     const routes = [];
     articlesRefactoringTitlesList.map((item: string) => {
         routes.push({route: `/articles/${item}`});
-        routes.push({route: `/articles/${item}.html`});
+        // routes.push({route: `/articles/${item}.html`});
     });
 
     oldLinks.map(item => {

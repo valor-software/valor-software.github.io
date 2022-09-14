@@ -7,7 +7,7 @@ function PortfolioRoutePlugin(route: string, config = {}): Promise<HandledRoute[
     projectsList.map((item: string) => {
         let link = titleRefactoring(item);
         routes.push({route: `/projects/${link}`});
-        routes.push({route: `/projects/${link}.html`});
+        // routes.push({route: `/projects/${link}.html`});
     });
 
     return Promise.resolve(routes);
