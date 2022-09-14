@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ICoreTeam } from '../common-docs.module';
+import { ICoreTeam } from '../components/core-team/core-team.component';
 
 @Injectable({ providedIn: 'platform' })
 export class getCoreTeamServices {

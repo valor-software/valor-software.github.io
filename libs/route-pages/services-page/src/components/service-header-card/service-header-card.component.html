@@ -1,0 +1,34 @@
+<ng-container *ngIf="servicesHeader">
+  <div class="container">
+    <ng-container *ngIf="changeBreadCrumbTitle?.length">
+      <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
+      </breadCrumbs>
+    </ng-container>
+    <div class="flex flex-col gap-8 lg:flex-row justify-center lg:justify-between mb-32 items-center pt-16 lg:pt-0">
+      <div class="md:mt-0 m-auto">
+
+        <h1 class="text-light_title_col lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+          {{servicesHeader.title}}
+        </h1>
+        <p *ngFor="let description of servicesHeader.descriptions"
+          class="leading-6 text-grey_font_col text-16 lg:mb-8 mb-18 tracking-tightest">
+          {{description}}</p>
+        <div class="lg:block hidden flex-column lg:flex justify-start items-center">
+          <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
+            <a (click)="onClick()" target="_blank" class="btn-pink w-full flex justify-center items-center">
+              {{servicesHeader.button.title}}
+              <img src="assets/img/icons/arrow.svg" class="ml-2 my-auto" alt=""></a>
+          </button>
+        </div>
+      </div>
+      <img class=" w-full" [src]="servicesHeader.img" alt="">
+      <div class="lg:hidden block flex-column lg:flex justify-start items-center">
+        <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
+          <a (click)="onClick()" target="_blank" class="btn-pink w-full flex justify-center items-center">
+            {{servicesHeader.button.title}}
+            <img src="assets/img/icons/arrow.svg" class="ml-2 my-auto" alt=""></a>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>

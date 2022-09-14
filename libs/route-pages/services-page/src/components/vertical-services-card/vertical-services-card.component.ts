@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { GetVerticalServices } from '@valor-software/common-docs';
 import { Subscription } from 'rxjs';
+import { GetVerticalServices } from '../../services/getVerticalServices.service';
 
 export interface IVerticalServicesCard {
   title: string;
