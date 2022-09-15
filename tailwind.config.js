@@ -193,7 +193,8 @@ module.exports = {
         '74': '74px',
         '629': '629px',
         '392': '392px',
-        '335': '335px'
+        '335': '335px',
+        '538': '538px'
       },
       minHeight: {
         '725': '725px',
@@ -230,8 +231,12 @@ module.exports = {
       },
       gridTemplateColumns: {
         '2': 'repeat(2, minmax(0, 1fr))',
+      },
+      flex: {
+        '1/3': '0 0 calc(33% - 20px)'
       }
-    },
+    }
+
   },
   variants: {
     extend: {},
