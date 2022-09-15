@@ -12,13 +12,13 @@
                 class="font-bold text-light_title_col block mr-3.5 md:text-large text-xl md:text-left mt-6 md:mt-0  md:leading-44 mb-6">
                 {{card.title}}</h2>
               <p [innerHTML]="card.description"
-                class="lg:w-10/12 text-base tracking-tightest leading-6 mb-10 text-grey_font_col">
+                class="lg:w-9/12 text-base tracking-tightest leading-6 mb-10 text-grey_font_col">
               </p>
               <h3
                 class="font-bold text-light_title_col block mr-3.5 md:text-large text-xl md:text-left mt-6 md:mt-0 md:leading-44 mb-6">
                 {{card.subtitle}}
               </h3>
-              <div class="grid lg:grid-cols-2 grid-cols-1 gap-4 mb-10">
+              <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
                 <div *ngFor="let item of card.items; let i = index" class="pb-0 md:pb-10 ">
                   <div class="green-circle bg-grey"></div>
                   <div class="max-w-fit lg:max-w-400 ml-12 text-light_title_col">
