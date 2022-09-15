@@ -19,7 +19,9 @@
 <section>
   <h1 class="main-title lg:mb-10">Valor’s Traits</h1>
   <div class="container">
-    <traits-cards [traitCards]="traitsCards"></traits-cards>
+    <div class="flex flex-col gap-8 m-auto">
+      <traits-cards *ngFor="let card of traitsCards" [traitCard]="card"></traits-cards>
+    </div>
   </div>
 </section>
 
