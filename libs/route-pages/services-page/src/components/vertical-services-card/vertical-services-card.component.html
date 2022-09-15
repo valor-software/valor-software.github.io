@@ -21,21 +21,20 @@
               Related projects:
             </h2>
             <ul *ngIf="service && service.items" [ngClass]="{'list-disc text-grey_font_col pl-5': isLinkList}">
-              <li *ngFor="let item of service?.items">
+              <li *ngFor="let item of service?.items" [ngClass]="{ 'mb-4': isLinkList }">
 
-                <div class="flex flex-row items-center mb-6">
+                <div class="flex flex-row items-center mb-6" *ngIf="!isLinkList">
                   <div class="green-circle after:h-4 after:w-4"></div>
-                  <p class="pl-8 leading-6 text-grey_font_col text-20  tracking-tightest">
+                  <p class="pl-8 leading-6 text-grey_font_col text-20 tracking-tightest">
                     {{item.title}}</p>
                 </div>
 
-                <a target="_blank" [routerLink]="item.url"
-                  class="leading-6 text-grey_font_col text-xl mb-4 tracking-tightest"
+                <a target="_blank" [routerLink]="item.url" class="leading-6 text-grey_font_col text-xltracking-tightest"
                   [ngClass]="{'underline': item.url, 'text-pink': item.highlight, 'hidden': !isLinkList}">{{item.title}}</a>
               </li>
             </ul>
 
-            <div class=" flex-column lg:flex justify-start items-center">
+            <div class=" flex-column lg:flex justify-start items-center" *ngIf="!isLinkList">
               <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
                 <a (click)="onClick(service.button?.url)" target="_blank"
                   class="btn-pink w-full flex justify-center items-center">
