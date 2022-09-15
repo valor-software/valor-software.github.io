@@ -12,6 +12,6 @@ export interface ITraitsCard {
   templateUrl: './traits-cards.component.html'
 })
 export class TraitsCardComponent {
-  @Input() traitCards?: ITraitsCard[];
-  @Input() twoPerRow?: boolean = false;
+  @Input() traitCard?: ITraitsCard;
+  @Input() verticalCard?: boolean;
 }

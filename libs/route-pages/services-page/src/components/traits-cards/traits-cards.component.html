@@ -1,14 +1,14 @@
-<ng-container *ngIf="traitCards">
-  <div class="grid justify-center m-auto" [ngClass]="{'md:grid-cols-2 md:gap-8': twoPerRow}">
-    <div *ngFor="let traitCard of traitCards"
-      class="bg-grey p-4 lg:p-8 flex justify-start gap-6 lg:gap-8 mb-8 w-full items-center flex-col lg:flex-row" >
-      <img [src]="traitCard.img" [alt]="traitCard.title + ' icon'">
-      <div>
-        <p
-          class="font-bold text-light_title_col block mr-3.5  md:text-left mt-6 md:mt-0  md:leading-44 mb-6" [ngClass]="{'text-2xl md:text-32 text-center': twoPerRow, ' md:text-large text-xl ': !twoPerRow}">
-          {{traitCard.title}}</p>
-        <p *ngIf="traitCard.description" [innerHTML]="traitCard.description" class="lg:w-10/12 text-base tracking-tightest leading-6	 text-light_title_col" ></p>
-      </div>
+<ng-container *ngIf="traitCard">
+  <div class="h-full bg-grey p-4 lg:p-5 flex justify-start gap-6 lg:gap-8 mb-8 w-full items-center flex-col "
+    [ngClass]="{ 'lg:flex-row lg:p-12' : !verticalCard }">
+    <img [src]="traitCard.img" [alt]="traitCard.title + ' icon'">
+    <div class="flex flex-col justify-start" [ngClass]="{ 'items-center justify-center md:text-center' : verticalCard, 'md:text-left': !verticalCard }">
+      <p
+        class="font-bold text-light_title_col block text-32 mt-6 md:mt-0 md:leading-44 mb-6" 
+        [ngClass]="{ 'md:text-large text-xl' : !verticalCard }">
+        {{traitCard.title}}</p>
+      <p *ngIf="traitCard.description" [innerHTML]="traitCard.description"
+        class=" text-base tracking-tightest leading-6	text-light_title_col" [ngClass]="{ 'lg:w-10/12' : !verticalCard }"></p>
     </div>
   </div>
 </ng-container>
