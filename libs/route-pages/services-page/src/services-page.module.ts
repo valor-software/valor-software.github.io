@@ -12,6 +12,7 @@ import { CoreTeamsComponent } from './components/core-team/core-team.component';
 import { ServiceHeaderCardComponent } from './components/service-header-card/service-header-card.component';
 import { ServiceHelpCardCardComponent } from './components/service-help-card/service-help-card.component';
 import { VerticalServicesCardComponent } from './components/vertical-services-card/vertical-services-card.component';
+import { HierarchyServiceCardComponent } from './components/hierarchy-service-card/hierarchy-service-card.component';
 
 export { ServicesPageComponent } from "./services-page.component";
 
@@ -22,7 +23,8 @@ export { ServicesPageComponent } from "./services-page.component";
         ServiceHeaderCardComponent,
         ServiceHelpCardCardComponent,
         VerticalServicesCardComponent,
-        ServiceHeaderCardComponent
+        ServiceHeaderCardComponent,
+        HierarchyServiceCardComponent
     ],
     imports: [
         CommonModule,

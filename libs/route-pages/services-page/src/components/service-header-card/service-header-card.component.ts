@@ -54,7 +54,7 @@ export class ServiceHeaderCardComponent implements OnChanges {
   }
   onClick() {
     if (this.servicesHeader?.button.url) {
-      this.router.navigate(['/404']);
+      this.router.navigate([this.servicesHeader?.button.url]);
       return;
     }
     this.modalService.open(ContactModalComponent);
