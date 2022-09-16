@@ -1,0 +1,21 @@
+== Orchestrate your frontend components with visual dependency graphs!
+
+Manage federated applications and modules, control explicit versions of any previous build or commit per consuming app, track the performance and many more! 
+
+Become an early bird subscriber for https://www.medusa.codes/[Medusa^] – a dashboard for federated apps.
+
+=== Follow us on media to know the news:
+
+https://www.linkedin.com/company/82646822/admin/[LinkedIn^] of Medusa +
+https://twitter.com/MedusaDashboard[Medusa^] on Twitter +
+https://www.youtube.com/channel/UCeaGpsnPy_UBcfWLt3anCDw[Medusa^] on YouTube
+
+=== Learn more about Madusa:
+
+https://www.youtube.com/watch?v=8Zz7i-FPIec&t=185s[Intro to Module Federation with Medusa^]: First look
+
+https://youtu.be/d1SS7KAsbdY?t=2047[Webpack Module Federation^]: going in-depth with Zack Jackson
+
+https://www.youtube.com/watch?v=RS3t5obRQZ0[Federated Modules Dashboard^]: the preview video
+
+image::in__1128x376-life-tab--midnight.png[]
