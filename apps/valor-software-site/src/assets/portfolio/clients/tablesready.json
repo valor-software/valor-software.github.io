@@ -2,7 +2,7 @@
   "name": "TablesReady",
   "link": "https://www.tablesready.com/",
   "sortServices": ["web"],
-  "sortTechnologies": ["angular"],
+  "sortTechnologies": ["angular", "firebase"],
   "previewImg": "https://assets.website-files.com/5c4c30d0c49ea6746fafc90c/5c4f17387c1ca4e494079c25_tables-ready.jpg",
   "description": "TablesReady is a paging system that uses your guests' cell phones instead of expensive pager systems.",
   "goals": ["Optimize the architecture and code", "Implement average analytics for wait times, busy periods, and walk-ins", "Create a new design"],
