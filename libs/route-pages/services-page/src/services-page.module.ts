@@ -13,11 +13,13 @@ import { ServiceHeaderCardComponent } from './components/service-header-card/ser
 import { ServiceHelpCardCardComponent } from './components/service-help-card/service-help-card.component';
 import { VerticalServicesCardComponent } from './components/vertical-services-card/vertical-services-card.component';
 import { HierarchyServiceCardComponent } from './components/hierarchy-service-card/hierarchy-service-card.component';
+import { ProductOwnershipAndProjectManagementComponent } from './pages/product-owner-and-product-management/product-owner-and-product-management.component';
 
 export { ServicesPageComponent } from "./services-page.component";
 
 @NgModule({
     declarations: [
+        ProductOwnershipAndProjectManagementComponent,
         ServicesPageComponent,
         TraitsCardComponent, CoreTeamsComponent,
         ServiceHeaderCardComponent,
