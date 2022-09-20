@@ -7,15 +7,18 @@
   <div class="container">
     <!-- <div class="grid grid-cols-3 gap-8  h-full justify-between"> -->
     <div class="flex flex-wrap gap-8 justify-center h-full">
-      <div  class="lg:flex-1/3" *ngFor="let card of benefitsCards">
-        <traits-cards [verticalCard]="true"  [traitCard]="card"></traits-cards>
+      <div class="lg:flex-1/3" *ngFor="let card of benefitsCards">
+        <traits-cards [verticalCard]="true" [traitCard]="card"></traits-cards>
       </div>
     </div>
   </div>
 </section>
 
 <section>
-  <vertical-services-card [verticalServiceCards]="verticalServiceCards"></vertical-services-card>
+  <h1 class="main-title lg:mb-10">Services</h1>
+  <div class="container">
+    <vertical-services-card [verticalServiceCards]="verticalServiceCards"></vertical-services-card>
+  </div>
 </section>
 
 <section>
