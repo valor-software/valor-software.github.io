@@ -58,7 +58,8 @@ module.exports = {
       light_blue: '#71A5D2',
       popover_bg: '#282828',
       medium_grey_bg: '#717171',
-      real_dark_grey: '#222222'
+      real_dark_grey: '#222222',
+      light_grey: '#252525'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -194,7 +195,8 @@ module.exports = {
         '629': '629px',
         '392': '392px',
         '335': '335px',
-        '538': '538px'
+        '538': '538px',
+        '54%': '54%'
       },
       minHeight: {
         '725': '725px',
@@ -233,7 +235,8 @@ module.exports = {
         '2': 'repeat(2, minmax(0, 1fr))',
       },
       flex: {
-        '1/3': '0 0 calc(33% - 20px)'
+        '1/3': '0 0 calc(33% - 20px)',
+        '1/2': '0 0 calc(50% - 20px)'
       }
     }
 
