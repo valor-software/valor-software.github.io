@@ -48,17 +48,17 @@ export class SoftwareEngineeringComponent {
     traitsCards: ITraitsCard[] = [
         {
             title: 'Purpose',
-            description: 'We don’t just build software for the sake of building software. We want to bring ideas to life. We are passionate about the quality and human experiences of every product we interact with, and our company’s mission is to deliver solutions that help humanity in some aspect. Learn more on this topic from <strong><u>the page focused on projects for non-profit organizations.</u></strong>',
+            description: 'We don’t just build software for the sake of building software. We want to bring ideas to life. We are passionate about the quality and human experiences of every product we interact with, and our company’s mission is to deliver solutions that help humanity in some aspect. Learn more on this topic from <a href="/clients/non-profit" target="_blank"><b><u>the page focused on projects for non-profit organizations.</u></b></a>',
             img: 'assets/img/bg-img/services_img/software_engineering/traits/purpose.png'
         },
         {
             title: 'Contribution',
-            description: 'We know technology, and we’re believers in open-source as a movement. Our belief goes beyond a mission statement and is visible in <strong><u>the multitude of projects we contribute to </strong></u>(both our own and those created by others in the community). We are also financially giving back through our sponsorships on the open collective.',
+            description: 'We know technology, and we’re believers in open-source as a movement. Our belief goes beyond a mission statement and is visible in <a href="https://github.com/valor-software" target="_blank"><b><u>the multitude of projects we contribute to</u></b></a>(both our own and those created by others in the community). We are also financially giving back through our sponsorships on the open collective.',
             img: 'assets/img/bg-img/services_img/software_engineering/traits/contribution.png'
         },
         {
             title: 'Commitment',
-            description: 'The vast majority of <strong><u>our clients</strong></u> are referrals. We know what the partnership means, and our commitment to trust and transparency has led to our growth.',
+            description: 'The vast majority of <a href="/projects" target="_blank"><b><u>our clients</u></b></a> are referrals. We know what the partnership means, and our commitment to trust and transparency has led to our growth.',
             img: 'assets/img/bg-img/services_img/software_engineering/traits/commitment.png'
         },
 
