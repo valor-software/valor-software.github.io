@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { SwiperOptions } from 'swiper';
 import { getCoreTeamServices } from '../../services/getCoreTeam.service';
 
 export interface ICoreTeam {
@@ -24,6 +25,21 @@ export class CoreTeamsComponent implements OnDestroy {
       this.coreTeams = services;
     });
   }
+
+  swiperConfig: SwiperOptions = {
+    slidesPerView: 1,
+    centeredSlides: true,
+    spaceBetween: 40,
+    loop: false,
+    mousewheel: {
+      releaseOnEdges: true
+    },
+
+    autoHeight: false,
+    pagination: {
+      clickable: true
+    }
+  };
 
   ngOnDestroy(): void {
       this.coreTeams$.unsubscribe();

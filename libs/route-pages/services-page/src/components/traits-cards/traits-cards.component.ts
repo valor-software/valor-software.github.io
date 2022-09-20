@@ -14,4 +14,5 @@ export interface ITraitsCard {
 export class TraitsCardComponent {
   @Input() traitCard?: ITraitsCard;
   @Input() verticalCard?: boolean;
+  @Input() smallCard?: boolean;
 }

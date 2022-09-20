@@ -6,7 +6,7 @@ import { GetVerticalServices } from '../../services/getVerticalServices.service'
 
 export interface IVerticalServicesCard {
   title: string;
-  img: string;
+  img?: string;
   description?: string;
   items: { title: string, url?: string, highlight?: boolean }[];
   button?: { title: string, url?: string};
