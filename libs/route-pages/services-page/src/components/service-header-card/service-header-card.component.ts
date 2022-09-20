@@ -5,15 +5,19 @@ import { ModalService, ContactModalComponent } from '@valor-software/common-docs
 export interface IServicesHeader {
   title: string;
   descriptions: string[];
-  img: string;
+  img?: string;
   button: {
     title: string;
     url?: string;
   },
-  bradCrumb: {
+  bradCrumb?: {
     title: string;
     path: string;
-  }
+  },
+  imgCards?: {
+    title: string;
+    img: string;
+  }[]
 }
 
 @Component({
@@ -24,6 +28,9 @@ export interface IServicesHeader {
 export class ServiceHeaderCardComponent implements OnChanges {
 
   @Input() servicesHeader?: IServicesHeader;
+  @Input() smallTitle?: boolean;
+  @Input() reverseRow?: boolean;
+  @Input() showBackground?: boolean;
 
   changeBreadCrumbTitle: { path: string, title: string, excludePath?: boolean }[] = [
     {
@@ -38,7 +45,7 @@ export class ServiceHeaderCardComponent implements OnChanges {
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.servicesHeader && this.servicesHeader) {
+    if (changes.servicesHeader && this.servicesHeader && this.servicesHeader.bradCrumb) {
       this.changeBreadCrumbTitle = [
         {
           path: 'services',
