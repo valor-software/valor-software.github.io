@@ -4,7 +4,6 @@ import { UtilService } from '@valor-software/common-docs';
 import { Observable } from 'rxjs';
 import SwiperCore, { Pagination } from "swiper";
 
-
 SwiperCore.use([Pagination]);
 
 
