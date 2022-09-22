@@ -66,10 +66,12 @@ export class DevOpsComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/others/travis_ci.png",
+          src: 'assets/img/technologies/others/travis_ci.png',
+          tooltip: 'Travis CI'
         },
         {
-          src: "assets/img/technologies/others/actions.png",
+          src: 'assets/img/technologies/others/actions.png',
+          tooltip: 'GitHub Actions'
         }
       ]
     },
@@ -79,16 +81,20 @@ export class DevOpsComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/active/google_cloud.png",
+          src: 'assets/img/technologies/active/google_cloud.png',
+          tooltip: 'Google Cloud'
         },
         {
-          src: "assets/img/technologies/active/aws.png",
+          src: 'assets/img/technologies/active/aws.png',
+          tooltip: 'AWS'
         },
         {
-          src: "assets/img/technologies/active/firebase.png",
+          src: 'assets/img/technologies/active/firebase.png',
+          tooltip: 'Firebase'
         },
         {
-          src: "assets/img/technologies/active/heroku.png",
+          src: 'assets/img/technologies/active/heroku.png',
+          tooltip: 'Heroku'
         }
       ]
     },
@@ -98,7 +104,8 @@ export class DevOpsComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/others/terraform.png",
+          src: 'assets/img/technologies/others/terraform.png',
+          tooltip: 'Terraform'
         }
       ]
     },
@@ -108,10 +115,12 @@ export class DevOpsComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/others/docker.png",
+          src: 'assets/img/technologies/others/docker.png',
+          tooltip: 'Docker'
         },
         {
-          src: "assets/img/technologies/others/kubernetes.png",
+          src: 'assets/img/technologies/others/kubernetes.png',
+          tooltip: 'Kubernetes'
         }
       ]
     },
@@ -121,13 +130,16 @@ export class DevOpsComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/others/sentry.png",
+          src: 'assets/img/technologies/others/sentry.png',
+          tooltip: 'Sentry'
         },
         {
-          src: "assets/img/technologies/others/data_dog.png",
+          src: 'assets/img/technologies/others/data_dog.png',
+          tooltip: 'Datadog'
         },
         {
-          src: "assets/img/technologies/others/stackdriver.png",
+          src: 'assets/img/technologies/others/stackdriver.png',
+          tooltip: 'Stackdriver'
         }
       ]
     },
@@ -137,7 +149,8 @@ export class DevOpsComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/others/cloudflare.png",
+          src: 'assets/img/technologies/others/cloudflare.png',
+          tooltip: 'Cloudflare'
         }
       ]
     },
@@ -209,12 +222,12 @@ export class DevOpsComponent {
     },
     {
       title: 'Strategy & innovation',
-      description: `Valor’s culture of personal growth and self-improvement drives engineers to constantly sharpen their skills and master <b><u>innovative tools and technologies</b></u>. We’ll provide you with a forward-looking DevOps solution that will not just optimize your today's processes but will enable your consistent growth and competitive advantage.`,
+      description: `Valor’s culture of personal growth and self-improvement drives engineers to constantly sharpen their skills and master <a href="/articles/medusa-the-only-commercial-available-saas-platform-for-federated-applications" target="_blank"><b><u>innovative tools and technologies</u></b></a>. We’ll provide you with a forward-looking DevOps solution that will not just optimize your today's processes but will enable your consistent growth and competitive advantage.`,
       img: 'assets/img/bg-img/services_img/devops/traits/strategy_innovation.png'
     },
     {
       title: 'Full-cycle service',
-      description: 'We go beyond a standard set of requirements and specifications – to us partnership is about being a trusted software consultant that can address clients’ needs at every stage of their journey. So rather than implementing a particular task, we deploy, <b><u>support, and maintain</b></u> your project in a reliable environment powered by DevOps.',
+      description: 'We go beyond a standard set of requirements and specifications – to us partnership is about being a trusted software consultant that can address clients’ needs at every stage of their journey. So rather than implementing a particular task, we deploy, <a href="/services/support-maintenance" target="_blank"><b><u>support, and maintain</u></b></a> your project in a reliable environment powered by DevOps.',
       img: 'assets/img/bg-img/services_img/devops/traits/full_cycle.png'
     }
   ];
