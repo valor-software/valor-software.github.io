@@ -415,6 +415,13 @@ export class SeoService {
                     this.addTags(tags);
                 }
             }
+            
+            if (value[0].path === 'services') {
+                const tags = this.metaList[`${value[0].path}/${value[1].path}`];
+                if (tags?.length) {
+                    this.addTags(tags);
+                }
+            }
 
             return '';
         }

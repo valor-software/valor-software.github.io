@@ -4,16 +4,24 @@ import { ModalService, ContactModalComponent } from '@valor-software/common-docs
 
 export interface IServicesHeader {
   title: string;
-  descriptions: string[];
-  img: string;
-  button: {
+  descriptions?: string[];
+  img?: string;
+  button?: {
     title: string;
     url?: string;
   },
-  bradCrumb: {
+  bradCrumb?: {
     title: string;
     path: string;
-  }
+  },
+  imgCards?: {
+    title: string;
+    img: string;
+  }[],
+  descriptionHierarchy?: {
+    description: string;
+    subDescription: string;
+  }[]
 }
 
 @Component({
@@ -24,7 +32,11 @@ export interface IServicesHeader {
 export class ServiceHeaderCardComponent implements OnChanges {
 
   @Input() servicesHeader?: IServicesHeader;
-
+  @Input() smallTitle?: boolean;
+  @Input() biggerImg?: boolean;
+  @Input() reverseRow?: boolean;
+  @Input() reverseCol?: boolean;
+  @Input() showBackground?: boolean;
   changeBreadCrumbTitle: { path: string, title: string, excludePath?: boolean }[] = [
     {
       path: 'services',
@@ -38,7 +50,7 @@ export class ServiceHeaderCardComponent implements OnChanges {
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.servicesHeader && this.servicesHeader) {
+    if (changes.servicesHeader && this.servicesHeader && this.servicesHeader.bradCrumb) {
       this.changeBreadCrumbTitle = [
         {
           path: 'services',
@@ -53,7 +65,7 @@ export class ServiceHeaderCardComponent implements OnChanges {
     }
   }
   onClick() {
-    if (this.servicesHeader?.button.url) {
+    if (this.servicesHeader?.button?.url ) {
       this.router.navigate([this.servicesHeader?.button.url]);
       return;
     }
