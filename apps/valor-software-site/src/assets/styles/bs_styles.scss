@@ -57,6 +57,18 @@
   }
 }
 
+.pink-circle {
+  transform: translate(-50%, 0%);
+  @apply w-8 h-8 rounded-full bg-grey_bg absolute;
+
+&::after {
+  content: '';
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @apply block absolute w-4 h-4 bg-light_pink rounded-full overflow-hidden;
+}
+}
 .main-title {
   @apply font-workSansBold text-dark_title_col_updated text-56 xl:text-title xl:leading-200 lg:text-150 lg:mb-14 lg:mt-16 mb-6;
 
