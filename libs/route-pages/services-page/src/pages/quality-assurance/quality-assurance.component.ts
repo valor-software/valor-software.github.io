@@ -42,7 +42,7 @@ export class QualityAssuranceComponent {
     },
     {
       title: 'QA automation',
-      description: 'With automated testing being a driver for every new release, we improve the software quality, ensure the integrity of the critical business features, and speed up delivery. Valor can build a custom test automation pipeline that will involve <b><u>performance and load testing</b></u> to prepare your solution for heavy traffic and scaling according to your business needs.',
+      description: 'With automated testing being a driver for every new release, we improve the software quality, ensure the integrity of the critical business features, and speed up delivery. Valor can build a custom test automation pipeline that will involve <a href="/articles/performance-testing-via-artillery-io" target="_blank"><b><u>performance and load testing</u></b></a> to prepare your solution for heavy traffic and scaling according to your business needs.',
       subtitle: 'Testing activity',
       items: [
         { title: 'E2E Testing', subItems: ['Functionality', 'Feature integration', 'Regression', 'Performance testing under product-like circumstances'] },
@@ -69,7 +69,7 @@ export class QualityAssuranceComponent {
     },
     {
       title: 'Mobile app testing',
-      description: 'Mobile solutions are usually more complex to test because they have more users and need to run on various devices. With a blend of manual testing and automated scripts, we cover primary user flows, check cross-platform coverage, performance, APIs, and ensure a flawless experience for your users. Also, we provide you with means for monitoring the progress.',
+      description: 'Mobile solutions are usually more complex to test because they have more users and need to run on various devices. With a blend of manual testing and <a href="/articles/arc-a-new-weapon-against-accessibility-bugs" target="_blank"><b><u>automated scripts</b></u></a>, we cover primary user flows, check cross-platform coverage, performance, APIs, and ensure a flawless experience for your users. Also, we provide you with means for monitoring the progress.',
       subtitle: 'Testing activity',
       items: [
         { title: 'Writing test documentation' },
@@ -84,7 +84,7 @@ export class QualityAssuranceComponent {
     },
     {
       title: 'CI/CD pipelines',
-      description: 'We’ll empower your solution with a self-sufficient DevOps that accelerates the efforts of developers and quality engineers and allows continuous integration, delivery, and deployment of updates to production. Streamline the release cycle and ship awaited features regularly with testing built in the automation flow.',
+      description: 'We’ll empower your solution with a self-sufficient <a href="/services/devops" target="_blank"><b><u>DevOps</b></u></a> that accelerates the efforts of developers and quality engineers and allows continuous integration, delivery, and deployment of updates to production. Streamline the release cycle and ship awaited features regularly with testing built in the automation flow.',
       subtitle: 'Testing activity',
       items: [
         { title: 'Continuous testing pipeline' },
@@ -100,17 +100,17 @@ export class QualityAssuranceComponent {
   traitsCards: ITraitsCard[] = [
     {
       title: 'The culture of quality',
-      description: 'When it comes to <b><u>the development of a software product</b></u>, the faster you get feedback from users, the better you can iterate and adjust with minimum loss. We strive to embed quality control in every stage of the development cycle and reduce the loop for getting users’ feedback. In this way, you deliver more regularly and cost-effectively to a more loyal audience.',
+      description: 'When it comes to <b><u>the development of a software product</u></b>, the faster you get feedback from users, the better you can iterate and adjust with minimum loss. We strive to embed quality control in every stage of the development cycle and reduce the loop for getting users’ feedback. In this way, you deliver more regularly and cost-effectively to a more loyal audience.',
       img: 'assets/img/bg-img/services_img/quality-assurance/traits/quality-culture.png'
     },
     {
       title: 'Innovation',
-      description: 'We believe that staying ahead of the curve in terms of tools and technologies is the only way to progress and build solutions that can serve clients not just today but tomorrow. We constantly monitor the latest industry trends and apply <b><u>edge technologies</b></u> that help optimize workflows and use automation to the fullest. Find more about automation and the cloud on the <b><u>DevOps page</b></u>.',
+      description: 'We believe that staying ahead of the curve in terms of tools and technologies is the only way to progress and build solutions that can serve clients not just today but tomorrow. We constantly monitor the latest industry trends and apply <b><u>edge technologies</u></b> that help optimize workflows and use automation to the fullest. Find more about automation and the cloud on the <b><u>DevOps page</u></b>.',
       img: 'assets/img/bg-img/services_img/quality-assurance/traits/innovation.png'
     },
     {
       title: 'Agility',
-      description: 'Valor’s quality assurance experts follow the principles of Agile and have regular syncs, updates with the client, reviews, and retrospectives. Even though our QA strategy is measured, we are ready to adjust it to the fast-paced business environment and address new market requirements for your solution with prompt reprioritizing. <b><u>Managers</b></u> will help adapt priorities and balance the load between team members.',
+      description: 'Valor’s quality assurance experts follow the principles of Agile and have regular syncs, updates with the client, reviews, and retrospectives. Even though our QA strategy is measured, we are ready to adjust it to the fast-paced business environment and address new market requirements for your solution with prompt reprioritizing. <b><u>Managers</u></b> will help adapt priorities and balance the load between team members.',
       img: 'assets/img/bg-img/services_img/quality-assurance/traits/agility.png'
     },
 
@@ -124,30 +124,39 @@ export class QualityAssuranceComponent {
       technologies: [
         {
           src: "assets/img/technologies/active/cypress.png",
+          tooltip: 'Cypress'
         },
         {
           src: "assets/img/technologies/others/io.png",
+          tooltip: 'I/O'
         },
         {
           src: "assets/img/technologies/others/cucumber.png",
+          tooltip: 'Cucumber'
         },
         {
           src: "assets/img/technologies/others/post-man.png",
+          tooltip: 'Postman'
         },
         {
           src: "assets/img/technologies/others/browser-stack.png",
+          tooltip: 'Browser Stack'
         },
         {
           src: "assets/img/technologies/others/sauce-labs.png",
+          tooltip: 'Sauce Labs'
         },
         {
-          src: "assets/img/technologies/others/qa.png",
+          src: "assets/img/technologies/others/artillery.png",
+          tooltip: 'Artillery '
         },
         {
           src: "assets/img/technologies/others/apache.png",
+          tooltip: 'Apache'
         },
         {
           src: "assets/img/technologies/others/arc.png",
+          tooltip: 'ARC'
         },
       ]
     },
@@ -158,15 +167,19 @@ export class QualityAssuranceComponent {
       technologies: [
         {
           src: "assets/img/technologies/others/post-man.png",
+          tooltip: 'Postman'
         },
         {
           src: "assets/img/technologies/active/lang.png",
+          tooltip: 'Lang'
         },
         {
           src: "assets/img/technologies/others/qase.png",
+          tooltip: 'Qase'
         },
         {
           src: "assets/img/technologies/others/testrail.png",
+          tooltip: 'TestRail'
         }
       ]
     },
@@ -177,12 +190,15 @@ export class QualityAssuranceComponent {
       technologies: [
         {
           src: "assets/img/technologies/others/browser-stack.png",
+          tooltip: 'Browser Stack'
         },
         {
           src: "assets/img/technologies/others/sauce-labs.png",
+          tooltip: 'Sauce Labs'
         },
         {
           src: "assets/img/technologies/others/appium.png",
+          tooltip: 'Appium'
         }
       ]
     },
@@ -193,15 +209,19 @@ export class QualityAssuranceComponent {
       technologies: [
         {
           src: "assets/img/technologies/others/travis-ci.png",
+          tooltip: 'Travis CI'
         },
         {
           src: "assets/img/technologies/others/actions.png",
+          tooltip: 'GitHub Actions'
         },
         {
           src: "assets/img/technologies/active/lang.png",
+          tooltip: 'Lang'
         },
         {
           src: "assets/img/technologies/others/confluence.png",
+          tooltip: 'Confluence'
         }
       ]
     },
