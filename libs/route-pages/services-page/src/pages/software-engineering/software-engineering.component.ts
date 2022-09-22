@@ -72,18 +72,24 @@ export class SoftwareEngineeringComponent {
             technologies: [
                 {
                     src: "assets/img/technologies/others/type_script.png",
+                    tooltip: 'TypeScript'
+
                 },
                 {
                     src: "assets/img/technologies/active/react.png",
+                    tooltip: 'React'
                 },
                 {
                     src: "assets/img/technologies/active/angular.png",
+                    tooltip: 'Angular'
                 },
                 {
                     src: "assets/img/technologies/others/ngx_bootstrap.png",
+                    tooltip: 'ngx-bootStrap'
                 },
                 {
                     src: "assets/img/technologies/active/vue.png",
+                    tooltip: 'Vue'
                 }
             ]
         },
@@ -94,30 +100,39 @@ export class SoftwareEngineeringComponent {
             technologies: [
                 {
                     src: "assets/img/technologies/active/nest_js.png",
+                    tooltip: 'Nest.js'
                 },
                 {
                     src: "assets/img/technologies/others/express.png",
+                    tooltip: 'Express'
                 },
                 {
                     src: "assets/img/technologies/active/ruby.png",
+                    tooltip: 'Ruby'
                 },
                 {
                     src: "assets/img/technologies/others/rails.png",
+                    tooltip: 'Ruby on Rails'
                 },
                 {
                     src: "assets/img/technologies/active/python.png",
+                    tooltip: 'Python'
                 },
                 {
                     src: "assets/img/technologies/others/r.png",
+                    tooltip: 'Rust'
                 },
                 {
                     src: "assets/img/technologies/active/go.png",
+                    tooltip: 'Go'
                 },
                 {
                     src: "assets/img/technologies/others/dot_net.png",
+                    tooltip: '.NET'
                 },
                 {
                     src: "assets/img/technologies/others/c_sharp.png",
+                    tooltip: 'C Sharp'
                 },
             ]
         },
@@ -128,18 +143,23 @@ export class SoftwareEngineeringComponent {
             technologies: [
                 {
                     src: "assets/img/technologies/active/react_native.png",
+                    tooltip: 'React Native'
                 },
                 {
                     src: "assets/img/technologies/active/native_script.png",
+                    tooltip: 'NativeScript'
                 },
                 {
                     src: "assets/img/technologies/others/ionic.png",
+                    tooltip: 'Ionic'
                 },
                 {
                     src: "assets/img/technologies/others/java.png",
+                    tooltip: 'Java'
                 },
                 {
                     src: "assets/img/technologies/others/swift.png",
+                    tooltip: 'Swift'
                 }
             ]
         },
