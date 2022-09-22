@@ -1,0 +1,14 @@
+{
+  "author": "Zackary Chapple",
+  "order": 45,
+  "domains": [
+    "dev_quality_assurance"
+  ],
+  "authorImg": "assets/articles/scully-test/zack_chapple.jpeg",
+  "language": "en",
+  "bgImg": "assets/articles/scully-test/tw__1500x500-profile-cover-midnight.png",
+  "title": "Scully Test",
+  "position": "Leading growth for Sales, Marketing, and Product",
+  "date": "Mon Sep 12 2022 10:50:04 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": " Medusa creates an environment where software developers finally have the visibility into their module federation powered and distributed micro frontends."
+}
