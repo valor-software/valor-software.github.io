@@ -137,13 +137,16 @@ export class DesignComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/others/figma.png",
+          src: 'assets/img/technologies/others/figma.png',
+          tooltip: 'Figma'
         },
         {
-          src: "assets/img/technologies/others/miro.png",
+          src: 'assets/img/technologies/others/miro.png',
+          tooltip: 'Miro'
         },
         {
-          src: "assets/img/technologies/others/xmind.png",
+          src: 'assets/img/technologies/others/xmind.png',
+          tooltip: 'Xmind'
         }
       ]
     },
@@ -153,10 +156,12 @@ export class DesignComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/others/webflow.png",
+          src: 'assets/img/technologies/others/webflow.png',
+          tooltip: 'Webflow'
         },
         {
-          src: "assets/img/technologies/others/zapier.png",
+          src: 'assets/img/technologies/others/zapier.png',
+          tooltip: 'Zapier'
         }
       ]
     },
@@ -166,10 +171,12 @@ export class DesignComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/others/invision.png",
+          src: 'assets/img/technologies/others/invision.png',
+          tooltip: 'InVision'
         },
         {
-          src: "assets/img/technologies/others/creative_cloud.png",
+          src: 'assets/img/technologies/others/creative_cloud.png',
+          tooltip: 'Creative Cloud'
         }
       ]
     },
@@ -179,13 +186,16 @@ export class DesignComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/others/google_marketing.png",
+          src: 'assets/img/technologies/others/google_marketing.png',
+          tooltip: 'Google Marketing'
         },
         {
-          src: "assets/img/technologies/others/google_forms.png",
+          src: 'assets/img/technologies/others/google_forms.png',
+          tooltip: 'Google Forms'
         },
         {
-          src: "assets/img/technologies/others/useberry.png",
+          src: 'assets/img/technologies/others/useberry.png',
+          tooltip: 'Useberry'
         }
       ]
     },
