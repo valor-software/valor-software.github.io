@@ -78,7 +78,7 @@ export class SupportMaintenanceComponent {
     {
       title: 'Need any help with NativeScript?',
       descriptions: [
-        'Being official partners and contributors to NativeScript, we can help you make the most value out of this technology for your business. Valor supports teams who are just starting out with NS and those who already have NativeScript apps and struggle to maintain them.',
+        'Being <a href="https://nativescript.org/partners/" target="_blank"><b><u>official partners</u></b></a> and contributors to NativeScript, we can help you make the most value out of this technology for your business. Valor supports teams who are just starting out with NS and those who already have NativeScript apps and struggle to maintain them.',
         `We have a proven record of projects successfully delivered using NativeScript, and there’s a big chance that we’ve already found a way to solve the problem your team might be facing. With access to people who add to the framework’s functionality, you'll have support from the primary knowledge source.`
       ],
       img: 'assets/img/bg-img/services_img/support-maintenance/bg-cards/native.png',
@@ -90,7 +90,7 @@ export class SupportMaintenanceComponent {
       title: 'Empowering Angular for business',
       descriptions: [
         `Companies that use Angular legacy versions face restrictions in efficiency, speed, and the limited functionality of the framework. They also can hardly find engineers to support the codebase. Valor will help you upgrade to new versions and prepare your staff for modular architecture.`,
-        `Valor has been a leader in the Angular dev space since 2013, with one of the strongest Angular expertise inside the company. We’re the creators of numerous community libraries, including ngx-bootstrap. Not to mention that we sponsor Angular-dedicated conferences with the CEO being a regular speaker. We can help you migrate from AngularJS to Angular, consult your team on solving particular challenges, or make training from beginner to advanced level.`
+        `Valor has been a leader in the Angular dev space since 2013, with one of the strongest Angular expertise inside the company. We’re the creators of numerous community libraries, including <a href="https://valor-software.com/ngx-bootstrap/#/" target="_blank"><b><u>ngx-bootstrap</u></b></a>. Not to mention that we sponsor Angular-dedicated conferences with the CEO being a <a href="https://www.youtube.com/watch?v=EIDedyjgWyc" target="_blank"><b><u>regular speaker</u></b></a>. We can help you migrate from AngularJS to Angular, consult your team on solving particular challenges, or make training from beginner to advanced level.`
       ], img: 'assets/img/bg-img/services_img/support-maintenance/bg-cards/angular.png',
       button: {
         title: 'Submit for a workshop'
@@ -99,7 +99,7 @@ export class SupportMaintenanceComponent {
     {
       title: 'Built to last with NestJS',
       descriptions: [
-        `As Principal NestJS Sponsors and evangelists, we can help you utilize best practices and maximize the performance of your application. Turn for assistance in the app upgrade, technical guidance, and team mentorship.`,
+        `As <a href="https://nestjs.com/" target="_blank"><b><u>Principal NestJS Sponsors</u></b></a> and evangelists, we can help you utilize best practices and maximize the performance of your application. Turn for assistance in the app upgrade, technical guidance, and team mentorship.`,
         `Based on TypeScript on top of Node.js, NestJS allows building enterprise-grade platforms that are easy to operate and scale. As it borrows a lot of concepts from Angular, you can focus on the design of endpoints and provide consumers with the best possible APIs.`,
         `Valor’s been trusted with not just modernization using NestJS, but training for teams who have used Java and .NET for server-side before. We can bring your engineers up to speed with the technology and ensure you feel comfortable using Nest.`
       ],
@@ -139,7 +139,7 @@ export class SupportMaintenanceComponent {
   traitsCard: ITraitsCard[] = [
     {
       title: 'Unique open-source expertise',
-      description: `While most engineers perceive technologies primarily from the consumer’s perspective, Valorians get under the hood and know how the tooling is built. We’ve created many Angular community libraries, including ngx-bootstrap, with hundreds of thousands of users. This unique experience empowers us to find new non-standard ways of how technology can solve your particular business problems.`,
+      description: `While most engineers perceive technologies primarily from the consumer’s perspective, Valorians get under the hood and know how the tooling is built. We’ve created many Angular community libraries, including <a href="https://valor-software.com/ngx-bootstrap/#/" target="_blank"><b><u>ngx-bootstrap</u></b></a>, with hundreds of thousands of users. This unique experience empowers us to find new non-standard ways of how technology can solve your particular business problems.`,
       img: 'assets/img/bg-img/services_img/support-maintenance/traits/open_source.png'
     },
     {
