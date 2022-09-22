@@ -1,32 +1,85 @@
 <ng-container *ngIf="servicesHeader">
   <div class="container">
-    <ng-container *ngIf="changeBreadCrumbTitle?.length">
+    <ng-container *ngIf="changeBreadCrumbTitle?.length && servicesHeader.bradCrumb">
       <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
       </breadCrumbs>
     </ng-container>
-    <div class="flex flex-col gap-10 lg:flex-row justify-center lg:justify-between mb-32 items-center pt-16 lg:pt-0">
-      <div class="md:mt-0 lg:w-6/12">
-
-        <h1 class="text-light_title_col lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+    <div
+      [ngClass]="{ 'mb-0' : smallTitle, 'mb-32' : !smallTitle, 'bg-grey p-6 md:px-12 md:py-16' : showBackground, 'pt-16 lg:pt-0' : !showBackground && !smallTitle, 'lg:flex-row': !reverseRow, 'lg:flex-row-reverse': reverseRow, 'flex-col-reverse': reverseCol }"
+      class="flex flex-col gap-10 justify-center lg:justify-between items-center ">
+      <div class="md:mt-0 " [ngClass]="{'lg:w-8/12' : smallTitle, 'lg:w-6/12' : !smallTitle}">
+        <h1 class="text-light_title_col  font-bold tracking-tightest"
+          [ngClass]="{'lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12' : !smallTitle, 'lg:text-32 text-24 mb-4 md:mb-6' : smallTitle }">
           {{servicesHeader.title}}
         </h1>
-        <p *ngFor="let description of servicesHeader.descriptions"
-          class="leading-6 text-grey_font_col text-16 lg:mb-8 mb-18 tracking-tightest">
+        <p *ngFor="let description of servicesHeader?.descriptions" [ngClass]="{
+          'lg:mb-8 mb-18' : !smallTitle,
+          'mb-4 md:mb-6' : smallTitle
+        }" class="leading-6 text-grey_font_col text-16 tracking-tightest">
           {{description}}</p>
-        <div class="lg:block hidden flex-column lg:flex justify-start items-center">
-          <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
+
+        <!-- Description Hierarchy -->
+
+        <div class="flex flex-col gap-10 md:gap-5">
+          <div *ngFor="let item of servicesHeader.descriptionHierarchy; let i = index" class="pb-0">
+            <div class="flex flex-row items-center">
+
+              <div class="pink-circle bg-grey m-auto"></div>
+              <div class="max-w-fit ml-8 text-light_title_col">
+                <p class="leading-6 text-base md:text-20 tracking-tightest">
+                  {{item.description}}</p>
+              </div>
+            </div>
+            <div class="flex flex-row items-baseline gap-2 ">
+              <div class=" flex flex-col border-b-2 border-l-2 border-l-green border-b-green w-1/12 h-50 ">
+              </div>
+              <div class="border-2 border-green bg-light_grey w-full md:w-9/12">
+                <p class="px-4 py-2 leading-6 text-grey_font_col tracking-tightest text-base md:text-20 text-light_title_col w-full tracking-tightest ">
+                  {{item.subDescription}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- End Description Hierarchy -->
+
+        <div class="lg:block hidden flex-column lg:flex justify-start items-center" *ngIf="servicesHeader && servicesHeader.button">
+          <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full" >
             <a (click)="onClick()" target="_blank" class="btn-pink w-full flex justify-center items-center">
               {{servicesHeader.button.title}}
               <img src="assets/img/icons/arrow.svg" class="ml-2 my-auto" alt=""></a>
           </button>
         </div>
       </div>
-      <div class="w-full lg:w-538">
-        <img class=" w-full" [src]="servicesHeader.img" alt="">
+      <div [ngClass]="{ 'lg:w-6/12': !biggerImg, 'lg:w-10/12' : biggerImg }" *ngIf="servicesHeader.img">
+        <img class=" w-full m-auto" [src]="servicesHeader.img" alt="">
       </div>
-      <div class="lg:hidden block flex-column lg:flex justify-start items-center">
-        <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
-          <a (click)="onClick()" target="_blank" class="btn-pink w-full text-sm md:text-base flex justify-center items-center">
+
+      <!-- img cards -->
+
+      <div class="container lg:w-6/12" *ngIf="servicesHeader.imgCards">
+        <div class="flex flex-wrap gap-6 justify-center">
+          <div *ngFor="let card of servicesHeader.imgCards" class="lg:flex-1/2 w-full">
+            <div
+              class="flex flex-row gap-4 justify-between bg-light_grey border-2 border-green rounded-lg m-auto p-4 h-full w-full">
+              <div class="m-auto">
+                <img [src]="card.img" alt="">
+              </div>
+              <div class="m-auto lg:w-54%">
+                <p class="leading-6 text-grey_font_col text-16 tracking-tightest  m-auto">
+                  {{card.title}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- end img cards -->
+
+      <div class="lg:hidden block flex-column lg:flex justify-start items-center w-full" *ngIf="servicesHeader && servicesHeader.button">
+        <button class="w-full flex lg:mr-6 mb-4">
+          <a (click)="onClick()" target="_blank"
+            class="btn-pink w-full text-sm md:text-base flex justify-center items-center">
             {{servicesHeader.button.title}}
             <img src="assets/img/icons/arrow.svg" class="ml-2 my-auto" alt=""></a>
         </button>
