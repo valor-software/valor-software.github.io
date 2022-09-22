@@ -144,7 +144,7 @@ export class SupportMaintenanceComponent {
     },
     {
       title: 'Enterprise proficiency',
-      description: `A proven record of successful migrations and modernizations of legacy infrastructures makes Valor ready for this kind of challenge. We know how crucial security is for you alongside innovation, so we move step-by-step, with regular reporting and careful maintenance of project documentation. Lear more about Valor's capabilities for enterprise from <a target="_blank" href="/clients/enterprises"><b><u>the dedicated page</b></u></a>.`,
+      description: `A proven record of successful <a href="/projects/terminus" target="_blank"><b><u>migrations and modernizations</u></b></a> of legacy infrastructures makes Valor ready for this kind of challenge. We know how crucial security is for you alongside innovation, so we move step-by-step, with regular reporting and careful maintenance of project documentation. Lear more about Valor's capabilities for enterprise from <a target="_blank" href="/clients/enterprises"><b><u>the dedicated page</b></u></a>.`,
       img: 'assets/img/bg-img/services_img/support-maintenance/traits/enterprise_proficiency.png'
     },
     {
