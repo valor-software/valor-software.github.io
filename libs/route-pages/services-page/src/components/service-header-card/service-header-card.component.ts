@@ -4,9 +4,9 @@ import { ModalService, ContactModalComponent } from '@valor-software/common-docs
 
 export interface IServicesHeader {
   title: string;
-  descriptions: string[];
+  descriptions?: string[];
   img?: string;
-  button: {
+  button?: {
     title: string;
     url?: string;
   },
@@ -17,6 +17,10 @@ export interface IServicesHeader {
   imgCards?: {
     title: string;
     img: string;
+  }[],
+  descriptionHierarchy?: {
+    description: string;
+    subDescription: string;
   }[]
 }
 
@@ -29,9 +33,10 @@ export class ServiceHeaderCardComponent implements OnChanges {
 
   @Input() servicesHeader?: IServicesHeader;
   @Input() smallTitle?: boolean;
+  @Input() biggerImg?: boolean;
   @Input() reverseRow?: boolean;
+  @Input() reverseCol?: boolean;
   @Input() showBackground?: boolean;
-
   changeBreadCrumbTitle: { path: string, title: string, excludePath?: boolean }[] = [
     {
       path: 'services',
@@ -60,7 +65,7 @@ export class ServiceHeaderCardComponent implements OnChanges {
     }
   }
   onClick() {
-    if (this.servicesHeader?.button.url) {
+    if (this.servicesHeader?.button?.url ) {
       this.router.navigate([this.servicesHeader?.button.url]);
       return;
     }
