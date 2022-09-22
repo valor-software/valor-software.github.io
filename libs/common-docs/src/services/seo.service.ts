@@ -85,6 +85,44 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             content: 'Services - Valor Software'
         }
     ],
+    'services/quality-assurance': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content:'Valor provides an organized and comprehensive approach towards quality assurance because testing is not a project phase, it actually drives the development forward.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'Quality Assurance - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'Valor provides an organized and comprehensive approach towards quality assurance because testing is not a project phase, it actually drives the development forward.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'Quality Assurance - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'Valor provides an organized and comprehensive approach towards quality assurance because testing is not a project phase, it actually drives the development forward.'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'Quality Assurance - Valor Software'
+        }
+    ],
     'projects': [
         {
             nameType: 'meta',
