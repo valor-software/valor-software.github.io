@@ -19,3 +19,5 @@ export const projectsList = [
     'Vizabi',
     'Netifi',
 ];
+
+export const scullyList = [];

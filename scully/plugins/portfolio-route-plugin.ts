@@ -1,10 +1,10 @@
 import { HandledRoute, registerPlugin } from "@scullyio/scully";
-import { projectsList } from "../../apps/valor-software-site/src/assets/portfolio/portfolio.list";
+import { projectsList, scullyList } from "../../apps/valor-software-site/src/assets/portfolio/portfolio.list";
 import { titleRefactoring } from "../utils/titleRefactoring";
 
 function PortfolioRoutePlugin(route: string, config = {}): Promise<HandledRoute[]> {
     const routes = [];
-    projectsList.map((item: string) => {
+    scullyList.map((item: string) => {
         let link = titleRefactoring(item);
         routes.push({route: `/projects/${link}`});
     });

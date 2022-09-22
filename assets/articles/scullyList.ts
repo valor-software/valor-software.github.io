@@ -1,1 +1,1 @@
-export const scullyList = ["scully-test"];
+export const scullyList = [""];
