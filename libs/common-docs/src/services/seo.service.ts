@@ -52,7 +52,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'name',
             nameValue: 'description',
-            content:'We provide enterprise-level service, covering all areas of software development: iOS, Android, and Web, as well as offering professional UX/UI expertise'
+            content:'As the development world is getting even more agile, organizations need to follow to keep pace with the users’ expectations and needs. Valor Software will help you satisfy your audience’s insatiable desire for the newest features and get a competitive advantage with digital transformation.'
         },
         {
             nameType: 'meta',
@@ -83,6 +83,44 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             name: 'title',
             nameValue: 'title',
             content: 'Services - Valor Software'
+        }
+    ],
+    'services/devops': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content:'We provide enterprise-level service, covering all areas of software development: iOS, Android, and Web, as well as offering professional UX/UI expertise'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'DevOps - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'As the development world is getting even more agile, organizations need to follow to keep pace with the users’ expectations and needs. Valor Software will help you satisfy your audience’s insatiable desire for the newest features and get a competitive advantage with digital transformation.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'DevOps - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'As the development world is getting even more agile, organizations need to follow to keep pace with the users’ expectations and needs. Valor Software will help you satisfy your audience’s insatiable desire for the newest features and get a competitive advantage with digital transformation.'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'DevOps - Valor Software'
         }
     ],
     'projects': [
