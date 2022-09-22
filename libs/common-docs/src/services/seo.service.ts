@@ -85,6 +85,44 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             content: 'Services - Valor Software'
         }
     ],
+    'services/design': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content: 'Designing solutions with users in mind, we strive to make their journey an intuitive and breathtaking adventure. Therefore before proceeding with UI, we help you define the frustrations of your audience and cover them with optimal UX.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'Design - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'Designing solutions with users in mind, we strive to make their journey an intuitive and breathtaking adventure. Therefore before proceeding with UI, we help you define the frustrations of your audience and cover them with optimal UX.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'Design - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'Designing solutions with users in mind, we strive to make their journey an intuitive and breathtaking adventure. Therefore before proceeding with UI, we help you define the frustrations of your audience and cover them with optimal UX.'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'Design - Valor Software'
+        }
+    ],
     'projects': [
         {
             nameType: 'meta',
