@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 
 export interface ITechnologiesCard {
@@ -11,6 +11,7 @@ export interface ITechnologiesCard {
 
 export interface ITechnologies {
   title?: string;
+  tooltip?: string;
   src: string;
   wrapText?: boolean;
 }
@@ -22,4 +23,16 @@ export interface ITechnologies {
 })
 export class TechnologiesCardComponent {
   @Input() technologiesCards?: ITechnologiesCard[];
+  dropdownPopoverShow = false;
+  @ViewChild("popoverDropdownRef", { static: false })
+  tooltipTechnology?: ElementRef;
+
+  toggleTooltip(event: any) {
+    event.preventDefault();
+    if (this.dropdownPopoverShow) {
+      this.dropdownPopoverShow = false;
+    } else {
+      this.dropdownPopoverShow = true;
+    }
+  }
 }
