@@ -72,7 +72,7 @@ export class TablesReadyPageComponent {
                     title: "firebase"
                 },
                 {
-                    src: "assets/img/technologies/active/aws.png",
+                    src: "assets/img/technologies/others/aws_white.png",
                     title: "AWS"
                 },
                 {
@@ -80,7 +80,7 @@ export class TablesReadyPageComponent {
                     title: "Twilio"
                 },
                 {
-                    src: "assets/img/technologies/others/recurly.png",
+                    src: "assets/img/technologies/others/recurly_white.svg",
                     title: "Recurly"
                 },
                 {
@@ -122,12 +122,12 @@ export class TablesReadyPageComponent {
 
     modernUi1 = {
         beforeImg: 'assets/img/bg-img/tablesready_page/modern_ui_old_1.png',
-        afterImg: 'assets/img/bg-img/tablesready_page/modern_ui_new_1.jpg'
+        afterImg: 'assets/img/bg-img/tablesready_page/modern_ui_new_1.png'
     };
 
     modernUi2 = {
         beforeImg: 'assets/img/bg-img/tablesready_page/modern_ui_old_2.png',
-        afterImg: 'assets/img/bg-img/tablesready_page/modern_ui_new_2.jpg'
+        afterImg: 'assets/img/bg-img/tablesready_page/modern_ui_new_2.png'
     };
 
 
