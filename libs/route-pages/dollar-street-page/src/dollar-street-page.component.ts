@@ -70,7 +70,7 @@ export class DollarStreetPageComponent {
                     title: "Angular"
                 },
                 {
-                    src: "assets/img/technologies/active/aws.png",
+                    src: "assets/img/technologies/others/aws_white.png",
                     title: "AWS"
                 },
                 {
@@ -90,7 +90,7 @@ export class DollarStreetPageComponent {
                     title: "AWS S3"
                 },
                 {
-                    src: "assets/img/technologies/others/docker.png",
+                    src: "assets/img/technologies/others/docker_white.webp",
                     title: "Docker"
                 },
                 {
