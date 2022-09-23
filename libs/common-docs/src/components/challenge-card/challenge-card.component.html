@@ -1,10 +1,10 @@
 <div class="bg-grey lg:p-10 lg:min-h-50 p-4 flex justify-between mb-8 w-full flex-col " *ngIf="challengeCard">
 
-  <div class="mb-7 md:w-80%">
+  <div class="mb-7 md:w-10/12">
     <p
       class="font-bold text-light_title_col text-20 md:text-40 block mr-3.5  text-left mt-6 mt-0  md:leading-44 mb-4 md:mb-6">
       {{challengeCard.challenge.title}}</p>
-    <p class="leading-normal text-16 text-grey_font_col mb-6 md:mb-10"
+    <p class="leading-normal text-16 text-grey_font_col mb-6 md:mb-10 tracking-tightest"
       *ngFor="let description of challengeCard.challenge.description"> {{description}}
     </p>
   </div>
@@ -59,7 +59,7 @@
 
   <div *ngIf="challengeCard.subSection && challengeCard.subSection.video">
 
-    <video width="100%" controls class="mb-7" [poster]="challengeCard.subSection.video_poster"> 
+    <video width="100%" controls class="mb-7" [poster]="challengeCard.subSection.video_poster">
       <source [src]="getSafeUrl(challengeCard.subSection.video)" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -72,7 +72,8 @@
       *ngFor="let description of challengeCard.footer.description"> {{description}}
     </p>
 
-    <ul *ngIf="challengeCard.footer.list" class="list-disc list-inside lg:list-outside  leading-normal text-white text-16 md:text-20 w-10/12">
+    <ul *ngIf="challengeCard.footer.list"
+      class="list-disc list-inside lg:list-outside  leading-normal text-white text-16 md:text-20 w-10/12">
       <li *ngFor="let item of challengeCard.footer.list">{{item}}</li>
     </ul>
   </div>

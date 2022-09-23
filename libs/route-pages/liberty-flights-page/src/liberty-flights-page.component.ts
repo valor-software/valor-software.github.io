@@ -142,9 +142,6 @@ export class LibertyFlightsPageComponent {
         slidesPerView: 1,
         spaceBetween: 40,
         centeredSlides: true,
-        mousewheel: {
-            releaseOnEdges: true
-        },
         initialSlide: 0,
         slideToClickedSlide: true,
         pagination: {

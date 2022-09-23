@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="hidden lg:block">
-            <img src="assets/img/portfolio/liberty_header.png" alt="">
+            <img class="max-w-678" src="assets/img/portfolio/liberty_header.png" alt="">
         </div>
 
         <div class="block lg:hidden m-auto ">
@@ -70,7 +70,7 @@
             <h2 class="text-light_title_col text-left lg:m-l0 ml-5 text-32 lg:text-40 font-bold mb-4 ">
                 A new SEO-friendly design and a mobile version released
             </h2>
-            <p class="text-grey_font_col text-left text-16">
+            <p class="text-grey_font_col text-left text-16 tracking-tightest">
                 Initially the client wanted to redesign the banners on the website, but having analyzed the website
                 design in detail, we came to a conclusion that a complete renewal is the way to go. Valor suggested
                 a new color scheme, new fonts, product cards, and users' profiles, and then adopted banners to the
@@ -186,19 +186,21 @@
             </p>
 
             <div class="px-5 lg:px-0">
-                <div *ngFor="let item of deliveredFeatureList; let i = index">
-                    <div class="flex flex-row">
-                        <div class="flex flex-col">
-                            <p class="m-auto text-12 text-large text-green font-bold -mt-3"> {{i + 1}}</p>
-                            <div class="m-auto bg-green h-full w-0.5 mb-4"
-                                *ngIf="i !== (deliveredFeatureList.length - 1)">
+                <div class="grid grid-cols-1 auto-rows-fr">
+                    <div *ngFor="let item of deliveredFeatureList; let i = index">
+                        <div class="flex flex-row h-full">
+                            <div class="flex flex-col">
+                                <p class="m-auto text-12 text-large text-green font-bold -mt-3"> {{i + 1}}</p>
+                                <div class="m-auto bg-green h-full w-0.5 mb-4"
+                                    *ngIf="i !== (deliveredFeatureList.length - 1)">
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex flex-col max-w-fit lg:max-w-400 ml-8 text-light_title_col">
-                            <p class="font-bold leading-6 md:leading-8 mb-4 text-24 md:text-32">
-                                {{item.title}}
-                            </p>
-                            <p class="text-grey_font_col mb-8">{{item.description}}</p>
+                            <div class="flex flex-col max-w-fit lg:max-w-400 ml-8 text-light_title_col">
+                                <p class="font-bold leading-6 md:leading-8 mb-4 text-24 md:text-32">
+                                    {{item.title}}
+                                </p>
+                                <p class="text-grey_font_col mb-8">{{item.description}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
