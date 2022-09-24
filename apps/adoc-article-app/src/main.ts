@@ -9,6 +9,7 @@ const Asciidoctor = require('asciidoctor');
 const asciidoctor = Asciidoctor();
 const articlesList = new Set();
 const articleOrder = new Set();
+const cleanArticleListTitle = new Set();
 const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
 
 (async () => {
@@ -26,9 +27,7 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
                     convertDocAttributes.push('toc');
                 }
                 const htmlContent = await asciidoctor.convert(content, {attributes: convertDocAttributes});
-                if (!fs.existsSync(`apps/valor-software-site/src/assets/articles/${dirName}`)) {
-                    await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => {return;});
-                }
+                await functionCreateFolderIfNotExist(dirName);
 
                 await fs.writeFile(`apps/valor-software-site/src/assets/articles/${dirName}/${dirName}.html`, htmlContent, 'utf-8');
             }
@@ -41,17 +40,13 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
                     order: jsonData.order,
                     title: jsonData.title
                 });
-                if (!fs.existsSync(`apps/valor-software-site/src/assets/articles/${dirName}`)) {
-                    await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => {return;});
-                }
+                await functionCreateFolderIfNotExist(dirName);
 
                 await fs.copyFile(`${articlesFolderPath}/${folder.name}/${file.name}`, `apps/valor-software-site/src/assets/articles/${dirName}/${dirName}.json`);
             }
 
             if (extension !== 'adoc' && extension !== 'html' && extension !== 'json') {
-                if (!fs.existsSync(`apps/valor-software-site/src/assets/articles/${dirName}`)) {
-                    await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => {return;});
-                }
+                await functionCreateFolderIfNotExist(dirName);
 
                 await fs.copyFile(`${articlesFolderPath}/${folder.name}/${file.name}`, `apps/valor-software-site/src/assets/articles/${dirName}/${file.name}`);
             }
@@ -71,6 +66,10 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         titleList.add(article.title);
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        cleanArticleListTitle.add(titleRefactoring(article.title));
     });
     await Promise.all(artList);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -81,4 +80,27 @@ const articlesFolderPath = path.resolve(process.cwd(), 'assets/articles');
     const titleText = [...titleList].map(JSON.stringify).reduce((prev, next) => `${prev}, ${next}`);
     const arrContent = `export const articlesRefactoringTitlesList = [${text}];\nexport const articlesList = [${titleText}];\nconst orderNumberForNextArticle = ${artList.length + 1};`;
     fs.writeFileSync(`apps/valor-software-site/src/assets/articles/articlesList.ts`, arrContent, 'utf-8');
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const cleanTitle = [...cleanArticleListTitle].map(JSON.stringify).reduce((prev, next) => `${prev}, ${next}`);
+    const cleanArticleContent = `export const articlesRefactoringTitlesList = [${cleanTitle}];\nexport const articlesList = [${titleText}];\nconst orderNumberForNextArticle = ${artList.length + 1};`;
+    fs.writeFileSync(`assets/articles/articlesList.ts`, cleanArticleContent, 'utf-8');
+
 })();
+
+function titleRefactoring(title: string): string {
+    let res = title.replace(/[^a-zA-Z 0-9'-]/gm, "-");
+    res = res.replace(/[\s*]/gm, "-");
+    res = res.replace(/()--*/gm, "-");
+    res = res.replace(/'/gm, "");
+    res = res.replace(/\/-/gm, "");
+    res = res.replace(/-*$/gm, "");
+    return res.toLowerCase();
+}
+
+async function functionCreateFolderIfNotExist(dirName: string) {
+    if (!fs.existsSync(`apps/valor-software-site/src/assets/articles/${dirName}`)) {
+        await fs.mkdir(`apps/valor-software-site/src/assets/articles/${dirName}`).catch(() => { return; });
+    }
+}
