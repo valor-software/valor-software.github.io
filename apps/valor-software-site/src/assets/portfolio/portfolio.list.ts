@@ -1,4 +1,6 @@
 export const projectsList = [
+    'Ashes Of Creation',
+    'Terminus',
     'CareerBuilder',
     'Zuora',
     'Dollar Street',
@@ -16,7 +18,5 @@ export const projectsList = [
     'ThisDot',
     'NgAtlanta',
     'Vizabi',
-    'Netifi',
-    'Terminus',
-    'Ashes Of Creation'
+    'Netifi'
 ];

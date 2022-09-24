@@ -26,6 +26,7 @@ import { ExpandableCardComponent } from './components/expandable-card/expandable
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
+import { TechnologiesCardComponent } from './components/techonlogies-card/technologies-card.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -70,7 +71,8 @@ export { NextProjectComponent } from './components/next-project/next-project.com
     NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent,
-    TechnologiesComponent
+    TechnologiesComponent,
+    TechnologiesCardComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -87,7 +89,8 @@ export { NextProjectComponent } from './components/next-project/next-project.com
     NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent,
-    TechnologiesComponent
+    TechnologiesComponent,
+    TechnologiesCardComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
     {
