@@ -26,7 +26,7 @@ import { ExpandableCardComponent } from './components/expandable-card/expandable
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
-import { TechnologiesCardComponent } from './components/techonlogies-card/technologies-card.component';
+import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -53,7 +53,9 @@ export { ExpandableCardComponent } from './components/expandable-card/expandable
 export { IExpandableCard } from './components/expandable-card/expandable-card.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 export { NextProjectComponent } from './components/next-project/next-project.component';
-
+export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
+export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
+export { technologiesAndServices } from './components/technologies/technologies-and-services';
 @NgModule({
   declarations: [
     PopoverComponent,

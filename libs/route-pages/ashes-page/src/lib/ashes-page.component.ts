@@ -1,9 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component } from "@angular/core";
 import { GetPortfolioService, IPortfolio, MappedTechnology, Technologies, titleRefactoring } from "@valor-software/common-docs";
 import { Observable } from "rxjs";
 import { DomSanitizer } from '@angular/platform-browser';
-import { ITechnologiesCard } from '../../../../common-docs/src/components/techonlogies-card/technologies-card.component';
-import { technologiesAndServices } from '../../../../common-docs/src/components/technologies/technologies-and-services';
+import { ITechnologiesCard, technologiesAndServices } from '@valor-software/common-docs';
 
 const ROUTE = 'ashes-of-creation';
 
