@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import SwiperCore, { Pagination, SwiperOptions } from "swiper";
+import SwiperCore, { Pagination, SwiperOptions, Autoplay } from "swiper";
 import { GetPortfolioService, IPortfolio, UtilService } from '@valor-software/common-docs';
 import { Observable } from 'rxjs';
 import { ITechnologiesCard } from '@valor-software/common-docs';
 
-SwiperCore.use([Pagination]);
+SwiperCore.use([Pagination, Autoplay]);
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -122,6 +122,9 @@ export class DollarStreetPageComponent {
         slideToClickedSlide: true,
         pagination: {
             clickable: true
+        },
+        autoplay: {
+            delay: 3000
         }
     };
 
