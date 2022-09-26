@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { IChallengeCard } from '@valor-software/common-docs';
-import SwiperCore, { Pagination, SwiperOptions } from "swiper";
+import SwiperCore, { Pagination, SwiperOptions, Autoplay } from "swiper";
 import { ITechnologiesCard } from './technologies-card.component';
 
-SwiperCore.use([Pagination]);
-
+SwiperCore.use([Pagination, Autoplay]);
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -75,9 +74,9 @@ export class LibertyFlightsPageComponent {
         challenge: {
             title: 'The Challenge',
             description: [
-                `We dealt with a codebase written differently from the Valor's standards, which made the migration more complicated.`,
-                'Another obstacle we faced was that the frontend part aimed to work inside the browser, which is typical for Angular. This influenced the work accuracy and negatively affected SEO. Since the web page content varied based on the results of work in the browser instead of coming directly from the server, we couldn’t display the requested info in the search results.',
-                'Due to updates in Angular 10, a whole lot of issues arose during the deployment process. But the worst part was the necessity to turn off the production site during the deployment for maintenance. Sometimes it led to nearly an hour of downtime, which was unacceptable.'
+                `We dealt with a codebase written differently from the Valor's standards, which made the migration more complicated. 
+                 Another obstacle we faced was that the frontend part aimed to work inside the browser, which is typical for Angular. This influenced the work accuracy and negatively affected SEO. Since the web page content varied based on the results of work in the browser instead of coming directly from the server, we couldn’t display the requested info in the search results.
+                Due to updates in Angular 10, a whole lot of issues arose during the deployment process. But the worst part was the necessity to turn off the production site during the deployment for maintenance. Sometimes it led to nearly an hour of downtime, which was unacceptable.`
             ]
         },
         solution: {
@@ -147,7 +146,9 @@ export class LibertyFlightsPageComponent {
         pagination: {
             clickable: true
         },
-
+        autoplay: {
+            delay: 3000,
+        }
     };
 
     seoImpactList = [

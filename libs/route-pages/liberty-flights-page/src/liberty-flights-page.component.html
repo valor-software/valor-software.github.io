@@ -180,27 +180,25 @@
             <h2 class="text-light_title_col text-left text-32 lg:ml-0 ml-5 lg:text-40 font-bold mb-4 ">
                 Delivered numerous features to improve usability
             </h2>
-            <p class="text-grey_font_col text-left text-16 mb-8">
+            <p class="text-grey_font_col text-left text-16 mb-8 tracking-tightest">
                 Valor Software has added some new functionality that improved the user experience with the platform and
                 simplified the purchase flow.
             </p>
 
             <div class="px-5 lg:px-0">
-                <div class="grid grid-cols-1 auto-rows-fr">
-                    <div *ngFor="let item of deliveredFeatureList; let i = index">
-                        <div class="flex flex-row h-full">
-                            <div class="flex flex-col">
-                                <p class="m-auto text-12 text-large text-green font-bold -mt-3"> {{i + 1}}</p>
-                                <div class="m-auto bg-green h-full w-0.5 mb-4"
-                                    *ngIf="i !== (deliveredFeatureList.length - 1)">
-                                </div>
+                <div *ngFor="let item of deliveredFeatureList; let i = index">
+                    <div class="flex flex-row h-full">
+                        <div class="flex flex-col">
+                            <p class="m-auto text-12 text-large text-green font-bold -mt-3"> {{i + 1}}</p>
+                            <div class="m-auto bg-green h-full w-0.5 mb-4"
+                                *ngIf="i !== (deliveredFeatureList.length - 1)">
                             </div>
-                            <div class="flex flex-col max-w-fit lg:max-w-400 ml-8 text-light_title_col">
-                                <p class="font-bold leading-6 md:leading-8 mb-4 text-24 md:text-32">
-                                    {{item.title}}
-                                </p>
-                                <p class="text-grey_font_col mb-8">{{item.description}}</p>
-                            </div>
+                        </div>
+                        <div class="flex flex-col max-w-fit  ml-8 text-light_title_col">
+                            <p class="font-bold  lg:max-w-400 leading-6 md:leading-8 mb-4 text-24 md:text-32">
+                                {{item.title}}
+                            </p>
+                            <p class="text-grey_font_col mb-8 mr-8 tracking-tightest">{{item.description}}</p>
                         </div>
                     </div>
                 </div>
