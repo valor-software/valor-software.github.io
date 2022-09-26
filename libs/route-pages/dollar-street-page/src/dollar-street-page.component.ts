@@ -114,6 +114,23 @@ export class DollarStreetPageComponent {
         }
     ];
 
+    swiperConfig: SwiperOptions = {
+        slidesPerView: 1,
+        spaceBetween: 40,
+        centeredSlides: true,
+        initialSlide: 0,
+        slideToClickedSlide: true,
+        pagination: {
+            clickable: true
+        }
+    };
+
+    seoStyleImages: string[] = [
+        "assets/img/bg-img/dollar_street_page/admin-panel/1.png",
+        "assets/img/bg-img/dollar_street_page/admin-panel/2.png",
+        "assets/img/bg-img/dollar_street_page/admin-panel/3.png"
+    ];
+    
     constructor(
         public utilService: UtilService,
         private getProjectsServ: GetPortfolioService

@@ -80,7 +80,7 @@
 <section class="landing-section py-0 mb-6 lg:mb-12 ml-12 mr-5 md:mx-0">
     <h1 class="main-title lg:mb-10 ">Deliverables</h1>
     <div class="container ">
-        <div class="lg:px-4 lg:flex flex-column justify-between lg:mb-144 mb-10 gap-72">
+        <div class="lg:px-4 lg:flex flex-column justify-between  mb-10 gap-72">
             <div>
                 <div class="-ml-5 md:-ml-8 lg:-ml-10 mt-2 green-circle"></div>
                 <div class=" lg:mb-10 mb-8">
@@ -107,6 +107,18 @@
             <img class="m-auto" src="assets\img\bg-img\dollar_street_page\deliverables_bg.png" alt="">
 
         </div>
+
+        <div class="lg:mb-144 mb-10 ">
+                    <swiper [config]="swiperConfig" class="pink_swiper">
+                        <ng-template swiperSlide *ngFor="let img of seoStyleImages">
+            
+                            <div class=" h-full w-full m-auto">
+                                <img [src]="img" alt="SEO-friendly" class="m-auto w-full ">
+                            </div>
+                        </ng-template>
+                    </swiper>
+        </div>
+
         <div class="mb-72">
             <impact-card [impactCardList]="admPanelImpactList"></impact-card>
         </div>
