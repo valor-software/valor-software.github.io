@@ -123,6 +123,7 @@ export class DollarStreetPageComponent {
         pagination: {
             clickable: true
         },
+        speed: 800,
         autoplay: {
             delay: 3000
         }
