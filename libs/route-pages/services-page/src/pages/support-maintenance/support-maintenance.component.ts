@@ -83,7 +83,8 @@ export class SupportMaintenanceComponent {
       ],
       img: 'assets/img/bg-img/services_img/support-maintenance/bg-cards/native.png',
       button: {
-        title: 'Visit portfolio'
+        title: 'Visit portfolio',
+        url: '/projects'
       }
     },
     {
