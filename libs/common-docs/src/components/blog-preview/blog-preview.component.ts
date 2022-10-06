@@ -1,9 +1,9 @@
-import {Component, OnDestroy, Input, OnInit} from '@angular/core';
+import { Component, OnDestroy, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { GetArticlesService } from "../../services/getArticles.service";
 import { IArticle } from "../../models/article.interface";
 import { forkJoin, Subscription } from "rxjs";
-import SwiperCore, { Pagination, SwiperOptions  } from "swiper";
-import {titleRefactoring} from "../../utils/titleRefactoringUtil";
+import SwiperCore, { Pagination, SwiperOptions } from "swiper";
+import { titleRefactoring } from "../../utils/titleRefactoringUtil";
 SwiperCore.use([Pagination]);
 
 @Component({
@@ -11,8 +11,10 @@ SwiperCore.use([Pagination]);
     selector: 'blog-preview',
     templateUrl: './blog-preview.component.html'
 })
-export class BlogPreviewComponent implements OnDestroy, OnInit{
+export class BlogPreviewComponent implements OnDestroy, OnInit, OnChanges {
     @Input() articlesList?: string[];
+    @Input() currentArticle?: IArticle;
+    allArticles?: IArticle[];
     articles?: IArticle[];
     $articles?: Subscription;
     swiperConfig: SwiperOptions = {
@@ -37,7 +39,13 @@ export class BlogPreviewComponent implements OnDestroy, OnInit{
 
     constructor(
         private getArticles: GetArticlesService,
-    ) {}
+    ) { }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.currentArticle) {
+            this.setMoreArticlesList();
+        }
+    }
 
     ngOnInit() {
         if (this.articlesList?.length) {
@@ -48,10 +56,21 @@ export class BlogPreviewComponent implements OnDestroy, OnInit{
 
         if (!this.articlesList?.length) {
             this.$articles = forkJoin(this.getArticles.getPreviewArticle()).subscribe((res: IArticle[] | undefined) => {
-                this.articles = res;
+                this.allArticles = res;
+                this.setMoreArticlesList();
             });
         }
     }
+
+    setMoreArticlesList() {
+        let articles = this.allArticles;
+
+        if (this.currentArticle) {
+            articles = articles?.filter(article => article.order !== this.currentArticle?.order);
+        }
+
+        this.articles = articles?.slice(0, 3);
+    };
 
     ngOnDestroy() {
         this.$articles?.unsubscribe();
