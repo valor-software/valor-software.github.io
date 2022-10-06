@@ -29,7 +29,7 @@ export class GetArticlesService {
     }
 
     getPreviewArticle(): Observable<any>[] | undefined {
-        return this.apiArray?.slice(0, 3);
+        return this.apiArray;
     }
 
     getFullListOfArticles(): Observable<any>[] | undefined {
