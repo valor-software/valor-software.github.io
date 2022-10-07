@@ -24,6 +24,10 @@ export const routes = [
         loadChildren: () => import('@valor-software/dollar-street-page').then(m => m.DollarStreetPageModule)
       },
       {
+        path: 'tablesready',
+        loadChildren: () => import('@valor-software/tablesready-page').then(m => m.TablesReadyPageModule)
+      },
+      {
         path: ':id',
         component: GeneralItemComponent
       }

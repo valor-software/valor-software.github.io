@@ -25,8 +25,9 @@ import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
-import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 import { UtilService } from './services/utils.service';
+import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
+import { ImpactCardComponent } from './components/impact-card/impact-card.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
@@ -54,9 +55,10 @@ export { ExpandableCardComponent } from './components/expandable-card/expandable
 export { IExpandableCard } from './components/expandable-card/expandable-card.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 export { NextProjectComponent } from './components/next-project/next-project.component';
-export { UtilService } from './services/utils.service';
 export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
+export { UtilService } from './services/utils.service';
+export { ImpactCardComponent } from './components/impact-card/impact-card.component';
 export { technologiesAndServices } from './components/technologies/technologies-and-services';
 
 @NgModule({
@@ -76,8 +78,9 @@ export { technologiesAndServices } from './components/technologies/technologies-
     NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent,
-    TechnologiesComponent,
-    TechnologiesCardComponent
+    TechnologiesCardComponent,
+    ImpactCardComponent,
+    TechnologiesComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -94,9 +97,9 @@ export { technologiesAndServices } from './components/technologies/technologies-
     NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent,
-    TechnologiesComponent,
     TechnologiesCardComponent,
-    TechnologiesCardComponent
+    ImpactCardComponent,
+    TechnologiesComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, UtilService,
     {

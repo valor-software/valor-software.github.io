@@ -57,7 +57,6 @@ module.exports = {
       green: '#658B80',
       light_blue: '#71A5D2',
       popover_bg: '#282828',
-      real_dark_grey: '#222222',
       medium_grey_bg: '#717171',
       real_dark_grey: '#222222',
       light_grey: '#252525'
@@ -193,7 +192,6 @@ module.exports = {
         '130': '130px',
         '75': '75px',
         '1296': '1296px',
-        '74': '74px',
         '214': '214px',
         '1400': '1400px',
         '104': '104px',

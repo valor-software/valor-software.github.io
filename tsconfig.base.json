@@ -51,6 +51,9 @@
       "@valor-software/terminus-page": [
         "libs/route-pages/terminus-page/src/index.ts"
       ],
+      "@valor-software/tablesready-page": [
+        "libs/route-pages/tablesready-page/src/index.ts"
+      ],
       "@valor-software/dollar-street-page": [
         "libs/route-pages/dollar-street-page/src/index.ts"
       ],

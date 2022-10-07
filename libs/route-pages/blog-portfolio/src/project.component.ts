@@ -19,7 +19,7 @@ export class ProjectComponent implements OnDestroy {
         public utilService: UtilService,
         private router: Router,
         private getProjectsServ: GetPortfolioService,
-        private cdr: ChangeDetectorRef,
+        private cdr: ChangeDetectorRef
     ) {
         this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
             this.checkRoutePath();
