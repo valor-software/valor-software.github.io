@@ -47,6 +47,9 @@
       ],
       "@valor-software/terminus-page": [
         "libs/route-pages/terminus-page/src/index.ts"
+      ],
+      "@valor-software/software-engineering": [
+        "libs/route-pages/software-engineering/src/index.ts"
       ]
     }
   },
