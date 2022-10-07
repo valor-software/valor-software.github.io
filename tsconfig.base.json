@@ -53,6 +53,9 @@
       ],
       "@valor-software/dollar-street-page": [
         "libs/route-pages/dollar-street-page/src/index.ts"
+      ],
+      "@valor-software/software-engineering": [
+        "libs/route-pages/software-engineering/src/index.ts"
       ]
     }
   },

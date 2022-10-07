@@ -27,6 +27,7 @@ import { ComparisonSliderComponent } from './components/comparison-slider/compar
 import { NextProjectComponent } from './components/next-project/next-project.component';
 import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 import { UtilService } from './services/utils.service';
+import { TechnologiesComponent } from './components/technologies/technologies.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -56,6 +57,8 @@ export { NextProjectComponent } from './components/next-project/next-project.com
 export { UtilService } from './services/utils.service';
 export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
+export { technologiesAndServices } from './components/technologies/technologies-and-services';
+
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -73,6 +76,7 @@ export { ITechnologiesCard } from './components/technologies-card/technologies-c
     NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent,
+    TechnologiesComponent,
     TechnologiesCardComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
@@ -90,6 +94,8 @@ export { ITechnologiesCard } from './components/technologies-card/technologies-c
     NextProjectComponent,
     ExpandableCardComponent,
     ComparisonSliderComponent,
+    TechnologiesComponent,
+    TechnologiesCardComponent,
     TechnologiesCardComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, UtilService,

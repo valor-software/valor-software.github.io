@@ -8,25 +8,26 @@ export const routes = [
     children: [
       {
         path: '',
-        children: [
-            {
-                path: '',
-                pathMatch: 'full',
-                component: GeneralPageComponent
-            },
-            {
-                path: 'terminus',
-                loadChildren: () => import('@valor-software/terminus-page').then(m => m.TerminusPageModule)
-            },
-            {
-                path: 'dollar-street',
-                loadChildren: () => import('@valor-software/dollar-street-page').then(m => m.DollarStreetPageModule)
-            },
-            {
-                path: ':id',
-                component: GeneralItemComponent
-            },
-        ]
-    }
+        pathMatch: 'full',
+        component: GeneralPageComponent
+      },
+      {
+        path: 'terminus',
+        loadChildren: () => import('@valor-software/terminus-page').then(m => m.TerminusPageModule)
+      },
+      {
+        path: 'ashes-of-creation',
+        loadChildren: () => import('@valor-software/ashes-page').then(m => m.AshesPageModule)
+      },
+      {
+        path: 'dollar-street',
+        loadChildren: () => import('@valor-software/dollar-street-page').then(m => m.DollarStreetPageModule)
+      },
+      {
+        path: ':id',
+        component: GeneralItemComponent
+      }
+    ]
+  }
 ];
 
