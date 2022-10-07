@@ -12,6 +12,7 @@ import { CoreTeamsComponent } from './components/core-team/core-team.component';
 import { ServiceHeaderCardComponent } from './components/service-header-card/service-header-card.component';
 import { ServiceHelpCardCardComponent } from './components/service-help-card/service-help-card.component';
 import { VerticalServicesCardComponent } from './components/vertical-services-card/vertical-services-card.component';
+import { SoftwareEngineeringComponent } from './pages/software-engineering/software-engineering.component';
 import { HierarchyServiceCardComponent } from './components/hierarchy-service-card/hierarchy-service-card.component';
 import { DesignComponent } from './pages/design/design.component';
 
@@ -21,6 +22,7 @@ export { ServicesPageComponent } from "./services-page.component";
     declarations: [
         DesignComponent,
         ServicesPageComponent,
+        SoftwareEngineeringComponent,
         TraitsCardComponent, CoreTeamsComponent,
         ServiceHeaderCardComponent,
         ServiceHelpCardCardComponent,

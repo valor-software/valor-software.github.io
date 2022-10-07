@@ -8,7 +8,8 @@ export const servicesList = [
     {
         title: 'Software Engineering',
         description: 'Staying ahead of the technology curve, we cover front-end, backend, and full-stack development. Get an advanced and easily-maintainable product that grants high responsiveness and a smooth user journey.',
-        img: 'assets/img/bg-img/services_img/services_2.svg'
+        img: 'assets/img/bg-img/services_img/services_2.svg',
+        path: '/services/software-engineering'
     },
     {
         title: 'Quality Assuarance',
