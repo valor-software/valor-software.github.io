@@ -28,6 +28,10 @@ export const routes = [
         loadChildren: () => import('@valor-software/tablesready-page').then(m => m.TablesReadyPageModule)
       },
       {
+        path: 'liberty-flights',
+        loadChildren: () => import('@valor-software/liberty-flights-page').then(m => m.LibertyFlightsPageModule)
+      },
+      {
         path: ':id',
         component: GeneralItemComponent
       }
