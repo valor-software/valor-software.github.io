@@ -13,14 +13,24 @@ import { ServiceHeaderCardComponent } from './components/service-header-card/ser
 import { ServiceHelpCardCardComponent } from './components/service-help-card/service-help-card.component';
 import { VerticalServicesCardComponent } from './components/vertical-services-card/vertical-services-card.component';
 import { QualityAssuranceComponent } from './pages/quality-assurance/quality-assurance.component';
+import { SoftwareEngineeringComponent } from './pages/software-engineering/software-engineering.component';
 import { HierarchyServiceCardComponent } from './components/hierarchy-service-card/hierarchy-service-card.component';
+import { DevOpsComponent } from './pages/devops/devops.component';
+import { ProductOwnershipAndProjectManagementComponent } from './pages/product-owner-and-product-management/product-owner-and-product-management.component';
+import { SupportMaintenanceComponent } from './pages/support-maintenance/support-maintenance.component';
+import { DesignComponent } from './pages/design/design.component';
 
 export { ServicesPageComponent } from "./services-page.component";
 
 @NgModule({
     declarations: [
         QualityAssuranceComponent,
+        DevOpsComponent,
+        ProductOwnershipAndProjectManagementComponent,
+        SupportMaintenanceComponent,
+        DesignComponent,
         ServicesPageComponent,
+        SoftwareEngineeringComponent,
         TraitsCardComponent, CoreTeamsComponent,
         ServiceHeaderCardComponent,
         ServiceHelpCardCardComponent,

@@ -13,7 +13,7 @@
         "url": "/projects/careerbuilder"
       },
       {
-        "title": "Honcho (secure communication)"
+        "title": "Honcho"
       },
       {
         "title": "Vizabi (chats and visualization tools)",
@@ -33,6 +33,10 @@
     "items": [
       {
         "title": "Xello"
+      },
+      {
+        "title": "ThisDot",
+        "url": "/projects/thisdot"
       }
     ]
   },
@@ -47,7 +51,7 @@
         "url": "/projects/tablesready"
       },
       {
-        "title": "Alaina (AMER) - travel app"
+        "title": "Alaina"
       }
     ]
   },
@@ -58,7 +62,7 @@
     "description": "Socially meaningful solutions that help organizations improve people’s lives, inspire humanity, integrity, and experience exchange.",
     "items": [
       {
-        "title": "WFP - application for volunteers"
+        "title": "The Booking Platform"
       },
       {
         "title": "Dollar Street",
@@ -77,7 +81,7 @@
         "url": "/projects/liberty-flights"
       },
       {
-        "title": "Breethe (sleep and meditation)",
+        "title": "Breethe",
         "url": "/projects/breethe-sleep-meditation"
       }
     ]
