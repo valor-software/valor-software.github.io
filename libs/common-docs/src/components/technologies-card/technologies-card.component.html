@@ -9,7 +9,7 @@
         <div *ngFor="let technology of card.technologies" class="flex-column justify-between text-center"
           [ngClass]="{'m-0 w-110 tracking-tighter': technology.wrapText}">
           <div class="w-74 h-74 flex justify-center m-auto">
-            <a class="group relative">
+            <a class="group relative flex justify-center">
               
               <img [src]="technology.src" [alt]="(technology.title ?  technology.title : technology.tooltip ? technology.tooltip : '') + ' logo'" class= "m-auto ">
               <span *ngIf="technology.tooltip" [style.width]="'max-content'"

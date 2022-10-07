@@ -80,7 +80,7 @@ export class TablesReadyPageComponent {
                     title: "Twilio"
                 },
                 {
-                    src: "assets/img/technologies/others/recurly_white.svg",
+                    src: "assets/img/technologies/others/recurly_white.png",
                     title: "Recurly"
                 },
                 {
