@@ -14,11 +14,13 @@ import { ServiceHelpCardCardComponent } from './components/service-help-card/ser
 import { VerticalServicesCardComponent } from './components/vertical-services-card/vertical-services-card.component';
 import { SoftwareEngineeringComponent } from './pages/software-engineering/software-engineering.component';
 import { HierarchyServiceCardComponent } from './components/hierarchy-service-card/hierarchy-service-card.component';
+import { DesignComponent } from './pages/design/design.component';
 
 export { ServicesPageComponent } from "./services-page.component";
 
 @NgModule({
     declarations: [
+        DesignComponent,
         ServicesPageComponent,
         SoftwareEngineeringComponent,
         TraitsCardComponent, CoreTeamsComponent,
