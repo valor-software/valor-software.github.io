@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { GetArticlesService } from "./getArticles.service";
 import { GetPortfolioService } from "./getPortfolio.service";
@@ -8,7 +8,7 @@ import { Observable, Subscription } from "rxjs";
 import { checkHTMLExtension } from "../utils/titleRefactoringUtil";
 import { OLD_ROUTES_FROM_OLD_SITE } from "../tokens/linksFromOldSite.token";
 
-const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue: string, content: string }[]} = {
+const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue: string, content: string }[] } = {
     '/': [
         {
             nameType: 'meta',
@@ -52,7 +52,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'name',
             nameValue: 'description',
-            content:'As the development world is getting even more agile, organizations need to follow to keep pace with the users’ expectations and needs. Valor Software will help you satisfy your audience’s insatiable desire for the newest features and get a competitive advantage with digital transformation.'
+            content: 'We provide enterprise-level service, covering all areas of software development: iOS, Android, and Web, as well as offering professional UX/UI expertise'
         },
         {
             nameType: 'meta',
@@ -90,7 +90,7 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'name',
             nameValue: 'description',
-            content:'We provide enterprise-level service, covering all areas of software development: iOS, Android, and Web, as well as offering professional UX/UI expertise'
+            content: 'We provide enterprise-level service, covering all areas of software development: iOS, Android, and Web, as well as offering professional UX/UI expertise'
         },
         {
             nameType: 'meta',
@@ -121,6 +121,158 @@ const ex: {[key: string] : { nameType: 'meta' | 'title', name: string, nameValue
             name: 'title',
             nameValue: 'title',
             content: 'DevOps - Valor Software'
+        }
+    ],
+    'services/software-engineering': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content: 'Staying ahead of the technology curve, we cover frontend, backend, and mobile development. Get an advanced and easily-maintainable product that grants high responsiveness and a smooth user journey.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'Software Engineering - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'Staying ahead of the technology curve, we cover frontend, backend, and mobile development. Get an advanced and easily-maintainable product that grants high responsiveness and a smooth user journey.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'Software Engineering - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'Staying ahead of the technology curve, we cover frontend, backend, and mobile development. Get an advanced and easily-maintainable product that grants high responsiveness and a smooth user journey.'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'Software Engineering - Valor Software'
+        }
+    ],
+    'services/design': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content: 'Designing solutions with users in mind, we strive to make their journey an intuitive and breathtaking adventure. Therefore before proceeding with UI, we help you define the frustrations of your audience and cover them with optimal UX.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'Design - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'Designing solutions with users in mind, we strive to make their journey an intuitive and breathtaking adventure. Therefore before proceeding with UI, we help you define the frustrations of your audience and cover them with optimal UX.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'Design - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'Designing solutions with users in mind, we strive to make their journey an intuitive and breathtaking adventure. Therefore before proceeding with UI, we help you define the frustrations of your audience and cover them with optimal UX.'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'Design - Valor Software'
+        }
+    ],
+    'services/support-&-Maintenance': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content: 'Valor can help you in various ways, starting from the support of solutions that leverage open-source technologies up to the scale of your enterprise-level systems and the transformation of your customer service with AI.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'Support & Maintenance - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'Valor can help you in various ways, starting from the support of solutions that leverage open-source technologies up to the scale of your enterprise-level systems and the transformation of your customer service with AI.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'Support & Maintenance - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'Valor can help you in various ways, starting from the support of solutions that leverage open-source technologies up to the scale of your enterprise-level systems and the transformation of your customer service with AI.'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'Support & Maintenance - Valor Software'
+        }
+    ],
+    'services/product-ownership-and-project-management': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content: 'A product owner is a person who always knows what’s the next turn that the product should take to succeed. Valor’s PO will help you transform your product vision into user stories and ensure your solution moves towards higher user satisfaction and draws new loyal audiences. While PO looks at a project from the product value perspective, the project manager is up to every single organizational detail. Valor’s PM will take charge of the product delivery process and help every team member perform at their best.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'Product Ownership and Project Management - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'A product owner is a person who always knows what’s the next turn that the product should take to succeed. Valor’s PO will help you transform your product vision into user stories and ensure your solution moves towards higher user satisfaction and draws new loyal audiences. While PO looks at a project from the product value perspective, the project manager is up to every single organizational detail. Valor’s PM will take charge of the product delivery process and help every team member perform at their best.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'Product Ownership and Project Management - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'A product owner is a person who always knows what’s the next turn that the product should take to succeed. Valor’s PO will help you transform your product vision into user stories and ensure your solution moves towards higher user satisfaction and draws new loyal audiences. While PO looks at a project from the product value perspective, the project manager is up to every single organizational detail. Valor’s PM will take charge of the product delivery process and help every team member perform at their best.'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'Product Ownership and Project Management - Valor Software'
         }
     ],
     'projects': [
@@ -401,11 +553,11 @@ enum routeValues {
 
 };
 
-@Injectable({providedIn: 'platform'})
+@Injectable({ providedIn: 'platform' })
 export class SeoService {
     metaList: typeof ex = ex;
     $routEvents: Subscription;
-    brokenArticlesRoutes?: {[key: string]: string};
+    brokenArticlesRoutes?: { [key: string]: string };
 
     constructor(
         private titleService: Title,
@@ -413,8 +565,8 @@ export class SeoService {
         private router: Router,
         private getArticle: GetArticlesService,
         private getPortfolio: GetPortfolioService,
-        @Inject(OLD_ROUTES_FROM_OLD_SITE) linkList: {[key: string]: string},
-    ){
+        @Inject(OLD_ROUTES_FROM_OLD_SITE) linkList: { [key: string]: string },
+    ) {
         this.brokenArticlesRoutes = linkList;
         this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
             const url = this.router.parseUrl(this.router.url).root.children?.primary?.segments;
@@ -453,7 +605,7 @@ export class SeoService {
                     this.addTags(tags);
                 }
             }
-            
+
             if (value[0].path === 'services') {
                 const tags = this.metaList[`${value[0].path}/${value[1].path}`];
                 if (tags?.length) {
@@ -510,7 +662,7 @@ export class SeoService {
         return this.getPortfolio.getPortfolioRequest(checkHTMLExtension(title));
     }
 
-    initCurrentTagsWithParams(value: {title: string, description: string}) {
+    initCurrentTagsWithParams(value: { title: string, description: string }) {
         const model: { nameType: 'meta' | 'title', name: string, nameValue: string, content: string }[] = [
             {
                 nameType: 'meta',
