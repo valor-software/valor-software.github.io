@@ -135,7 +135,7 @@ export class QualityAssuranceComponent {
           tooltip: 'Cucumber'
         },
         {
-          src: "assets/img/technologies/others/post-man.png",
+          src: "assets/img/technologies/others/postman.png",
           tooltip: 'Postman'
         },
         {
@@ -143,7 +143,7 @@ export class QualityAssuranceComponent {
           tooltip: 'Browser Stack'
         },
         {
-          src: "assets/img/technologies/others/sauce-labs.png",
+          src: "assets/img/technologies/others/sauce_labs.png",
           tooltip: 'Sauce Labs'
         },
         {
@@ -166,7 +166,7 @@ export class QualityAssuranceComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/others/post-man.png",
+          src: "assets/img/technologies/others/postman.png",
           tooltip: 'Postman'
         },
         {
@@ -193,7 +193,7 @@ export class QualityAssuranceComponent {
           tooltip: 'Browser Stack'
         },
         {
-          src: "assets/img/technologies/others/sauce-labs.png",
+          src: "assets/img/technologies/others/sauce_labs.png",
           tooltip: 'Sauce Labs'
         },
         {
@@ -208,7 +208,7 @@ export class QualityAssuranceComponent {
       lgJustify: 'start',
       technologies: [
         {
-          src: "assets/img/technologies/others/travis-ci.png",
+          src: "assets/img/technologies/others/travis_ci.png",
           tooltip: 'Travis CI'
         },
         {

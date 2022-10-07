@@ -102,7 +102,7 @@ export class DollarStreetPageComponent {
                     title: "ImageMagic"
                 },
                 {
-                    src: "assets/img/technologies/others/cloud_flare.png",
+                    src: "assets/img/technologies/others/cloudflare.png",
                     title: "Cloudflare"
                 },
                 {
