@@ -19,7 +19,8 @@ export const servicesList = [
     {
         title: 'DevOps',
         description: 'Optimize your project infrastructure to make it more efficient and budget-friendly while avoiding security glitches. We’ll take care of building the environment that allows scalability, handles traffic loads, and operates like clockwork.',
-        img: 'assets/img/bg-img/services_img/services_4.svg'
+        img: 'assets/img/bg-img/services_img/services_4.svg',
+        path: '/services/devops'
     },
     {
         title: 'Maintenance & Support',

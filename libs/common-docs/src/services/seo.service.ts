@@ -85,6 +85,44 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
             content: 'Services - Valor Software'
         }
     ],
+    'services/devops': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content: 'We provide enterprise-level service, covering all areas of software development: iOS, Android, and Web, as well as offering professional UX/UI expertise'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'DevOps - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'As the development world is getting even more agile, organizations need to follow to keep pace with the users’ expectations and needs. Valor Software will help you satisfy your audience’s insatiable desire for the newest features and get a competitive advantage with digital transformation.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'DevOps - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'As the development world is getting even more agile, organizations need to follow to keep pace with the users’ expectations and needs. Valor Software will help you satisfy your audience’s insatiable desire for the newest features and get a competitive advantage with digital transformation.'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'DevOps - Valor Software'
+        }
+    ],
     'services/software-engineering': [
         {
             nameType: 'meta',
@@ -204,7 +242,7 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'name',
             nameValue: 'description',
-            content:'A product owner is a person who always knows what’s the next turn that the product should take to succeed. Valor’s PO will help you transform your product vision into user stories and ensure your solution moves towards higher user satisfaction and draws new loyal audiences. While PO looks at a project from the product value perspective, the project manager is up to every single organizational detail. Valor’s PM will take charge of the product delivery process and help every team member perform at their best.'
+            content: 'A product owner is a person who always knows what’s the next turn that the product should take to succeed. Valor’s PO will help you transform your product vision into user stories and ensure your solution moves towards higher user satisfaction and draws new loyal audiences. While PO looks at a project from the product value perspective, the project manager is up to every single organizational detail. Valor’s PM will take charge of the product delivery process and help every team member perform at their best.'
         },
         {
             nameType: 'meta',
