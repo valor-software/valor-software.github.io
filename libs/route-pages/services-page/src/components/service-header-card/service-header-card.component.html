@@ -15,8 +15,7 @@
         <p *ngFor="let description of servicesHeader?.descriptions" [ngClass]="{
           'lg:mb-8 mb-18' : !smallTitle,
           'mb-4 md:mb-6' : smallTitle
-        }" class="leading-6 text-grey_font_col text-16 tracking-tightest">
-          {{description}}</p>
+        }" class="leading-6 text-grey_font_col text-16 tracking-tightest" [innerHtml]="description"></p>
 
         <!-- Description Hierarchy -->
 
