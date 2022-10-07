@@ -6,9 +6,10 @@
 </div>
 <ng-container *ngIf="!preview">
     <div
+            [routerLink]="serv.path"
             *ngFor="let serv of servicesInfList; index as i"
             class="bg-grey lg:py-14 py-7 lg:px-14 px-7 flex justify-between mb-8 w-full items-center flex-col-reverse lg:h-420"
-            [ngClass]="{'md:flex-row-reverse': i%2, 'md:flex-row': !(i%2)}"
+            [ngClass]="{'md:flex-row-reverse': i%2, 'md:flex-row': !(i%2), 'cursor-pointer': serv.path}"
     >
         <div class="md:w-45%">
             <p class="font-bold text-light_title_col md:text-large block mr-3.5 text-center md:text-left mt-6 md:mt-0 text-xl md:leading-44 mb-6">{{serv.title}}</p>

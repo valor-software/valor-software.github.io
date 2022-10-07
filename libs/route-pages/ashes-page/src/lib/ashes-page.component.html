@@ -1,0 +1,209 @@
+<ng-container *ngIf="(project$ | async) as project">
+  <section class="first-section-half landing-section">
+    <div class="container">
+      <ng-container *ngIf="changeBreadCrumbTitle?.length">
+        <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block"></breadCrumbs>
+      </ng-container>
+    </div>
+    <div class="flex flex-nowrap md:mt-8 relative">
+      <div class="container">
+        <div class="flex-col flex h-full">
+          <div class="xl:max-w-600 h-full flex flex-col justify-center xl:h-550">
+            <h1
+              class="text-light_title_col lg:text-center xl:text-left md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">
+              {{project.name}}
+            </h1>
+            <p class="leading-normal text-grey_font_col lg:mb-8 mb-14">
+              {{project.description}}
+            </p>
+            <div class="flex flex-col xl:flex-row md:items-center xl:items-start mb-5 xl:mb-0">
+              <button class="btn-pink w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
+                <a class="flex justify-center items-center" [href]="project.link" target="_blank">
+                  <span>Visit the site</span>
+                  <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+              </button>
+              <button *ngIf="project.dribbleLink"
+                class="btn-dark-pink w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
+                <a class="flex justify-center items-center" [href]="project.dribbleLink" target="_blank">
+                  <span>Dribble</span>
+                  <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt="">
+                </a>
+              </button>
+              <button *ngIf="project.behanceLink"
+                class="btn-blue w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
+                <a class="flex justify-center items-center" [href]="project.behanceLink" target="_blank">
+                  <span>Behance</span>
+                  <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt="">
+                </a>
+              </button>
+            </div>
+          </div>
+          <div class="mt-16 xl:mt-0 flex justify-center w-full max-w-600 block xl:hidden self-center">
+            <img src="" alt="">
+            <img [src]="getRespSrc(project.headerImg)" alt="" (error)="changeSrc($event, project.headerImg)">
+          </div>
+        </div>
+      </div>
+      <div class="absolute top-0 right-0 hidden xl:block">
+        <img [src]="project.headerImg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <section class="landing-section">
+    <h1 class="main-title">Background</h1>
+    <div class="container">
+      <div class="lg:flex lg:justify-center">
+        <div class="lg:flex justify-center align-center hidden lg:block flex-1">
+          <img class="w-2/3 xl:w-1/2" src="assets/img/bg-img/ashes_page/ashes_logo.svg" alt="" />
+        </div>
+        <div class="lg:pr-6 lg:flex-1">
+          <p class="mt-4 font-workSans text-grey_font_col">
+            <ng-container *ngFor="let ch of project.background; let i=index">
+              <span [class]="i === 1 ? 'block mb-4 text-20 italic': 'block mb-4'">{{ch}}</span>
+            </ng-container>
+          </p>
+        </div>
+
+        <div class="flex justify-center lg:hidden mt-8">
+          <img class="w-3/5" src="assets/img/bg-img/ashes_page/ashes_logo.svg" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="landing-section">
+    <h1 class="main-title">Challenge</h1>
+    <div class="container">
+      <div class="lg:flex lg:justify-center">
+        <div class="lg:pr-6 lg:w-2/3">
+          <p class="mt-4 font-workSans text-grey_font_col">
+            <ng-container *ngFor="let ch of project.challenge">
+              <span class="block mb-4 tracking-tightest">{{ch}}</span>
+            </ng-container>
+          </p>
+        </div>
+
+        <div class="lg:flex justify-center align-center hidden lg:block">
+          <img class="w-11/12" src="assets/img/bg-img/ashes_page/challenge_bg.svg" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="landing-section">
+    <h1 class="main-title">Deliverables</h1>
+    <div class="container">
+      <h2 class="text-dar_grey_font_col text-left text-24 lg:text-40 mb-14 lg:w-10/12 tracking-tightest">
+        Valor team has
+        <b class="text-feedback_font_col">contributed</b>
+        to several
+        <b class="text-feedback_font_col">development</b>
+        and
+        <b class="text-feedback_font_col">modernization</b>
+        directions for
+        <b class="text-feedback_font_col">Ashes Of Creation</b>.
+      </h2>
+      <ng-container *ngFor="let deliverable of project.deliverables">
+        <div class="md:ml-8 flex mb-10">
+          <div class="w-6 md:w-8">
+            <div class="mt-3 lg:mt-2 green-circle"></div>
+          </div>
+          <div class="flex-1">
+            <div class="lg:w-9/12">
+              <h2 class="text-feedback_font_col text-left text-24 lg:text-40 font-bold mb-4 lg:w-9/12">
+                {{deliverable.text}}
+              </h2>
+
+              <p class="text-dar_grey_font_col text-left text-14 mb-8" *ngFor="let description of deliverable.descriptions">
+                {{description}}
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full mb-12" *ngIf="deliverable.descriptionCards">
+
+              <h2 class="lg:block hidden text-light_title_col text-left text-32 font-bold tracking-tightest">
+                1
+              </h2>
+
+              <h2 class="lg:block hidden text-light_title_col text-left text-32 font-bold tracking-tightest">
+                2
+              </h2>
+
+              <h2 class="lg:block hidden text-light_title_col text-left text-32 font-bold tracking-tightest">
+                3
+              </h2>
+
+              <div class="rounded-lg border-2 border-green bg-light_grey w-full px-8 py-10 text-center"
+                *ngFor="let description of deliverable.descriptionCards">
+                <p class="text-feedback_font_col text-20 tracking-tightest">{{description}}</p>
+              </div>
+            </div>
+
+            <p class="text-dar_grey_font_col text-left text-14 mb-12" *ngIf="deliverable.subDescription">
+              {{deliverable.subDescription}}
+            </p>
+
+            <ng-container *ngIf="deliverable.comparisons">
+              <ng-container *ngFor="let comparison of deliverable.comparisons">
+                <comparison-slider [comparisonImg]="comparison" [buttonClasses]="imageSliderButtonClasses">
+                </comparison-slider>
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="deliverable.centerButton">
+              <div class="flex justify-center mb-10">
+                <button class="btn-pink w-full lg:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
+                  <a class="flex justify-center items-center" [href]="deliverable.centerButton.link" target="_blank">
+                    <span class="text-sm md:text-base">{{deliverable.centerButton.text}}</span>
+                    <img src="assets/img/icons/arrow.svg" class="ml-2 mb-0" alt=""></a>
+                </button>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="deliverable.bgImg" class="my-10">
+              <img class="mx-auto mb-14" [src]="deliverable.bgImg" alt="">
+            </ng-container>
+
+            <ng-container *ngIf="deliverable.technologies">
+              <h2 class="text-feedback_font_col text-left leading-56 text-24 lg:text-40 font-bold mb-7">
+                Technologies & services:
+              </h2>
+              <div class="bg-gray w-full">
+                <technologies-card [technologiesCards]="getTechnologyList(deliverable.technologies)">
+                </technologies-card>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="deliverable.impact">
+              <div class="bg-green p-4 lg:p-10 mt-12">
+                <p
+                  class="font-bold text-white md:text-40 block mr-3.5  text-left mt-6 mt-0 text-xl md:leading-44 mb-6 tracking-tightest">
+                  Impact
+                </p>
+                <ul class="list-disc pl-5 leading-normal text-white text-20 md:w-8/12">
+                  <li *ngFor="let impact of deliverable.impact">{{impact}}</li>
+                </ul>
+
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </section>
+
+  <section class="landing-section hidden md:block" *ngIf="project.feedback">
+    <h1 class="main-title">Feedback</h1>
+    <div class="container">
+      <feedback [startFrom]="project.feedback"></feedback>
+    </div>
+  </section>
+
+  <div *ngIf="project.video" class="container cursor-pointer" (click)="activateFrame()">
+    <iframe [src]="getSafeUrl(project.video)" style=" width: 100%; height:80vh;" allowfullscreen
+      [style.pointer-events]="isFrameActive ? 'auto' : 'none'"></iframe>
+  </div>
+
+  <next-project></next-project>
+</ng-container>

@@ -28,6 +28,7 @@ import { NextProjectComponent } from './components/next-project/next-project.com
 import { UtilService } from './services/utils.service';
 import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 import { ImpactCardComponent } from './components/impact-card/impact-card.component';
+import { TechnologiesComponent } from './components/technologies/technologies.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -58,6 +59,8 @@ export { TechnologiesCardComponent } from './components/technologies-card/techno
 export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
 export { UtilService } from './services/utils.service';
 export { ImpactCardComponent } from './components/impact-card/impact-card.component';
+export { technologiesAndServices } from './components/technologies/technologies-and-services';
+
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -76,7 +79,8 @@ export { ImpactCardComponent } from './components/impact-card/impact-card.compon
     ExpandableCardComponent,
     ComparisonSliderComponent,
     TechnologiesCardComponent,
-    ImpactCardComponent
+    ImpactCardComponent,
+    TechnologiesComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -94,7 +98,8 @@ export { ImpactCardComponent } from './components/impact-card/impact-card.compon
     ExpandableCardComponent,
     ComparisonSliderComponent,
     TechnologiesCardComponent,
-    ImpactCardComponent
+    ImpactCardComponent,
+    TechnologiesComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, UtilService,
     {
