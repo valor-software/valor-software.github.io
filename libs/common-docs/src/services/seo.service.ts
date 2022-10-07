@@ -199,6 +199,44 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
             content: 'Support & Maintenance - Valor Software'
         }
     ],
+    'services/product-ownership-and-project-management': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content:'A product owner is a person who always knows what’s the next turn that the product should take to succeed. Valor’s PO will help you transform your product vision into user stories and ensure your solution moves towards higher user satisfaction and draws new loyal audiences. While PO looks at a project from the product value perspective, the project manager is up to every single organizational detail. Valor’s PM will take charge of the product delivery process and help every team member perform at their best.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'Product Ownership and Project Management - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'A product owner is a person who always knows what’s the next turn that the product should take to succeed. Valor’s PO will help you transform your product vision into user stories and ensure your solution moves towards higher user satisfaction and draws new loyal audiences. While PO looks at a project from the product value perspective, the project manager is up to every single organizational detail. Valor’s PM will take charge of the product delivery process and help every team member perform at their best.'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'Product Ownership and Project Management - Valor Software'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'A product owner is a person who always knows what’s the next turn that the product should take to succeed. Valor’s PO will help you transform your product vision into user stories and ensure your solution moves towards higher user satisfaction and draws new loyal audiences. While PO looks at a project from the product value perspective, the project manager is up to every single organizational detail. Valor’s PM will take charge of the product delivery process and help every team member perform at their best.'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'Product Ownership and Project Management - Valor Software'
+        }
+    ],
     'projects': [
         {
             nameType: 'meta',

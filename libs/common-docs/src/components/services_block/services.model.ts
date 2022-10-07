@@ -30,6 +30,7 @@ export const servicesList = [
     {
         title: 'Product Ownership & Project Management',
         description: 'We’ll accomplish your team with the first-class product owner who will prioritize the backlog for engineers and take care of customer satisfaction by creating user stories. With the help of the project manager, we’ll keep the project requirements clear and up-to-date, so you get exactly the solution you need.',
-        img: 'assets/img/bg-img/services_img/services_6.svg'
+        img: 'assets/img/bg-img/services_img/services_6.svg',
+        path: 'product-ownership-and-project-management'
     }
 ];
