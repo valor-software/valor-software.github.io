@@ -1,0 +1,65 @@
+<section class="first-section landing-section mx-5 lg:mx-0 pb-0 ">
+  <service-header-card [servicesHeader]="servicesHeader"></service-header-card>
+</section>
+
+<section>
+  <h1 class="main-title">Services</h1>
+
+  <div class="container">
+    <h2 class="md:text-56 text-32 text-light_title_col font-bold md:leading-56 leading-32 tracking-tightest mb-6">UX
+      Audit</h2>
+    <p class="text-xl text-grey_font_col leading-7 md:w-8/12 tracking-tightest md:p-0 p-3 md: mb-10 mb-6">
+      We’ll carefully analyze your product to pinpoint less than perfect areas, then – develop a step-by-step
+      improvement plan. UX audit suggests quick-win changes that optimize user journeys and fuel customers’ loyalty.</p>
+  </div>
+  <div class="mb-14" *ngFor="let card of uxAuditCards; let i = index">
+    <service-header-card [showBackground]="true" [biggerImg]="true" [smallTitle]="true" [reverseRow]="!!(i % 2)"
+      [servicesHeader]="card">
+    </service-header-card>
+  </div>
+</section>
+
+<section class="mt-32">
+  <div class="container">
+    <h2 class="md:text-56 text-32 text-light_title_col font-bold md:leading-56 leading-32 tracking-tightest mb-6">UX/UI
+      Design</h2>
+    <p class="text-xl text-grey_font_col leading-7 md:w-8/12 tracking-tightest md:p-0 p-3 md: mb-10 mb-6">
+      We’ll carefully analyze your product to pinpoint less than perfect areas, then – develop a step-by-step
+      improvement plan. UX audit suggests quick-win changes that optimize user journeys and fuel customers’ loyalty.</p>
+  </div>
+  <div class="mb-14" *ngFor="let card of uxUiDesignCards; let i = index">
+    <service-header-card [showBackground]="true" [biggerImg]="true" [smallTitle]="true" [reverseCol]="true"
+      [reverseRow]="!!(i % 2)" [servicesHeader]="card">
+    </service-header-card>
+  </div>
+</section>
+
+<section class="mt-32">
+  <h1 class="main-title lg:mb-10">Tools</h1>
+  <div class="container ">
+    <div class="grid grid-cols-1 md:grid-cols-3 md:gap-6 lg:gap-8 h-full md:auto-rows-fr">
+      <technologies-card *ngFor="let card of toolsCards" [technologiesCards]="[card]"></technologies-card>
+    </div>
+  </div>
+</section>
+
+<section class="mt-32">
+  <h1 class="main-title lg:mb-10">Valor’s Traits</h1>
+  <div class="container">
+    <div class="flex flex-col gap-8 m-auto">
+      <traits-cards *ngFor="let card of traitsCard" [traitCard]="card"></traits-cards>
+    </div>
+  </div>
+</section>
+<core-team></core-team>
+
+<section class="landing-section">
+  <h1 class="main-title double">Articles</h1>
+  <div class="container">
+    <blog-preview></blog-preview>
+  </div>
+</section>
+
+<section class="mb-20">
+  <service-help-card></service-help-card>
+</section>

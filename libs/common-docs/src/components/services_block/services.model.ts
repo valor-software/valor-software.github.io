@@ -2,12 +2,14 @@ export const servicesList = [
     {
         title: 'Design',
         description: 'Designing websites and applications that look good is not enough. Let your users experience human-centric solutions with intuitive navigation, high accessibility, and a custom UI that appeals.',
-        img: 'assets/img/bg-img/services_img/services_1.svg'
+        img: 'assets/img/bg-img/services_img/services_1.svg',
+        path: 'design'
     },
     {
         title: 'Software Engineering',
         description: 'Staying ahead of the technology curve, we cover front-end, backend, and full-stack development. Get an advanced and easily-maintainable product that grants high responsiveness and a smooth user journey.',
-        img: 'assets/img/bg-img/services_img/services_2.svg'
+        img: 'assets/img/bg-img/services_img/services_2.svg',
+        path: '/services/software-engineering'
     },
     {
         title: 'Quality Assuarance',
