@@ -1,0 +1,53 @@
+<ng-container *ngIf="hierarchyServiceCard && hierarchyServiceCard.length > 0">
+  <div class="container ">
+    <div class="md:border-l-2 md:border-l-green  ">
+      <div class="flex flex-col gap-16">
+        <div class="relative" *ngFor="let card of hierarchyServiceCard; let ind = index">
+          <div *ngIf="ind === hierarchyServiceCard.length - 1" class="md:block hidden bg-grey_bg absolute h-full w-4 " style="transform: translate(-50%, 0%);"></div>
+          <div class="md:block hidden green-circle"></div>
+          
+          <div class=" md:px-10 ">
+            <div class="bg-grey p-6 md:p-10 -translate-y-11">
+              <h2
+                class="font-bold text-light_title_col block mr-3.5 md:text-large text-xl md:text-left mt-6 md:mt-0  md:leading-44 mb-6">
+                {{card.title}}</h2>
+              <p [innerHTML]="card.description"
+                class="lg:w-9/12 text-base tracking-tightest leading-6 mb-10 text-grey_font_col">
+              </p>
+              <h3
+                class="font-bold text-light_title_col block mr-3.5 md:text-large text-xl md:text-left mt-6 md:mt-0 md:leading-44 mb-6">
+                {{card.subtitle}}
+              </h3>
+              <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
+                <div *ngFor="let item of card.items; let i = index" class="pb-0 md:pb-10 ">
+                  <div class="green-circle bg-grey"></div>
+                  <div class="max-w-fit lg:max-w-400 ml-12 text-light_title_col">
+                    <p class="font-bold leading-6 md:leading-8 mb-4 lg:text-24 text-20">
+                      {{item.title}}</p>
+                  </div>
+                  <div class="px-0 "
+                    [ngClass]="{'border-l-2 border-l-green' :  item.subItems && i < item.subItems.length - 1 }"
+                    *ngFor="let subItem of item.subItems;let i = index">
+                    <div class="flex flex-row items-baseline gap-0 ">
+                      <div
+                        class="md:pb-10  flex flex-col  border-b-2 border-l-2 border-l-green border-b-green w-50 h-50  "
+                        [ngClass]="{'-translate-x-0.5' :  item.subItems && i < item.subItems.length - 1 }">
+                      </div>
+                      <p class="ml-4 text-grey_font_col tracking-tightest text-20 text-light_title_col w-full">{{subItem}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
+                <a (click)="onClick(card.button.url)" target="_blank"
+                  class="btn-pink w-full text-sm md:text-base flex justify-center items-center">
+                  {{card.button.title}}
+                  <img src="assets/img/icons/arrow.svg" class="ml-2 my-auto" alt=""></a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

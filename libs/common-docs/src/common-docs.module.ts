@@ -56,6 +56,7 @@ export { NextProjectComponent } from './components/next-project/next-project.com
 export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
 export { technologiesAndServices } from './components/technologies/technologies-and-services';
+
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -92,6 +93,7 @@ export { technologiesAndServices } from './components/technologies/technologies-
     ExpandableCardComponent,
     ComparisonSliderComponent,
     TechnologiesComponent,
+    TechnologiesCardComponent,
     TechnologiesCardComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,

@@ -10,7 +10,7 @@
           [ngClass]="{'m-0 w-110 tracking-tighter': technology.wrapText}">
           <div class="w-74 h-74 flex justify-center m-auto">
             <a class="group relative">
-
+              
               <img [src]="technology.src" [alt]="(technology.title ?  technology.title : technology.tooltip ? technology.tooltip : '') + ' logo'" class= "m-auto ">
               <span *ngIf="technology.tooltip" [style.width]="'max-content'"
                 class="absolute hidden w-max group-hover:flex left-1/3 bottom-1/2 -translate-y-full bg-light_grey_bg -translate-x-4/12 p-4 bg-gray rounded-md  text-light_title_col text-20 

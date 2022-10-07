@@ -12,12 +12,15 @@ module.exports = {
       'lg:justify-start',
       'lg:justify-center',
       'lg:justify-between',
+      'lg:justify-evenly',
       'md:justify-start',
       'md:justify-center',
       'md:justify-between',
+      'md:justify-evenly',
       'justify-start',
       'justify-center',
       'justify-between',
+      'justify-evenly',
     ],
   },
   darkMode: 'class',
@@ -56,6 +59,7 @@ module.exports = {
       popover_bg: '#282828',
       real_dark_grey: '#222222',
       medium_grey_bg: '#717171',
+      real_dark_grey: '#222222',
       light_grey: '#252525'
     },
     borderColor: (theme) => ({
@@ -77,7 +81,8 @@ module.exports = {
         '28': '28px',
         '36': '36px',
         '75': '75px',
-        '100': '100px'
+        '100': '100px',
+        '80': '80px'
       },
       fontSize: {
         'base': '1rem',
@@ -96,7 +101,8 @@ module.exports = {
         '80': '80px',
         '250': '250px',
         '40': '40px',
-        '16': '16px'
+        '16': '16px',
+        '100': '100px'
       },
       minWidth: {
         '585': '585px',
@@ -106,7 +112,11 @@ module.exports = {
         '45%': '45%',
         '100': '100px',
         '70': '70px',
-        '200': '200px'
+        '200': '200px',
+        '392': '392px',
+        '335': '335px',
+        '538': '538px',
+        '629': '629px'
       },
       maxWidth: {
         '200': '200px',
@@ -133,7 +143,11 @@ module.exports = {
         '400': '400px',
         '500': '500px',
         '540': '540px',
-        '900': '900px'
+        '900': '900px',
+        '392': '392px',
+        '335': '335px',
+        '538': '538px',
+        '629': '629px'
       },
       maxHeight: {
         '700': '700px',
@@ -159,7 +173,8 @@ module.exports = {
         '6.75': '6.75rem',
         '24': '96px',
         '10n': '-10px',
-        '10px': '10px'
+        '10px': '10px',
+        '72': '72px'
       },
       width: {
         '1225': '1225px',
@@ -182,7 +197,12 @@ module.exports = {
         '1400': '1400px',
         '104': '104px',
         '62': '62px',
-        '80%': '80%'
+        '80%': '80%',
+        '629': '629px',
+        '392': '392px',
+        '335': '335px',
+        '538': '538px',
+        '54%': '54%'
       },
       minHeight: {
         '725': '725px',
@@ -208,15 +228,26 @@ module.exports = {
         '570': '570px',
         '56': '56px',
         '305': '305px',
-        '80vh': '80vh'
+        '80vh': '80vh',
+        '312': '312px',
+        '392': '392px',
+        '335': '335px'
       },
       zIndex: {
         '1': '1'
       },
       letterSpacing: {
         tightest: '-1px',
+      },
+      gridTemplateColumns: {
+        '2': 'repeat(2, minmax(0, 1fr))',
+      },
+      flex: {
+        '1/3': '0 0 calc(33% - 20px)',
+        '1/2': '0 0 calc(50% - 20px)'
       }
-    },
+    }
+
   },
   variants: {
     extend: {},
