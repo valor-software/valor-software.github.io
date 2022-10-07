@@ -20,6 +20,10 @@ export const routes = [
         loadChildren: () => import('@valor-software/ashes-page').then(m => m.AshesPageModule)
       },
       {
+        path: 'dollar-street',
+        loadChildren: () => import('@valor-software/dollar-street-page').then(m => m.DollarStreetPageModule)
+      },
+      {
         path: ':id',
         component: GeneralItemComponent
       }

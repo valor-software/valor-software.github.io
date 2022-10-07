@@ -2,8 +2,7 @@ import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
-import { DomSanitizer } from '@angular/platform-browser';
-import { IPortfolio, GetPortfolioService } from "@valor-software/common-docs";
+import { IPortfolio, GetPortfolioService, UtilService } from "@valor-software/common-docs";
 import { checkHTMLExtension, titleRefactoring } from "@valor-software/common-docs";
 
 @Component({
@@ -17,11 +16,10 @@ export class ProjectComponent implements OnDestroy {
     $routEvents?: Subscription;
 
     constructor(
+        public utilService: UtilService,
         private router: Router,
         private getProjectsServ: GetPortfolioService,
-        private sanitizer: DomSanitizer,
         private cdr: ChangeDetectorRef,
-
     ) {
         this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
             this.checkRoutePath();
@@ -49,14 +47,6 @@ export class ProjectComponent implements OnDestroy {
             console.log('error', error);
             this.router.navigate(['/404']);
         });
-    }
-
-    getSafeUrl(url?: string) {
-        if (!url) {
-            return '';
-        };
-
-        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
     getRouteLink(link: string): string {

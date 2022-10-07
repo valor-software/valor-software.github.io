@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { UtilService } from '@valor-software/common-docs';
 import { SwiperOptions } from 'swiper';
 
 export interface IDefaultValuesText {
@@ -62,14 +62,7 @@ export class ChallengeCardComponent {
   };
 
   constructor(
-    private sanitizer: DomSanitizer,
+    public utilService: UtilService
   ) { }
 
-  getSafeUrl(url?: string) {
-    if (!url) {
-      return '';
-    };
-
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
 }
