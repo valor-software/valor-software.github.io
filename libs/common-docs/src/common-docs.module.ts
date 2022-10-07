@@ -27,6 +27,9 @@ import { ComparisonSliderComponent } from './components/comparison-slider/compar
 import { NextProjectComponent } from './components/next-project/next-project.component';
 import { ImpactCardComponent } from './components/impact-card/impact-card.component';
 import { ChallengeCardComponent } from './components/challenge-card/challenge-card.component';
+import { UtilService } from './services/utils.service';
+import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
+import { TechnologiesComponent } from './components/technologies/technologies.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -56,6 +59,10 @@ export { NextProjectComponent } from './components/next-project/next-project.com
 export { ImpactCardComponent } from './components/impact-card/impact-card.component';
 export { ChallengeCardComponent } from './components/challenge-card/challenge-card.component';
 export { IChallengeCard } from './components/challenge-card/challenge-card.component';
+export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
+export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
+export { UtilService } from './services/utils.service';
+export { technologiesAndServices } from './components/technologies/technologies-and-services';
 
 @NgModule({
   declarations: [
@@ -75,7 +82,9 @@ export { IChallengeCard } from './components/challenge-card/challenge-card.compo
     ExpandableCardComponent,
     ComparisonSliderComponent,
     ImpactCardComponent,
-    ChallengeCardComponent
+    ChallengeCardComponent,
+    TechnologiesCardComponent,
+    TechnologiesComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -93,9 +102,11 @@ export { IChallengeCard } from './components/challenge-card/challenge-card.compo
     ExpandableCardComponent,
     ComparisonSliderComponent,
     ImpactCardComponent,
-    ChallengeCardComponent
+    ChallengeCardComponent,
+    TechnologiesCardComponent,
+    TechnologiesComponent
   ],
-  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
+  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, UtilService,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',

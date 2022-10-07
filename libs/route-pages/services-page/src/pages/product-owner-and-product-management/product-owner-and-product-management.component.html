@@ -1,0 +1,140 @@
+<section class="first-section landing-section lg:mx-0 pb-0 ">
+  <div class="container">
+    <ng-container *ngIf="changeBreadCrumbTitle?.length">
+      <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
+      </breadCrumbs>
+    </ng-container>
+
+    <div class=" grid grid-cols-2 gap-4 lg:grid hidden">
+      <div class="bg-grey flex flex-col p-10" *ngFor="let card of headCards">
+        <h2 class="font-bold text-light_title_col block text-64 mt-0 leading-66 mb-12">
+          {{card.title}}</h2>
+        <p [innerHTML]="card.description" class=" text-base tracking-tightest leading-6	text-light_title_col mb-4"></p>
+
+        <ul class="list-disc text-grey_font_col pl-5 mb-8">
+          <li *ngFor="let fragment of card?.fragments" class="mb-4">
+            <a [routerLink]='"."' [fragment]="fragment.path"
+              class="leading-6 text-grey_font_col text-xltracking-tightest underline">
+              {{fragment.title}}
+            </a>
+          </li>
+        </ul>
+
+        <div class="justify-start items-center">
+          <button class="w-full w-auto flex mr-6">
+            <a (click)="openModal()" target="_blank" class="btn-pink w-full flex justify-center items-center">
+              {{card.button.title}}
+              <img src="assets/img/icons/arrow.svg" class="ml-2 my-auto" alt=""></a>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="block lg:hidden">
+      <swiper [config]="swiperConfig" [mousewheel]="false" class="pink_swiper rounded-md p-0" #swiperRefResp
+        style="width: 100%">
+        <ng-template swiperSlide *ngFor="let card of headCards" class="rounded-lg">
+          <div class="bg-grey flex flex-col p-0">
+            <h2 class="font-bold text-light_title_col block text-40 mt-0 leading-44 mb-8">
+              {{card.title}}</h2>
+            <p [innerHTML]="card.description" class=" text-base tracking-tightest leading-6	text-light_title_col mb-4">
+            </p>
+
+            <ul class="list-disc text-grey_font_col pl-5 mb-8">
+              <li *ngFor="let fragment of card?.fragments" class="mb-4">
+                <a [routerLink]='"."' [fragment]="fragment.path"
+                  class="leading-6 text-grey_font_col text-xltracking-tightest underline">
+                  {{fragment.title}}
+                </a>
+              </li>
+            </ul>
+
+            <div class="flex justify-start items-center">
+              <button class="w-full  flex mb-4 w-full">
+                <a (click)="openModal()" target="_blank" class="btn-pink text-sm w-full flex justify-center items-center">
+                  {{card.button.title}}
+                  <img src="assets/img/icons/arrow.svg" class="ml-2 my-auto" alt=""></a>
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+</section>
+
+<section id="po-value">
+  <h1 class="main-title lg:mb-10">PO Value</h1>
+  <div class="container">
+    <img class="lg:block hidden w-full" src="assets/img/bg-img/services_img/product-ownership-and-project-management/po_value.png">
+    <vertical-services-card class="lg:hidden block" [verticalServiceCards]="poVerticalServiceCards"></vertical-services-card>
+  </div>
+
+  
+</section>
+
+<section id="po-benefits">
+  <h1 class="main-title lg:mb-10">PO Benefits</h1>
+  <div class="container">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:grid hidden">
+      <traits-cards [smallCard]="true" *ngFor="let card of poBenefitsCard" [traitCard]="card"></traits-cards>
+    </div>
+
+    <div class="container block lg:hidden">
+      <swiper [config]="swiperConfig" [mousewheel]="false" class="pink_swiper rounded-md  p-0" #swiperRefResp
+        style="width: 100%">
+        <ng-template swiperSlide *ngFor="let card of poBenefitsCard" class="rounded-lg">
+          <traits-cards [smallCard]="true" [traitCard]="card"></traits-cards>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+</section>
+
+<section id="pm-value">
+  <h1 class="main-title lg:mb-10">PM Value</h1>
+  <div class="container">
+    <img class="lg:block hidden w-full" src="assets/img/bg-img/services_img/product-ownership-and-project-management/pm_value.png">
+    <vertical-services-card class="lg:hidden block" [verticalServiceCards]="pmVerticalServiceCards"></vertical-services-card>
+  </div>
+</section>
+
+<section id="pm-benefits">
+  <h1 class="main-title lg:mb-10">PM Benefits</h1>
+  <div class="container">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:grid hidden">
+      <traits-cards [smallCard]="true" *ngFor="let card of pmBenefitsCard" [traitCard]="card"></traits-cards>
+    </div>
+
+    <div class="container block lg:hidden">
+      <swiper [config]="swiperConfig" [mousewheel]="false" class="clean_swiper rounded-md  p-0" #swiperRefResp
+        style="width: 100%">
+        <ng-template swiperSlide *ngFor="let card of pmBenefitsCard" class="rounded-lg">
+          <traits-cards [smallCard]="true" [traitCard]="card"></traits-cards>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h1 class="main-title lg:mb-10">Valor’s Traits</h1>
+  <div class="container">
+    <div class="flex flex-col gap-8 m-auto">
+      <traits-cards *ngFor="let card of traitsCard" [traitCard]="card"></traits-cards>
+    </div>
+  </div>
+</section>
+
+<core-team></core-team>
+
+<section class="landing-section">
+  <h1 class="main-title double">Articles</h1>
+  <div class="container">
+    <blog-preview></blog-preview>
+  </div>
+</section>
+
+<section class="mb-20">
+  <service-help-card></service-help-card>
+</section>

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IChallengeCard } from '@valor-software/common-docs';
+import { IChallengeCard, ITechnologiesCard } from '@valor-software/common-docs';
 import SwiperCore, { Pagination, SwiperOptions, Autoplay } from "swiper";
-import { ITechnologiesCard } from './technologies-card.component';
 
 SwiperCore.use([Pagination, Autoplay]);
 

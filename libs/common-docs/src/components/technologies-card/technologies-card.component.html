@@ -1,0 +1,28 @@
+<div class="flex-column lg:flex justify-between gap-6 h-full " *ngIf="technologiesCards">
+  <div class="w-full bg-grey p-4 lg:p-8 lg:m-0 mb-11 " *ngFor="let card of technologiesCards">
+    <div class=" lg:mb-0 lg:min-h-50 flex justify-between w-full flex-col w-full">
+
+      <p class="font-bold text-light_title_col lg:text-32 block mr-3.5 text-20 text-left mt-6 mt-0  md:leading-44 mb-6">
+        {{card.title}}</p>
+      <div class="flex flex-wrap items-center lg:gap-6"
+        [ngClass]="[ card.lgJustify ? 'lg:justify-' + card.lgJustify : '', card.mdJustify ? 'md:justify-' + card.mdJustify : '', card.smJustify ? 'justify-' + card.smJustify : '']">
+        <div *ngFor="let technology of card.technologies" class="flex-column justify-between text-center"
+          [ngClass]="{'m-0 w-110 tracking-tighter': technology.wrapText}">
+          <div class="w-74 h-74 flex justify-center m-auto">
+            <a class="group relative flex justify-center">
+              
+              <img [src]="technology.src" [alt]="(technology.title ?  technology.title : technology.tooltip ? technology.tooltip : '') + ' logo'" class= "m-auto ">
+              <span *ngIf="technology.tooltip" [style.width]="'max-content'"
+                class="absolute hidden w-max group-hover:flex left-1/3 bottom-1/2 -translate-y-full bg-light_grey_bg -translate-x-4/12 p-4 bg-gray rounded-md  text-light_title_col text-20 
+                 after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-l-transparent after:border-r-transparent after:border-b-transparent after:border-t-light_grey_bg
+                  after:w-0 after:h-0
+                ">{{technology.tooltip}}</span>
+            </a>
+          </div>
+          <p *ngIf="technology.title" class="leading-normal text-light_title_col m-auto text-16">
+            {{technology.title}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

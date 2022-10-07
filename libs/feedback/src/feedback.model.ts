@@ -29,10 +29,17 @@ export const feedBack = [
     },
     {
         project: 'TablesReady',
-        text: 'Dima and team were fantastic to work with - smart, reliable, and familiar with a variety of web technologies. They were quick to pickup new concepts and extremely proactive in developing features.',
-        img: 'assets/img/feedback/tablesReady.jpg',
-        author: 'Robert Shaw',
-        position: 'CEO at Table\'s Ready'
+        text: 'I’ve been very impressed with the quality of the developers Valor is able to find. They write good code, communicate well in written English, and have been very easy to work with. And despite the war, there’s been absolutely no downtime or lost productivity, except for those first 2 days after the invasion. (Not that this was something I asked for – it wasn’t – but it’s just a testament to the team and culture.)',
+        img: 'assets/img/feedback/tablesReady.png',
+        author: 'Mike Errecart',
+        position: 'The owner and CEO of TablesReady'
+    },
+    {
+        project: 'Ashes Of Creation',
+        text: 'We’ve been working with Valor, and they have been doing some amazing stuff with the website. They have a great dedicated team of professionals who we have had an absolute pleasure working with to help support our platform needs. Those who might be in the enterprise business and need technical support and web development support, I would give a major shout-out to the Valor team. They’re doing a great job!',
+        img: 'assets/img/feedback/ashes_of_creation.jpg',
+        author: 'Steven Sharif',
+        position: 'the Creative Director of Ashes of Creation'
     }
 ];
 

@@ -1,6 +1,4 @@
-
-
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { GetPortfolioService, IPortfolio, titleRefactoring } from '../../common-docs.module';
 
@@ -35,6 +33,10 @@ export class NextProjectComponent {
   }
 
   initNextProject() {
+    if (this.router.parseUrl(this.router.url).root.children.primary.segments.length < 2) {
+      return;
+    }
+
     let index = this.getProjectsServ.getTitleIndex(this.router.parseUrl(this.router.url).root.children.primary.segments[1].path);
     if (!index && index !== 0) {
       return;
