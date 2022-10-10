@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { UtilService } from '@valor-software/common-docs';
 import { SwiperOptions } from 'swiper';
+import { UtilService } from '../../services/utils.service';
 
 export interface IDefaultValuesText {
   title?: string;
