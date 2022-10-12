@@ -1,0 +1,195 @@
+<section class="first-section landing-section pb-0  mx-5 lg:mx-0">
+    <div class="flex lg:flex-row flex-col justify-center lg:justify-between items-center mb-18 pt-16 lg:pt-0"
+        style="max-height: 100%;">
+
+        <div class="lg:w-4/12 lg:mx-auto md:mt-0 mb-18">
+            <ng-container *ngIf="changeBreadCrumbTitle?.length">
+                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
+                </breadCrumbs>
+            </ng-container>
+            <h1 class="text-light_title_col lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+                TablesReady
+            </h1>
+            <p class="leading-6 text-grey_font_col text-16 mb-8">
+                TablesReady is a waitlist service that allows users to
+                easily manage waitlists, order backlogs, and other waiting scenarios relevant to their industry. Using
+                guests' cell phones instead of expensive pager systems, TR helps business owners save time and money.
+            </p>
+
+            <div class="flex lg:flex-row flex-col justify-start items-center">
+                <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
+                    <a href="https://www.tablesready.com/" target="_blank"
+                        class="btn-pink w-full flex justify-center items-center">Visit
+                        the site
+                        <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+                </button>
+            </div>
+        </div>
+        <div class="hidden lg:block">
+            <img src="assets/img/portfolio/tablesReady_header.png" alt="">
+        </div>
+
+        <div class="block lg:hidden m-auto ">
+            <img class="m-auto" src="assets/img/portfolio/tablesReady_header_resp.png" alt="">
+        </div>
+    </div>
+    <h1 class="main-title lg:mb-10 ">Background</h1>
+    <div class="container ">
+        <div class="flex lg:flex-row flex-col justify-between md:gap-72 gap-8 mb-10">
+            <div class="m-auto ">
+                <div style="max-width: 100%;" class=" !w-[80vw] md:!w-[60vh]  iframe-box m-auto">
+                    <iframe scrolling="no" frameborder="0"
+                        [src]="utilService.getSafeUrl('https://player.vimeo.com/video/265817851?h=ff6a01b4d5')"
+                        allowfullscreen="true"></iframe>
+                </div>
+            </div>
+            <div class="lg:mt-0 mt-8">
+                <p class="leading-6 text-grey_font_col text-16 mb-8">
+                    At the moment we started our collaboration more than 7 years ago, the client had an idea, a product
+                    vision, basic designs, and the architecture plus code that needed optimization and integration of
+                    new concepts. The first Valor-built app version utilized PHP and AngularJS, but as time went by, we
+                    implemented several crucial modernizations. Also, we've reached a great deal of success with
+                    analytics that help track average wait times, busy hours, and walk-ins.
+                </p>
+                <p class="leading-6 text-grey_font_col text-16 mb-8">
+                    <b>Key Features List:</b><br>
+                    – Guests can join a waitlist or make reservations, also book services with a TR link or by SMS
+                    registration <br>
+                    – TablesReady sends automated SMS reminders about the upcoming bookings <br>
+                    – Line management functionality, ability to create and manage guests’ profiles <br>
+                    – Analytics and statistics of peak hours, wait times, and service delivery timelines
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-1">
+            <h2 class="text-light_title_col text-left text-32 lg:text-40 font-bold mb-6 ">
+                Technologies & services:</h2>
+            <technologies-card *ngIf="technologies" [technologiesCards]="technologies"></technologies-card>
+        </div>
+    </div>
+</section>
+
+<section class="mb-28">
+    <h1 class="main-title mb-10">Deliverables</h1>
+    <div class="container">
+        <h2
+            class="text-dar_grey_font_col text-left text-24 lg:text-40 lg:mb-16 mb-18 m-auto lg:-ml-5 lg:-ml-14 lg:w-10/12 leading-44 tracking-tightest mb-8">
+            In time, we felt the necessity to breathe
+            <b class="text-feedback_font_col">new life into the platform</b> – boost its ability to scale and
+            serve bigger audiences. <b class="text-feedback_font_col">Moving TablesReady to newer frameworks</b>
+            would give our clients <b class="text-feedback_font_col">more opportunities</b>
+            to develop the product and quite <b class="text-feedback_font_col">effortlessly integrate new
+                features</b> into it.
+        </h2>
+
+
+        <div class="-ml-5 md:-ml-8 lg:-ml-10 mt-2 green-circle"></div>
+        <div class="lg:mb-10 mb-8">
+            <h2 class="text-light_title_col text-left text-32 lg:text-40 ml-5 lg:ml-0 font-bold lg:mb-4 mb-8">
+                Migration to Node.js and Angular</h2>
+
+            <div class="flex lg:flex-row flex-col justify-between lg:mb-36 mb-8 lg:gap-72">
+                <div>
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest mb-6">
+                        We migrated the code of the application from PHP to Node.js, and from AngularJS to Angular
+                        correspondingly, which brought greater flexibility and many more benefits listed below.
+                        Another
+                        part
+                        of this big transformation was switching from the MongoDB database to PostgreSQL, which was
+                        a
+                        bit
+                        challenging but worth every effort.
+                    </p>
+
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest mb-6">
+                        <b>Challenge:</b> As we had to move the application from a
+                        non-relational database to relational, accurate work with data was a must. We had to make
+                        sure
+                        nothing got lost because of the transition, and this consumed time and required domain
+                        expertise.
+                    </p>
+
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest mb-6">
+                        <b>Solution:</b> Even though the major part of the transition was automated, we also applied
+                        manual
+                        schema mapping to ensure accurate data migration.
+                    </p>
+                </div>
+                <img class="m-auto" src="assets\img\bg-img\tablesready_page\deliverables_bg.png" alt="">
+            </div>
+        </div>
+
+
+        <div class="mb-72">
+            <impact-card [impactCardList]="migrationImpactList"></impact-card>
+        </div>
+
+        <div class="md:-ml-8 lg:-ml-10 mt-2 green-circle"></div>
+        <div class=" lg:mb-10 mb-12">
+            <h2 class="text-light_title_col text-left ml-5 lg:ml-0 text-32 lg:text-40 font-bold mb-4 ">
+                New functionality</h2>
+            <p class="text-grey_font_col text-left text-16 tracking-tightest mb-8 lg:w-65%">
+                Our client wanted to give more freedom and flexibility to the TablesReady audience in terms of managing
+                subscriptions and getting the most out of the platform for every particular business. Initially, users
+                had two plans to choose from: a paid subscription and an enterprise plan, both with a free trial period.
+                Valor’s team has added new functionality to the admin panel that allows users to subscribe to a free
+                plan or pick the most suitable among several Premium plans depending on their guests’ turnover. Also,
+                users now can set up the subscription types and switch between plans on their own!
+            </p>
+        </div>
+
+        <div class="mb-72">
+            <impact-card class="mb-72" [impactCardList]="newFunctionalityImpactList"></impact-card>
+        </div>
+
+        <div class="md:-ml-8 lg:-ml-10 mt-2 green-circle"></div>
+        <div class="lg:mb-10 mb-12 lg:w-65%">
+            <h2 class="text-light_title_col text-left lg:ml-0 ml-5  text-32 lg:text-40 font-bold mb-4 ">
+                Updated UI</h2>
+            <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                We reworked the user interface to make the app more user-friendly, and up-to-date. Our goal was to make
+                the user flow throughout the system more smoothly. Also, we add a dark mode feature to give an option to
+                users to choose which mode they are comfortable using.
+            </p>
+        </div>
+
+        <comparison-slider [buttonClasses]="imageSliderButtonClasses" [comparisonImg]="modernUi1">
+        </comparison-slider>
+
+        <comparison-slider [buttonClasses]="imageSliderButtonClasses" [comparisonImg]="modernUi2">
+        </comparison-slider>
+
+        <img class="m-auto lg:mb-28 mb-8" src="assets\img\bg-img\tablesready_page\modern_ui_dark_1.png" alt="">
+
+        <img class="m-auto lg:mb-28 mb-8" src="assets\img\bg-img\tablesready_page\modern_ui_dark_2.png" alt="">
+
+        <impact-card [impactCardList]="modernUiImpactList"></impact-card>
+    </div>
+</section>
+
+<section class="lg:mb-28 mb-8">
+    <h1 class="main-title mb-10">Future</h1>
+    <div class="container">
+        <div class="flex lg:flex-row flex-col justify-between">
+            <p class="text-grey_font_col text-left text-16 tracking-tightest lg:w-7/12">
+                Among numerous plans for the future, the reorganization of the accounts structure is possibly the
+                biggest and the most substantial one. Currently, there is a one-to-one relationship between accounts and
+                locations, but we will make that a 1-to-many relationship. This will bring business accounts the
+                opportunity to have multiple points of sales, with each having its own subscription model. Looking
+                forward to this new feature, and to describing it in the next reviews!
+            </p>
+
+            <img class="lg:-mt-56" src="assets\img\bg-img\tablesready_page\future_bg.png" alt="">
+        </div>
+    </div>
+</section>
+
+<section *ngIf="(project$ | async)?.feedback as feedback">
+    <h1 class="main-title">Feedback</h1>
+    <div class="container">
+        <feedback [startFrom]="feedback"></feedback>
+    </div>
+</section>
+
+<next-project></next-project>

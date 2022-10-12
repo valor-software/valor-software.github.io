@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopoverComponent } from './components/popover/popover.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -25,8 +25,11 @@ import { CustomSlicePipe } from './pipes/customSlice.pipe';
 import { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
 import { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 import { NextProjectComponent } from './components/next-project/next-project.component';
-import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 import { ImpactCardComponent } from './components/impact-card/impact-card.component';
+import { ChallengeCardComponent } from './components/challenge-card/challenge-card.component';
+import { UtilService } from './services/utils.service';
+import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
+import { TechnologiesComponent } from './components/technologies/technologies.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -50,12 +53,17 @@ export { GetPortfolioService } from './services/getPortfolio.service';
 export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
 export { OLD_ROUTES_FROM_OLD_SITE } from "./tokens/linksFromOldSite.token";
 export { ExpandableCardComponent } from './components/expandable-card/expandable-card.component';
-export { IExpandableCard  } from './components/expandable-card/expandable-card.component';
+export { IExpandableCard } from './components/expandable-card/expandable-card.component';
 export { ComparisonSliderComponent } from './components/comparison-slider/comparison-slider.component';
 export { NextProjectComponent } from './components/next-project/next-project.component';
+export { ImpactCardComponent } from './components/impact-card/impact-card.component';
+export { ChallengeCardComponent } from './components/challenge-card/challenge-card.component';
+export { IChallengeCard } from './components/challenge-card/challenge-card.component';
 export { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
-export { ImpactCardComponent } from './components/impact-card/impact-card.component';
+export { UtilService } from './services/utils.service';
+export { technologiesAndServices } from './components/technologies/technologies-and-services';
+
 @NgModule({
   declarations: [
     PopoverComponent,
@@ -74,7 +82,10 @@ export { ImpactCardComponent } from './components/impact-card/impact-card.compon
     ExpandableCardComponent,
     ComparisonSliderComponent,
     TechnologiesCardComponent,
-    ImpactCardComponent
+    ImpactCardComponent,
+    ChallengeCardComponent,
+    TechnologiesCardComponent,
+    TechnologiesComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -92,9 +103,12 @@ export { ImpactCardComponent } from './components/impact-card/impact-card.compon
     ExpandableCardComponent,
     ComparisonSliderComponent,
     TechnologiesCardComponent,
-    ImpactCardComponent
+    ImpactCardComponent,
+    ChallengeCardComponent,
+    TechnologiesCardComponent,
+    TechnologiesComponent
   ],
-  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService,
+  providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, UtilService,
     {
       provide: RECAPTCHA_V3_SITE_KEY,
       useValue: '6LctnKQdAAAAABGStzrEdBnCWVYwkqAafI7pcUz3',
