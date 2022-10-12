@@ -26,7 +26,7 @@ export class HierarchyServiceCardComponent {
   
   onClick(url?: string) {
     if (url) {
-      this.router.navigate(['url']);
+      window.open(url, '_blank');
       return;
     }
     this.modalService.open(ContactModalComponent);

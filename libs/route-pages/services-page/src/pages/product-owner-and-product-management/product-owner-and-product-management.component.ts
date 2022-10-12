@@ -68,7 +68,7 @@ export class ProductOwnershipAndProjectManagementComponent {
     },
     {
       title: 'Improved sprint velocity',
-      description: `PO oversees sprints, monitors the amount of value delivered, and suggests improvements to the process. On the other hand, the product owner shields the team from business influences and requirements engineering. Learn more about the benefits the PO role brings to the project <a href="/articles" target="_blank"><b><u>from the blog</b></u></a>.`,
+      description: `PO oversees sprints, monitors the amount of value delivered, and suggests improvements to the process. On the other hand, the product owner shields the team from business influences and requirements engineering. Learn more about the benefits the PO role brings to the project <a href="/articles/the-4-biggest-lessons-we-learned-while-building-a-startup-product-as-an-outsource-company" target="_blank"><b><u>from the blog</b></u></a>.`,
       img: 'assets/img/bg-img/services_img/product-ownership-and-project-management/po-benefits/improved_sprint.png'
     }
   ];

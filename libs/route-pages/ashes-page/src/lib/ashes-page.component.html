@@ -57,10 +57,10 @@
         <div class="lg:flex justify-center align-center hidden lg:block flex-1">
           <img class="w-2/3 xl:w-1/2" src="assets/img/bg-img/ashes_page/ashes_logo.svg" alt="" />
         </div>
-        <div class="lg:pr-6 lg:flex-1">
+        <div class="lg:px-5 lg:flex-1">
           <p class="mt-4 font-workSans text-grey_font_col">
-            <ng-container *ngFor="let ch of project.background; let i=index">
-              <span [class]="i === 1 ? 'block mb-4 text-20 italic': 'block mb-4'">{{ch}}</span>
+            <ng-container *ngFor="let ch of background; let i=index">
+              <span class="block mb-4" [ngClass]="{'text-20': i === 1}" [innerHtml]="ch"></span>
             </ng-container>
           </p>
         </div>
@@ -75,7 +75,7 @@
   <section class="landing-section">
     <h1 class="main-title">Challenge</h1>
     <div class="container">
-      <div class="lg:flex lg:justify-center">
+      <div class="lg:flex lg:justify-center lg:items-center">
         <div class="lg:pr-6 lg:w-2/3">
           <p class="mt-4 font-workSans text-grey_font_col">
             <ng-container *ngFor="let ch of project.challenge">
@@ -102,7 +102,7 @@
         and
         <b class="text-feedback_font_col">modernization</b>
         directions for
-        <b class="text-feedback_font_col">Ashes Of Creation</b>.
+        <b class="text-feedback_font_col">Ashes of Creation</b>.
       </h2>
       <ng-container *ngFor="let deliverable of project.deliverables">
         <div class="md:ml-8 flex mb-10">
@@ -115,7 +115,8 @@
                 {{deliverable.text}}
               </h2>
 
-              <p class="text-dar_grey_font_col text-left text-14 mb-8" *ngFor="let description of deliverable.descriptions">
+              <p class="text-dar_grey_font_col text-left text-14 mb-8"
+                *ngFor="let description of deliverable.descriptions">
                 {{description}}
               </p>
             </div>

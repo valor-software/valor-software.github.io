@@ -242,7 +242,7 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'name',
             nameValue: 'description',
-            content: 'Valor can help you in various ways, starting from the support of solutions that leverage open-source technologies up to the scale of your enterprise-level systems and the transformation of your customer service with AI.'
+            content: 'Valor can help you in various ways, starting from the support of solutions that leverage open-source technologies up to the scale of your enterprise-level systems and the transformation of your customer service with artificial intelligence (AI).'
         },
         {
             nameType: 'meta',
@@ -254,7 +254,7 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'property',
             nameValue: 'og:description',
-            content: 'Valor can help you in various ways, starting from the support of solutions that leverage open-source technologies up to the scale of your enterprise-level systems and the transformation of your customer service with AI.'
+            content: 'Valor can help you in various ways, starting from the support of solutions that leverage open-source technologies up to the scale of your enterprise-level systems and the transformation of your customer service with artificial intelligence (AI).'
         },
         {
             nameType: 'meta',
@@ -266,7 +266,7 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
             nameType: 'meta',
             name: 'property',
             nameValue: 'twitter:description',
-            content: 'Valor can help you in various ways, starting from the support of solutions that leverage open-source technologies up to the scale of your enterprise-level systems and the transformation of your customer service with AI.'
+            content: 'Valor can help you in various ways, starting from the support of solutions that leverage open-source technologies up to the scale of your enterprise-level systems and the transformation of your customer service with artificial intelligence (AI).'
         },
         {
             nameType: 'title',

@@ -1,15 +1,17 @@
 <ng-container *ngIf="traitCard">
-  <div class="h-full bg-grey p-4 flex justify-start gap-6  w-full flex-col items-center"
-    [ngClass]="{ 'lg:flex-row lg:p-12' : !verticalCard && !smallCard, ' lg:items-start' : smallCard, 'lg:gap-8 mb-8' : verticalCard }">
-    <img [src]="traitCard.img" [alt]="traitCard.title + ' icon'">
-    <div class="flex flex-col justify-start" [ngClass]="{ 'items-center justify-center md:text-center' : verticalCard, 'md:text-left': !verticalCard || smallCard }">
-      <h3
-        class="font-bold text-light_title_col block md:mt-0 md:leading-44" 
-        [ngClass]="{'text-32 mb-6': verticalCard, 'md:text-large text-xl mt-6 mb-6' : !verticalCard && !smallCard, 'mb-4 text-xl lg:text-2xl': smallCard }">
-        {{traitCard.title}}</h3>
-      <p *ngIf="traitCard.description" [innerHTML]="traitCard.description"
-        class=" text-base tracking-tightest leading-6	text-light_title_col" [ngClass]="{ 'lg:w-10/12' : !verticalCard && !smallCard}"></p>
+  <a [href]="traitCard.url" target="_blank" [ngClass]="{'cursor-default': !traitCard.url}">
+    <div class="h-full bg-grey p-4 flex justify-start gap-6  w-full flex-col items-center"
+      [ngClass]="{ 'lg:flex-row lg:p-12' : !verticalCard && !smallCard, ' lg:items-start' : smallCard, 'lg:gap-8 mb-8' : verticalCard }">
+      <img [src]="traitCard.img" [alt]="traitCard.title + ' icon'">
+      <div class="flex flex-col justify-start"
+        [ngClass]="{ 'items-center justify-center md:text-center' : verticalCard, 'md:text-left': !verticalCard || smallCard }">
+        <h3 class="font-bold text-light_title_col block md:mt-0 md:leading-44"
+          [ngClass]="{'text-32 mb-6': verticalCard, 'md:text-large text-xl mt-6 mb-6' : !verticalCard && !smallCard, 'mb-4 text-xl lg:text-2xl': smallCard }">
+          {{traitCard.title}}</h3>
+        <p *ngIf="traitCard.description" [innerHTML]="traitCard.description"
+          class=" text-base tracking-tightest leading-6	text-light_title_col"
+          [ngClass]="{ 'lg:w-10/12' : !verticalCard && !smallCard}"></p>
+      </div>
     </div>
-  </div>
-  
+  </a>
 </ng-container>

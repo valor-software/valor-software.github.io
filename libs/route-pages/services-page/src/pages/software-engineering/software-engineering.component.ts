@@ -29,19 +29,23 @@ export class SoftwareEngineeringComponent {
     headerCards: ITraitsCard[] = [
         {
             title: '100+ accomplished projects',
-            img: 'assets/img/bg-img/services_img/software_engineering/accomplished-projects.png'
+            img: 'assets/img/bg-img/services_img/software_engineering/accomplished-projects.png',
+            url: '/projects'
         },
         {
             title: '50+ stellar engineers on board',
-            img: 'assets/img/bg-img/services_img/software_engineering/stellar-engineers.png'
+            img: 'assets/img/bg-img/services_img/software_engineering/stellar-engineers.png',
+            url: 'https://www.linkedin.com/search/results/people/?currentCompany=%5B%225214417%22%5D&network=%5B%22F%22%5D&origin=COMPANY_PAGE_CANNED_SEARCH&sid=1s'
         },
         {
             title: '13k+ GitHub stars',
-            img: 'assets/img/bg-img/services_img/software_engineering/github-stars.png'
+            img: 'assets/img/bg-img/services_img/software_engineering/github-stars.png',
+            url: 'https://github.com/orgs/valor-software/repositories'
         },
         {
             title: '100% job success score on UpWork',
-            img: 'assets/img/bg-img/services_img/software_engineering/upwork.png'
+            img: 'assets/img/bg-img/services_img/software_engineering/upwork.png',
+            url: 'https://www.upwork.com/ag/valorsoftware/'
         }
     ];
 
@@ -53,7 +57,7 @@ export class SoftwareEngineeringComponent {
         },
         {
             title: 'Contribution',
-            description: 'We know technology, and we’re believers in open-source as a movement. Our belief goes beyond a mission statement and is visible in <a href="https://github.com/valor-software" target="_blank"><b><u>the multitude of projects we contribute to</u></b></a>(both our own and those created by others in the community). We are also financially giving back through our sponsorships on the open collective.',
+            description: 'We know technology, and we’re believers in open-source as a movement. Our belief goes beyond a mission statement and is visible in <a href="https://github.com/orgs/valor-software/repositories" target="_blank"><b><u>the multitude of projects we contribute to</u></b></a> (both our own and those created by others in the community). We are also financially giving back through our sponsorships on the open collective.',
             img: 'assets/img/bg-img/services_img/software_engineering/traits/contribution.png'
         },
         {

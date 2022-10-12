@@ -15,7 +15,7 @@ export class SupportMaintenanceComponent {
 
   servicesHeader: IServicesHeader = {
     title: 'Support & Maintenance',
-    descriptions: ['Valor can help you in various ways, starting from the support of solutions that leverage open-source technologies up to the scale of your enterprise-level systems and the transformation of your customer service with AI.'],
+    descriptions: ['Valor can help you in various ways, starting from the support of solutions that leverage open-source technologies up to the scale of your enterprise-level systems and the transformation of your customer service <a href="/projects/terminus" target="_blank"><b><u>artificial intelligence (AI)</u></b></a>.'],
     img: 'assets/img/bg-img/services_img/services_5.svg',
     button: {
       title: 'Contact us'

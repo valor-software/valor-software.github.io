@@ -82,6 +82,12 @@ export class AshesPageComponent {
     }
   ];
 
+  background: string[] = [
+    "Intrepid Studios, authors of the most anticipated MMORPG – Ashes of Creation, inspire unity and bring people together through the game. Avoiding pay-to-win or cash grab elements, they simply create games the way people want them to be, with great respect and devotion to the community.",
+    "<i>“I want to see the players dictate the direction of our story. I want to see the AoC world adapts and reacts to the player’s actions. Most importantly, I want to see a game built by gamers FOR gamers.”</i> – says Steven Sharif, the Creative Director of Ashes of Creation, describing what stands behind the idea of AoC.",
+    "Ashes of Creation hasn’t just offered a beautiful fantasy world with over 100 locations but redefined the MMORPG genre giving the community the power to participate in the direction of the world's development and influence literally every aspect of the game. However the Ashes of Creation universe is more than just the game client, it also needs a great website for people to discover the game, dive deeper into the lore, meet the community and pick up the latest merch. This is the direction where Valor’s team had a big time of success."
+  ];
+
   constructor(
     private getProjectsServ: GetPortfolioService,
     private cdr: ChangeDetectorRef,

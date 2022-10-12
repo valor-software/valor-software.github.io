@@ -182,7 +182,7 @@ const ServicesModel = [
         img: 'assets/img/bg-img/services_img/services_4.svg'
     },
     {
-        title: 'Maintenance & Support',
+        title: 'Support & Maintenance',
         img: 'assets/img/bg-img/services_img/services_5.svg'
     },
     {

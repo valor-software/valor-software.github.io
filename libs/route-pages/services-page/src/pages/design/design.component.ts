@@ -44,7 +44,8 @@ export class DesignComponent {
       ],
       img: 'assets/img/bg-img/services_img/design/ux-audit/user_survey.png',
       button: {
-        title: 'View a case study'
+        title: 'View a case study',
+        url: '/articles/incorporating-user-research-on-live-projects-part-1'
       }
     },
     {
@@ -101,7 +102,7 @@ export class DesignComponent {
       img: 'assets/img/bg-img/services_img/design/ux-ui-design/information_architecture.png'
     },
     {
-      title: 'Wireframing & prototyping',
+      title: 'Wireframing & Prototyping',
       descriptionHierarchy: [
         { description: 'Can I see different interface options?', subDescription: 'Sketches to visualize UI ideas' },
         { description: 'What’s the content and the UX elements?', subDescription: 'Wireframes' },
