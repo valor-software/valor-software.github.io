@@ -24,7 +24,7 @@ export const servicesList = [
         path: '/services/devops'
     },
     {
-        title: 'Maintenance & Support',
+        title: 'Support & Maintenance',
         description: 'With the comprehensive support in simplifying and optimizing your ecosystems, you’ll shift smoothly from reactive to preemptive engagement models to deliver superior customer experiences.',
         img: 'assets/img/bg-img/services_img/services_5.svg',
         path: 'support-&-Maintenance'

@@ -1,5 +1,5 @@
 export const projectsList = [
-    'Ashes Of Creation',
+    'Ashes of Creation',
     'Terminus',
     'CareerBuilder',
     'Zuora',

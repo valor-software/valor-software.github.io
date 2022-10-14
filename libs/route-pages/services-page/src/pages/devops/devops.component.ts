@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ITechnologiesCard } from '@valor-software/common-docs';
 import SwiperCore, { Pagination } from "swiper";
-import { IHierarchyServiceCard } from '../../components/hierarchy-service-card/hierarchy-service-card.component';
 import { IServicesHeader } from '../../components/service-header-card/service-header-card.component';
 import { ITraitsCard } from '../../components/traits-cards/traits-cards.component';
 import { IVerticalServicesCard } from '../../components/vertical-services-card/vertical-services-card.component';
@@ -180,7 +179,7 @@ export class DevOpsComponent {
       button: { title: 'Get your cloud adoption plan' }
     },
     {
-      title: 'Infrastructure as a code (IaC)',
+      title: 'Infrastructure as a Code (IaC)',
       description: 'We will help your organization to migrate and recover applications seamlessly. With the incorporation of IaC, you can spin up the authoritative version of the solution in no time as all the infrastructure assets are stored in one doc.',
       items: [
         { title: 'Get ready for a smooth transition to cloud' },
@@ -191,7 +190,7 @@ export class DevOpsComponent {
       button: { title: 'Run an infrastructure health check' }
     },
     {
-      title: 'Microservices architecture',
+      title: 'Microservices Architecture',
       description: 'As you break the monolith into services, you reduce the number of code dependencies and give more freedom to the team. Now they can tackle each service pointwise and deliver updates faster with no threat to system integrity.',
       items: [
         { title: 'Increase deployability and shorten deployment time' },
@@ -202,7 +201,7 @@ export class DevOpsComponent {
       button: { title: 'Get started' }
     },
     {
-      title: 'Monitoring & security',
+      title: 'Monitoring & Security',
       description: 'Alongside the automation of test and deployment, we boost the security and reliability of your service with the DevOps means for ongoing fraud and failure detection.',
       items: [
         { title: 'Protect your external-facing resources from DDoS attacks' },
@@ -221,13 +220,13 @@ export class DevOpsComponent {
       img: 'assets/img/bg-img/services_img/devops/traits/business_value.png'
     },
     {
-      title: 'Strategy & innovation',
+      title: 'Strategy & Innovation',
       description: `Valor’s culture of personal growth and self-improvement drives engineers to constantly sharpen their skills and master <a href="/articles/medusa-the-only-commercial-available-saas-platform-for-federated-applications" target="_blank"><b><u>innovative tools and technologies</u></b></a>. We’ll provide you with a forward-looking DevOps solution that will not just optimize your today's processes but will enable your consistent growth and competitive advantage.`,
       img: 'assets/img/bg-img/services_img/devops/traits/strategy_innovation.png'
     },
     {
-      title: 'Full-cycle service',
-      description: 'We go beyond a standard set of requirements and specifications – to us partnership is about being a trusted software consultant that can address clients’ needs at every stage of their journey. So rather than implementing a particular task, we deploy, <a href="/services/support-maintenance" target="_blank"><b><u>support, and maintain</u></b></a> your project in a reliable environment powered by DevOps.',
+      title: 'Full-cycle Service',
+      description: 'We go beyond a standard set of requirements and specifications – to us partnership is about being a trusted software consultant that can address clients’ needs at every stage of their journey. So rather than implementing a particular task, we deploy, <a href="/services/support-&-Maintenance" target="_blank"><b><u>support, and maintain</u></b></a> your project in a reliable environment powered by DevOps.',
       img: 'assets/img/bg-img/services_img/devops/traits/full_cycle.png'
     }
   ];

@@ -66,7 +66,7 @@ export class ServiceHeaderCardComponent implements OnChanges {
   }
   onClick() {
     if (this.servicesHeader?.button?.url ) {
-      this.router.navigate([this.servicesHeader?.button.url]);
+    window.open(this.servicesHeader?.button?.url, '_blank');
       return;
     }
     this.modalService.open(ContactModalComponent);

@@ -1,5 +1,5 @@
 {
-  "name": "Ashes Of Creation",
+  "name": "Ashes of Creation",
   "link": "https://ashesofcreation.com/",
   "feedback": "Steven Sharif",
   "sortTechnologies": ["aws", "nest_js"],
@@ -49,7 +49,7 @@
         "We took our in-depth knowledge of the user experience, user interface design, and web development in the eCommerce and MMORPG industry to create an updated web platform for the Ashes of Creation.", 
         "Our starting point was reconsideration and modification of the website architecture. In creating the design, we followed the processes described below."
       ],
-      "descriptionCards": ["UI/UX audit", "Wireframes", "UI library and style guide", "Collecting requirements", "Mood board and define the style", "Design for the website", "Competitor's analysis" ],
+      "descriptionCards": ["UI/UX audit", "Wireframes", "UI library and style guide", "Collecting requirements", "Mood board and style’s definition", "Design for the website", "Competitor's analysis" ],
       "subDescription": "We introduced a user-friendly and consistent design that would be attractive and match the game’s vibe. Only after the information structure of the site was improved, we moved on with modernizing things under the hood.",
       "comparisons": [
         {
@@ -80,7 +80,7 @@
         "Less complexity and deeper integrations with third-party services, e.g. Discord"
       ],
       "centerButton": {
-        "text": "Visit a case study to learn more",
+        "text": "Check the case study to learn more",
         "link": "https://valor-software.com/articles/scully-helped-us-reach-a-99-lighthouse-score-for-a-b2c-platform"
       }
     },

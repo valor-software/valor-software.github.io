@@ -9,14 +9,14 @@
         "url": "/projects/terminus"
       },
       {
-        "title": "Career Builder (for Recruiters)",
+        "title": "Career Builder",
         "url": "/projects/careerbuilder"
       },
       {
         "title": "Honcho"
       },
       {
-        "title": "Vizabi (chats and visualization tools)",
+        "title": "Vizabi",
         "url": "/projects/vizabi"
       },
       {
@@ -93,10 +93,11 @@
     "description": "Innovation-driven solutions that combine cutting-edge technologies and the boldest ideas brought to life to grant unforgettable experiences for the audience.",
     "items": [
       {
-        "title": "Ashes of Creation"
+        "title": "Ashes of Creation",
+        "url": "/projects/ashes-of-creation"
       },
       {
-        "title": "Blackout (sleep and meditation)"
+        "title": "Blackout"
       }
     ]
   }

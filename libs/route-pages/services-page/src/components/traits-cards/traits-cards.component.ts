@@ -4,6 +4,7 @@ export interface ITraitsCard {
   title: string;
   img: string;
   description?: string;
+  url?: string;
 }
 
 @Component({

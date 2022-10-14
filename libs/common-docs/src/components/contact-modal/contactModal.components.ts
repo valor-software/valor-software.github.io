@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SendEmailService } from '../../services/senEmail.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { errorVocabulary, IError } from './errors';
+import { Router } from '@angular/router';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -42,7 +43,8 @@ export class ContactModalComponent implements OnDestroy {
     constructor(
         private modalService: ModalService<ContactModalComponent>,
         private sendEmailServ: SendEmailService,
-        private recaptchaV3Service: ReCaptchaV3Service
+        private recaptchaV3Service: ReCaptchaV3Service,
+        private router: Router
     ) {
         this._state = this.modalService.state.subscribe((res: boolean) => {
             setTimeout(() => {
@@ -53,6 +55,12 @@ export class ContactModalComponent implements OnDestroy {
         const element = document.body.querySelector('.grecaptcha-badge') as HTMLElement;
         if (element) {
             element.style.display = 'block';
+        }
+
+        if (this.router.url.includes('/services')) {
+            this.form.get('type')?.setValue('service');
+        } else if (this.router.url.includes('/careers')) {
+            this.form.get('type')?.setValue('career');
         }
     }
 
