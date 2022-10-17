@@ -68,7 +68,7 @@ export class ProductOwnershipAndProjectManagementComponent {
     },
     {
       title: 'Improved sprint velocity',
-      description: `PO oversees sprints, monitors the amount of value delivered, and suggests improvements to the process. On the other hand, the product owner shields the team from business influences and requirements engineering. Learn more about the benefits the PO role brings to the project <a href="/articles/the-4-biggest-lessons-we-learned-while-building-a-startup-product-as-an-outsource-company" target="_blank"><b><u>from the blog</b></u></a>.`,
+      description: `PO oversees sprints, monitors the amount of value delivered, and suggests improvements to the process. On the other hand, the product owner shields the team from business influences and requirements engineering. Learn more about the benefits the PO role brings to the project <a class="pointer-events-auto" href="/articles/the-4-biggest-lessons-we-learned-while-building-a-startup-product-as-an-outsource-company" target="_blank"><b><u>from the blog</b></u></a>.`,
       img: 'assets/img/bg-img/services_img/product-ownership-and-project-management/po-benefits/improved_sprint.png'
     }
   ];
@@ -109,7 +109,7 @@ export class ProductOwnershipAndProjectManagementComponent {
   traitsCard: ITraitsCard[] = [
     {
       title: 'Retention & stability',
-      description: `Valor Software not just cares about clients’ satisfaction but fosters a friendly and discussion-oriented environment for employees. This makes the company a place where experts tend to work in the long run. So, you can obtain true knowledge-keepers for your project. To learn more about the company values and employment conditions, visit <a href="/careers" target="_blank"><b><u>the employees-focused page</u></b></a>.`,
+      description: `Valor Software not just cares about clients’ satisfaction but fosters a friendly and discussion-oriented environment for employees. This makes the company a place where experts tend to work in the long run. So, you can obtain true knowledge-keepers for your project. To learn more about the company values and employment conditions, visit <a class="pointer-events-auto" href="/careers" target="_blank"><b><u>the employees-focused page</u></b></a>.`,
       img: 'assets/img/bg-img/services_img/product-ownership-and-project-management/traits/retention_stability.png'
     },
     {
@@ -119,7 +119,7 @@ export class ProductOwnershipAndProjectManagementComponent {
     },
     {
       title: 'Agility',
-      description: 'Valor’s clients are located globally, so we make it easy for them to communicate with the team and keep track of the project changes no matter what time zone they are in. This agility is important because it allows us to go beyond initial requirements and build products that capture the market. Learn more about the benefits of Agile for your business from <a href="/articles/benefits-of-agile-to-business-and-team" target="_blank"><b><u>the dedicated article on our blog.</u></b></a>',
+      description: 'Valor’s clients are located globally, so we make it easy for them to communicate with the team and keep track of the project changes no matter what time zone they are in. This agility is important because it allows us to go beyond initial requirements and build products that capture the market. Learn more about the benefits of Agile for your business from <a class="pointer-events-auto" href="/articles/benefits-of-agile-to-business-and-team" target="_blank"><b><u>the dedicated article on our blog.</u></b></a>',
       img: 'assets/img/bg-img/services_img/product-ownership-and-project-management/traits/agility.png'
     }
   ];

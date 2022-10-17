@@ -205,12 +205,12 @@ export class DesignComponent {
   traitsCard: ITraitsCard[] = [
     {
       title: 'Ahead of design trends',
-      description: `The digital design industry is constantly evolving, and Valor’s design team monitors dynamics and keeps up to the pace. Being passionate about UX and UI, they take courses and participate in dedicated conferences. So when you partner up with Valor, you have the biggest fans of design working for your product and your audience. Visit a post-graduation <a href="https://valor-software.com/articles/designing-aggregator-app-from-a-to-z-part-1" target="_blank"><b><u>case study</u></b></a> of one of the designers to learn more.`,
+      description: `The digital design industry is constantly evolving, and Valor’s design team monitors dynamics and keeps up to the pace. Being passionate about UX and UI, they take courses and participate in dedicated conferences. So when you partner up with Valor, you have the biggest fans of design working for your product and your audience. Visit a post-graduation <a class="pointer-events-auto" href="https://valor-software.com/articles/designing-aggregator-app-from-a-to-z-part-1" target="_blank"><b><u>case study</u></b></a> of one of the designers to learn more.`,
       img: 'assets/img/bg-img/services_img/design/traits/design_trends.png'
     },
     {
       title: 'Mature delivery process',
-      description: `We strive to make our collaboration with the clients transparent and predictable. So we have a particular flow for every stage when we iterate with you on team syncs, give progress updates, and make demos. This way, you always know where your project is now, what's coming next, and control the result. Learn more about the process of building solutions from scratch from the <a href="https://valor-software.com/clients/startups" target="_blank"><b><u>Startups dedicated page</u></b></a>.`,
+      description: `We strive to make our collaboration with the clients transparent and predictable. So we have a particular flow for every stage when we iterate with you on team syncs, give progress updates, and make demos. This way, you always know where your project is now, what's coming next, and control the result. Learn more about the process of building solutions from scratch from the <a class="pointer-events-auto" href="https://valor-software.com/clients/startups" target="_blank"><b><u>Startups dedicated page</u></b></a>.`,
       img: 'assets/img/bg-img/services_img/design/traits/delivery_process.png'
     },
     {

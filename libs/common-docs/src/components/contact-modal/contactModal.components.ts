@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -39,6 +39,10 @@ export class ContactModalComponent implements OnDestroy {
             { type: 'maxlength', message: 'The message must be less than 1000 characters' }
         ],
     };
+
+    @HostListener('document:keydown.escape', ['$event']) onKeydownHandler() {
+        this.closeModal();
+    }
 
     constructor(
         private modalService: ModalService<ContactModalComponent>,
