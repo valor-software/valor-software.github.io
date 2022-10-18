@@ -100,17 +100,17 @@ export class QualityAssuranceComponent {
   traitsCards: ITraitsCard[] = [
     {
       title: 'The culture of quality',
-      description: 'When it comes to <a href="/services/software-engineering" target="_blank"><b><u>the development of a software product</u></b></a>, the faster you get feedback from users, the better you can iterate and adjust with minimum loss. We strive to embed quality control in every stage of the development cycle and reduce the loop for getting users’ feedback. In this way, you deliver more regularly and cost-effectively to a more loyal audience.',
+      description: 'When it comes to <a class="pointer-events-auto" href="/services/software-engineering" target="_blank"><b><u>the development of a software product</u></b></a>, the faster you get feedback from users, the better you can iterate and adjust with minimum loss. We strive to embed quality control in every stage of the development cycle and reduce the loop for getting users’ feedback. In this way, you deliver more regularly and cost-effectively to a more loyal audience.',
       img: 'assets/img/bg-img/services_img/quality-assurance/traits/quality-culture.png'
     },
     {
       title: 'Innovation',
-      description: 'We believe that staying ahead of the curve in terms of tools and technologies is the only way to progress and build solutions that can serve clients not just today but tomorrow. We constantly monitor the latest industry trends and apply  <a href="/articles/announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor" target="_blank"><b><u>edge technologies</u></b></a> that help optimize workflows and use automation to the fullest. Find more about automation and the cloud on the <a href="/services/devops" target="_blank"><b><u>DevOps page</u></b></a>.',
+      description: 'We believe that staying ahead of the curve in terms of tools and technologies is the only way to progress and build solutions that can serve clients not just today but tomorrow. We constantly monitor the latest industry trends and apply  <a class="pointer-events-auto" href="/articles/announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor" target="_blank"><b><u>edge technologies</u></b></a> that help optimize workflows and use automation to the fullest. Find more about automation and the cloud on the <a class="pointer-events-auto" href="/services/devops" target="_blank"><b><u>DevOps page</u></b></a>.',
       img: 'assets/img/bg-img/services_img/quality-assurance/traits/innovation.png'
     },
     {
       title: 'Agility',
-      description: 'Valor’s quality assurance experts follow the principles of Agile and have regular syncs, updates with the client, reviews, and retrospectives. Even though our QA strategy is measured, we are ready to adjust it to the fast-paced business environment and address new market requirements for your solution with prompt reprioritizing. <a href="/services/product-ownership-and-project-management" target="_blank"><b><u>Managers</u></b></a> will help adapt priorities and balance the load between team members.',
+      description: 'Valor’s quality assurance experts follow the principles of Agile and have regular syncs, updates with the client, reviews, and retrospectives. Even though our QA strategy is measured, we are ready to adjust it to the fast-paced business environment and address new market requirements for your solution with prompt reprioritizing. <a class="pointer-events-auto" href="/services/product-ownership-and-project-management" target="_blank"><b><u>Managers</u></b></a> will help adapt priorities and balance the load between team members.',
       img: 'assets/img/bg-img/services_img/quality-assurance/traits/agility.png'
     },
 

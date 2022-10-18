@@ -221,12 +221,12 @@ export class DevOpsComponent {
     },
     {
       title: 'Strategy & Innovation',
-      description: `Valor’s culture of personal growth and self-improvement drives engineers to constantly sharpen their skills and master <a href="/articles/medusa-the-only-commercial-available-saas-platform-for-federated-applications" target="_blank"><b><u>innovative tools and technologies</u></b></a>. We’ll provide you with a forward-looking DevOps solution that will not just optimize your today's processes but will enable your consistent growth and competitive advantage.`,
+      description: `Valor’s culture of personal growth and self-improvement drives engineers to constantly sharpen their skills and master <a class="pointer-events-auto" href="/articles/medusa-the-only-commercial-available-saas-platform-for-federated-applications" target="_blank"><b><u>innovative tools and technologies</u></b></a>. We’ll provide you with a forward-looking DevOps solution that will not just optimize your today's processes but will enable your consistent growth and competitive advantage.`,
       img: 'assets/img/bg-img/services_img/devops/traits/strategy_innovation.png'
     },
     {
       title: 'Full-cycle Service',
-      description: 'We go beyond a standard set of requirements and specifications – to us partnership is about being a trusted software consultant that can address clients’ needs at every stage of their journey. So rather than implementing a particular task, we deploy, <a href="/services/support-&-Maintenance" target="_blank"><b><u>support, and maintain</u></b></a> your project in a reliable environment powered by DevOps.',
+      description: 'We go beyond a standard set of requirements and specifications – to us partnership is about being a trusted software consultant that can address clients’ needs at every stage of their journey. So rather than implementing a particular task, we deploy, <a class="pointer-events-auto" href="/services/support-&-Maintenance" target="_blank"><b><u>support, and maintain</u></b></a> your project in a reliable environment powered by DevOps.',
       img: 'assets/img/bg-img/services_img/devops/traits/full_cycle.png'
     }
   ];

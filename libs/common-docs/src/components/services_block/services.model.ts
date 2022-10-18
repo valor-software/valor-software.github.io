@@ -3,7 +3,7 @@ export const servicesList = [
         title: 'Design',
         description: 'Designing websites and applications that look good is not enough. Let your users experience human-centric solutions with intuitive navigation, high accessibility, and a custom UI that appeals.',
         img: 'assets/img/bg-img/services_img/services_1.svg',
-        path: 'design'
+        path: '/services/design'
     },
     {
         title: 'Software Engineering',
@@ -27,12 +27,12 @@ export const servicesList = [
         title: 'Support & Maintenance',
         description: 'With the comprehensive support in simplifying and optimizing your ecosystems, you’ll shift smoothly from reactive to preemptive engagement models to deliver superior customer experiences.',
         img: 'assets/img/bg-img/services_img/services_5.svg',
-        path: 'support-&-Maintenance'
+        path: '/services/support-&-Maintenance'
     },
     {
         title: 'Product Ownership & Project Management',
         description: 'We’ll accomplish your team with the first-class product owner who will prioritize the backlog for engineers and take care of customer satisfaction by creating user stories. With the help of the project manager, we’ll keep the project requirements clear and up-to-date, so you get exactly the solution you need.',
         img: 'assets/img/bg-img/services_img/services_6.svg',
-        path: 'product-ownership-and-project-management'
+        path: '/services/product-ownership-and-project-management'
     }
 ];

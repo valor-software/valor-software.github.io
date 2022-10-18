@@ -140,17 +140,17 @@ export class SupportMaintenanceComponent {
   traitsCard: ITraitsCard[] = [
     {
       title: 'Unique open-source expertise',
-      description: `While most engineers perceive technologies primarily from the consumer’s perspective, Valorians get under the hood and know how the tooling is built. We’ve created many Angular community libraries, including <a href="https://valor-software.com/ngx-bootstrap/#/" target="_blank"><b><u>ngx-bootstrap</u></b></a>, with hundreds of thousands of users. This unique experience empowers us to find new non-standard ways of how technology can solve your particular business problems.`,
+      description: `While most engineers perceive technologies primarily from the consumer’s perspective, Valorians get under the hood and know how the tooling is built. We’ve created many Angular community libraries, including <a class="pointer-events-auto" href="https://valor-software.com/ngx-bootstrap/#/" target="_blank"><b><u>ngx-bootstrap</u></b></a>, with hundreds of thousands of users. This unique experience empowers us to find new non-standard ways of how technology can solve your particular business problems.`,
       img: 'assets/img/bg-img/services_img/support-maintenance/traits/open_source.png'
     },
     {
       title: 'Enterprise proficiency',
-      description: `A proven record of successful <a href="/projects/terminus" target="_blank"><b><u>migrations and modernizations</u></b></a> of legacy infrastructures makes Valor ready for this kind of challenge. We know how crucial security is for you alongside innovation, so we move step-by-step, with regular reporting and careful maintenance of project documentation. Lear more about Valor's capabilities for enterprise from <a target="_blank" href="/clients/enterprises"><b><u>the dedicated page</b></u></a>.`,
+      description: `A proven record of successful <a class="pointer-events-auto" href="/projects/terminus" target="_blank"><b><u>migrations and modernizations</u></b></a> of legacy infrastructures makes Valor ready for this kind of challenge. We know how crucial security is for you alongside innovation, so we move step-by-step, with regular reporting and careful maintenance of project documentation. Lear more about Valor's capabilities for enterprise from <a class="pointer-events-auto" target="_blank" href="/clients/enterprises"><b><u>the dedicated page</b></u></a>.`,
       img: 'assets/img/bg-img/services_img/support-maintenance/traits/enterprise_proficiency.png'
     },
     {
       title: 'Team maturity',
-      description: 'The majority of Valor’s engineers have over 4 years of experience in programming and quality assurance. So you entrust the work to masters who do not require additional control and supervision. As self-development and training are part of our <a target="_blank" href="/careers"><b><u>company’s culture</b></u></a>, every team member has an individual growth plan despite their seniority level.',
+      description: 'The majority of Valor’s engineers have over 4 years of experience in programming and quality assurance. So you entrust the work to masters who do not require additional control and supervision. As self-development and training are part of our <a class="pointer-events-auto" target="_blank" href="/careers"><b><u>company’s culture</b></u></a>, every team member has an individual growth plan despite their seniority level.',
       img: 'assets/img/bg-img/services_img/support-maintenance/traits/team_maturity.png'
     }
   ];
