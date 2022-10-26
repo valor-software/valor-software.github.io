@@ -1,0 +1,57 @@
+= Turbopack, new Hotness or promising Alpha
+
+
+=== Introduction
+
+At the NextJS https://nextjs.org/conf[conference^] there were a lot of really exciting things that were announced, while a lot of the new functionality centered around Vercel-centric offerings which will greatly improve the developer experience and performance there was one new project that was talked about a good amount and that was Turbopack.  Created by Tobias and the team at Vercel, Turbopack was advertised as the “next evolution of Webpack” and the “Twilight of Webpack”, the conversations in Discord during the presentation bounced between “Webpack Killer” and the more cautionary “This is still alpha should we use it”, which seems about on par with what to expect from developers seeing a new shiny tool.  
+
+This post is not intended to detract from anything the Vercel / Next team is doing with Turbopack, nor detract from the Next.js conference itself. A conference that had one of the best overall event production and fluidity I’ve seen outside of Apple events.
+
+During her conference https://youtu.be/pC2dl8hNVGg?t=1074[presentation^] on stage J, Maia Tegarden shared that Turbo is 700x faster than Webpack and 10x faster than Vite, the main differences being the advanced caching mechanisms and the build platform moving to Rust. There was one large comparison that I believe the presentation left out, most likely intentionally, comparing Turbopack to Webpack with https://nx.dev/[Nx^]. Nx has its own caching mechanisms both locally and in the cloud (which organizationally would be more beneficial for enterprises with heavily distributed teams).
+
+In order to do some testing and benchmarking, I decided to follow the guide on starting a project with turbo. Luckily the Vercel team makes it super easy to get started. 
+
+=== Next Turbo
+
+*npx create-next-app --example with-turbopack*
+
+This single command scaffolded the demo application easily and running *npm run build *the initial compilation is 2.19ms which is surprisingly fast. Opening the URL that was output by the command, the first-page load event took 1.57s and the CLI itself mentioned that the output was updated in 960ms. Refreshing the page multiple times took between 311ms and 374ms to load and triggered two updated events averaging between 107ms and 154ms. 
+
+In general a very fast experience. 
+
+Updating a CSS class on the layout.tsx to change the y spacing ( a very simple action ), triggered two update events that took roughly 200ms each. A page refresh took 583ms on the browser and triggered two events taking 390ms and 784ms respectively. Oddly sometimes refreshing the page would take several seconds on the event timings with some instances taking 800ms to 3400ms and up. 
+
+=== Nx
+
+Now for Nx we have a very similar command that we can run:
+
+*npx create-nx-workspace@latest*
+
+This single command kicks off a CLI wizard where I selected Next and CSS as the options. The default project builds and serves extremely fast, but this project is not a fair comparison because the example from Vercel uses Tailwind and more complex component architecture, as well as Next 13.  After copying in all of the application code from the Next example into the Nx workspace, I also had to configure the application to use PostCSS and ran the same page refreshes and changes. The example repo is found https://github.com/zackarychapple/next-nx-demo[here^]. Because the official next template has not yet been updated to Next 13 (which was just released) you will have to do a force install.
+
+Starting the application with *npm run start* took roughly 773ms, and opening the application with the link triggered 3 events, each of those events took between 254ms to 914ms. The page load event took 1.16s. Refreshing the page multiple times took on average: 516ms and 612ms for the load event. No CLI events were triggered during the page refresh. +
+The experience was feeling equally fast even though they are in reality different by a few hundred milliseconds.
+
+Doing the updates of the exact same CSS classes triggered a single event that took between 153ms to 442ms. Reloading the page triggered an additional two events which took 95ms and 250ms respectively. 
+
+=== The Results
+
+Turbopack looks promising but still has some room for improvement from a performance standpoint. I’d love to see what is coming with the next version of Nx and the updates made to better support Next 13. However, outside of the initial startup, the actual development activity and JIT updates appears to be faster with Webpack and Nx than with Turbopack. 
+
+Because Nx also can leverage multiple builders, including esbuild, I’d also be interested to see Nx working directly with Turbopack itself and how to replace the local cache being used by Turbopack with the cloud cache from Nx.
+
+|===
+||Turbopack||Nx + Webpack|
+
+||Min|Max|Min|Max
+|Initial Startup (CLI)|~2ms||773ms|
+|First Page Load (Browser)|~1.6s||1.2s|
+|First Page Load Events (CLI)|~960ms||~914ms|
+|Page Refresh (Browser)|~300ms||516ms|612ms
+|Page Refresh (CLI)|~100ms||none*|none*
+|HTML Class Updates (CLI)|~580ms|>1.5s|95ms|250ms
+|HTML Class Updates (Browser)|> 400ms (two events ~200ms each)|> 3s (two events 800ms - 3.5s each)|150ms|442ms
+|===
+
+_*no compile events were reported, however that does not mean none were potentially executed due to possibly being swallowed by Nx_ +
+_note: these tests were all performed on a 16” MBP with a M1 Max and 64 GB memory_
