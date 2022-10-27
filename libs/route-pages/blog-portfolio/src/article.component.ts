@@ -18,6 +18,9 @@ import { Subscription, of } from "rxjs";
     ::ng-deep.turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){
         border-right: 1px solid gray
     }
+    ::ng-deep.turbo-table tbody tr:not(:first-of-type) td{
+        padding: 5px 10px;
+    }
     ::ng-deep tbody tr:first-of-type {
         text-align: center;
     }
