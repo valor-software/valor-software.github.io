@@ -81,11 +81,11 @@
                 <p class="text-24 lg:text-large font-bold text-white">{{project.outcome}}</p>
             </div>
             <div *ngIf="project.video && project.iframe" class="iframe-box">
-                <iframe scrolling="no" frameborder="0" [src]="getSafeUrl(project.video)" allowfullscreen="true"></iframe>
+                <iframe scrolling="no" frameborder="0" [src]="utilService.getSafeUrl(project.video)" allowfullscreen="true"></iframe>
             </div>
             <div *ngIf="project.video && !project.iframe">
                 <video width="100%" controls>
-                    <source [src]="getSafeUrl(project.video)" type="video/mp4">
+                    <source [src]="utilService.getSafeUrl(project.video)" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>

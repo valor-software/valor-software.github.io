@@ -1,10 +1,11 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 import { Subscription } from 'rxjs';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { SendEmailService } from '../../services/senEmail.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { errorVocabulary, IError } from './errors';
+import { Router } from '@angular/router';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -14,11 +15,11 @@ import { errorVocabulary, IError } from './errors';
 export class ContactModalComponent implements OnDestroy {
     _state?: Subscription;
     state?: boolean;
-    form: FormGroup = new FormGroup({
-        type: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        message: new FormControl('', [Validators.required, Validators.maxLength(1000), Validators.minLength(5)]),
-        'g-recaptcha-response': new FormControl('')
+    form: UntypedFormGroup = new UntypedFormGroup({
+        type: new UntypedFormControl('', [Validators.required]),
+        email: new UntypedFormControl('', [Validators.required, Validators.email]),
+        message: new UntypedFormControl('', [Validators.required, Validators.maxLength(1000), Validators.minLength(5)]),
+        'g-recaptcha-response': new UntypedFormControl('')
     });
     data?: FormData;
     files?: File[];
@@ -39,10 +40,15 @@ export class ContactModalComponent implements OnDestroy {
         ],
     };
 
+    @HostListener('document:keydown.escape', ['$event']) onKeydownHandler() {
+        this.closeModal();
+    }
+
     constructor(
         private modalService: ModalService<ContactModalComponent>,
         private sendEmailServ: SendEmailService,
-        private recaptchaV3Service: ReCaptchaV3Service
+        private recaptchaV3Service: ReCaptchaV3Service,
+        private router: Router
     ) {
         this._state = this.modalService.state.subscribe((res: boolean) => {
             setTimeout(() => {
@@ -53,6 +59,12 @@ export class ContactModalComponent implements OnDestroy {
         const element = document.body.querySelector('.grecaptcha-badge') as HTMLElement;
         if (element) {
             element.style.display = 'block';
+        }
+
+        if (this.router.url.includes('/services')) {
+            this.form.get('type')?.setValue('service');
+        } else if (this.router.url.includes('/careers')) {
+            this.form.get('type')?.setValue('career');
         }
     }
 

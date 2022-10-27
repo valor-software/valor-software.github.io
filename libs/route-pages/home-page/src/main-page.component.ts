@@ -182,7 +182,7 @@ const ServicesModel = [
         img: 'assets/img/bg-img/services_img/services_4.svg'
     },
     {
-        title: 'Maintenance & Support',
+        title: 'Support & Maintenance',
         img: 'assets/img/bg-img/services_img/services_5.svg'
     },
     {
@@ -403,15 +403,6 @@ export class MainPageComponent implements OnDestroy {
         index++;
         return !!(index && !(index % 4));
     }
-
-    checkFirstSectionHeight(): boolean {
-        if (window.innerWidth < 768) {
-            return true;
-        }
-
-        return window.innerHeight > 800 && window.devicePixelRatio * 100 === 100;
-    }
-
     
     addScriptsToHead() {
         this.removeOldMicroDAta();

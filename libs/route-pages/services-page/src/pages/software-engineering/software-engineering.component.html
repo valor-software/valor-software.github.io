@@ -1,0 +1,55 @@
+<section class="first-section landing-section pb-0  mx-5 lg:mx-0 ">
+  <service-header-card [servicesHeader]="servicesHeader"></service-header-card>
+  <div class="container">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <traits-cards *ngFor="let card of headerCards" [traitCard]="card"></traits-cards>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h1 class="main-title lg:mb-10 ">Technologies</h1>
+  <div class="container ">
+    <div class="lg:px-0 ">
+      <h2
+        class="text-dar_grey_font_col leading-44 text-left text-24 lg:text-40 lg:mb-10 mb-18 lg:w-10/12 tracking-tightest">
+        Keen on the latest <b class="text-feedback_font_col">tools</b> and <b
+          class="text-feedback_font_col">technologies</b>, we create innovative <b
+          class="text-feedback_font_col">solutions</b> that meet modern <b class="text-feedback_font_col">users’
+          needs</b> and
+        <b class="text-feedback_font_col">scale</b> easily to keep pace with your new <b
+          class="text-feedback_font_col">business</b> goals. Find more on scalability from the <a routerLink="/services/devops" target="_blank" class="font-bold underline">DevOps page</a>
+      </h2>
+    </div>
+    <technologies-card [technologiesCards]="technologiesCards"></technologies-card>
+  </div>
+</section>
+
+<section>
+  <h1 class="main-title lg:mb-10 ">Verticals</h1>
+  <div class="container">
+    <vertical-services-card [isLinkList]="true" [isServiceList]="true"></vertical-services-card>
+  </div>
+</section>
+
+<section>
+  <h1 class="main-title lg:mb-10">Valor’s Traits</h1>
+  <div class="container">
+    <div class="flex flex-col gap-8 m-auto">
+      <traits-cards *ngFor="let card of traitsCards" [traitCard]="card"></traits-cards>
+    </div>
+  </div>
+</section>
+
+<core-team></core-team>
+
+<section class="landing-section">
+  <h1 class="main-title double">Articles</h1>
+  <div class="container">
+    <blog-preview></blog-preview>
+  </div>
+</section>
+
+<section class="mb-20">
+  <service-help-card></service-help-card>
+</section>
