@@ -1,7 +1,7 @@
 import { Component, HostListener, OnDestroy } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 import { Subscription } from 'rxjs';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { SendEmailService } from '../../services/senEmail.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { errorVocabulary, IError } from './errors';
@@ -15,11 +15,11 @@ import { Router } from '@angular/router';
 export class ContactModalComponent implements OnDestroy {
     _state?: Subscription;
     state?: boolean;
-    form: FormGroup = new FormGroup({
-        type: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        message: new FormControl('', [Validators.required, Validators.maxLength(1000), Validators.minLength(5)]),
-        'g-recaptcha-response': new FormControl('')
+    form: UntypedFormGroup = new UntypedFormGroup({
+        type: new UntypedFormControl('', [Validators.required]),
+        email: new UntypedFormControl('', [Validators.required, Validators.email]),
+        message: new UntypedFormControl('', [Validators.required, Validators.maxLength(1000), Validators.minLength(5)]),
+        'g-recaptcha-response': new UntypedFormControl('')
     });
     data?: FormData;
     files?: File[];

@@ -1,8 +1,9 @@
 import { GeneralPageComponent } from "./genral-page.component";
 import { GeneralItemComponent } from "./general-item.component";
+import { Routes } from "@angular/router";
 
 
-export const routes = [
+export const routes: Routes = [
   {
     path: '',
     children: [

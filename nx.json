@@ -30,14 +30,15 @@
       }
     },
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "nx/tasks-runners/default",
       "options": {
         "cacheableOperations": [
           "build",
           "lint",
           "test",
           "e2e"
-        ]
+        ],
+        "parallel": 1
       }
     }
   },
@@ -57,7 +58,6 @@
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
@@ -65,5 +65,26 @@
       "style": "scss"
     }
   },
-  "defaultProject": "valor-software-site"
+  "defaultProject": "valor-software-site",
+  "targetDefaults": {
+    "e2e": {
+      "inputs": [
+        "default",
+        "^default"
+      ]
+    },
+    "test": {
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json"
+      ]
+    }
+  }
 }
