@@ -8,6 +8,23 @@ import { Subscription, of } from "rxjs";
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'article',
+    styles:[`
+    ::ng-deep.turbo-table {
+        margin-top: 25px;
+    }
+    ::ng-deep.turbo-table tbody tr:not(:first-of-type) {
+        border-top: 1px solid gray;
+    }
+    ::ng-deep.turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){
+        border-right: 1px solid gray
+    }
+    ::ng-deep.turbo-table tbody tr:not(:first-of-type) td{
+        padding: 5px 10px;
+    }
+    ::ng-deep tbody tr:first-of-type {
+        text-align: center;
+    }
+    `],
     templateUrl: './article.component.html'
 })
 export class ArticleComponent implements OnDestroy {

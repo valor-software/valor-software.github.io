@@ -21,17 +21,20 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@valor-software/blog-portfolio": [
-        "libs/route-pages/blog-portfolio/src/index.ts"
-      ],
       "@valor-software/ashes-page": [
         "libs/route-pages/ashes-page/src/index.ts"
+      ],
+      "@valor-software/blog-portfolio": [
+        "libs/route-pages/blog-portfolio/src/index.ts"
       ],
       "@valor-software/careers": [
         "libs/route-pages/careers/src/index.ts"
       ],
       "@valor-software/common-docs": [
         "libs/common-docs/src/index.ts"
+      ],
+      "@valor-software/dollar-street-page": [
+        "libs/route-pages/dollar-street-page/src/index.ts"
       ],
       "@valor-software/feedback": [
         "libs/feedback/src/index.ts"
@@ -45,23 +48,20 @@
       "@valor-software/home-page": [
         "libs/route-pages/home-page/src/index.ts"
       ],
+      "@valor-software/liberty-flights-page": [
+        "libs/route-pages/liberty-flights-page/src/index.ts"
+      ],
       "@valor-software/services-page": [
         "libs/route-pages/services-page/src/index.ts"
       ],
-      "@valor-software/terminus-page": [
-        "libs/route-pages/terminus-page/src/index.ts"
-      ],
-      "@valor-software/liberty-flights-page": [
-        "libs/route-pages/liberty-flights-page/src/index.ts"
+      "@valor-software/software-engineering": [
+        "libs/route-pages/software-engineering/src/index.ts"
       ],
       "@valor-software/tablesready-page": [
         "libs/route-pages/tablesready-page/src/index.ts"
       ],
-      "@valor-software/dollar-street-page": [
-        "libs/route-pages/dollar-street-page/src/index.ts"
-      ],
-      "@valor-software/software-engineering": [
-        "libs/route-pages/software-engineering/src/index.ts"
+      "@valor-software/terminus-page": [
+        "libs/route-pages/terminus-page/src/index.ts"
       ]
     }
   },
