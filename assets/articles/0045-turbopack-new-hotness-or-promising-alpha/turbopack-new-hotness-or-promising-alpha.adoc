@@ -41,12 +41,12 @@ Turbopack looks promising but still has some room for improvement from a perform
 Because Nx also can leverage multiple builders, including esbuild, I’d also be interested to see Nx working directly with Turbopack itself and how to replace the local cache being used by Turbopack with the cloud cache from Nx.
 
 |===
-||Turbopack||Nx + Webpack|
+| 2+^|Turbopack 2+^|Nx + Webpack
 
-||Min|Max|Min|Max
-|Initial Startup (CLI)|~2ms||773ms|
-|First Page Load (Browser)|~1.6s||1.2s|
-|First Page Load Events (CLI)|~960ms||~914ms|
+| ^|Min ^|Max ^|Min ^|Max
+|Initial Startup (CLI)|~2ms||773ms
+|First Page Load (Browser)|~1.6s||1.2s
+|First Page Load Events (CLI)|~960ms||~914ms
 |Page Refresh (Browser)|~300ms||516ms|612ms
 |Page Refresh (CLI)|~100ms||none*|none*
 |HTML Class Updates (CLI)|~580ms|>1.5s|95ms|250ms
