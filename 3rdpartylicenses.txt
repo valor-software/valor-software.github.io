@@ -18,11 +18,15 @@ MIT
 
 @scullyio/ng-lib
 
+@valor-software/ashes-page
+
 @valor-software/blog-portfolio
 
 @valor-software/careers
 
 @valor-software/common-docs
+
+@valor-software/dollar-street-page
 
 @valor-software/feedback
 
@@ -32,7 +36,11 @@ MIT
 
 @valor-software/home-page
 
+@valor-software/liberty-flights-page
+
 @valor-software/services-page
+
+@valor-software/tablesready-page
 
 @valor-software/terminus-page
 
