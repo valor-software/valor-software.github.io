@@ -12,7 +12,7 @@ export const servicesList = [
         path: '/services/software-engineering'
     },
     {
-        title: 'Quality Assuarance',
+        title: 'Quality Assurance',
         description: 'Enjoy thoroughly planned and polished quality assurance workflows on your project, including the test automation pipeline. Using edge JavaScript and TypeScript libraries, we ensure the best test coverage of your product.',
         img: 'assets/img/bg-img/services_img/services_3.svg',
         path: '/services/quality-assurance'
