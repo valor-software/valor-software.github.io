@@ -34,14 +34,14 @@
                     <ng-container *ngIf="!isBlogPage(); else blogPageImage">
                         <ng-container *ngIf="activeProject && activeProject.name">
                             <a href="javascript:void(0)" [routerLink]="[getRouteLink(activeProject.name)]" class="block zoom-img-scale">
-                                <img [src]="activeProject?.previewImg" [alt]="activeProject?.name + 'image'">
+                                <img [src]="activeProject.previewImg" [alt]="activeProject.name + 'image'">
                             </a>
                         </ng-container>
                     </ng-container>
                     <ng-template #blogPageImage>
                         <ng-container *ngIf="activeArticle && activeArticle.title">
                             <a href="javascript:void(0)" [routerLink]="[getRouteLink(activeArticle.title)]" class="block zoom-img-scale">
-                                <img [src]="activeArticle?.bgImg" [alt]="activeArticle?.title + 'image'">
+                                <img [src]="activeArticle.bgImg" [alt]="activeArticle.title + 'image'">
                             </a>
                         </ng-container>
                     </ng-template>
