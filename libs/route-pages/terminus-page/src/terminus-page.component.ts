@@ -186,7 +186,7 @@ const cloudTechnologies: ITechnologiesCard[] = [
                 title: "Elixir"
             },
             {
-                src: "assets/img/technologies/active/java_script.png",
+                src: "assets/img/technologies/active/node.png",
                 title: "NodeJs"
             },
         ]
@@ -231,7 +231,7 @@ const newFunctionalitiesTechnologies: ITechnologiesCard[] = [
         title: 'Backend',
         technologies: [
             {
-                src: "assets/img/technologies/active/java_script.png",
+                src: "assets/img/technologies/active/node.png",
                 title: "Node.js"
             }
         ],
