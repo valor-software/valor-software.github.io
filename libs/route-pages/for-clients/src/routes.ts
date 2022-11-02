@@ -2,8 +2,9 @@ import { StartupsComponent } from './startups.component';
 import { SmallMediumBusinessesComponent } from './smallMediumBusinesses.component';
 import { EnterprisesComponent } from './enterprises.component';
 import { NonProfitComponent } from './nonProfit.component';
+import { Routes } from '@angular/router';
 
-export const routes = [
+export const routes: Routes = [
     {
         path: '',
         children: [
@@ -25,7 +26,8 @@ export const routes = [
             },
             {
                 path: '',
-                redirectTo: 'startups'
+                redirectTo: 'startups',
+                pathMatch: 'full'
             },
         ]
     }
