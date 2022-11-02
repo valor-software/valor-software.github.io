@@ -41,7 +41,11 @@ export class ContactModalComponent implements OnDestroy {
     };
 
     @HostListener('document:keydown.escape', ['$event']) onKeydownHandler() {
+        const focused: HTMLElement | null = <HTMLElement>document.querySelector(':focus-visible');
         this.closeModal();
+        if(focused){
+            focused.blur();
+        }
     }
 
     constructor(
