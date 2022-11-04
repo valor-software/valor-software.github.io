@@ -41,7 +41,11 @@ export class ContactModalComponent implements OnDestroy {
     };
 
     @HostListener('document:keydown.escape', ['$event']) onKeydownHandler() {
+        const focused: HTMLElement | null = <HTMLElement>document.querySelector(':focus-visible');
         this.closeModal();
+        if(focused){
+            focused.blur();
+        }
     }
 
     constructor(
@@ -61,7 +65,7 @@ export class ContactModalComponent implements OnDestroy {
             element.style.display = 'block';
         }
 
-        if (this.router.url.includes('/services')) {
+        if (this.router.url.includes('/services') || this.router.url.includes('/clients')) {
             this.form.get('type')?.setValue('service');
         } else if (this.router.url.includes('/careers')) {
             this.form.get('type')?.setValue('career');

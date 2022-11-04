@@ -32,10 +32,10 @@
             </ul>
 
             <div class=" flex-column lg:flex justify-start items-center" *ngIf="!isLinkList && service.button">
-              <button  class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
-                <a (click)="onClick(service.button?.url)" target="_blank"
+              <button  class="w-full lg:w-auto flex lg:mr-6 mb-4">
+                <a (click)="onClick(service.button.url)" target="_blank"
                   class="btn-pink w-full flex justify-center items-center">
-                  {{service.button?.title}}
+                  {{service.button.title}}
                   <img src="assets/img/icons/arrow.svg" class="ml-2 my-auto" alt=""></a>
               </button>
             </div>
