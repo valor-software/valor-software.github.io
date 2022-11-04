@@ -9,6 +9,7 @@ Well, that’s a resounding *no*!
 
 It is about us! If you’re a part of Valor, it’s all about you!
 image::IMG_Change1.jpg[]
+
 == The Twisty Road We Took
 
 It has been a long road since 2013. We have matured and adapted, we have a common history and personal stories of all of us. During the maturation, we went through this transitional age, which cost us losing our youthful optimism and losing our Angular fanaticism in favor of a wide spectrum of technologies.
