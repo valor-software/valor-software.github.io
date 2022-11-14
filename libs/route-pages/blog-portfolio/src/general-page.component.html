@@ -3,7 +3,7 @@
         <div class="container">
             <div class="w-full pb-5 flex justify-between items-center pt-16 lg:pt-0" style="max-height: 100%;">
                 <div class="md:max-w-500">
-                    <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">
+                    <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold tracking-tighter">
                         <ng-container *ngIf="!isBlogPage(); else blogPageTitle">{{activeProject?.name | customSlice: 40}}</ng-container>
                         <ng-template #blogPageTitle>{{activeArticle?.title | customSlice: 40}}</ng-template>
                     </h1>
