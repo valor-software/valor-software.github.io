@@ -13,25 +13,25 @@ image::IMG_Change1.jpg[]
 
 == The Twisty Road We Took
 
-It has been a long road since 2013. We have matured and adapted, we have a common history and personal stories of all of us. During the maturation, we went through this transitional age, which cost us losing our youthful optimism and losing our Angular fanaticism in favor of a wide spectrum of technologies.
+It has been a long road since 2013. We have matured and adapted, we have a shared history and personal stories of all of us. During the maturation, we went through this transitional age, which cost us losing our youthful optimism and losing our Angular fanaticism in favor of a wide spectrum of technologies.
 
-*The realization hit harder than we expected*. What we do is not about tooling, but rather about what we enable, and is always more important than the fact that we’ve used Angular for that particular project, to achieve the firm Valor-quality result.
+*The realization hit harder than we expected*. What we do is not about tooling but rather about what we enable, and it's always more important than the fact that we had used Angular for that particular project to achieve the firm Valor-quality result.
 
 We all remember the cozy feeling of slipping into your favorite pair of jeans that overstayed their welcome for a couple of extra years. The same goes for technologies, limiting ourselves to only one tool from the galaxy-wide toolbox puts extra restrictions and limits us in our ability to grow in every direction out there.
 
 Our dream was so vivid and big, that we went against the famous saying about not putting all eggs in one basket. Our dream was to become the largest Angular hub in Ukraine. Our dream was so solid that we even rented https://valor-software.com/articles/new-year-new-valor-new-you[an office for 300 folks in Kharkiv^]. And it went well for some time. We had our share of success, NgTalks 2018, the first-ever Ukrainian Kharkiv-based Angular conference was a huge blast! We also made some decent talent acquisitions in those years. But all those eggs in a single basket started to crack.
 
-Blocks and restrictions are oftentimes nothing more than an illusion in our heads because humans’ brains tend to oppose change. *Once we recognize what’s blocking us – it’s a half-work done*. This way we understood that great people and professionals spread all around the world. And possibly we could find a common language and a common ground to make up a team. We went for it, and voila!! We're an international team of in a good way crazy and passionate professionals!
+Blocks and restrictions are oftentimes nothing more than an illusion in our heads because humans’ brains tend to oppose change. *Once we recognize what’s blocking us – it’s a half-work done*. This way we understood that great people and professionals spread all around the world. And possibly we could find a common language and a common ground to make up a team. We went for it, and voila!! We're an international team of, in a good way, crazy and passionate professionals!
 
 image::IMG_Change2.gif[]
 
 == Chasing Rainbows
 
-Chasing personal goals is OK, but it’s only OK if it doesn’t weaken other activities. We realized that we can be the best in Angular out there, but there’s no use in being the best if you’re a company that tries to fit the market with only one way of creating a product. Maturing has a price, and we paid a price in shifting from our blind motivations for technical and professional perfection to a more mature understanding of a need to balance between real things: market demands, our personal goals, and professional perfection.
+Chasing personal goals is OK, but it’s only OK if it doesn’t weaken other activities. We realized that we can be the best in Angular out there, but there’s no use in being the best if you’re a company that tries to fit the market with only one way of creating a product. Maturing has a price, and we paid the price in shifting from our blind motivations for technical and professional perfection to a more mature understanding of a need to balance between real things: market demands, our personal goals, and professional perfection.
 
-*And we matured indeed*, we dropped the chains of being bound to one city, one country, and one technology to become a multinational multiple tech stacks guns blazing experts.
+*And we've matured*. Indeed we dropped the chains of being bound to one city, one country, and one technology to become a multinational multiple tech stacks guns blazing experts.
 
-It all came to the fact that the only permanent thing in this world is change, and it's a great state to be which drives us to move, to leave, to grow. What didn’t change in all those years is our approach to work. Here and now *we aren’t looking for a new static vector*, rather we are looking for a way to embrace the change and share our perception of it with all of us to ride on the same wave.
+It all came to the fact that the only permanent thing in this world is change, and it's a great state to be which drives us to move, to leave, to grow. What hasn't changed in all those years is our approach to work. Here and now *we aren’t looking for a new static vector*, rather we are looking for a way to embrace the change and share our perception of it with all of us to ride on the same wave.
 
 image::IMG_Change3.jpg[]
 
