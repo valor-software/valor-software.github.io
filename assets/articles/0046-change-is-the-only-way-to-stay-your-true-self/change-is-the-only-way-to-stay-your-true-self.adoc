@@ -21,7 +21,7 @@ We all remember the cozy feeling of slipping into your favorite pair of jeans th
 
 Our dream was so vivid and big, that we went against the famous saying about not putting all eggs in one basket. Our dream was to become the largest Angular hub in Ukraine. Our dream was so solid that we even rented https://valor-software.com/articles/new-year-new-valor-new-you[an office for 300 folks in Kharkiv^]. And it went well for some time. We had our share of success, NgTalks 2018, the first-ever Ukrainian Kharkiv-based Angular conference was a huge blast! We also made some decent talent acquisitions in those years. But all those eggs in a single basket started to crack.
 
-Blocks and restrictions are oftentimes nothing more than an illusion in our heads because humans’ brains tend to oppose change. *Once we recognize what’s blocking us – it’s a half-work done*. This way we understood that `*great people and professionals spread all around the world*`. And possibly we could find a common language and a common ground to make up a team. We went for it, and voila!! We're an international team of, in a good way, crazy and passionate professionals!
+Blocks and restrictions are oftentimes nothing more than an illusion in our heads because humans’ brains tend to oppose change. Once we recognize what’s blocking us – it’s a half-work done. This way we understood that `*great people and professionals spread all around the world*`. And possibly we could find a common language and a common ground to make up a team. We went for it, and voila!! We're an international team of, in a good way, crazy and passionate professionals!
 
 image::IMG_Change2.png[]
 
