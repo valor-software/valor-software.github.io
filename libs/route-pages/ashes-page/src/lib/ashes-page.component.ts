@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { GetPortfolioService, IPortfolio, MappedTechnology, Technologies, titleRefactoring } from "@valor-software/common-docs";
 import { Observable } from "rxjs";
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ITechnologiesCard, technologiesAndServices } from '@valor-software/common-docs';
 
 const ROUTE = 'ashes-of-creation';
@@ -36,13 +36,14 @@ type AshesPortfolio = IPortfolio & {
   selector: "ashes-page",
   templateUrl: "./ashes-page.component.html"
 })
-export class AshesPageComponent {
+export class AshesPageComponent implements OnInit {
   changeBreadCrumbTitle?: { path: string, title: string }[] = [{ path: ROUTE, title: "Ashes of Creation" }];
 
   imageSliderButtonClasses = 'bg-yellow_bg_col color-black';
 
   project$: Observable<AshesPortfolio> = this.getProjectsServ.getPortfolioRequest(ROUTE);
-
+  videoUrl: SafeResourceUrl = '';
+  project?: AshesPortfolio;
   technologiesCard: ITechnologiesCard[] = [
     {
       smJustify: "between",
@@ -91,6 +92,13 @@ export class AshesPageComponent {
     private cdr: ChangeDetectorRef,
     private sanitizer: DomSanitizer
   ) {
+  }
+
+  ngOnInit(): void {
+    this.getProjectsServ.getPortfolioRequest(ROUTE).subscribe((project) => {
+      this.project = project;
+      this.videoUrl = this.getSafeUrl(this.project?.video);
+    });
   }
 
   getRouteLink(link: string): string {
