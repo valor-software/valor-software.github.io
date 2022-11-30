@@ -43,8 +43,6 @@ export class AshesPageComponent {
 
   project$: Observable<AshesPortfolio> = this.getProjectsServ.getPortfolioRequest(ROUTE);
 
-  isFrameActive = false;
-
   technologiesCard: ITechnologiesCard[] = [
     {
       smJustify: "between",
@@ -107,13 +105,6 @@ export class AshesPageComponent {
   changeSrc(event: Event, link: string) {
     (event.target as HTMLImageElement).src = link;
     this.cdr.detectChanges();
-  }
-
-  activateFrame() {
-    // start from inactive iframe to allow scrolling over iframe
-    if (!this.isFrameActive) {
-      this.isFrameActive = true;
-    }
   }
 
   getSafeUrl(url?: string) {
