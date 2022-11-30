@@ -30,6 +30,7 @@ import { ChallengeCardComponent } from './components/challenge-card/challenge-ca
 import { UtilService } from './services/utils.service';
 import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
+import { DeliverableCardComponent } from './components/deliverable-card.component/deliverable-card.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -63,6 +64,8 @@ export { TechnologiesCardComponent } from './components/technologies-card/techno
 export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
 export { UtilService } from './services/utils.service';
 export { technologiesAndServices } from './components/technologies/technologies-and-services';
+export { DeliverableCardComponent } from './components/deliverable-card.component/deliverable-card.component';
+export { DeliverableCard } from './components/deliverable-card.component/deliverable-card.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +87,8 @@ export { technologiesAndServices } from './components/technologies/technologies-
     ImpactCardComponent,
     ChallengeCardComponent,
     TechnologiesCardComponent,
-    TechnologiesComponent
+    TechnologiesComponent,
+    DeliverableCardComponent
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, FileUploaderModule, SwiperModule, RecaptchaV3Module],
   exports: [
@@ -104,7 +108,8 @@ export { technologiesAndServices } from './components/technologies/technologies-
     ImpactCardComponent,
     ChallengeCardComponent,
     TechnologiesCardComponent,
-    TechnologiesComponent
+    TechnologiesComponent,
+    DeliverableCardComponent
   ],
   providers: [ModalService, SendEmailService, GetArticlesService, GetPortfolioService, UtilService,
     {

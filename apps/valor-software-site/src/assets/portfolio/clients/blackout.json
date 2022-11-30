@@ -1,0 +1,13 @@
+{
+  "name": "Blackout",
+  "description": "A unique iPad application that helps set up and control lighting at the stage, or film set which is used in actual Hollywood movies!",
+  "link": "https://www.blackout-app.com/",
+  "previewImg": "assets/img/bg-img/blackout_page/bg_article.png",
+  "headerImg": "assets/img/bg-img/blackout_page/bg_article.png",
+  "sortServices": ["web"],
+  "sortTechnologies":  ["angular", "ngrx", "native_script"],
+  "aspects": {
+    "technology_stack": ["angular", "ngrx", "native_script"],
+    "services_provided": ["Frontend"]
+  }
+}

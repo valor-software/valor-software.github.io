@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Home  - Valor Software</title>
-    <base href="/" />
-    <meta name="robots" content="all" />
-    <meta property="og:type" content="website">
-    <meta content="summary_large_image" name="twitter:card">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@ValorSoft">
-    <meta name="twitter:creator" content="@ValorSoft">
-    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
-    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
-    <script>
-      window.intercomSettings = {
-        app_id: "brxsww1a"
-      };
-    </script>
-    <script src="assets/js/intercom-facade.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'UA-73071494-2');
-    </script>
-       <script type="text/javascript">
-        window.onload = function () {
-          if (window.self !== window.top) {
-            document.body.innerHTML = `
+<head>
+  <meta charset="utf-8" />
+  <title>Home - Valor Software</title>
+  <base href="/" />
+  <meta name="robots" content="all" />
+  <meta property="og:type" content="website">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ValorSoft">
+  <meta name="twitter:creator" content="@ValorSoft">
+  <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <script>
+    window.intercomSettings = {
+      app_id: "brxsww1a"
+    };
+  </script>
+  <script src="assets/js/intercom-facade.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-73071494-2');
+  </script>
+  <script type="text/javascript">
+    window.onload = function () {
+      if (window.self !== window.top) {
+        document.body.innerHTML = `
                 <div>
                   <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
                   <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
                   <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
                 </div>
               `;
-          }
-        };
-      </script>
-  </head>
-  <body>
-    <valor-software-site-base-root></valor-software-site-base-root>
-    <script async src='assets/js/prettify.min.js'></script>
-  </body>
+      }
+    };
+  </script>
+
+</head>
+
+<body>
+  <valor-software-site-base-root></valor-software-site-base-root>
+  <script async src='assets/js/prettify.min.js'></script>
+</body>
+
 </html>

@@ -65,6 +65,9 @@
       ],
       "@valor-software/breethe-page": [
         "libs/route-pages/breethe-page/src/index.ts"
+      ],
+      "@valor-software/blackout-page": [
+        "libs/route-pages/blackout-page/src/index.ts"
       ]
     }
   },

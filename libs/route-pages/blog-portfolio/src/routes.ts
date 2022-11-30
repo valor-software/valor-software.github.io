@@ -37,6 +37,10 @@ export const routes: Routes = [
         loadChildren: () => import('@valor-software/breethe-page').then(m => m.BreethePageModule)
       },
       {
+        path: 'blackout',
+        loadChildren: () => import('@valor-software/blackout-page').then(m => m.BlackoutPageModule)
+      },
+      {
         path: ':id',
         component: GeneralItemComponent
       }
