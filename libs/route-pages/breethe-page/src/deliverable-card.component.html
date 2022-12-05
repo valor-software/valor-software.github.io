@@ -1,0 +1,19 @@
+<ng-container *ngIf="deliverable">
+<div class="bg-real_dark_grey lg:p-10 p-4">
+  <div class="lg:mb-10 mb-11">
+    <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-4 ">
+      {{deliverable.title}}</h2>
+    <p *ngFor="let description of deliverable.descriptions; let i = index" class="text-grey_font_col text-left text-16 tracking-tightest lg:w-[70%]"
+      [style.margin-bottom]=" i !== (deliverable.descriptions.length + 1) ? '16px' : '0'">
+      {{description}}</p>
+  </div>
+
+  <div class="flex flex-column lg:flex-row lg:gap-10 gap-4 place-content-center">
+    <div *ngFor="let img of deliverable.imgs" class="lg:my-10 my-4" [class.w-full]="deliverable.fullWidthImg">
+      <img [src]="img" class="w-full" >
+    </div>
+  </div>
+
+  <impact-card [impactCardList]="deliverable.impact"></impact-card>
+</div>
+</ng-container>
