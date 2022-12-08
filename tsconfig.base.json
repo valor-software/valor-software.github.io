@@ -68,6 +68,9 @@
       ],
       "@valor-software/booking-page": [
         "libs/route-pages/booking-page/src/index.ts"
+      ],
+      "@valor-software/coral-page": [
+        "libs/route-pages/coral-page/src/index.ts"
       ]
     }
   },

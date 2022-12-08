@@ -1,0 +1,12 @@
+{
+  "name": "Coral",
+  "description": "Introducing Mobile Coach for Couples' Connection, a one-of-a-kind app featuring a comprehensive admin panel and a web version. Proudly apprized by Apple, with no competitors in sight!",
+  "previewImg": "assets/img/bg-img/coral_page/bg_article.png",
+  "headerImg": "assets/img/bg-img/coral_page/bg_article.png",
+  "sortServices": ["web"],
+  "sortTechnologies":  ["react_native", "nest_js", "graph_ql"],
+  "aspects": {
+    "technology_stack": ["react_native", "nest_js", "native_script", "graph_ql"],
+    "services_provided": ["mobile"]
+  }
+}

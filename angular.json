@@ -781,6 +781,55 @@
         "common-docs"
       ]
     },
+    "route-pages-coral-page": {
+      "projectType": "library",
+      "root": "libs/route-pages/coral-page",
+      "sourceRoot": "libs/route-pages/coral-page/src",
+      "prefix": "valor-software-site-base",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/route-pages/coral-page"
+          ],
+          "options": {
+            "project": "libs/route-pages/coral-page/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/route-pages/coral-page/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/route-pages/coral-page/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/route-pages/coral-page"
+          ],
+          "options": {
+            "jestConfig": "libs/route-pages/coral-page/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/route-pages/coral-page/src/**/*.ts",
+              "libs/route-pages/coral-page/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": [
+        "common-docs"
+      ]
+    },
     "valor-software-site": {
       "projectType": "application",
       "root": "apps/valor-software-site",

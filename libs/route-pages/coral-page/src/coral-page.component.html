@@ -1,0 +1,165 @@
+<section class="first-section landing-section pb-0  mx-5 lg:mx-0">
+    <div class="flex-column lg:flex justify-center lg:justify-evenly items-center mb-18 pt-16 lg:pt-0"
+        style="max-height: 100%;">
+
+        <div class="lg:w-[32%] lg:mx-auto md:mt-0 mb-18">
+            <ng-container *ngIf="changeBreadCrumbTitle?.length">
+                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
+                </breadCrumbs>
+            </ng-container>
+            <h1 class="text-light_title_col lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+                Coral
+            </h1>
+            <p class="leading-6 text-grey_font_col text-16 mb-10 tracking-tightest">
+                Introducing Mobile Coach for Couples' Connection, a one-of-a-kind app featuring a comprehensive admin
+                panel and a web version. Proudly apprized by Apple, with no competitors in sight!
+            </p>
+
+            <div class="flex-column lg:flex justify-start items-center">
+                <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
+                    <a href="https://breethe.com/" target="_blank"
+                        class="btn-pink w-full flex justify-center items-center">Visit
+                        the site
+                        <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+                </button>
+            </div>
+        </div>
+        <div class=" m-auto w-6/12 ">
+            <div class="flex flex-row justify-center gap-4">
+                <div>
+                    <img src="assets/img/bg-img/coral_page/bg-header-2.jpg" class="max-h-[800px]" alt="">
+                </div>
+                <div>
+                    <img src="assets/img/bg-img/coral_page/bg-header-1.jpg"  class="max-h-[800px]" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="lg:mb-[132px]">
+    <h1 class="main-title lg:mb-10 ">Background</h1>
+    <div class="container">
+        <div class="flex flex-col lg:flex-row gap-10 items-center">
+            <img src="assets/img/bg-img/coral_page/background.jpg" alt="background" class="lg:w-3/12 mx-28 max-w-[90vw] h-full">
+            <div class="m-auto">
+                <p class="mb-4 text-grey_font_col text-left text-16 tracking-tightest">
+                    Coral is a science-backed app that helps couples and individuals improve their connections. Its
+                    engineers, who have been using the app for some time, know it better than anyone. With their
+                    exceptional knowledge and supervision, you won't be alone on your intimate journey. Coral gets to
+                    know you better and offers valuable insights from professors and practitioners.
+                </p>
+                <p class="mb-4  text-grey_font_col text-left text-16 tracking-tightest">
+                    <b>
+                        We started working with Louis when his team already had a functional mobile app and web version.
+                        However, the current version has become outdated after a year since it was developed. Valor took
+                        on the task of code exploration, bug fixing, and eventually server reconsideration. This is
+                        where the real story begins :)
+                    </b>
+                </p>
+                <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                    The mobile app using Cordova was created more than a year ago before we took it over. The web
+                    version uses Vue.js. The main challenge was with the admin system and its controls. We also worked
+                    on the web and mobile versions from time to time, and eventually released them on the App Store and
+                    Google Play Android Store.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-144">
+
+        <div class="bg-real_dark_grey lg:p-10 p-4">
+            <div class="lg:mb-10 mb-11">
+                <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-4 ">
+                    Drawbacks</h2>
+                <div class="flex flex-col gap-4 lg:gap-4 mb-14 justify-start">
+                    <div class="flex flex-row items-end gap-4" *ngFor="let drawback of drawbacks; let i = index">
+                        <p class="text-dark_title_col_updated text-80 leading-80 font-bold w-100">
+                            0{{ i+1}}
+                        </p>
+                        <h2 class="text-light_title_col text-2xl lg:text-32 mb-2 font-bold tracking-tightest">
+                            {{drawback}}
+                        </h2>
+
+                    </div>
+                </div>
+
+                <h1 class="text-light_title_col text-left  text-40 lg:text-56 font-bold mb-4 ">
+                    Solution</h1>
+                <p *ngFor="let solution of drawbacksSolution; let i = index"
+                    class="text-light_title_col text-xl mb-2 tracking-tightest"
+                    [style.margin-bottom]=" i !== (solution.length + 1) ? '16px' : '0'">
+                    {{solution}}</p>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+
+<section class="mb-20">
+    <h1 class="main-title lg:mb-10 ">Deliverables</h1>
+    <div class="container">
+        <div class="bg-real_dark_grey lg:p-10 p-4">
+            <div class="lg:mb-10 mb-11">
+                <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-4 ">
+                    {{deliverable.title}}</h2>
+                <p *ngFor="let description of deliverable.descriptions; let i = index"
+                    class="text-grey_font_col text-left text-16 tracking-tightest lg:w-[70%]"
+                    [style.margin-bottom]=" i !== (deliverable.descriptions.length + 1) ? '16px' : '0'">
+                    {{description}}</p>
+            </div>
+
+            <div class="pb-0 md:pb-10" *ngFor="let role of deliverable.roles">
+                <div class="green-circle bg-transparent"></div>
+                <div class="max-w-fit ml-12 text-light_title_col">
+                    <p class="font-bold leading-6 md:leading-8 mb-4 lg:text-24 text-20"> {{role}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2 class="text-light_title_col text-left leading-56 mb-6 text-24 lg:text-40 font-bold">
+            Technologies:
+        </h2>
+        <technologies-card [technologiesCards]="technologiesCard"></technologies-card>
+    </div>
+</section>
+
+<section class="mb-10 lg:mb-36">
+    <h1 class="main-title lg:mb-10 max-w-[90vw]">Onboarding And Features</h1>
+    <div class="container mb-144">
+        <div class="flex flex-col gap-8">
+            <h2 class="text-feedback_font_col text-left text-16 lg:text-32  tracking-tightest leading-44">
+                The onboarding process is a breeze – just download the app, register, and take a quick survey (8-10
+                questions) that will help us create custom content for you based on your preferences, gender, and any
+                possible sexual traumas you may have experienced.
+            </h2>
+
+            <h2 class="text-feedback_font_col text-left text-16 lg:text-32 lg:w-[90%] tracking-tightest leading-44">
+                After that, you'll get personalized lessons, practices, and tasks. These "journeys" consist of a series
+                of steps, with texts, audio, and questionnaires to help you learn and grow. And the best part is, you
+                can either pay for a subscription (60 bucks a year) or stick with the free version of the app. The free
+                version doesn't have all the content, but it's still pretty cool.
+
+            </h2>
+        </div>
+    </div>
+    <features-card [featureCard]="features"></features-card>
+
+    <div class="container">
+        <deliverable-card [deliverable]="deliverableFeature"></deliverable-card>
+    </div>
+</section>
+
+<!-- <section>
+    <h1 class="main-title">Feedback</h1>
+    <div class="container">
+        <feedback [startFrom]="''"></feedback>
+    </div>
+</section> -->
+<next-project></next-project>

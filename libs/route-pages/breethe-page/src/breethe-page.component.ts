@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ITechnologiesCard } from '@valor-software/common-docs';
+import { DeliverableCard, ITechnologiesCard } from '@valor-software/common-docs';
 import SwiperCore, { Pagination, SwiperOptions } from "swiper";
-import { DeliverableCard } from './deliverable-card.component';
 
 SwiperCore.use([Pagination]);
 
