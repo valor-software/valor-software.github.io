@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 export interface IFeaturesCard {
   title: string;
   description: string;
+  img?: string;
 }
 
 @Component({

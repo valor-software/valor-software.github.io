@@ -1,24 +1,24 @@
 <ng-container *ngIf="featureCard && featureCard.length > 0">
   <div class="container ">
-    <div class="md:border-l-2 md:border-l-green  ">
-      <div class="flex flex-col gap-10">
-        <div class="relative" *ngFor="let card of featureCard; let ind = index">
-          <div *ngIf="ind === featureCard.length - 1" class="md:block hidden bg-grey_bg absolute h-full w-4 "
-            style="transform: translate(-50%, 0%);"></div>
-          <div class="md:block hidden green-circle"></div>
+    <div class="bg-grey p-6 md:p-10 -translate-y-11">
+      <div class="relative" *ngFor="let card of featureCard; let ind = index">
 
-          <div class=" md:px-10 ">
-            <div class="bg-grey p-6 md:p-10 -translate-y-11">
-              <h2
-                class="font-bold text-light_title_col block mr-3.5 md:text-large text-xl md:text-left mt-6 md:mt-0  md:leading-44 mb-6">
-                {{card.title}}</h2>
-              <p [innerHTML]="card.description"
-                class="lg:w-10/12 text-20 tracking-tightest leading-6 mb-10 text-grey_font_col">
-              </p>
+        <div class="md:block hidden "></div>
+
+          <div class="flex flex-row items-center">
+            <div class="green-circle bg-transparent ml-4">
+
             </div>
+            <h2
+              class="font-bold text-light_title_col block ml-12 mr-3.5 md:text-large text-xl md:text-left mt-6 md:mt-0  leading-[48px] mb-6">
+              {{card.title}}</h2>
           </div>
+          <p [innerHTML]="card.description"
+            class="lg:w-[798px] tracking-tightest mb-10 leading-6 text-grey_font_col">
+          </p>
+
+          <img class="m-auto mb-10" *ngIf="card.img" [src]="card.img">
         </div>
       </div>
-    </div>
   </div>
 </ng-container>

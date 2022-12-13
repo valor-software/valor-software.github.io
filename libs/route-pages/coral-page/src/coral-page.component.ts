@@ -28,7 +28,7 @@ export class CoralPageComponent {
             lgJustify: 'start',
             technologies: [
                 {
-                    src: "assets/img/technologies/active/react_native.png",
+                    src: "assets/img/technologies/others/react_clean.png",
                     title: "React Native"
                 },
                 {
@@ -72,11 +72,13 @@ export class CoralPageComponent {
     features: IFeaturesCard[] = [
         {
             title: 'Join our forum and get social!',
-            description: `In addition to our app that analyzes your answers and gives advice, we've also created a blog and social platform where people can share, support, and help each other through discussions.`
+            description: `In addition to our app that analyzes your answers and gives advice, we've also created a blog and social platform where people can share, support, and help each other through discussions.`,
+            img: 'assets/img/bg-img/coral_page/onboarding_1.png',
         },
         {
             title: 'Chat',
-            description: `We've also added a chat feature for partners, complete with photos and audio messages (scripting coming soon)."`
+            description: `We've also added a chat feature for partners, complete with photos and audio messages (scripting coming soon)."`,
+            img: 'assets/img/bg-img/coral_page/onboarding_2.png',
         },
         {
             title: 'Gifts – merch!',
@@ -92,23 +94,5 @@ export class CoralPageComponent {
         }
     ];
 
-
-    deliverableFeature: DeliverableCard =
-        {
-            title: "Engineer’s feedback",
-            descriptions: [
-                `Hi! I'm Max, an engineer that solved the caching issue, and I just wanted to share some feedback on the development process. This is the best team I have ever worked with! We all worked together seamlessly, and no one was too opinionated or egotistical. Everyone's experience and knowledge was valued and helpful.`,
-                `We were able to solve problems quickly and efficiently, and it was always encouraged to ask questions. <br> We had great communication and the team was chosen based on their soft skills, which I think is the secret to our success. Special shoutout to Denis, Alex Bolshakov, Max, Alexandra Nadtochiy, and Slava Chub – amazing team on the Valor side!`,
-            ],
-            imgs: ['assets/img/bg-img/coral_page/bg-header-2.jpg', 'assets/img/bg-img/coral_page/settings.jpg'],
-            fullWidthImg: false,
-            impact:
-                [
-                    [
-                        `Coral's initial goal is to educate and promote knowledge sharing, which sets us apart from the competition, and makes us a unique and safe app for years to come. Our forums are filled with sexologists and experts from various fields and universities, so you can get reliable advice and information. Plus, you can connect with your partner in the app, which offers a different experience and content.`,
-                        `And if you buy a subscription, your partner gets access for free – sharing deepens connections, and that's what Coral aims to do for you! :)`
-                    ]
-                ]
-        };
 
 }

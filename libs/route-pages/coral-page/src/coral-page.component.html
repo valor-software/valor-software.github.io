@@ -16,7 +16,7 @@
             </p>
 
             <div class="flex-column lg:flex justify-start items-center">
-                <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
+                <button class="w-full lg:w-auto flex lg:mr-6 mb-4">
                     <a href="https://breethe.com/" target="_blank"
                         class="btn-pink w-full flex justify-center items-center">Visit
                         the site
@@ -24,16 +24,7 @@
                 </button>
             </div>
         </div>
-        <div class=" m-auto w-6/12 ">
-            <div class="flex flex-row justify-center gap-4">
-                <div>
-                    <img src="assets/img/bg-img/coral_page/bg-header-2.jpg" class="max-h-[800px]" alt="">
-                </div>
-                <div>
-                    <img src="assets/img/bg-img/coral_page/bg-header-1.jpg"  class="max-h-[800px]" alt="">
-                </div>
-            </div>
-        </div>
+        <img src="assets/img/bg-img/coral_page/bg_header.png" class=" m-auto max-h-[720px]" alt="">
     </div>
 </section>
 
@@ -41,23 +32,22 @@
     <h1 class="main-title lg:mb-10 ">Background</h1>
     <div class="container">
         <div class="flex flex-col lg:flex-row gap-10 items-center">
-            <img src="assets/img/bg-img/coral_page/background.jpg" alt="background" class="lg:w-3/12 mx-28 max-w-[90vw] h-full">
+            <img src="assets/img/bg-img/coral_page/logo.png" alt="background"
+                class="lg:w-3/12 mx-28 max-w-[90vw] h-full">
             <div class="m-auto">
-                <p class="mb-4 text-grey_font_col text-left text-16 tracking-tightest">
+                <p class="mb-4 text-grey_font_col text-left leading-6 text-16 tracking-tightest">
                     Coral is a science-backed app that helps couples and individuals improve their connections. Its
                     engineers, who have been using the app for some time, know it better than anyone. With their
                     exceptional knowledge and supervision, you won't be alone on your intimate journey. Coral gets to
                     know you better and offers valuable insights from professors and practitioners.
                 </p>
-                <p class="mb-4  text-grey_font_col text-left text-16 tracking-tightest">
-                    <b>
-                        We started working with Louis when his team already had a functional mobile app and web version.
-                        However, the current version has become outdated after a year since it was developed. Valor took
-                        on the task of code exploration, bug fixing, and eventually server reconsideration. This is
-                        where the real story begins :)
-                    </b>
+                <p class="mb-4  text-grey_font_col text-left leading-6 text-16 tracking-tightest">
+                    We started working with Louis when his team already had a functional mobile app and web version.
+                    However, the current version has become outdated after a year since it was developed. Valor took on
+                    the task of code exploration, bug fixing, and eventually server reconsideration. This is where the
+                    real story begins :)
                 </p>
-                <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                <p class="text-grey_font_col text-left leading-6 text-16 tracking-tightest">
                     The mobile app using Cordova was created more than a year ago before we took it over. The web
                     version uses Vue.js. The main challenge was with the admin system and its controls. We also worked
                     on the web and mobile versions from time to time, and eventually released them on the App Store and
@@ -66,36 +56,6 @@
             </div>
         </div>
     </div>
-    <div class="container mt-144">
-
-        <div class="bg-real_dark_grey lg:p-10 p-4">
-            <div class="lg:mb-10 mb-11">
-                <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-4 ">
-                    Drawbacks</h2>
-                <div class="flex flex-col gap-4 lg:gap-4 mb-14 justify-start">
-                    <div class="flex flex-row items-end gap-4" *ngFor="let drawback of drawbacks; let i = index">
-                        <p class="text-dark_title_col_updated text-80 leading-80 font-bold w-100">
-                            0{{ i+1}}
-                        </p>
-                        <h2 class="text-light_title_col text-2xl lg:text-32 mb-2 font-bold tracking-tightest">
-                            {{drawback}}
-                        </h2>
-
-                    </div>
-                </div>
-
-                <h1 class="text-light_title_col text-left  text-40 lg:text-56 font-bold mb-4 ">
-                    Solution</h1>
-                <p *ngFor="let solution of drawbacksSolution; let i = index"
-                    class="text-light_title_col text-xl mb-2 tracking-tightest"
-                    [style.margin-bottom]=" i !== (solution.length + 1) ? '16px' : '0'">
-                    {{solution}}</p>
-            </div>
-        </div>
-
-
-
-    </div>
 </section>
 
 <section class="mb-20">
@@ -103,23 +63,25 @@
     <div class="container">
         <div class="bg-real_dark_grey lg:p-10 p-4">
             <div class="lg:mb-10 mb-11">
-                <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-4 ">
+                <h2 class="text-light_title_col text-left text-32 lg:text-40 font-bold mb-4 w-10/12 leading-44">
                     {{deliverable.title}}</h2>
                 <p *ngFor="let description of deliverable.descriptions; let i = index"
                     class="text-grey_font_col text-left text-16 tracking-tightest lg:w-[70%]"
-                    [style.margin-bottom]=" i !== (deliverable.descriptions.length + 1) ? '16px' : '0'">
+                    [style.margin-bottom]=" i !== (deliverable.descriptions.length - 1) ? '24px' : '0'">
                     {{description}}</p>
             </div>
 
-            <div class="pb-0 md:pb-10" *ngFor="let role of deliverable.roles">
-                <div class="green-circle bg-transparent"></div>
-                <div class="max-w-fit ml-12 text-light_title_col">
-                    <p class="font-bold leading-6 md:leading-8 mb-4 lg:text-24 text-20"> {{role}}</p>
+            <div *ngFor="let role of deliverable.roles; let i = index">
+                <div class="pink-circle bg-transparent ml-2"></div>
+                <div class="max-w-fit ml-10 text-light_title_col">
+                    <p class="font-bold leading-8 mb-4 lg:text-32 text-20"
+                        [style.margin-bottom]=" i !== (deliverable.roles.length - 1) ? '24px' : '0'"> {{role}}</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <section>
     <div class="container">
@@ -131,29 +93,68 @@
 </section>
 
 <section class="mb-10 lg:mb-36">
-    <h1 class="main-title lg:mb-10 max-w-[90vw]">Onboarding And Features</h1>
+    <h1 class="main-title lg:mb-10 max-w-[1320px]">Onboarding And Features</h1>
     <div class="container mb-144">
         <div class="flex flex-col gap-8">
-            <h2 class="text-feedback_font_col text-left text-16 lg:text-32  tracking-tightest leading-44">
+            <h2 class="text-grey_font_col text-left text-16 lg:text-40 tracking-tightest leading-44">
                 The onboarding process is a breeze – just download the app, register, and take a quick survey (8-10
                 questions) that will help us create custom content for you based on your preferences, gender, and any
                 possible sexual traumas you may have experienced.
             </h2>
 
-            <h2 class="text-feedback_font_col text-left text-16 lg:text-32 lg:w-[90%] tracking-tightest leading-44">
+            <h2 class="text-grey_font_col text-left text-16 lg:text-40 lg:w-[90%] tracking-tightest leading-44">
                 After that, you'll get personalized lessons, practices, and tasks. These "journeys" consist of a series
                 of steps, with texts, audio, and questionnaires to help you learn and grow. And the best part is, you
                 can either pay for a subscription (60 bucks a year) or stick with the free version of the app. The free
                 version doesn't have all the content, but it's still pretty cool.
-
             </h2>
         </div>
     </div>
     <features-card [featureCard]="features"></features-card>
 
-    <div class="container">
-        <deliverable-card [deliverable]="deliverableFeature"></deliverable-card>
+
+</section>
+
+<section class="mb-10 lg:mb-36">
+    <h1 class="main-title lg:mb-10 max-w-[1320px]">Engineer’s Feedback</h1>
+    <div class="container mb-144">
+        <div class="flex flex-col gap-8 mb-10">
+            <h2 class="text-grey_font_col italic text-left text-16 lg:text-32 tracking-tightest leading-44">
+                Hi! I'm Max, an engineer that solved the caching issue, and I just wanted to share some feedback on the
+                development process. This is the best team I have ever worked with! We all worked together seamlessly,
+                and no one was too opinionated or egotistical. Everyone's experience and knowledge was valued and
+                helpful.
+            </h2>
+
+            <h2 class="text-grey_font_col italic text-left text-16 lg:text-32 lg:w-[90%] tracking-tightest leading-44">
+                We were able to solve problems quickly and efficiently, and it was always encouraged to ask questions.We
+                had great communication and the team was chosen based on their soft skills, which I think is the secret
+                to our success. Special shoutout to Denis, Alex Bolshakov, Max, Alexandra Nadtochiy, and Slava Chub –
+                amazing team on the Valor side!
+            </h2>
+        </div>
+        <div class="bg-green lg:p-10 lg:min-h-50 p-4 flex justify-between w-full flex-col">
+            <div>
+                <p
+                    class="font-bold text-light_title_col text-20 md:text-40 block mr-3.5  text-left  mt-0  md:leading-44 mb-4 md:mb-6">
+                    Impact</p>
+                <div class="flex flex-col gap-4">
+                    <p class="leading-normal text-white text-16 md:text-20 w-[959px] tracking-tightest">
+                        Coral's initial goal is to educate and promote knowledge sharing, which sets us apart from the
+                        competition, and makes us a unique and safe app for years to come. Our forums are filled with
+                        sexologists and experts from various fields and universities, so you can get reliable advice and
+                        information. Plus, you can connect with your partner in the app, which offers a different
+                        experience and content.
+                    </p>
+                    <p class="leading-normal text-white text-16 md:text-20 w-[959px] tracking-tightest">
+                        And if you buy a subscription, your partner gets access for free – sharing deepens connections,
+                        and that's what Coral aims to do for you! :)
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+
 </section>
 
 <!-- <section>
