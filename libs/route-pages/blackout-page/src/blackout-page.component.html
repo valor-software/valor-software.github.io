@@ -1,7 +1,7 @@
 <div class="relative">
     <div id="flashlight" [ngClass]="isLightOff ? 'block' : 'hidden'"></div>
     <section class="first-section landing-section pb-0  mx-5 lg:mx-0">
-        <div class="flex-column lg:flex justify-center lg:justify-evenly items-center mb-18 pt-16 lg:pt-0"
+        <div class="flex-column lg:flex justify-center lg:justify-evenly items-center mb-18 pt-16 lg:pt-0 overflow-hidden"
             style="max-height: 100%;">
 
             <div class="lg:w-[32%] lg:mx-auto md:mt-0 mb-18">
@@ -26,8 +26,8 @@
                     </button>
                 </div>
             </div>
-            <div class="m-auto w-6/12">
-                <img src="assets/img/bg-img/blackout_page/bg_article.png" alt="">
+            <div class="m-0 relative lg:right-[-80px]" >
+                <img class="m-0 w-full" src="assets/img/bg-img/blackout_page/bg_header.png" alt="">
             </div>
         </div>
     </section>
@@ -39,8 +39,8 @@
                 <img src="assets/img/bg-img/blackout_page/background.png" alt="background" class="w-6/12 px-4 h-full">
                 <div class="m-auto">
                     <p class="mb-4 text-grey_font_col text-left text-16 tracking-tightest">
-                        <b class="text-feedback_font_col">“With the combination of ease and numerous abilities, Blackout
-                            lights up the future of the wireless lighting control industry!”</b> – the software engineer
+                        “With the combination of ease and numerous abilities, Blackout
+                            lights up the future of the wireless lighting control industry!” – the software engineer
                         of
                         the project.
                     </p>
@@ -75,10 +75,10 @@
     <section>
         <h1 class="main-title lg:mb-10 ">Deliverables</h1>
         <div class="container">
-            <h2 class="text-dar_grey_font_col text-left text-24 lg:text-40 lg:mb-16 mb-18 tracking-tightest lg:w-[85%]">
+            <h2 class="text-dar_grey_font_col text-left text-24 lg:text-40 leading-44 mb-10 tracking-tightest lg:w-[85%]">
                 Before listing what’s done on this project, let’s dive a bit into its essence and how things work
                 inside!
-                The <b class="text-feedback_font_col">Blackout</b> application is connected to the controllers on the
+                The Blackout application is connected to the controllers on the
                 lighting fixtures located in the WiFi
                 network. In this way, users can control the lamps through the app, using a common protocol.
             </h2>
