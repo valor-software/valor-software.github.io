@@ -1,0 +1,142 @@
+<section class="first-section landing-section pb-0  mx-5 lg:mx-0">
+    <div class="flex-column lg:flex justify-center lg:justify-evenly items-center mb-18 pt-16 lg:pt-0"
+        style="max-height: 100%;">
+
+        <div class="lg:w-[32%] lg:mx-auto md:mt-0 mb-18">
+            <ng-container *ngIf="changeBreadCrumbTitle?.length">
+                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
+                </breadCrumbs>
+            </ng-container>
+            <h1 class="text-light_title_col lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+                Breethe
+            </h1>
+            <p class="leading-6 text-grey_font_col text-16 mb-10 tracking-tightest">The friendliest wellness app” for
+                meditation – that’s
+                what users tell about Breethe! We all need inner peace and calm to function and what’s even better – act
+                at our best. Through this app, you reach one of the keys to regaining peace inside of you and bringing
+                it out. Three, two, one... exhale slowly.
+            </p>
+
+            <div class="flex-column lg:flex justify-start items-center">
+                <button class="w-full lg:w-auto flex lg:mr-6 mb-4 w-full">
+                    <a href="https://breethe.com/" target="_blank"
+                        class="btn-pink w-full flex justify-center items-center">Visit
+                        the site
+                        <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+                </button>
+            </div>
+        </div>
+        <div class=" m-auto">
+            <div class="flex flex-row justify-center">
+                <div>
+                    <img src="assets/img/bg-img/breethe_page/bg-header-2.png" alt="">
+                </div>
+                <div>
+                    <img src="assets/img/bg-img/breethe_page/bg-header-1.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="lg:mb-[132px]">
+    <h1 class="main-title lg:mb-10 ">Background</h1>
+    <div class="container">
+        <div class="flex flex-col lg:flex-row gap-10 items-center">
+            <img src="assets/img/bg-img/breethe_page/logo.png" alt="background" class="lg:w-full px-4 h-full">
+            <div class="m-auto">
+                <p class="mb-4 text-grey_font_col text-left text-16 tracking-tightest">
+                    Breethe is №1 24/7 people’s partner for anxiety and a leader in meditation apps on the market. It
+                    helps relieve stress, relax, improve sleep, and generally contributes to mental health through
+                    simple and accessible practices.
+                </p>
+                <p class="mb-4  text-grey_font_col text-left text-16 tracking-tightest">
+                    <b>While meditation remains complicated, time and sacred knowledge-requiring activity in the
+                        majority of minds, Breethe proves it can be easy to meditate.
+                    </b>
+                </p>
+                <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                    The app helps people to make relaxation and awareness part of their lives without any sacrifice.
+                    Charismatic and easy-going creators made Breethe for our good, thinking of humans and hoping to make
+                    a session with Breethe our favorite part of the day.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h1 class="main-title lg:mb-10 ">Challenge</h1>
+    <div class="container">
+        <div class="flex flex-col lg:flex-row gap-10 items-center">
+            <p class="m-auto text-grey_font_col text-left text-16 tracking-tightest">
+                Our customers have already achieved huge success with the Breethe app for iOS-powered devices when they
+                turned to Valor to build the version for Android. Our main challenge with this project was delivering
+                the first version of the app within a limited time for start. Later – a complete replication of the
+                design and the functional scope of the iOS app, which has been on the market for a while. Below, we’re
+                sharing a story of how we handled this challenge and did a bit more than that! Which Valor also owes to
+                a beautiful Coral team that is extremely open, passionate about the product, and available for any
+                questions cause no questions are stupid, as we know.
+            </p>
+            <img src="assets/img/bg-img/breethe_page/challenge.png" alt="background" class="lg:w-full px-4 h-full">
+        </div>
+    </div>
+</section>
+
+<section>
+    <h1 class="main-title lg:mb-10 ">Deliverables</h1>
+    <div class="container">
+        <h2 class="text-dar_grey_font_col text-left text-24 lg:text-40 lg:mb-16 mb-18 tracking-tightest lg:w-[85%]">
+            Sleep tracks, hypnotherapy sessions, masterclasses, music, and nature sounds playlists are just a few of the
+            numerous things you can find in <b class="text-feedback_font_col">Breethe</b>.<br />
+            <b class="text-feedback_font_col">Valor</b> suggested using <b
+                class="text-feedback_font_col">NativeScript</b> to build a <b class="text-feedback_font_col">single code
+                base</b>
+            that would equally support <b class="text-feedback_font_col">iOS</b> and <b
+                class="text-feedback_font_col">Android</b> versions to simplify the development, management, and scaling
+            of
+            the app.
+        </h2>
+        <div class="mb-8" *ngFor="let deliverable of deliverablesList">
+            <deliverable-card [deliverable]="deliverable"></deliverable-card>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2 class="text-light_title_col text-left leading-56 mb-6 text-24 lg:text-40 font-bold">
+            Technologies:
+        </h2>
+        <technologies-card [technologiesCards]="technologiesCard"></technologies-card>
+    </div>
+</section>
+
+<section class="mb-10 lg:mb-36">
+    <h1 class="main-title lg:mb-10 ">Future</h1>
+    <div class="container">
+        <div class="flex flex-col gap-8">
+            <h2
+                class="text-feedback_font_col text-left text-16 lg:text-40 lg:w-[90%] lg:mb-16 mb-18 tracking-tightest leading-44">
+                The Valor team is continuing its work on this amazing product and we hope to make even more for the
+                success of Breethe in the future. Our current goal is to align Android functionality with the iOS
+                application, which has been worked on for much longer than the Android app. We’ll keep you posted on the
+                progress, and try to enjoy sleep and deep relaxation in-between :)
+            </h2>
+            <img src="assets/img/bg-img/breethe_page/deliverable-bg.png" alt="">
+        </div>
+    </div>
+</section>
+<!-- <section>
+    <h1 class="main-title">Feedback</h1>
+    <div class="container">
+        <feedback [startFrom]="''"></feedback>
+    </div>
+</section> -->
+<next-project></next-project>
+<button (click)="this.audioIsPlaying ? audio.pause() : audio.play()"
+    class="fixed w-24 h-24 bottom-5 right-5  z-50 border-0 bg-real_dark_grey rounded-[50%] shadow-lg">
+    <img class="m-auto h-12 w-12" src="assets/img/bg-img/breethe_page/{{ this.audioIsPlaying? 'pause' : 'play'}}.png"
+        alt="">
+</button>
+<audio #audio src="assets/audio/ocean.aac"></audio>
