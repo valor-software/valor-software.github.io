@@ -62,6 +62,9 @@
       ],
       "@valor-software/terminus-page": [
         "libs/route-pages/terminus-page/src/index.ts"
+      ],
+      "@valor-software/breethe-page": [
+        "libs/route-pages/breethe-page/src/index.ts"
       ]
     }
   },

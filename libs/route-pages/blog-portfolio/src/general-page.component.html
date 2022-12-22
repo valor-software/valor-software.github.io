@@ -3,7 +3,7 @@
         <div class="container">
             <div class="w-full pb-5 flex justify-between items-center pt-16 lg:pt-0" style="max-height: 100%;">
                 <div class="md:max-w-500">
-                    <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">
+                    <h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold tracking-tighter">
                         <ng-container *ngIf="!isBlogPage(); else blogPageTitle">{{activeProject?.name | customSlice: 40}}</ng-container>
                         <ng-template #blogPageTitle>{{activeArticle?.title | customSlice: 40}}</ng-template>
                     </h1>
@@ -34,14 +34,14 @@
                     <ng-container *ngIf="!isBlogPage(); else blogPageImage">
                         <ng-container *ngIf="activeProject && activeProject.name">
                             <a href="javascript:void(0)" [routerLink]="[getRouteLink(activeProject.name)]" class="block zoom-img-scale">
-                                <img [src]="activeProject?.previewImg" [alt]="activeProject?.name + 'image'">
+                                <img [src]="activeProject.previewImg" [alt]="activeProject.name + 'image'">
                             </a>
                         </ng-container>
                     </ng-container>
                     <ng-template #blogPageImage>
                         <ng-container *ngIf="activeArticle && activeArticle.title">
                             <a href="javascript:void(0)" [routerLink]="[getRouteLink(activeArticle.title)]" class="block zoom-img-scale">
-                                <img [src]="activeArticle?.bgImg" [alt]="activeArticle?.title + 'image'">
+                                <img [src]="activeArticle.bgImg" [alt]="activeArticle.title + 'image'">
                             </a>
                         </ng-container>
                     </ng-template>

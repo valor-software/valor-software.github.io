@@ -33,6 +33,10 @@ export const routes: Routes = [
         loadChildren: () => import('@valor-software/liberty-flights-page').then(m => m.LibertyFlightsPageModule)
       },
       {
+        path: 'breethe',
+        loadChildren: () => import('@valor-software/breethe-page').then(m => m.BreethePageModule)
+      },
+      {
         path: ':id',
         component: GeneralItemComponent
       }
