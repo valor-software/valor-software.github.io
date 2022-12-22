@@ -49,7 +49,7 @@ export const feedBack = [
         Thanks Guys.`,
         img: 'assets/img/feedback/breethe.png',
         author: 'Suren Kocharian',
-        position: 'Director of Production'
+        position: 'Director of Production, Breethe'
     }
 ];
 
