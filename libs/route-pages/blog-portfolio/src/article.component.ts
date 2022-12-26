@@ -24,6 +24,10 @@ import { Subscription, of } from "rxjs";
     ::ng-deep tbody tr:first-of-type {
         text-align: center;
     }
+    ::ng-deep.small-img {
+        margin: auto;
+        width: 40%
+    }
     `],
     templateUrl: './article.component.html'
 })

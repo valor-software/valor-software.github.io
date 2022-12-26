@@ -172,6 +172,7 @@ image::img1.png[image]
 
 == iOS Preview
 
+[.small-img]
 image::img2.png[image]
 
 == Advanced SwiftUI Integration
