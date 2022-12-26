@@ -6,7 +6,7 @@ No matter what social media platform you are on if you follow the tech space, or
 
 When it first came out a few weeks ago, I played with it, thought it was pretty cool and had my kids started using it to write guided stories with ideas from their imagination. When combined with MidJourney AI generated art the overall experience was quite amazing.
 
-Last night seeing https://dev.to/scriptedalchemy[@scriptedalchemy^] share about his https://www.linkedin.com/feed/update/urn:li:activity:7009395526903234560/[experiences^] with it I decided to try something a little more challenging.
+Last night seeing https://dev.to/scriptedalchemy[@scriptedalchemy, window=_blank] share about his https://www.linkedin.com/feed/update/urn:li:activity:7009395526903234560/[experiences, window=_blank] with it I decided to try something a little more challenging.
 
 A lot of my focus lately is on ModuleFederation and webpack. I asked myself what could ChatGPT do with that combination and what would be fun to see. My prompts and directions will be in quote blocks.
 
@@ -201,7 +201,7 @@ ____
 
 == Modifying the results
 
-Seeing what the results were it was quite verbose, but it does not follow the platform I usually like to use, https://dev.to/nrwl_io[@nrwl_io's^] Nx. So I did a redirect on the conversation.
+Seeing what the results were it was quite verbose, but it does not follow the platform I usually like to use, https://dev.to/nrwl_io[@nrwl_io's, window=_blank] Nx. So I did a redirect on the conversation.
 
 [quote, Zackary Chapple]
 ____
