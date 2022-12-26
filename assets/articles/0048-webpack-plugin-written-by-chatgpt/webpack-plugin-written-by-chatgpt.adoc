@@ -14,14 +14,15 @@ A lot of my focus lately is on ModuleFederation and webpack. I asked myself what
 
 The first question I asked the site:
 
+[.block-citation]
 [quote,Zackary Chapple]
 ____
-Create a webpack plugin in typescript that wraps module federation and adds additional logging"
+Create a webpack plugin in typescript that wraps module federation and adds additional logging
 ____
 
 
 Below is the first reply:
-
+[.block-citation]
 [quote, The AI]
 ____
 To create a webpack plugin in TypeScript that wraps module federation and adds additional logging, you can follow these steps:"
@@ -127,11 +128,15 @@ ____
 
 You can see that the last code block is incomplete. Sometimes, on more lengthy requests, the chatbot can time out, I tried, quite literally, asking it to keep going.
 
-"Keep going"
--- Zackary Chapple
+[.block-citation]
+[quote, Zackary Chapple]
+____
+Keep going
+____
+ 
 
 "Sure, here are the next steps:", said ChatGPT
-
+[.block-citation]
 [quote, The AI]
 ____
 
@@ -202,7 +207,7 @@ ____
 == Modifying the results
 
 Seeing what the results were it was quite verbose, but it does not follow the platform I usually like to use, https://dev.to/nrwl_io[@nrwl_io's, window=_blank] Nx. So I did a redirect on the conversation.
-
+[.block-citation]
 [quote, Zackary Chapple]
 ____
 how can I simplify the steps by using Nx
@@ -289,14 +294,14 @@ In the libs/module-federation-logging-plugin/src/index.ts file, export the Modul
 == Second timeout
 
 You can see that I received another timeout due to the length of the response. This time instead of just asking it to continue I tried to get it to pick back up from step 7 which was incomplete.
-
+[.block-citation]
 [quote, Zackary Chapple]
 ____
 Repeat the content of step 7 and keep going
 ____
 
 And the chat-bot said:
-
+[.block-citation]
 [quote, The AI]
 ____
 Sure, here is the content of step 7:
@@ -354,14 +359,14 @@ ____
 == One more tweak
 
 Just to see how far I can go I wanted to add some documentation. No plugin is complete without documentation right?
-
+[.block-citation]
 [quote, Zackary Chapple]
 ____
 Can you add swagger documentation to the src/module-federation-logging-plugin.ts file
 ____
 
 And the chat-bot delivered the following:
-
+[.block-citation]
 [quote, The AI]
 ____
 To add Swagger documentation to the src/module-federation-logging-plugin.ts file, you can use Swagger annotations in the form of JSDoc comments. JSDoc is a documentation standard for JavaScript that is widely supported by tools like Swagger.
