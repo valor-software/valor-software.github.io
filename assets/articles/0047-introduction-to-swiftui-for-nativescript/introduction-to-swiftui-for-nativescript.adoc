@@ -1,8 +1,8 @@
 = Introduction to SwiftUI for NativeScript
 
-Building user interfaces declaratively is something the Web community has widely adopted, and nowadays, large applications are built following these principles. For example, Google launched https://developer.android.com/jetpack/compose[Jetpack Compose], and Apple announced https://developer.apple.com/xcode/swiftui[SwiftUI] at https://developer.apple.com/videos/play/wwdc2019/204/[WWDC19], receiving an immensely positive response from developers.
+Building user interfaces declaratively is something the Web community has widely adopted, and nowadays, large applications are built following these principles. For example, Google launched https://developer.android.com/jetpack/compose[Jetpack Compose, window=_blank], and Apple announced https://developer.apple.com/xcode/swiftui[SwiftUI, window=_blank] at https://developer.apple.com/videos/play/wwdc2019/204/[WWDC19, window=_blank], receiving an immensely positive response from developers.
 
-Here at https://valor-software.com/[Valor Software], we are always excited about new advancements in development technologies, and we are fans of NativeScript. We collaborated with https://nstudio.io/[nStudio] to provide an effective and enjoyable SwiftUI integration for iOS apps driven by NativeScript.
+Here at https://valor-software.com/[Valor Software, window=_blank], we are always excited about new advancements in development technologies, and we are fans of NativeScript. We collaborated with https://nstudio.io/[nStudio, window=_blank] to provide an effective and enjoyable SwiftUI integration for iOS apps driven by NativeScript.
 
 In this article, we'll demonstrate how to use SwiftUI within NativeScript to explore fun new possibilities in building amazing UIs together.
 
@@ -15,7 +15,7 @@ In this article, we'll demonstrate how to use SwiftUI within NativeScript to exp
 
 Modern iOS development is primarily done using the Swift programming language. SwiftUI uses a declarative syntax—you state what your user interface should do.
 
-I recommend taking the official https://developer.apple.com/xcode/swiftui[SwiftUI tour], to get familiar with the basic concepts
+I recommend taking the official https://developer.apple.com/xcode/swiftui[SwiftUI tour, window=_blank], to get familiar with the basic concepts
 
 == Create a NativeScript app
 We can create an app using a standard TypeScript template:
