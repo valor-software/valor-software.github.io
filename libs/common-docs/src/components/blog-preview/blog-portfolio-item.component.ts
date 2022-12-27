@@ -9,7 +9,7 @@ import { IPortfolio } from "../../models/portfolio.interface";
     template:`
         <div class="article-item">
             <div class="img-container zoom-img-scale">
-                <img class="w-full h-full object-cover" [src]="article ? article.bgImg : project?.previewImg" [alt]="article ? article.title : project?.name + 'img'">
+                <img class="w-full h-full" [src]="article ? article.bgImg : project?.previewImg" [alt]="article ? article.title : project?.name + 'img'">
             </div>
             <div class="text-container">
                 <p>{{article ? article.title : project?.name}}</p>
