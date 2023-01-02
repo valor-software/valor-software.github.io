@@ -1,0 +1,12 @@
+{
+  "title": "Webpack Plugin written by ChatGPT",
+  "order": 49,
+  "domains": ["dev_quality_assurance"],
+  "authorImg": "assets/articles/mf-in-mobile-apps-nativescript/eduardo.jpg",
+  "language": "en",
+  "bgImg": "assets/articles/mf-in-mobile-apps-nativescript/hero.jpg",
+  "author": "Eduardo Speroni",
+  "position": "JS Developer",
+  "date": "Mon Jan 09 2022 10:45:55 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "Research and assessment on how could Module Federation look as a mobile native application with Native Script?"
+}
