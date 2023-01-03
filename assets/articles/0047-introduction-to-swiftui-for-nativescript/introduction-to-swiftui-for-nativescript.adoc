@@ -1,0 +1,364 @@
+= Introduction to SwiftUI for NativeScript
+
+Building user interfaces declaratively is something the Web community has widely adopted, and nowadays, large applications are built following these principles. For example, Google launched https://developer.android.com/jetpack/compose[Jetpack Compose, window=_blank], and Apple announced https://developer.apple.com/xcode/swiftui[SwiftUI, window=_blank] at https://developer.apple.com/videos/play/wwdc2019/204/[WWDC19, window=_blank], receiving an immensely positive response from developers.
+
+Here at https://valor-software.com/[Valor Software, window=_blank], we are always excited about new advancements in development technologies, and we are fans of NativeScript. We collaborated with https://nstudio.io/[nStudio, window=_blank] to provide an effective and enjoyable SwiftUI integration for iOS apps driven by NativeScript.
+
+In this article, we'll demonstrate how to use SwiftUI within NativeScript to explore fun new possibilities in building amazing UIs together.
+
+== Prerequisites
+- macOS Catalina or higher
+- Xcode 11 or higher
+- iOS device/simulator running iOS 13 or higher
+
+== SwiftUI Concepts
+
+Modern iOS development is primarily done using the Swift programming language. SwiftUI uses a declarative syntax—you state what your user interface should do.
+
+I recommend taking the official https://developer.apple.com/xcode/swiftui[SwiftUI tour, window=_blank], to get familiar with the basic concepts
+
+== Create a NativeScript app
+We can create an app using a standard TypeScript template:
+
+[, bash]
+----
+ns create swiftui --ts
+cd swiftui
+----
+
+This will setup what is often called a "vanilla" flavored NativeScript app. In other words, it provides basic data binding capabilities and a rather simple setup. However, what we will cover here applies to any flavor (Angular, React, Svelte, Vue, etc.). You can explore more via StackBlitz from the following:
+
+- JavaScript starter
+- TypeScript starter
+- Angular starter
+- React starter
+- Svelte starter
+- Vue starter
+
+== SwiftUI Plugin
+
+Install the SwiftUI plugin:
+
+[, bash]
+----
+npm install @nativescript/swift-ui
+----
+
+NOTE: Your minimum iOS deployment target should be at least 13.
+
+You can add this line to `App_Resources/iOS/build.xcconfig`:
+
+[, bash]
+----
+IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+----
+
+== SwiftUI Usage
+
+. Create your SwiftUI
++
+Create App_Resources/iOS/src/SampleView.swift:
++
+[,swift]
+----
+import SwiftUI
+
+struct SampleView: View {
+
+  var body: some View {
+    VStack {
+      Text("Hello World")
+        .padding()
+    }
+  }
+}
+----
+
+. Create your SwiftUI Provider
++
+This will prepare your SwiftUI for two-way data bindings to NativeScript.
++
+Create `App_Resources/iOS/src/SampleViewProvider.swift`:
++
+[,swift]
+----
+import SwiftUI
+
+@objc
+class SampleViewProvider: UIViewController, SwiftUIProvider {
+
+  // MARK: INIT
+
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
+  required public init() {
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  public override func viewDidLoad() {
+    super.viewDidLoad()
+    setupSwiftUIView(content: swiftUIView)
+  }
+
+  // MARK: PRIVATE
+
+  private var swiftUIView = SampleView()
+
+  /// Receive data from NativeScript
+  func updateData(data: NSDictionary) {
+      // can be empty
+  }
+
+  /// Allow sending of data to NativeScript
+  var onEvent: ((NSDictionary) -> ())?
+}
+----
+
+. Insert into any NativeScript layout
++
+`app/main-page.xml`
++
+[,xml]
+----
+<Page
+xmlns="http://schemas.nativescript.org/tns.xsd"
+xmlns:sw="@nativescript/swift-ui"
+class="page"
+>
+<StackLayout>
+<sw:SwiftUI swiftId="sampleView" height="100" />
+</StackLayout>
+</Page>
+----
+
+. Register your SwiftUI via the swiftId
++
+This can be done in the NativeScript app's bootstrap file (often app.ts or main.ts).
++
+- `app.ts`
++
+[,ts]
+----
+import {
+registerSwiftUI,
+UIDataDriver
+} from "@nativescript/swift-ui";
+
+// A. You can generate types for your own Swift Provider with 'ns typings ios'
+// B. Otherwise you can ignore by declaring the class name you know you provided
+declare const SampleViewProvider: any;
+
+registerSwiftUI("sampleView", (view) =>
+new UIDataDriver(SampleViewProvider.alloc().init(), view)
+);
+----
++
+You can now run the app with ns debug ios.
+
+== Use Xcode to develop your SwiftUI
+
+After running the project once, you can open it in Xcode to further develop your SwiftUI using all the convenient aid of Xcode intellisense.
+
+For example from the root of your project:
+[,bash]
+----
+open platforms/ios/swiftui.xcworkspace
+----
+You will find your .swift code underneath the TNSNativeSource folder as seen here...
+
+image::img1.png[image]
+
+== iOS Preview
+
+[.small-img]
+image::img2.png[image]
+
+== Advanced SwiftUI Integration
+Let's dive deeper by hooking up data bindings + events between SwiftUI and NativeScript.
+
+== Create the SwiftUI component
+
+This can be any SwiftUI you would like to use in NativeScript.
+
+Create `App_Resources/iOS/src/SampleView.swift`:
+
+[, swift]
+----
+import SwiftUI
+
+class ButtonProps: ObservableObject {
+  @Published var count: Int = 0
+  var incrementCount: (() -> Void)?
+}
+
+struct SampleView: View {
+
+  @ObservedObject var props = ButtonProps()
+
+  var body: some View {
+      VStack(alignment: .center, spacing: 0) {
+          HStack(alignment:.center) {
+              Text("Count \(props.count)")
+                  .padding()
+                  .scaledToFill()
+                  .minimumScaleFactor(0.5)
+          }
+          HStack(alignment: .center) {
+              Button(action: {
+                  self.props.incrementCount?()
+              }) {
+                  Image(systemName: "plus.circle.fill")
+                      .foregroundColor(.white)
+                      .padding()
+                      .background(LinearGradient(
+                          gradient: Gradient(
+                              colors: [Color.purple, Color.pink]), startPoint: .top, endPoint: .bottom
+                      ))
+                      .clipShape(Circle())
+              }
+          }
+      }
+      .padding()
+      .clipShape(Circle())
+  }
+}
+----
+
+Create `App_Resources/iOS/src/SampleViewProvider.swift`:
+
+[,swift]
+----
+import SwiftUI
+
+@objc
+class SampleViewProvider: UIViewController, SwiftUIProvider {
+
+  // MARK: INIT
+
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
+  required public init() {
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  public override func viewDidLoad() {
+    super.viewDidLoad()
+    setupSwiftUIView(content: swiftUIView)
+    registerObservers()
+  }
+
+  // MARK: PRIVATE
+
+  private var swiftUIView = SampleView()
+
+  private func registerObservers() {
+    swiftUIView.props.incrementCount = {
+      let count = self.swiftUIView.props.count + 1
+      // update swiftUI view
+      self.swiftUIView.props.count = count
+      // notify nativescript
+      self.onEvent?(["count": count])
+    }
+  }
+
+  // MARK: API
+
+  /// Receive data from NativeScript
+  func updateData(data: NSDictionary) {
+    if let count = data.value(forKey: "count") as? Int {
+      // update swiftUI view
+      swiftUIView.props.count = count
+      // notify nativescript
+      self.onEvent?(["count": count])
+    }
+  }
+
+  /// Send data to NativeScript
+  var onEvent: ((NSDictionary) -> Void)?
+}
+----
+
+== Use your SwiftUI in a NativeScript layout
+
+- `app/main-page.xml`:
+
+[, xml]
+----
+<Page
+  xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:sw="@nativescript/swift-ui"
+  navigatingTo="navigatingTo"
+>
+  <StackLayout>
+    <sw:SwiftUI swiftId="sampleView" data="{{ nativeCount }}" swiftUIEvent="{{ onEvent }}" loaded="{{ loadedSwiftUI }}" />
+    <Label text="{{ 'NativeScript Label: ' + nativeCount.count }}" class="h2" />
+    <Button text="NativeScript data bindings: Decrement" tap="{{ updateNativeScriptData }}" class="btn btn-primary" />
+    <Button text="SwiftUI data bindings: Decrement" tap="{{ updateSwiftData }}" class="btn btn-primary" />
+  </StackLayout>
+</Page>
+----
+
+- `app/main-page.ts`:
+
+[,ts]
+----
+import {
+  registerSwiftUI,
+  UIDataDriver,
+  SwiftUI,
+  SwiftUIEventData,
+} from "@nativescript/swift-ui";
+import {
+  EventData,
+  Observable,
+  Page
+} from "@nativescript/core";
+
+// A. You can generate types for your own Swift Provider with 'ns typings ios'
+// B. Otherwise you can ignore by declaring the class name you know you provided
+declare const SampleViewProvider: any;
+
+registerSwiftUI("sampleView", (view) =>
+  new UIDataDriver(SampleViewProvider.alloc().init(), view)
+);
+
+interface CountData {
+  count: number;
+}
+
+export function navigatingTo(args: EventData) {
+  const page = <Page>args.object;
+  page.bindingContext = new DemoModel();
+}
+
+export class DemoModel extends Observable {
+  swiftui: SwiftUI;
+  nativeCount = {
+    count: 0,
+  };
+
+  loadedSwiftUI(args) {
+    this.swiftui = args.object;
+  }
+
+  onEvent(evt: SwiftUIEventData<CountData>) {
+    this.set("nativeCount", { count: evt.data.count });
+  }
+
+  updateNativeScriptData() {
+    this.set('nativeCount', { count: this.nativeCount.count - 1 });
+  }
+
+  updateSwiftData() {
+    this.swiftui.updateData({ count: this.nativeCount.count - 1 });
+  }
+}
+----
+
+== iOS screen
+
+video::ou00z5zYcr8[youtube,width=640, height=480, theme=dark]

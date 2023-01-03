@@ -40,6 +40,16 @@ export const feedBack = [
         img: 'assets/img/feedback/ashes_of_creation.jpg',
         author: 'Steven Sharif',
         position: 'the Creative Director of Ashes of Creation'
+    },
+    {
+        project: 'Breethe',
+        text: `Since the very beginning of our SOW assignement, we were able to see and confirm that Valor company have the best and most well prepared team of developers Project managers and programmers by assisting in every single improvement we faced where new features, adjustments, and assistance became needed. All requests raised were promptly addressed and troubleshooted on a timely fashion as adding value to our platform.
+        Also, Valor team always shared new ideas, new thoughts, suggestions to improve users acceptance as users smoothly navigation into our app. We were able to develop together a better user friendly environment bringing satisfaction not only to our company as a whole, but to our customers worldwide.
+        New challenges are coming and I’m sure that working with Valor team was the best option this company decided to bet on it.
+        Thanks Guys.`,
+        img: 'assets/img/feedback/breethe.png',
+        author: 'Suren Kocharian',
+        position: 'Director of Production, Breethe'
     }
 ];
 

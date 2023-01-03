@@ -8,7 +8,7 @@ import { Subscription, of } from "rxjs";
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'article',
-    styles:[`
+    styles: [`
     ::ng-deep.turbo-table {
         margin-top: 25px;
     }
@@ -24,6 +24,37 @@ import { Subscription, of } from "rxjs";
     ::ng-deep tbody tr:first-of-type {
         text-align: center;
     }
+    ::ng-deep.small-img {
+        margin: auto;
+        width: 40%
+    }
+    ::ng-deep.block-citation {
+        border-left-width: 8px;
+        --tw-border-opacity: 1;
+        border-color: rgba(32, 32, 32, var(--tw-border-opacity));
+        --tw-bg-opacity: 1;
+        background-color: #2c2c2d;
+    }
+    ::ng-deep.block-citation>.attribution {
+        padding: 0 16px 16px 16px;
+        text-align: right;
+    }
+    ::ng-deep.block-citation>blockquote {
+        border: 0px
+    }
+    ::ng-deep.block-citation>blockquote>.paragraph:first-of-type:before {
+        content: open-quote;
+        float: left;
+        font-size: 3em;
+        margin-right: 4px;
+        font-weight: 700;
+        line-height: 0.6em;
+        color: rgba(226, 78, 99, var(--tw-text-opacity));
+    }
+    ::ng-deep.block-citation>blockquote>.paragraph:first-of-type:after {
+        content: no-close-quote;
+    }
+     
     `],
     templateUrl: './article.component.html'
 })
