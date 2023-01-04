@@ -294,7 +294,7 @@ export class DemoModel extends Observable {
 
 Now every time you change the text on the NativeScript `TextView` it'll update the text on the Jetpack Compose view!
 
-video::s_Q3gQz_Tqo[Use Jetpack Compose with NativeScript via @nativescript/jetpack-compose with data bindings.]
+video::s_Q3gQz_Tqo[youtube]
 
 == ColorPicker example
 
@@ -373,7 +373,7 @@ class ColorPickerCompose {
 </StackLayout>
 ----
 
-video::GcZ156BCGr0[Use Jetpack Compose with NativeScript via @nativescript/jetpack-compose]
+video::GcZ156BCGr0[youtube]
 
 == Final considerations
 
