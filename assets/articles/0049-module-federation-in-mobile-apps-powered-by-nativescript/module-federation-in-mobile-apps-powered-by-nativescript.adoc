@@ -348,6 +348,7 @@ export class AppRoutingModule {}
 
 Which results in the following screen, fully working module federation in NativeScript!
 
+[.small-img]
 image::img1.png[]
 
 == Conclusion
