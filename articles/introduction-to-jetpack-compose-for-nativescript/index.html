@@ -1,0 +1,548 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/introduction-to-jetpack-compose-for-nativescript"
+            },
+            "headline": "Introduction to Jetpack Compose for NativeScript",
+            "description": "We collaborated with nStudio to provide an effective and enjoyable Jetpack Compose integration for Android apps driven by NativeScript.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/introduction-to-jetpack-compose-for-nativescript/title_img.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Eduardo Speroni"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Mon Jan 05 2021 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Introduction to Jetpack Compose for NativeScript</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.2ae81d649de7fc03.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.2ae81d649de7fc03.css"></noscript><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="We collaborated with nStudio to provide an effective and enjoyable Jetpack Compose integration for Android apps driven by NativeScript."><meta property="og:title" content="Introduction to Jetpack Compose for NativeScript"><meta property="og:description" content="We collaborated with nStudio to provide an effective and enjoyable Jetpack Compose integration for Android apps driven by NativeScript."><meta property="twitter:title" content="Introduction to Jetpack Compose for NativeScript"><meta property="twitter:description" content="We collaborated with nStudio to provide an effective and enjoyable Jetpack Compose integration for Android apps driven by NativeScript."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-xga-c36="" ng-version="14.2.8"><top-menu _ngcontent-xga-c36=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-xga-c36="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-xga-c36=""></router-outlet><general-item><article _nghost-xga-c46=""><section _ngcontent-xga-c46="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-xga-c46="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-xga-c46="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Introduction To Jetpack Compose For Nativescript </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-xga-c46="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-xga-c46="" class="text-20 mb-4">January 5, 2021</p><p _ngcontent-xga-c46="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Introduction to Jetpack Compose for NativeScript</p><div _ngcontent-xga-c46="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-xga-c46="" class="w-full h-full object-cover" src="assets/articles/introduction-to-jetpack-compose-for-nativescript/eduardo.jpg" alt="Eduardo Speroni"></div><!----><p _ngcontent-xga-c46="" class="md:text-large text-24 mb-4">Eduardo Speroni</p><!----><p _ngcontent-xga-c46="" class="text-20">JS Developer</p><!----></div></div></section><section _ngcontent-xga-c46="" class="landing-section"><div _ngcontent-xga-c46="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-xga-c46="" class="max-w-full"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Building user interfaces declaratively is something the Web community has widely adopted, and nowadays, large applications are built following these principles. For example, Google launched Jetpack Compose, and Apple announced SwiftUI at WWDC19, receiving an immensely positive response from developers.</p>
+</div>
+<div class="paragraph">
+<p>Here at Valor Software, we are always excited about new advancements in development technologies, and we are fans of NativeScript. We collaborated with nStudio to provide an effective and enjoyable Jetpack Compose integration for Android apps driven by NativeScript.</p>
+</div>
+<div class="paragraph">
+<p>Earlier this month we announced <a href="https://dev.to/valorsoftware/introduction-to-swiftui-for-nativescript-4m1b" target="_blank" rel="noopener">SwiftUI for NativeScript</a>, which follow the same principles and API design as Jetpack Compose for NativeScript.</p>
+</div>
+<div class="paragraph">
+<p>In this article, we’ll demonstrate how to use Jetpack Compose within NativeScript to explore fun new possibilities in building amazing UIs together.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_a_nativescript_app">Create a NativeScript app</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We can create an app using a standard TypeScript template:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">ns create jetpackcompose --ts
+cd jetpackcompose</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will setup what is often called a "vanilla" flavored NativeScript app. You can use whichever flavor you’re most comfortable with, though. Setting the plugin up for Angular (and most other flavors) is usually a case of registering the view, which we’ll demonstrate in a section below.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_the_jetpack_compose_plugin">Install the Jetpack Compose plugin:</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm install @nativescript/jetpack-compose</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Jetpack Compose requires you to use at least API 21 (Lollipop) as your minimum SDK version. You can do this by adding <code>minSdkVersion 21</code> to your app.gradle.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>If you plan to build your libraries directly from Android Studio, you don’t need anything else, just drop your built <code>.aar</code> in <code>App_Resources/Android/libs/</code> and skip to the next section. But if you’re planning on writing Kotlin code directly in <code>.kt</code> files in <code>App_Resources/Android/src/main/java</code>, then we need some extra steps.</p>
+</div>
+<div class="paragraph">
+<p>First, add your compose dependencies in <code>app.gradle</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">dependencies {
+    def compose_version = "1.2.1"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    // Tooling support (Previews, etc.)
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+    // Add any other dependencies your Jetpack Compose UI needs
+    // like material design:
+    // implementation 'androidx.compose.material:material:$compose_version'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then modify the <code>android</code> section so you enable compose:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">android {
+    // other settings like targetSdk, etc.
+
+    buildFeatures {
+        compose true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.3.2'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, enable Kotlin by creating the file <code>App_Resources/Android/gradle.properties</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">useKotlin=true
+kotlinVersion=1.7.20 # you can choose your kotlin version here</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jetpack_compose_usage">Jetpack Compose usage</h2>
+<div class="sectionbody">
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p>Create your Jetpack Compose views and wrapper</p>
+<div class="paragraph">
+<p>Create <code>App_Resources/Android/src/main/java/BasicView.kt</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">package com.example
+
+import android.content.Context
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.ComposeView
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+
+class BasicView {
+    fun generateComposeView(view: ComposeView): ComposeView {
+        return view.apply {
+            setContent {
+                MaterialTheme {
+                    Text("Hello from Jetpack Compose")
+                }
+            }
+        }
+    }
+
+    fun updateData(value: Map&lt;Any, Any&gt;) {
+    }
+    var onEvent: ((String) -&gt; Unit)? = null
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To use the default plugin handling of Compose views, it’s important that your implementation follows the following interface:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class Example {
+    fun generateComposeView(view: ComposeView): ComposeView {
+      // render your compose views into the ComposeView
+    }
+
+    fun updateData(value: Map&lt;Any, Any&gt;) {
+      // this function receives data from NativeScript
+      // value is a js object converted to a map
+    }
+
+    // this is the event you will send back to Jetpack Compose
+    // when you need to pass data, just call onEvent?.invoke(v)
+    var onEvent: ((Any) -&gt; Unit)? = null
+
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Register your Jetpack Compose via the <code>composeId</code></p>
+<div class="paragraph">
+<p>This can be done in the NativeScript app’s bootstrap file (often <code>app.ts</code> or <code>main.ts</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { registerJetpackCompose, ComposeDataDriver } from '@nativescript/jetpack-compose';
+
+// A. You can generate types for your own Compose Provider with 'ns typings android --aar {path/to/{name}.aar}'
+// B. Otherwise you can ignore by declaring the package resolution path you know you provided
+declare var com;
+registerJetpackCompose('sampleView', (view) =&gt; new ComposeDataDriver(new com.example.BasicView(), view));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Additionally, if you want to use Angular, you can register the compose view itself:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { registerElement } from '@nativescript/angular';
+import { JetpackCompose } from '@nativescript/jetpack-compose';
+
+registerElement('JetpackCompose', () =&gt; JetpackCompose)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Insert into any NativeScript layout</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>app/main-page.xml</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;Page
+  xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:jc="@nativescript/jetpack-compose"
+  class="page"&gt;
+  &lt;StackLayout&gt;
+    &lt;jc:JetpackCompose composeId="sampleView" height="100" /&gt;
+  &lt;/StackLayout&gt;
+&lt;/Page&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can now run the app with <code>ns debug android</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_android_studio_to_develop_and_preview_jetpack_compose">Use Android Studio to develop and preview Jetpack Compose</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After running the app once you can open the <code>platforms/android</code> folder in Android Studio where you’ll be able to find the <code>BasicView.kt</code> file. From there you can start modifying it and previewing your changes (by adding the <code>@Preview</code> decorator on the <code>@Composable</code> you want to preview).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+Saving this file will not change the BasicView.kt that lives inside your App_Resources, so be VERY careful to copy the file contents back once you’re done editing it! This will become a DX improvement in the future.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can create a <a href="https://proandroiddev.com/create-an-android-library-aar-79d2338678ba" target="_blank" rel="noopener">new Android library</a> and develop all your Jetpack Compose views there.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sending_and_receiving_data_tofrom_nativescript">Sending and receiving data to/from NativeScript</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, let’s add some bindings to our BasicView so it now receives data in <code>updateData</code> and displays that, as well as output an event once the data is updated:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">package com.example
+
+import android.content.Context
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.ComposeView
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+
+class BasicView {
+    data class ExampleUiState(
+        val text: String = ""
+    ) {}
+    class ExampleViewModel(
+    ) : ViewModel() {
+
+        var uiState by mutableStateOf(ExampleUiState())
+    }
+
+    var mViewModel = ExampleViewModel()
+    fun generateComposeView(view: ComposeView): ComposeView {
+
+        return view.apply {
+            setContent {
+                MaterialTheme {
+
+                    val uiState = mViewModel.uiState;
+                    // In Compose world
+                    Text(uiState.text)
+                }
+            }
+        }
+    }
+
+    fun updateData(value: Map&lt;Any, Any&gt;) {
+        val v = value["data"] as String;
+        onEvent?.invoke(v)
+        mViewModel.uiState = ExampleUiState(v);
+    }
+
+    var onEvent: ((String) -&gt; Unit)? = null
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_your_jetpack_compose_in_a_nativescript_layout">Use your Jetpack Compose in a NativeScript layout</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>app/main-page.xml:</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
+    xmlns:jc="@nativescript/jetpack-compose"&gt;
+    &lt;StackLayout&gt;
+        &lt;Label text="The following view is Jetpack Compose inside NativeScript!" textWrap="true"&gt;&lt;/Label&gt;
+        &lt;jc:JetpackCompose composeEvent="{{ onEvent }}" data="{{ text }}" composeId="sampleView"&gt;&lt;/sw:JetpackCompose&gt;
+        &lt;Label text="This is NativeScript again"&gt;&lt;/Label&gt;
+        &lt;TextView textChange="{{ onTextChange }}" text="{{ text }}" textWrap="true"&gt;&lt;/TextView&gt;
+    &lt;/StackLayout&gt;
+&lt;/Page&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>app/main-page.ts:</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { Observable } from '@nativescript/core';
+import { registerJetpackCompose, ComposeDataDriver } from '@nativescript/jetpack-compose';
+import { EventData, Page, PropertyChangeData } from '@nativescript/core';
+
+// A. You can generate types for your own Compose Provider with 'ns typings android --aar {path/to/{name}.aar}'
+// B. Otherwise you can ignore by declaring the package resolution path you know you provided
+declare var com;
+registerJetpackCompose('sampleView', (view) =&gt; new ComposeDataDriver(new com.example.BasicView(), view));
+
+export function navigatingTo(args: EventData) {
+  const page = &lt;Page&gt;args.object;
+  page.bindingContext = new DemoModel();
+}
+
+export class DemoModel extends Observable {
+  text = '';
+
+  onEvent(evt: JetpackComposeEventData&lt;string&gt;) {
+    console.log('onEvent', evt.data);
+  }
+
+  onTextChange(evt: PropertyChangeData) {
+    console.log('textChange', evt.value);
+    this.set('text', evt.value);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now every time you change the text on the NativeScript <code>TextView</code> it’ll update the text on the Jetpack Compose view!</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/s_Q3gQz_Tqo?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_colorpicker_example">ColorPicker example</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here’s another example where I use a ColorPicker to change a NativeScript view’s background color:</p>
+</div>
+<div class="paragraph">
+<p><code>app.gradle</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">implementation "com.github.skydoves:colorpicker-compose:1.0.0"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">package com.example
+
+import android.content.Context
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.github.skydoves.colorpicker.compose.ColorEnvelope
+import com.github.skydoves.colorpicker.compose.HsvColorPicker
+import com.github.skydoves.colorpicker.compose.ImageColorPicker
+import com.github.skydoves.colorpicker.compose.rememberColorPickerController
+
+class ColorPickerCompose {
+    fun generateComposeView(view: ComposeView): ComposeView {
+        return view.apply {
+            setContent {
+                val controller = rememberColorPickerController()
+                HsvColorPicker(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(450.dp)
+                        .padding(10.dp),
+                    controller = controller,
+                    onColorChanged = { colorEnvelope: ColorEnvelope -&gt;
+                        onEvent?.invoke(colorEnvelope.hexCode)
+                    }
+                )
+            }
+        }
+    }
+
+    fun updateData(value: Map&lt;Any, Any&gt;) {}
+
+    var onEvent: ((String) -&gt; Unit)? = null
+
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;StackLayout backgroundColor="{{ backgroundColor }}"&gt;
+    &lt;Label text="The following view is Jetpack Compose inside NativeScript!" textWrap="true"&gt;&lt;/Label&gt;
+    &lt;StackLayout backgroundColor="lightblue"&gt;
+        &lt;jc:JetpackCompose composeEvent="{{ onEvent }}" data="{{ text }}" composeId="jetpackCompose"&gt;&lt;/sw:JetpackCompose&gt;
+    &lt;/StackLayout&gt;
+    &lt;Label text="This is NativeScript again"&gt;&lt;/Label&gt;
+    &lt;TextView text="{{ backgroundColor }}" textWrap="true"&gt;&lt;/TextView&gt;
+&lt;/StackLayout&gt;</code></pre>
+</div>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/GcZ156BCGr0?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_final_considerations">Final considerations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Working with Jetpack Compose in NativeScript is very transparent and easy. We look forward in seeing what the community will build with yet another powerful tool in NativeScript’s belt!</p>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-xga-c46="" class="landing-section"><h1 _ngcontent-xga-c46="" class="main-title">More Articles</h1><div _ngcontent-xga-c46="" class="container"><blog-preview _ngcontent-xga-c46=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/module-federation-in-mobile-apps-powered-by-nativescript" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/module-federation-in-mobile-apps-powered-by-nativescript/hero.png" alt="Module Federation in mobile apps powered by NativeScript"></div><div class="text-container"><p>Module Federation in mobile apps powered by NativeScript</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/webpack-plugin-written-by-chatgpt" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/webpack-plugin-written-by-chatgpt/title_img.png" alt="Webpack Plugin written by ChatGPT"></div><div class="text-container"><p>Webpack Plugin written by ChatGPT</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/introduction-to-swiftui-for-nativescript" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/introduction-to-swiftui-for-nativescript/title_image.png" alt="Introduction to SwiftUI for NativeScript"></div><div class="text-container"><p>Introduction to SwiftUI for NativeScript</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-xga-c36=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.13329d1fcb04eebe.js" type="module"></script><script src="polyfills.f39c60c21adb9eb1.js" type="module"></script><script src="main.e727e5a4b1ce5c84.js" type="module"></script>
+
+</body></html>
