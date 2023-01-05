@@ -1,0 +1,380 @@
+= Introduction to Jetpack Compose for NativeScript
+
+Building user interfaces declaratively is something the Web community has widely adopted, and nowadays, large applications are built following these principles. For example, Google launched Jetpack Compose, and Apple announced SwiftUI at WWDC19, receiving an immensely positive response from developers.
+
+Here at Valor Software, we are always excited about new advancements in development technologies, and we are fans of NativeScript. We collaborated with nStudio to provide an effective and enjoyable Jetpack Compose integration for Android apps driven by NativeScript.
+
+Earlier this month we announced https://dev.to/valorsoftware/introduction-to-swiftui-for-nativescript-4m1b[SwiftUI for NativeScript, window=_blank], which follow the same principles and API design as Jetpack Compose for NativeScript.
+
+In this article, we'll demonstrate how to use Jetpack Compose within NativeScript to explore fun new possibilities in building amazing UIs together.
+
+== Create a NativeScript app
+
+We can create an app using a standard TypeScript template:
+
+[, bash]
+----
+ns create jetpackcompose --ts
+cd jetpackcompose
+----
+
+This will setup what is often called a "vanilla" flavored NativeScript app. You can use whichever flavor you're most comfortable with, though. Setting the plugin up for Angular (and most other flavors) is usually a case of registering the view, which we'll demonstrate in a section below.
+
+== Install the Jetpack Compose plugin:
+
+[, bash]
+----
+npm install @nativescript/jetpack-compose
+----
+
+NOTE: Jetpack Compose requires you to use at least API 21 (Lollipop) as your minimum SDK version. You can do this by adding `minSdkVersion 21` to your app.gradle.
+
+If you plan to build your libraries directly from Android Studio, you don't need anything else, just drop your built `.aar` in `App_Resources/Android/libs/` and skip to the next section. But if you're planning on writing Kotlin code directly in `.kt` files in `App_Resources/Android/src/main/java`, then we need some extra steps.
+
+First, add your compose dependencies in `app.gradle`:
+
+[, json]
+----
+dependencies {
+    def compose_version = "1.2.1"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    // Tooling support (Previews, etc.)
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+    // Add any other dependencies your Jetpack Compose UI needs
+    // like material design:
+    // implementation 'androidx.compose.material:material:$compose_version'
+}
+----
+
+Then modify the `android` section so you enable compose:
+
+[, json]
+----
+android {
+    // other settings like targetSdk, etc.
+
+    buildFeatures {
+        compose true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.3.2'
+    }
+}
+----
+
+And finally, enable Kotlin by creating the file `App_Resources/Android/gradle.properties`
+
+[, json ]
+----
+useKotlin=true
+kotlinVersion=1.7.20 # you can choose your kotlin version here
+----
+
+== Jetpack Compose usage
+
+A. Create your Jetpack Compose views and wrapper
++
+Create `App_Resources/Android/src/main/java/BasicView.kt`:
++
+[, java]
+----
+package com.example
+
+import android.content.Context
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.ComposeView
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+
+class BasicView {
+    fun generateComposeView(view: ComposeView): ComposeView {
+        return view.apply {
+            setContent {
+                MaterialTheme {
+                    Text("Hello from Jetpack Compose")
+                }
+            }
+        }
+    }
+
+    fun updateData(value: Map<Any, Any>) {
+    }
+    var onEvent: ((String) -> Unit)? = null
+
+}
+----
++
+To use the default plugin handling of Compose views, it's important that your implementation follows the following interface:
++
+[, java]
+----
+class Example {
+    fun generateComposeView(view: ComposeView): ComposeView {
+      // render your compose views into the ComposeView
+    }
+
+    fun updateData(value: Map<Any, Any>) {
+      // this function receives data from NativeScript
+      // value is a js object converted to a map
+    }
+
+    // this is the event you will send back to Jetpack Compose
+    // when you need to pass data, just call onEvent?.invoke(v)
+    var onEvent: ((Any) -> Unit)? = null
+
+}
+----
+
+B. Register your Jetpack Compose via the `composeId`
++
+This can be done in the NativeScript app's bootstrap file (often `app.ts` or `main.ts`).
++
+[, js]
+----
+import { registerJetpackCompose, ComposeDataDriver } from '@nativescript/jetpack-compose';
+
+// A. You can generate types for your own Compose Provider with 'ns typings android --aar {path/to/{name}.aar}'
+// B. Otherwise you can ignore by declaring the package resolution path you know you provided
+declare var com;
+registerJetpackCompose('sampleView', (view) => new ComposeDataDriver(new com.example.BasicView(), view));
+----
++
+Additionally, if you want to use Angular, you can register the compose view itself:
++
+[, js]
+----
+import { registerElement } from '@nativescript/angular';
+import { JetpackCompose } from '@nativescript/jetpack-compose';
+
+registerElement('JetpackCompose', () => JetpackCompose)
+----
+
+C. Insert into any NativeScript layout
+
+`app/main-page.xml`
+
+[, xml]
+----
+<Page
+  xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:jc="@nativescript/jetpack-compose"
+  class="page">
+  <StackLayout>
+    <jc:JetpackCompose composeId="sampleView" height="100" />
+  </StackLayout>
+</Page>
+----
+
+You can now run the app with `ns debug android`.
+
+== Use Android Studio to develop and preview Jetpack Compose
+
+After running the app once you can open the `platforms/android` folder in Android Studio where you'll be able to find the `BasicView.kt` file. From there you can start modifying it and previewing your changes (by adding the `@Preview` decorator on the `@Composable` you want to preview).
+
+IMPORTANT: Saving this file will not change the BasicView.kt that lives inside your App_Resources, so be VERY careful to copy the file contents back once you're done editing it! This will become a DX improvement in the future.
+
+Alternatively, you can create a https://proandroiddev.com/create-an-android-library-aar-79d2338678ba[new Android library, window=_blank] and develop all your Jetpack Compose views there.
+
+== Sending and receiving data to/from NativeScript
+
+First, let's add some bindings to our BasicView so it now receives data in `updateData` and displays that, as well as output an event once the data is updated:
+
+[, js]
+----
+package com.example
+
+import android.content.Context
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.ComposeView
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+
+class BasicView {
+    data class ExampleUiState(
+        val text: String = ""
+    ) {}
+    class ExampleViewModel(
+    ) : ViewModel() {
+
+        var uiState by mutableStateOf(ExampleUiState())
+    }
+
+    var mViewModel = ExampleViewModel()
+    fun generateComposeView(view: ComposeView): ComposeView {
+
+        return view.apply {
+            setContent {
+                MaterialTheme {
+
+                    val uiState = mViewModel.uiState;
+                    // In Compose world
+                    Text(uiState.text)
+                }
+            }
+        }
+    }
+
+    fun updateData(value: Map<Any, Any>) {
+        val v = value["data"] as String;
+        onEvent?.invoke(v)
+        mViewModel.uiState = ExampleUiState(v);
+    }
+
+    var onEvent: ((String) -> Unit)? = null
+
+}
+----
+
+== Use your Jetpack Compose in a NativeScript layout
+
+`app/main-page.xml:`
+
+[, xml]
+----
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page"
+    xmlns:jc="@nativescript/jetpack-compose">
+    <StackLayout>
+        <Label text="The following view is Jetpack Compose inside NativeScript!" textWrap="true"></Label>
+        <jc:JetpackCompose composeEvent="{{ onEvent }}" data="{{ text }}" composeId="sampleView"></sw:JetpackCompose>
+        <Label text="This is NativeScript again"></Label>
+        <TextView textChange="{{ onTextChange }}" text="{{ text }}" textWrap="true"></TextView>
+    </StackLayout>
+</Page>
+----
+
+`app/main-page.ts:`
+
+[, js]
+----
+import { Observable } from '@nativescript/core';
+import { registerJetpackCompose, ComposeDataDriver } from '@nativescript/jetpack-compose';
+import { EventData, Page, PropertyChangeData } from '@nativescript/core';
+
+// A. You can generate types for your own Compose Provider with 'ns typings android --aar {path/to/{name}.aar}'
+// B. Otherwise you can ignore by declaring the package resolution path you know you provided
+declare var com;
+registerJetpackCompose('sampleView', (view) => new ComposeDataDriver(new com.example.BasicView(), view));
+
+export function navigatingTo(args: EventData) {
+  const page = <Page>args.object;
+  page.bindingContext = new DemoModel();
+}
+
+export class DemoModel extends Observable {
+  text = '';
+
+  onEvent(evt: JetpackComposeEventData<string>) {
+    console.log('onEvent', evt.data);
+  }
+
+  onTextChange(evt: PropertyChangeData) {
+    console.log('textChange', evt.value);
+    this.set('text', evt.value);
+  }
+}
+----
+
+Now every time you change the text on the NativeScript `TextView` it'll update the text on the Jetpack Compose view!
+
+video::s_Q3gQz_Tqo[youtube]
+
+== ColorPicker example
+
+Here's another example where I use a ColorPicker to change a NativeScript view's background color:
+
+`app.gradle`
+
+[, java]
+----
+implementation "com.github.skydoves:colorpicker-compose:1.0.0"
+----
+
+[, java]
+----
+package com.example
+
+import android.content.Context
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.github.skydoves.colorpicker.compose.ColorEnvelope
+import com.github.skydoves.colorpicker.compose.HsvColorPicker
+import com.github.skydoves.colorpicker.compose.ImageColorPicker
+import com.github.skydoves.colorpicker.compose.rememberColorPickerController
+
+class ColorPickerCompose {
+    fun generateComposeView(view: ComposeView): ComposeView {
+        return view.apply {
+            setContent {
+                val controller = rememberColorPickerController()
+                HsvColorPicker(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(450.dp)
+                        .padding(10.dp),
+                    controller = controller,
+                    onColorChanged = { colorEnvelope: ColorEnvelope ->
+                        onEvent?.invoke(colorEnvelope.hexCode)
+                    }
+                )
+            }
+        }
+    }
+
+    fun updateData(value: Map<Any, Any>) {}
+
+    var onEvent: ((String) -> Unit)? = null
+
+}
+----
+
+[, xml]
+----
+<StackLayout backgroundColor="{{ backgroundColor }}">
+    <Label text="The following view is Jetpack Compose inside NativeScript!" textWrap="true"></Label>
+    <StackLayout backgroundColor="lightblue">
+        <jc:JetpackCompose composeEvent="{{ onEvent }}" data="{{ text }}" composeId="jetpackCompose"></sw:JetpackCompose>
+    </StackLayout>
+    <Label text="This is NativeScript again"></Label>
+    <TextView text="{{ backgroundColor }}" textWrap="true"></TextView>
+</StackLayout>
+----
+
+video::GcZ156BCGr0[youtube]
+
+== Final considerations
+
+Working with Jetpack Compose in NativeScript is very transparent and easy. We look forward in seeing what the community will build with yet another powerful tool in NativeScript's belt!
