@@ -250,7 +250,7 @@ This code is able to load any .js file on the device, so it can be used in conju
 
 Alternatively, we could also download it as a zip and extract, or you could, theoretically, override the way that webpack loads the chunks in the federated module to download them piece by piece as needed.
 Sharing the common modules
-The complexity of sharing modules cannot be understated. The initial https://github.com/webpack/webpack/pull/10838[Webpack Module Federation PR, window=_blank] that provided the full container and consumer API is smaller then the https://github.com/webpack/webpack/pull/10960х[PR that introduced version shared dependencies, window=_blank].
+The complexity of sharing modules cannot be understated. The initial https://github.com/webpack/webpack/pull/10838[Webpack Module Federation PR, window=_blank] that provided the full container and consumer API is smaller then the https://github.com/webpack/webpack/pull/10960[PR that introduced version shared dependencies, window=_blank].
 A native app is not just a webpage, but the full browser itself. While the web provides a lot of APIs directly, NativeScript provides a lot of them through the @nativescript/core package, so that’s one dependency that has to be a singleton and we can’t under any circumstance have multiple versions of it. In this example, we’re also using angular, so let’s share that as well:
 
 [, js]
