@@ -13,7 +13,7 @@ When a user builds his application on his own (an application is connected to Me
 
 At the current moment, we don’t have any restrictions for build amount and usage according to the Price Plan so users can easily get a quote over the limit like for usage of 130 builds with 100 builds in the Plan.
 
-image::https://github.com/valor-software/valor-software.github.io/blob/medusa-resources-overlimit/assets/articles/0055-medusa-resources-overlimit-realtime-notification/Max_MF_2.png
+image::https://github.com/valor-software/valor-software.github.io/blob/medusa-resources-overlimit/assets/articles/0055-medusa-resources-overlimit-realtime-notification/Max_MF_2.png[]
 
 The task sounds like "*_Restrict overlimit usage of Medusa Resources according to Quota"_*. Sounds like a five-minute task, just insert a checker before business logic. If the check is positive – go further, if negative – stop action. +
 Okay, it’s done. Even works. But there’s another issue – it will look for a User like a bug. No… like a *BUG*. As all things, described above, are under-the-hood processes, the user cannot know at that moment that he got overlimit, so we have to notify the user somehow in some way. 
@@ -53,8 +53,8 @@ export class ServerEventsService {
  emit(userId: string, data?: SseEventMessage): void {
    this.emitter.emit(userId, { data });
  }
-----
 }
+----
 
 *Issue 2* +
 As we are using NextJS, it means that most pages are SSR (Server Side Rendered). That means, in addition, that we cannot create the EventSource instance anywhere we want. So we have to initialize the eventsource after the component has been rendered in the browser. 
@@ -69,8 +69,8 @@ Our solution worked well in the case of real-time processes, but what if Medusa 
 ----
 (async () => {
   await task();
-----
 })();
+----
 
 *Issue 4* +
 It’s a bad thing to have a checker on the Back End side for the under-the-hood process and the same checker on the Front End side, so on a Front End we just make an API call without using a response. On the server side, we check all related data, and in case the checker responds negatively, we emit a new message from Server to UI. +
@@ -91,7 +91,6 @@ That’s it. We have integrated SSE into the System, it works great and this is 
 
 Now we can notify a user if something is happening under the hood and the user should be aware of it. Great! +
 https://t2674704.p.clickup-attachments.com/t2674704/186d6f2b-3b58-49c4-8e93-7db736b0ab5e/medusa_sse.mp4?view=open[WATCH THIS VIDEO^]
-
 
 === Video Plan:
 
@@ -124,7 +123,7 @@ https://medium.com/system-design-blog/long-polling-vs-websockets-vs-server-sent-
 
 On the Back End side, we use NestJS, Front End is NextJS (for a non-native speaker, it’s quite difficult and funny to try to pronounce them instantly one by one :) ).
 
-Let’s start. NestJS documentation has some words about https://docs.nestjs.com/techniques/server-sent-events[the implementation of SSE^]. So it looks easy to do, and it has simple examples.
+=== Let’s start. NestJS documentation has some words about https://docs.nestjs.com/techniques/server-sent-events[the implementation of SSE^]. So it looks easy to do, and it has simple examples.
 
 *7. Say that the EventSource listener should be fully FE and as we use NextJS – should be in useEffect.* +
 *8. Check that it works, and set the channel based on UserId* +
