@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/module-federation-for-the-business.html"
+            },
+            "headline": "Module Federation for the Business",
+            "description": "Discussing the business value of Module Federation.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/module-federation-for-the-business/Valor-Business-Zack.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Zackary Chapple"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Mon Jan 10 2021 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Module Federation for the Business</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.2ae81d649de7fc03.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.2ae81d649de7fc03.css"></noscript><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="Discussing the business value of Module Federation."><meta property="og:title" content="Module Federation for the Business"><meta property="og:description" content="Discussing the business value of Module Federation."><meta property="twitter:title" content="Module Federation for the Business"><meta property="twitter:description" content="Discussing the business value of Module Federation."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-lhb-c36="" ng-version="14.2.8"><top-menu _ngcontent-lhb-c36=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-lhb-c36="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-lhb-c36=""></router-outlet><general-item><article _nghost-lhb-c46=""><section _ngcontent-lhb-c46="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-lhb-c46="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-lhb-c46="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Module Federation For The Business </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-lhb-c46="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-lhb-c46="" class="text-20 mb-4">January 10, 2021</p><p _ngcontent-lhb-c46="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Module Federation for the Business</p><div _ngcontent-lhb-c46="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-lhb-c46="" class="w-full h-full object-cover" src="assets/articles/module-federation-for-the-business/zack_chapple.jpeg" alt="Zackary Chapple"></div><!----><p _ngcontent-lhb-c46="" class="md:text-large text-24 mb-4">Zackary Chapple</p><!----><p _ngcontent-lhb-c46="" class="text-20">Chief Revenue Officer</p><!----></div></div></section><section _ngcontent-lhb-c46="" class="landing-section"><div _ngcontent-lhb-c46="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-lhb-c46="" class="max-w-full"><div class="sect1">
+<h2 id="_what_is_module_federation">What is Module Federation?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Module Federation is a technique that allows developers to split a large web application into smaller, independent modules that can be loaded on demand. The concept of Module Federation was first introduced by <a href="https://www.linkedin.com/in/zackary-jackson-81845a35/" target="_blank" rel="noopener">Zack Jackson</a>. He later wrote a book on <a href="https://module-federation.myshopify.com/products/practical-module-federation" target="_blank" rel="noopener">Practical Module Federation</a> written together with <a href="https://www.linkedin.com/in/jherr/" target="_blank" rel="noopener">Jack Herrington</a>.</p>
+</div>
+<div class="paragraph">
+<p>Module Federation works by using a "host" application that is responsible for loading and managing the various modules. The host application loads the modules asynchronously and communicates with them using a shared interface. This allows the modules to interact with each other and share data and functionality.</p>
+</div>
+<div class="paragraph">
+<p>Module Federation is a relatively new technology that is gaining popularity among developers as it allows for more modular, performant, and scalable web applications. It is not specific to any frontend framework and can be used with popular frameworks such as Next.js, React, Angular, and Vue. In addition, module Federation can also be used with Node.js itself for Federation of server code.</p>
+</div>
+<div class="paragraph">
+<p>In this blog post, we will be discussing the business value of Module Federation. Specifically, we will look at how modularity and scalability can benefit businesses by reducing development time and costs, improving maintainability and flexibility.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_some_of_the_business_values_and_impacts">Some of the business values and impacts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Module Federation allows for more modular and scalable web applications by enabling developers to break down a large codebase into smaller, reusable pieces that can be loaded and updated separately. This flexibility and ability to ship code allows developers to work on individual parts of the application independently, which can reduce development time and costs. It also reduces risk due to the fact that smaller segments of functionality can be tested as functionality is being deployed.</p>
+</div>
+<div class="paragraph">
+<p>In addition, the modularity of Module Federation can also improve the maintainability and flexibility of the application. Because each module is self-contained and has its own dependencies, it is easier to update and maintain individual modules without affecting the rest of the application.</p>
+</div>
+<div class="paragraph">
+<p>Module Federation can also increase developer autonomy by allowing developers to work on their own modules without having to coordinate with the rest of the team as they did when working with monolithic applications. This can lead to faster development and a more efficient workflow.</p>
+</div>
+<div class="paragraph">
+<p>The resilience of the application is also increased by allowing portions of the web application to be unavailable without impacting the entire application. This can be particularly useful for applications that need to be highly available, as it allows for better handling of outages and maintenance.</p>
+</div>
+<div class="paragraph">
+<p>Finally, Module Federation often reduces the bundle size of the application by reducing the amount of code that needs to be shipped to the browser on the first interaction. This can improve the performance of the application and can also be beneficial for search engine optimization (SEO) as it reduces the amount of code that needs to be parsed by the browser.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whos_using_module_federation">Who’s using Module Federation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There is public information available that many large and recognizable organizations are using Module Federation in their web applications. Some examples of well-known companies that have adopted Module Federation include PayPal, Best Buy, Lululemon, Semrush, Cloudflare, Epic Games, Business Insider, Box.com, Shopify, Adidas, Fidelity, Bytedance, and Chase.</p>
+</div>
+<div class="paragraph">
+<p>These companies have likely implemented Module Federation to achieve greater modularity and scalability in their web applications, which we can expect to contribute to the success of their web presence.</p>
+</div>
+<div class="paragraph">
+<p>It is worth noting that these are just a few examples of the many organizations that are using Module Federation. There are likely many other companies, both large and small, that are using Module Federation internally or externally in their web applications. This demonstrates the widespread adoption of Module Federation as a powerful tool for building modular and scalable web applications.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If a development organization is looking for a technique that allows developers to split a large, monolithic, web application into smaller, independent modules that can be loaded on demand, Module Federation is the way to go. The reduced development time and costs, improved maintainability and flexibility, increased developer autonomy, increased application resilience, and reduced bundle size are just the beginning of the benefits.</p>
+</div>
+<div class="paragraph">
+<p>As we’ve shared, Module Federation has already been adopted by many well-known organizations, and it is likely that more companies will adopt it in the future.</p>
+</div>
+<div class="paragraph">
+<p>It is clear that business should try to stay up-to-date with new technologies and begin to leverage Module Federation, we know it will help them to stay competitive.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_need_help">Need help?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Valor Software is a software development and consulting company that specializes in helping businesses modernize their web platforms and leverage new technologies like Module Federation. As official partners for the Module Federation organization, Valor Software has extensive experience and expertise in implementing module federation for businesses of all sizes.</p>
+</div>
+<div class="paragraph">
+<p>By working with Valor Software, businesses can take advantage of the latest technologies and techniques to build modern web applications that are more adaptable to changing needs and demands while also ensuring best practices through unparalleled access to the creator and supporting maintainers of Module Federation itself.</p>
+</div>
+<div class="paragraph">
+<p>Reach out today if you have any questions <a href="mailto:sales@valor-software.com">sales@valor-software.com</a>
+Zackary Chapple</p>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-lhb-c46="" class="landing-section"><h1 _ngcontent-lhb-c46="" class="main-title">More Articles</h1><div _ngcontent-lhb-c46="" class="container"><blog-preview _ngcontent-lhb-c46=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/modernization-with-module-federation-nx-and-react" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/modernization-with-module-federation-nx-and-react/Modernization-module-federation.png" alt="Modernization with Module Federation, Nx and React"></div><div class="text-container"><p>Modernization with Module Federation, Nx and React</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/tasty-recipes-for-react-d3-the-ranking-bar" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/tasty-recipes-for-react-d3-the-ranking-bar/Valor Site_ D3 Slava Chub v2.png" alt="Tasty Recipes for React &amp; D3. The Ranking Bar"></div><div class="text-container"><p>Tasty Recipes for React &amp; D3. The Ranking Bar</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/introduction-to-jetpack-compose-for-nativescript" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/introduction-to-jetpack-compose-for-nativescript/title_img.png" alt="Introduction to Jetpack Compose for NativeScript"></div><div class="text-container"><p>Introduction to Jetpack Compose for NativeScript</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-lhb-c36=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.13329d1fcb04eebe.js" type="module"></script><script src="polyfills.f39c60c21adb9eb1.js" type="module"></script><script src="main.833b6088e6404ea3.js" type="module"></script>
+
+</body></html>

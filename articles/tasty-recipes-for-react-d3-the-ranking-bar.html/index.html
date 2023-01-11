@@ -1,0 +1,838 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/tasty-recipes-for-react-d3-the-ranking-bar.html"
+            },
+            "headline": "Tasty Recipes for React & D3. The Ranking Bar",
+            "description": "A series of simple examples that demonstrate how to create a simple React Ranking Bar component using D3",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/tasty-recipes-for-react-d3-the-ranking-bar/Valor Site_ D3 Slava Chub v2.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Vyacheslav Chub"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Fri Jan 6 2022 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Tasty Recipes for React &amp; D3. The Ranking Bar</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.2ae81d649de7fc03.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.2ae81d649de7fc03.css"></noscript><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="A series of simple examples that demonstrate how to create a simple React Ranking Bar component using D3"><meta property="og:title" content="Tasty Recipes for React &amp; D3. The Ranking Bar"><meta property="og:description" content="A series of simple examples that demonstrate how to create a simple React Ranking Bar component using D3"><meta property="twitter:title" content="Tasty Recipes for React &amp; D3. The Ranking Bar"><meta property="twitter:description" content="A series of simple examples that demonstrate how to create a simple React Ranking Bar component using D3"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-wim-c36="" ng-version="14.2.8"><top-menu _ngcontent-wim-c36=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-wim-c36="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-wim-c36=""></router-outlet><general-item><article _nghost-wim-c46=""><section _ngcontent-wim-c46="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-wim-c46="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-wim-c46="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Tasty Recipes For React &amp; D3. The Ranking Bar </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-wim-c46="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-wim-c46="" class="text-20 mb-4">January 6, 2022</p><p _ngcontent-wim-c46="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Tasty Recipes for React &amp; D3. The Ranking Bar</p><div _ngcontent-wim-c46="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-wim-c46="" class="w-full h-full object-cover" src="assets/articles/tasty-recipes-for-react-d3-the-ranking-bar/Vyacheslav_Chub.jpg" alt="Vyacheslav Chub"></div><!----><p _ngcontent-wim-c46="" class="md:text-large text-24 mb-4">Vyacheslav Chub</p><!----><p _ngcontent-wim-c46="" class="text-20">Full Stack Software Engineer</p><!----></div></div></section><section _ngcontent-wim-c46="" class="landing-section"><div _ngcontent-wim-c46="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-wim-c46="" class="max-w-full"><div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From time to time, my colleagues and I encounter situations where we need to implement custom visual solutions during frontend projects. This includes various tasks, such as charts, diagrams, and interactive schemes. In one project, I only had to deal with the charts and was able to resolve the issue quickly and efficiently by using a free chart library. However, in the next project, I was given the choice of the approach and the library to use. After researching and seeking advice from authoritative sources, I decided that the D3 library was the best solution for three main reasons.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code><strong><em>Flexibility.</em></strong></code>Despite many popular existing patterns, D3 allows us to provide any custom SVG-based graphic.</p>
+</li>
+<li>
+<p><code><strong><em>Popularity.</em></strong></code> This library is one of the most commonly used. It has a big community and a lot of resources for learning.</p>
+</li>
+<li>
+<p><code><strong><em>Universality.</em></strong></code> There are many existing patterns for different charts and visualizations based on data. Also, it supports various data formats like JSON and CSV.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Despite D3’s popularity, I noticed some difficulties during my research that prompted me to write this article. I want to help my colleagues navigate similar situations.</p>
+</div>
+<div class="paragraph">
+<p>Important! All the projects I mentioned earlier are React-based, so all the code examples I provide are also connected to React. I don’t want to focus on unrelated topics. My goal here is to provide minimalistic solutions, which is why I will use JavaScript instead of TypeScript.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_ranking_bar_task">The Ranking Bar Task.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As mentioned before, I want to provide fast and easy-to-use solutions, even if they are small and not immediately noticeable. That’s why I have created a series of simple examples demonstrating how to create a simple React Ranking Bar component using D3.</p>
+</div>
+<div class="paragraph">
+<p>Now, let’s focus on a couple of the key points.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_we_have">What we have?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We have the following kind of data—fruits as keys with corresponding values.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const data = {
+  Apple: 100,
+  Apricot: 200,
+  Araza: 5,
+  Avocado: 1,
+  Banana: 150,
+  Bilberry: 700,
+  // ...
+  Feijoa: 11,
+  Fig: 0,
+};</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_we_expect">What we expect?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We are expecting a simple visualization with the following features:
+1. You order all bars (fruits) starting from the biggest values to the smallest.
+2. All bars should contain the related fruit name if possible. If the fruit name width is smaller than the bar width, then the name should be cropped and "…​" added or hidden.
+3. The component should be responsive. If the user changes the screen size, the component should be redrawn.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tasty-recipes-for-react-d3-the-ranking-bar/pre-result.png" alt="pre result">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_1_getting_started">Step #1: Getting Started</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I’d like to skip the project setup and focus directly on the code, since I will provide all the working examples below. In my first step, I will give an empty SVG-based component.
+Our App component should look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import React from "react";
+import StackedRank from "./StackedRank";
+import "./style.css";
+
+export default function App() {
+  return (
+    &lt;div id="root-container"&gt;
+      &lt;StackedRank /&gt;
+    &lt;/div&gt;
+  );
+}
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pay attention to the attribute <mark>id="root-container"</mark>. This is a chart container that we will use inside the <code>StackedRank</code> component.</p>
+</div>
+<div class="paragraph">
+<p>Let’s look at <code>StackedRank</code> component.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import React, { useEffect, useState, useRef } from "react";
+import * as d3 from "d3";
+
+export default function StackedRank() {
+  const svgRef = useRef();
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+
+  const recalculateDimension = () =&gt; {
+    const getMaxWidth = () =&gt;
+      parseInt(
+        d3.select("#root-container")?.node()?.getBoundingClientRect()?.width ??
+          100,
+        10
+      );
+    setWidth(getMaxWidth());
+    setHeight(50);
+  };
+
+  const renderSvg = () =&gt; {
+    const svg = d3.select(svgRef.current);
+
+    svg
+      .append("rect")
+      .attr("x", 0)
+      .attr("width", width)
+      .attr("y", 0)
+      .attr("height", height)
+      .attr("fill", "grey");
+  };
+
+  useEffect(() =&gt; {
+    recalculateDimension();
+  }, []);
+
+  useEffect(() =&gt; {
+    if (width &amp;&amp; height) {
+      renderSvg();
+    }
+  }, [width, height]);
+
+  if (!width || !height) {
+    return &lt;&gt;&lt;/&gt;;
+  }
+
+  return &lt;svg ref={svgRef} width={width} height={height} /&gt;;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can find the full solution on <a href="https://stackblitz.com/edit/react-d3-stacked-rank-demo-1?file=src%2FApp.js" target="_blank" rel="noopener">StackBlitz</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let me explain some important points about the code above. First of all, we need to handle the component container and shapes. The chart width and height are undefined by default.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const [width, setWidth] = useState();
+const [height, setHeight] = useState();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is why we need to set them with the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">useEffect(() =&gt; {
+  recalculateDimension();
+}, []);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const recalculateDimension = () =&gt; {
+  const getMaxWidth = () =&gt;
+    parseInt(
+      d3.select("#root-container")?.node()?.getBoundingClientRect()?.width ??
+        100,
+      10
+    );
+  setWidth(getMaxWidth());
+  setHeight(50);
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the code above, we calculate the component width that fits the available screen width using the parent container root-container. The height should be fixed (50px).
+Also, pay extra attention to the following code in particular:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">if (!width || !height) {
+  return &lt;&gt;&lt;/&gt;;
+}
+
+return &lt;svg ref={svgRef} width={width} height={height} /&gt;;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>First of all, we display our graphical content in SVG format. Secondly, we shouldn’t show it if its shapes are undefined.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">useEffect(() =&gt; {
+  if (width &amp;&amp; height) {
+    renderSvg();
+  }
+}, [width, height]);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s deal with the graphical content when the component shapes are defined.
+The following code</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const renderSvg = () =&gt; {
+  const svg = d3.select(svgRef.current);
+
+  svg
+    .append("rect")
+    .attr("x", 0)
+    .attr("width", width)
+    .attr("y", 0)
+    .attr("height", height)
+    .attr("fill", "grey");
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>just draws a gray rectangle according to the component shapes.
+That’s all for Step #1.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_2_the_main_functionality_of_the_react_component">Step #2: The main functionality of the react component</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The main goal of this step is to make <code>StackedRank</code> component like a Stacked Rank chart, excuse my tautology. So, we need to draw the below
+instead of just a gray rectangle.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tasty-recipes-for-react-d3-the-ranking-bar/pre-result.png" alt="pre result">
+</div>
+</div>
+<div class="paragraph">
+<p>The related code changes are in  <a href="https://stackblitz.com/edit/react-d3-stacked-rank-demo-2" target="_blank" rel="noopener">Stackblitz</a>
+The first thing, we need to do is to define data in the App component and pass it to the chart component.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const data = {
+  Apple: 100,
+  Apricot: 200,
+  Araza: 5,
+  Avocado: 1,
+  Banana: 150,
+  // ...
+  Durian: 20,
+  Elderberry: 35,
+  Feijoa: 11,
+  Fig: 0,
+};
+
+export default function App() {
+  return (
+    &lt;div id="root-container"&gt;
+      &lt;StackedRank data={data} /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Traditionally, I want to provide the full component code and comment on it after.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import React, { useEffect, useState, useRef } from "react";
+import * as d3 from "d3";
+
+function getNormalizedData(data, width) {
+  const tmpData = [];
+  let total = 0;
+  for (const key of Object.keys(data)) {
+    if (data[key] &gt; 0) {
+      tmpData.push({ fruit: key, value: data[key] });
+      total += data[key];
+    }
+  }
+  tmpData.sort((a, b) =&gt; b.value - a.value);
+  let x = 0;
+  for (const record of tmpData) {
+    const percent = (record.value / total) * 100;
+    const barwidth = (width * percent) / 100;
+    record.x = x;
+    record.width = barwidth;
+    x += barwidth;
+  }
+  return tmpData;
+}
+
+export default function StackedRank({ data }) {
+  const svgRef = useRef();
+  const [normalizedData, setNormalizedData] = useState();
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+
+  const recalculateDimension = () =&gt; {
+    const getMaxWidth = () =&gt;
+      parseInt(
+        d3.select("#root-container")?.node()?.getBoundingClientRect()?.width ??
+          100,
+        10
+      );
+    setWidth(getMaxWidth());
+    setHeight(50);
+  };
+
+  const renderSvg = () =&gt; {
+    const svg = d3.select(svgRef.current);
+
+    const color = d3
+      .scaleOrdinal()
+      .domain(Object.keys(normalizedData))
+      .range(d3.schemeTableau10);
+
+    svg
+      .selectAll()
+      .data(normalizedData)
+      .enter()
+      .append("g")
+      .append("rect")
+      .attr("x", (d) =&gt; d.x)
+      .attr("width", (d) =&gt; d.width - 1)
+      .attr("y", 0)
+      .attr("height", 50)
+      .attr("fill", (_, i) =&gt; color(i));
+
+    svg
+      .selectAll("text")
+      .data(normalizedData)
+      .join("text")
+      .text((d) =&gt; d.fruit)
+      .attr("x", (d) =&gt; d.x + 5)
+      .attr("y", (d) =&gt; 30)
+      .attr("width", (d) =&gt; d.width - 1)
+      .attr("fill", "white");
+  };
+
+  useEffect(() =&gt; {
+    recalculateDimension();
+  }, []);
+
+  useEffect(() =&gt; {
+    if (normalizedData) {
+      renderSvg();
+    }
+  }, [normalizedData]);
+
+  useEffect(() =&gt; {
+    if (width &amp;&amp; height &amp;&amp; data) {
+      setNormalizedData(getNormalizedData(data, width));
+    }
+  }, [data, width, height]);
+
+  if (!width || !height || !normalizedData) {
+    return &lt;&gt;&lt;/&gt;;
+  }
+
+  return &lt;svg ref={svgRef} width={width} height={height} /&gt;;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The most tedious and time-consuming part of this step is the data transformation, which is contained in the 'getNormalizedData' function. I don’t want to explain it in detail. The main purposes of this function are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Provide a more convenient data representation - an array of objects instead of one object.</p>
+</li>
+<li>
+<p>Contain UI-consumed data: the X and width of the bar.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Pay attention to the following lines:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const percent = (record.value / total) * 100;
+const barwidth = (width * percent) / 100;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The width of each bar should be calculated depending on the Fruit Total value and the component width.
+Also, I recommend debugging or "console.log’ing" this code using my example: <a href="https://stackblitz.com/edit/react-d3-stacked-rank-demo-2?file=src%2FStackedRank.jsx" target="_blank" rel="noopener">Stackblitz</a>
+The code of the component for Step #2 has a bit different initialization logic.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">useEffect(() =&gt; {
+  recalculateDimension();
+}, []);
+
+useEffect(() =&gt; {
+  if (normalizedData) {
+    renderSvg();
+  }
+}, [normalizedData]);
+
+useEffect(() =&gt; {
+  if (width &amp;&amp; height &amp;&amp; data) {
+    setNormalizedData(getNormalizedData(data, width));
+  }
+}, [data, width, height]);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let me translate the React code above into human-readable form. Firstly, we calculate the component dimensions. Once we have them, we normalize the data because we now have enough information. Finally, with the normalized data, we render our SVG using D3. And now, we are ready to focus on rendering.
+As you can see below, our rendering consists of four parts. Please read my comments in the code. Don’t worry if you are not very familiar with D3 specifically. While the aim of this article is not to teach D3, I would like to provide you with some important D3-specific implementations.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const renderSvg = () =&gt; {
+  // "Associate" `svg` varable with svgRef:
+  // return &lt;svg ref={svgRef} width={width} height={height} /&gt;;
+  const svg = d3.select(svgRef.current);
+
+  // Get the list of colors using D3-way
+  const color = d3
+    .scaleOrdinal()
+    // Apple, Apricot, Araza, Avocado, etc
+    .domain(Object.keys(normalizedData))
+    .range(d3.schemeTableau10);
+
+  // Draw all expected bars according to `normalizedData`
+  svg
+    .selectAll()
+    // connect our data here
+    .data(normalizedData)
+    .enter()
+    // now we are ready for drawing
+    .append("g")
+    // draw the rect
+    .append("rect")
+    // `d` variable represents an item of normalizedData
+    // that we connected before
+    // please, also look at `getNormalizedData`
+    // we need to take x and width from there
+    .attr("x", (d) =&gt; d.x)
+    .attr("width", (d) =&gt; d.width - 1)
+    .attr("y", 0)
+    .attr("height", 50)
+    // Color for the bar depends only on its order `i`
+    .attr("fill", (_, i) =&gt; color(i));
+
+  // Put texts over all related bars according to `normalizedData`
+  svg
+    // we need to work with text
+    .selectAll("text")
+    .data(normalizedData)
+    // we need to work with text
+    .join("text")
+    // because `d` variable represents an item of normalizedData
+    // we can take the related fruit name from there
+    .text((d) =&gt; d.fruit)
+    // set x, y, and color
+    .attr("x", (d) =&gt; d.x + 5)
+    .attr("y", (d) =&gt; 30)
+    .attr("fill", "white");
+    // also, you can set more attributes like Font Family, etc...
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the comments above are not enough for a complete understanding of the topic, I highly recommend reading additional D3 resources. Additionally, I think live examples from Stackblitz, CodePen, etc., would help understand D3 principles.
+And now, after a lengthy explanation, let’s take a look at how the example works.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tasty-recipes-for-react-d3-the-ranking-bar/mid-result.png" alt="mid result">
+</div>
+</div>
+<div class="paragraph">
+<p>It looks predictable but a bit ugly. We need to deal with the overlapping text. Also, this component should be responsive. If the user changes the screen size, the component should be redrawn.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_3_responsiveness_smart_fruits">Step #3: Responsiveness &amp; Smart Fruits</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As always, I want to provide the complete code first. <a href="https://stackblitz.com/edit/react-d3-stacked-rank-demo" target="_blank" rel="noopener">Stackblitz</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import React, { useEffect, useState, useRef } from 'react';
+import * as d3 from 'd3';
+import { dotme, useWindowSize } from './utils';
+
+function getNormalizedData(data, width) {
+    // let's skip it because
+    // this implementation hasn't changed comparing
+    // with the previous implementation
+}
+
+export default function StackedRank({ data }) {
+  const svgRef = useRef();
+  const [fullWidth, fullHeight] = useWindowSize();
+  const [normalizedData, setNormalizedData] = useState();
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+
+  const recalculateDimension = () =&gt; {
+    // let's skip it because
+    // this implementation hasn't changed comparing
+    // with the previous implementation
+  };
+
+  const renderSvg = () =&gt; {
+    const svg = d3.select(svgRef.current);
+
+    svg.selectAll('*').remove();
+
+    const color = d3
+      .scaleOrdinal()
+      .domain(Object.keys(normalizedData))
+      .range(d3.schemeTableau10);
+
+    svg
+      .selectAll()
+      .data(normalizedData)
+      .enter()
+      .append('g')
+      .append('rect')
+      .attr('x', (d) =&gt; d.x)
+      .attr('width', (d) =&gt; d.width - 1)
+      .attr('y', 0)
+      .attr('height', 50)
+      .attr('fill', (_, i) =&gt; color(i));
+
+    svg
+      .selectAll('text')
+      .data(normalizedData)
+      .join('text')
+      .text((d) =&gt; d.fruit)
+      .attr('x', (d) =&gt; d.x + 5)
+      .attr('y', (d) =&gt; 30)
+      .attr('width', (d) =&gt; d.width - 1)
+      .attr('fill', 'white');
+
+    svg.selectAll('text').call(dotme);
+  };
+
+  useEffect(() =&gt; {
+    if (normalizedData) {
+      renderSvg();
+    }
+  }, [normalizedData]);
+
+  useEffect(() =&gt; {
+    if (width &amp;&amp; height) {
+      setNormalizedData(getNormalizedData(data, width));
+    }
+  }, [width, height]);
+
+  useEffect(() =&gt; {
+    if (data) {
+      recalculateDimension();
+    }
+  }, [data, fullWidth, fullHeight]);
+
+  if (!width || !height || !normalizedData) {
+    return &lt;&gt;&lt;/&gt;;
+  }
+
+  return &lt;svg ref={svgRef} width={width} height={height} /&gt;;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_responsiveness">Responsiveness</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Despite the fixed component height (50px), we need to recalculate its width according to the available screen width for each window resize. That’s why I added a new hook. The hook is useWindowSize. You can find the related source here <a href="https://stackblitz.com/edit/react-d3-stacked-rank-demo?file=src%2FStackedRank.jsx,src%2Futils.js%3AL36" target="_blank" rel="noopener">Stackblitz</a></p>
+</div>
+<div class="paragraph">
+<p>Let me highlight the essential points regarding responsibility.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const [fullWidth, fullHeight] = useWindowSize();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Get available screen dimensions fullWidth, fullHeight.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">  useEffect(() =&gt; {
+    if (data) {
+      recalculateDimension();
+    }
+  }, [data, fullWidth, fullHeight]);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Recalculate component size if the screen has changed.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_smart_fruits">Smart Fruits</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before we discuss smart texts, I recommend taking a look at the <a href="https://codepen.io/nixik/pen/VEZwYd" target="_blank" rel="noopener">following solution</a>. This is important because I used the dotme code as a prototype. The issue with the original dotme is that it limits a string by word criteria (see the original solution). However, in this example, the fruit names should be limited by character criteria. Let me explain my version of dotme.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export function dotme(texts) {
+  texts.each(function () {
+    const text = d3.select(this);
+    // get an array of characters
+    const chars = text.text().split('');
+
+    // make a temporary minimal text contains one character (space) with ...
+    let ellipsis = text.text(' ').append('tspan').text('...');
+    // calculate temporary minimal text width
+    const minLimitedTextWidth = ellipsis.node().getComputedTextLength();
+    // make "ellipsis" text object
+    ellipsis = text.text('').append('tspan').text('...');
+
+    // calculate the total text width: text + ellipsis
+    // one important note here: text.attr('width') has taken from the
+    // following code fragment of "":
+    /*
+       svg
+         .selectAll('text')
+         .data(normalizedData)
+         // ...
+         .attr('width', (d) =&gt; d.width - 1)
+    */
+    // that's why we must define width attribute for the text if we want to get
+    // behavior of the functionality
+    const width =
+      parseFloat(text.attr('width')) - ellipsis.node().getComputedTextLength();
+    // total number of characters
+    const numChars = chars.length;
+    // make unlimited version of the string
+    const tspan = text.insert('tspan', ':first-child').text(chars.join(''));
+
+    // the following case covers the situation
+    // when we shouldn't display the string at all event with ellipsis
+    if (width &lt;= minLimitedTextWidth) {
+      tspan.text('');
+      ellipsis.remove();
+      return;
+    }
+
+    // make the limited string
+    while (tspan.node().getComputedTextLength() &gt; width &amp;&amp; chars.length) {
+      chars.pop();
+      tspan.text(chars.join(''));
+    }
+
+    // if all characters are displayed we don't need to display ellipsis
+    if (chars.length === numChars) {
+      ellipsis.remove();
+    }
+  });
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I hope that’s it for <mark>dotme</mark> ;)</p>
+</div>
+<div class="paragraph">
+<p>You can use the function above quite simply. You just need to call the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">svg.selectAll('text').call(dotme);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Despite repeating this point, I need to highlight it again due to its importance. We must define the width attribute for the text.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">    svg
+      .selectAll('text')
+      .data(normalizedData)
+      .join('text')
+       // ...
+      .attr('width', (d) =&gt; d.width - 1)
+      // ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Otherwise dotme gives wrong behavior. See the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">   const width =
+      parseFloat(text.attr('width')) - ellipsis.node().getComputedTextLength();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now it’s time to run the app. But before I want to highlight one crucial point regarding D3 usage. Let’s look at the following line of code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">svg.selectAll('*').remove();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code above clears all graphical stuff on the SVG. We should do it because we need to redraw the component, which means that the previous SVG objects need to be rejected. You can remove this line, rerun the app and change the window size. I recommend trying it if you want to feel how D3 works.
+Here is a video of the final solution in action!</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tasty-recipes-for-react-d3-the-ranking-bar/result.gif" alt="result">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_thank_you_for_your_attention_and_happy_coding">Thank you for your attention, and happy coding!</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_need_help">Need help?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Founded in 2013, Valor Software is a software development and consulting company specializing in helping businesses modernize their web platforms and best leverage technology.
+By working with Valor Software, businesses can take advantage of the latest technologies and techniques to build modern web applications that are more adaptable to changing needs and demands while ensuring best practices through unparalleled OSS access via our team and community partners.
+Reach out today if you have any questions <a href="mailto:sales@valor-software.com">sales@valor-software.com</a></p>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-wim-c46="" class="landing-section"><h1 _ngcontent-wim-c46="" class="main-title">More Articles</h1><div _ngcontent-wim-c46="" class="container"><blog-preview _ngcontent-wim-c46=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/modernization-with-module-federation-nx-and-react" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/modernization-with-module-federation-nx-and-react/Modernization-module-federation.png" alt="Modernization with Module Federation, Nx and React"></div><div class="text-container"><p>Modernization with Module Federation, Nx and React</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/module-federation-for-the-business" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/module-federation-for-the-business/Valor-Business-Zack.png" alt="Module Federation for the Business"></div><div class="text-container"><p>Module Federation for the Business</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/introduction-to-jetpack-compose-for-nativescript" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/introduction-to-jetpack-compose-for-nativescript/title_img.png" alt="Introduction to Jetpack Compose for NativeScript"></div><div class="text-container"><p>Introduction to Jetpack Compose for NativeScript</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-wim-c36=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.13329d1fcb04eebe.js" type="module"></script><script src="polyfills.f39c60c21adb9eb1.js" type="module"></script><script src="main.833b6088e6404ea3.js" type="module"></script>
+
+</body></html>
