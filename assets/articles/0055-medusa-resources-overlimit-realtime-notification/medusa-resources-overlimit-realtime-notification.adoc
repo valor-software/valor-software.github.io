@@ -3,8 +3,7 @@ https://www.medusa.codes/[*Medusa^]** Dashboard*
 *Issue* +
 A user has a "Free Subscription" price plan with some limited resource usage. Currently, it looks like this
 
-image::assets/articles/0055-medusa-resources-overlimit-realtime-notification/Max_Valor_MF.png[]
-
+image::https://github.com/valor-software/valor-software.github.io/blob/medusa-resources-overlimit/assets/articles/0055-medusa-resources-overlimit-realtime-notification/Max_Valor_MF.png[]
 
 Let’s play with *builds now*. +
 *How does it work?*
