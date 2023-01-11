@@ -1,4 +1,5 @@
-== https://www.medusa.codes/[*Medusa^]** Dashboard*
+== Medusa Dashboard
+https://www.medusa.codes/[*Medusa^]
 
 *Issue* +
 A user has a "Free Subscription" price plan with some limited resource usage. Currently, it looks like this
