@@ -1,0 +1,662 @@
+= Tasty Recipes for React & D3. The Ranking Bar.
+
+== Introduction
+From time to time, my colleagues and I encounter situations where we need to implement custom visual solutions during frontend projects. This includes various tasks, such as charts, diagrams, and interactive schemes. In one project, I only had to deal with the charts and was able to resolve the issue quickly and efficiently by using a free chart library. However, in the next project, I was given the choice of the approach and the library to use. After researching and seeking advice from authoritative sources, I decided that the D3 library was the best solution for three main reasons.
+
+1. ``**__Flexibility.__**``Despite many popular existing patterns, D3 allows us to provide any custom SVG-based graphic.
+2. ``**__Popularity.__**`` This library is one of the most commonly used. It has a big community and a lot of resources for learning.
+3. ``**__Universality.__**`` There are many existing patterns for different charts and visualizations based on data. Also, it supports various data formats like JSON and CSV.
+
+Despite D3's popularity, I noticed some difficulties during my research that prompted me to write this article. I want to help my colleagues navigate similar situations.
+
+Important! All the projects I mentioned earlier are React-based, so all the code examples I provide are also connected to React. I don't want to focus on unrelated topics. My goal here is to provide minimalistic solutions, which is why I will use JavaScript instead of TypeScript.
+
+== The Ranking Bar Task.
+
+As mentioned before, I want to provide fast and easy-to-use solutions, even if they are small and not immediately noticeable. That's why I have created a series of simple examples demonstrating how to create a simple React Ranking Bar component using D3.
+
+Now, let's focus on a couple of the key points.
+
+== What we have?
+
+We have the following kind of data—fruits as keys with corresponding values.
+
+[, js]
+----
+const data = {
+  Apple: 100,
+  Apricot: 200,
+  Araza: 5,
+  Avocado: 1,
+  Banana: 150,
+  Bilberry: 700,
+  // ...
+  Feijoa: 11,
+  Fig: 0,
+};
+----
+
+== What we expect?
+
+We are expecting a simple visualization with the following features:
+1. You order all bars (fruits) starting from the biggest values to the smallest.
+2. All bars should contain the related fruit name if possible. If the fruit name width is smaller than the bar width, then the name should be cropped and "..." added or hidden.
+3. The component should be responsive. If the user changes the screen size, the component should be redrawn.
+
+[.img]
+image::pre-result.png[]
+
+== Step #1: Getting Started
+
+I'd like to skip the project setup and focus directly on the code, since I will provide all the working examples below. In my first step, I will give an empty SVG-based component.
+Our App component should look like this:
+
+[, js]
+----
+import React from "react";
+import StackedRank from "./StackedRank";
+import "./style.css";
+
+export default function App() {
+  return (
+    <div id="root-container">
+      <StackedRank />
+    </div>
+  );
+}
+};
+----
+
+Pay attention to the attribute #id="root-container"#. This is a chart container that we will use inside the `+StackedRank+` component.
+
+Let's look at `+StackedRank+` component.
+
+[, js]
+----
+import React, { useEffect, useState, useRef } from "react";
+import * as d3 from "d3";
+
+export default function StackedRank() {
+  const svgRef = useRef();
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+
+  const recalculateDimension = () => {
+    const getMaxWidth = () =>
+      parseInt(
+        d3.select("#root-container")?.node()?.getBoundingClientRect()?.width ??
+          100,
+        10
+      );
+    setWidth(getMaxWidth());
+    setHeight(50);
+  };
+
+  const renderSvg = () => {
+    const svg = d3.select(svgRef.current);
+
+    svg
+      .append("rect")
+      .attr("x", 0)
+      .attr("width", width)
+      .attr("y", 0)
+      .attr("height", height)
+      .attr("fill", "grey");
+  };
+
+  useEffect(() => {
+    recalculateDimension();
+  }, []);
+
+  useEffect(() => {
+    if (width && height) {
+      renderSvg();
+    }
+  }, [width, height]);
+
+  if (!width || !height) {
+    return <></>;
+  }
+
+  return <svg ref={svgRef} width={width} height={height} />;
+}
+----
+
+You can find the full solution on https://stackblitz.com/edit/react-d3-stacked-rank-demo-1?file=src%2FApp.js[StackBlitz, window=_blank].
+
+Let me explain some important points about the code above. First of all, we need to handle the component container and shapes. The chart width and height are undefined by default.
+
+[, js]
+----
+const [width, setWidth] = useState();
+const [height, setHeight] = useState();
+----
+This is why we need to set them with the following code:
+[, js]
+----
+useEffect(() => {
+  recalculateDimension();
+}, []);
+----
+[, js]
+----
+const recalculateDimension = () => {
+  const getMaxWidth = () =>
+    parseInt(
+      d3.select("#root-container")?.node()?.getBoundingClientRect()?.width ??
+        100,
+      10
+    );
+  setWidth(getMaxWidth());
+  setHeight(50);
+};
+----
+In the code above, we calculate the component width that fits the available screen width using the parent container root-container. The height should be fixed (50px).
+Also, pay extra attention to the following code in particular:
+
+[, js]
+----
+if (!width || !height) {
+  return <></>;
+}
+
+return <svg ref={svgRef} width={width} height={height} />;
+----
+
+First of all, we display our graphical content in SVG format. Secondly, we shouldn't show it if its shapes are undefined.
+
+[, js]
+----
+useEffect(() => {
+  if (width && height) {
+    renderSvg();
+  }
+}, [width, height]);
+----
+
+Let's deal with the graphical content when the component shapes are defined.
+The following code
+
+[, js]
+----
+const renderSvg = () => {
+  const svg = d3.select(svgRef.current);
+
+  svg
+    .append("rect")
+    .attr("x", 0)
+    .attr("width", width)
+    .attr("y", 0)
+    .attr("height", height)
+    .attr("fill", "grey");
+};
+----
+
+just draws a gray rectangle according to the component shapes.
+That's all for Step #1.
+
+== Step #2: The main functionality of the react component
+
+The main goal of this step is to make `+StackedRank+` component like a Stacked Rank chart, excuse my tautology. So, we need to draw the below
+instead of just a gray rectangle.
+
+[.img]
+image::pre-result.png[]
+
+The related code changes are in  https://stackblitz.com/edit/react-d3-stacked-rank-demo-2[Stackblitz, window=_blank]
+The first thing, we need to do is to define data in the App component and pass it to the chart component.
+
+[, js]
+----
+const data = {
+  Apple: 100,
+  Apricot: 200,
+  Araza: 5,
+  Avocado: 1,
+  Banana: 150,
+  // ...
+  Durian: 20,
+  Elderberry: 35,
+  Feijoa: 11,
+  Fig: 0,
+};
+
+export default function App() {
+  return (
+    <div id="root-container">
+      <StackedRank data={data} />
+    </div>
+  );
+}
+----
+
+Traditionally, I want to provide the full component code and comment on it after.
+
+[, js]
+----
+import React, { useEffect, useState, useRef } from "react";
+import * as d3 from "d3";
+
+function getNormalizedData(data, width) {
+  const tmpData = [];
+  let total = 0;
+  for (const key of Object.keys(data)) {
+    if (data[key] > 0) {
+      tmpData.push({ fruit: key, value: data[key] });
+      total += data[key];
+    }
+  }
+  tmpData.sort((a, b) => b.value - a.value);
+  let x = 0;
+  for (const record of tmpData) {
+    const percent = (record.value / total) * 100;
+    const barwidth = (width * percent) / 100;
+    record.x = x;
+    record.width = barwidth;
+    x += barwidth;
+  }
+  return tmpData;
+}
+
+export default function StackedRank({ data }) {
+  const svgRef = useRef();
+  const [normalizedData, setNormalizedData] = useState();
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+
+  const recalculateDimension = () => {
+    const getMaxWidth = () =>
+      parseInt(
+        d3.select("#root-container")?.node()?.getBoundingClientRect()?.width ??
+          100,
+        10
+      );
+    setWidth(getMaxWidth());
+    setHeight(50);
+  };
+
+  const renderSvg = () => {
+    const svg = d3.select(svgRef.current);
+
+    const color = d3
+      .scaleOrdinal()
+      .domain(Object.keys(normalizedData))
+      .range(d3.schemeTableau10);
+
+    svg
+      .selectAll()
+      .data(normalizedData)
+      .enter()
+      .append("g")
+      .append("rect")
+      .attr("x", (d) => d.x)
+      .attr("width", (d) => d.width - 1)
+      .attr("y", 0)
+      .attr("height", 50)
+      .attr("fill", (_, i) => color(i));
+
+    svg
+      .selectAll("text")
+      .data(normalizedData)
+      .join("text")
+      .text((d) => d.fruit)
+      .attr("x", (d) => d.x + 5)
+      .attr("y", (d) => 30)
+      .attr("width", (d) => d.width - 1)
+      .attr("fill", "white");
+  };
+
+  useEffect(() => {
+    recalculateDimension();
+  }, []);
+
+  useEffect(() => {
+    if (normalizedData) {
+      renderSvg();
+    }
+  }, [normalizedData]);
+
+  useEffect(() => {
+    if (width && height && data) {
+      setNormalizedData(getNormalizedData(data, width));
+    }
+  }, [data, width, height]);
+
+  if (!width || !height || !normalizedData) {
+    return <></>;
+  }
+
+  return <svg ref={svgRef} width={width} height={height} />;
+}
+----
+
+The most tedious and time-consuming part of this step is the data transformation, which is contained in the 'getNormalizedData' function. I don't want to explain it in detail. The main purposes of this function are:
+
+. Provide a more convenient data representation - an array of objects instead of one object.
+. Contain UI-consumed data: the X and width of the bar.
+
+Pay attention to the following lines:
+
+
+[, js]
+----
+const percent = (record.value / total) * 100;
+const barwidth = (width * percent) / 100;
+----
+
+The width of each bar should be calculated depending on the Fruit Total value and the component width.
+Also, I recommend debugging or "console.log'ing" this code using my example: https://stackblitz.com/edit/react-d3-stacked-rank-demo-2?file=src%2FStackedRank.jsx[Stackblitz, window=_blank]
+The code of the component for Step #2 has a bit different initialization logic.
+
+
+[, js]
+----
+useEffect(() => {
+  recalculateDimension();
+}, []);
+
+useEffect(() => {
+  if (normalizedData) {
+    renderSvg();
+  }
+}, [normalizedData]);
+
+useEffect(() => {
+  if (width && height && data) {
+    setNormalizedData(getNormalizedData(data, width));
+  }
+}, [data, width, height]);
+----
+
+Let me translate the React code above into human-readable form. Firstly, we calculate the component dimensions. Once we have them, we normalize the data because we now have enough information. Finally, with the normalized data, we render our SVG using D3. And now, we are ready to focus on rendering.
+As you can see below, our rendering consists of four parts. Please read my comments in the code. Don't worry if you are not very familiar with D3 specifically. While the aim of this article is not to teach D3, I would like to provide you with some important D3-specific implementations.
+
+[, js]
+----
+const renderSvg = () => {
+  // "Associate" `svg` varable with svgRef:
+  // return <svg ref={svgRef} width={width} height={height} />;
+  const svg = d3.select(svgRef.current);
+
+  // Get the list of colors using D3-way
+  const color = d3
+    .scaleOrdinal()
+    // Apple, Apricot, Araza, Avocado, etc
+    .domain(Object.keys(normalizedData))
+    .range(d3.schemeTableau10);
+
+  // Draw all expected bars according to `normalizedData`
+  svg
+    .selectAll()
+    // connect our data here
+    .data(normalizedData)
+    .enter()
+    // now we are ready for drawing
+    .append("g")
+    // draw the rect
+    .append("rect")
+    // `d` variable represents an item of normalizedData
+    // that we connected before
+    // please, also look at `getNormalizedData`
+    // we need to take x and width from there
+    .attr("x", (d) => d.x)
+    .attr("width", (d) => d.width - 1)
+    .attr("y", 0)
+    .attr("height", 50)
+    // Color for the bar depends only on its order `i`
+    .attr("fill", (_, i) => color(i));
+
+  // Put texts over all related bars according to `normalizedData`
+  svg
+    // we need to work with text
+    .selectAll("text")
+    .data(normalizedData)
+    // we need to work with text
+    .join("text")
+    // because `d` variable represents an item of normalizedData
+    // we can take the related fruit name from there
+    .text((d) => d.fruit)
+    // set x, y, and color
+    .attr("x", (d) => d.x + 5)
+    .attr("y", (d) => 30)
+    .attr("fill", "white");
+    // also, you can set more attributes like Font Family, etc...
+};
+----
+
+If the comments above are not enough for a complete understanding of the topic, I highly recommend reading additional D3 resources. Additionally, I think live examples from Stackblitz, CodePen, etc., would help understand D3 principles.
+And now, after a lengthy explanation, let's take a look at how the example works.
+
+[.img]
+image::mid-result.png[]
+
+It looks predictable but a bit ugly. We need to deal with the overlapping text. Also, this component should be responsive. If the user changes the screen size, the component should be redrawn.
+
+== Step #3: Responsiveness & Smart Fruits
+
+As always, I want to provide the complete code first. https://stackblitz.com/edit/react-d3-stacked-rank-demo[Stackblitz, window=_blank]
+
+[, js]
+----
+import React, { useEffect, useState, useRef } from 'react';
+import * as d3 from 'd3';
+import { dotme, useWindowSize } from './utils';
+
+function getNormalizedData(data, width) {
+    // let's skip it because
+    // this implementation hasn't changed comparing
+    // with the previous implementation
+}
+
+export default function StackedRank({ data }) {
+  const svgRef = useRef();
+  const [fullWidth, fullHeight] = useWindowSize();
+  const [normalizedData, setNormalizedData] = useState();
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+
+  const recalculateDimension = () => {
+    // let's skip it because
+    // this implementation hasn't changed comparing
+    // with the previous implementation
+  };
+
+  const renderSvg = () => {
+    const svg = d3.select(svgRef.current);
+
+    svg.selectAll('*').remove();
+
+    const color = d3
+      .scaleOrdinal()
+      .domain(Object.keys(normalizedData))
+      .range(d3.schemeTableau10);
+
+    svg
+      .selectAll()
+      .data(normalizedData)
+      .enter()
+      .append('g')
+      .append('rect')
+      .attr('x', (d) => d.x)
+      .attr('width', (d) => d.width - 1)
+      .attr('y', 0)
+      .attr('height', 50)
+      .attr('fill', (_, i) => color(i));
+
+    svg
+      .selectAll('text')
+      .data(normalizedData)
+      .join('text')
+      .text((d) => d.fruit)
+      .attr('x', (d) => d.x + 5)
+      .attr('y', (d) => 30)
+      .attr('width', (d) => d.width - 1)
+      .attr('fill', 'white');
+
+    svg.selectAll('text').call(dotme);
+  };
+
+  useEffect(() => {
+    if (normalizedData) {
+      renderSvg();
+    }
+  }, [normalizedData]);
+
+  useEffect(() => {
+    if (width && height) {
+      setNormalizedData(getNormalizedData(data, width));
+    }
+  }, [width, height]);
+
+  useEffect(() => {
+    if (data) {
+      recalculateDimension();
+    }
+  }, [data, fullWidth, fullHeight]);
+
+  if (!width || !height || !normalizedData) {
+    return <></>;
+  }
+
+  return <svg ref={svgRef} width={width} height={height} />;
+}
+----
+
+== Responsiveness
+
+Despite the fixed component height (50px), we need to recalculate its width according to the available screen width for each window resize. That's why I added a new hook. The hook is useWindowSize. You can find the related source here https://stackblitz.com/edit/react-d3-stacked-rank-demo?file=src%2FStackedRank.jsx,src%2Futils.js%3AL36[Stackblitz, window=_blank]
+
+Let me highlight the essential points regarding responsibility.
+
+[, js]
+----
+const [fullWidth, fullHeight] = useWindowSize();
+----
+
+Get available screen dimensions fullWidth, fullHeight.
+
+[, js]
+----
+  useEffect(() => {
+    if (data) {
+      recalculateDimension();
+    }
+  }, [data, fullWidth, fullHeight]);
+----
+
+Recalculate component size if the screen has changed.
+
+== Smart Fruits
+
+Before we discuss smart texts, I recommend taking a look at the https://codepen.io/nixik/pen/VEZwYd[following solution, window=_blank]. This is important because I used the dotme code as a prototype. The issue with the original dotme is that it limits a string by word criteria (see the original solution). However, in this example, the fruit names should be limited by character criteria. Let me explain my version of dotme.
+
+
+[, js]
+----
+export function dotme(texts) {
+  texts.each(function () {
+    const text = d3.select(this);
+    // get an array of characters
+    const chars = text.text().split('');
+
+    // make a temporary minimal text contains one character (space) with ...
+    let ellipsis = text.text(' ').append('tspan').text('...');
+    // calculate temporary minimal text width
+    const minLimitedTextWidth = ellipsis.node().getComputedTextLength();
+    // make "ellipsis" text object
+    ellipsis = text.text('').append('tspan').text('...');
+
+    // calculate the total text width: text + ellipsis
+    // one important note here: text.attr('width') has taken from the
+    // following code fragment of "":
+    /*
+       svg
+         .selectAll('text')
+         .data(normalizedData)
+         // ...
+         .attr('width', (d) => d.width - 1)
+    */
+    // that's why we must define width attribute for the text if we want to get
+    // behavior of the functionality
+    const width =
+      parseFloat(text.attr('width')) - ellipsis.node().getComputedTextLength();
+    // total number of characters
+    const numChars = chars.length;
+    // make unlimited version of the string
+    const tspan = text.insert('tspan', ':first-child').text(chars.join(''));
+
+    // the following case covers the situation
+    // when we shouldn't display the string at all event with ellipsis
+    if (width <= minLimitedTextWidth) {
+      tspan.text('');
+      ellipsis.remove();
+      return;
+    }
+
+    // make the limited string
+    while (tspan.node().getComputedTextLength() > width && chars.length) {
+      chars.pop();
+      tspan.text(chars.join(''));
+    }
+
+    // if all characters are displayed we don't need to display ellipsis
+    if (chars.length === numChars) {
+      ellipsis.remove();
+    }
+  });
+}
+----
+
+I hope that's it for #dotme# ;)
+
+You can use the function above quite simply. You just need to call the following:
+
+[, js]
+----
+svg.selectAll('text').call(dotme);
+----
+
+Despite repeating this point, I need to highlight it again due to its importance. We must define the width attribute for the text.
+
+[, js]
+----
+    svg
+      .selectAll('text')
+      .data(normalizedData)
+      .join('text')
+       // ...
+      .attr('width', (d) => d.width - 1)
+      // ...
+----
+
+Otherwise dotme gives wrong behavior. See the following code:
+
+[, js]
+----
+   const width =
+      parseFloat(text.attr('width')) - ellipsis.node().getComputedTextLength();
+----
+
+Now it's time to run the app. But before I want to highlight one crucial point regarding D3 usage. Let's look at the following line of code:
+
+[, js]
+----
+svg.selectAll('*').remove();
+----
+
+The code above clears all graphical stuff on the SVG. We should do it because we need to redraw the component, which means that the previous SVG objects need to be rejected. You can remove this line, rerun the app and change the window size. I recommend trying it if you want to feel how D3 works.
+Here is a video of the final solution in action!
+
+
+[.img]
+image::result.gif[]
+
+=== Thank you for your attention, and happy coding!
+
+== Need help?
+
+Founded in 2013, Valor Software is a software development and consulting company specializing in helping businesses modernize their web platforms and best leverage technology.
+By working with Valor Software, businesses can take advantage of the latest technologies and techniques to build modern web applications that are more adaptable to changing needs and demands while ensuring best practices through unparalleled OSS access via our team and community partners.
+Reach out today if you have any questions mailto:sales@valor-software.com[sales@valor-software.com]
+
+
