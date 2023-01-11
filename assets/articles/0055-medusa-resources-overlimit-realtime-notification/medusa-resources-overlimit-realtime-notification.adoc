@@ -1,0 +1,125 @@
+https://www.medusa.codes/[*Medusa^]** Dashboard*
+
+*Issue* +
+A user has a "Free Subscription" price plan with some limited resource usage. Currently, it looks like this
+
+Let’s play with *builds now*. +
+*How does it work?*
+
+When a user builds his application on his own (an application is connected to Medusa via tokens and medusa-plugin), *medusa-plugin* makes an API call to Medusa Server with a request to update application builds inside Medusa Dashboard, it creates some records in the database and you can manage and use those builds in the Dashboard then. +
+At the current moment, we don’t have any restrictions for build amount and usage according to the Price Plan so users can easily get a quote over the limit like for usage of 130 builds with 100 builds in the Plan.
+
+The task sounds like "*_Restrict overlimit usage of Medusa Resources according to Quota"_*. Sounds like a five-minute task, just insert a checker before business logic. If the check is positive – go further, if negative – stop action. +
+Okay, it’s done. Even works. But there’s another issue – it will look for a User like a bug. No… like a *BUG*. As all things, described above, are under-the-hood processes, the user cannot know at that moment that he got overlimit, so we have to notify the user somehow in some way. 
+
+We don’t have any real-time solutions implemented inside yet, so it seems that, easy from first sight, the task becomes a task of implementing real-time technology. Okay, what do we know about it? Web Sockets – cool, but they are unidirectional, we do not need them. In addition, we might have an issue if the load balancer doesn’t support WebSockets (like a basic AWS Load Balancer).
+
+*What else?*
+
+SSE – Server-Sent-Events. Technology, which might cover a lot of cases where people use WebSockets. In addition, it brings less headache with integration as it uses HTTP protocol only.  +
+https://medium.com/system-design-blog/long-polling-vs-websockets-vs-server-sent-events-c43ba96df7c1[Some words of difference between WebSockets and SSE^]
+
+Okay, we said it, we did it! +
+On the Back End side, we use NestJS, Front End is NextJS (for a non-native speaker, it’s quite difficult and funny to try to pronounce them instantly one by one :) ).
+
+Let’s start. NestJS documentation has some words about https://docs.nestjs.com/techniques/server-sent-events[the implementation of SSE^]. So it looks easy to do, it has simple examples, and it works… But in our case, not always and not everywhere.
+
+There are a few issues I have faced during implementation.
+
+*Issue 1* +
+An example in NestJS documentation is related to `interval` usage and sends messages once a second. We do not need that way, we need to send messages at the moment we want, and only to users whom this message concerns.  +
+So we had to alter the event emitter to send messages only at that moment we need.  +
+It was done.
+
+----
+@Injectable()
+export class ServerEventsService {
+ private readonly emitter: EventEmitter;
+
+ constructor() {
+   this.emitter = new EventEmitter();
+ }
+
+ subscribe(userId: string): Observable<any> {
+   return fromEvent(this.emitter, userId);
+ }
+
+ emit(userId: string, data?: SseEventMessage): void {
+   this.emitter.emit(userId, { data });
+ }
+----
+}
+
+
+*Issue 2* +
+As we are using NextJS, it means that most pages are SSR (Server Side Rendered). That means, in addition, that we cannot create the EventSource instance anywhere we want. So we have to initialize the eventsource after the component has been rendered in the browser. 
+
+Firstly, we need to receive messages and show them globally, it should not be related to a certain page. Another thing is how to make it work in our case of SSR.
+
+We just need to do that in `useEffect`, to make it start working in a Browser already. So we created a Global Modal with some inputs, integrated our solution and it worked. Cool, we are so happy!
+
+*Issue 3* +
+Our solution worked well in the case of real-time processes, but what if Medusa Dashboard was closed? We need to notify a user that he has some issues with using Medusa because of quota overlimit. Easy, just make a check. The thing is that we need to make an async call in useEffect and linter tells us that we are incorrect with that decision… But, there’s a workaround. We need to wrap the async function into the self-invoking unnamed function. 
+
+----
+(async () => {
+  await task();
+----
+})();
+
+*Issue 4* +
+It’s a bad thing to have a checker on the Back End side for the under-the-hood process and the same checker on the Front End side, so on a Front End we just make an API call without using a response. On the server side, we check all related data, and in case the checker responds negatively, we emit a new message from Server to UI. +
+But it didn’t work.
+
+Under-the-hood things emitted the message from one controller, check by demand the emitted message from another controller. 
+
+What is the issue? Why doesn't it work? I’m emitting a message, and it emits but the UI doesn't get it…
+
+*I checked if my emitters have listeners. One of them had one, and another one – did not. Whaaat?*
+
+I have created an SSE Service and injected that as a provider into the App Module, then into another Module. It’s not directly said anywhere in the documentation that by doing things in this way, we will get different multiple instances of Services. Hmmm… Okay.  +
+Creating a separate module with a separate service, then injecting modules into other modules – saved me… The Next JS modules are Singletons, so now I have only one instance of the SSE part and really can use this service everywhere in the Server and emit messages to a certain channel.
+
+That’s it. We have integrated SSE into the System, it works great and this is a base to develop that further.
+
+Now we can notify a user if something is happening under the hood and the user should be aware of it. Great! +
+https://t2674704.p.clickup-attachments.com/t2674704/186d6f2b-3b58-49c4-8e93-7db736b0ab5e/medusa_sse.mp4?view=open[WATCH THIS VIDEO^]
+
+
+Video Plan:
+
+*1. Who we are and what we are doing? What do we need now? What is the issue? What are we going to do and how are we going to resolve this?*
+
+We are Valor Software, an international company, created by the Developer for Developers.  +
+We are fans and sponsors of NestJS and NativeScript and do a lot of awesome things by ourselves, like ngx-bootstrap, and a current one called Medusa.  +
+Medusa is a kind of Dashboard and management system for https://github.com/module-federation[Module Federation]. With Medusa, you can finally have visibility into your Module Federation-powered applications. See what versions are deployed, their underlying dependencies and relationships, and which teams are committing to them. That’s in general about Medusa evolving all the time, development moving further and further.
+
+Today we have to resolve the following thing:
+
+When a user is building his connected application on his own, *medusa-plugin* makes an API call to Medusa Dashboard with the request to update application builds inside Medusa Dashboard, it does some logic and creates a few records in the database so then you can manage and use those builds in the Dashboard then. +
+At the current moment, we don’t have any restrictions for builds' amount and usage according to the Price Plan so users can easily get a quote over the limit, like for using 130 builds with 100 builds limit in the Plan.
+
+The task sounds like "*_Restrict overlimit usage of Medusa Resources according to Quota"_*. Sounds like a five-minute task, just insert a checker before business logic. If the check is positive – go further, if negative – stop action.
+
+*2. Add a checker* +
+*3. Add Stripe data to the checker to check the user payment method* +
+*4. Add a checker for quotas* +
+*5. Make it reusable* +
+Okay, it’s done. Even works. But there’s another issue – it will look for the User like a bug. No… like a *BUG*. As all things, described above, are under-the-hood processes, the user cannot know at that moment that he got overlimit, so we have to notify the user somehow in some way. 
+
+*6. Add SSE Service, tell that it should be a Singleton as it’s important and nobody tells that* +
+We don’t have any real-time solutions implemented inside yet, so it seems that, easy from first sight, the task becomes a task of implementing real-time technology. Okay, what do we know about it? Web Sockets – cool, but they are unidirectional, we do not need them. In addition, we might have an issue if the load balancer doesn’t support WebSockets (like a basic AWS Load Balancer). +
+*What else?*
+
+SSE – Server-Sent-Events. Technology, which might cover a lot of cases where people use WebSockets. In addition, it brings less headache with integration as it uses HTTP protocol only.  +
+
+https://medium.com/system-design-blog/long-polling-vs-websockets-vs-server-sent-events-c43ba96df7c1[Some words of difference between WebSockets and SSE^]
+
+On the Back End side, we use NestJS, Front End is NextJS (for a non-native speaker, it’s quite difficult and funny to try to pronounce them instantly one by one :) ).
+
+Let’s start. NestJS documentation has some words about https://docs.nestjs.com/techniques/server-sent-events[the implementation of SSE^]. So it looks easy to do, and it has simple examples.
+
+*7. Say that the EventSource listener should be fully FE and as we use NextJS – should be in useEffect.* +
+*8. Check that it works, and set the channel based on UserId* +
+*9. Check that it works for app builds and on login, remove redundant code.*
+
