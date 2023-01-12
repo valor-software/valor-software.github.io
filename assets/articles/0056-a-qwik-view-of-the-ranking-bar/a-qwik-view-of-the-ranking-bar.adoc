@@ -1,0 +1,468 @@
+== Introduction
+
+This article is a sequel to my https://valor-software.com/articles/tasty-recipes-for-react-d3-the-ranking-bar[previous article, window=_blank]. 
+In this new article, I'll describe precisely the same task, but I'm going to change common and popular React to something completely different. That's why I strongly recommend reading the previous article.
+
+Some time ago, I faced a new framework. I asked myself... Is it a new animal in the Framework Zoo? I have worked in IT for over 25 years and always await a "miracle." It doesn't matter if it is Frontend, Backend, a new programming language, or DBMS. I'm trying to answer the following question for every new trend app. Will this app become mainstream? On the one hand, I remember a lot of stories such as "Angular," "React," "NodeJS," "Golang," "Postgres," "Microsoft C++," and "FoxPro." On the other hand, I remember another set of stories: "Backbone," "D Programming Language," "Polymer," "OrientDB," "Powesoft Power Builder," and "Microsoft Site Server"... I hope you guess what the difference between these lists is. Of course, I don't want to belittle software from the second list. But some of the software is destined to be more popular than others.
+
+So, meet a new Framework Qwik! I am fond of predictions, but I'm not magical. I don't know if Qwik will grab developers' minds in the nearest future. Despite that, Qwik looks like a very perspective framework. "Framework reimagined for the edge" - tells us the homepage. I like this approach. I like when an author rejects any annoying legacy and starts the project from scratch according to previous experiences. Moreover, performance is a doppelganger of Qwik. Sounds exciting!
+
+Generally, coding on Qwik looks close to React, which allows gaining a lot of developers from React society. Despite Qwik concept being a bit different. Unlike other frameworks, Qwik is resumable, which means Qwik applications require 0 hydration. This allows Qwik apps to have instant-on interactivity, regardless of size or complexity. Honestly, my article is mainly for React developers. But if you are not React guy, don't worry; dig into the https://qwik.builder.io/[official resource, window=_blank] a bit more elaborative. If you are React guy and want to start from the practice immediately, the https://qwik.builder.io/docs/components/overview/[Qwik Components Concept, window=_blank] would be very useful. The article's primary goal is to illustrate how to work with the framework. That's why I'm not going to provide Qwik technical knowledge as the Official Documentation does. I aim to guide you in Qwik World via links and examples. Unlike the previous article, I used Typescript in my examples because this language is used in Qwik by default. Also, my examples below are not production ready. That's why don't criticize them so much:) Especially for "@ts-ignore."
+
+Only one exciting thing I want to tell you looking ahead. My Qwik-based code turned out more elegant than React-based! This fact could be an excellent impact to learn and use of Qwik.
+
+== Bootstrapping
+=== Stackblitz
+
+I like Stackblitz as a cloud prototyping tool. It has a lot of different presets such as Angular, React, etc. But it hasn't Qwik preset because this framework is too young. Despite that, I found the following https://stackblitz.com/edit/qwik-starter?file=README.md[custom starter, window=_blank].
+I'm going to explain what should you modify to work with Qwik and D3.
+
+First, we need to change one dependency in #package.json#.
+
+From:
+
+[, json]
+----
+"@builder.io/qwik": "^0.15.2",
+----
+To:
+[, json]
+----
+"@builder.io/qwik": "^0.16.1",
+----
+Secondly, we need to install the following new dependencies.
+[, json]
+----
+"@types/d3": "7.4.0",
+"d3": "^7.8.0",
+----
+
+Qwik forces us to follow a particular convention. Please, read the helpful info https://qwik.builder.io/qwikcity/directory-layout/[here, window=_blank].
+
+Actually, we are talking here more than Qwik. In this project, I use https://qwik.builder.io/qwikcity/overview/[Qwik City, window=_blank]. We call it a meta-framework for Qwik. Qwik City is to Qwik, what Next.js is to React, what Nuxt is to Vue, or SvelteKit to Svelte.
+
+All my future activities will be related to these conventions.
+
+== Traditional Bootstrapping
+Of course, I use Stackblitz here only to illustrate my thoughts interactively. In real life, you need to use another approach for project bootstrapping. Fortunately, Qwik has a perfect bootstrapper. If you want to start a new project, please run the following command.
+
+[, bash]
+----
+npm create qwik@latest
+----
+Please, read https://qwik.builder.io/docs/getting-started/[Getting Started Qwik, window=_blank]
+
+== First Scratches
+I prefer to explain more complicated ideas via smaller sequential examples. That's why before we proceed with Ranking Bars, I'd like to provide a more straightforward example that we will modify to the goal in the future. In the first step, we need to get the app that displays the following information via D3.
+[.img]
+image::img1.png[]
+
+First, you can find the solution below https://stackblitz.com/edit/qwik-starter-xxdte4?file=README.md[here, window=_blank].
+
+The app should recalculate and redraw the dimension values for every window size change.
+
+Let's remove all content from #routes# folder and put the following #index.tsx# instead.
+
+[, js]
+----
+import { component$ } from "@builder.io/qwik";
+import App from "../components/app";
+
+export default component$(() => <App />);
+----
+
+Only one #index.tsx# means that we use only one "root" route.
+
+Now we need to clean #components# folder.
+
+Put #app.tsx# contains #App# component in #components# folder.
+
+[, js]
+----
+import { component$ } from "@builder.io/qwik";
+import Chart from "./chart";
+
+export default component$(() => <Chart />);
+----
+
+The following file #chart.tsx# contains #Chart# component.
+
+[, js]
+----
+import {
+  component$,
+  useStore,
+  useClientEffect$,
+  useSignal,
+  useOnWindow,
+  useTask$,
+  $,
+} from "@builder.io/qwik";
+import * as d3 from "d3";
+import { setSvgDimension } from "./utils";
+
+export default component$(() => {
+  const store = useStore({ width: 0, height: 0 });
+  const svgRef = useSignal<Element>();
+
+  useClientEffect$(() => {
+    setSvgDimension(svgRef, store);
+  });
+
+  useOnWindow(
+    "resize",
+    $(() => {
+      setSvgDimension(svgRef, store);
+    })
+  );
+
+  useTask$(({ track }: { track: Function }) => {
+    track(() => store.width);
+    track(() => store.height);
+    render(svgRef, store.width, store.height);
+  });
+
+  return <svg class="chart" ref={svgRef} />;
+});
+
+export function render(svgRef: any, width: number, height: number) {
+  d3.select(svgRef.value).select(".dimenstion-text").remove();
+
+  const svg = d3
+    .select(svgRef.value)
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(0,0)");
+
+  svg
+    .append("text")
+    .text("Hello Qwik!")
+    .attr("x", 10)
+    .attr("y", 50)
+    .attr("width", 200)
+    .attr("fill", "red");
+
+  svg
+    .append("text")
+    .text(`Width = ${width}px | Height = ${height}px`)
+    .attr("class", "dimenstion-text")
+    .attr("x", 10)
+    .attr("y", 80)
+    .attr("width", 200)
+    .attr("fill", "black");
+}
+----
+
+Also, you can find #setSvgDimension# code in #utils.ts#.
+
+[, js]
+----
+import { Signal } from "@builder.io/qwik";
+
+export function setSvgDimension(
+  svgRef: Signal<Element | undefined>,
+  store: any
+) {
+  if (svgRef?.value) {
+    const { width, height } = svgRef.value.getBoundingClientRect();
+    store.width = width;
+    store.height = height;
+  }
+}
+----
+
+Let me comment some important points.
+
+* The component returns SVG, as in the previous article's example.
+[, js]
+----
+return <svg class="chart" ref={svgRef} />;
+----
+* #useSignal# allows us to work with the element above.
+[, js]
+----
+const svgRef = useSignal<Element>();
+----
+You can find more info regarding #useSignal# https://qwik.builder.io/tutorial/hooks/use-signal/[here, window=_blank].
+
+* According to https://qwik.builder.io/tutorial/hooks/use-client-effect/[this, window=_blank]: #Use useClientEffect$() to execute code after the component is resumed. This is useful for setting up timers or streams on the client when the application is resumed.#
+
+In my example, the following code sets component dimensions and puts them in the store.
+
+[, js]
+----
+useClientEffect$(() => {
+  setSvgDimension(svgRef, store);
+});
+----
+In this case #useClientEffect$# behaviour is similar to the following code in React.
+[, js]
+----
+useEffect(() => {
+  // init the component here...
+}, []);
+----
+
+* #useOnWindow# / #useOn()# / #useOnDocument()# are powerful ways to work with related listeners. In the code fragment below, we use #useOnWindow# to listen to every window size change.
+
+[, js]
+----
+useOnWindow(
+  "resize",
+  $(() => {
+    setSvgDimension(svgRef, store);
+  })
+);
+----
+You can find more information regarding hooks above https://qwik.builder.io/tutorial/hooks/use-on/[here, window=_blank].
+
+* The following line of code demonstrates to us how to store Qwik-trackable variables.
+[, js]
+----
+const store = useStore({ width: 0, height: 0 });
+----
+* The following code allows to track related store variables changes.
+
+[, js]
+----
+useTask$(({ track }: { track: Function }) => {
+  track(() => store.width);
+  track(() => store.height);
+  // new render when window size has changed
+  render(svgRef, store.width, store.height);
+});
+----
+You can find more information regarding approaches above: https://qwik.builder.io/tutorial/hooks/use-task/[useTask$, window=_blank] and https://qwik.builder.io/tutorial/introduction/store/[useStore, window=_blank].
+
+I'd like to compare #useStore# and #useTask$# with React #useState# and #useEffect# hooks. But remember, Qwik is different!
+
+* The main goal of #render# is to show the component width and height for every window size change.
+
+Just remind, you can find the example above https://stackblitz.com/edit/qwik-starter-xxdte4?file=README.md[here, window=_blank].
+
+== The Ranking bar
+
+As I told you at the start, this article is a sequel to my https://valor-software.com/articles/tasty-recipes-for-react-d3-the-ranking-bar[previous article, window=_blank]. You can find all related information here. That's why I want to get and comment my Qwik version of the Ranking Bar right now.
+
+Traditionally, you can look at the full solution https://stackblitz.com/edit/qwik-starter-nkdscu?file=README.md[here, window=_blank]
+Let's focus on what's changed...
+
+#app.tsx#
+[, js]
+----
+import { component$ } from "@builder.io/qwik";
+import Chart from "./chart";
+
+export const data = {
+  Apple: 100,
+  Apricot: 200,
+  Araza: 5,
+  Avocado: 1,
+  Banana: 150,
+  // ...
+  Feijoa: 11,
+  Fig: 0,
+};
+
+// Just add a new prop "data"
+export default component$(() => <Chart data={data} />);
+----
+
+#utils.ts#
+[, js]
+----
+import * as d3 from "d3";
+import { Signal } from "@builder.io/qwik";
+
+// no changes in comparing with the previous article except for typings
+export function dotme(texts: d3.Selection<SVGElement, {}, HTMLElement, any>) {
+  texts.each(function () {
+    // @ts-ignore
+    const text = d3.select(this);
+    const chars = text.text().split("");
+
+    let ellipsis = text.text(" ").append("tspan").text("...");
+    // @ts-ignore
+    const minLimitedTextWidth = ellipsis.node().getComputedTextLength();
+    ellipsis = text.text("").append("tspan").text("...");
+
+    const width =
+      // @ts-ignore
+      parseFloat(text.attr("width")) - ellipsis.node().getComputedTextLength();
+    const numChars = chars.length;
+    const tspan = text.insert("tspan", ":first-child").text(chars.join(""));
+
+    if (width <= minLimitedTextWidth) {
+      tspan.text("");
+      ellipsis.remove();
+      return;
+    }
+
+    // @ts-ignore
+    while (tspan.node().getComputedTextLength() > width && chars.length) {
+      chars.pop();
+      tspan.text(chars.join(""));
+    }
+
+    if (chars.length === numChars) {
+      ellipsis.remove();
+    }
+  });
+}
+
+// add related types
+export interface ChartData {
+  [key: string]: number;
+}
+
+export interface NormalizedChartRecord {
+  fruit: string;
+  value: number;
+  x: number;
+  width: number;
+}
+
+// no changes in comparing with the previous article except for typings
+export function getNormalizedData(
+  data: any,
+  width: number
+): NormalizedChartRecord[] {
+  const tmpData: any[] = [];
+  let total = 0;
+  for (const key of Object.keys(data)) {
+    if (data[key] > 0) {
+      tmpData.push({ fruit: key, value: data[key] });
+      total += data[key];
+    }
+  }
+  tmpData.sort((a, b) => b.value - a.value);
+  let x = 0;
+  for (const record of tmpData) {
+    const percent = (record.value / total) * 100;
+    const barwidth = (width * percent) / 100;
+    record.x = x;
+    record.width = barwidth;
+    x += barwidth;
+  }
+  return tmpData;
+}
+
+export function setSvgDimension(
+  svgRef: Signal<Element | undefined>,
+  store: any
+) {
+  if (svgRef?.value) {
+    const { width, height } = svgRef.value.getBoundingClientRect();
+    store.width = width;
+    store.height = height;
+  }
+}
+----
+
+And, finally, #chart.tsx#. Please, read my comments in the code.
+
+[, js]
+----
+import {
+  component$,
+  useStore,
+  useClientEffect$,
+  useSignal,
+  useOnWindow,
+  useTask$,
+  $,
+} from "@builder.io/qwik";
+import * as d3 from "d3";
+import { ChartData, dotme, getNormalizedData, setSvgDimension } from "./utils";
+
+export interface ChartProps {
+  data: ChartData;
+}
+
+export default component$(({ data }: ChartProps) => {
+  // store width and height of the component here
+  const store = useStore({ width: 0, height: 0 });
+  // control the SVG container
+  const svgRef = useSignal<Element>();
+
+  // initialization
+  useClientEffect$(() => {
+    // update the store
+    setSvgDimension(svgRef, store);
+  });
+
+  // listen window size changes
+  useOnWindow(
+    "resize",
+    $(() => {
+      // update the store
+      setSvgDimension(svgRef, store);
+    })
+  );
+
+  // track width and height
+  useTask$(({ track }: { track: Function }) => {
+    track(() => store.width);
+    track(() => store.height);
+    // alter that, get normalized data
+    const normalizedData = getNormalizedData(data, store.width);
+    // and, finally, render the component according the new screen size
+    render(normalizedData, svgRef, store.width, store.height);
+  });
+
+  return <svg class="chart" ref={svgRef} />;
+});
+
+// the following code is close to the related one in the previous article
+export function render(
+  normalizedData: any,
+  svgRef: any,
+  width: number,
+  height: number
+) {
+  const svg = d3
+    .select(svgRef.value)
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(0,0)");
+
+  const color = d3
+    .scaleOrdinal()
+    .domain(Object.keys(normalizedData))
+    .range(d3.schemeTableau10);
+
+  svg
+    .selectAll()
+    .data(normalizedData)
+    .enter()
+    .append("g")
+    .append("rect")
+    .attr("x", (d: any) => d.x)
+    .attr("width", (d: any) => d.width - 1)
+    .attr("y", 0)
+    .attr("height", 50)
+    // @ts-ignore
+    .attr("fill", (_: any, i: number) => color(i));
+
+  svg
+    .selectAll("text")
+    .data(normalizedData)
+    .join("text")
+    .text((d: any) => d.fruit)
+    .attr("x", (d: any) => d.x + 5)
+    .attr("y", (d: any) => 30)
+    .attr("width", (d: any) => d.width - 1)
+    .attr("fill", "white");
+
+  // @ts-ignore
+  svg.selectAll("text").call(dotme);
+}
+----
+
+Now, let's run the example and reduce/increase the https://stackblitz.com/edit/qwik-starter-nkdscu?file=src%2Fcomponents%2Fchart.tsx[window size, window=_blank].
+
+=== Thank you for your attention, and Qwik learning!
