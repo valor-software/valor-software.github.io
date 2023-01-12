@@ -9,6 +9,6 @@
   "bgImg": "assets/articles/debugging-ngrx-in-nativescript-with-redux-devtools/6290c837fcac1c2dfd58b45e_cover.png",
   "title": "Debugging NgRx in NativeScript with Redux DevTools",
   "position": "Angular Developer",
-  "date": "Tue Jun 7 2022",
+  "date": "Tue Jun 7 2021",
   "seoDescription": "Although NgRx is amazing, it still adds certain complexity to your application that is often harder to debug. For such cases, using Redux DevTools becomes indispensable in the debugging process, as it allows you to have a clear view of your state and how it changes over time. Those features, alongside time travel and custom action dispatch, make it a very powerful tool. Many stacks have to implement their own way of integrating NgRx with Redux Devtools, for example, with Ionic, as Zack Barbuto describes in his article about remote debugging. Also, thanks to our recent efforts on WebSockets for NativeScript (find the creation story on the blog) and the chain webpack configuration added in @nativescript/webpack 5+, you can debug NgRx in NativeScript with ease. In this article I’ll tell you about our implementation details and how you can start using it right away."
 }

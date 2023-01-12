@@ -7,6 +7,6 @@
   "language": "en",
   "position": "Full Stack Software Engineer",
   "bgImg": "assets/articles/tagtide-library-make-your-html-editor-friendly-and-more/620e51e34b7146e6290802db_HTML_editing_valor_software.jpeg",
-  "date": "Thu Feb 3 2022 09:59:45 GMT+0000 (Coordinated Universal Time)",
+  "date": "Thu Feb 3 2021 09:59:45 GMT+0000 (Coordinated Universal Time)",
   "seoDescription": "I needed to create a simple web app with a Grammarly-like view that counts paragraphs, sentences, words, and characters in a text. The best thing is that you can copy-paste text from various resources like websites, Google Docs, MS Office, email clients, get it analyzed. But since external content contains a lot of redundant HTML tags, which influences the correctness of calculations, I came up with the solution for cleaning HTML."
 }

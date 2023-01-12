@@ -7,6 +7,6 @@
   "language": "en",
   "position": "QA Engineer",
   "bgImg": "assets/articles/performance-testing-via-artillery-io/620a7b778e6da44e06f3394c_Performance_testing_Valor-software.jpg",
-  "date": "Tue Jan 18 2022 09:59:45 GMT+0000 (Coordinated Universal Time)",
+  "date": "Tue Jan 18 2021 09:59:45 GMT+0000 (Coordinated Universal Time)",
   "seoDescription": "Today, I’m going to tell you all about setting up and using Artillery.io on your projects. This Node.js tool makes performance and load testing faster and more reliable. I'll guide you through configuration, rules for writing test scenarios, authorization, and reporting in Artillery.io. So, you'll be able to start performance testing on your project right away using a free Artillery plan!"
 }
