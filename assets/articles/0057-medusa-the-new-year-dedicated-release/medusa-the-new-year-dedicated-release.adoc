@@ -1,0 +1,29 @@
+== Medusa the New Year-dedicated Release!
+
+Hey everyone, Medusas speaking!
+Back in September, we https://valor-software.com/articles/medusa-the-only-commercial-available-saas-platform-for-federated-applications/[shared, window=_blank] about our re-launch of the only commercially available tool for Module Federation - Medusa. The community expressed deep interest, mostly, in the form of feature requests, which is great! We're excited to bring you updates on those requests towards Medusa. So, let’s see what we have to share after the last few months’ hot (burning) sprints. We’ve broken the “new arrivals” into two segments to help you digest them simpler. Here you go! See the updates for the two main categories:
+
+=== Module Federation Client
+==== The issue regarding Remote IDs 
+We previously encountered an issue, using remote IDs that included the @ syntax. This issue has now been resolved, and you can use remote IDs as expected, possibly even better than you expected :-)
+
+===== Hardcoded path separator breaking windows builds
+We’ve received reports that the Windows users' builds had been failing due to a hardcoded backtick in the codebase. We've resolved this issue, and the code has become platform-agnostic, feel free to use it on any operating system.
+
+===== Hardcoded Webpack peer dependency version
+Users who wanted to use a different version of Webpack from the one provided by the federation dashboard plugin, previously had to use a force command to install due to unmet peer dependencies. The dependency requirement for Webpack has now been updated to ^5.40.0, allowing users to install the desired version, within reason, without using a force command.
+
+=== Medusa
+. Added a default version picker that automatically selects the latest available version.
+. Updated the Sentry SDK to the latest version to improve error tracking and reporting.
+. Made various enhancements to the user interface, and fixed reported issues to improve user experience.
+. Upgraded from Material Design Version 4 to Version 5 to use the latest design guidelines and features.
+. Added subscription plans to allow users to choose the features and pricing that suit their needs best.
+. Added a new onboarding page to improve the users’ first experience with the platform.
+. Started the development towards the integration with Cloudflare to deliver enhanced security and performance.
+. Custom Environments and Organizations are enabled to provide additional functionality and flexibility.
+
+=== React 18
+We've updated our platform to enable usage of React 18 and Next 13, along with the latest version of MUI. Experience a higher development velocity and improve the overall performance!
+
+== Improve your performance now!!
