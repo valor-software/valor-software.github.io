@@ -1,12 +1,12 @@
 {
   "title": "Module Federation for the Business",
   "order": 52,
-  "domains": ["dev_quality_assurance"],
+  "domains": ["sales_marketing"],
   "authorImg": "assets/articles/module-federation-for-the-business/zack_chapple.jpeg",
   "language": "en",
   "bgImg": "assets/articles/module-federation-for-the-business/Valor-Business-Zack.png",
   "author": "Zackary Chapple",
   "position": "Chief Revenue Officer",
-  "date": "Mon Jan 10 2021 10:45:55 GMT+0000 (Coordinated Universal Time)",
+  "date": "Mon Jan 10 2023 10:45:55 GMT+0000 (Coordinated Universal Time)",
   "seoDescription": "Discussing the business value of Module Federation."
 }
