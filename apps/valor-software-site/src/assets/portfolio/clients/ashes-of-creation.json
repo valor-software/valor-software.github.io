@@ -1,6 +1,8 @@
 {
   "name": "Ashes of Creation",
   "link": "https://ashesofcreation.com/",
+  "dribbleLink": "https://dribbble.com/shots/19031502-Ashes-of-Creation-web-design",
+  "behanceLink": "https://www.behance.net/gallery/151868601/Ashes-of-Creation-website",
   "feedback": "Steven Sharif",
   "sortTechnologies": ["aws", "nest_js"],
   "previewImg": "assets/img/bg-img/ashes_page/header_bg_resp.png",
