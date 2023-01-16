@@ -140,7 +140,7 @@ class ContentViewDummy extends ContentView {
 }
 ----
 
-Now we just need to make sure that it’s visibility is set to collapse and use a very convenient method from the AppCompatActivity (https://developer.android.com/reference/androidx/appcompat/app/AppCompatActivity#addContentView(android.view.View,android.view.ViewGroup.LayoutParams)[addContentView, window=_blank]) to add the view to the root of the activity, essentially adding it to the window but completely invisible.
+Now we just need to make sure that it’s visibility is set to collapse and use a very convenient method from the AppCompatActivity (https://developer.android.com/reference/androidx/appcompat/app/AppCompatActivity[addContentView, window=_blank]) to add the view to the root of the activity, essentially adding it to the window but completely invisible.
 
 [, js]
 ----
