@@ -65,6 +65,9 @@
       ],
       "@valor-software/breethe-page": [
         "libs/route-pages/breethe-page/src/index.ts"
+      ],
+      "@valor-software/booking-page": [
+        "libs/route-pages/booking-page/src/index.ts"
       ]
     }
   },
