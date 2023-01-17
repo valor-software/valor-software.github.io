@@ -19,15 +19,15 @@ export class BlackoutPageComponent implements OnInit {
             lgJustify: 'start',
             technologies: [
                 {
-                    src: "assets/img/technologies/active/ngrx.png",
+                    src: "assets/img/technologies/svg/ngrx.svg",
                     title: "NgRx"
                 },
                 {
-                    src: "assets/img/technologies/active/angular.png",
+                    src: "assets/img/technologies/svg/angular.svg",
                     title: "Angular 7"
                 },
                 {
-                    src: "assets/img/technologies/active/native_script.png",
+                    src: "assets/img/technologies/svg/native_script.svg",
                     title: "NativeScript"
                 }
             ]
@@ -77,7 +77,7 @@ export class BlackoutPageComponent implements OnInit {
                 ]
             }],
             fullWidthImg: true,
-            descriptions: ['The Valor team has added the ability to connect any number of <a href="https://lumenradio.com/products/moonlite/" target="_blank"><b><u>MoonLite</u></b/></a> lighting control products to the Blackout console. We’ve completely changed and modified the effects engine and the scene processing engine, and enabled fixtures groups functionality from scratch.'],
+            descriptions: ['The Valor team has added the ability to connect any number of <a href="https://lumenradio.com/products/moonlite/" target="_blank"><u>MoonLite</u></a> lighting control products to the Blackout console. We’ve completely changed and modified the effects engine and the scene processing engine, and enabled fixtures groups functionality from scratch.'],
             imgs: ['assets/img/bg-img/blackout_page/delivery_2B.png'],
             impact:
                 [
