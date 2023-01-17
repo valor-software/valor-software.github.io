@@ -28,15 +28,15 @@ export class CoralPageComponent {
             lgJustify: 'start',
             technologies: [
                 {
-                    src: "assets/img/technologies/others/react_clean.png",
+                    src: "assets/img/technologies/svg/react_clean.svg",
                     title: "React Native"
                 },
                 {
-                    src: "assets/img/technologies/active/nest_js.png",
+                    src: "assets/img/technologies/svg/nest_js.svg",
                     title: "Nest.js"
                 },
                 {
-                    src: "assets/img/technologies/others/graph_ql.png",
+                    src: "assets/img/technologies/svg/graph_ql.svg",
                     title: "GraphQL"
                 }
             ]
