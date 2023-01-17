@@ -1,5 +1,6 @@
 <div class="bg-grey lg:p-10 lg:min-h-50 p-4 flex justify-between mb-8 w-full flex-col ">
-  <div class="mb-10" *ngFor="let challengeCard of challengeCards">
+  <div [ngClass]="{'mb-10' : i + 1 !== challengeCards.length }"
+    *ngFor="let challengeCard of challengeCards; let i = index ">
     <div class="md:w-[70%]">
       <p
         class="font-bold text-light_title_col text-20 md:text-40 block mr-3.5 text-left mt-0 md:leading-44 mb-4 md:mb-6">
@@ -13,7 +14,7 @@
 
       <p class="font-bold text-light_title_col text-20 md:text-32 text-left mt-0 md:leading-44 mb-4">
         {{challengeCard.solution.title}}</p>
-      <ul class="list-disc list-inside md:list-outside">
+      <ul class="list-disc list-inside md:list-outside md:ml-4">
         <li class="leading-normal text-16 text-grey_font_col mb-6 tracking-tightest" [innerHtml]="description"
           *ngFor="let description of challengeCard.solution.description">
         </li>
@@ -28,8 +29,8 @@
         {{challengeCard.footer.title}}</p>
 
       <ul class="list-disc list-inside md:list-outside"
-        [ngClass]="{'list-disc' : challengeCard.footer &&   challengeCard.footer.description && challengeCard.footer.description.length > 1}">
-        <li class="leading-6 text-16 md:text-20 text-white md:w-8/12 tracking-tightest"
+        [ngClass]="{'list-disc md:ml-6' : challengeCard.footer &&   challengeCard.footer.description && challengeCard.footer.description.length > 1}">
+        <li class="leading-6 text-16 md:text-20 text-white md:w-[70%] tracking-tightest"
           *ngFor="let description of challengeCard.footer.description">
           {{description}}
 

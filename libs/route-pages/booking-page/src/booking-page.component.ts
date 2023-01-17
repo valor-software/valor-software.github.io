@@ -44,7 +44,7 @@ const challenges: IBookingChallengeCard[] = [
             title: 'Impact',
             description: ['The application can be used offline and on conditions of intermittent Internet connection at full capacity!']
         },
-        src: 'assets/img/bg-img/booking_page/diagram_2.png'
+        src: 'assets/img/bg-img/booking_page/diagram_2.svg'
     },
     {
         challenge: {
@@ -55,7 +55,7 @@ const challenges: IBookingChallengeCard[] = [
         solution: {
             title: 'Solution:',
             description: [
-                `The first thing we did was adaptive testing to make sure the layout looks good on the users’ screens of all the most common sizes. <a href="https://analytics.google.com/analytics/web/provision/#/provision"><u>Google Analytics</u></a> helped us specify kinds of devices that are the most popular in our audience, and we crafted the app for them.`,
+                `The first thing we did was adaptive testing to make sure the layout looks good on the users’ screens of all the most common sizes. <a href="https://analytics.google.com/analytics/web/provision/#/provision" target="_blank"><u>Google Analytics</u></a> helped us specify kinds of devices that are the most popular in our audience, and we crafted the app for them.`,
                 `To cope with the problem of time-consuming data processing inside the app, which we couldn’t really avoid because of the app’s rich functionality, we played with animations. The engineer called for an animation whenever calculations took longer and became noticeable for a user.`
             ]
         },
@@ -96,15 +96,15 @@ const technologiesCards: ITechnologiesCard[] = [
         lgJustify: 'start',
         technologies: [
             {
-                src: "assets/img/technologies/others/react_clean.png",
+                src: "assets/img/technologies/svg/react_clean.svg",
                 title: "React"
             },
             {
-                src: "assets/img/technologies/others/realm.png",
+                src: "assets/img/technologies/svg/realm.svg",
                 title: "Realm"
             },
             {
-                src: "assets/img/technologies/others/azure.png",
+                src: "assets/img/technologies/svg/azure.svg",
                 title: "Azure"
             }
         ]
@@ -116,11 +116,11 @@ const technologiesCards: ITechnologiesCard[] = [
         lgJustify: 'start',
         technologies: [
             {
-                src: "assets/img/technologies/others/python.png",
-                title: "Ruby"
+                src: "assets/img/technologies/svg/python.svg",
+                title: "Python"
             },
             {
-                src: "assets/img/technologies/others/react_clean.png",
+                src: "assets/img/technologies/svg/react_clean.svg",
                 title: "React",
             }
         ]
@@ -140,8 +140,8 @@ const deliverablesCards: DeliverablesCards[][] = [
         title: 'For staff',
         isSubtitle: true,
         description: [
-            'comfy and simple user journey to pic the destination, request a ride, meet the driver, estimate the trip, and do everything you need to accomplish the mission.',
-            'Google Maps is one more third-party service used in this mobile app. It helps users to choose a pick-up/drop-off location.'
+            'Comfy and simple user journey to pic the destination, request a ride, meet the driver, estimate the trip, and do everything you need to accomplish the mission.',
+            '<b>Google Maps</b> is one more third-party service used in this mobile app. It helps users to choose a pick-up/drop-off location.'
         ],
         img: 'assets/img/bg-img/booking_page/for_staff.png'
     },
@@ -149,7 +149,7 @@ const deliverablesCards: DeliverablesCards[][] = [
         title: 'For drivers',
         isSubtitle: true,
         description: [
-            'to get a car, estimate its state, accept the ride, also use a ride-sharing option and pick up several users for similar routes, do their job fast and efficiently.'
+            'To get a car, estimate its state, accept the ride, also use a ride-sharing option and pick up several users for similar routes, do their job fast and efficiently.'
         ],
         img: 'assets/img/bg-img/booking_page/for_drivers.png'
     }
