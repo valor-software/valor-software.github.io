@@ -137,65 +137,6 @@ Creating a separate module with a separate service, then injecting modules into 
 <div class="paragraph">
 <p>Now we can notify a user if something is happening under the hood and the user should be aware of it. Great!</p>
 </div>
-<div class="paragraph">
-<p><a href="https://t2674704.p.clickup-attachments.com/t2674704/186d6f2b-3b58-49c4-8e93-7db736b0ab5e/medusa_sse.mp4?view=open" target="_blank" rel="noopener">WATCH THIS VIDEO</a></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_video_plan">Video Plan:</h3>
-<div class="paragraph">
-<p><strong>1. Who we are and what we are doing? What do we need now? What is the issue? What are we going to do and how are we going to resolve this?</strong></p>
-</div>
-<div class="paragraph">
-<p>We are Valor Software, an international company, created by the Developer for Developers. <br>
-We are fans and sponsors of NestJS and NativeScript and do a lot of awesome things by ourselves, like ngx-bootstrap, and a current one called Medusa.</p>
-</div>
-<div class="paragraph">
-<p>Medusa is a kind of Dashboard and management system for <a href="https://github.com/module-federation" target="_blank" rel="noopener">Module Federation</a>. With Medusa, you can finally have visibility into your Module Federation-powered applications. See what versions are deployed, their underlying dependencies and relationships, and which teams are committing to them. That’s in general about Medusa evolving all the time, development moving further and further.</p>
-</div>
-<div class="paragraph">
-<p>Today we have to resolve the following thing:</p>
-</div>
-<div class="paragraph">
-<p>When a user is building his connected application on his own, <strong>medusa-plugin</strong> makes an API call to Medusa Dashboard with the request to update application builds inside Medusa Dashboard, it does some logic and creates a few records in the database so then you can manage and use those builds in the Dashboard then.</p>
-</div>
-<div class="paragraph">
-<p>At the current moment, we don’t have any restrictions for builds' amount and usage according to the Price Plan so users can easily get a quote over the limit, like for using 130 builds with 100 builds limit in the Plan.</p>
-</div>
-<div class="paragraph">
-<p>The task sounds like <strong><em>"Restrict overlimit usage of Medusa Resources according to Quota"</em></strong>. Sounds like a five-minute task, just insert a checker before business logic. If the check is positive – go further, if negative – stop action.</p>
-</div>
-<div class="paragraph">
-<p><strong>2. Add a checker</strong><br>
-<strong>3. Add Stripe data to the checker to check the user payment method</strong><br>
-<strong>4. Add a checker for quotas</strong><br>
-<strong>5. Make it reusable</strong><br>
-Okay, it’s done. Even works. But there’s another issue – it will look for the User like a bug. No… like a <strong>BUG</strong>. As all things, described above, are under-the-hood processes, the user cannot know at that moment that he got overlimit, so we have to notify the user somehow in some way.</p>
-</div>
-<div class="paragraph">
-<p><strong>6. Add SSE Service, tell that it should be a Singleton as it’s important and nobody tells that</strong>
-We don’t have any real-time solutions implemented inside yet, so it seems that, easy from first sight, the task becomes a task of implementing real-time technology. Okay, what do we know about it? Web Sockets – cool, but they are unidirectional, we do not need them. In addition, we might have an issue if the load balancer doesn’t support WebSockets (like a basic AWS Load Balancer).</p>
-</div>
-<div class="paragraph">
-<p><strong>What else?</strong></p>
-</div>
-<div class="paragraph">
-<p>SSE – Server-Sent-Events. Technology, which might cover a lot of cases where people use WebSockets. In addition, it brings less headache with integration as it uses HTTP protocol only.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://medium.com/system-design-blog/long-polling-vs-websockets-vs-server-sent-events-c43ba96df7c1" target="_blank" rel="noopener">Some words of difference between WebSockets and SSE</a></p>
-</div>
-<div class="paragraph">
-<p>On the Back End side, we use NestJS, Front End is NextJS (for a non-native speaker, it’s quite difficult and funny to try to pronounce them instantly one by one :) ).</p>
-</div>
-<div class="paragraph">
-<p>Let’s start. NestJS documentation has some words about <a href="https://docs.nestjs.com/techniques/server-sent-events" target="_blank" rel="noopener">the implementation of SSE</a>. So it looks easy to do, and it has simple examples.</p>
-</div>
-<div class="paragraph">
-<p><strong>7. Say that the EventSource listener should be fully FE and as we use NextJS – should be in useEffect.</strong><br>
-<strong>8. Check that it works, and set the channel based on UserId</strong><br>
-<strong>9. Check that it works for app builds and on login, remove redundant code.</strong></p>
-</div>
 </div>
 </div>
 </div>
