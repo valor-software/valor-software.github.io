@@ -26,4 +26,4 @@ Users who wanted to use a different version of Webpack from the one provided by 
 === React 18
 We've updated our platform to enable usage of React 18 and Next 13, along with the latest version of MUI. Experience a higher development velocity and improve the overall performance!
 
-== Improve your performance now!!
+== https://www.medusa.codes/[Improve your performance now!!, window=_blank]
