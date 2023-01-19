@@ -1,12 +1,12 @@
 {
   "title": "Migrating a repo to an Nx monorepo while retaining history",
-  "order": 59,
+  "order": 58,
   "domains": ["dev_quality_assurance"],
   "authorImg": "assets/articles/migrating-a-repo-to-an-nx-monorepo-while-retaining-history/Guilherme_Tod.png",
   "language": "en",
   "bgImg": "assets/articles/migrating-a-repo-to-an-nx-monorepo-while-retaining-history/migrating-a-repo-to-an-nx-monorepo-while-retaining-history.png",
   "author": "Guilherme Tod",
   "position": "Software Developer",
-  "date": "Tue Jan 17 2023 10:45:55 GMT+0000 (Coordinated Universal Time)",
+  "date": "Tue Mon 16 2023 10:45:55 GMT+0000 (Coordinated Universal Time)",
   "seoDescription": "Why you should migrate and retain history"
 }
