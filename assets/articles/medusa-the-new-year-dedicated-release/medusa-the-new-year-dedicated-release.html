@@ -7,20 +7,20 @@ Back in September, we <a href="https://valor-software.com/articles/medusa-the-on
 </div>
 <div class="sect2">
 <h3 id="_module_federation_client">Module Federation Client</h3>
-<div class="sect4">
-<h5 id="_the_issue_regarding_remote_ids">The issue regarding Remote IDs</h5>
+<div class="sect3">
+<h4 id="_the_issue_regarding_remote_ids">The issue regarding Remote IDs</h4>
 <div class="paragraph">
 <p>We previously encountered an issue, using remote IDs that included the @ syntax. This issue has now been resolved, and you can use remote IDs as expected, possibly even better than you expected :-)</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_hardcoded_path_separator_breaking_windows_builds">Hardcoded path separator breaking windows builds</h5>
+<div class="sect3">
+<h4 id="_hardcoded_path_separator_breaking_windows_builds">Hardcoded path separator breaking windows builds</h4>
 <div class="paragraph">
 <p>We’ve received reports that the Windows users' builds had been failing due to a hardcoded backtick in the codebase. We&#8217;ve resolved this issue, and the code has become platform-agnostic, feel free to use it on any operating system.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_hardcoded_webpack_peer_dependency_version">Hardcoded Webpack peer dependency version</h5>
+<div class="sect3">
+<h4 id="_hardcoded_webpack_peer_dependency_version">Hardcoded Webpack peer dependency version</h4>
 <div class="paragraph">
 <p>Users who wanted to use a different version of Webpack from the one provided by the federation dashboard plugin, previously had to use a force command to install due to unmet peer dependencies. The dependency requirement for Webpack has now been updated to ^5.40.0, allowing users to install the desired version, within reason, without using a force command.</p>
 </div>
