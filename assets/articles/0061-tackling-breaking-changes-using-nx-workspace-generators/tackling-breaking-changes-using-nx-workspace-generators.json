@@ -1,0 +1,12 @@
+{
+"title": "Tackling breaking changes using Nx Workspace generators",
+"order": 61,
+"domains": ["dev_quality_assurance"],
+"authorImg": "assets/articles/tackling-breaking-changes-using-nx-workspace-generators/Slava_Chub.jpg",
+"language": "en",
+"bgImg": "assets/articles/tackling-breaking-changes-using-nx-workspace-generators/Valor-Nx.png",
+"author": "Vyacheslav Chub",
+"position": "Full Stack Software Engineer",
+"date": "Thu Jan 21 2021 10:45:55 GMT+0000 (Coordinated Universal Time)",
+"seoDescription": "Possible solution for managing Dependency Updates."
+}
