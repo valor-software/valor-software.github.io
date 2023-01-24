@@ -1,0 +1,209 @@
+=== Introduction
+
+Web Development for medium to large-size projects is a tortuous road that often requires complex dependencies and components management. Module Federation is a technology solution that solves the challenges that come with large scale and creates a streamlined development process.
+
+We're going to explore the combination of Server-Side-Rendering and Module Federation with React 18 and Webpack. The solutions described here are not limited to the listed technologies and can be reused in various combinations with other tools.
+
+Multiple independent projects can work together as a single application using module federation. This makes it possible to design web applications more modularly, allowing several teams to work on various components of the program without having to be closely coupled. In the Module Federation, every project is a unique module that can consume and expose other modules.
+
+By rendering a JavaScript application on the server, sending the finished HTML to the browser, and then adding JavaScript to the HTML to make the program interactive, SSR creates a web page. This technique typically improves JavaScript application performance, which is especially helpful for people with sluggish internet connections or outdated hardware.
+
+We may use the same components and modules across various portions of the application and still keep the performance advantages of SSR when we combine Module Federation and SSR with React. This makes the development process more effective and enhances the user experience.
+
+There are several potential difficulties to take into account while utilizing Module Federation with SSR and React. Making sure the modules are correctly exposed and consumed by the host and remote apps is one of the problems. Additionally, managing the application's state could be difficult, particularly if it needs to be displayed on the server before being hydrated on the client.
+
+Using libraries like #@module-federation/nextjs-mf#, which offers a set of utilities to handle the configuration and setup of the host and remote applications, developers can get around these difficulties. The state of the application should be handled correctly on the server and client, and developers should make sure that the modules are exposed and consumed effectively.
+
+Utilizing Module Federation with SSR and React can enhance the creation of online applications and the user experience, but it's vital to take into account the difficulties and use the proper tools and libraries to handle the setup and configuration of the host and remote applications.
+
+=== Practical Sample
+==== Step 1: Create the host and remote applications
+
+[, bash]
+----
+mkdir my-app
+cd ./my-app
+----
+[, bash]
+----
+npx create-next-app host
+cd host
+npm install --save @module-federation/nextjs-mf
+cd ../
+----
+[, bash]
+----
+npx create-react-app remote
+cd remote
+npm install --save-dev webpack webpack-cli html-webpack-plugin webpack-dev-server babel-loader
+----
+==== Step 2: Create the webpack configuration for the remote application.
+[, js]
+----
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
+const path = require('path');
+module.exports = {
+    entry: './src/index',
+    mode: 'development',
+    devServer: {
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        },
+        port: 3001,
+    },
+    output: {
+        publicPath: 'http://localhost:3001/',
+    },
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                options: {
+                    presets: ['@babel/preset-react'],
+                },
+            },
+        ],
+    },
+    plugins: [
+        new ModuleFederationPlugin({
+            name: 'remote',
+            library: { type: 'var', name: 'remote' },
+            filename: 'remote.js',
+            exposes: {
+                './Nav': './src/Nav',
+            },
+            shared: {
+                react: {
+                    singleton: true,
+                    version: '0',
+                    requiredVersion: false,
+                },
+                'react-dom': {
+                    requiredVersion: false,
+                    singleton: true,
+                    version: '0',
+                },
+            },
+        }),
+        new HtmlWebpackPlugin({
+            template: './public/index.html',
+        }),
+    ],
+};
+----
+==== Step 3: Create the next.config.js file for the host application.
+[, js]
+----
+// host/next.config.js
+const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
+module.exports = {
+  webpack(config, options) {
+    if (!options.isServer) {
+      config.plugins.push(
+          new NextFederationPlugin({
+            name: 'host',
+            remotes: {
+              remote: 'remote@http://localhost:3001/remote.js',
+            },
+            filename: 'static/chunks/remoteEntry.js',
+          }),
+      );
+    }
+    return config;
+  },
+};
+----
+==== Step 4: Create a remote component.
+[, js]
+----
+//remote/src/Nav.js
+import React from 'react';
+const Nav = () => {
+    return (
+        <div>
+            This is my remote nav
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    )
+}
+export default Nav;
+----
+==== Step 5: Create an entry point for the remote app
+[, js]
+----
+//remote/index.js
+import('./bootstrap');
+//remote/bootstrap.js
+import React from 'react';
+import App from './App';
+import { createRoot } from 'react-dom/client';
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<App />);
+//remote/App.js
+import React from 'react';
+import Nav from './Nav';
+function App() {
+ return (
+     <div className="App">
+       <header className="App-header">
+         <Nav />
+       </header>
+     </div>
+ );
+}
+export default App;
+----
+
+==== Step 6: Start the host application
+[, bash]
+----
+npm run build
+npm run start
+----
+=== Step 7:Edit remote package.json
+[, bash]
+----
+. . .
+"scripts": {
+ "start": "webpack-dev-server --config webpack.config.js",
+ "build": "webpack --mode production",
+ "clean": "rm -rf dist"
+},
+. . .
+----
+==== Step 8: Build and start the remote application
+[, bash]
+----
+npm run start
+----
+==== Step 9: Import the remote component using next/dynamic
+[, js]
+----
+// host/pages/index.js
+import dynamic from 'next/dynamic';
+const Nav = dynamic(() => import('remote/Nav'), { ssr: false });
+export default function HomePage() {
+  return (
+      <div>
+        This is my ssr host
+        <Nav />
+      </div>
+  );
+}
+----
+With these steps, we have set up a basic application that uses Module Federation with SSR and React 18. The above code samples can be modified to match your specific use case. With Module Federation, it's easy to share and reuse components across different parts of the application, making the development process more efficient.
+
+This project is available https://github.com/lexasq/ssr-react-18[here, window=_blank].
+
+=== About Valor Software
+Official Module Federation(MF) partner, Valor is actively contributing to the MF ecosystem and unlocking new possibilities.
+​
+Valor is also providing enterprise support, consulting, and team augmentation email us at mailto:sales@valor-software.com[sales@valor-software.com, window=_blank] to learn how we can help.
