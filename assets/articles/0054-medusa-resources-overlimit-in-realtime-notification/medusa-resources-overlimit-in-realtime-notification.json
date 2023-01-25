@@ -1,7 +1,7 @@
 {
   "title": "Medusa Resources Overlimit in Realtime Notification",
   "order": 54,
-  "domains": ["dev_quality_assurance"],
+  "domains": ["dev_quality_assurance", "module_federation"],
   "authorImg": "assets/articles/medusa-resources-overlimit-in-realtime-notification/Maxim_Ugnichenko.jpeg",
   "language": "en",
   "bgImg": "assets/articles/medusa-resources-overlimit-in-realtime-notification/medusa-resources-logo.png",

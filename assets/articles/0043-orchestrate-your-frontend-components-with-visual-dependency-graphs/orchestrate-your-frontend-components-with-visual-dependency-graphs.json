@@ -2,7 +2,7 @@
   "author": "Olga Ievdokymenko",
   "order": 43,
   "domains": [
-    "dev_quality_assurance"
+    "dev_quality_assurance", "module_federation"
   ],
   "authorImg": "assets/articles/orchestrate-your-frontend-components-with-visual-dependency-graphs/Olga-avatar.jpeg",
   "language": "en",
