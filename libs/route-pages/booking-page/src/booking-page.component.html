@@ -1,0 +1,205 @@
+<section class="first-section landing-section pb-0  mx-5 lg:mx-0">
+    <div class="container">
+        <div class="flex-column lg:flex justify-center lg:justify-between items-center mb-18 pt-16 lg:pt-0"
+            style="max-height: 100%;">
+
+            <div class="lg:w-10/12 lg:mx-auto md:mt-0 mb-18">
+                <ng-container *ngIf="changeBreadCrumbTitle?.length">
+                    <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
+                    </breadCrumbs>
+                </ng-container>
+                <h1
+                    class="text-light_title_col tracking-tightest lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+                    The booking app for non-profits
+                </h1>
+                <p class="leading-6 text-grey_font_col text-16 mb-10">
+                    Mobile applications and a web platform for travel and multiple services booking. The app serves
+                    several types of users providing unique complicated
+                    functionality in a simple way. Most important here, it cares for low-end devices users and related
+                    restrictions.
+                </p>
+
+                <!-- <div class="flex flex-col xl:flex-row md:items-center xl:items-start mb-5 xl:mb-0 ">
+                    <button
+                        class="btn-dark-pink w-full xl:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
+                        <a class="flex justify-center items-center"
+                            href="https://dribbble.com/shots/13923592-Booking-application-concept-wireframes"
+                            target="_blank">
+                            <span>Dribble</span>
+                            <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt="">
+                        </a>
+                    </button>
+                    <button class="btn-blue w-full xl:w-auto flex md:items-center xl:mr-6 mb-5 xl:mb-0 justify-center">
+                        <a class="flex justify-center items-center" href="#" target="_blank">
+                            <span>Behance</span>
+                            <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt="">
+                        </a>
+                    </button>
+                </div> -->
+            </div>
+            <div class="hidden lg:block m-auto w-9/12">
+                <img src="assets/img/bg-img/booking_page/header_bg.png" alt="">
+            </div>
+
+            <div class="block lg:hidden m-auto ">
+                <img class="m-auto" src="assets/img/bg-img/booking_page/header_bg.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="lg:mb-[132px]">
+    <h1 class="main-title lg:mb-10 ">Background</h1>
+    <div class="container">
+        <div class="flex flex-col lg:flex-row gap-10 items-center">
+            <img class="m-auto md:w-[35%]" src="assets/img/bg-img/booking_page/background.svg" alt="">
+            <div class="m-auto md:w-[65%]">
+                <p class="mb-4 text-grey_font_col text-left text-16 tracking-tightest">
+                    Valor’s client, being a volunteer organization and the provider of different kinds of help to the
+                    countries in need, has hundreds of staff representatives in numerous countries around the world.
+                </p>
+                <p class="mb-4  text-grey_font_col text-left text-16 tracking-tightest">
+                    To enable booking for accommodation, transfer, visits to clinics, and meet other possible needs of
+                    the organization's staff on their missions, Valor Software have built a complex mobile solution that
+                    allows doing all the above in a single app, connecting staff and authorized service-providers.
+                </p>
+                <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                    What's more, we've utilized the “Offline first” development paradigm to ensure all the functionality
+                    works despite the lack of a network connection, which is highly possible in the locations our
+                    customer targets.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="landing-section py-0 mb-6 lg:mb-12 md:mx-0">
+    <h1 class="main-title le lg:mb-10 ">Specifics</h1>
+    <div class="container ">
+        <div
+            class="mt-10 bg-grey  p-2 md:p-10 md:w-[95%] text-grey_font_col tracking-tightest leading-[30px] text-24">
+            <p>
+                Humanity stands for the frontline of the whole organization
+                activity, therefore this project is exclusive in priorities. Our client is not pursuing a goal to
+                increase
+                income with the app but rather solving a particular problem – the sooner their staff gets the
+                working
+                solution, the better they can do their job, and the more people get help. So, we put
+                functionality
+                and
+                vitality under harsh conditions first while minimizing the maintenance effort for the product.
+            <p
+                class="text-feedback_font_col tracking-tightest font-medium text-20 md:leading-28 md:text-24 italic mt-10 mb-6">
+                “When you’re in the middle of nowhere, you want your app to be simple. And you’ll gladly sacrifice
+                the
+                latest trends for this simplicity in use!”
+            </p>
+
+            <p class="text-grey_font_col text-right tracking-tightest md:leading-24 md:text-24 mb-10">
+                The Product Owner of the Platform.
+            </p>
+
+            <p class="mb-6">
+                In this project the design part was the first part in the play. We’ve started with it – precisely, with
+                the
+                improvement of the user journey. What’s more important than that, right?<br>
+                Only when we actually impressed (at least it seemed like it) the customer with this core value for the
+                project, development came into play. Now is the time for good advice you never asked for – Analyze and
+                Fix
+                Mistakes first, then do all the rest. The rest is less important!
+            </p>
+
+            Valorians are proud to release the MVP version for the mobile application within a month since we
+            started
+            working on this project. We're honored to be fully in charge of the mobile part and, since recently,
+            developing the web platform. Our team including designer, backend, frontend, and QA engineers, became
+            part
+            of a big international unit and blended into their existing development flow.
+        </div>
+        <h2 class="mt-[72px] text-light_title_col text-left leading-56 mb-6 text-24 lg:text-40 font-bold">
+            Technologies & services:
+        </h2>
+        <technologies-card [technologiesCards]="technologiesCards"></technologies-card>
+    </div>
+</section>
+
+<section class="landing-section py-0 mb-6 lg:mb-12 mr-5 md:mx-0">
+    <h1 class="main-title lg:mb-10 w-1/2">Deliverables</h1>
+
+    <div class="container mt-10 bg-grey  p-2 md:p-10 ">
+        <div class="md:w-[95%]">
+            <p class="text-grey_font_col tracking-tightest leading-6 ">
+                Pursuing the client’s goal to get the working app in the shortest time possible within a strictly
+                limited
+                budget, we’ve built a cross-platform solution using React Native. The framework allows sharing of the
+                logic
+                layer of the app between iOS and Android, and uses JavaScript to compile the app’s user interface. This
+                way,
+                we saved money for the development as we had just one team involved instead of two and still kept the
+                app's
+                native look and feel.
+            </p>
+
+            <p class="text-light_title_col tracking-tightest leading-44 text-32 mt-6 font-bold">
+                A brief diagram describing the logic behind the app and how our React Native code interacts with the
+                mobile
+                modules
+            </p>
+        </div>
+        <img src="assets/img/bg-img/booking_page/diagram_1.svg" alt="">
+    </div>
+</section>
+
+<section class="landing-section py-0 mr-5 md:mx-0">
+    <div class="container">
+        <div class="bg-grey lg:p-10 lg:min-h-50 p-4 flex justify-between mb-8 w-full flex-col"
+            *ngFor="let deliverableCard of deliverablesCards">
+
+            <div *ngFor="let card of deliverableCard">
+
+                <div class="md:w-[70%]">
+                    <p class="font-bold text-light_title_col text-20 block mr-3.5 text-left leading-44"
+                        [ngClass]="card.isSubtitle? 'md:text-32 mt-6': 'md:text-40'">
+                        {{card.title}}</p>
+
+                    <p class="text-16 leading-6 text-grey_font_col mt-6 tracking-tightest"
+                        [innerHtml]="description" *ngFor="let description of card.description">
+                    </p>
+                </div>
+
+                <img *ngIf="card.img" class="mt-10" [src]="card.img" alt="">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="landing-section py-0 mr-5 md:mx-0">
+    <div class="container">
+        <booking-challenge-card [challengeCards]="challenges"></booking-challenge-card>
+    </div>
+</section>
+
+<section class="landing-section p-0">
+    <h1 class="main-title mb-0">Future</h1>
+    <div class="container">
+        <div class="flex flex-col lg:flex-row gap-10 items-center">
+            <div class="lg:w-[56%]">
+                <p class="leading-6 text-16 tracking-tightest text-grey_font_col lg:mb-8 mb-14 ">
+                    We’re currently working to provide the Multi-leg trips option when users plan more complicated
+                    routes for their journey. They will have an opportunity to call on multiple locations within one
+                    ride, save time and be even more efficient!
+                </p>
+                <p class="leading-6 text-16 tracking-tightest text-grey_font_col">
+                    Also, we’re striving to extend the functionality in terms of booking in a mobile app, add an
+                    opportunity for invoicing, so users can upload and save invoices for their rides and accommodation.
+                    This and other features now available on web only, will soon significantly boost the experience of
+                    mobile apps’ users. Stay tuned to track the progress!
+                </p>
+            </div>
+            <img class="m-auto md:w-[35%]" src="assets/img/bg-img/booking_page/future.svg" alt="">
+
+        </div>
+    </div>
+</section>
+<next-project></next-project>

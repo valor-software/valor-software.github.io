@@ -13,6 +13,10 @@ export const routes: Routes = [
         component: GeneralPageComponent
       },
       {
+        path: 'booking',
+        loadChildren: () => import('@valor-software/booking-page').then(m => m.BookingPageModule)
+      },
+      {
         path: 'terminus',
         loadChildren: () => import('@valor-software/terminus-page').then(m => m.TerminusPageModule)
       },
