@@ -22,6 +22,8 @@ MIT
 
 @valor-software/blog-portfolio
 
+@valor-software/booking-page
+
 @valor-software/breethe-page
 
 @valor-software/careers
