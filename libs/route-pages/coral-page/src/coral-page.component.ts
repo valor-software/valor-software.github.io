@@ -10,17 +10,7 @@ import { IFeaturesCard } from './features-card.component';
 
 export class CoralPageComponent {
 
-    drawbacks: string[] = [
-        'Tricky code',
-        'Lack of functionality and code docs',
-        'Admin panel, web, and mobile parts needed help'
-    ];
 
-    drawbacksSolution: string[] = [
-        'The chat prompts were a big hit with users because they provided helpful suggestions. We also added analytics to provide even deeper assistance. These suggestions covered a wide range of topics, not just sex. At one point, we had 30,000 partners and the system crashed because we tried to send all the messages at once.',
-        'To fix this issue, we had to look at caching. Caches can be different, almost unchangeable, changeable, and 100% static. So we used caching mostly instead of the server and protected the distances (PD(t)) of each thread. This greatly reduced the time it took to send messages from two hours to just 10 minutes. Max was the one who came up with the new logic and flow that made this possible.',
-        'In the end, it was all worth it because our users were thrilled with the improvements. As they say, "Good things come to those who wait... and have a good cache system in place!" And, as always, huge thanks to Max for being a coding wizard and making it all happen.'
-    ];
 
     technologiesCard: ITechnologiesCard[] = [
         {
@@ -68,6 +58,36 @@ export class CoralPageComponent {
                     'Design - mostly Coral Team, then - Alexandra Nadtochiy',
                 ]
         };
+
+    // drawbacks: string[] = [
+    //     'Tricky code',
+    //     'Lack of functionality and code docs',
+    //     'Admin panel, web, and mobile parts needed help'
+    // ];
+
+    // drawbacksSolution: string[] = [
+    //     'The chat prompts were a big hit with users because they provided helpful suggestions. We also added analytics to provide even deeper assistance. These suggestions covered a wide range of topics, not just sex. At one point, we had 30,000 partners and the system crashed because we tried to send all the messages at once.',
+    //     'To fix this issue, we had to look at caching. Caches can be different, almost unchangeable, changeable, and 100% static. So we used caching mostly instead of the server and protected the distances (PD(t)) of each thread. This greatly reduced the time it took to send messages from two hours to just 10 minutes. Max was the one who came up with the new logic and flow that made this possible.',
+    //     'In the end, it was all worth it because our users were thrilled with the improvements. As they say, "Good things come to those who wait... and have a good cache system in place!" And, as always, huge thanks to Max for being a coding wizard and making it all happen.'
+    // ];
+
+    drawbacks: { title: string, subtitle: string; solutions: string[], drawbacks: string[] } =
+        {
+            title: "Drawbacks",
+            subtitle: "Solutions",
+            solutions: [
+                'The chat prompts were a big hit with users because they provided helpful suggestions. We also added analytics to provide even deeper assistance. These suggestions covered a wide range of topics, not just sex. At one point, we had 30,000 partners and the system crashed because we tried to send all the messages at once.',
+                'To fix this issue, we had to look at caching. Caches can be different, almost unchangeable, changeable, and 100% static. So we used caching mostly instead of the server and protected the distances (PD(t)) of each thread. This greatly reduced the time it took to send messages from two hours to just 10 minutes. Max was the one who came up with the new logic and flow that made this possible.',
+                'In the end, it was all worth it because our users were thrilled with the improvements. As they say, "Good things come to those who wait... and have a good cache system in place!" And, as always, huge thanks to Max for being a coding wizard and making it all happen.'
+            ],
+            drawbacks:
+                [
+                    'Tricky code',
+                    'Lack of functionality and code docs',
+                    'Admin panel, web, and mobile parts needed help'
+                ]
+        };
+
 
     features: IFeaturesCard[] = [
         {

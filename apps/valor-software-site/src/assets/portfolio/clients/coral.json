@@ -1,7 +1,7 @@
 {
   "name": "Coral",
-  "description": "Introducing Mobile Coach for Couples' Connection, a one-of-a-kind app featuring a comprehensive admin panel and a web version. Proudly apprized by Apple, with no competitors in sight!",
-  "previewImg": "assets/img/bg-img/coral_page/bg_header.png",
+  "description": "A mobile coach that helps you enjoy solo and partnered connection. Coral is a one-of-a-kind app that provides guided exercises to increase your confidence and reduce performance anxiety through games and fun!",
+  "previewImg": "assets/img/bg-img/coral_page/cover_1.png",
   "headerImg": "assets/img/bg-img/coral_page/bg_header.png",
   "sortServices": ["web"],
   "sortTechnologies":  ["react_native", "nest_js", "graph_ql"],
