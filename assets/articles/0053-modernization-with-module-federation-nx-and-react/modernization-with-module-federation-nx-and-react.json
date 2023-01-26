@@ -1,7 +1,7 @@
 {
   "title": "Modernization with Module Federation, Nx and React",
   "order": 53,
-  "domains": ["dev_quality_assurance"],
+  "domains": ["dev_quality_assurance", "module_federation"],
   "authorImg": "assets/articles/modernization-with-module-federation-nx-and-react/zack_chapple.jpeg",
   "language": "en",
   "bgImg": "assets/articles/modernization-with-module-federation-nx-and-react/Modernization-module-federation.png",

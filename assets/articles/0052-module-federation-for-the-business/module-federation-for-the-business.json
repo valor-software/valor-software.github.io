@@ -1,7 +1,7 @@
 {
   "title": "Module Federation for the Business",
   "order": 52,
-  "domains": ["sales_marketing"],
+  "domains": ["sales_marketing", "module_federation"],
   "authorImg": "assets/articles/module-federation-for-the-business/zack_chapple.jpeg",
   "language": "en",
   "bgImg": "assets/articles/module-federation-for-the-business/Valor-Business-Zack.png",

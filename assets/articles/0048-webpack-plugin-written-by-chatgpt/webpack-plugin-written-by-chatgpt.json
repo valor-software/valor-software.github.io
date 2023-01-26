@@ -1,7 +1,7 @@
 {
   "title": "Webpack Plugin written by ChatGPT",
   "order": 48,
-  "domains": ["dev_quality_assurance"],
+  "domains": ["dev_quality_assurance", "module_federation"],
   "authorImg": "assets/articles/medusa-the-only-commercial-available-saas-platform-for-federated-applications/zack_chapple.jpeg",
   "language": "en",
   "bgImg": "assets/articles/webpack-plugin-written-by-chatgpt/title_img.png",
