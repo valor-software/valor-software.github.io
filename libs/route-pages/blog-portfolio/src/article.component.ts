@@ -24,6 +24,12 @@ import { Subscription, of } from "rxjs";
     ::ng-deep tbody tr:first-of-type {
         text-align: center;
     }
+    ::ng-deep mark{
+        background-color: #A9A9A9;
+        color: #383838;
+        border-radius: 0.3em;
+        padding: 0.1em 0.25em;
+    }
     ::ng-deep.small-img {
         margin: auto;
         width: 40%
@@ -54,7 +60,7 @@ import { Subscription, of } from "rxjs";
     ::ng-deep.block-citation>blockquote>.paragraph:first-of-type:after {
         content: no-close-quote;
     }
-     
+
     `],
     templateUrl: './article.component.html'
 })
