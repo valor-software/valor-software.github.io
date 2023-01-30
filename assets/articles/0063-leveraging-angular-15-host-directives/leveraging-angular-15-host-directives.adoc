@@ -1,0 +1,772 @@
+Not while ago, Angular team released a stable 15 version with few neat features, such as host directives.
+
+In this article I will try to explain how to leverage the directive composition approach and move from old class-inheritance to a composition approach.
+
+== What are host directives?
+Host directives are a *standalone* directives that can be added to a component via #@Component# decorator, thus avoiding the need to apply the directive through the markup. 
+Developers can expose its inputs and outputs. 
+Additionally, they can also map their names to avoid the confusion between components and directives properties.
+
+== Why would you want to use host directives?
+
+With a complex component comes complex business logic inside its class. Typescript has https://www.typescriptlang.org/docs/handbook/mixins.html[mixins, window=_blank] support to divide logic between multiple classes and then join it into one giant class.
+
+Mixins are widely used in #@angular/material# project. For example, https://github.com/angular/components/blob/9f0071dc4c4848ea440907e016a12a5cba48a1a9/src/material/button/button-base.ts[Material Button Component, window=_blank].
+
+But, as you can see, it itself requires complex structures to actually use it. Not mentioning setting inputs/outputs properties as an array for the decorator itself.
+In short, developers can start struggling with input/output properties and class dependencies if they use lots of mixins.
+
+Another way is to use long chains of *class inheritance*.
+
+In the end, the final component would have a huge constructor (prior to #inject# function) and supporting this constructor sometimes becomes too painful.
+
+Another way would be to use *services* injected into your component, but this creates an additional headache with keeping the config up-to-date (triggering some configuration update for the service when some component's input property was changed, etc.).
+
+Directive composition approach works similarly to the Typescript's mixins: you have multiple classes that contain their own logic, and in the end they all end up used for one final class (component). The difference is that mixins are combined into one class, and for directive composition you need to inject your directive instances into your component class.
+
+== Leveraging the host directives in your application
+
+First, I'll https://github.com/N1XUS/host-directives-app[leave a link to an example app, window=_blank] built with nx to split the app and its libs.
+
+Let's take an example of simple form control component:
+
+[, js]
+----
+@Component({
+    selector: 'lib-combobox',
+    template: `
+    <input
+        #comboboxInput
+        class="combobox-input"
+        type="text"
+        [attr.list]="'inputOptions' + uniqueId"
+        [attr.placeholder]="placeholder"
+        autocomplete="off"
+        (blur)="onBlur()"
+        [ngModel]="value"
+        (input)="onInput($event)"
+    />
+    <datalist [id]="'inputOptions' + uniqueId" *ngIf="options?.length">
+        <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+    </datalist>
+    `,
+    styleUrls: ['./combobox.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => ComboboxComponent),
+        multi: true,
+    }],
+})
+export class ComboboxComponent implements ControlValueAccessor, AfterViewInit {
+    @ViewChild('comboboxInput') comboboxInput: ElementRef<HTMLInputElement>;
+    readonly uniqueId = ++UNIQUE_ID;
+
+    @Input() options: string[];
+
+    disabled = false;
+
+    get value() {
+        return this._value;
+    }
+    set value(v: string) {
+        this.setValue(v, true);
+    }
+    private _value = '';
+    private viewInit = false;
+
+    private onTouched: () => void;
+    private onChange: (value: string) => void;
+
+    constructor(private _renderer: Renderer2) {}
+
+    ngAfterViewInit() {
+        this.viewInit = true;
+        this.setValue(this._value, false);
+    }
+
+    onInput(event: Event) {
+        this.setValue((<HTMLInputElement>event.target).value ?? '', true);
+    }
+
+    onBlur() {
+        this.onTouched();
+    }
+
+    registerOnChange(fn: (value: string) => void) {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn: () => void) {
+        this.onTouched = fn;
+    }
+
+    setDisabledState(isDisabled: boolean) {
+        this.disabled = isDisabled;
+    }
+
+    writeValue(value: string) {
+        this.setValue(value, false);
+    }
+
+    setValue(value: string, emitEvent: boolean) {
+        this._value = value;
+        if (this.viewInit) {
+            this._renderer.setProperty(this.comboboxInput.nativeElement, 'value', value);
+        }
+        if (emitEvent && typeof this.onChange === 'function') {
+            this.onChange(value);
+        }
+    }
+}
+----
+
+This component implements #ControlValueAccessor# and implements its methods such as #writeValue#, #registerOnChange#, #registerOnTouched#.
+And this stuff is commonly repeated across multiple components in your app.
+
+Previously, to simplify the logic you could extract those methods into base abstract class. But this class might require it's dependencies, which needed to be passed via #super# call in constructor. This complicates things.
+
+Let's simplify the code, and first, create a standalone directive called C#vaDirective#.
+
+[, js]
+----
+@Directive({
+  selector: '[appCva]',
+  standalone: true,
+  providers: [
+    // Small helper service to unsubscribe from streams when component destroys.
+    DestroyedService
+  ],
+})
+export class CvaDirective<T = unknown> implements ControlValueAccessor, OnDestroy, AfterViewInit, DoCheck {
+  /**
+   * NgControl instance.
+   */
+  readonly ngControl = inject(NgControl, {
+    optional: true,
+  });
+
+  readonly cdRef = inject(ChangeDetectorRef, {
+    host: true
+  })
+
+  /**
+   * Form container instance. Usually ngForm or FormGroup directives.
+   */
+  readonly controlContainer = inject(ControlContainer, {
+    optional: true,
+    skipSelf: true,
+  });
+
+  /**
+   * Separate NgForm instance. For cases when formGroup is used with the form itself.
+   */
+  readonly ngForm = inject(NgForm, {
+    optional: true,
+    skipSelf: true,
+  });
+
+  /**
+   * Element reference.
+   */
+  readonly elementRef = inject(ElementRef);
+
+  private readonly _destroy$ = inject(DestroyedService);
+
+  /** Whether the input is disabled */
+  @Input()
+  set disabled(value: boolean) {
+    this.setDisabledState(value);
+  }
+  get disabled(): boolean {
+    if (this.ngControl && this.ngControl.disabled !== null) {
+      return this.ngControl.disabled;
+    }
+    return this._disabled;
+  }
+
+  private _disabled = false;
+
+  /**
+   * Current value of the control.
+   */
+  value: Nullable<T>;
+
+  /** Whether control has errors */
+  get controlInvalid(): boolean {
+    return this._controlInvalid;
+  }
+
+  /**
+   * @hidden
+   */
+  private _controlInvalid = false;
+
+  /**
+   * Emits ehen state of the control has been changed.
+   */
+  readonly stateChanges: Subject<string> = new Subject<string>();
+
+  /** @hidden */
+  private readonly _subscriptions = new Subscription();
+
+  /** @hidden */
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onChange: (value: unknown) => void = () => {};
+
+  /** @hidden */
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onTouched = (): void => {};
+
+  /** @hidden */
+  constructor() {
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
+  }
+
+  /**
+   * Re-validate and emit event to parent container on every CD cycle as they are some errors
+   * that we can't subscribe to.
+   */
+  ngDoCheck(): void {
+    if (this.ngControl) {
+      this.updateErrorState();
+    }
+  }
+
+  /** @hidden */
+  ngAfterViewInit(): void {
+    if (this.ngControl) {
+      this._subscriptions.add(
+        this.ngControl.statusChanges?.subscribe(() => {
+          this._markForCheck();
+        })
+      );
+    }
+  }
+
+  /** @hidden */
+  ngOnDestroy(): void {
+    this._subscriptions.unsubscribe();
+    this.stateChanges.complete();
+    // this.formField?.unregisterFormFieldControl(this);
+  }
+
+  writeValue(value: T): void {
+    this.value = value;
+    this.stateChanges.next('writeValue');
+    this._markForCheck();
+  }
+  registerOnChange(fn: (value: unknown) => void): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+  setDisabledState(isDisabled: boolean): void {
+    if (isDisabled === this._disabled) {
+      return;
+    }
+    this._disabled = isDisabled;
+    this.stateChanges.next('setDisabledState');
+    this._markForCheck();
+  }
+
+  /**
+   *  Need re-validates errors on every CD iteration to make sure we are also
+   *  covering non-control errors, errors that happens outside of this control
+   */
+  updateErrorState(): void {
+    const parent = this.ngForm;
+    const parentControlContainer = this.controlContainer;
+    const control = this.ngControl
+      ? (this.ngControl.control as FormControl)
+      : null;
+    const newStatusIsError = !!(
+      control?.invalid &&
+      (control.dirty ||
+        control.touched ||
+        parent?.submitted ||
+        (parentControlContainer as unknown as FormGroupDirective)?.submitted)
+    );
+
+    if (newStatusIsError !== this.controlInvalid) {
+      this._controlInvalid = newStatusIsError;
+      this.stateChanges.next('updateErrorState');
+      this._markForCheck();
+    }
+  }
+
+  /**
+   * Used to change the value of a control.
+   * @param value the value to be applied
+   * @param emitOnChange whether to emit "onChange" event.
+   * Should be "false", if the change is made programmatically (internally) by the control, "true" otherwise
+   */
+  setValue(value: T, emitOnChange = true): void {
+    if (value !== this.value) {
+      this.writeValue(value);
+      if (emitOnChange) {
+        this.onChange(value);
+      }
+      this._markForCheck();
+    }
+  }
+
+  /** @hidden */
+  private _markForCheck(): void {
+    this.cdRef.markForCheck();
+  }
+}
+----
+
+Let me explain what's going on inside this directive.
+First, we are declaring it as a standalone, which means we can apply it to a component via #hostDirectives# property of the #@Component#.
+Next, since we need to support template-driven and reactive forms, lets' inject necessary dependencies such as #NgControl#, #NgForm# and #ControlContainer#. We will need these properties later.
+
+You may see that we also injected #ChangeDetectorRef# from the #host#. This is needed to get the components change detector and call it when the state of the control being changed (valid/invalid).
+
+Next, we implement all members of #ControlValueAccessor# interface for further usage in the component.
+We also have support for a disabled state of the form control, which may be handy in real-case scenarios. This input property is optional and you can ignore it during input exposing.
+
+We also have #updateErrorState# method which automatically checks whether the control is valid and checks whether the user interacted with the control itself or submitted the form.
+
+That's all for the directive itself, now let's update our combobox component to use this directive instead direct #ControlValueAccessor# implementation:
+
+[, js]
+----
+@Component({
+  selector: 'app-combobox',
+  template: `
+    <input
+        #comboboxInput
+        class="combobox-input"
+        type="text"
+        [attr.list]="'inputOptions' + uniqueId"
+        [attr.placeholder]="placeholder"
+        autocomplete="off"
+        (blur)="onBlur()"
+        [ngModel]="value"
+        (input)="onInput($event)"
+    />
+    <datalist [id]="'inputOptions' + uniqueId" *ngIf="options?.length">
+        <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+    </datalist>
+`
+  styleUrls: ['./combobox.component.scss'],
+  providers: [
+    // Small helper service to unsubscribe from streams when component destroys.
+    DestroyedService,
+  ],
+  hostDirectives: [
+    {
+      directive: CvaDirective,
+    }
+  ],
+})
+export class ComboboxComponent implements OnInit {
+  readonly _cvaDirective = inject<CvaDirective<string>>(CvaDirective);
+  private readonly _destroyed$ = inject(DestroyedService);
+  @ViewChild('comboboxInput')
+  comboboxInput?: ElementRef<HTMLInputElement>;
+  readonly uniqueId = ++UNIQUE_ID;
+
+  /** Notify user of invalid control if necessary. */
+  @HostBinding('class.is-invalid')
+  controlInvalid = false;
+
+  get value(): Nullable<string> {
+    return this._cvaDirective.value;
+  }
+
+  @Input()
+  placeholder: Nullable<string> = null;
+
+  /** Available options for the dropdown. */
+  @Input()
+  options: string[] = [];
+
+  /** Method called when user types into the input field. */
+  onInput(event: Event) {
+    this._cvaDirective.setValue(
+      (<HTMLInputElement>event.target).value ?? '',
+      true
+    );
+  }
+
+  /** Method called when user focuses-out the input field. */
+  onBlur() {
+    this._cvaDirective.onTouched();
+  }
+}
+----
+
+So, we've removed all form-related stuff to the directive. This gives us a more clear and readable component.
+
+You see that we've injected #CvaDirective# into the component to call its members such as #setValue# and use the initial value of the form control to set it for the input field.
+
+== Bonus: Advanced Directives composition
+
+With the example above I've shown how to simplify your component and move all background logic into a separate class without the need of inheritance.
+
+Now, let's say we want it to accept not only #string[]#, but also #Observable<string[]>#, or even custom data source class which retrieves the data from some backend.
+
+And again, host directives to the rescue!
+
+Before we start with the directive itself, let's define what our directive should support:
+
+* Automatically subscribe/unsubscribe from the dataSource;
+* When datasource's data changes, or new dataSource instance being passed, notify parent component of the changes in data;
+
+In this example, we will create a simple data source class which will convert passed data into an observable and simply return it.
+
+First, let's generate abstract data source provider class which our components would implement in own way:
+
+[, js]
+----
+
+import { Nullable } from '@host-directives-app/shared';
+import { Observable } from 'rxjs';
+
+/**
+ * Acceptable data source types.
+ */
+export type DataSource<T = unknown> =
+  | AbstractDataSourceProvider<T>
+  | Observable<T[]>
+  | T[];
+
+export interface DataSourceParser<
+  T = unknown,
+  P extends AbstractDataSourceProvider<T> = AbstractDataSourceProvider<T>
+> {
+  /**
+   * Defines which data provider class to initiate.
+   * @param source data source to be parsed.
+   */
+  parse(source: Nullable<DataSource<T>>): Nullable<P>;
+}
+
+export function isDataSource<T = unknown>(
+  value: any
+): value is AbstractDataSourceProvider<T> {
+  return (
+    value &&
+    'unsubscribe' &&
+    typeof value.unsubscribe === 'function' &&
+    value.dataChanges
+  );
+}
+
+export abstract class AbstractDataSourceProvider<T = unknown> {
+  abstract fetch(): Observable<T[]>;
+}
+----
+
+So, here we're declaring that our #DataSource# can accept three types of data: Class instance, Observable of an array and a plain array.
+
+With #AbstractDataSourceProvider# we can now actually create our directive called #DataSourceDirective#:
+
+[, js]
+----
+export const DATA_SOURCE_TRANSFORMER = new InjectionToken<DataSourceParser>('DataSourceTransformerClass');
+
+@Directive({
+  selector: '[appDataSource]',
+  standalone: true,
+  providers: [
+  // Small helper service to unsubscribe from streams when component destroys.
+    DestroyedService
+  ],
+})
+export class DataSourceDirective<
+  T = unknown,
+  P extends AbstractDataSourceProvider<T> = AbstractDataSourceProvider<T>
+> implements OnDestroy {
+  @Input()
+  set dataSource(data: Nullable<DataSource<T>>) {
+    this._dataSource = data;
+
+    this.dataSourceChanged.next();
+
+    this._initializeDataSource();
+  }
+
+  get dataSource() {
+    return this._dataSource;
+  }
+
+  /** @hidden */
+  dataSourceProvider: Nullable<P>;
+
+  /** @hidden */
+  private _dsSubscription = new Subscription();
+
+  /**
+   * Data stream. Emits when new data retrieved.
+   */
+  readonly dataChanged$ = new BehaviorSubject<T[]>([]);
+
+  /**
+   * Emits when the data source object has been changed.
+   */
+  @Output()
+  readonly dataSourceChanged = new EventEmitter<void>();
+
+  /**
+   * Event emitted when datasource content has been changed.
+   */
+  @Output()
+  readonly dataChanged = new EventEmitter<T[]>();
+
+  /**
+   * Event emitted when data provider loading state has been changed.
+   */
+  @Output()
+  readonly isLoading = new EventEmitter<boolean>();
+
+  private _dataSource: Nullable<DataSource<T>>;
+
+  private readonly _destroyed$ = inject(DestroyedService);
+
+  private readonly _dataSourceTransformer = inject<DataSourceParser<T, P>>(DATA_SOURCE_TRANSFORMER);
+
+  /** @hidden */
+  private _initializeDataSource(): void {
+    if (isDataSource(this.dataSource)) {
+      this.dataSourceProvider?.unsubscribe();
+
+      this._dsSubscription?.unsubscribe();
+    }
+    // Convert whatever comes in as DataSource, so we can work with it identically
+    this.dataSourceProvider = this._toDataStream(this.dataSource);
+
+    if (!this.dataSourceProvider) {
+      return;
+    }
+
+    this._dsSubscription = new Subscription();
+
+    this._dsSubscription.add(
+      this.dataSourceProvider.dataLoading
+        .pipe(takeUntil(this._destroyed$))
+        .subscribe((isLoading) => this.isLoading.emit(isLoading))
+    );
+
+    this._dsSubscription.add(
+      this.dataSourceProvider.dataChanges
+        .pipe(takeUntil(this._destroyed$))
+        .subscribe((data) => {
+          this.dataChanged.emit(data);
+          this.dataChanged$.next(data);
+        })
+    );
+  }
+
+  /** @hidden */
+  ngOnDestroy(): void {
+    this.dataSourceProvider?.unsubscribe();
+    this._dsSubscription?.unsubscribe();
+  }
+
+  /** @Hidden */
+  private _toDataStream(source: Nullable<DataSource<T>>): Nullable<P> {
+    return this._dataSourceTransformer
+      ? this._dataSourceTransformer.parse(source)
+      : undefined;
+  }
+}
+----
+
+Quick explanation of what's going on here:
+We have #T# and #P# generic types which are responsible for providing awareness of the data types we are working with in our components, so IDE also knows it, and provides suggestions.
+Next, we have a #dataSource# input property which accepts our #DataSource# type.
+
+When the data is set, we call #_initializeDataSource# method which does couple of things:
+First, it closes the stream of the previous data source.
+Then, it transforms our data into acceptable data source provider with the help of our #DataSourceParser# which is injected with a #DATA_SOURCE_TRANSFORMER# injection token.
+Lastly, it subscribes to the events of the data source provider and passes them to the component it applied to.
+
+That's all for the directive itself and its dependencies.
+
+Now, let's go back to our combobox component, and update it in order to accept multiple types of data.
+
+First, we need to implement our #AbstractDataSourceProvider# class:
+
+[, js]
+----
+import {
+  AbstractDataSourceProvider,
+  DataSource,
+  DataSourceParser,
+  isDataSource,
+} from '@host-directives-app/data-source';
+import { Nullable } from '@host-directives-app/shared';
+import { isObservable, Observable, of } from 'rxjs';
+
+export interface ComboboxItem {
+  label: string;
+  value: string;
+}
+
+export type AcceptableComboboxItem = ComboboxItem | string;
+
+export class ComboboxDataSource extends AbstractDataSourceProvider<AcceptableComboboxItem> {
+  fetch(): Observable<AcceptableComboboxItem[]> {
+    return isObservable(this.items) ? this.items : of(this.items);
+  }
+  constructor(
+    public items:
+      | Observable<AcceptableComboboxItem[]>
+      | AcceptableComboboxItem[]
+  ) {
+    super();
+  }
+}
+
+export class ComboboxDataTransformer
+  implements DataSourceParser<AcceptableComboboxItem>
+{
+  parse(source: Nullable<DataSource<AcceptableComboboxItem>>) {
+    // If source is an instance of a data source class, return it without modifications.
+    if (isDataSource(source)) {
+      return source as ComboboxDataSource;
+    } else if (Array.isArray(source) || isObservable(source)) {
+      // If the source is an array or observable, return new instance of the datasource with items inside.
+      return new ComboboxDataSource(source);
+    }
+
+    return null;
+  }
+}
+----
+
+As you can see, we defined an additional interface for the combobox item in case we want to render the label different than its value.
+And for the data source provider, we are just checking whether the data is observable or a plain array. If it's an array, we wrap it into Observable and return it.
+
+Additionally, we are implementing #DataSourceParser# for combobox to be able to apply the necessary data source class for the data passed to it.
+
+Now, let's update our component to work with the data source directive:
+
+[, js]
+----
+@Component({
+  selector: 'app-combobox',
+  template: `
+<input
+    #comboboxInput
+    class="combobox-input"
+    type="text"
+    [attr.list]="'inputOptions' + uniqueId"
+    [attr.placeholder]="placeholder"
+    autocomplete="off"
+    (blur)="onBlur()"
+    [ngModel]="value"
+    (input)="onInput($event)"
+/>
+<datalist [id]="'inputOptions' + uniqueId" *ngIf="options?.length">
+    <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</datalist>
+`
+  styleUrls: ['./combobox.component.scss'],
+  providers: [
+    // Small helper service to unsubscribe from streams when component destroys.
+    DestroyedService,
+    {
+      provide: DATA_SOURCE_TRANSFORMER,
+      useClass: ComboboxDataTransformer,
+    },
+  ],
+  hostDirectives: [
+    {
+      directive: CvaDirective,
+    },
+    {
+      directive: DataSourceDirective,
+      // Expose dataSource input property directly on combobox component
+      // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property, @angular-eslint/no-input-rename
+      inputs: ['dataSource:options'],
+      // Expose data source's directive outputs directly from combobox component.
+      // eslint-disable-next-line @angular-eslint/no-outputs-metadata-property
+      outputs: ['dataSourceChanged', 'dataChanged', 'isLoading'],
+    },
+  ],
+})
+export class ComboboxComponent implements OnInit {
+  readonly _cvaDirective =
+    inject<CvaDirective<AcceptableComboboxItem>>(CvaDirective);
+  readonly _dataSourceDirective =
+    inject<DataSourceDirective<AcceptableComboboxItem, ComboboxDataSource>>(
+      DataSourceDirective
+    );
+  private readonly _destroyed$ = inject(DestroyedService);
+  @ViewChild('comboboxInput')
+  comboboxInput?: ElementRef<HTMLInputElement>;
+  readonly uniqueId = ++UNIQUE_ID;
+
+  @HostBinding('class.is-invalid')
+  controlInvalid = false;
+
+  get value(): Nullable<AcceptableComboboxItem> {
+    return this._cvaDirective.value;
+  }
+
+  @Input()
+  placeholder: Nullable<string> = null;
+
+  // Previously it was @Input. Now it's just a property of a class.
+  options: ComboboxItem[] = [];
+
+  ngOnInit(): void {
+    // Subscribe to the data source's directive data stream and update `options` array
+    this._dataSourceDirective.dataChanged$
+      .pipe(takeUntil(this._destroyed$))
+      .subscribe((data) => {
+        this.options = this._formatOptions(data);
+        console.log(data);
+      });
+    this._cvaDirective.stateChanges
+      .pipe(
+        filter((stateType) => stateType === 'updateErrorState'),
+        takeUntil(this._destroyed$)
+      )
+      .subscribe(() => {
+        this.controlInvalid = this._cvaDirective.controlInvalid;
+      });
+  }
+
+  /** Method called when user types into the input field. */
+  onInput(event: Event) {
+    this._cvaDirective.setValue(
+      (<HTMLInputElement>event.target).value ?? '',
+      true
+    );
+  }
+
+  /** Method called when user focuses-out the input field. */
+  onBlur() {
+    this._cvaDirective.onTouched();
+  }
+
+  /** Transform from plain string into value/label object for more human-readability of the options */
+  private _formatOptions(data: AcceptableComboboxItem[]): ComboboxItem[] {
+    return data.map((option) =>
+      typeof option === 'string' ? { value: option, label: option } : option
+    );
+  }
+}
+----
+
+So, what's changed?
+
+First, we added our DataSourceDirective to hostDirectives and exposed its #dataSource# input property as #options# input property which we previously had directly in the component.
+
+Next, instead of relying directly on #options# input property, we're subscribing to DataSourceDirective's #dataChanged$# #BehaviourSubject# and waiting for new data to come.
+When the data is emitted, we update the inner #options# property with the data received from the DataSourceProvider.
+
+And that's pretty much it!
+
+In conclusion: Even though Host Directives at the early stage of its development, and has some childish issues, such as explicit definition of the host directive, it already provides huge benefit of simplifying the codebase of your existing components and libraries by splitting the logic between multiple independent classes and reducing the amount of inheritance chains.
+
+As I was mentioning at the beginning of the article, here's a complete https://github.com/N1XUS/host-directives-app[example application, window=_blank] used in this article.
