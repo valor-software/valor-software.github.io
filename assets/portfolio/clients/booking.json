@@ -1,7 +1,7 @@
 {
   "name": "Booking",
   "description": "Mobile applications and a web platform for travel and multiple services booking. The app serves several types of users providing unique complicated functionality in a simple way. Most important here, it cares for low-end devices users and related restrictions.",
-  "previewImg": "assets/img/bg-img/booking_page/header_bg.png",
+  "previewImg": "assets/img/bg-img/booking_page/cover_1.png",
   "headerImg": "assets/img/bg-img/booking_page/header_bg.png",
   "sortServices": ["web", "mobile"],
   "sortTechnologies":  ["react", "react_native", "python"],

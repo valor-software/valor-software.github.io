@@ -2,7 +2,7 @@
   "author": "Bruno Silva",
   "order": 41,
   "domains": [
-    "dev_quality_assurance"
+    "dev_quality_assurance", "module_federation"
   ],
   "authorImg": "assets/articles/nx-next-js-e-module-federation/Bruno_Silva.png",
   "language": "pt",

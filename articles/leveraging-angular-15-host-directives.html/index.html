@@ -1,0 +1,919 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/leveraging-angular-15-host-directives.html"
+            },
+            "headline": "Leveraging @angular 15 host directives",
+            "description": "Leveraging the directive composition approach and moving from old class inheritance to a composition approach",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/leveraging-angular-15-host-directives/Leveraging-host-directives.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Denis Severin"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Thu Jan 26 2021 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Leveraging @angular 15 host directives</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.ec73eab7d5fdcc3d.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.ec73eab7d5fdcc3d.css"></noscript><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="Leveraging the directive composition approach and moving from old class inheritance to a composition approach"><meta property="og:title" content="Leveraging @angular 15 host directives"><meta property="og:description" content="Leveraging the directive composition approach and moving from old class inheritance to a composition approach"><meta property="twitter:title" content="Leveraging @angular 15 host directives"><meta property="twitter:description" content="Leveraging the directive composition approach and moving from old class inheritance to a composition approach"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-cks-c36="" ng-version="14.2.8"><top-menu _ngcontent-cks-c36=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-cks-c36="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-cks-c36=""></router-outlet><general-item><article _nghost-cks-c46=""><section _ngcontent-cks-c46="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-cks-c46="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-cks-c46="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Leveraging @Angular 15 Host Directives </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-cks-c46="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-cks-c46="" class="text-20 mb-4">January 26, 2021</p><p _ngcontent-cks-c46="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Leveraging @angular 15 host directives</p><div _ngcontent-cks-c46="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-cks-c46="" class="w-full h-full object-cover" src="assets/articles/leveraging-angular-15-host-directives/Denis_Severin.png" alt="Denis Severin"></div><!----><p _ngcontent-cks-c46="" class="md:text-large text-24 mb-4">Denis Severin</p><!----><p _ngcontent-cks-c46="" class="text-20">Angular developer</p><!----></div></div></section><section _ngcontent-cks-c46="" class="landing-section"><div _ngcontent-cks-c46="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-cks-c46="" class="max-w-full"><div class="paragraph">
+<p>Not while ago, Angular team released a stable 15 version with few neat features, such as host directives.</p>
+</div>
+<div class="paragraph">
+<p>In this article I will try to explain how to leverage the directive composition approach and move from old class-inheritance to a composition approach.</p>
+</div>
+<div class="sect1">
+<h2 id="_what_are_host_directives">What are host directives?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Host directives are a <strong>standalone</strong> directives that can be added to a component via <mark>@Component</mark> decorator, thus avoiding the need to apply the directive through the markup.
+Developers can expose its inputs and outputs.
+Additionally, they can also map their names to avoid the confusion between components and directives properties.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_would_you_want_to_use_host_directives">Why would you want to use host directives?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With a complex component comes complex business logic inside its class. Typescript has <a href="https://www.typescriptlang.org/docs/handbook/mixins.html" target="_blank" rel="noopener">mixins</a> support to divide logic between multiple classes and then join it into one giant class.</p>
+</div>
+<div class="paragraph">
+<p>Mixins are widely used in <mark>@angular/material</mark> project. For example, <a href="https://github.com/angular/components/blob/9f0071dc4c4848ea440907e016a12a5cba48a1a9/src/material/button/button-base.ts" target="_blank" rel="noopener">Material Button Component</a>.</p>
+</div>
+<div class="paragraph">
+<p>But, as you can see, it itself requires complex structures to actually use it. Not mentioning setting inputs/outputs properties as an array for the decorator itself.
+In short, developers can start struggling with input/output properties and class dependencies if they use lots of mixins.</p>
+</div>
+<div class="paragraph">
+<p>Another way is to use long chains of <strong>class inheritance</strong>.</p>
+</div>
+<div class="paragraph">
+<p>In the end, the final component would have a huge constructor (prior to <mark>inject</mark> function) and supporting this constructor sometimes becomes too painful.</p>
+</div>
+<div class="paragraph">
+<p>Another way would be to use <strong>services</strong> injected into your component, but this creates an additional headache with keeping the config up-to-date (triggering some configuration update for the service when some component’s input property was changed, etc.).</p>
+</div>
+<div class="paragraph">
+<p>Directive composition approach works similarly to the Typescript’s mixins: you have multiple classes that contain their own logic, and in the end they all end up used for one final class (component). The difference is that mixins are combined into one class, and for directive composition you need to inject your directive instances into your component class.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_leveraging_the_host_directives_in_your_application">Leveraging the host directives in your application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, I’ll <a href="https://github.com/N1XUS/host-directives-app" target="_blank" rel="noopener">leave a link to an example app</a> built with nx to split the app and its libs.</p>
+</div>
+<div class="paragraph">
+<p>Let’s take an example of simple form control component:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">@Component({
+    selector: 'lib-combobox',
+    template: `
+    &lt;input
+        #comboboxInput
+        class="combobox-input"
+        type="text"
+        [attr.list]="'inputOptions' + uniqueId"
+        [attr.placeholder]="placeholder"
+        autocomplete="off"
+        (blur)="onBlur()"
+        [ngModel]="value"
+        (input)="onInput($event)"
+    /&gt;
+    &lt;datalist [id]="'inputOptions' + uniqueId" *ngIf="options?.length"&gt;
+        &lt;option *ngFor="let option of options" [value]="option"&gt;{{ option }}&lt;/option&gt;
+    &lt;/datalist&gt;
+    `,
+    styleUrls: ['./combobox.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() =&gt; ComboboxComponent),
+        multi: true,
+    }],
+})
+export class ComboboxComponent implements ControlValueAccessor, AfterViewInit {
+    @ViewChild('comboboxInput') comboboxInput: ElementRef&lt;HTMLInputElement&gt;;
+    readonly uniqueId = ++UNIQUE_ID;
+
+    @Input() options: string[];
+
+    disabled = false;
+
+    get value() {
+        return this._value;
+    }
+    set value(v: string) {
+        this.setValue(v, true);
+    }
+    private _value = '';
+    private viewInit = false;
+
+    private onTouched: () =&gt; void;
+    private onChange: (value: string) =&gt; void;
+
+    constructor(private _renderer: Renderer2) {}
+
+    ngAfterViewInit() {
+        this.viewInit = true;
+        this.setValue(this._value, false);
+    }
+
+    onInput(event: Event) {
+        this.setValue((&lt;HTMLInputElement&gt;event.target).value ?? '', true);
+    }
+
+    onBlur() {
+        this.onTouched();
+    }
+
+    registerOnChange(fn: (value: string) =&gt; void) {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn: () =&gt; void) {
+        this.onTouched = fn;
+    }
+
+    setDisabledState(isDisabled: boolean) {
+        this.disabled = isDisabled;
+    }
+
+    writeValue(value: string) {
+        this.setValue(value, false);
+    }
+
+    setValue(value: string, emitEvent: boolean) {
+        this._value = value;
+        if (this.viewInit) {
+            this._renderer.setProperty(this.comboboxInput.nativeElement, 'value', value);
+        }
+        if (emitEvent &amp;&amp; typeof this.onChange === 'function') {
+            this.onChange(value);
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This component implements <mark>ControlValueAccessor</mark> and implements its methods such as <mark>writeValue</mark>, <mark>registerOnChange</mark>, <mark>registerOnTouched</mark>.
+And this stuff is commonly repeated across multiple components in your app.</p>
+</div>
+<div class="paragraph">
+<p>Previously, to simplify the logic you could extract those methods into base abstract class. But this class might require it’s dependencies, which needed to be passed via <mark>super</mark> call in constructor. This complicates things.</p>
+</div>
+<div class="paragraph">
+<p>Let’s simplify the code, and first, create a standalone directive called C#vaDirective#.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">@Directive({
+  selector: '[appCva]',
+  standalone: true,
+  providers: [
+    // Small helper service to unsubscribe from streams when component destroys.
+    DestroyedService
+  ],
+})
+export class CvaDirective&lt;T = unknown&gt; implements ControlValueAccessor, OnDestroy, AfterViewInit, DoCheck {
+  /**
+   * NgControl instance.
+   */
+  readonly ngControl = inject(NgControl, {
+    optional: true,
+  });
+
+  readonly cdRef = inject(ChangeDetectorRef, {
+    host: true
+  })
+
+  /**
+   * Form container instance. Usually ngForm or FormGroup directives.
+   */
+  readonly controlContainer = inject(ControlContainer, {
+    optional: true,
+    skipSelf: true,
+  });
+
+  /**
+   * Separate NgForm instance. For cases when formGroup is used with the form itself.
+   */
+  readonly ngForm = inject(NgForm, {
+    optional: true,
+    skipSelf: true,
+  });
+
+  /**
+   * Element reference.
+   */
+  readonly elementRef = inject(ElementRef);
+
+  private readonly _destroy$ = inject(DestroyedService);
+
+  /** Whether the input is disabled */
+  @Input()
+  set disabled(value: boolean) {
+    this.setDisabledState(value);
+  }
+  get disabled(): boolean {
+    if (this.ngControl &amp;&amp; this.ngControl.disabled !== null) {
+      return this.ngControl.disabled;
+    }
+    return this._disabled;
+  }
+
+  private _disabled = false;
+
+  /**
+   * Current value of the control.
+   */
+  value: Nullable&lt;T&gt;;
+
+  /** Whether control has errors */
+  get controlInvalid(): boolean {
+    return this._controlInvalid;
+  }
+
+  /**
+   * @hidden
+   */
+  private _controlInvalid = false;
+
+  /**
+   * Emits ehen state of the control has been changed.
+   */
+  readonly stateChanges: Subject&lt;string&gt; = new Subject&lt;string&gt;();
+
+  /** @hidden */
+  private readonly _subscriptions = new Subscription();
+
+  /** @hidden */
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onChange: (value: unknown) =&gt; void = () =&gt; {};
+
+  /** @hidden */
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onTouched = (): void =&gt; {};
+
+  /** @hidden */
+  constructor() {
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
+  }
+
+  /**
+   * Re-validate and emit event to parent container on every CD cycle as they are some errors
+   * that we can't subscribe to.
+   */
+  ngDoCheck(): void {
+    if (this.ngControl) {
+      this.updateErrorState();
+    }
+  }
+
+  /** @hidden */
+  ngAfterViewInit(): void {
+    if (this.ngControl) {
+      this._subscriptions.add(
+        this.ngControl.statusChanges?.subscribe(() =&gt; {
+          this._markForCheck();
+        })
+      );
+    }
+  }
+
+  /** @hidden */
+  ngOnDestroy(): void {
+    this._subscriptions.unsubscribe();
+    this.stateChanges.complete();
+    // this.formField?.unregisterFormFieldControl(this);
+  }
+
+  writeValue(value: T): void {
+    this.value = value;
+    this.stateChanges.next('writeValue');
+    this._markForCheck();
+  }
+  registerOnChange(fn: (value: unknown) =&gt; void): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: () =&gt; void): void {
+    this.onTouched = fn;
+  }
+  setDisabledState(isDisabled: boolean): void {
+    if (isDisabled === this._disabled) {
+      return;
+    }
+    this._disabled = isDisabled;
+    this.stateChanges.next('setDisabledState');
+    this._markForCheck();
+  }
+
+  /**
+   *  Need re-validates errors on every CD iteration to make sure we are also
+   *  covering non-control errors, errors that happens outside of this control
+   */
+  updateErrorState(): void {
+    const parent = this.ngForm;
+    const parentControlContainer = this.controlContainer;
+    const control = this.ngControl
+      ? (this.ngControl.control as FormControl)
+      : null;
+    const newStatusIsError = !!(
+      control?.invalid &amp;&amp;
+      (control.dirty ||
+        control.touched ||
+        parent?.submitted ||
+        (parentControlContainer as unknown as FormGroupDirective)?.submitted)
+    );
+
+    if (newStatusIsError !== this.controlInvalid) {
+      this._controlInvalid = newStatusIsError;
+      this.stateChanges.next('updateErrorState');
+      this._markForCheck();
+    }
+  }
+
+  /**
+   * Used to change the value of a control.
+   * @param value the value to be applied
+   * @param emitOnChange whether to emit "onChange" event.
+   * Should be "false", if the change is made programmatically (internally) by the control, "true" otherwise
+   */
+  setValue(value: T, emitOnChange = true): void {
+    if (value !== this.value) {
+      this.writeValue(value);
+      if (emitOnChange) {
+        this.onChange(value);
+      }
+      this._markForCheck();
+    }
+  }
+
+  /** @hidden */
+  private _markForCheck(): void {
+    this.cdRef.markForCheck();
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let me explain what’s going on inside this directive.
+First, we are declaring it as a standalone, which means we can apply it to a component via <mark>hostDirectives</mark> property of the <mark>@Component</mark>.
+Next, since we need to support template-driven and reactive forms, lets' inject necessary dependencies such as <mark>NgControl</mark>, <mark>NgForm</mark> and <mark>ControlContainer</mark>. We will need these properties later.</p>
+</div>
+<div class="paragraph">
+<p>You may see that we also injected <mark>ChangeDetectorRef</mark> from the <mark>host</mark>. This is needed to get the components change detector and call it when the state of the control being changed (valid/invalid).</p>
+</div>
+<div class="paragraph">
+<p>Next, we implement all members of <mark>ControlValueAccessor</mark> interface for further usage in the component.
+We also have support for a disabled state of the form control, which may be handy in real-case scenarios. This input property is optional and you can ignore it during input exposing.</p>
+</div>
+<div class="paragraph">
+<p>We also have <mark>updateErrorState</mark> method which automatically checks whether the control is valid and checks whether the user interacted with the control itself or submitted the form.</p>
+</div>
+<div class="paragraph">
+<p>That’s all for the directive itself, now let’s update our combobox component to use this directive instead direct <mark>ControlValueAccessor</mark> implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">@Component({
+  selector: 'app-combobox',
+  template: `
+    &lt;input
+        #comboboxInput
+        class="combobox-input"
+        type="text"
+        [attr.list]="'inputOptions' + uniqueId"
+        [attr.placeholder]="placeholder"
+        autocomplete="off"
+        (blur)="onBlur()"
+        [ngModel]="value"
+        (input)="onInput($event)"
+    /&gt;
+    &lt;datalist [id]="'inputOptions' + uniqueId" *ngIf="options?.length"&gt;
+        &lt;option *ngFor="let option of options" [value]="option"&gt;{{ option }}&lt;/option&gt;
+    &lt;/datalist&gt;
+`
+  styleUrls: ['./combobox.component.scss'],
+  providers: [
+    // Small helper service to unsubscribe from streams when component destroys.
+    DestroyedService,
+  ],
+  hostDirectives: [
+    {
+      directive: CvaDirective,
+    }
+  ],
+})
+export class ComboboxComponent implements OnInit {
+  readonly _cvaDirective = inject&lt;CvaDirective&lt;string&gt;&gt;(CvaDirective);
+  private readonly _destroyed$ = inject(DestroyedService);
+  @ViewChild('comboboxInput')
+  comboboxInput?: ElementRef&lt;HTMLInputElement&gt;;
+  readonly uniqueId = ++UNIQUE_ID;
+
+  /** Notify user of invalid control if necessary. */
+  @HostBinding('class.is-invalid')
+  controlInvalid = false;
+
+  get value(): Nullable&lt;string&gt; {
+    return this._cvaDirective.value;
+  }
+
+  @Input()
+  placeholder: Nullable&lt;string&gt; = null;
+
+  /** Available options for the dropdown. */
+  @Input()
+  options: string[] = [];
+
+  /** Method called when user types into the input field. */
+  onInput(event: Event) {
+    this._cvaDirective.setValue(
+      (&lt;HTMLInputElement&gt;event.target).value ?? '',
+      true
+    );
+  }
+
+  /** Method called when user focuses-out the input field. */
+  onBlur() {
+    this._cvaDirective.onTouched();
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So, we’ve removed all form-related stuff to the directive. This gives us a more clear and readable component.</p>
+</div>
+<div class="paragraph">
+<p>You see that we’ve injected <mark>CvaDirective</mark> into the component to call its members such as <mark>setValue</mark> and use the initial value of the form control to set it for the input field.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bonus_advanced_directives_composition">Bonus: Advanced Directives composition</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With the example above I’ve shown how to simplify your component and move all background logic into a separate class without the need of inheritance.</p>
+</div>
+<div class="paragraph">
+<p>Now, let’s say we want it to accept not only <mark>string[]</mark>, but also <mark>Observable&lt;string[]&gt;</mark>, or even custom data source class which retrieves the data from some backend.</p>
+</div>
+<div class="paragraph">
+<p>And again, host directives to the rescue!</p>
+</div>
+<div class="paragraph">
+<p>Before we start with the directive itself, let’s define what our directive should support:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Automatically subscribe/unsubscribe from the dataSource;</p>
+</li>
+<li>
+<p>When datasource’s data changes, or new dataSource instance being passed, notify parent component of the changes in data;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In this example, we will create a simple data source class which will convert passed data into an observable and simply return it.</p>
+</div>
+<div class="paragraph">
+<p>First, let’s generate abstract data source provider class which our components would implement in own way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { Nullable } from '@host-directives-app/shared';
+import { Observable } from 'rxjs';
+
+/**
+ * Acceptable data source types.
+ */
+export type DataSource&lt;T = unknown&gt; =
+  | AbstractDataSourceProvider&lt;T&gt;
+  | Observable&lt;T[]&gt;
+  | T[];
+
+export interface DataSourceParser&lt;
+  T = unknown,
+  P extends AbstractDataSourceProvider&lt;T&gt; = AbstractDataSourceProvider&lt;T&gt;
+&gt; {
+  /**
+   * Defines which data provider class to initiate.
+   * @param source data source to be parsed.
+   */
+  parse(source: Nullable&lt;DataSource&lt;T&gt;&gt;): Nullable&lt;P&gt;;
+}
+
+export function isDataSource&lt;T = unknown&gt;(
+  value: any
+): value is AbstractDataSourceProvider&lt;T&gt; {
+  return (
+    value &amp;&amp;
+    'unsubscribe' &amp;&amp;
+    typeof value.unsubscribe === 'function' &amp;&amp;
+    value.dataChanges
+  );
+}
+
+export abstract class AbstractDataSourceProvider&lt;T = unknown&gt; {
+  abstract fetch(): Observable&lt;T[]&gt;;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So, here we’re declaring that our <mark>DataSource</mark> can accept three types of data: Class instance, Observable of an array and a plain array.</p>
+</div>
+<div class="paragraph">
+<p>With <mark>AbstractDataSourceProvider</mark> we can now actually create our directive called <mark>DataSourceDirective</mark>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export const DATA_SOURCE_TRANSFORMER = new InjectionToken&lt;DataSourceParser&gt;('DataSourceTransformerClass');
+
+@Directive({
+  selector: '[appDataSource]',
+  standalone: true,
+  providers: [
+  // Small helper service to unsubscribe from streams when component destroys.
+    DestroyedService
+  ],
+})
+export class DataSourceDirective&lt;
+  T = unknown,
+  P extends AbstractDataSourceProvider&lt;T&gt; = AbstractDataSourceProvider&lt;T&gt;
+&gt; implements OnDestroy {
+  @Input()
+  set dataSource(data: Nullable&lt;DataSource&lt;T&gt;&gt;) {
+    this._dataSource = data;
+
+    this.dataSourceChanged.next();
+
+    this._initializeDataSource();
+  }
+
+  get dataSource() {
+    return this._dataSource;
+  }
+
+  /** @hidden */
+  dataSourceProvider: Nullable&lt;P&gt;;
+
+  /** @hidden */
+  private _dsSubscription = new Subscription();
+
+  /**
+   * Data stream. Emits when new data retrieved.
+   */
+  readonly dataChanged$ = new BehaviorSubject&lt;T[]&gt;([]);
+
+  /**
+   * Emits when the data source object has been changed.
+   */
+  @Output()
+  readonly dataSourceChanged = new EventEmitter&lt;void&gt;();
+
+  /**
+   * Event emitted when datasource content has been changed.
+   */
+  @Output()
+  readonly dataChanged = new EventEmitter&lt;T[]&gt;();
+
+  /**
+   * Event emitted when data provider loading state has been changed.
+   */
+  @Output()
+  readonly isLoading = new EventEmitter&lt;boolean&gt;();
+
+  private _dataSource: Nullable&lt;DataSource&lt;T&gt;&gt;;
+
+  private readonly _destroyed$ = inject(DestroyedService);
+
+  private readonly _dataSourceTransformer = inject&lt;DataSourceParser&lt;T, P&gt;&gt;(DATA_SOURCE_TRANSFORMER);
+
+  /** @hidden */
+  private _initializeDataSource(): void {
+    if (isDataSource(this.dataSource)) {
+      this.dataSourceProvider?.unsubscribe();
+
+      this._dsSubscription?.unsubscribe();
+    }
+    // Convert whatever comes in as DataSource, so we can work with it identically
+    this.dataSourceProvider = this._toDataStream(this.dataSource);
+
+    if (!this.dataSourceProvider) {
+      return;
+    }
+
+    this._dsSubscription = new Subscription();
+
+    this._dsSubscription.add(
+      this.dataSourceProvider.dataLoading
+        .pipe(takeUntil(this._destroyed$))
+        .subscribe((isLoading) =&gt; this.isLoading.emit(isLoading))
+    );
+
+    this._dsSubscription.add(
+      this.dataSourceProvider.dataChanges
+        .pipe(takeUntil(this._destroyed$))
+        .subscribe((data) =&gt; {
+          this.dataChanged.emit(data);
+          this.dataChanged$.next(data);
+        })
+    );
+  }
+
+  /** @hidden */
+  ngOnDestroy(): void {
+    this.dataSourceProvider?.unsubscribe();
+    this._dsSubscription?.unsubscribe();
+  }
+
+  /** @Hidden */
+  private _toDataStream(source: Nullable&lt;DataSource&lt;T&gt;&gt;): Nullable&lt;P&gt; {
+    return this._dataSourceTransformer
+      ? this._dataSourceTransformer.parse(source)
+      : undefined;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quick explanation of what’s going on here:
+We have <mark>T</mark> and <mark>P</mark> generic types which are responsible for providing awareness of the data types we are working with in our components, so IDE also knows it, and provides suggestions.
+Next, we have a <mark>dataSource</mark> input property which accepts our <mark>DataSource</mark> type.</p>
+</div>
+<div class="paragraph">
+<p>When the data is set, we call <mark>_initializeDataSource</mark> method which does couple of things:
+First, it closes the stream of the previous data source.
+Then, it transforms our data into acceptable data source provider with the help of our <mark>DataSourceParser</mark> which is injected with a <mark>DATA_SOURCE_TRANSFORMER</mark> injection token.
+Lastly, it subscribes to the events of the data source provider and passes them to the component it applied to.</p>
+</div>
+<div class="paragraph">
+<p>That’s all for the directive itself and its dependencies.</p>
+</div>
+<div class="paragraph">
+<p>Now, let’s go back to our combobox component, and update it in order to accept multiple types of data.</p>
+</div>
+<div class="paragraph">
+<p>First, we need to implement our <mark>AbstractDataSourceProvider</mark> class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import {
+  AbstractDataSourceProvider,
+  DataSource,
+  DataSourceParser,
+  isDataSource,
+} from '@host-directives-app/data-source';
+import { Nullable } from '@host-directives-app/shared';
+import { isObservable, Observable, of } from 'rxjs';
+
+export interface ComboboxItem {
+  label: string;
+  value: string;
+}
+
+export type AcceptableComboboxItem = ComboboxItem | string;
+
+export class ComboboxDataSource extends AbstractDataSourceProvider&lt;AcceptableComboboxItem&gt; {
+  fetch(): Observable&lt;AcceptableComboboxItem[]&gt; {
+    return isObservable(this.items) ? this.items : of(this.items);
+  }
+  constructor(
+    public items:
+      | Observable&lt;AcceptableComboboxItem[]&gt;
+      | AcceptableComboboxItem[]
+  ) {
+    super();
+  }
+}
+
+export class ComboboxDataTransformer
+  implements DataSourceParser&lt;AcceptableComboboxItem&gt;
+{
+  parse(source: Nullable&lt;DataSource&lt;AcceptableComboboxItem&gt;&gt;) {
+    // If source is an instance of a data source class, return it without modifications.
+    if (isDataSource(source)) {
+      return source as ComboboxDataSource;
+    } else if (Array.isArray(source) || isObservable(source)) {
+      // If the source is an array or observable, return new instance of the datasource with items inside.
+      return new ComboboxDataSource(source);
+    }
+
+    return null;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, we defined an additional interface for the combobox item in case we want to render the label different than its value.
+And for the data source provider, we are just checking whether the data is observable or a plain array. If it’s an array, we wrap it into Observable and return it.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, we are implementing <mark>DataSourceParser</mark> for combobox to be able to apply the necessary data source class for the data passed to it.</p>
+</div>
+<div class="paragraph">
+<p>Now, let’s update our component to work with the data source directive:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">@Component({
+  selector: 'app-combobox',
+  template: `
+&lt;input
+    #comboboxInput
+    class="combobox-input"
+    type="text"
+    [attr.list]="'inputOptions' + uniqueId"
+    [attr.placeholder]="placeholder"
+    autocomplete="off"
+    (blur)="onBlur()"
+    [ngModel]="value"
+    (input)="onInput($event)"
+/&gt;
+&lt;datalist [id]="'inputOptions' + uniqueId" *ngIf="options?.length"&gt;
+    &lt;option *ngFor="let option of options" [value]="option.value"&gt;{{ option.label }}&lt;/option&gt;
+&lt;/datalist&gt;
+`
+  styleUrls: ['./combobox.component.scss'],
+  providers: [
+    // Small helper service to unsubscribe from streams when component destroys.
+    DestroyedService,
+    {
+      provide: DATA_SOURCE_TRANSFORMER,
+      useClass: ComboboxDataTransformer,
+    },
+  ],
+  hostDirectives: [
+    {
+      directive: CvaDirective,
+    },
+    {
+      directive: DataSourceDirective,
+      // Expose dataSource input property directly on combobox component
+      // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property, @angular-eslint/no-input-rename
+      inputs: ['dataSource:options'],
+      // Expose data source's directive outputs directly from combobox component.
+      // eslint-disable-next-line @angular-eslint/no-outputs-metadata-property
+      outputs: ['dataSourceChanged', 'dataChanged', 'isLoading'],
+    },
+  ],
+})
+export class ComboboxComponent implements OnInit {
+  readonly _cvaDirective =
+    inject&lt;CvaDirective&lt;AcceptableComboboxItem&gt;&gt;(CvaDirective);
+  readonly _dataSourceDirective =
+    inject&lt;DataSourceDirective&lt;AcceptableComboboxItem, ComboboxDataSource&gt;&gt;(
+      DataSourceDirective
+    );
+  private readonly _destroyed$ = inject(DestroyedService);
+  @ViewChild('comboboxInput')
+  comboboxInput?: ElementRef&lt;HTMLInputElement&gt;;
+  readonly uniqueId = ++UNIQUE_ID;
+
+  @HostBinding('class.is-invalid')
+  controlInvalid = false;
+
+  get value(): Nullable&lt;AcceptableComboboxItem&gt; {
+    return this._cvaDirective.value;
+  }
+
+  @Input()
+  placeholder: Nullable&lt;string&gt; = null;
+
+  // Previously it was @Input. Now it's just a property of a class.
+  options: ComboboxItem[] = [];
+
+  ngOnInit(): void {
+    // Subscribe to the data source's directive data stream and update `options` array
+    this._dataSourceDirective.dataChanged$
+      .pipe(takeUntil(this._destroyed$))
+      .subscribe((data) =&gt; {
+        this.options = this._formatOptions(data);
+        console.log(data);
+      });
+    this._cvaDirective.stateChanges
+      .pipe(
+        filter((stateType) =&gt; stateType === 'updateErrorState'),
+        takeUntil(this._destroyed$)
+      )
+      .subscribe(() =&gt; {
+        this.controlInvalid = this._cvaDirective.controlInvalid;
+      });
+  }
+
+  /** Method called when user types into the input field. */
+  onInput(event: Event) {
+    this._cvaDirective.setValue(
+      (&lt;HTMLInputElement&gt;event.target).value ?? '',
+      true
+    );
+  }
+
+  /** Method called when user focuses-out the input field. */
+  onBlur() {
+    this._cvaDirective.onTouched();
+  }
+
+  /** Transform from plain string into value/label object for more human-readability of the options */
+  private _formatOptions(data: AcceptableComboboxItem[]): ComboboxItem[] {
+    return data.map((option) =&gt;
+      typeof option === 'string' ? { value: option, label: option } : option
+    );
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So, what’s changed?</p>
+</div>
+<div class="paragraph">
+<p>First, we added our DataSourceDirective to hostDirectives and exposed its <mark>dataSource</mark> input property as <mark>options</mark> input property which we previously had directly in the component.</p>
+</div>
+<div class="paragraph">
+<p>Next, instead of relying directly on <mark>options</mark> input property, we’re subscribing to DataSourceDirective’s <mark>dataChanged$</mark> <mark>BehaviourSubject</mark> and waiting for new data to come.
+When the data is emitted, we update the inner <mark>options</mark> property with the data received from the DataSourceProvider.</p>
+</div>
+<div class="paragraph">
+<p>And that’s pretty much it!</p>
+</div>
+<div class="paragraph">
+<p>In conclusion: Even though Host Directives at the early stage of its development, and has some childish issues, such as explicit definition of the host directive, it already provides huge benefit of simplifying the codebase of your existing components and libraries by splitting the logic between multiple independent classes and reducing the amount of inheritance chains.</p>
+</div>
+<div class="paragraph">
+<p>As I was mentioning at the beginning of the article, here’s a complete <a href="https://github.com/N1XUS/host-directives-app" target="_blank" rel="noopener">example application</a> used in this article.</p>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-cks-c46="" class="landing-section"><h1 _ngcontent-cks-c46="" class="main-title">More Articles</h1><div _ngcontent-cks-c46="" class="container"><blog-preview _ngcontent-cks-c46=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/module-federation-with-ssr-and-react-18" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/module-federation-with-ssr-and-react-18/Module-Federation-SSR.png" alt="Module Federation with SSR and React 18"></div><div class="text-container"><p>Module Federation with SSR and React 18</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/tackling-breaking-changes-using-nx-workspace-generators" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/tackling-breaking-changes-using-nx-workspace-generators/Valor-Nx.png" alt="Tackling breaking changes using Nx Workspace generators"></div><div class="text-container"><p>Tackling breaking changes using Nx Workspace generators</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/medusa-the-new-year-dedicated-release" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/medusa-the-new-year-dedicated-release/valor_site_new_year.png" alt="Medusa the New Year-dedicated Release"></div><div class="text-container"><p>Medusa the New Year-dedicated Release</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-cks-c36=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.271c2524a6679b32.js" type="module"></script><script src="polyfills.f39c60c21adb9eb1.js" type="module"></script><script src="main.4365fc9121be3db9.js" type="module"></script>
+
+</body></html>
