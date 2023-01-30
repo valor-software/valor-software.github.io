@@ -1,0 +1,12 @@
+{
+"title": "Leveraging @angular 15 host directives",
+"order": 63,
+"domains": ["dev_quality_assurance"],
+"authorImg": "assets/articles/leveraging-angular-15-host-directives/Denis_Severin.png",
+"language": "en",
+"bgImg": "assets/articles/leveraging-angular-15-host-directives/Leveraging-host-directives.png",
+"author": "Denis Severin",
+"position": "Angular developer",
+"date": "Thu Jan 26 2021 10:45:55 GMT+0000 (Coordinated Universal Time)",
+"seoDescription": "Leveraging the directive composition approach and moving from old class inheritance to a composition approach"
+}

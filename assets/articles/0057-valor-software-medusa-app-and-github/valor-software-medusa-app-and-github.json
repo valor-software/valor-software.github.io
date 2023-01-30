@@ -1,7 +1,7 @@
 {
   "title": "Valor Software Medusa app and GitHub",
   "order": 57,
-  "domains": ["devops_cloud"],
+  "domains": ["devops_cloud", "module_federation"],
   "authorImg": "assets/articles/valor-software-medusa-app-and-github/Robson_Muller.jpeg",
   "language": "en",
   "bgImg": "assets/articles/valor-software-medusa-app-and-github/valor-software-medusa-app-and-github.png",

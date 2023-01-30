@@ -11,6 +11,7 @@ export const Domains = {
     devops_cloud: 'DevOps & Cloud',
     recruitment_pm: 'Recruitment & Project Mgmt.',
     sales_marketing: 'Sales & Marketing',
+    module_federation: 'Module Federation',
     other: 'Other'
 };
 

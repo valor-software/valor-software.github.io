@@ -1,7 +1,7 @@
 {
   "title": "Module Federation in mobile apps powered by NativeScript",
   "order": 49,
-  "domains": ["dev_quality_assurance"],
+  "domains": ["dev_quality_assurance", "module_federation"],
   "authorImg": "assets/articles/module-federation-in-mobile-apps-powered-by-nativescript/eduardo.jpg",
   "language": "en",
   "bgImg": "assets/articles/module-federation-in-mobile-apps-powered-by-nativescript/hero.png",

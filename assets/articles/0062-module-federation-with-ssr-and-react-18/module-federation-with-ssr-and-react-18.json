@@ -1,7 +1,7 @@
 {
 "title": "Module Federation with SSR and React 18",
 "order": 62,
-"domains": ["dev_quality_assurance"],
+"domains": ["dev_quality_assurance", "module_federation"],
 "authorImg": "assets/articles/module-federation-with-ssr-and-react-18/Alexey_Umanskiy.png",
 "language": "en",
 "bgImg": "assets/articles/module-federation-with-ssr-and-react-18/Module-Federation-SSR.png",
