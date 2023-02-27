@@ -1,0 +1,12 @@
+{
+"title": "Monitoring the Progress of an HTTP Request in NestJS via WebSockets",
+"order": 64,
+"domains": ["dev_quality_assurance"],
+"authorImg": "assets/articles/monitoring-the-progress-of-an-http-request-in-nestjs-via-websockets/Slava_Chub.jpg",
+"language": "en",
+"bgImg": "assets/articles/monitoring-the-progress-of-an-http-request-in-nestjs-via-websockets/main-monitoring-the-progress.png",
+"author": "Vyacheslav Chub",
+"position": "Full Stack Software Engineer",
+"date": "Mon Feb 28 2021 10:45:55 GMT+0000 (Coordinated Universal Time)",
+"seoDescription": "The article describes the request that provides content downloading"
+}
