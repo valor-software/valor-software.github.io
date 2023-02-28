@@ -1,0 +1,533 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/monitoring-the-progress-of-an-http-request-in-nestjs-via-websockets"
+            },
+            "headline": "Monitoring the Progress of an HTTP Request in NestJS via WebSockets",
+            "description": "The article describes the request that provides content downloading",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/monitoring-the-progress-of-an-http-request-in-nestjs-via-websockets/main-monitoring-the-progress.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Vyacheslav Chub"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Mon Feb 28 2021 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Monitoring the Progress of an HTTP Request in NestJS via WebSockets</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-73071494-2');
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.ec73eab7d5fdcc3d.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.ec73eab7d5fdcc3d.css"></noscript><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="The article describes the request that provides content downloading"><meta property="og:title" content="Monitoring the Progress of an HTTP Request in NestJS via WebSockets"><meta property="og:description" content="The article describes the request that provides content downloading"><meta property="twitter:title" content="Monitoring the Progress of an HTTP Request in NestJS via WebSockets"><meta property="twitter:description" content="The article describes the request that provides content downloading"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-ehf-c36="" ng-version="14.2.8"><top-menu _ngcontent-ehf-c36=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-ehf-c36="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ehf-c36=""></router-outlet><general-item><article _nghost-ehf-c46=""><section _ngcontent-ehf-c46="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-ehf-c46="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-ehf-c46="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Monitoring The Progress Of An Http Request In Nestjs Via Websockets </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-ehf-c46="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-ehf-c46="" class="text-20 mb-4">February 28, 2021</p><p _ngcontent-ehf-c46="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Monitoring the Progress of an HTTP Request in NestJS via WebSockets</p><div _ngcontent-ehf-c46="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-ehf-c46="" class="w-full h-full object-cover" src="assets/articles/monitoring-the-progress-of-an-http-request-in-nestjs-via-websockets/Slava_Chub.jpg" alt="Vyacheslav Chub"></div><!----><p _ngcontent-ehf-c46="" class="md:text-large text-24 mb-4">Vyacheslav Chub</p><!----><p _ngcontent-ehf-c46="" class="text-20">Full Stack Software Engineer</p><!----></div></div></section><section _ngcontent-ehf-c46="" class="landing-section"><div _ngcontent-ehf-c46="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-ehf-c46="" class="max-w-full"><div class="paragraph">
+<p>A couple of days ago, I faced an issue with Monitoring the Progress of an HTTP Request. According to old developers' tradition, firstly, I asked Google for it. I anticipated getting a bunch of different answers and choosing an appropriate one. This time my instincts failed me. Even though I got a bunch of similar solutions, I didn’t find the appropriate example. It is worth clarifying that I’m working on a NestJS-based project. Let me explain why I decided to create my solution from scratch and why most of the existing solutions on the topic need to be revised in my case.</p>
+</div>
+<div class="paragraph">
+<p>First, I want to share the <a href="https://dev.to/tqbit/how-to-monitor-the-progress-of-a-javascript-fetch-request-and-cancel-it-on-demand-107f" target="_blank" rel="noopener">article that describes a bunch of the results above as well as possible</a>. Let me provide essential thoughts on the article.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The article describes the request that provides content downloading. In this case, we are talking about the precious content size.<br></p>
+</li>
+<li>
+<p>The <mark>Content-Length</mark> HTTP header is essential to the correct HTTP response.<br></p>
+</li>
+<li>
+<p>After the server application sets <mark>Content-Length</mark>, chunked data writing process should be run.<br></p>
+</li>
+<li>
+<p>First, the client application gets <mark>Content-Length</mark>.<br></p>
+</li>
+<li>
+<p>After that, it gets every data chunk and calculates the progress as the following.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">progress = 100 * (chunkSize / contentLength)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The approach above is beneficial if we are talking about content downloading. Despite it doesn’t work in my case due to the following reasons.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>My task is about something other than content downloading. Moreover, we need to have a functionality that allows us to calculate the progress according to calculations, not only according to data transfer.<br></p>
+</li>
+<li>
+<p>Despite the application not knowing the content size, it has a total number of iterations.<br></p>
+</li>
+<li>
+<p>Chunk-based approach doesn’t work in this case. The final result preparation will take a long time, and the output data should be written to the response simultaneously. That’s why we need to inform the client before sending a response.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In other words, the requirements for the new approach are the following.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The response writing goes simultaneously without any data chunking.<br></p>
+</li>
+<li>
+<p>The progress should be provided before that.<br></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>I don’t want to waste your time and give a couple of conceptual points of my approach regarding accounting the requirements above.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide the progress via WebSockets because of persistent connection and high performance.</p>
+</li>
+<li>
+<p>Connect WebSockets with a current session to pass all needed data from the HTTP request processing process.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All thoughts and code below will be strongly connected to these points. But before, let me share the <a href="https://github.com/buchslava/nest-request-progress" target="_blank" rel="noopener">final solution</a>.</p>
+</div>
+<div class="sect1">
+<h2 id="_data_providing_example">Data Providing Example</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I provided a simplified version of the data processing because I want to focus on this task. We have 150 iterations in the example below. The result is an array of 150 random numbers, each calculates in 100 - 1000 milliseconds. I found this example as a minimally viable model of the objective process.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { Injectable } from '@nestjs/common';
+
+const getRandomArbitrary = (min: number, max: number): number =&gt;
+  Math.random() * (max - min) + min;
+const delay = (time: number) =&gt;
+  new Promise((resolve) =&gt; setTimeout(resolve, time));
+
+@Injectable()
+export class AppService {
+
+  getIterationCount(): number {
+    return 150;
+  }
+
+  async getData(token: string): Promise&lt;string[]&gt; {
+    return new Promise(async (resolve, reject) =&gt; {
+      try {
+        const result = [];
+
+        for (let i = 0; i &lt; this.getIterationCount(); i++) {
+          result.push(getRandomArbitrary(1, 9999));
+          await delay(getRandomArbitrary(100, 1000));
+        }
+
+        resolve(result);
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_progress_manager">Progress Manager</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The future steps are regarding the <mark>ProgressManager</mark> implementation.</p>
+</div>
+<div class="paragraph">
+<p>The <mark>ProgressManager</mark> should be a separate NestJS service able to do the following.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start the "Progress" session (Not the HTTP session) with the unique token taken from the client application.<br></p>
+</li>
+<li>
+<p>Stop the "Progress" session<br></p>
+</li>
+<li>
+<p>Increase the value of the progress.<br></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Please look at the following commented code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { Injectable } from '@nestjs/common';
+import { Server } from 'socket.io';
+
+export interface ProgressSession {
+  token: string;
+  total: number;
+  counter: number;
+  timerId: any;
+}
+
+@Injectable()
+export class ProgressManager {
+  // The Socket Server injection will be described later
+  public server: Server;
+  // This map contains all Progress session data
+  private storage: Map&lt;string, ProgressSession&gt; = new Map();
+
+  // Start the session with the token and the total number of iterations
+  startSession(token: string, total: number, delay = 2000) {
+    // Get current session from the storage
+    const currentSession = this.storage.get(token);
+    // Do nothing if it's already exist
+    if (currentSession) {
+      return;
+    }
+    // Send the progress every "delay" milliseconds
+    const timerId = setInterval(async () =&gt; {
+      const currentSession: ProgressSession = this.storage.get(token);
+      // Protect the functionality: if the current session is missing then do nothing
+      if (!currentSession) {
+        return;
+      }
+      // Calculate the progress
+      let progress = Math.ceil(
+        (currentSession.counter / currentSession.total) * 100
+      );
+      // Protect the progress value, it should be less or equal 100
+      if (progress &gt; 100) {
+        progress = 100;
+      }
+      // Send the progress. Pay attention that the event name should contain the "token"
+      // Client will use this token also
+      this.server.emit(`progress-${token}`, progress);
+    }, delay);
+    // Initial Progress Session settings. Token is a key.
+    this.storage.set(token, {
+      token,
+      total,
+      counter: 0,
+      timerId,
+    });
+  }
+
+  // This method increases the progress
+  step(token: string, value = 1) {
+    // Get the current session
+    const currentSession: ProgressSession = this.storage.get(token);
+    // Do nothing if it doesn't exist
+    if (!currentSession) {
+      return;
+    }
+    // Increase the counter
+    const counter = currentSession.counter + value;
+    // Update the storage
+    this.storage.set(token, {
+      ...currentSession,
+      counter,
+    });
+  }
+
+  // Stop the session by the token
+  stopSession(token: string) {
+    // Get the current session
+    const currentSession: ProgressSession = this.storage.get(token);
+    // Do nothing if it doesn't exist
+    if (currentSession) {
+      // Stop the current timer
+      clearInterval(currentSession.timerId);
+      // Remove information regarding the current session from the storage
+      this.storage.delete(token);
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can find the code above <a href="https://github.com/buchslava/nest-request-progress/blob/main/packages/server/src/app/progress-manager.ts" target="_blank" rel="noopener">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_websockets_server">WebSockets Server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Another important is the integration of NestJS with WebSockets and connecting the Progress Manager with it. The following code is responsible for that.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import {
+  WebSocketGateway,
+  WebSocketServer,
+  OnGatewayInit,
+} from '@nestjs/websockets';
+import { Server } from 'socket.io';
+import { ProgressManager } from './progress-manager';
+
+@WebSocketGateway({ cors: true })
+export class AppGateway implements OnGatewayInit {
+  constructor(private progressManager: ProgressManager) {}
+
+  @WebSocketServer() server: Server;
+
+  afterInit() {
+    // After the WebSockets Gateway has to init, then pass it to the ProgressManager
+    this.progressManager.server = this.server;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/nest-request-progress/blob/main/packages/server/src/app/app.gateway.ts" target="_blank" rel="noopener">The source &gt;&gt;</a><br>
+And, of course, according to NestJS requirements, we need to tell the related module about that.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { Module } from '@nestjs/common';
+
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { AppGateway } from './app.gateway';
+import { ProgressManager } from './progress-manager';
+
+@Module({
+  imports: [],
+  controllers: [AppController],
+  providers: [AppService, AppGateway, ProgressManager],
+})
+export class AppModule {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/nest-request-progress/blob/main/packages/server/src/app/app.module.ts" target="_blank" rel="noopener">The source &gt;&gt;</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_processing">Data Processing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It’s time to focus on the endpoint’s controller. It looks pretty simple.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { Controller, Get, Query } from '@nestjs/common';
+import { AppService } from './app.service';
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  getData(@Query() query: { token: string }) {
+    return this.appService.getData(query.token);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/nest-request-progress/blob/main/packages/server/src/app/app.controller.ts" target="_blank" rel="noopener">The source &gt;&gt;</a></p>
+</div>
+<div class="paragraph">
+<p>And the last thing about the server is regarding the Data Providing Example modification. The following example is close to the first example in this article. The main aim is to add "Progress functionality" here. Please, read the comment in the code. It’s important.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { Injectable } from '@nestjs/common';
+import { ProgressManager } from './progress-manager';
+
+const getRandomArbitrary = (min: number, max: number): number =&gt;
+  Math.random() * (max - min) + min;
+const delay = (time: number) =&gt;
+  new Promise((resolve) =&gt; setTimeout(resolve, time));
+
+@Injectable()
+export class AppService {
+  // Use progressManager
+  constructor(private readonly progressManager: ProgressManager) {}
+
+  // 150 iterations should be processed
+  getIterationCount(): number {
+    return 150;
+  }
+
+  async getData(token: string): Promise&lt;string[]&gt; {
+    return new Promise(async (resolve, reject) =&gt; {
+      // We need to start the Progress Session before data preparation
+      this.progressManager.startSession(token, this.getIterationCount());
+      try {
+        // Initialize the array of results
+        const result = [];
+
+        for (let i = 0; i &lt; this.getIterationCount(); i++) {
+          // Calculate the result
+          result.push(getRandomArbitrary(1, 9999));
+          // Increase the Progress counter
+          this.progressManager.step(token);
+          // Random delay
+          await delay(getRandomArbitrary(100, 1000));
+        }
+
+        // Return the result
+        resolve(result);
+      } catch (e) {
+        reject(e);
+      } finally {
+        // We need to stop the ProgressManager in any case.
+        // Otherwise, we have a redundant timeout.
+        this.progressManager.stopSession(token);
+      }
+    });
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/nest-request-progress/blob/main/packages/server/src/app/app.service.ts" target="_blank" rel="noopener">The source &gt;&gt;</a></p>
+</div>
+<div class="paragraph">
+<p>The backend part of my example is ready. You can find the full backend solution <a href="https://github.com/buchslava/nest-request-progress/tree/main/packages/server" target="_blank" rel="noopener">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_client">The Client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The client part of my example is placed <a href="https://github.com/buchslava/nest-request-progress/tree/main/packages/client" target="_blank" rel="noopener">here</a>. Both parts are placed in one monorepo. Thanks <a href="https://nx.dev/" target="_blank" rel="noopener">Nx</a> for that. Lets look at it. Please, read the comments in the code below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import * as io from 'socket.io-client';
+import { v4 } from 'uuid';
+import axios from 'axios';
+
+// Generate a unique ID (token)
+const token = v4();
+
+console.info(new Date().toISOString(), `start the request`);
+
+// Call the endpoint described above
+axios
+  .get(`http://localhost:3333/api?token=${token}`)
+  .then((resp) =&gt; {
+    // Print the total length of requested data (an array of random numbers)
+    console.info(new Date().toISOString(), `got ${resp.data.length} records`);
+    process.exit(0);
+  })
+  .catch((e) =&gt; {
+    console.info(e);
+    process.exit(0);
+  });
+// We need to connect to the related Socket Server
+const ioClient = io.connect('ws://localhost:3333');
+// And wait for `progress-${token}` event
+ioClient.on(`progress-${token}`, (progress) =&gt;
+  console.info(new Date().toISOString(), `processed ${progress}%`)
+);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_final_steps">The Final Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It’s time to try the solution.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git clone git@github.com:buchslava/nest-request-progress.git
+cd nest-request-progress
+npm i
+npx nx run server:serve</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Open another terminal and run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npx nx run client:serve</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_voilà">Voilà</h2>
+<div class="sectionbody">
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/monitoring-the-progress-of-an-http-request-in-nestjs-via-websockets/img1.png" alt="img1">
+</div>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-ehf-c46="" class="landing-section"><h1 _ngcontent-ehf-c46="" class="main-title">More Articles</h1><div _ngcontent-ehf-c46="" class="container"><blog-preview _ngcontent-ehf-c46=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/react-native-and-codepush" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/react-native-and-codepush/MainReactNativeCodePush.png" alt="React Native and CodePush"></div><div class="text-container"><p>React Native and CodePush</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/leveraging-angular-15-host-directives" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/leveraging-angular-15-host-directives/Leveraging-host-directives.png" alt="Leveraging @angular 15 host directives"></div><div class="text-container"><p>Leveraging @angular 15 host directives</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/module-federation-with-ssr-and-react-18" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/module-federation-with-ssr-and-react-18/Module-Federation-SSR.png" alt="Module Federation with SSR and React 18"></div><div class="text-container"><p>Module Federation with SSR and React 18</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-ehf-c36=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2022, Valor Software All Rights Reserved</p></div></div></footer></app-footer><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.271c2524a6679b32.js" type="module"></script><script src="polyfills.f39c60c21adb9eb1.js" type="module"></script><script src="main.cbe35bf287ceda45.js" type="module"></script>
+
+</body></html>
