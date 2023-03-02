@@ -1,0 +1,66 @@
+We often encounter routine processes in our work, but what if we could make them less monotonous and even enjoyable? The answer to this problem is https://en.wikipedia.org/wiki/Automation[automation, window=_blank], a well-known solution used by many people in various fields.
+
+In this article, we will explore the design processes that can be automated to save time for other tasks. Let's take a real example: creating a cover image for a blog post on social media. This may seem simple, but let's break it down into its components:
+
+1. Text title +
+2. Background image +
+3. Contextual images +
+4. Author's photo +
+5. Social media cover dimensions +
+6. Image size compression +
+7. Final move +
+
+== Text title
+The first step in creating a cover image is to have a text title. In most cases, the title is provided. But in case the author is writing the article, the title can be determined based on the content of the article. For example, in this case, the title is "Design processes automation with AI services".
+
+== Background image
+The next step is to create a background image. This can be a time-consuming and creatively challenging task, especially if it's done every day. However, by using a service such as Midjourney, the task can be delegated to AI, which will create something cool. All you need to do is to describe the image and Midjourney will generate it for you.
+
+I’ll skip the signup and other initial stages, and start with equal examples of using it.
+
+1. We need to think about the description here and fill in it in the prompt. I used this prompt:
+_“generate a flat, art, technological abstract dark gradient background with a minimalistic pattern, without any text, device, or object in front, just an empty neutral background for a social media post on topic: Design processes automation with AI services”_
+2. Choose one picture of 4 options and download it in Hi-resolution.
+3. Use it for our article cover background
+
+[.small-img]
+image::img1.png[]
+
+== Some contextual images
+The third step is to add some contextual images, such as icons or logos, to make it easier for readers to understand the topic of the article. For this article, the logos of the services used - https://www.figma.com/[Figma, window=_blank], https://letsenhance.io/[letsenhance.io, window=_blank], https://www.remove.bg/[remove.bg, window=_blank], https://www.captain-design.com/plugin/thumblisher[Thumblisher, window=_blank], https://www.figma.com/community/plugin/794829197801903069/TinyCanvas[TinyCanvas, window=_blank] (by https://tinypng.com[TinyPNG, window=_blank]), https://www.midjourney.com/home[Midjourney, window=_blank], and https://openai.com/blog/chatgpt/[ChatGPT, window=_blank] - will be used.
+
+== Author’s picture
+The fourth step is to improve the author's picture. In a perfect world, high-quality pictures with a solid background, good composition, and a human pose and facial expression would be provided to us, but in reality, the picture may need to be improved. To enhance the picture's resolution and sharpen details, https://letsenhance.io/[letsenhance.io, window=_blank] can be used. The service is simple and intuitive to use, just make sure to choose the proper preset and avoid any text.
+
+[.img]
+image::img2.png[]
+
+To remove the background from the picture, a https://www.remove.bg/[remove.bg, window=_blank] plugin in Figma can be used instead of the traditional pen clipping in https://www.adobe.com/products/photoshop.html[Photoshop, window=_blank].
+
+[.img]
+image::img3.png[]
+
+== Social medias cover dimensions
+
+The final step is to create different dimensions of the picture to fit different social media platforms such as https://www.linkedin.com/[LinkedIn, window=_blank], https://twitter.com/[Twitter, window=_blank], and https://www.facebook.com/[Facebook, window=_blank]. This can be done easily with a Figma plugin named Thumblisher. All you need to do is select the social media type and image type, and https://www.figma.com/community/plugin/1037826586645134259/Thumblisher[Thumblisher, window=_blank] will generate the picture from the source file.
+
+[.img]
+image::img4.png[]
+
+== Image size compression
+
+With the https://www.figma.com/community/plugin/794829197801903069/TinyCanvas[TinyCanvas, window=_blank] plugin, we can compress multiple images in Figma
+
+[.img]
+image::img5.png[]
+
+== Final move
+
+We have now completed our task, but what about mentioning https://openai.com/blog/chatgpt[ChatGPT, window=_blank]? Its value cannot be overestimated, as this entire article was written by this tool. The author only guided it and described what he wanted to receive, demonstrating how powerful this tool is.
+
+[.img]
+image::img6.png[]
+
+== Conclusion
+
+In conclusion, with the help of AI services such as https://www.midjourney.com/home/[Midjourney, window=_blank], https://letsenhance.io/[letsenhance.io, window=_blank], https://www.remove.bg/[remove.bg, window=_blank], and https://www.captain-design.com/plugin/thumblisher[Thumblisher, window=_blank], the process of creating a cover image for a blog post can be streamlined and made more efficient. https://openai.com/blog/chatgpt[ChatGPT, window=_blank], a language model, was also used to write this article, highlighting the value of AI in various tasks.
