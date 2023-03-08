@@ -11,6 +11,10 @@ export const routes: Routes = [
     component: NotFoundComponent
   },
   {
+    path: 'press-release/rs-pack-rust-based-web-bundler',
+    loadChildren: () => import('@valor-software/press-release').then(m => m.PressReleaseModule)
+  },
+  {
     path: 'services',
     loadChildren: () => import('@valor-software/services-page').then(m => m.ServicesPageModule)
   },

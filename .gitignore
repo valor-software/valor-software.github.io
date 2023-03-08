@@ -75,3 +75,5 @@ libs/route-pages/services-page/src/**/*.js
 libs/route-pages/services-page/src/**/*.js.map
 scully/**/*.js
 scully/**/*.js.map
+libs/route-pages/press-release/src/**/*.js
+libs/route-pages/press-release/src/**/*.js.map

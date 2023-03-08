@@ -27,6 +27,12 @@
       "@valor-software/blog-portfolio": [
         "libs/route-pages/blog-portfolio/src/index.ts"
       ],
+      "@valor-software/booking-page": [
+        "libs/route-pages/booking-page/src/index.ts"
+      ],
+      "@valor-software/breethe-page": [
+        "libs/route-pages/breethe-page/src/index.ts"
+      ],
       "@valor-software/careers": [
         "libs/route-pages/careers/src/index.ts"
       ],
@@ -51,6 +57,9 @@
       "@valor-software/liberty-flights-page": [
         "libs/route-pages/liberty-flights-page/src/index.ts"
       ],
+      "@valor-software/press-release": [
+        "libs/route-pages/press-release/src/index.ts"
+      ],
       "@valor-software/services-page": [
         "libs/route-pages/services-page/src/index.ts"
       ],
@@ -62,12 +71,6 @@
       ],
       "@valor-software/terminus-page": [
         "libs/route-pages/terminus-page/src/index.ts"
-      ],
-      "@valor-software/breethe-page": [
-        "libs/route-pages/breethe-page/src/index.ts"
-      ],
-      "@valor-software/booking-page": [
-        "libs/route-pages/booking-page/src/index.ts"
       ]
     }
   },
