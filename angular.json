@@ -292,6 +292,104 @@
         "feedback"
       ]
     },
+    "route-pages-booking-page": {
+      "projectType": "library",
+      "root": "libs/route-pages/booking-page",
+      "sourceRoot": "libs/route-pages/booking-page/src",
+      "prefix": "valor-software-site-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/route-pages/booking-page"
+          ],
+          "options": {
+            "project": "libs/route-pages/booking-page/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/route-pages/booking-page/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/route-pages/booking-page/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/route-pages/booking-page"
+          ],
+          "options": {
+            "jestConfig": "libs/route-pages/booking-page/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/route-pages/booking-page/src/**/*.ts",
+              "libs/route-pages/booking-page/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": [
+        "common-docs"
+      ]
+    },
+    "route-pages-breethe-page": {
+      "projectType": "library",
+      "root": "libs/route-pages/breethe-page",
+      "sourceRoot": "libs/route-pages/breethe-page/src",
+      "prefix": "valor-software-site-base",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/route-pages/breethe-page"
+          ],
+          "options": {
+            "project": "libs/route-pages/breethe-page/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/route-pages/breethe-page/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/route-pages/breethe-page/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/route-pages/breethe-page"
+          ],
+          "options": {
+            "jestConfig": "libs/route-pages/breethe-page/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/route-pages/breethe-page/src/**/*.ts",
+              "libs/route-pages/breethe-page/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": [
+        "common-docs"
+      ]
+    },
     "route-pages-careers": {
       "projectType": "library",
       "root": "libs/route-pages/careers",
@@ -536,6 +634,56 @@
         "common-docs"
       ]
     },
+    "route-pages-press-release": {
+      "projectType": "library",
+      "root": "libs/route-pages/press-release",
+      "sourceRoot": "libs/route-pages/press-release/src",
+      "prefix": "valor-software-site-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/route-pages/press-release"
+          ],
+          "options": {
+            "project": "libs/route-pages/press-release/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/route-pages/press-release/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/route-pages/press-release/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/route-pages/press-release"
+          ],
+          "options": {
+            "jestConfig": "libs/route-pages/press-release/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/route-pages/press-release/src/**/*.ts",
+              "libs/route-pages/press-release/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": [
+        "common-docs",
+        "feedback"
+      ]
+    },
     "route-pages-services-page": {
       "projectType": "library",
       "root": "libs/route-pages/services-page",
@@ -674,104 +822,6 @@
             "lintFilePatterns": [
               "libs/route-pages/terminus-page/src/**/*.ts",
               "libs/route-pages/terminus-page/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": [
-        "common-docs"
-      ]
-    },
-    "route-pages-breethe-page": {
-      "projectType": "library",
-      "root": "libs/route-pages/breethe-page",
-      "sourceRoot": "libs/route-pages/breethe-page/src",
-      "prefix": "valor-software-site-base",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/route-pages/breethe-page"
-          ],
-          "options": {
-            "project": "libs/route-pages/breethe-page/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/route-pages/breethe-page/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/route-pages/breethe-page/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/route-pages/breethe-page"
-          ],
-          "options": {
-            "jestConfig": "libs/route-pages/breethe-page/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/route-pages/breethe-page/src/**/*.ts",
-              "libs/route-pages/breethe-page/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": [
-        "common-docs"
-      ]
-    },
-    "route-pages-booking-page": {
-      "projectType": "library",
-      "root": "libs/route-pages/booking-page",
-      "sourceRoot": "libs/route-pages/booking-page/src",
-      "prefix": "valor-software-site-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/route-pages/booking-page"
-          ],
-          "options": {
-            "project": "libs/route-pages/booking-page/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/route-pages/booking-page/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/route-pages/booking-page/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/route-pages/booking-page"
-          ],
-          "options": {
-            "jestConfig": "libs/route-pages/booking-page/jest.config.ts",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/route-pages/booking-page/src/**/*.ts",
-              "libs/route-pages/booking-page/src/**/*.html"
             ]
           }
         }
