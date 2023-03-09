@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -6,6 +7,11 @@ import { Component } from "@angular/core";
   templateUrl: "./press-release.component.html",
 })
 export class PressReleaseComponent {
+
+  private readonly _activeTooltip$ = new BehaviorSubject<string | null>(null);
+
+  public readonly activeTooltip$ = this._activeTooltip$.asObservable();
+
   public readonly additionalLinks = [
     { src: "assets/press-releases/icons/discord.svg", href: "http://bit.ly/3F2nyOX", alt: "Discord" },
     { src: "assets/press-releases/icons/github.svg", href: "https://github.com/web-infra-dev/rspack", alt: "Github" },
@@ -62,4 +68,12 @@ export class PressReleaseComponent {
       href: 'https://valor-software.com/'
     }
   ];
+
+  onAdditionalLinkMouseEnter(linkSrc: string): void {
+    this._activeTooltip$.next(linkSrc);
+  }
+
+  onAdditionalLinkMouseLeave(): void {
+    this._activeTooltip$.next(null);
+  }
 }

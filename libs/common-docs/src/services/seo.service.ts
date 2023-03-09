@@ -578,6 +578,44 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
             nameValue: 'title',
             content: 'Non-profit Organizations - Valor Software'
         }
+    ],
+    'press-release/rs-pack-rust-based-web-bundler': [
+        {
+            nameType: 'meta',
+            name: 'name',
+            nameValue: 'description',
+            content: 'The Rust-Based Web Bundler that Combines High Performance with webpack Interoperability'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:title',
+            content: 'Announcing Rspack: A new and high-performance frontend bundler'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'og:description',
+            content: 'The Rust-Based Web Bundler that Combines High Performance with webpack Interoperability'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:title',
+            content: 'Announcing Rspack: A new and high-performance frontend bundler'
+        },
+        {
+            nameType: 'meta',
+            name: 'property',
+            nameValue: 'twitter:description',
+            content: 'The Rust-Based Web Bundler that Combines High Performance with webpack Interoperability'
+        },
+        {
+            nameType: 'title',
+            name: 'title',
+            nameValue: 'title',
+            content: 'Announcing Rspack: A new and high-performance frontend bundler'
+        }
     ]
 };
 
@@ -587,7 +625,8 @@ enum routeValues {
     services = 'services',
     articles = 'articles',
     projects = 'projects',
-    careers = 'careers'
+    careers = 'careers',
+    pressRelease = 'press-release',
 
 };
 
@@ -645,6 +684,14 @@ export class SeoService {
             }
 
             if (value[0].path === 'services') {
+                const tags = this.metaList[`${value[0].path}/${value[1].path}`];
+                if (tags?.length) {
+                    this.addTags(tags);
+                }
+            }
+
+
+            if (value[0].path === 'press-release') {
                 const tags = this.metaList[`${value[0].path}/${value[1].path}`];
                 if (tags?.length) {
                     this.addTags(tags);

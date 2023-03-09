@@ -61,7 +61,7 @@
                 contributors, and created ngx-bootstrap (an Angular component library with over 300 thousand downloads a week).</p>
 
             <h2 class="!text-2xl !mt-9 !mb-5">"First Look" video</h2>
-            
+
             <div class="videoblock">
                 <div class="content">
                     <iframe src="https://www.youtube.com/embed/rgLMfSYpn5s"
@@ -77,21 +77,34 @@
 
             <div class="flex flex-wrap gap-8 lg:gap-0">
 
+
+
                 <div *ngFor="let link of additionalLinks; let firstLink = first; let lastLink = last"
                      [class.lg:pr-7]="firstLink"
                      [class.lg:pl-7]="lastLink"
                      [class.lg:px-7]="!firstLink && !lastLink"
                      [class.lg:border-l]="!firstLink"
                      class="border-[#36363A]">
-                    <a [href]="link.href"
+                    <a (mouseenter)="onAdditionalLinkMouseEnter(link.src)"
+                       (mouseleave)="onAdditionalLinkMouseLeave()"
+                       [href]="link.href"
                        target="_blank"
                        rel="noopener noreferrer"
-                       class="flex flex-col items-center justify-center w-16 h-16 bg-[#0D0D0E] rounded">
+                       class="flex flex-col items-center justify-center w-16 h-16 bg-[#0D0D0E] rounded relative">
                         <img class="!m-0 !h-8 !w-8 !w-auto"
                              [src]="link.src"
                              [alt]="link.alt">
+
+
+                        <div *ngIf="(activeTooltip$ | async) === link.src"
+                             class="absolute translate-y-[120%] mt-2 bottom-0 bg-light_grey_bg text-header_font_col text-base font-normal py-3 px-6 rounded-lg"> {{ link.alt }}</div>
+
                     </a>
+
+
+
                 </div>
+
 
 
             </div>
