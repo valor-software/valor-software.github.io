@@ -42,6 +42,8 @@ MIT
 
 @valor-software/liberty-flights-page
 
+@valor-software/press-release
+
 @valor-software/services-page
 
 @valor-software/tablesready-page

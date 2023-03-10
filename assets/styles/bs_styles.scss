@@ -85,6 +85,10 @@
   @apply w-11/12 lg:w-1225  mx-auto;
 }
 
+.full-container {
+  @apply px-4 xl:px-28;
+}
+
 .menu-item {
   width: fit-content;
   @apply text-header_font_col px-3 py-2 font-medium relative cursor-pointer block lg:w-auto;
