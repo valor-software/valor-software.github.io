@@ -6,7 +6,7 @@ import { filter, pairwise } from "rxjs/operators";
 import { Subscription } from "rxjs";
 
 const notFoundPageUrl = '/404';
-declare const gtag: Function;
+declare const gtag: any;
 
 @Component({
   selector: 'valor-software-site-base-root',
