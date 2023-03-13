@@ -6,6 +6,7 @@ import { filter, pairwise } from "rxjs/operators";
 import { Subscription } from "rxjs";
 
 const notFoundPageUrl = '/404';
+declare const gtag: any;
 
 @Component({
   selector: 'valor-software-site-base-root',
@@ -16,6 +17,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
     title = 'valor-software-site';
     scrollPosition = 0;
     $routeEvents?: Subscription;
+    $gaRouteEvents?: Subscription;
     $routerEventNavigationEnd: Subscription;
     showFooterAndHeader = true;
 
@@ -45,6 +47,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        this.handleGoogleAnalyticsTracking();
         setTimeout(() => {
             if (this.scrollPosition) {
                 this.scrollToPosition(this.scrollPosition);
@@ -77,5 +80,22 @@ export class AppComponent implements OnDestroy, AfterViewInit {
     ngOnDestroy() {
         this.$routeEvents?.unsubscribe();
         this.$routerEventNavigationEnd?.unsubscribe();
+        this.$gaRouteEvents?.unsubscribe();
     }
+
+    private handleGoogleAnalyticsTracking(): void {
+        let configured = false;
+        this.$gaRouteEvents = this.router.events.subscribe((event) => {
+          if (event instanceof NavigationEnd) {
+            if(!configured){
+                gtag('config', 'UA-73071494-2', { send_page_view: false });
+                configured = true;
+            }
+            gtag('event', 'page_view', {
+                page_location: window.location.href,
+                page_path: event.urlAfterRedirects,
+            });
+          }
+        });
+      }
 }
