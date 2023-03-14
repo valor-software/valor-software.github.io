@@ -60,6 +60,9 @@
       "@valor-software/press-release": [
         "libs/route-pages/press-release/src/index.ts"
       ],
+      "@valor-software/privacy-policy-page": [
+        "libs/route-pages/privacy-policy-page/src/index.ts"
+      ],
       "@valor-software/services-page": [
         "libs/route-pages/services-page/src/index.ts"
       ],
