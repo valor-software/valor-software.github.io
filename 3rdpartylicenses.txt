@@ -44,6 +44,8 @@ MIT
 
 @valor-software/press-release
 
+@valor-software/privacy-policy-page
+
 @valor-software/services-page
 
 @valor-software/tablesready-page
