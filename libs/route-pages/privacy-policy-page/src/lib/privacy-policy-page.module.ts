@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PrivacyPolicyPageRoutingModule } from './privacy-policy-page-routing.module';
+import { RouterModule, Routes } from '@angular/router';
+import { PrivacyPolicyPageComponent } from './components/privacy-policy-page/privacy-policy-page.component';
+import { routes } from './routes';
 
 @NgModule({
 	imports: [
 		CommonModule,
-		PrivacyPolicyPageRoutingModule,
-	]
+		RouterModule.forChild(routes)
+	],
+	declarations: [PrivacyPolicyPageComponent]
 })
 export class PrivacyPolicyPageModule {
+	static routes: Routes = routes;
 }
         
