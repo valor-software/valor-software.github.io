@@ -35,6 +35,10 @@ export const routes: Routes = [
     loadChildren: () => import('@valor-software/blog-portfolio').then(m => m.BlogPortfolioModule)
   },
   {
+    path: 'privacy-policy',
+    loadChildren: () => import('@valor-software/privacy-policy-page').then(m => m.PrivacyPolicyPageModule)
+  },
+  {
     path: 'all-vacancies',
     redirectTo: 'careers'
   },

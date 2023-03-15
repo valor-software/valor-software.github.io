@@ -77,3 +77,5 @@ scully/**/*.js
 scully/**/*.js.map
 libs/route-pages/press-release/src/**/*.js
 libs/route-pages/press-release/src/**/*.js.map
+
+.angular

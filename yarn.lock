@@ -25,7 +25,7 @@
 
 "@angular-devkit/build-angular@14.2.7":
   version "14.2.7"
-  resolved "https://registry.npmjs.org/@angular-devkit/build-angular/-/build-angular-14.2.7.tgz"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-14.2.7.tgz#4a210a1be3ff83e7d5e537cddc5acbf2b6443818"
   integrity sha512-Y58kcEmy8bSFyODtUFQzkuoZHNCji3fzRwGCiQYdAh/mkBf53CuVWoT9q7MrvGOc7Nmo2JiuwR/b7c543eVgfw==
   dependencies:
     "@ampproject/remapping" "2.2.0"
@@ -95,7 +95,7 @@
 
 "@angular-devkit/build-webpack@0.1402.7":
   version "0.1402.7"
-  resolved "https://registry.npmjs.org/@angular-devkit/build-webpack/-/build-webpack-0.1402.7.tgz"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.1402.7.tgz#ff6794197d4ada5fec2641babc9f8c33d96427e4"
   integrity sha512-aDhS/ODt8BwgtnNN73R7SuMC1GgoT5Pajn1nnIWvvpGj8XchLUbguptyl2v7D2QeYXXsd34Gtx8cDOr9PxYFTA==
   dependencies:
     "@angular-devkit/architect" "0.1402.7"
@@ -165,7 +165,7 @@
 
 "@angular/animations@14.2.8":
   version "14.2.8"
-  resolved "https://registry.npmjs.org/@angular/animations/-/animations-14.2.8.tgz"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-14.2.8.tgz#749c04e621110b1df0a74d08c5433fe994c90b7c"
   integrity sha512-9YKmaebHW1F/N63TS1EboBQ5Gniq1ogWQ2XEypy057LfcnoPtVkRbAsl2pUJWbUjDZK9f2BpWfXXm9i5ZxIW3A==
   dependencies:
     tslib "^2.3.0"
@@ -205,14 +205,14 @@
 
 "@angular/common@14.2.8":
   version "14.2.8"
-  resolved "https://registry.npmjs.org/@angular/common/-/common-14.2.8.tgz"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-14.2.8.tgz#3b25df0fa40e2341184755fdc36ebca53aa78c25"
   integrity sha512-JSPN2h1EcyWjHWtOzRQmoX48ZacTjLAYwW9ZRmBpYs6Ptw5xZ39ARTJfQNcNnJleqYju2E6BNkGnLpbtWQjNDA==
   dependencies:
     tslib "^2.3.0"
 
 "@angular/compiler-cli@14.2.8":
   version "14.2.8"
-  resolved "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-14.2.8.tgz"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-14.2.8.tgz#c07afda6637fc9bb8b3332ddd168550d51a5554d"
   integrity sha512-QTftNrAyXOWzKFGY6/i9jh0LB2cOxmykepG4c53wH9LblGvWFztlVOhcoU8tpQSSH8t3EYvGs2r8oUuxcYm5Cw==
   dependencies:
     "@babel/core" "^7.17.2"
@@ -228,7 +228,7 @@
 
 "@angular/compiler@14.2.8":
   version "14.2.8"
-  resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-14.2.8.tgz"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-14.2.8.tgz#a091497b17bdd35fe3d5bb3e8b56810dd2a46374"
   integrity sha512-lKwp3B4ZKNLgk/25Iyur8bjAwRL20auRoB4EuHrBf+928ftsjYUXTgi+0++DUjPENbpi59k6GcvMCNa6qccvIw==
   dependencies:
     tslib "^2.3.0"
@@ -242,33 +242,33 @@
 
 "@angular/core@14.2.8":
   version "14.2.8"
-  resolved "https://registry.npmjs.org/@angular/core/-/core-14.2.8.tgz"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-14.2.8.tgz#07001f6e098a3a66363bceb0366f7a28d6fd4d21"
   integrity sha512-cgnII9vJGJDLsfr7KsBfU2l+QQUmQIRIP3ImKhBxicw2IHKCSb2mYwoeLV46jaLyHyUMTLRHKUYUR4XtSPnb8A==
   dependencies:
     tslib "^2.3.0"
 
 "@angular/forms@14.2.8":
   version "14.2.8"
-  resolved "https://registry.npmjs.org/@angular/forms/-/forms-14.2.8.tgz"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-14.2.8.tgz#81359be9736fc7abba5b0910e50448e42fbd77d9"
   integrity sha512-OaL7Gi6STxJza7yn0qgmh6+hV6NVbtGmunpzrn9cR1k5TeE4ZtXu1z7VZesbZ9kZ3F6U9CmygFt0csf7j1d+Ow==
   dependencies:
     tslib "^2.3.0"
 
 "@angular/language-service@14.2.8":
   version "14.2.8"
-  resolved "https://registry.npmjs.org/@angular/language-service/-/language-service-14.2.8.tgz"
+  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-14.2.8.tgz#1862cfb3059381b662ddfc3f361151ca8660d4b0"
   integrity sha512-XvLmZB2RbawDjJSwU41XoZvmkHGnKTZ4gM6LyNnER2rSaEQVHmADh39UF/hAHeEosHVeau/PKAvwIcxyPW6YxA==
 
 "@angular/platform-browser-dynamic@14.2.8":
   version "14.2.8"
-  resolved "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-14.2.8.tgz"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-14.2.8.tgz#bdc3c3a85f06aba1915a6e9c75e49b9adc85fa7d"
   integrity sha512-CPK8wHnKke8AUKR92XrFuanaKNXDzDm3uVI3DD0NxBo+fLAkiuVaDVIGgO6n6SxQVtwjXJtMXqQuNdzUg4Q9uQ==
   dependencies:
     tslib "^2.3.0"
 
 "@angular/platform-browser@14.2.8":
   version "14.2.8"
-  resolved "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-14.2.8.tgz"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-14.2.8.tgz#d1180f270aa407e94506edd470ee1665912c468c"
   integrity sha512-tSASBLXoBE0/Gt6d2nC6BJ1DvbGY5wo2Lb+8WCLSvkfsgVqOh4uRuJ2a0wwjeLFd0ZNmpjG42Ijba4btmCpIjg==
   dependencies:
     tslib "^2.3.0"
@@ -291,7 +291,7 @@
 
 "@angular/router@14.2.8":
   version "14.2.8"
-  resolved "https://registry.npmjs.org/@angular/router/-/router-14.2.8.tgz"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-14.2.8.tgz#cca07d2f388f4a810664753296b9faa1f03aacda"
   integrity sha512-rbKLsa4/scPP8AxaDRQfkLqfg8CbZ163dPqHMixou90uK/dx00LjCyUeS38/otdAYNZhrD0i5nu+k65qwhLX8w==
   dependencies:
     tslib "^2.3.0"
@@ -1787,7 +1787,7 @@
 
 "@ngtools/webpack@14.2.7":
   version "14.2.7"
-  resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-14.2.7.tgz"
+  resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-14.2.7.tgz#68d4ffa72693d7bd34b3db3c92ce683936f81995"
   integrity sha512-I47BdEybpzjfFFMFB691o9C+69RexLTgSm/VCyDn4M8DrGrZpgYNhxN+AEr1uA6Bi6MaPG6w+TMac5tNIaO4Yw==
 
 "@nodelib/fs.scandir@2.1.5":
@@ -7183,7 +7183,7 @@ loader-utils@1.2.3:
 
 loader-utils@3.2.0:
   version "3.2.0"
-  resolved "https://registry.npmjs.org/loader-utils/-/loader-utils-3.2.0.tgz"
+  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-3.2.0.tgz#bcecc51a7898bee7473d4bc6b845b23af8304d4f"
   integrity sha512-HVl9ZqccQihZ7JM85dco1MvO9G+ONvxoGa9rkhzFsneGLKSUg1gJf9bWzhRhcvm2qChhWpebQhP44qxjKIUCaQ==
 
 loader-utils@^2.0.0:
@@ -9399,7 +9399,7 @@ rxjs@^7.0.0, rxjs@^7.5.1, rxjs@^7.5.4:
 
 rxjs@^7.5.5:
   version "7.5.7"
-  resolved "https://registry.npmjs.org/rxjs/-/rxjs-7.5.7.tgz"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.7.tgz#2ec0d57fdc89ece220d2e702730ae8f1e49def39"
   integrity sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA==
   dependencies:
     tslib "^2.1.0"
@@ -11047,7 +11047,7 @@ zone.js@0.11.4:
 
 zone.js@0.11.8:
   version "0.11.8"
-  resolved "https://registry.npmjs.org/zone.js/-/zone.js-0.11.8.tgz"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.11.8.tgz#40dea9adc1ad007b5effb2bfed17f350f1f46a21"
   integrity sha512-82bctBg2hKcEJ21humWIkXRlLBBmrc3nN7DFh5LGGhcyycO2S7FN8NmdvlcKaGFDNVL4/9kFLmwmInTavdJERA==
   dependencies:
     tslib "^2.3.0"
