@@ -30,6 +30,9 @@ import { Subscription, of } from "rxjs";
         border-radius: 0.3em;
         padding: 0.1em 0.25em;
     }
+    ::ng-deep.white{
+        color: #ffffff;
+    }
     ::ng-deep.small-img {
         margin: auto;
         width: 40%
