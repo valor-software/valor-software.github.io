@@ -4,6 +4,7 @@ on:
   pull_request
 
 
+
 env:
   FIREBASE_CHANNEL: ${{ fromJSON('["", "live"]')[!github.base_ref] }}
 
