@@ -1,0 +1,180 @@
+== Introduction
+
+Viktoriia (Vika) Lurie is the product owner for Module Federation and works for Valor Software. Zackary Jackson is the creator of webpack module federation and principal engineer at Lululemon. This interview is the first of hopefully many diving deeper into module federation to help the community better understand this rapidly growing and evolving technology.
+
+===== *_Vika:_*
+_[.white]#Hello Zack! Welcome, I’m glad that we got the opportunity to have this conversation. I’d love for us to start by  talking about the upcoming release. You already shared some initial details on our community call. What would you like to add?#_
+
+===== *Zack:*
+Yeah, so module federation version 7 has a new main feature in beta and this is the use of delegate modules everywhere. 
+
+== How did we get here?
+===== *_Vika:_*
+_[.white]#Could you explain what delegate modules are?#_
+
+===== *Zack:*
+Delegate modules solve a challenge that has been in the module federation space since day one. This concept that everybody refers to as dynamic remotes. All the examples we currently have out around dynamic remotes are mostly about how you inject a script using the low level module federation API. 
+
+When you do this you lose all the nice stuff that webpack has to offer, just so that you can programmatically inject a script. What I’ve found most engineers want is the ability to dynamically choose the right kind of “glue” code. 
+
+What they are trying to achieve is something like when a user clicks on a button there is an import that is based on a config the developer provided that points to a remote application somewhere. I found that in most use cases, developers don't want full dynamic remotes; they still want to be able to use “require” and “input from”. They really want to control the glue code part of when webpack goes to request a remote and how it gets that container, and what methods they can use to retrieve it? 
+
+The older implementation of this was achieved with the “promise new promise” syntax. The idea was that I can put in a giant string that webpack will take verbatim. When I copy that in and it'll do whatever that string says. 
+
+The problem with that approach though was that it is not very scalable. It's great if you need to grab something off the window or make one API call. If you're trying to use a library, or you want to do something like hook LaunchDarkly up to control decisioning, you couldn't because you cannot directly import anything, in this case it's very brittle and restricting. 
+
+== Diving into delegate modules
+Delegate modules allow us to just tell webpack that this remote entry is actually code inside the webpack build already. With delegate modules you can kind of make a framework out of it, because it can bundle all kinds of entry point logic. What you're exporting back is essentially a promise that resolves to a federated remote. 
+
+If I want to use elastic file system (EFS) to get the remote entry on the server I can’t easily because by default the plugin only uses HTTP. While this is the easiest way to get a federated remote in the future I plan to add other bindings to read from the file system directly. The hope is to get this into version 7, but it will probably be like 7.1.
+
+===== *_Vika:_* 
+_[.white]#Reading from the file, can you dive into a little bit on the use case of that? I believe you mentioned before that it's for fallbacks but correct me if I'm wrong.#_
+
+===== *Zack:*
+One of the use cases is for fallbacks. Scenarios where something isn't there when we expect it to be. There's a couple of ways to handle it. If it's a React component, you could do an error boundary or dynamic import, then follow that with a catch. In that case, if it's offline, the application will throw an error and you would have to catch the error and handle it on an implementation by implementation basis to recover the federated remote. 
+
+With the delegate modules, you can shim the module federation interface itself. What webpack gets back is a container, but the container’s functions are your own logic. So you can initialize it, however, you would normally initialize it. 
+
+Then when you're calling the get property on it, you could say if the get fails look at what webpack is currently asking for. If for example it's looking for the navigation remote, and navigation tried to get the mega nav and that failed. The catch could just be dynamic “import from node_modules/”, you know, company name slash, whatever the original request was, meganav and to webpack, it'll still think that it's retrieving a federated chunk. 
+
+By doing this you've actually just redirected webpack to say, well, that didn't work now go and get this other piece of code and just return it in a federation like way. Then webpack doesn't know if federation fails or not, you still just use that one import interface. With these changes you have a really robust set of middleware  between the connection points between the webpack graphs, you have a lot of control over graphs and what happens. Fallbacks, yes that is one very useful scenario. 
+
+The other big use case is on the server side. I might want to use HTTP to go and get a string off the VPC, evaluate that string inside of the VM, and then return it. However, that comes with some potential security issues. 
+
+== Alternative ways to fetch
+
+===== *_Vika:_* 
+_[.white]#So in that scenario you could be using the AWS SDK or even pulling that string from a database value, right?#_
+
+===== *Zack:*
+This is the beauty of it. A database is one of the potential options that I've spoken about a couple times with bigger organizations like BitDev. If we put entries in a database it would be super fast to query where the remote is. The entries themselves wouldn't be really that large. 
+
+I think another really interesting aspect of using a database is from the security perspective. If you did use a database, you could have really strong user based access controls. If a host is not allowed to query a database or they don't have the roles and permissions needed they can't query this federated remote container back out. You could return a container that's allowed that has a similar interface, but it's not the admin one. The unauthenticated reply might still return a page, but it's a page that says you need to log in.
+
+===== *_Vika:_* 
+_[.white]#Does that also help with Edge Side Includes (ESI) and Key Value (KV) stuff on the edge that you talked about before?#_
+
+===== *Zack:*
+It can, because in places where delegates don't work natively, like CDN’s that are not Netlify, what you can do is you could say, well, here's a delegate module. When webpack requests a chunk, what you could do is return your own remote entry, where all doing is it's fetching HTML, and it's returning it as React components. 
+
+On the edge network, you technically would have that ESI stitching layer, but it's the webpack runtime. It would depend on when you render it, you have to be able to hit something that will render. It's not super automatic, but it's a whole lot less work when it comes to the implementation, because now you need a little infrastructure to do something with that. 
+
+You wouldn’t have to build your application to run on the edge, which usually requires a very different kind of development look and feel when compared to a normal monolithic app. If you wanted to have some app run partially on node, and have part of it run on the edge, this would offer a more agnostic way for distributed systems to still work without you having to build your implementation top to bottom to be deployed to an edge worker. You could just say, I'm going to import this and this thing is going to live on an edge worker. 
+
+This import then does the equivalent of markup stitching. Fetch the HTML, convert it into a little lightweight React component on the response and render that as if it was a React component.
+
+Another big concern has always been the security around fetch. What if you want to use your own fetch client, or you want to have cookies or bearer tokens or headers attached to the fetch request. It's currently very hard to offer that to the end user with the current module federation interface. With a delegate modules how the code gets to webpack is up to you, the only thing that the delegate wants is to resolve a remote entry container. 
+
+In the browser, it's “window.remote”. On the server, it can be however you want to acquire that remote entry code. As long as you resolve back an executed remote, everything else is in your control. 
+
+Another big use case I see it for is scenarios like how I don't currently support file system bindings in the plugin. With delegate modules nobody has to wait for me or the team to build out the support. They don’t have to think of how to differentiate between when to use HTTP and when to use something like elastic file system. 
+
+All they would need to do is in the delegate module do something like fs.readFile and point to the remote they're asking for. Typically this is something like a mounted store slash this team name slash whatever version that I'm after. From there I can just use vanilla require to get that. Another option is to use the util, which would be based on the same one that webpack uses for its async load target. This would be similar to fs.readfile, and then VM run in this context. That way, we could refresh the container whenever we want to, because there's no require cache that the container itself is getting stuck in. It's reading a file and then passing it to a JavaScript VM. This is how webpacks async node target works today. Which is also not really any different from how a standard we pack build works when you put it in async mode.
+
+== What was wrong with promise new promise
+
+===== *_Vika:_* 
+_[.white]#Can you talk a little bit about how using delegate modules increases the reliability of the code versus the “promise new promise” syntax?#_
+
+===== *Zack:*
+Reliability is a great topic to mention. Promise new promise is technically a sound option, if you're only doing something simple. The problem with it though is when you're sticking a bunch of code in a template string. There's no syntax highlighting, you can’t use require, and you can't use anything that is not already like in a transpiled form. The template string is not going through Babel or anything else. That also means I can't use es6 in there or optional chaining, which would be really helpful or even async await. It's also just brittle. Unless you make sure that you're just putting simple es5in there, it gets a little tricky to try and manage it. 
+
+The bigger problem with using a promise new promise template string is that you can't really test it because it's just a promise like it's very hard to mock “well what is that going to do?”. When it's a file loaded with delegate modules though you can put a unit test on it you could mock some environment for it to reach out to. You can confirm, hey, this thing resolves this mocked object that says get whatever they requested for you or it just returns a string saying I'm the fallback. Then you could know, cool when I do this import and it fails, the delegate module failure mode is doing what we want it to do. 
+
+The bottom line is it's testable,it has syntax highlighting, and it can be written in TypeScript not just a string. At Lululemon our promise new promise is over 200 lines of code. At that scale is where the problems start to come in. A lot of logic starts going in here, because you can kind of build a framework out of module federation now that you control the glue code. 
+
+Webpack is your router, and how webpack gets to these chunks is basically up to you. So you can do a lot with delegate modules. From decisioning to permission based access, fail overs. Anything that you would really want to do, you could, you could do it without your developers having to learn another framework. They don't have to know how to inject the script and do all of that. It would be one file that one team owns. 
+
+The idea is to try and extract this out to a more reliable location. developers don't really need to know about it. It's more like a platform team thing. It offers the entire team as much control as possible to do what they want in regards to what is being fed to webpack. How's it going to work, the rest of the development team still just uses require or import from, their implementation doesn't change. Yet, they now have one of the core concepts of dynamic remotes, which is, I know what I'm importing. 
+
+It's not completely dynamic, where I don't even know that I want something like checkout, or what I want from checkout. This is in that case, where you know, this is going to be a checkout page. I want to import, checkout/my- bag. That's a very common use case, we know the string of a thing that we want to import, we know what the intent is at a certain location. Often though, they can't control what remote gets loaded in there, because it's usually hard coded. This is a very nice mix of static and dynamic you still get to use important or require, but you also get to write the connection code between webpacks host, the incoming remote and how that's all going to look.
+
+== Dynamic programming
+
+===== *_Vika:_* 
+_[.white]#You touched on something really interesting just now, you said dynamic but what you described requires having an understanding of what you're importing. What about the folks that want to have it the 100% dynamic, where you don't even know what you're importing, you just get a JSON from somewhere that gives you the remotes.#_
+
+===== *Zack:*
+We still haven't tested that fully in the server side environments, because I haven't had a good use for it. My general recommendation has been to try not to lean on the low level API. Just because there's some quirks to it. One of the issues we've had with Next.js in the past was, you'd always get this error that's like, “can't initialize this external” and it would throw a warning in the browser, we would still make it initialize, but webpack wasn't able to start your remotes for you. So we had to put a proxy on top of the object so that when you try to access it, we could initialize it at that point in time. 
+
+What webpack wants is all the remotes to get initialized up front. When you're doing the super dynamic remotes thing, webpack has no idea there's a federated module on the way. Webpack can't try to prepare this thing ahead of time. The problem with that is, you can end up in a space where if you do a lot of daisy chaining of these super dynamic remotes,the first remote you initialized has less share scope than the last one initialized. This is because once you call init, webpack makes a copy of the object and seals it. If you add more keys and more shared packages from other remotes on webpack can't do that whole negotiation thing where it checks, what do other remotes offer. share all the packages in everybody pick what we're going to use, you kind of lose that because it doesn't have that circular option to go around and, and check what everybody's got. It's going to initialize what it's got, and share that. Then every time you tack something on, it's gonna initialize and seal it in that same way. That's the one reason I tried to avoid the fully dynamic option. 
+
+We have other little low level functions in there that you can do it and developers and companies have used this in the past with minimal issues. Next.js used to work like this. You know it's a viable option. It's just one I prefer to say, if you can at least know what the import is. rather do that but you can also hook into and we might need to adjust the tool slightly, but we have all the low level bits and pieces for you to be able to access is similar to saying window dot remote name.init, window.remoteName, get and manually call things out of the out of the interface yourself like we could do that server or client side.
+
+== Slots and Zones
+
+===== *_Vika:_* 
+_[.white]#If you are doing SSR, the moment of the page request, you know all of the federated remotes for that user for that session. Does that resolve part of the issue?#_
+
+===== *Zack:*
+If you had a map of them, and you said, okay, as this company, you query, and the query of the whole company, what are all the remotes that shell so and so could use? All right, there's 25 teams that work under this shell, we don't know when or where they're gonna come from. But we know there's 25 teams, okay, awesome. When the app starts, you could say go loop over all the remotes and call initialize on them, and just start initializing everybody, then, initialization is almost separate from getting. 
+
+So once initialization happens, then you can dynamically flip between whatever you want programmatically, or flip between two different remotes on the fly, just saying, you know, like, I'm gonna get for ease of use, let's say we had a utility called get remote, and you give it a name, and it pulls the remote off the scope, whether it's window, or it's my global scoping that I have a node, get remote name, cool, here's the container. Then you can initialize or call a getter or from that, however you want to, and that would offer you full programmatic control, while still ensuring that hey, we've initialized all potential things before we started trying to pull stuff out of it. So we're not fragmenting when new webpack runtimes are attached to the host. 
+
+The other option that I really do like is this concept of building out slots. Since you can have a delegate module in there, what you're importing doesn't actually have to mean anything anymore. Imagine if we just had a list of remotes and slots for remotes inside of zone one, through zone 50. There's just slots for remotes and now you could say, Okay, this part of the header, I'm gonna call that zone one slot one. So now when I import zone, one slot one, kind of like, you know, a template or something that you'd have in a CMS, you could tell webpack, zone one slot one is assigned to the header team, and it's the mega nav. 
+
+Now webpack is still using import from and you have other static imports, but there's slots and rather, you're using this delegate module to assign meaning to those slots. Now that it's aliased internally webpack knows I'm gonna need this right away, because it's import from not a lazy import, so it can set up whatever it needs to. You can translate zone one goes to slot one. If we augment the little object that we're sending back there, you can intercept it and go, okay, they just called the get method for slot one. 
+
+That means and I know that the current remote is zone one. So then you can know, okay, if I'm in Zone One, I'm the header. So slot one is going to be mega nav so you can end up calling slot one, then get dot slash mega nav and resolve and return that container. It turns your site to just a bunch of slots and zones with nothing assigned to them. Then through a CMS or some kind of back end you could assign meaning to every slot on the page. 
+
+Imagine if you were doing a/b testing, you have to create a zone where the test gets injected into. If you don't know what's happening, you could just import a whole bunch of import zone statements. If some of them don't exist, then you just resolve them to nothing, but you could build out something like that where you could just say, there's five possible things that could be here so import, zone 123 or zone 12345, slot 12345. 
+
+If there's three on the page, these are the three teams that we want them to be in the first, second and third slot. And the zone represents just a unique alias so that you can tell the bundler I want to remote that's not a different remote. So there's, you know, remote one remote to remote three. Okay, which remote do you want, remote one could be window mega nav. But webpack doesn't care about its outer name, it only cares about the inner name that we bound it to. That inner name is all determined by creating a delegate module, that it's completely detached from what you're calling it internally.
+
+
+== Circling back to version 7
+
+===== *_Vika:_* 
+_[.white]#And all of this is going to become significantly easier with 7.#_
+
+===== *Zack:*
+Yeah, with 7, this is, I think, the only thing that's really missing because it sounds it's, these are more advanced concepts. But usually, when you do need something like this, you are approaching the upper bounds of the of the standard API, and you're looking for a bit more power. I think what will really help here is to demonstrate some of the concepts because that's where it's probably going it's going to be harder to adapt into is, well, what can we do? It looks cool, and it's really interesting. But making sure the community fully realizes the scope of how you can do stuff like creating that zone slotted example, would be a really powerful one to say, hey, here's a map, it's a JSON file that we just get off the network. And all I have is a bunch of, you know, very, un specific imports throughout this application. And Webpack reads the JSON file to translate those nonspecific names into what actually should go there, like a schema. So you can basically just say, here's a schema, I have a template that imports various things. Here's the schema that's now going to define what it is. kind of like you would do in Contentful, you create the schema, and then it sends it down, you have a loop that loops over kind of renders out the components according to whatever like, the Contentful schema is. But imagine having an import schema where your whole site is just zones of customization.
+
+I think one or two like examples of using delegates and various ways will help a lot, just to understand, Okay, well, these are, this is a different way of using it, that's not immediately obvious. If you see two or three, like wildly different scenarios, it would probably be enough to spark okay, I get what I can do, I get the extent as to which I can change how I think about developing a system be dynamic and respond to things.
+
+===== *_Vika:_* 
+_[.white]#Okay, and then when do you think 7 will be ready to go live.#_
+
+===== *Zack:*
+So right now, I'm busy working on the Medusa integration with version six. So 7, I'm leaving it in beta. Right now, if you want to use 7, there's a section on delegate modules, you would just have to expand in the readme, and you can see how to do it. 
+
+The code that's in there is essentially going to become what is in the plugin. I'm going to just call create delegate module. From there I'm going to interpret if you use delegate module syntax, or whatever syntax, you're passing the federation plugin is going to be reinterpreted into a delegate module. This it's very similar to how we did it before where you're @ syntax was converted into promise to promise. 
+
+Instead of converting to promise new promise we're going to convert it into something that's more robust. If you use the little delegate module creation function, my internal one won't get applied. Pretty much it'll either be that federation resolves what you pass to one that's generic instead of the webpack plugin, or it'll be one that you point to, and it's yours. If it's yours, it’ll still provide the underlying utility, which is important delegated modules, that allows you to just pass it a global and URL and it will return a container. 
+
+You can resolve that back to webpack, you don't necessarily have to think too much about what's going on. All the pieces are there for you. Timeline wise, the beta is pretty much there, I don't think it's going to change in its shape. I'm planning to try and roll that out maybe sometime this month, if possible. Before that, I have turned some focus to Medusa and seeing if Medusa is working with Next.js and updating the Medusa plugin. I'm working on verifying some wiring there. Medusa would use delegate modules anyway. It's kind of built on the foundations of what's already there. 
+
+That's kind of like my prioritization roadmap right now is. I want to ensure that the Medusa support is there, since we're in this, and we're putting all this together to actually work with it at Lululemon. Then if everything is happy, and it's all good, I'll probably make a few other slight adjustments to maybe some of the default options. I think one that might be good to turn on is the automatic async boundaries. So you know, the The pages dynamic import themselves and re export themselves all the time. So you won't ever see an eager error.
+
+===== *_Vika:_* 
+_[.white]#That would solve a lot of issues that get reported.#_
+
+===== *Zack:*
+Yeah, async boundaries that it's currently a flag if you just flip it to true, it works. I need to do a little bit more work around the static analysis, because I have to understand what you're exporting. When it's evaluated? Does it have the getInitialProps, or getServerProps export? Is it a barrel export from somewhere else in a monorepo? Right now how my loader works is just looks at the current page, and it checks for a string called getServerProps, getStaticProps or getInitialProps, if it sees that string in your file, it will manufacture the Data Loader, along with the dynamic import boundary that it wraps around it. 
+
+It's quite important that if you're using it, you still have to have that word somewhere in there, so that I can pick it up and kind of stamp out another equivalent for it. That's the piece that still needs a bit of work. I would love to see it turned on by default, because that is the kind of prime way that you would want to utilize it, it would follow the same rules we do everywhere else in webpack, where you start with an import Bootstrap, and then everything else happens from there. 
+
+Since the entry points and next are their pages, this is kind of what you would want each page to be a dynamic import to the actual page thing that you want it to do. Now everything that you share is protected behind the fact that it's a dynamic import.
+
+===== *_Vika:_* 
+_[.white]#I think a lot of people could learn from this.#_
+
+===== *Zack:*
+It'd be great to get this kind of stuff documented down. I still haven't written anything about delegate modules, why they're cool, and what you can do with them. It would be nice to have something that just goes into a bit more depth on it. This interview helped get a lot of the information out.
+
+== Rspack and module federation
+
+===== *_Vika:_* 
+_[.white]#What’s next? Planning to work on Rspack support for Module Federation?#_
+
+===== *Zack:*
+With Rspack coming out as well I mean we've already used webpack as our bundler tool for NPM packages. I've been looking at and I’m heavily considering using Rspack for everything that's not Next.js at Lululemon. For all of our NPM package builds, we can just use Rspack because it's gonna be super fast. Where we still have all the flexibility of webpack itself to build out these packages. There's few bugs for webpacks ESM implementation that I have opened PRs for but they never have been merged. 
+
+If those bugs were able to be fixed and Rspack that makes for an even stronger case for using it. Once federation lands in Rspack, it's like, hey, it's way faster and it has federation. It's gonna be like the ES build of the webpack era stuff, it's gonna be the super quick thing that you default to. It's got some of the killer features that really offer it scalability. And I could see federation support also being one of the key things that help it stand out from Turbopack because we don't know if Turbopack is going to implement federation or not. If somebody wanted a module federation friendly Turbopack Rspack is where you would go.
+
+===== *_Vika:_* 
+_[.white]#It was really very interesting. Thank you!#_
+
+===== *Zack:*
+It was great to chat about this. I'm super excited to see what Delegate Modules and Rspack ends up unfolding for us. It's gonna be great. Have a great day, cheers!
