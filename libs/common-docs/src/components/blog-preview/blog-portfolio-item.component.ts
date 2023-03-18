@@ -8,7 +8,7 @@ import { IPortfolio } from "../../models/portfolio.interface";
     selector: 'blog-portfolio-item',
     template:`
         <div class="article-item">
-            <div class="img-container zoom-img-scale">
+            <div class="img-container-auto zoom-img-scale">
                 <img class="w-full h-full object-cover" [src]="article ? article.bgImg : project?.previewImg" [alt]="article ? article.title : project?.name + 'img'">
             </div>
             <div class="text-container">
