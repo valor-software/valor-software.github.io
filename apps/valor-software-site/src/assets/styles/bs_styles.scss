@@ -715,6 +715,10 @@ swiper {
     @apply w-full h-350 md:mb-6 mb-4;
   }
 
+  .img-container-auto {
+    @apply w-full h-auto md:mb-6 mb-4;
+  }
+
   .text-container {
     @apply w-full text-light_title_col text-24 md:text-32 leading-40 font-bold;
   }
