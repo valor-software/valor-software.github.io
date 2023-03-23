@@ -24,7 +24,7 @@ jobs:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
         with:
-          access_token: ${{ secrets.GITHUB_TOKEN }}
+          access_token: ${{ secrets.PAT_GITHUB_TOKEN }}
 
   # install dependencies
   install:
@@ -92,7 +92,7 @@ jobs:
         continue-on-error: true
         id: firebase_hosting_preview
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          repoToken: '${{ secrets.PAT_GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VALOR_SOFTWARE_SITE }}'
           projectId: valor-software-site
           target: development
