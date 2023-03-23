@@ -906,9 +906,12 @@
             ],
             "styles": [
               "apps/valor-software-site/src/assets/styles/styles.scss",
-              "apps/valor-software-site/src/assets/styles/prettify-angulario.css"
+              "apps/valor-software-site/src/assets/styles/prettify-angulario.css",
+              "./node_modules/cookieconsent/build/cookieconsent.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/cookieconsent/build/cookieconsent.min.js"
+            ]
           },
           "configurations": {
             "production": {

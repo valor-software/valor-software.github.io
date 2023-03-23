@@ -4069,6 +4069,11 @@ cookie@0.4.2, cookie@^0.4.1:
   resolved "https://registry.npmjs.org/cookie/-/cookie-0.4.2.tgz"
   integrity sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==
 
+cookieconsent@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/cookieconsent/-/cookieconsent-3.1.1.tgz#f90bfadcaeef7d2bdcdd8278257f7264cb5d6819"
+  integrity sha512-v8JWLJcI7Zs9NWrs8hiVldVtm3EBF70TJI231vxn6YToBGj0c9dvdnYwltydkAnrbBMOM/qX1xLFrnTfm5wTag==
+
 copy-anything@^2.0.1:
   version "2.0.6"
   resolved "https://registry.npmjs.org/copy-anything/-/copy-anything-2.0.6.tgz"
@@ -7666,6 +7671,20 @@ ng-recaptcha@^9.0.0:
   dependencies:
     "@types/grecaptcha" "^3.0.3"
     tslib "^2.2.0"
+
+ngx-cookie-service@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-cookie-service/-/ngx-cookie-service-15.0.0.tgz#d5b1ec8745c93119c28fb6e630b6e5ea5d2f7899"
+  integrity sha512-KU1JCjfpDTvD6L0FhHN9W/oP3Sue8yMAAK6XY3h/MEhrPS7vx6t3+h0ulY8l8R/9d1cmlQVyTHn1Jd1Jdf5K+g==
+  dependencies:
+    tslib "^2.0.0"
+
+ngx-cookieconsent@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/ngx-cookieconsent/-/ngx-cookieconsent-4.0.2.tgz#0fa062bd9a74a6c7f21bcad725cac61be6a92561"
+  integrity sha512-KREGRd53LV0SrFlJsk1XwgzZIEf7GAeLD3/znYF/CzTYml+SFqWrYleXA3aMtFLGqUHwbGS/fMA6cHwpvxT5JA==
+  dependencies:
+    tslib "^2.1.0"
 
 nice-napi@^1.0.2:
   version "1.0.2"
