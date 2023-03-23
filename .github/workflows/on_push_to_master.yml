@@ -21,7 +21,7 @@ jobs:
         id: cache
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
-          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+          key: node_modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --immutable --immutable-cache --check-cache
         if: steps.cache.outputs.cache-hit != 'true'
       - run: |
