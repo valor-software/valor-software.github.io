@@ -115,8 +115,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 			? this.handleGoogleAnalyticsTracking()
 			: this.cookieService.deleteAll();
 
-		this.statusChangeSubscription.add(this.cookieConsentService.statusChange$
-			.subscribe(() => this.handleGoogleAnalyticsTracking())
-		);
+		this.statusChangeSubscription = this.cookieConsentService.statusChange$
+			.subscribe(() => this.handleGoogleAnalyticsTracking());
 	}
 }

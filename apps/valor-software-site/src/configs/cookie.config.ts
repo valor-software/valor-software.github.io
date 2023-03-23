@@ -49,7 +49,7 @@ export const cookieConfig: NgcCookieConsentConfig = {
 		title: 'This website uses cookies.',
 		message: `We use cookies to make sure this website can function. By continuing to browse this website, <br>you agree to our use of cookies.`,
 		privacyPolicyLink: 'Learn more',
-		privacyPolicyHref: 'https://valor-software.com/privacy-policyhttps://valor-software.com/privacy-policy',
+		privacyPolicyHref: 'https://valor-software.com/privacy-policy',
 		button: 'Accept all cookies'
 	}
 };
