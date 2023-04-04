@@ -1,0 +1,41 @@
+:host {
+  //opacity: 1;
+  //transition: opacity 0.1s linear;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  width: 100%;
+  background: #252829;
+  color: #ffffff;
+  overflow: hidden;
+  box-sizing: border-box;
+  line-height: 24px;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 16px 29px;
+  align-items: center;
+  animation: 1s fadein ease-in-out both;
+}
+
+.btn {
+  display: block;
+  padding: 0.4em 0.8em;
+  font-size: .9em;
+  font-weight: 700;
+  border-width: 2px;
+  border-style: solid;
+  text-align: center;
+  white-space: nowrap;
+  border-color: transparent;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

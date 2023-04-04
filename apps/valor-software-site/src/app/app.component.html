@@ -1,8 +1,12 @@
 <top-menu *ngIf="!showFooterAndHeader"></top-menu>
 <div class="font-workSans" style="min-height: 100%">
-    <router-outlet></router-outlet>
+	<router-outlet></router-outlet>
 </div>
 <app-footer *ngIf="!showFooterAndHeader"></app-footer>
+
+<cookie-consent-banner *ngIf="showCookieConsentBanner | async"
+                       (acceptCookies)="onAcceptCookies()">
+</cookie-consent-banner>
 
 
 
