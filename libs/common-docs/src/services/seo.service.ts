@@ -673,9 +673,7 @@ export class SeoService {
 	) {
 		this.brokenArticlesRoutes = linkList;
 		this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
-			console.log('this.router.parseUrl(this.router.url)', this.router.parseUrl(this.router.url));
 			const url = this.router.parseUrl(this.router.url).root.children?.primary?.segments;
-			console.log('url', url);
 
 			this.initCurrentTags(this.editRouteUrl(url));
 		});
