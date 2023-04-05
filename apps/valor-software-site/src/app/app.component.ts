@@ -85,6 +85,8 @@ export class AppComponent implements OnDestroy, AfterViewInit {
 	onAcceptCookies(): void {
 		this.cookieService.set(isCookieAllowed, 'true');
 		this.showCookieConsentBanner.next(false);
+		/** make navigation to current url to trigger googleAnalytics on current route */
+		this.redirectTo(this.router.url);
 		this.handleGoogleAnalyticsTracking();
 	}
 
@@ -109,5 +111,10 @@ export class AppComponent implements OnDestroy, AfterViewInit {
 				});
 			}
 		});
+	}
+
+	private redirectTo(uri: string): void {
+		this.router.navigateByUrl('/', { skipLocationChange: true })
+			.then(() => this.router.navigate([uri]));
 	}
 }
