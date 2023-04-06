@@ -100,3 +100,37 @@ pre, code {
 .link {
   color: #E24E63;
 }
+
+.cookie-banner {
+  opacity: 1;
+  transition: opacity 1s ease;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  width: 100%;
+  background: #252829;
+  color: #ffffff;
+  overflow: hidden;
+  box-sizing: border-box;
+  line-height: 24px;
+  display: flex !important;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 16px 109px;
+  align-items: center;
+
+  .accept-btn {
+    display: block;
+    padding: 0.4em 0.8em;
+    font-size: .9em;
+    font-weight: 700;
+    border-width: 2px;
+    border-style: solid;
+    text-align: center;
+    white-space: nowrap;
+    border-color: transparent;
+    color: #E3E3E3FF
+  }
+}

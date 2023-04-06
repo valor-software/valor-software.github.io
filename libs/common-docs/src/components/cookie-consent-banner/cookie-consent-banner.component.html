@@ -1,0 +1,22 @@
+<div class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full">
+	<div class="flex flex-col">
+		<span class="text-20">This website uses cookies.</span>
+		<span id="cookieconsent:desc" class="leading-18">
+			We use cookies to make sure this website can function. By continuing to browse this website,
+			you agree to our use of cookies.
+
+			<a aria-label="learn more about our privacy policy"
+			   class="text-center text-header_font_col text-sm link"
+			   href="https://valor-software.com/privacy-policy"
+			   target="_blank">Learn more
+	      </a>
+	    </span>
+	</div>
+
+	<div class="flex items-center pt-5 lg:pt-0">
+		<button class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"
+		(click)="onAcceptCookies()">
+			Accept all cookies
+		</button>
+	</div>
+</div>
