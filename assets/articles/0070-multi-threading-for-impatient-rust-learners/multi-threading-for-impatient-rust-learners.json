@@ -1,0 +1,12 @@
+{
+"title": "Multi-threading for Impatient Rust Learners.",
+"order": 70,
+"domains": ["dev_quality_assurance"],
+"authorImg": "assets/articles/multi-threading-for-impatient-rust-learners/Slava_Chub.jpg",
+"language": "en",
+"bgImg": "assets/articles/multi-threading-for-impatient-rust-learners/Main_multi-threading-for-impatient.png",
+"author": "Vyacheslav Chub",
+"position": "Full Stack Software Engineer",
+"date": "Thu Apr 13 2023 10:45:55 GMT+0000 (Coordinated Universal Time)",
+"seoDescription": "I hope my example will engage you regarding learning Rust"
+}
