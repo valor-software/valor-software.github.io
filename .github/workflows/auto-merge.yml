@@ -22,5 +22,5 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.PAT_GITHUB_TOKEN }}"
           MERGE_LABELS: "automerge"
           MERGE_REMOVE_LABELS: "automerge"
-          MERGE_METHOD: "merge"
+          MERGE_METHOD: "squash"
           MERGE_COMMIT_MESSAGE: "pull-request-description"
