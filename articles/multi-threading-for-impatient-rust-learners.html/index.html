@@ -1,0 +1,764 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/multi-threading-for-impatient-rust-learners.html"
+            },
+            "headline": "Multi-threading for Impatient Rust Learners.",
+            "description": "I hope my example will engage you regarding learning Rust",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/multi-threading-for-impatient-rust-learners/Main_multi-threading-for-impatient.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Vyacheslav Chub"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Thu Apr 13 2023 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+    <meta charset="utf-8">
+    <title>Multi-threading for Impatient Rust Learners.</title>
+    <base href="/">
+    <meta name="robots" content="all">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ValorSoft">
+    <meta name="twitter:creator" content="@ValorSoft">
+    <meta property="og:image" content="assets/img/valor-img/valor_social.jpg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN&amp;l=dataLayer&amp;cx=c"></script><script>
+      window.intercomSettings = {
+        app_id: "brxsww1a"
+      };
+    </script>
+    <script src="assets/js/intercom-facade.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73071494-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+       <script type="text/javascript">
+        window.onload = function () {
+          if (window.self !== window.top) {
+            document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+        };
+      </script>
+  <style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.99547310295f3b66.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.99547310295f3b66.css"></noscript><style>[_nghost-wil-c36]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s fadein ease-in-out both}.btn[_ngcontent-wil-c36]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="I hope my example will engage you regarding learning Rust"><meta property="og:title" content="Multi-threading for Impatient Rust Learners."><meta property="og:description" content="I hope my example will engage you regarding learning Rust"><meta property="twitter:title" content="Multi-threading for Impatient Rust Learners."><meta property="twitter:description" content="I hope my example will engage you regarding learning Rust"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+  <body scully-version="0.0.0">
+    <valor-software-site-base-root _nghost-wil-c37="" ng-version="14.2.8"><top-menu _ngcontent-wil-c37=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-wil-c37="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-wil-c37=""></router-outlet><general-item><article _nghost-wil-c47=""><section _ngcontent-wil-c47="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-wil-c47="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-wil-c47="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Multi-threading For Impatient Rust Learners. </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-wil-c47="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-wil-c47="" class="text-20 mb-4">April 13, 2023</p><p _ngcontent-wil-c47="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Multi-threading for Impatient Rust Learners.</p><div _ngcontent-wil-c47="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-wil-c47="" class="w-full h-full object-cover" src="assets/articles/multi-threading-for-impatient-rust-learners/Slava_Chub.jpg" alt="Vyacheslav Chub"></div><!----><p _ngcontent-wil-c47="" class="md:text-large text-24 mb-4">Vyacheslav Chub</p><!----><p _ngcontent-wil-c47="" class="text-20">Full Stack Software Engineer</p><!----></div></div></section><section _ngcontent-wil-c47="" class="landing-section"><div _ngcontent-wil-c47="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-wil-c47="" class="max-w-full"><div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As a full-stack developer, I always try to gain new knowledge. I
+heard about Rust Programming Language some years ago, but hands did not reach out to try real examples. I spent some time on Rust a couple of days ago, and I want to share some experiences with you.</p>
+</div>
+<div class="paragraph">
+<p>First, I want to note that this article is suitable mainly for NodeJS/Javascript developers who didn’t hear about Rust before or for those who are trying the first steps.</p>
+</div>
+<div class="paragraph">
+<p>Second, I’ll describe only one issue I tackled, and I don’t aim to provide you with the ultimate set of knowledge. Despite that, I hope my example will engage you regarding learning Rust.</p>
+</div>
+<div class="paragraph">
+<p>I suppose, at this point, you ask me a question. As a Web developer, why should I learn Rust? I predicted this question. Honestly, this article is a logical continuation of <a href="https://valor-software.com/articles/node-rust-friendship-forever-the-napi-rs-way" target="_blank" rel="noopener">my previous one</a>.</p>
+</div>
+<div class="paragraph">
+<p>It’s time to tell you a couple of words about Rust.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/Rust_(programming_language)" "="" target="_blank" rel="noopener">Wikipedia</a> tells us about Rust the following.</p>
+</div>
+<div class="paragraph">
+<p><em>"Rust is a multi-paradigm, high-level, general-purpose programming language. Rust emphasizes performance, type safety, and concurrency. Rust enforces memory safety—that is, that all references point to valid memory—without requiring the use of a garbage collector or reference counting present in other memory-safe languages. To simultaneously enforce memory safety and prevent concurrent data races, Rust’s "borrow checker" tracks the object lifetime of all references in a program during compilation. Rust is popular for systems programming but also offers high-level features including some functional programming constructs. Software developer Graydon Hoare created Rust as a personal project while working at Mozilla Research in 2006. Mozilla officially sponsored the project in 2009. Since the first stable release in May 2015, Rust has been adopted by companies including Amazon, Discord, Dropbox, Facebook (Meta), Google (Alphabet), and Microsoft."</em></p>
+</div>
+<div class="paragraph">
+<p>Don’t think about <a href="https://www.rust-lang.org/" target="_blank" rel="noopener">Rust</a> as a Javascript-similar one. This language is entirely different. Please, pay attention to the points below.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Rust is a compilable language.</p>
+</li>
+<li>
+<p>Despite its general purpose, it mostly looks like a competitor in C++ (even C). If you are Golang-familiar folk, please, don’t compare Rust with Golang! They are different too.</p>
+</li>
+<li>
+<p>One of the main features is safe Multi-Threading.</p>
+</li>
+<li>
+<p><a href="https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html" target="_blank" rel="noopener">References and Borrowing</a> topic could be a bit difficult for Javascript folk. Please, focus on it!</p>
+</li>
+<li>
+<p>Please, read <a href="https://doc.rust-lang.org/stable/book/" target="_blank" rel="noopener">this resource</a>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>I want to focus on safe Multi-Threading in this article because understanding this feature is the number one way to understand this beautiful language. I also understand that the safe Multi-Threading topic is one of the trickiest in languages outside Rust. Java, Goalng, and C++ are good examples. Rust language has a large community, and there are many resources ( <a href="https://doc.rust-lang.org/stable/book" target="_blank" rel="noopener">this one</a>, for example) about it. But I was faced with a lack of practical examples and simple explanations. Despite that, I found one classic example that helps you to enter this topic as quickly as possible.</p>
+</div>
+<div class="sect2">
+<h3 id="_meet_dining_philosophers">Meet Dining Philosophers!</h3>
+<div class="paragraph">
+<p><mark>Dining Philosophers Problem</mark> is a classic Multi-Threading task described <a href="https://www.hackertouch.com/dining-philosophers-problem-in-rust.html" target="_blank" rel="noopener">here</a>.</p>
+</div>
+<div class="paragraph">
+<p><em>"Five silent philosophers sit at a round table with bowls of spaghetti. Forks are placed between each pair of adjacent philosophers. Each philosopher must alternately think and eat. However, a philosopher can only eat spaghetti when they have both left and right forks. Each fork can be held by only one philosopher and so a philosopher can use the fork only if it is not being used by another philosopher. After an individual philosopher finishes eating, they need to put down both forks so that the forks become available to others. A philosopher can take the fork on their right or the one on their left as they become available, but cannot start eating before getting both forks. Eating is not limited by the remaining amounts of spaghetti or stomach space; an infinite supply and an infinite demand are assumed. The problem is how to design a discipline of behavior (a concurrent algorithm) such that no philosopher will starve; i.e., each can forever continue to alternate between eating and thinking, assuming that no philosopher can know when others may want to eat or think."</em></p>
+</div>
+<div class="paragraph">
+<p>Initially, Rust’s solution looked like the one below. You can find it <a href="https://github.com/buchslava/dining-philosophers-problem/tree/original-version" target="_blank" rel="noopener">here</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">use std::sync::{Arc, Mutex};
+use std::{thread, time};
+
+struct Philosopher {
+    name: String,
+    left: usize,
+    right: usize,
+}
+
+impl Philosopher {
+    fn new(name: &amp;str, left: usize, right: usize) -&gt; Philosopher {
+        Philosopher {
+            name: name.to_string(),
+            left: left,
+            right: right,
+        }
+    }
+
+    fn eat(&amp;self, table: &amp;Table) {
+        let _left = table.forks[self.left].lock().unwrap();
+        let _right = table.forks[self.right].lock().unwrap();
+
+        println!("{} is eating.", self.name);
+
+        let delay = time::Duration::from_millis(1000);
+
+        thread::sleep(delay);
+
+        println!("{} is done eating.", self.name);
+    }
+}
+
+struct Table {
+    forks: Vec&lt;Mutex&lt;()&gt;&gt;,
+}
+
+fn main() {
+    let table = Arc::new(Table {
+        forks: vec![
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+        ],
+    });
+
+
+    let philosophers = vec![
+        Philosopher::new("Donald", 0, 1),
+        Philosopher::new("Larry", 1, 2),
+        Philosopher::new("Mark", 2, 3),
+        Philosopher::new("John", 3, 4),
+        Philosopher::new("Bruce", 0, 4),
+    ];
+
+    let handles: Vec&lt;_&gt; = philosophers
+        .into_iter()
+        .map(|p| {
+            let table = table.clone();
+
+            thread::spawn(move || {
+                p.eat(&amp;table);
+            })
+        })
+        .collect();
+
+    for h in handles {
+        h.join().unwrap();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I don’t want to dig into the code above a lot, and I guess you will enjoy doing it from your side. But I need to focus on some essential points.</p>
+</div>
+<div class="paragraph">
+<p>It’s no secret that the main Multi-Threading task is about preventing data collisions. In our example, collision means neighbor philosophers simultaneously took the same fork because each philosopher has his thread and is eating and thinking simultaneously with others. <a href="https://fongyoong.github.io/easy_rust/Chapter_43.html" target="_blank" rel="noopener">Mutex</a> tackles it. Mutex means mutual exclusion, "only one at a time." That’s why forks association with the related mutexes is a great idea.</p>
+</div>
+<div class="paragraph">
+<p>At this point, I’d like to interrupt my story and tell you one important note. Honestly, this example is more complicated than I’m explaining it. I just aim to excite new Rust folks. Sorry for telling you that, dear experts. Despite Mutex being a golden concurrency standard, it’s not a panacea. Some issues are possible even here. I’ll provide more helpful information about that in the article’s <strong>The Roadmap</strong> part. Please, read carefully about "Deadlock," "Livelock," and "Starvation."</p>
+</div>
+<div class="paragraph">
+<p>The related code is the following.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">    let table = Arc::new(Table {
+        forks: vec![
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+        ],
+    });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">        let _left = table.forks[self.left].lock().unwrap();
+        let _right = table.forks[self.right].lock().unwrap();</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_the_code_above_literally_means_the_following">The code above literally means the following.</h5>
+<div class="paragraph">
+<p>A philosopher takes a couple of forks and holds them.</p>
+</div>
+<div class="paragraph">
+<p>What happens with his neighbors at this moment?
+<strong><em>They want to take a fork. But the fork is already taken.</em></strong></p>
+</div>
+<div class="paragraph">
+<p>What happens in this case with the neighbors?
+<strong><em>They (means related threads) are waiting when the first philosopher releases the forks (unlocks his mutexes).</em></strong></p>
+</div>
+<div class="paragraph">
+<p>Why are they waiting?
+<strong><em>Because of mutexes!</em></strong></p>
+</div>
+<div class="paragraph">
+<p>Look at the code below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">    fn eat(&amp;self, table: &amp;Table) {
+        let _left = table.forks[self.left].lock().unwrap();
+        let _right = table.forks[self.right].lock().unwrap();
+
+        println!("{} is eating.", self.name);
+
+        let delay = time::Duration::from_millis(1000);
+
+        thread::sleep(delay);
+
+        println!("{} is done eating.", self.name);
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the philosopher leaves the forks?</p>
+</div>
+<div class="paragraph">
+<p><em>He grabs the forks and waits for 1 second. The mutexes will be released after the <mark>eat</mark> function is completed.</em>
+<em>Other lucky neighbors (right and left) grab the related forks. Pay attention to neighbors running in separate threads (i.e., simultaneously).</em></p>
+</div>
+<div class="paragraph">
+<p>Also, let’s look at the following code directly related to multi-threading.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">    let handles: Vec&lt;_&gt; = philosophers
+        .into_iter()
+        .map(|p| {
+            let table = table.clone();
+
+            thread::spawn(move || {
+                p.eat(&amp;table);
+            })
+        })
+        .collect();
+
+    for h in handles {
+        h.join().unwrap();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It’s time to run the original example.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git clone git@github.com:buchslava/dining-philosophers-problem.git
+cd dining-philosophers-problem
+git checkout original-version
+cargo build
+./target/debug/dining-philosophers</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/multi-threading-for-impatient-rust-learners/img1.gif" alt="img1">
+</div>
+</div>
+<div class="paragraph">
+<p>I asked myself.
+<em>Is it possible to collect all results during the program execution (I mean print messages) and provide them immediately after the whole logic has been completed?</em></p>
+</div>
+<div class="paragraph">
+<p>I found this task challenging because I know from other technologies that cross-thread interaction is always painful. As a Javascript folk, I first thought about something like <mark>Promise.all</mark> technique.</p>
+</div>
+<div class="paragraph">
+<p>Surprisingly, I found a similar technique in <a href="https://blog.yoshuawuyts.com/" target="_blank" rel="noopener">YOSHUA WUYTS blog</a>. I strongly recommend reading this resource.</p>
+</div>
+<div class="paragraph">
+<p>Please, look at the <a href="https://blog.yoshuawuyts.com/futures-concurrency/" target="_blank" rel="noopener">following article</a>.</p>
+</div>
+<div class="paragraph">
+<p>Moreover, I found the following table pleasant for Javascript folk.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch turbo-table">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rust</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Promise.allSettled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">future::join</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">does not short-circuit</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Promise.all</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">future::try_join</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">short-circuits when an input value is rejected</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Promise.race</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">future::select</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">short-circuits when an input value is settled</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Promise.any</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">future::try_select</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">short-circuits when an input value is fulfilled</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>According to the information above, the new solution should look like the one below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">use async_std::future;
+
+let a = future::ready(Ok(1));
+let b = future::ready(Ok(2));
+
+let c = future::try_join(a, b);
+assert_eq!(c.await?, (1, 2));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As an impatient learner, I looked at the futures approach and the origin example at the same time. I was slightly disappointed because I couldn’t reimplement the original version in a future-based way. Honestly, I don’t have enough time for that. In addition, according to digging results, the future’s concept is drastically different from threads. That’s why I’m not sure this idea is good. I postponed this activity.</p>
+</div>
+<div class="paragraph">
+<p>I decided to choose another way. I researched more and found <a href="https://doc.rust-lang.org/stable/book/ch16-02-message-passing.html" target="_blank" rel="noopener">Using Message Passing to Transfer Data Between Threads</a>.</p>
+</div>
+<div class="paragraph">
+<p>I think you would agree the way below is most friendly to the original Dinning Philosophers implementation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">use std::sync::mpsc;
+use std::thread;
+
+fn main() {
+    let (tx, rx) = mpsc::channel();
+
+    thread::spawn(move || {
+        let val = String::from("hi");
+        tx.send(val).unwrap();
+    });
+
+    let received = rx.recv().unwrap();
+    println!("Got: {}", received);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It’s time to move forward and modify our solution. I want to provide the complete source code and explain it step by step.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">use std::sync::{Arc, Mutex};
+use std::{thread, time};
+use std::sync::mpsc::{Sender};
+use std::sync::mpsc;
+
+struct Philosopher {
+    name: String,
+    left: usize,
+    right: usize,
+}
+
+impl Philosopher {
+    fn new(name: &amp;str, left: usize, right: usize) -&gt; Philosopher {
+        Philosopher {
+            name: name.to_string(),
+            left: left,
+            right: right,
+        }
+    }
+
+    fn eat(&amp;self, table: &amp;Table, sender: &amp;Sender&lt;String&gt;) {
+        let _left = table.forks[self.left].lock().unwrap();
+        let _right = table.forks[self.right].lock().unwrap();
+
+        // println!("{} is eating.", self.name);
+        sender.send(format!("{} is eating.", self.name).to_string()).unwrap();
+
+        let delay = time::Duration::from_millis(1000);
+
+        thread::sleep(delay);
+
+        // println!("{} is done eating.", self.name);
+        sender.send(format!("{} is done eating.", self.name).to_string()).unwrap();
+    }
+}
+
+struct Table {
+    forks: Vec&lt;Mutex&lt;()&gt;&gt;,
+}
+
+fn main() {
+    let (tx, rx) = mpsc::channel();
+    let table = Arc::new(Table {
+        forks: vec![
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+        ],
+    });
+
+
+    let philosophers = vec![
+        Philosopher::new("Donald", 0, 1),
+        Philosopher::new("Larry", 1, 2),
+        Philosopher::new("Mark", 2, 3),
+        Philosopher::new("John", 3, 4),
+        Philosopher::new("Bruce", 0, 4),
+    ];
+
+    let handles: Vec&lt;_&gt; = philosophers
+        .into_iter()
+        .map(|p| {
+            let table = table.clone();
+            let sender = tx.clone();
+
+            thread::spawn(move || {
+                p.eat(&amp;table, &amp;sender);
+            })
+        })
+        .collect();
+
+    for h in handles {
+        h.join().unwrap();
+    }
+
+    tx.send("Done".to_string()).unwrap();
+
+    let mut result: String = String::from("");
+
+    for received in rx {
+        if received == "Done" {
+            break;
+        }
+        result.push_str(&amp;received);
+        result.push_str("\n");
+    }
+    println!("{}", result);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_add_related_packages">Add related packages</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">use std::sync::mpsc::{Sender};
+use std::sync::mpsc;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_initialize_the_channel">Initialize the channel</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">fn main() {
+    let (tx, rx) = mpsc::channel();
+    // ...
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_pass_the_sender_to_the_eat_function">Pass the sender to the <mark>eat</mark> function</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">            thread::spawn(move || {
+                p.eat(&amp;table, &amp;sender);
+            })</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_send_expected_information_instead_immediate_printing">Send expected information instead immediate printing</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">fn eat(&amp;self, table: &amp;Table, sender: &amp;Sender&lt;String&gt;) {
+        let _left = table.forks[self.left].lock().unwrap();
+        let _right = table.forks[self.right].lock().unwrap();
+
+        // println!("{} is eating.", self.name);
+        sender.send(format!("{} is eating.", self.name).to_string()).unwrap();
+
+        let delay = time::Duration::from_millis(1000);
+
+        thread::sleep(delay);
+
+        // println!("{} is done eating.", self.name);
+        sender.send(format!("{} is done eating.", self.name).to_string()).unwrap();
+    }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_gather_the_final_result">Gather the final result</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">    for h in handles {
+        h.join().unwrap();
+    }
+
+    tx.send("Done".to_string()).unwrap();
+
+    let mut result: String = String::from("");
+
+    for received in rx {
+        if received == "Done" {
+            break;
+        }
+        result.push_str(&amp;received);
+        result.push_str("\n");
+    }
+    println!("{}", result);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pay attention to the "Done" message. This is a criterion of the end of the process.</p>
+</div>
+<div class="paragraph">
+<p>It’s time to run the final solution.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git checkout main
+cargo build
+./target/debug/dining-philosophers</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/multi-threading-for-impatient-rust-learners/img2.gif" alt="img2">
+</div>
+</div>
+<div class="paragraph">
+<p>Looks good!</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_roadmap">The Roadmap.</h3>
+<div class="paragraph">
+<p>As promised, I will provide some crucial additions to this task.</p>
+</div>
+<div class="sect3">
+<h4 id="_the_task_restrictions">The Task Restrictions.</h4>
+<div class="paragraph">
+<p>A deadlock can occur in this task when all philosophers hold exactly one single fork. This is currently being worked around in the article by ignoring <mark>the the philosophers sit at a round table</mark>: Since Donald and Bruce share the same left fork (0), one of them will never be able to hold one fork if the other holds any number of forks (due to constantly trying left first).
+If we consider the round table part, Bruce’s left fork should be 4, and his right fork should be 0:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">Philosopher::new("Bruce", 4, 0),</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, this introduces a possible deadlock. It’s tough to replicate, but it’s easy to replicate once we implement the "an infinite supply and an infinite demand is assumed" part. As in infinite time, we will eventually hit a deadlock where all philosophers will be stuck thinking forever.</p>
+</div>
+<div class="paragraph">
+<p>An easy way to reproduce it is to add a 5ms wait on every philosopher’s left fork pickup; it will deadlock.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">use std::sync::{Arc, Mutex};
+use std::{thread, time};
+
+struct Philosopher {
+    name: String,
+    left: usize,
+    right: usize,
+}
+
+impl Philosopher {
+    fn new(name: &amp;str, left: usize, right: usize) -&gt; Philosopher {
+        Philosopher {
+            name: name.to_string(),
+            left: left,
+            right: right,
+        }
+    }
+
+    fn eat(&amp;self, table: &amp;Table) {
+        println!("{} is picking up the left fork.", self.name);
+        let _left = table.forks[self.left].lock().unwrap();
+
+        // added 5ms duration
+        thread::sleep(time::Duration::from_millis(5));
+
+        println!("{} is picking up the right fork.", self.name);
+        let _right = table.forks[self.right].lock().unwrap();
+
+        println!("{} is eating.", self.name);
+
+        let delay = time::Duration::from_millis(1000);
+
+        thread::sleep(delay);
+
+        println!("{} is done eating.", self.name);
+    }
+}
+
+struct Table {
+    forks: Vec&lt;Mutex&lt;()&gt;&gt;,
+}
+
+fn main() {
+    let table = Arc::new(Table {
+        forks: vec![
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+            Mutex::new(()),
+        ],
+    });
+
+
+    let philosophers = vec![
+        Philosopher::new("Donald", 0, 1),
+        Philosopher::new("Larry", 1, 2),
+        Philosopher::new("Mark", 2, 3),
+        Philosopher::new("John", 3, 4),
+        // changed from Philosopher::new("Bruce", 0, 4),
+        Philosopher::new("Bruce", 4, 0),
+    ];
+
+    let handles: Vec&lt;_&gt; = philosophers
+        .into_iter()
+        .map(|p| {
+            let table = table.clone();
+
+            thread::spawn(move || {
+                p.eat(&amp;table);
+            })
+        })
+        .collect();
+
+    for h in handles {
+        h.join().unwrap();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can find a working (but really not working…​) example <a href="https://github.com/buchslava/dining-philosophers-problem/tree/deadlock" target="_blank" rel="noopener">here</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_useful_information_and_references">Useful Information and References</h4>
+<div class="paragraph">
+<p>As a concurrency folk, you should start thinking about <mark>Deadlock</mark>, <mark>Livelock</mark>, and <mark>Starvation</mark>. Please, read about it <a href="https://www.baeldung.com/cs/deadlock-livelock-starvation" target="_blank" rel="noopener">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Tackling <mark>Deadlock</mark>, <mark>Livelock</mark>, and <mark>Starvation</mark> is not easy, and there is no silver bullet here. Despite you can dig into different existing solutions on the topic. <a href="https://github.com/shelbyd/cooptex" target="_blank" rel="noopener">This one</a>, for example.</p>
+</div>
+<div class="paragraph">
+<p>Also, it would be best if you learned Atomic Calculations. To become the Ninja of Concurrency, start digging from <a href="https://marabos.nl/atomics/" target="_blank" rel="noopener">Rust Atomics and Locks Low-Level Concurrency in Practice</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nodejs">NodeJS</h3>
+<div class="paragraph">
+<p>Finally, I will satisfy your curiosity and give you a <a href="https://github.com/buchslava/dining-philosophers-problem/blob/main/nodejs/index.js" target="_blank" rel="noopener">NodeJS version</a> of the solution. It was taken from <a href="https://gist.github.com/Leko/753c3c53ab9a45f7dcbd1519dfca2cbd" target="_blank" rel="noopener">here</a> and corrected a bit…​</p>
+</div>
+<div class="paragraph">
+<p>You could read and run it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd nodejs
+node index</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I hope it will also widen your NodeJS horizons.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_happy_hacking">Happy hacking!</h3>
+<div class="paragraph">
+<p>PS: Thanks to <a href="https://dev.to/edusperoni" target="_blank" rel="noopener">Eduardo Speroni</a> for very useful comments and for helping during my work on the article.</p>
+</div>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-wil-c47="" class="landing-section"><h1 _ngcontent-wil-c47="" class="main-title">More Articles</h1><div _ngcontent-wil-c47="" class="container"><blog-preview _ngcontent-wil-c47=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/module-federation-v7-featuring-delegate-modules-part-2" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/module-federation-v7-featuring-delegate-modules-part-2/Module_Federation_Delegate_Modules.png" alt="Module Federation v7 featuring Delegate Modules Part 2"></div><div class="text-container"><p>Module Federation v7 featuring Delegate Modules Part 2</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/node-rust-friendship-forever-the-napi-rs-way" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/node-rust-friendship-forever-the-napi-rs-way/main-node-rust-friendship.png" alt="Node &amp; Rust: Friendship Forever. The NAPI-rs Way."></div><div class="text-container"><p>Node &amp; Rust: Friendship Forever. The NAPI-rs Way.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/module-federation-v7-featuring-delegate-modules" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/module-federation-v7-featuring-delegate-modules/React_Native_and_CodePush.png" alt="Module Federation v7 featuring Delegate Modules"></div><div class="text-container"><p>Module Federation v7 featuring Delegate Modules</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-wil-c37=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor_img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="flex flex-col justify-center mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2023, Valor Software All Rights Reserved</p><a routerlink="/privacy-policy" class="m-0 text-center text-header_font_col text-sm link" href="/privacy-policy">Privacy Policy </a></div></div></footer></app-footer><!----><cookie-consent-banner _ngcontent-wil-c37="" _nghost-wil-c36=""><div _ngcontent-wil-c36="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-wil-c36="" class="flex flex-col"><span _ngcontent-wil-c36="" class="text-20">This website uses cookies.</span><span _ngcontent-wil-c36="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-wil-c36="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-wil-c36="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-wil-c36="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
+    <script async="" src="assets/js/prettify.min.js"></script>
+  <script id="ScullyIO-transfer-state"></script><script src="runtime.0f3cca7d98aa307b.js" type="module"></script><script src="polyfills.f39c60c21adb9eb1.js" type="module"></script><script src="main.9ffb3a170ebf06ff.js" type="module"></script>
+
+</body></html>
