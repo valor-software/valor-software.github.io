@@ -24,6 +24,9 @@
       "@valor-software/ashes-page": [
         "libs/route-pages/ashes-page/src/index.ts"
       ],
+      "@valor-software/blackout-page": [
+        "libs/route-pages/blackout-page/src/index.ts"
+      ],
       "@valor-software/blog-portfolio": [
         "libs/route-pages/blog-portfolio/src/index.ts"
       ],

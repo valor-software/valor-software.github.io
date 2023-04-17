@@ -1,0 +1,47 @@
+<ng-container *ngIf="deliverable">
+  <div class="bg-grey lg:p-10 p-4">
+    <div class="lg:mb-10 mb-11">
+      <h2 class="text-light_title_col text-left lg:m-l0 text-32 lg:text-40 font-bold mb-4 ">
+        {{deliverable.title}}</h2>
+
+      <ng-container *ngIf="deliverable.hierarchyList && deliverable.hierarchyList.length > 0">
+
+        <div *ngFor="let item of deliverable.hierarchyList; let i = index" class="pb-0 md:pb-10 ">
+          <ng-container *ngIf="item.descriptions && item.descriptions.length > 0">
+            <p *ngFor="let description of item.descriptions; let i = index"
+              class="text-grey_font_col text-left text-16 tracking-tightest lg:w-[70%]"
+              [style.margin-bottom]=" i !== (item.descriptions.length + 1) ? '16px' : '0'" [innerHtml]="description">
+            </p>
+          </ng-container>
+          <p class="font-bold  text-light_title_col leading-6 md:leading-8 lg:mb-4 lg:text-24 text-16 w-7/12">
+            {{item.title}}</p>
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-row gap-4 items-center ml-2" *ngFor="let subItem of item.subItems;let i = index">
+              <div class="pink-circle bg-transparent"></div>
+              <p class="ml-4 text-grey_font_col tracking-tightest text-2 w-full">{{subItem}}</p>
+            </div>
+          </div>
+
+          <div class="flex flex-column lg:flex-row gap-10">
+            <div *ngFor="let img of item.imgs" class="my-10" [class.w-full]="deliverable.fullWidthImg">
+              <img [src]="img" class="w-full">
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <p *ngFor="let description of deliverable.descriptions; let i = index"
+        class="text-grey_font_col text-left text-16 tracking-tightest lg:w-[70%]"
+        [style.margin-bottom]=" i !== (deliverable.descriptions.length + 1) ? '16px' : '0'" [innerHtml]="description">
+      </p>
+    </div>
+
+    <div class="flex flex-column lg:flex-row gap-10">
+      <div *ngFor="let img of deliverable.imgs" class="my-10" [class.w-full]="deliverable.fullWidthImg">
+        <img [src]="img" class="w-full">
+      </div>
+    </div>
+
+    <impact-card [impactCardList]="deliverable.impact"></impact-card>
+  </div>
+</ng-container>
