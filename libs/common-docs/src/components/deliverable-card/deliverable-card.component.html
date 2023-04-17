@@ -4,8 +4,7 @@
     <h2 class="text-light_title_col text-left  text-32 lg:text-40 font-bold mb-4 ">
       {{deliverable.title}}</h2>
     <p *ngFor="let description of deliverable.descriptions; let i = index" class="text-grey_font_col text-left text-16 tracking-tightest lg:w-[70%]"
-      [style.margin-bottom]=" i !== (deliverable.descriptions.length + 1) ? '16px' : '0'">
-      {{description}}</p>
+      [style.margin-bottom]=" i !== (deliverable.descriptions.length + 1) ? '16px' : '0'" [innerHtml]="description"></p>
   </div>
 
   <div class="flex flex-column lg:flex-row lg:gap-10 gap-4 place-content-center">

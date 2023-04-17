@@ -39,6 +39,9 @@
       "@valor-software/common-docs": [
         "libs/common-docs/src/index.ts"
       ],
+      "@valor-software/coral-page": [
+        "libs/route-pages/coral-page/src/index.ts"
+      ],
       "@valor-software/dollar-street-page": [
         "libs/route-pages/dollar-street-page/src/index.ts"
       ],
