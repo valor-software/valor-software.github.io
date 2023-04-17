@@ -45,7 +45,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Home - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'services': [
 		{
@@ -83,7 +89,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Services - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'services/quality-assurance': [
 		{
@@ -121,7 +133,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Quality Assurance - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'services/devops': [
 		{
@@ -159,7 +177,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'DevOps - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'services/software-engineering': [
 		{
@@ -197,7 +221,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Software Engineering - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'services/design': [
 		{
@@ -235,7 +265,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Design - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'services/support-&-Maintenance': [
 		{
@@ -273,7 +309,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Support & Maintenance - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'services/product-ownership-and-project-management': [
 		{
@@ -311,7 +353,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Product Ownership and Project Management - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'projects': [
 		{
@@ -349,7 +397,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Portfolio - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'careers': [
 		{
@@ -387,7 +441,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Careers - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'articles': [
 		{
@@ -425,7 +485,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Blog - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'clients/startups': [
 		{
@@ -463,7 +529,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Startups - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'clients/smbs': [
 		{
@@ -501,7 +573,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'SMBs - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'clients/enterprises': [
 		{
@@ -539,7 +617,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Enterprises - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'clients/non-profit': [
 		{
@@ -577,7 +661,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Non-profit Organizations - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'press-release/rs-pack-rust-based-web-bundler': [
 		{
@@ -615,7 +705,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Announcing Rspack: A new and high-performance frontend bundler'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	],
 	'privacy-policy': [
 		{
@@ -653,7 +749,13 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			name: 'title',
 			nameValue: 'title',
 			content: 'Privacy Policy - Valor Software'
-		}
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:image',
+			content: 'assets/img/valor-img/valor_social.jpg'
+		},
 	]
 };
 
@@ -774,7 +876,7 @@ export class SeoService {
 		return this.getPortfolio.getPortfolioRequest(checkHTMLExtension(title));
 	}
 
-	initCurrentTagsWithParams(value: { title: string, description: string }) {
+	initCurrentTagsWithParams(value: { title: string, description: string, url?: string }) {
 		const model: { nameType: 'meta' | 'title', name: string, nameValue: string, content: string }[] = [
 			{
 				nameType: 'meta',
