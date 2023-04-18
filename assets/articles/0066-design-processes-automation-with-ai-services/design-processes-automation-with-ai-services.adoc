@@ -35,7 +35,8 @@ The fourth step is to improve the author's picture. In a perfect world, high-qua
 [.img]
 image::img2.png[]
 
-To remove the background from the picture, a https://www.remove.bg/[remove.bg, window=_blank] plugin in Figma can be used instead of the traditional pen clipping in https://www.adobe.com/products/photoshop.html[Photoshop, window=_blank].
+To remove the background from the picture, a https://www.remove.bg/[remove.bg, window=_blank] plugin in Figma can be used instead of the traditional pen clipping in https://www.adobe.com/products/photoshop.html[Photoshop, window=_blank]. + 
+Another option is to use a https://www.experte.com/background-remover[Background Remover, window=_blank] tool.
 
 [.img]
 image::img3.png[]
