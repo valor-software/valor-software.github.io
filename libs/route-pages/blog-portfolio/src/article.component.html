@@ -1,29 +1,55 @@
 <ng-container *ngIf="article">
-    <section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8">
-        <div class="container flex items-center flex-col">
-            <ng-container *ngIf="changeBreadCrumbTitle?.length">
-                <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block"></breadCrumbs>
-            </ng-container>
-            <div class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col">
-                <p class="text-20 mb-4">{{article.date | date:'MMMM d, y'}}</p>
-                <p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">{{article.title}}</p>
-                <div class="w-70 h-70 rounded-full overflow-hidden mb-4" *ngIf="article.authorImg">
-                    <img class="w-full h-full object-cover" [src]="article.authorImg" [alt]="article.author">
-                </div>
-                <p class="md:text-large text-24 mb-4" *ngIf="article.author">{{article.author}}</p>
-                <p class="text-20" *ngIf="article.position">{{article.position}}</p>
-            </div>
-        </div>
-    </section>
-    <section class="landing-section" *ngIf="article.content">
-        <div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010">
-            <div class="max-w-full" [innerHTML]="checkHTML(article.content)" (click)="routLink($event)"></div>
-        </div>
-    </section>
-    <section class="landing-section">
-        <h1 class="main-title">More Articles</h1>
-        <div class="container">
-            <blog-preview [currentArticle]="article"></blog-preview>
-        </div>
-    </section>
+	<section class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8">
+		<div class="container flex items-center flex-col">
+			<ng-container *ngIf="changeBreadCrumbTitle?.length">
+				<breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden md:block"></breadCrumbs>
+			</ng-container>
+			<div
+					class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col">
+				<p class="text-20 mb-4">{{article.date | date:'MMMM d, y'}}</p>
+				<p class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">{{article.title}}</p>
+
+				<div *ngIf="article.author && article.secondAuthor; else oneAuthorTemplate">
+					<ng-template [ngTemplateOutlet]="authorImageTemplate"></ng-template>
+					<p class="md:text-large text-24 mb-4">{{article.author}} and {{article.secondAuthor}}</p>
+				</div>
+
+				<ng-template #oneAuthorTemplate>
+					<ng-template [ngTemplateOutlet]="authorImageTemplate"></ng-template>
+					<p class="md:text-large text-24 mb-4">{{article.author}}</p>
+				</ng-template>
+
+				<ng-template #authorImageTemplate>
+					<div class="w-70 h-70 rounded-full overflow-hidden mb-4"
+					     *ngIf="article.authorImg && !article.secondAuthorImg">
+						<img class="w-full h-full object-cover" [src]="article.authorImg" [alt]="article.author">
+					</div>
+
+					<div class="flex justify-center" *ngIf="article.authorImg && article.secondAuthorImg">
+						<div class="w-70 h-70 rounded-full overflow-hidden mb-4 mr-8">
+							<img class="w-full h-full object-cover" [src]="article.authorImg" [alt]="article.author">
+						</div>
+
+						<div class="w-70 h-70 rounded-full overflow-hidden mb-4">
+							<img class="w-full h-full object-cover" [src]="article.secondAuthorImg" [alt]="article.secondAuthor">
+						</div>
+					</div>
+
+				</ng-template>
+
+				<p class="text-20" *ngIf="article.position">{{article.position}}</p>
+			</div>
+		</div>
+	</section>
+	<section class="landing-section" *ngIf="article.content">
+		<div class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010">
+			<div class="max-w-full" [innerHTML]="checkHTML(article.content)" (click)="routLink($event)"></div>
+		</div>
+	</section>
+	<section class="landing-section">
+		<h1 class="main-title">More Articles</h1>
+		<div class="container">
+			<blog-preview [currentArticle]="article"></blog-preview>
+		</div>
+	</section>
 </ng-container>
