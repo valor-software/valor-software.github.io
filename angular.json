@@ -269,7 +269,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/libs/route-pages/ashes-page"
+            "coverage/libs/route-pages/blog-page"
           ],
           "options": {
             "jestConfig": "libs/route-pages/blog-page/jest.config.ts",
@@ -286,7 +286,10 @@
           }
         }
       },
-      "tags": []
+      "tags": [],
+      "implicitDependencies": [
+        "common-docs"
+      ]
     },
     "route-pages-blog-portfolio": {
       "projectType": "library",
