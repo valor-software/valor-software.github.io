@@ -21,6 +21,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@valor-software/blog-page": [
+        "libs/route-pages/blog-page/src/index.ts"
+      ],
       "@valor-software/ashes-page": [
         "libs/route-pages/ashes-page/src/index.ts"
       ],
