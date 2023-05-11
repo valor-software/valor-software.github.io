@@ -203,7 +203,7 @@ You are welcome to join the https://discord.com/invite/ndsMfSdR[Qwikifiers, wind
 
 We are also looking forward to see any https://github.com/qwikifiers/qwik-nx[new contributions, window=_blank] to the package itself.
 
-Last but not least, we'd like to extend a heartfelt thank you to https://twitter.com/ryanhutchison[Ryan Hutchison, window=_blank] and https://www.asicentral.com/[ASI Central, window=_blank] for their unwavering support of our project and making.
+Last but not least, we'd like to extend a heartfelt thank you to https://twitter.com/ryanhutchison[Ryan Hutchison, window=_blank] and https://www.asicentral.com/[ASI Central, window=_blank] for their unwavering support of our project.
 
 === Need Help?
 At Valor Software, we are passionate about staying at the forefront of technology and are integration partners with the creators of Qwik, Builder.io. If you have any questions or need assistance with your project, don't hesitate to contact us at mailto:sales@valor-software.com[sales@valor-software.com]
