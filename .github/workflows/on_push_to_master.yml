@@ -22,7 +22,7 @@ jobs:
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/yarn.lock') }}
-      - run: npm ci --immutable --immutable-cache --check-cache
+      - run: yarn install --immutable --immutable-cache --check-cache
         if: steps.cache.outputs.cache-hit != 'true'
       - run: |
           npx ng build --runner cloud --prod --skip-nx-cache
