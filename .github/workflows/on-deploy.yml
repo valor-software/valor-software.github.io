@@ -40,8 +40,8 @@ jobs:
         id: cache
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
-          key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - run: yarn install --immutable --immutable-cache --check-cache
+          key: node_modules-${{ hashFiles('**/yarn.lock') }}
+      - run: npm ci --immutable --immutable-cache --check-cache
         if: steps.cache.outputs.cache-hit != 'true'
 
   # build valor-software-site-base
@@ -53,7 +53,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
-          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+          key: node_modules-${{ hashFiles('**/yarn.lock') }}
       - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_DIST_PATH }}
