@@ -1,0 +1,142 @@
+<section class="first-section-half landing-section flex flex-col gap-6">
+
+    <header class="container flex flex-col gap-6">
+        <div class="flex items-center gap-4">
+            <div class="inline-block text-base bg-light_title_col py-3 px-4 rounded-full">Atlanta, Georgia</div>
+            <time datetime="2023-03-09"
+                  class="inline-block text-base text-light_title_col py-3 px-4 rounded-full">March 9, 2023</time>
+        </div>
+        <h1 class="text-light_title_col text-40 font-bold lg:w-10/12">Rspack: The Rust-Based Web Bundler that Combines High Performance with Interoperability</h1>
+    </header>
+
+    <main class="container flex-col flex gap-11 lg:flex-row">
+        <section class="article-box flex-auto lg:w-8/12">
+
+            <img class="!mt-0"
+                 src="assets/press-releases/rs-pack-rust-based-web-bundler/press-release-header.png"
+                 alt="Rspack: The Rust-Based Web Bundler that Combines High Performance with Interoperability">
+
+
+            <p><strong class="text-pink">Atlanta, Georgia - March 9, 2023, 7 PM Eastern</strong> -- Today, ByteDance ( the tech giant behind popular platforms such as TikTok and Douyin) and Valor Software introduced Rspack to the open source community.</p>
+
+            <quote author="Kaelig Deloumeau-Prigent"
+                   authorTitle="Principal software engineer at Netlify">
+
+                <p>"Our early benchmarks of Rspack are very promising: it starts and compiles app.netlify.com (our primary user-facing web application) 300 to 500% faster than Webpack 5 with ESBuild.</p>
+
+                <p class="The docs put us on a clear migration path, and Rspack itself came with the right level of ecosystem backwards compatibility, so it only took an afternoon to get it up and running."></p>
+
+                <p>We can’t wait to see Rspack also make it to the hands of Netlify customers and speed up their development workflows!"</p>
+            </quote>
+
+            <p>Rspack offers developers a new and innovative solution for web bundling, combining multi-threaded high performance with webpack interoperability. </p>
+
+            <quote author="Lei Zhang"
+                   authorTitle="Manager of the platform team at ByteDance">
+                <p>"The team at Valor Software has been instrumental in our journey to open-source Rspack, Their connections within the open-source community and ability to bring organizations together are unparalleled."</p>
+            </quote>
+
+            <p>With the collaboration between ByteDance's internal platform development team and Valor Software, a new era of web development efficiency is upon us, web development is becoming truly efficient. Rspack - a high-performance web bundler written in Rust, designed to be interoperable with webpack is being introduced to the open source community.</p>
+
+            <p>
+                In the world of Open Source, optimizing for community adoption and lowering the barrier of entry for developers is extremely important. Valor Software understood this and started collaborating with Nx, an open-source developer tool, downloaded more than 3 million times a week as per NPM stats. Nx provides powerful scaffolding mechanisms and features, allowing it to help teams scale
+                large codebases and monorepos. Their reach and approach to improving the developer experience when adopting new tech stacks will help increase the adoption of Rspack across the community. </p>
+
+
+
+            <p>As of today both React, and Solid have been tested and are compatible with Rspack.</p>
+
+            <quote author="Juri Strumpflohner"
+                   authorTitle="Senior Director of Developer Experience at Nx">
+                <p>”Our primary goal at Nx is to be the premier developer CLI tool for managing JavaScript projects and promoting efficient team practices. As such we do not only provide powerful plugins developed by our team, but also empower framework authors to leverage Nx as their CLI.</p>
+
+                <p>That’s why when ByteDance and Valor reached out, we were excited to work with them to develop a dedicated Rspack plugin for Nx. The plugin enhances the Rspack ecosystem and makes it easier for developers to adopt it and create production-ready applications.</p>
+
+                <p>We are excited to continue working with the Rspack team to make sure the JavaScript community gets the best tools for modern development."</p>
+            </quote>
+
+            <h2 class="!text-2xl !mt-9 !mb-5">About Valor Software</h2>
+
+            <p>Founded in 2013 Valor Software is a leading software development and consulting company that specializes in advancing and bringing together open source technologies to achieve technological and business advancement for their customers. Valor brings a wealth of open-source experience to the table, having contributed to Module Federation as core team members, worked on Angular as
+                contributors, and created ngx-bootstrap (an Angular component library with over 300 thousand downloads a week).</p>
+
+            <h2 class="!text-2xl !mt-9 !mb-5">"First Look" video</h2>
+
+            <div class="videoblock">
+                <div class="content">
+                    <iframe src="https://www.youtube.com/embed/rgLMfSYpn5s"
+                            title="Rspack: The Rust-Based Web Bundler that Combines High Performance with Interoperability"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h2 class="!text-2xl !mt-9 !mb-5">Additional Links</h2>
+
+
+            <div class="flex flex-wrap gap-8 lg:gap-0">
+
+
+
+                <div *ngFor="let link of additionalLinks; let firstLink = first; let lastLink = last"
+                     [class.lg:pr-7]="firstLink"
+                     [class.lg:pl-7]="lastLink"
+                     [class.lg:px-7]="!firstLink && !lastLink"
+                     [class.lg:border-l]="!firstLink"
+                     class="border-[#36363A]">
+                    <a (mouseenter)="onAdditionalLinkMouseEnter(link.src)"
+                       (mouseleave)="onAdditionalLinkMouseLeave()"
+                       [href]="link.href"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="flex flex-col items-center justify-center w-16 h-16 bg-[#0D0D0E] rounded relative">
+                        <img class="!m-0 !h-8 !w-8 !w-auto"
+                             [src]="link.src"
+                             [alt]="link.alt">
+
+
+                        <div *ngIf="(activeTooltip$ | async) === link.src"
+                             class="absolute translate-y-[120%] mt-2 bottom-0 bg-light_grey_bg text-header_font_col text-base font-normal py-3 px-6 rounded-lg"> {{ link.alt }}</div>
+
+                    </a>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </section>
+        <section class="flex flex-col gap-4 flex-auto lg:w-4/12 lg:pl-11 lg:border-l border-[#36363A]"
+                 style="height: fit-content;">
+            <h4 class="text-base text-grey_font_col font-bold">Posted by</h4>
+            <person *ngFor="let person of postedByPersons"
+                    [personImageSrc]="person.src"
+                    [personName]="person.name"
+                    [personTitle]="person.title"></person>
+            <h4 class="text-base text-grey_font_col font-bold">Contributors</h4>
+            <person *ngFor="let person of contibutorsPersons"
+                    [personImageSrc]="person.src"
+                    [personName]="person.name"
+                    [personTitle]="person.title"></person>
+            <h4 class="text-base text-grey_font_col font-bold">Companies</h4>
+            <div class="flex gap-4 flex-wrap">
+
+                <company *ngFor="let company of companies"
+                         [companyImageSrc]="company.src"
+                         [companyName]="company.name"
+                         [companyHref]="company.href"></company>
+
+
+
+            </div>
+        </section>
+    </main>
+
+
+</section>
