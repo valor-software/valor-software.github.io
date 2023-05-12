@@ -1,0 +1,866 @@
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way"
+            },
+            "headline": "Developing a Desktop Application via Rust and NextJS. The Tauri Way.",
+            "description": "Be helpful if you want to understand Tauri pros and some brief technical details",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/Main_developing_via_rust.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Vyacheslav Chub"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Fri May 12 2023 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+	<meta charset="utf-8">
+	<title>Developing a Desktop Application via Rust and NextJS. The Tauri Way.</title>
+	<base href="/">
+	<meta name="robots" content="all">
+	<meta property="og:type" content="website">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:image" content="/assets/img/valor-img/valor_social.jpg">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@ValorSoft">
+	<meta name="twitter:creator" content="@ValorSoft">
+
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<script>
+      window.intercomSettings = {
+          app_id: "brxsww1a"
+      };
+	</script>
+	<script src="assets/js/intercom-facade.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN"></script>
+	<script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+	</script>
+	<script type="text/javascript">
+      window.onload = function () {
+          if (window.self !== window.top) {
+              document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+      };
+	</script>
+<style>:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.ea67b85e83fe2755.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.ea67b85e83fe2755.css"></noscript><style>[_nghost-msm-c36]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s fadein ease-in-out both}.btn[_ngcontent-msm-c36]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="Be helpful if you want to understand Tauri pros and some brief technical details"><meta property="og:title" content="Developing a Desktop Application via Rust and NextJS. The Tauri Way."><meta property="og:description" content="Be helpful if you want to understand Tauri pros and some brief technical details"><meta property="twitter:title" content="Developing a Desktop Application via Rust and NextJS. The Tauri Way."><meta property="twitter:description" content="Be helpful if you want to understand Tauri pros and some brief technical details"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+<valor-software-site-base-root _nghost-msm-c37="" ng-version="14.2.8"><top-menu _ngcontent-msm-c37=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-msm-c37="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-msm-c37=""></router-outlet><general-item><article _nghost-msm-c47=""><section _ngcontent-msm-c47="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-msm-c47="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-msm-c47="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Developing A Desktop Application Via Rust And Nextjs. The Tauri Way. </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-msm-c47="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-msm-c47="" class="text-20 mb-4">May 12, 2023</p><p _ngcontent-msm-c47="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Developing a Desktop Application via Rust and NextJS. The Tauri Way.</p><div _ngcontent-msm-c47="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-msm-c47="" class="w-full h-full object-cover" src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/Slava_Chub.jpg" alt="Vyacheslav Chub"></div><!----><!----><!----><p _ngcontent-msm-c47="" class="md:text-large text-24 mb-4">Vyacheslav Chub</p><!----><!----><!----><p _ngcontent-msm-c47="" class="text-20">Full Stack Software Engineer</p><!----></div></div></section><section _ngcontent-msm-c47="" class="landing-section"><div _ngcontent-msm-c47="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-msm-c47="" class="max-w-full"><div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This article introduces you to a specific but exciting topic and is the sequel to my previous article. If you are keen on Rust integrations, please read <a href="https://valor-software.com/articles/node-rust-friendship-forever-the-napi-rs-way" target="_blank" rel="noopener">Node &amp; Rust: Friendship Forever. The NAPI-rs Way</a>.</p>
+</div>
+<div class="paragraph">
+<p>I suppose all of you, dear colleagues work or at least know about <a href="https://github.com/microsoft/vscode" target="_blank" rel="noopener">VSCode</a>. Did you think about the technologies used in VSCode creation? You probably will be surprised if I tell you that VSCode is mainly written on Typescript. But stop…​ Typescript and Javascript are typical for web or backend-based applications, and VSCode is a standalone UI application. Is it possible to create a Javascript-based standalone UI application? Yes, it is!</p>
+</div>
+<div class="paragraph">
+<p>If we had discussed this topic a couple of months ago, I would have recommended <a href="https://www.electronjs.org/" target="_blank" rel="noopener">ElectronJS</a> if you were looking for a way to create a standalone Javascript application. Also, I would provide you the following list of popular Electron-based applications.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Microsoft Teams</p>
+</li>
+<li>
+<p>Zoom</p>
+</li>
+<li>
+<p>Slack for Desktop</p>
+</li>
+<li>
+<p>WordPress for Desktop</p>
+</li>
+<li>
+<p>Skype</p>
+</li>
+<li>
+<p>Discord</p>
+</li>
+<li>
+<p>WhatsApp Desktop</p>
+</li>
+<li>
+<p>Postman</p>
+</li>
+<li>
+<p>MongoDB Compass</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>But the modern IT World does not stand still, and we’ve already had a powerful ElectronJS competitor (it could be its killer in the nearest future, BTW).</p>
+</div>
+<div class="sect2">
+<h3 id="_meet_tauri"><a href="https://tauri.app/" target="_blank" rel="noopener">Meet Tauri!</a></h3>
+<div class="paragraph">
+<p>If you want to get a brief comparison Tauri with Electron, please, read <a href="https://www.levminer.com/blog/tauri-vs-electron" target="_blank" rel="noopener">this article</a>. <a href="https://betterprogramming.pub/adi%C3%B3s-electron-a-rust-powered-alternative-has-arrived-and-its-lovely-bd26262dcf1a" target="_blank" rel="noopener">Goodbye Electron. Hello Tauri</a> will also be helpful if you want to understand Tauri pros and some brief technical details.</p>
+</div>
+<div class="paragraph">
+<p>There is a brief comparison for my impatient readers.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch turbo-table">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Front-end"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Back-end"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Electron</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chromium browser</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NodeJS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tauri</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native Webview</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rust-compiled code</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>One small note regarding Native Webview meant above. You can find ultimate information on this topic <a href="https://github.com/tauri-apps/wry" target="_blank" rel="noopener">here</a>. In a nutshell, Tauri applications use as HTML renderer Webkit (safari engine) on MacOS, <a href="https://developer.microsoft.com/en-us/microsoft-edge/webview2/" target="_blank" rel="noopener">Microsoft Edge WebView2</a> on Windows, and <a href="https://webkitgtk.org/" target="_blank" rel="noopener">WebKitGTK</a> on Linux (port of Webkit for Linux). Pay attention to the fact that a Tauri application could behave differently on different platforms according to the information above.</p>
+</div>
+<div class="paragraph">
+<p>What thoughts would we conclude regarding the table above? Tauri is about performance and simplicity! As a developer who spent several years on Electron-related projects, I’m pretty sure NodeJS could be a bottleneck for the following reasons.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>NodeJS is a heavyweight solution with complicated architecture. I mean V8, LibUV with Event Loop, etc.</p>
+</li>
+<li>
+<p>NodeJS is not a good choice if we need to implement heavy processes like image, data processing, or complicated math calculations.</p>
+</li>
+<li>
+<p><a href="https://www.electronjs.org/docs/latest/tutorial/ipc" target="_blank" rel="noopener">Inter-Process Communication (Electron IPC)</a> is a way of communication between the "Frontend" and "Backend" in Electron. Its functionality is overcomplicated in coding.</p>
+</li>
+<li>
+<p>Implementing a multithreading NodeJS-based "Backend" in our Electron-based application could be a nightmare.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Tauri demolishes all of the cons above for the following reasons.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Rust-complied code contains only the needed minimum of functionality (without redundant architectural stuff like V8 or LibUV).</p>
+</li>
+<li>
+<p>Rust is multithreading-friendly and allows us to get multi-platform implementations.</p>
+</li>
+<li>
+<p>Rust is full of useful memory-safe mechanisms that prevent developers from making the mistakes, and as a result, we get high-quality predictable code.</p>
+</li>
+<li>
+<p>Rust-complied code is also more performative than NodeJS-based.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In my opinion, the pros above are critical for the "Backend." That’s why according to the reasons above, I found Tauri approach as a perspective.</p>
+</div>
+<div class="paragraph">
+<p>BTW if you are not a Rust expert and want to know something new about Rust multithreading , please read <a href="https://valor-software.com/articles/multi-threading-for-impatient-rust-learners" target="_blank" rel="noopener">Multi-threading for Impatient Rust Learners</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_objective">The Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Of course, Tauri is something new. Despite this, it has good documentation. There are many interesting articles on this topic, and I recommend the following resources reading or watching.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.youtube.com/watch?v=4Amz3fh3T2U" target="_blank" rel="noopener">Tauri</a> - a video allows us to do the first steps</p>
+</li>
+<li>
+<p><a href="https://betterprogramming.pub/adi%C3%B3s-electron-a-rust-powered-alternative-has-arrived-and-its-lovely-bd26262dcf1a" target="_blank" rel="noopener">Goodbye Electron. Hello Tauri</a> - provides an exciting example including events between "Frontend" and "Backend"</p>
+</li>
+<li>
+<p><a href="https://tauri.app/v1/guides/getting-started/setup/next-js/" target="_blank" rel="noopener">Tauri - Next.js</a> - explains how to provide NextJS-based "Frontend"</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>My objective is to provide you with something new to run and test. I created a Tauri application with NextJS &amp; Ant Design-based "Frontend" with some "Backend" calculations that look heavyweight. This application shows us Progress Bar on a screen, and related "progress" data is prepared on the "Backend" (Rust) side.</p>
+</div>
+<div class="sect2">
+<h3 id="_first_steps">First Steps</h3>
+<div class="paragraph">
+<p>Let’s get started!</p>
+</div>
+<div class="sect3">
+<h4 id="_create_frontend_part">Create "Frontend" part</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npx create-next-app@latest --use-npm --typescript</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Answer the following questions…​</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/img1.png" alt="img1">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_install_tauri_dependencies">Install Tauri dependencies</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd tauri-nextjs-demo
+npm i --save-dev @tauri-apps/cli
+npm i @tauri-apps/api --save</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_updates">Updates</h4>
+<div class="paragraph">
+<p>Update <mark>next.config.js</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">/** @type {import('next').NextConfig} */
+
+const nextConfig = {
+  reactStrictMode: true,
+  // Note: This feature is required to use NextJS Image in SSG mode.
+  // See https://nextjs.org/docs/messages/export-image-api for different workarounds.
+  images: {
+    unoptimized: true,
+  },
+};
+
+module.exports = nextConfig;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Update scripts section in <mark>package.json</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next export",
+    "start": "next start",
+    "tauri": "tauri",
+    "lint": "next lint"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_initialize_backend_tauri_part">Initialize "Backend" (Tauri) part</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm run tauri init</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Answer the following questions…​</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/img2.png" alt="img2">
+</div>
+</div>
+<div class="paragraph">
+<p>Answer the following questions…​</p>
+</div>
+<div class="paragraph">
+<p><mark>src-tauri</mark> folder contains our backend part.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/img3.png" alt="img3">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_backend_functionality">"Backend" functionality</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first bootstrapped version contains a minimal set of functionality. Let’s fix it.</p>
+</div>
+<div class="paragraph">
+<p>Please, open <mark>src-tauri/src/main.rs</mark> and put the following code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">#![cfg_attr(
+  all(not(debug_assertions), target_os = "windows"),
+  windows_subsystem = "windows"
+)]
+use tauri::Window;
+use std::{thread, time};
+
+#[derive(Clone, serde::Serialize)]
+struct Payload {
+    progress: i16,
+}
+
+#[tauri::command]
+async fn progress_tracker(window: Window){
+  let mut progress = 0;
+  loop {
+      window.emit("PROGRESS", Payload { progress }).unwrap();
+      let delay = time::Duration::from_millis(100);
+      thread::sleep(delay);
+      progress += 1;
+      if progress &gt; 100 {
+        break;
+      }
+  }
+}
+
+fn main() {
+  tauri::Builder::default()
+    .invoke_handler(tauri::generate_handler![progress_tracker])
+    .run(tauri::generate_context!())
+    .expect("error while running tauri application");
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pay attention to the points below.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><mark>progress_tracker</mark> function should be called from the "Frontend" (Typescript) part.</p>
+</li>
+<li>
+<p><mark>#[tauri::command]</mark> is an attribute that defines the function above as a Javascript-friendly</p>
+</li>
+<li>
+<p><mark>window: Window</mark> parameter should be passed from the "Frontend" side.</p>
+</li>
+<li>
+<p>The loop inside <mark>progress_tracker</mark> returns a number every 100ms 100 times.</p>
+</li>
+<li>
+<p>Pay attention on <mark>.invoke_handler(tauri::generate_handler![progress_tracker])</mark> in <mark>main</mark> function. You must "register" your Frontend-friendly function.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Also, you need to change <mark>tauri.identifier</mark> value in <mark>src-tauri/tauri.conf.json</mark>. Say, to <mark>com.buchslava.dev</mark> in my case.
+After that, change <mark>build.beforeBuildCommand</mark> value to <mark>npm run build &amp;&amp; npm run export</mark> in the file above. It’s important because in this example we work with NextJS SSG.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frontend_first_scratches">"Frontend" first scratches.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let’s move to our "Frontend" part.</p>
+</div>
+<div class="paragraph">
+<p>Move to the project’s root folder and put the following code into <mark>src/pages/index.tsx</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ts" data-lang="ts">import { invoke } from "@tauri-apps/api/tauri";
+import { listen } from "@tauri-apps/api/event";
+import { useEffect, useState } from "react";
+
+interface ProgressEventPayload {
+  progress: number;
+}
+
+interface ProgressEventProps {
+  payload: ProgressEventPayload;
+}
+
+export default function Home() {
+  const [busy, setBusy] = useState&lt;boolean&gt;(false);
+
+  useEffect(() =&gt; {
+    // listen what can Rust part tell us about
+    const unListen = listen("PROGRESS", (e: ProgressEventProps) =&gt; {
+      console.log(e.payload.progress);
+    });
+
+    return () =&gt; {
+      unListen.then((f) =&gt; f());
+    };
+  }, []);
+
+  return (
+    &lt;div&gt;
+      {!busy &amp;&amp; (
+        &lt;button
+          onClick={() =&gt; {
+            setBusy(true);
+            setTimeout(async () =&gt; {
+              const { appWindow } = await import("@tauri-apps/api/window");
+              // call Rust function, pass the window
+              await invoke("progress_tracker", {
+                window: appWindow,
+              });
+              setBusy(false);
+            }, 1000);
+          }}
+        &gt;
+          Start Progress
+        &lt;/button&gt;
+      )}
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It’s time to run the example…​</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm run tauri dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s open Developer Console (Right click on the screen → Inspect → Switch to Console tab) and press "Start Progress" button.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/img4.png" alt="img4">
+</div>
+</div>
+<div class="paragraph">
+<p>Congrats! We finished the basic Touri stuff and it’s time to focus on "Frontend" upgrading.</p>
+</div>
+<div class="paragraph">
+<p>You can find this solution <a href="https://github.com/buchslava/tauri-nextjs-demo/tree/version1" target="_blank" rel="noopener">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_ui_part">Add UI part</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We need to add a Progress Bar widget to the screen and show the progress on it instead of Console.
+First, install <a href="https://ant.design/" target="_blank" rel="noopener">Ant Design</a> dependency.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm i antd --save</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Second, remove all content from <mark>src/styles/Home.module.css</mark>.
+Third, put the following content into <mark>src/styles/globals.css</mark>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-css" data-lang="css">body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  font-family: sans-serif;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Fourth, put the following code into <mark>src/pages/index.tsx</mark> instead the existing.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ts" data-lang="ts">import { invoke } from "@tauri-apps/api/tauri";
+import { listen } from "@tauri-apps/api/event";
+import { useEffect, useState } from "react";
+import { Button, Progress } from "antd";
+
+interface ProgressEventPayload {
+  progress: number;
+}
+
+interface ProgressEventProps {
+  payload: ProgressEventPayload;
+}
+
+export default function Home() {
+  const [busy, setBusy] = useState&lt;boolean&gt;(false);
+  const [progress, setProgress] = useState&lt;number&gt;(0);
+
+  useEffect(() =&gt; {
+    const unListen = listen("PROGRESS", (e: ProgressEventProps) =&gt; {
+      setProgress(e.payload.progress);
+    });
+
+    return () =&gt; {
+      unListen.then((f) =&gt; f());
+    };
+  }, []);
+
+  return (
+    &lt;div&gt;
+      &lt;div style={{ width: "70vw" }}&gt;
+        &lt;Progress percent={progress} /&gt;
+      &lt;/div&gt;
+      &lt;Button
+        type="primary"
+        disabled={busy}
+        onClick={() =&gt; {
+          setBusy(true);
+          setTimeout(async () =&gt; {
+            const { appWindow } = await import("@tauri-apps/api/window");
+            await invoke("progress_tracker", {
+              window: appWindow,
+            });
+            setBusy(false);
+          }, 1000);
+        }}
+      &gt;
+        Start Progress
+      &lt;/Button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s look at the result…​</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm run tauri dev</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/img6.gif" alt="img6">
+</div>
+</div>
+<div class="paragraph">
+<p>Looks good. But I’m a suspicious guy, and I must be 100% sure that everything between Rust and NextJS parts stays together. I want to add a timer to the "Frontend" screen. As a result, Progress and Timer should work simultaneously without stops.</p>
+</div>
+<div class="paragraph">
+<p>Let’s put the following code into <mark>src/pages/index.tsx</mark> instead the existing.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ts" data-lang="ts">import { invoke } from "@tauri-apps/api/tauri";
+import { listen } from "@tauri-apps/api/event";
+import { useEffect, useState } from "react";
+import { Button, Progress } from "antd";
+
+interface ProgressEventPayload {
+  progress: number;
+}
+
+interface ProgressEventProps {
+  payload: ProgressEventPayload;
+}
+
+export default function Home() {
+  const [busy, setBusy] = useState&lt;boolean&gt;(false);
+  const [progress, setProgress] = useState&lt;number&gt;(0);
+  const [timeLabel, setTimeLabel] = useState&lt;string&gt;();
+
+  useEffect(() =&gt; {
+    const timeIntervalId = setInterval(() =&gt; {
+      setTimeLabel(new Date().toLocaleTimeString());
+    }, 1000);
+    const unListen = listen("PROGRESS", (e: ProgressEventProps) =&gt; {
+      setProgress(e.payload.progress);
+    });
+
+    return () =&gt; {
+      clearInterval(timeIntervalId);
+      unListen.then((f) =&gt; f());
+    };
+  }, []);
+
+  return (
+    &lt;div&gt;
+      &lt;div style={{ position: "fixed", top: 20, left: 20 }}&gt;{timeLabel}&lt;/div&gt;
+      &lt;div style={{ width: "70vw" }}&gt;
+        &lt;Progress percent={progress} /&gt;
+      &lt;/div&gt;
+      &lt;Button
+        type="primary"
+        disabled={busy}
+        onClick={() =&gt; {
+          setBusy(true);
+          setTimeout(async () =&gt; {
+            const { appWindow } = await import("@tauri-apps/api/window");
+            await invoke("progress_tracker", {
+              window: appWindow,
+            });
+            setBusy(false);
+          }, 1000);
+        }}
+      &gt;
+        Start Progress
+      &lt;/Button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/img7.gif" alt="img7">
+</div>
+</div>
+<div class="paragraph">
+<p>It’s time to make the last stitch. Till we have progress functionality, we need to stop it somehow. The following modifications allow us to do it.</p>
+</div>
+<div class="paragraph">
+<p><mark>src-tauri/src/main.rs</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ts" data-lang="ts">#![cfg_attr(
+  all(not(debug_assertions), target_os = "windows"),
+  windows_subsystem = "windows"
+)]
+use tauri::Window;
+use std::{thread, time};
+use std::sync::{Arc, RwLock};
+
+#[derive(Clone, serde::Serialize)]
+struct Payload {
+    progress: i16,
+}
+
+#[tauri::command]
+async fn progress_tracker(window: Window){
+  // New code
+  let stop = Arc::new(RwLock::new(false));
+  let stop_clone = Arc::clone(&amp;stop);
+  let handler = window.once("STOP", move |_| *stop_clone.write().unwrap() = true);
+  // / New code
+
+  let mut progress = 0;
+  loop {
+      // New code
+      if *stop.read().unwrap() {
+        break;
+      }
+      // / New code
+      window.emit("PROGRESS", Payload { progress }).unwrap();
+      let delay = time::Duration::from_millis(100);
+      thread::sleep(delay);
+      progress += 1;
+      if progress &gt; 100 {
+        break;
+      }
+  }
+  window.unlisten(handler); // New code
+}
+
+fn main() {
+  tauri::Builder::default()
+    .invoke_handler(tauri::generate_handler![progress_tracker])
+    .run(tauri::generate_context!())
+    .expect("error while running tauri application");
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>src/pages/index.tsx</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ts" data-lang="ts">import { invoke } from "@tauri-apps/api/tauri";
+import { listen } from "@tauri-apps/api/event";
+import { useEffect, useState } from "react";
+import { Button, Progress } from "antd";
+
+interface ProgressEventPayload {
+  progress: number;
+}
+
+interface ProgressEventProps {
+  payload: ProgressEventPayload;
+}
+
+export default function Home() {
+  const [busy, setBusy] = useState&lt;boolean&gt;(false);
+  const [progress, setProgress] = useState&lt;number&gt;(0);
+  const [timeLabel, setTimeLabel] = useState&lt;string&gt;();
+
+  useEffect(() =&gt; {
+    const timeIntervalId = setInterval(() =&gt; {
+      setTimeLabel(new Date().toLocaleTimeString());
+    }, 1000);
+    const unListen = listen("PROGRESS", (e: ProgressEventProps) =&gt; {
+      setProgress(e.payload.progress);
+    });
+
+    return () =&gt; {
+      clearInterval(timeIntervalId);
+      unListen.then((f) =&gt; f());
+    };
+  }, []);
+
+  return (
+    &lt;div&gt;
+      &lt;div style={{ position: "fixed", top: 20, left: 20 }}&gt;{timeLabel}&lt;/div&gt;
+      &lt;div style={{ width: "70vw" }}&gt;
+        &lt;Progress percent={progress} /&gt;
+      &lt;/div&gt;
+      &lt;Button
+        type="primary"
+        disabled={busy}
+        onClick={() =&gt; {
+          setBusy(true);
+          setTimeout(async () =&gt; {
+            const { appWindow } = await import("@tauri-apps/api/window");
+            await invoke("progress_tracker", {
+              window: appWindow,
+            });
+            setBusy(false);
+          }, 1000);
+        }}
+      &gt;
+        Start Progress
+      &lt;/Button&gt;
+      {/* New code */}
+      &lt;Button
+        type="primary"
+        disabled={!busy}
+        onClick={async () =&gt; {
+          const { appWindow } = await import("@tauri-apps/api/window");
+          await appWindow.emit("STOP");
+          setProgress(0);
+          setBusy(false);
+        }}
+      &gt;
+        Stop Progress
+      &lt;/Button&gt;
+      {/* / New code */}
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/img8.gif" alt="img8">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_looks_persuasive">Looks persuasive!</h3>
+<div class="paragraph">
+<p><a href="https://betterprogramming.pub/front-end-back-end-communication-in-tauri-implementing-progress-bars-and-interrupt-buttons-2a4efd967059" target="_blank" rel="noopener">Frontend Backend Communication in Tauri: Implementing Progress Bars and Interrupt Button</a> will tell you more regarding the technique above.</p>
+</div>
+<div class="paragraph">
+<p>You can find the related source <a href="https://github.com/buchslava/tauri-nextjs-demo" target="_blank" rel="noopener">here</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_fasts">The Fasts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Finally, I want to focus on build stuff. Let’s build the app. BTW, I’m working under MacOS. Please, read <a href="https://tauri.app/v1/guides/building/" target="_blank" rel="noopener">this one</a> if you want to get more about Tauri build. Let’s build!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm run tauri build</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The next information will help you understand where and what you can find regarding the result of the build. You can find your build in <mark>/src-tauri/target/release/bundle</mark>.</p>
+</div>
+<div class="paragraph">
+<p>In MacOS, you will find the standalone application <mark>/src-tauri/target/release/bundle/macos</mark> with the installer-based build <mark>/src-tauri/target/release/bundle/dmg</mark>.</p>
+</div>
+<div class="paragraph">
+<p>The most exciting thing here is the 4.7Mb application and 2.3Mb installer. Can you believe it? 4.7Mb of Rust &amp; NextJS &amp; Ant Design!</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/img9.png" alt="img9">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/img10.png" alt="img10">
+</div>
+</div>
+<div class="paragraph">
+<p>Do you want to compare Tauri’s result with Electron’s one???</p>
+</div>
+<div class="paragraph">
+<p><em>Honestly, when I got this result, my memories from my past returned. I remember 20mb hard disks and IBM PC XT.</em></p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/img11.jpeg" alt="img11">
+</div>
+</div>
+<div class="paragraph">
+<p>I also thought about the following. Amazing! I can put an application from 2023 to my PC from 1990. Sounds like a time machine!</p>
+</div>
+<div class="paragraph">
+<p>PS: Thanks to <a href="https://dev.to/edusperoni" target="_blank" rel="noopener">Eduardo Speroni</a> for helpful notes that improve the article.</p>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-msm-c47="" class="landing-section"><h1 _ngcontent-msm-c47="" class="main-title">More Articles</h1><div _ngcontent-msm-c47="" class="container"><blog-preview _ngcontent-msm-c47=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/qwik-reaches-the-v1-so-does-qwik-nx" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/qwik-reaches-the-v1-so-does-qwik-nx/Main_qwik_reaches.png" alt="Qwik reaches the v1, so does qwik-nx!"></div><div class="text-container"><p>Qwik reaches the v1, so does qwik-nx!</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/the-evolution-of-web-application-development" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/the-evolution-of-web-application-development/Main_Evolution_Web_Development.png" alt="The Evolution of Web Application Development"></div><div class="text-container"><p>The Evolution of Web Application Development</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/zero-cost-way-on-react-d3" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/zero-cost-way-on-react-d3/Main_zero-cost-way-on-react-d3.png" alt="Zero-cost Way on React &amp; D3."></div><div class="text-container"><p>Zero-cost Way on React &amp; D3.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-msm-c37=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="flex flex-col justify-center mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2023, Valor Software All Rights Reserved</p><a routerlink="/privacy-policy" class="m-0 text-center text-header_font_col text-sm link" href="/privacy-policy">Privacy Policy </a></div></div></footer></app-footer><!----><cookie-consent-banner _ngcontent-msm-c37="" _nghost-msm-c36=""><div _ngcontent-msm-c36="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-msm-c36="" class="flex flex-col"><span _ngcontent-msm-c36="" class="text-20">This website uses cookies.</span><span _ngcontent-msm-c36="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-msm-c36="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-msm-c36="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-msm-c36="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
+<script async="" src="assets/js/prettify.min.js"></script>
+<script id="ScullyIO-transfer-state"></script><script src="runtime.f3876149c0f445a9.js" type="module"></script><script src="polyfills.f39c60c21adb9eb1.js" type="module"></script><script src="main.8288e7b5a46f645e.js" type="module"></script>
+
+</body></html>
