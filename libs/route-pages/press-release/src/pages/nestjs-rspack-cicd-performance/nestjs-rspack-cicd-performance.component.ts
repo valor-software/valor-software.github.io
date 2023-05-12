@@ -4,9 +4,9 @@ import { BehaviorSubject } from 'rxjs';
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: 'nestjs-rspack-cicd-performance',
-	templateUrl: './nestjs-rspack-cicd-performance.html',
+	templateUrl: './nestjs-rspack-cicd-performance.component.html',
 })
-export class NestjsRspackCicdPerformance {
+export class NestjsRspackCicdPerformanceComponent {
 	private readonly _activeTooltip$ = new BehaviorSubject<string | null>(null);
 
 	public readonly activeTooltip$ = this._activeTooltip$.asObservable();

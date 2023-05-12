@@ -1,4 +1,4 @@
-import { NestjsRspackCicdPerformance, RsPackRustBasedWebBundlerComponent } from './pages';
+import { NestjsRspackCicdPerformanceComponent, RsPackRustBasedWebBundlerComponent } from './pages';
 
 // ToDo refactor routing
 export const routes = [
@@ -8,7 +8,7 @@ export const routes = [
 	},
 	{
 		path: 'nestjs-rspack-cicd-performance',
-		component: NestjsRspackCicdPerformance
+		component: NestjsRspackCicdPerformanceComponent
 	}
 ];
 

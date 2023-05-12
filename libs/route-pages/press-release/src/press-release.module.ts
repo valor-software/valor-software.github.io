@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { routes } from './routes';
-import { NestjsRspackCicdPerformance, RsPackRustBasedWebBundlerComponent } from './pages';
+import { NestjsRspackCicdPerformanceComponent, RsPackRustBasedWebBundlerComponent } from './pages';
 import { QuoteComponent, PersonComponent, CompanyComponent } from './components';
 
 @NgModule({
@@ -11,7 +11,7 @@ import { QuoteComponent, PersonComponent, CompanyComponent } from './components'
 		QuoteComponent,
 		PersonComponent,
 		CompanyComponent,
-		NestjsRspackCicdPerformance,
+		NestjsRspackCicdPerformanceComponent,
 	],
 	imports: [CommonModule, RouterModule.forChild(routes)],
 })
