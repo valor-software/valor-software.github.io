@@ -13,10 +13,10 @@ export class NestjsRspackCicdPerformanceComponent {
 
 	public readonly additionalLinks = [
 		{ src: 'assets/press-releases/icons/discord.svg', href: 'http://bit.ly/3F2nyOX', alt: 'Discord' },
-		{ src: 'assets/press-releases/icons/github.svg', href: 'https://github.com/web-infra-dev/rspack', alt: 'Github' },
+		{ src: 'assets/press-releases/icons/github.svg', href: 'https://github.com/nrwl/nx-labs/tree/main/packages/rspack', alt: 'Github' },
 		{
 			src: 'assets/press-releases/icons/rspack.svg',
-			href: 'https://github.com/nrwl/nx-labs/tree/main/packages/rspack',
+			href: 'https://www.rspack.dev/',
 			alt: 'Rspack'
 		},
 		{ src: 'assets/press-releases/icons/nx.svg', href: 'https://nx.dev/packages/rspack', alt: 'NX' },
