@@ -1,4 +1,14 @@
-import { PressReleaseComponent } from "./press-release.component";
+import { NestjsRspackCicdPerformance, RsPackRustBasedWebBundlerComponent } from './pages';
 
-export const routes = [{ path: '', component: PressReleaseComponent }];
+// ToDo refactor routing
+export const routes = [
+	{
+		path: 'rs-pack-rust-based-web-bundler',
+		component: RsPackRustBasedWebBundlerComponent
+	},
+	{
+		path: 'nestjs-rspack-cicd-performance',
+		component: NestjsRspackCicdPerformance
+	}
+];
 

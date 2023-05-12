@@ -1,0 +1,12 @@
+<blockquote
+		class="flex flex-col !bg-transparent !text-center !lg:py-10 !lg:px-12 !gap-5 !border-2 !rounded border-[#36363A] !font-medium !mt-4">
+	<div class="quote-content italic">
+		<ng-content></ng-content>
+	</div>
+
+	<div *ngIf="author"
+	     class="flex flex-col lg:flex-row justify-center gap-2.5">
+		<div class="text-white font-semibold">{{ author }}</div>
+		<div class="text-grey_font_col" *ngIf="authorTitle">{{authorTitle}}</div>
+	</div>
+</blockquote>
