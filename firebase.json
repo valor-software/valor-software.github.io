@@ -1,37 +1,16 @@
 {
-  
-    "hosting": [
+  "hosting": {
+    "public": "dist/valor-software-site",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
       {
-        "target": "development",
-        "public": "dist/valor-software-site",
-        "ignore": [
-          "firebase.json",
-          "**/.*",
-          "**/node_modules/**"
-        ],
-        "rewrites": [
-          {
-            "source": "**",
-            "destination": "/index.html"
-          }
-        ]
-      },
-
-    {
-      "target": "production",
-        "public": "dist/valor-software-site",
-        "ignore": [
-          "firebase.json",
-          "**/.*",
-          "**/node_modules/**"
-        ],
-        "rewrites": [
-          {
-            "source": "**",
-            "destination": "/index.html"
-          }
-        ]
-    }
-  ]  
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }
-

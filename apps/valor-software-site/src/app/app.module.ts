@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+
 import { routes } from './app.routing';
 import { AppComponent } from './app.component';
 import {
@@ -38,6 +39,9 @@ import { NotFoundComponent } from './404.component';
 		{ provide: OLD_ROUTES_FROM_OLD_SITE, useValue: linksFromOldSite },
 	],
 	bootstrap: [AppComponent],
+	exports: [
+		NotFoundComponent
+	]
 })
 export class AppModule {
 }

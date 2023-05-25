@@ -20,10 +20,13 @@
     "@angular/common": "14.2.8",
     "@angular/compiler": "14.2.8",
     "@angular/core": "14.2.8",
+    "@angular/elements": "^15.2.8",
     "@angular/forms": "14.2.8",
     "@angular/platform-browser": "14.2.8",
     "@angular/platform-browser-dynamic": "14.2.8",
     "@angular/router": "14.2.8",
+    "@builder.io/admin-sdk": "^0.0.5",
+    "@builder.io/angular": "^2.2.1",
     "@nrwl/angular": "15.0.3",
     "@scullyio/init": "^2.1.41",
     "@scullyio/ng-lib": "^2.1.41",
@@ -44,7 +47,7 @@
     "zone.js": "0.11.8"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "14.2.7",
+    "@angular-devkit/build-angular": "~14.2.0",
     "@angular-eslint/eslint-plugin": "14.0.4",
     "@angular-eslint/eslint-plugin-template": "14.0.4",
     "@angular-eslint/template-parser": "14.0.4",

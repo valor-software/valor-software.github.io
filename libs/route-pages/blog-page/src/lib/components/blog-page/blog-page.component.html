@@ -1,0 +1,20 @@
+<!--<builder-component-->
+<!--		*ngIf="!noBuilderPageForUrl"-->
+<!--		model="page"-->
+<!--		(load)="noBuilderPageForUrl = $event ? false : true"-->
+<!--		(error)="noBuilderPageForUrl = true"-->
+<!--&gt;-->
+<!--	&lt;!&ndash; Default content inside the tag shows while the builder content is fetching &ndash;&gt;-->
+<!--	<div class="spinner"></div>-->
+<!--</builder-component>-->
+<!--<div *ngIf="!article"> NO BUILDER PAGE</div>-->
+
+<!--<div *ngIf="article">-->
+	<h1>{{ article.data.title }}</h1>
+	<p>{{ article.data.blurb }}</p>
+	<img [src]="article.data.image" alt="">
+
+	<builder-component [model]="model" [content]="article"></builder-component>
+<!--</div>-->
+
+<!--<div *ngIf="!article"> NO ARTICLE</div>-->
