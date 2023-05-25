@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BreethePageComponent } from "./breethe-page.component";
+import { CoralPageComponent } from "./coral-page.component";
 import { routes } from "./routes";
 import { RouterModule, Routes } from "@angular/router";
 import { CommonDocsModule } from '@valor-software/common-docs';
 import { SwiperModule } from "swiper/angular";
 import { FeedbackModule } from '@valor-software/feedback';
+import { FeaturesCardComponent } from './features-card.component';
 
-export { BreethePageComponent } from "./breethe-page.component";
+export { CoralPageComponent } from "./coral-page.component";
 
 @NgModule({
-    declarations: [BreethePageComponent],
+    declarations: [CoralPageComponent, FeaturesCardComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
@@ -19,6 +20,6 @@ export { BreethePageComponent } from "./breethe-page.component";
         FeedbackModule
     ]
 })
-export class BreethePageModule {
+export class CoralPageModule {
     static routes: Routes = routes;
 }

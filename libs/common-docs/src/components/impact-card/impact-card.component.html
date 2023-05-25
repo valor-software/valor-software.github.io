@@ -5,7 +5,9 @@
       Impact</p>
     <ul class="list-disc list-outside lg:ml-0 ml-4 leading-normal text-white text-16 md:text-20 lg:w-10/12">
       <li *ngFor="let impact of impactCardList">
-        <p *ngFor="let item of impact">{{item}}</p>
+        <div class="flex flex-col gap-4">
+          <p *ngFor="let item of impact">{{item}}</p>
+        </div>
       </li>
     </ul>
   </div>

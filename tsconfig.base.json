@@ -74,6 +74,9 @@
       ],
       "@valor-software/terminus-page": [
         "libs/route-pages/terminus-page/src/index.ts"
+      ],
+      "@valor-software/coral-page": [
+        "libs/route-pages/coral-page/src/index.ts"
       ]
     }
   },

@@ -41,6 +41,10 @@ export const routes: Routes = [
         loadChildren: () => import('@valor-software/breethe-page').then(m => m.BreethePageModule)
       },
       {
+        path: 'coral',
+        loadChildren: () => import('@valor-software/coral-page').then(m => m.CoralPageModule)
+      },
+      {
         path: ':id',
         component: GeneralItemComponent
       }

@@ -31,6 +31,7 @@ import { UtilService } from './services/utils.service';
 import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
 import { CookieConsentBannerComponent } from './components/cookie-consent-banner/cookie-consent-banner.component';
+import { DeliverableCardComponent } from './components/deliverable-card/deliverable-card.component';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -65,6 +66,8 @@ export { ITechnologiesCard } from './components/technologies-card/technologies-c
 export { UtilService } from './services/utils.service';
 export { technologiesAndServices } from './components/technologies/technologies-and-services';
 export { CookieConsentBannerComponent } from './components/cookie-consent-banner/cookie-consent-banner.component';
+export { DeliverableCardComponent } from './components/deliverable-card/deliverable-card.component';
+export { DeliverableCard } from './components/deliverable-card/deliverable-card.component';
 
 @NgModule({
 	declarations: [
@@ -87,7 +90,8 @@ export { CookieConsentBannerComponent } from './components/cookie-consent-banner
 		ChallengeCardComponent,
 		TechnologiesCardComponent,
 		TechnologiesComponent,
-		CookieConsentBannerComponent
+		CookieConsentBannerComponent,
+    DeliverableCardComponent
 	],
 	imports: [
 		CommonModule,
@@ -116,7 +120,8 @@ export { CookieConsentBannerComponent } from './components/cookie-consent-banner
 		ChallengeCardComponent,
 		TechnologiesCardComponent,
 		TechnologiesComponent,
-		CookieConsentBannerComponent
+		CookieConsentBannerComponent,
+    DeliverableCardComponent
 	],
 	providers: [
 		ModalService,
