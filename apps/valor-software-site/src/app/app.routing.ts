@@ -39,7 +39,7 @@ export const routes: Routes = [
     loadChildren: () => import('@valor-software/privacy-policy-page').then(m => m.PrivacyPolicyPageModule)
   },
   {
-    path: 'blog-page',
+    path: 'blog/:handle',
     loadChildren: () => import('@valor-software/blog-page').then(m => m.BlogPageModule)
   },
   {
