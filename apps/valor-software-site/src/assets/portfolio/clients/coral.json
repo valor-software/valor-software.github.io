@@ -1,0 +1,12 @@
+{
+  "name": "Coral",
+  "description": "A mobile coach that helps you enjoy solo and partnered connection. Coral is a one-of-a-kind app that provides guided exercises to increase your confidence and reduce performance anxiety through games and fun!",
+  "previewImg": "assets/img/bg-img/coral_page/cover_1.png",
+  "headerImg": "assets/img/bg-img/coral_page/bg_header.png",
+  "sortServices": ["web"],
+  "sortTechnologies":  ["react_native", "nest_js", "graph_ql"],
+  "aspects": {
+    "technology_stack": ["react_native", "nest_js", "native_script", "graph_ql"],
+    "services_provided": ["mobile"]
+  }
+}
