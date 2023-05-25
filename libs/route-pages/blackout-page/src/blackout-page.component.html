@@ -1,0 +1,123 @@
+<div class="relative">
+    <div id="flashlight" [ngClass]="isLightOff ? 'block' : 'hidden'"></div>
+    <section class="first-section landing-section pb-0  mx-5 lg:mx-0">
+        <div class="flex-column lg:flex justify-center lg:justify-evenly items-center mb-18 pt-16 lg:pt-0 overflow-hidden"
+            style="max-height: 100%;">
+
+            <div class="lg:w-[32%] lg:mx-auto md:mt-0 mb-18">
+                <ng-container *ngIf="changeBreadCrumbTitle?.length">
+                    <breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
+                    </breadCrumbs>
+                </ng-container>
+                <h1 class="text-light_title_col lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+                    Blackout
+                </h1>
+                <p class="leading-6 text-grey_font_col text-16 mb-10 tracking-tightest">A unique iPad application that
+                    helps
+                    set up and control lighting at the stage, or film set which is used in actual Hollywood movies!
+                </p>
+
+                <div class="flex-column lg:flex justify-start items-center">
+                    <button class="lg:w-auto flex lg:mr-6 mb-4 w-full">
+                        <a href="https://www.blackout-app.com/" target="_blank"
+                            class="btn-pink w-full flex justify-center items-center">Visit
+                            the site
+                            <img src="assets/img/icons/arrow.svg" class="ml-2 -rotate-45 mb-2" alt=""></a>
+                    </button>
+                </div>
+            </div>
+            <div class="m-0 relative lg:right-[-80px]">
+                <img class="m-0 w-full" src="assets/img/bg-img/blackout_page/bg_header.png" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="lg:mb-[132px]">
+        <h1 class="main-title lg:mb-10 ">Background</h1>
+        <div class="container">
+            <div class="flex flex-col lg:flex-row gap-10 items-center">
+                <img src="assets/img/bg-img/blackout_page/background.svg" alt="background" class="w-6/12 px-4 h-full">
+                <div class="m-auto">
+                    <p class="mb-4 text-grey_font_col text-left text-16 tracking-tightest">
+                        “With the combination of ease and numerous abilities, Blackout
+                        lights up the future of the wireless lighting control industry!” – the software engineer
+                        of
+                        the project.
+                    </p>
+
+                    <p class="mb-4  text-grey_font_col text-left text-16 tracking-tightest">
+                        The Blackout project comes from the US and represents a genuinely Hollywood-level solution that
+                        helps shoot movies from the top world’s charts. It’s a standalone lighting console desk that
+                        takes
+                        its unique place between full-size complicated consoles and mobile apps for wireless lighting
+                        control which usually lack functionality and customization options for professional use
+                    </p>
+
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                        The core of the solution is a mobile application built on NativeScript, but there's a
+                        hardware-related twist! In Blackout, we have our IPad-installed software controlling real-time
+                        lighting hardware.
+                    </p>
+
+                    <p class="text-grey_font_col text-left text-16 tracking-tightest">
+                        Valor Software has been entrusted with the development and maintenance of Blackout after it’s
+                        been
+                        initially delivered by someone else. The code hadn’t been tuned and tested, and the application
+                        wasn’t released, so we made it stable, and after particular fixing and polishing, helped it to
+                        conquer the market!
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <h1 class="main-title lg:mb-10 ">Deliverables</h1>
+        <div class="container">
+            <h2 class="text-grey_font_col text-left text-24 lg:text-40 leading-44 mb-10 tracking-tightest lg:w-[95%]">
+                Before listing what’s done on this project, let’s dive a bit into its essence and how things work
+                inside!
+                The <b>Blackout</b> application is connected to the controllers on the
+                lighting fixtures located in the WiFi
+                network. In this way, users can control the lamps through the app, using a common protocol.
+            </h2>
+            <div class="mb-8" *ngFor="let deliverable of deliverablesList">
+                <deliverable-card [deliverable]="deliverable"></deliverable-card>
+            </div>
+        </div>
+    </section>
+
+    <section class="lg:mb-[132px]">
+        <div class="container">
+            <h2 class="text-light_title_col text-left leading-56 mb-6 text-24 lg:text-40 font-bold">
+                Technologies:
+            </h2>
+
+            <technologies-card [technologiesCards]="technologiesCard"></technologies-card>
+        </div>
+    </section>
+
+    <section>
+        <div class="container cursor-pointer">
+            <iframe [src]="videoUrl" style=" width: 100%; height:80vh;" allowfullscreen allow="autoplay"></iframe>
+        </div>
+    </section>
+
+    <!-- <section>
+        <h1 class="main-title">Feedback</h1>
+        <div class="container">
+            <feedback [startFrom]="''"></feedback>
+        </div>
+    </section> -->
+    <next-project></next-project>
+</div>
+
+<div class="fixed bottom-5 right-5 z-[99999]">
+    <input type="checkbox" #lightSwitch id="light-switch" (change)="isLightOff = !isLightOff" />
+    <label for="light-switch" id="light-switch-label">
+        <div class="screw"></div>
+        <div class="switch"></div>
+        <div class="screw"></div>
+    </label>
+</div>

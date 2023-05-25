@@ -35,7 +35,7 @@ export class ProjectComponent implements OnDestroy {
         if (!artTitle) {
             this.router.navigate(['/404']);
         }
-
+        console.log('artTitle', artTitle);
         artTitle = checkHTMLExtension(artTitle);
         this.getProjectsServ.getPortfolioRequest(artTitle).subscribe((res: IPortfolio) => {
             this.changeBreadCrumbTitle = [{
