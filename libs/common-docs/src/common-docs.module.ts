@@ -65,7 +65,7 @@ export { TechnologiesCardComponent } from './components/technologies-card/techno
 export { ITechnologiesCard } from './components/technologies-card/technologies-card.component';
 export { UtilService } from './services/utils.service';
 export { technologiesAndServices } from './components/technologies/technologies-and-services';
-
+export { CookieConsentBannerComponent } from './components/cookie-consent-banner/cookie-consent-banner.component';
 export { DeliverableCardComponent } from './components/deliverable-card.component/deliverable-card.component';
 export { DeliverableCard } from './components/deliverable-card.component/deliverable-card.component';
 
