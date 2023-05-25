@@ -74,6 +74,9 @@
       ],
       "@valor-software/terminus-page": [
         "libs/route-pages/terminus-page/src/index.ts"
+      ],
+      "@valor-software/blackout-page": [
+        "libs/route-pages/blackout-page/src/index.ts"
       ]
     }
   },
