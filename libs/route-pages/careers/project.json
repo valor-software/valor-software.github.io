@@ -1,0 +1,43 @@
+{
+  "name": "route-pages-careers",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/route-pages/careers/src",
+  "prefix": "valor-software-site-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/route-pages/careers"],
+      "options": {
+        "project": "libs/route-pages/careers/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/route-pages/careers/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/route-pages/careers/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/route-pages/careers"],
+      "options": {
+        "jestConfig": "libs/route-pages/careers/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/route-pages/careers/src/**/*.ts",
+          "libs/route-pages/careers/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

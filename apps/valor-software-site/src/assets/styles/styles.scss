@@ -1,9 +1,14 @@
-@import  'variables';
-@import "~swiper/swiper-bundle.css";
+@import 'variables';
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'bs_styles';
 @import 'responsive_utility';
+
+// swiper bundle styles
+@import'swiper/css/bundle';
+
+// swiper core styles
+@import 'swiper/css';
 
 body, html {
   @apply bg-grey_bg h-full;
@@ -78,7 +83,6 @@ pre, code {
 }
 
 
-
 .img-comparison-slider {
   --divider-width: 4px;
   --divider-color: #989898;
@@ -86,7 +90,8 @@ pre, code {
 }
 
 #toctitle {
-  @apply md:mt-12 mt-8 mb-8 md:text-large text-24  font-workSansBold;;
+  @apply md:mt-12 mt-8 mb-8 md:text-large text-24  font-workSansBold;
+;
   --tw-text-opacity: 1;
   color: rgba(227, 227, 227, var(--tw-text-opacity));
 }

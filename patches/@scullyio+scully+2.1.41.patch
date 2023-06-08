@@ -1,0 +1,38 @@
+diff --git a/node_modules/@scullyio/scully/src/lib/utils/config.js b/node_modules/@scullyio/scully/src/lib/utils/config.js
+index 4e97c2e..1ae1091 100644
+--- a/node_modules/@scullyio/scully/src/lib/utils/config.js
++++ b/node_modules/@scullyio/scully/src/lib/utils/config.js
+@@ -35,15 +35,30 @@ const loadIt = async () => {
+     try {
+         angularConfig = read_angular_json_1.readAngularJson();
+         const defaultProject = compiledConfig.projectName;
+-        projectConfig = angularConfig.projects[defaultProject];
++        const searchForProjectJsonEnabled = !angularConfig.projects;
++
++        if (searchForProjectJsonEnabled) {
++            const projectFolder = path_1.join(`${exports.angularRoot}/apps/${defaultProject}`, `project.json`);
++            projectConfig = jsonc_1.jsonc.parse(fs_extra_1.readFileSync(projectFolder).toString());
++        } else {
++            projectConfig = angularConfig.projects[defaultProject];
++        }
++
+         const target = compiledConfig.target ? compiledConfig.target : exports.scullyDefaults.target;
+         if (typeof projectConfig === 'string') {
+             angularConfig = read_angular_json_1.readAngularJson(projectConfig);
+             compiledConfig.sourceRoot = `${projectConfig}/src`;
+             projectConfig = angularConfig;
+-            log_1.log(`${log_1.yellow('scully')}: using project config from "${log_1.yellow(projectConfig.root)}"`);
++            log_1.log(`${log_1.yellow('scully')}: using project config from "${
++                searchForProjectJsonEnabled
++                    ? log_1.yellow(projectConfig.root)
++                    : yellow(projectFolder)
++            }"`);
+         }
+-        distFolder = projectConfig[target].build.options.outputPath;
++
++        distFolder = searchForProjectJsonEnabled
++            ? projectConfig.targets.build.options.outputPath
++            : projectConfig[target].build.options.outputPath;
+         if (distFolder.endsWith('dist') && !distFolder.includes('/')) {
+             log_1.logError(`Your distribution files are in "${log_1.yellow(distFolder)}". Please change that to include a subfolder`);
+             process.exit(15);

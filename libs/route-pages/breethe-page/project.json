@@ -1,0 +1,44 @@
+{
+  "name": "route-pages-breethe-page",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/route-pages/breethe-page/src",
+  "prefix": "valor-software-site-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/route-pages/breethe-page"],
+      "options": {
+        "project": "libs/route-pages/breethe-page/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/route-pages/breethe-page/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/route-pages/breethe-page/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/route-pages/breethe-page"],
+      "options": {
+        "jestConfig": "libs/route-pages/breethe-page/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/route-pages/breethe-page/src/**/*.ts",
+          "libs/route-pages/breethe-page/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["common-docs"]
+}

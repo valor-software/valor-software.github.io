@@ -1,0 +1,29 @@
+{
+  "name": "valor-software-site-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/valor-software-site-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/valor-software-site-e2e/cypress.json",
+        "devServerTarget": "valor-software-site:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "valor-software-site:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/valor-software-site-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["valor-software-site"]
+}
