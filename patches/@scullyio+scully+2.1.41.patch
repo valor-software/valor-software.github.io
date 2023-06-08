@@ -1,15 +1,24 @@
 diff --git a/node_modules/@scullyio/scully/src/lib/utils/config.js b/node_modules/@scullyio/scully/src/lib/utils/config.js
-index 4e97c2e..1ae1091 100644
+index 4e97c2e..d2f9424 100644
 --- a/node_modules/@scullyio/scully/src/lib/utils/config.js
 +++ b/node_modules/@scullyio/scully/src/lib/utils/config.js
-@@ -35,15 +35,30 @@ const loadIt = async () => {
+@@ -9,6 +9,8 @@ const findAngularJsonPath_1 = require("./findAngularJsonPath");
+ const log_1 = require("./log");
+ const read_angular_json_1 = require("./read-angular-json");
+ const validateConfig_1 = require("./validateConfig");
++const jsonc_1 = require("jsonc");
++const fs_extra_1 = require("fs-extra");
+ exports.angularRoot = findAngularJsonPath_1.findAngularJsonPath();
+ exports.scullyConfig = {};
+ exports.routeRenderer = 'routeRenderer';
+@@ -35,15 +37,30 @@ const loadIt = async () => {
      try {
          angularConfig = read_angular_json_1.readAngularJson();
          const defaultProject = compiledConfig.projectName;
 -        projectConfig = angularConfig.projects[defaultProject];
 +        const searchForProjectJsonEnabled = !angularConfig.projects;
 +
-+        if (searchForProjectJsonEnabled) {
++        if (!!searchForProjectJsonEnabled) {
 +            const projectFolder = path_1.join(`${exports.angularRoot}/apps/${defaultProject}`, `project.json`);
 +            projectConfig = jsonc_1.jsonc.parse(fs_extra_1.readFileSync(projectFolder).toString());
 +        } else {
