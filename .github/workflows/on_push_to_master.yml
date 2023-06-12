@@ -6,7 +6,6 @@ on:
 
 env:
   CACHE_NODE_MODULES_PATH: |
-    ~/.npm
     node_modules
 
 jobs:

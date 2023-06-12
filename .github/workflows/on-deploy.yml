@@ -9,7 +9,6 @@ env:
   FIREBASE_CHANNEL: live
 
   CACHE_NODE_MODULES_PATH: |
-    ~/.npm
     node_modules
     dist/valor-software-site
 
