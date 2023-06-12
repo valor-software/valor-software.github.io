@@ -61,7 +61,7 @@ jobs:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
       - run: |
-          npx nx build --runner cloud --prod
+          npx nx build --prod
           npx scully --prod --scanRoutes --project=valor-software-site
 
   # run linting
@@ -74,7 +74,7 @@ jobs:
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/yarn.lock') }}
-      - run: npm run lint -- --runner cloud
+      - run: npm run lint
 
   # firebase deploy preview
   firebase_preview:

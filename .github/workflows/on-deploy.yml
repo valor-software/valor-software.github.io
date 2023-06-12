@@ -59,7 +59,7 @@ jobs:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
       - run: |
-          npx nx build --runner cloud --prod
+          npx nx build --prod
           npx scully --prod --scanRoutes --project=valor-software-site
 
   # firebase deploy

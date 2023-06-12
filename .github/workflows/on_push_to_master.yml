@@ -25,7 +25,7 @@ jobs:
       - run: yarn install --immutable --immutable-cache --check-cache
         if: steps.cache.outputs.cache-hit != 'true'
       - run: |
-          npx nx build --runner cloud --prod --skip-nx-cache
+          npx nx build --prod --skip-nx-cache
           npx scully --prod --scanRoutes --project=valor-software-site
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
