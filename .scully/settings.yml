@@ -4,9 +4,8 @@ staticPort: 1668
 reloadPort: 2667
 hostName: localhost
 projectName: valor-software-site
-homeFolder: /Users/danya/DevEnv/Workspace_Valor/valor-software.github.io
+homeFolder: /Users/zackarychapple/code/valor-software.github.io
 distFolder: dist/apps/valor-software-site
-outDir: >-
-  /Users/danya/DevEnv/Workspace_Valor/valor-software.github.io/dist/valor-software-site
+outDir: /Users/zackarychapple/code/valor-software.github.io/dist/valor-software-site
 handle404: ''
 allowErrorCollect: false
