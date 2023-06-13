@@ -5,9 +5,24 @@
   "sourceRoot": "apps/valor-software-site/src",
   "prefix": "valor-software-site-base",
   "targets": {
+    "build-scully": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx scully --prod --scanRoutes --project=valor-software-site"
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self",
+          "params": "forward"
+        }
+      ]
+    },
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/valor-software-site",
         "index": "apps/valor-software-site/src/index.html",
@@ -89,7 +104,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/apps/valor-software-site"],
+      "outputs": [
+        "coverage/apps/valor-software-site"
+      ],
       "options": {
         "jestConfig": "apps/valor-software-site/jest.config.ts",
         "passWithNoTests": true

@@ -23,9 +23,7 @@ jobs:
           key: node_modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --immutable --immutable-cache --check-cache
         if: steps.cache.outputs.cache-hit != 'true'
-      - run: |
-          npx nx build --prod --skip-nx-cache
-          npx scully --prod --scanRoutes --project=valor-software-site
+      - run: npx nx run valor-software-site:build-scully --prod
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:

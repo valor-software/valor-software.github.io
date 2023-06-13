@@ -7,11 +7,7 @@
     "defaultCollection": "@nx/angular"
   },
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals",
-      "projectSpecificFiles"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals", "projectSpecificFiles"],
     "sharedGlobals": [
       "{workspaceRoot}/nx.json",
       "{workspaceRoot}/tsconfig.base.json"
@@ -66,11 +62,15 @@
   },
   "defaultProject": "valor-software-site",
   "targetDefaults": {
+    "build": {
+      "inputs": ["production", "^production"],
+      "dependsOn": ["^build"]
+    },
     "e2e": {
-      "inputs": ["default", "^default"]
+      "inputs": ["default", "^production"]
     },
     "test": {
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
     },
     "lint": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
