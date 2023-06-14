@@ -1,0 +1,48 @@
+{
+  "name": "adoc-article-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/adoc-article-app/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/apps/adoc-article-app"],
+      "options": {
+        "main": "apps/adoc-article-app/src/main.ts",
+        "tsConfig": "apps/adoc-article-app/tsconfig.app.json",
+        "commands": [
+          {
+            "command": "ts-node apps/adoc-article-app/src/main.ts"
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/adoc-article-app/src/environments/environment.ts",
+              "with": "apps/adoc-article-app/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/node:node",
+      "options": {
+        "buildTarget": "adoc-article-app:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/adoc-article-app/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

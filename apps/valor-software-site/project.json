@@ -1,0 +1,126 @@
+{
+  "name": "valor-software-site",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/valor-software-site/src",
+  "prefix": "valor-software-site-base",
+  "targets": {
+    "build-scully": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx scully --prod --scanRoutes --project=valor-software-site"
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self",
+          "params": "forward"
+        }
+      ]
+    },
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/valor-software-site",
+        "index": "apps/valor-software-site/src/index.html",
+        "main": "apps/valor-software-site/src/main.ts",
+        "polyfills": "apps/valor-software-site/src/polyfills.ts",
+        "tsConfig": "apps/valor-software-site/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/valor-software-site/src/favicon.ico",
+          "apps/valor-software-site/src/assets",
+          "apps/valor-software-site/src/robots.txt",
+          "apps/valor-software-site/src/sitemap.xml"
+        ],
+        "styles": [
+          "apps/valor-software-site/src/assets/styles/styles.scss",
+          "apps/valor-software-site/src/assets/styles/prettify-angulario.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/valor-software-site/src/environments/environment.ts",
+              "with": "apps/valor-software-site/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "valor-software-site:build:production"
+        },
+        "development": {
+          "browserTarget": "valor-software-site:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "valor-software-site:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/valor-software-site/src/**/*.ts",
+          "apps/valor-software-site/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "coverage/apps/valor-software-site"
+      ],
+      "options": {
+        "jestConfig": "apps/valor-software-site/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": [
+    "adoc-article-app",
+    "route-pages-home-page",
+    "common-docs",
+    "route-pages-services-page",
+    "route-pages-careers",
+    "route-pages-for-clients",
+    "route-pages-blog-portfolio"
+  ]
+}

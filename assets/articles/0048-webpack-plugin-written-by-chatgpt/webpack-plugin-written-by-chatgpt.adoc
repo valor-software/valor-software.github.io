@@ -235,7 +235,7 @@ In the Nx workspace, create a new library for the webpack plugin:
 
 [,bash]
 ----
-npx nx g @nrwl/workspace:lib module-federation-logging-plugin
+npx nx g @nx/workspace:lib module-federation-logging-plugin
 ----
 
 In the library directory, create a tsconfig.json file to configure the TypeScript compiler. In the compilerOptions object, set the module option to "commonjs" and the target option to "esnext". This will ensure that the generated JavaScript code is compatible with webpack.
@@ -318,7 +318,7 @@ In the Nx workspace, create a new application that will use the webpack plugin:
 
 [, bash]
 ----
-npx nx g @nrwl/angular:app my-app
+npx nx g @nx/angular:app my-app
 ----
 
 Install the necessary dependencies for module federation:

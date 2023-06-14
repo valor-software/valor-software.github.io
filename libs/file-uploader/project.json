@@ -1,0 +1,43 @@
+{
+  "name": "file-uploader",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/file-uploader/src",
+  "prefix": "valor-software-site-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/file-uploader"],
+      "options": {
+        "project": "libs/file-uploader/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/file-uploader/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/file-uploader/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/file-uploader"],
+      "options": {
+        "jestConfig": "libs/file-uploader/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/file-uploader/src/**/*.ts",
+          "libs/file-uploader/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
