@@ -1,0 +1,44 @@
+{
+  "name": "common-docs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/common-docs/src",
+  "prefix": "valor-software-site-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/common-docs"],
+      "options": {
+        "project": "libs/common-docs/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/common-docs/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/common-docs/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/common-docs"],
+      "options": {
+        "jestConfig": "libs/common-docs/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/common-docs/src/**/*.ts",
+          "libs/common-docs/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["file-uploader"]
+}

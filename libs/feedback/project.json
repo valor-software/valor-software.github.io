@@ -1,0 +1,43 @@
+{
+  "name": "feedback",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/feedback/src",
+  "prefix": "valor-software-site-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/feedback"],
+      "options": {
+        "project": "libs/feedback/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/feedback/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/feedback/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/feedback"],
+      "options": {
+        "jestConfig": "libs/feedback/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/feedback/src/**/*.ts",
+          "libs/feedback/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

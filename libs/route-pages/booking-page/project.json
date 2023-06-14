@@ -1,0 +1,44 @@
+{
+  "name": "route-pages-booking-page",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/route-pages/booking-page/src",
+  "prefix": "valor-software-site-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/route-pages/booking-page"],
+      "options": {
+        "project": "libs/route-pages/booking-page/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/route-pages/booking-page/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/route-pages/booking-page/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/route-pages/booking-page"],
+      "options": {
+        "jestConfig": "libs/route-pages/booking-page/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/route-pages/booking-page/src/**/*.ts",
+          "libs/route-pages/booking-page/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["common-docs"]
+}

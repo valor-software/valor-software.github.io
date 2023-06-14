@@ -57,7 +57,7 @@ We’ll start by adding an Nx project that will later hold the migrated code. As
 
 [, bash]
 ----
-nx generate @nrwl/angular:application single-app-repo
+nx generate @nx/angular:application single-app-repo
 ----
 
 *NOTE:* __always check in the docs for the generator to see the options available__ 

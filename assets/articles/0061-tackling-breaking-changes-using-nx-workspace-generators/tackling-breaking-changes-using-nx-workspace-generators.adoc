@@ -217,7 +217,7 @@ First, I created the new workspace generator with the following command:
 
 [, bash]
 ----
-npx nx g @nrwl/workspace:workspace-generator code-transformer
+npx nx g @nx/workspace:workspace-generator code-transformer
 ----
 
 This creates a new folder in #tools/generators/code-transformer# with an #index.ts# and a #schema.json# file.

@@ -9,7 +9,6 @@ env:
   FIREBASE_CHANNEL: live
 
   CACHE_NODE_MODULES_PATH: |
-    ~/.npm
     node_modules
     dist/valor-software-site
 
@@ -58,9 +57,7 @@ jobs:
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
-      - run: |
-          npx ng build --runner cloud --prod
-          npx scully --prod --scanRoutes --project=valor-software-site
+      - run: npx nx run valor-software-site:build-scully --prod
 
   # firebase deploy
   firebase_deploy:
