@@ -1,154 +1,184 @@
 <section class="landing-section flex flex-col items-center pt-12 first-section pb-0">
-    <div class="container md:flex flex-column space-between">
-        <div class="lg:flex flex-col items-start self-center">
-            <img src="assets/img/bg-img/main_page/main_page_bg_rspack.png" alt="Rspack mascot"
-                class="block lg:hidden h-full w-full max-h-700 object-contain my-10" style="width: 100%; height: 100%">
+	<div class="container md:flex flex-column space-between">
+		<div class="lg:flex flex-col items-start self-center">
+			<img src="assets/img/bg-img/main_page/main_page_bg_rspack.png" alt="Rspack mascot"
+			     class="block lg:hidden h-full w-full max-h-700 object-contain my-10" style="width: 100%; height: 100%">
 
-            <h1 class="font-bold text-light_title_col text-4xl leading-44 md:leading-66 md:text-64 mb-8 md:w-11/12 ">Extreme build performance NestJS</h1>
-            <p class="leading-6 text-grey_font_col lg:mb-8 mb-14">Leveraging Rspack and Nx while working to increase build performance for NestJS
-            </p>
-            <a class="btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto" routerLink="/press-release/nestjs-rspack-cicd-performance"
-                >Learn more 
-                <!-- <img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt=""> -->
-            </a>
-        </div>
+			<h1 class="font-bold text-light_title_col text-4xl leading-44 md:leading-66 md:text-64 mb-8 md:w-11/12 ">
+				Extreme build performance NestJS
+			</h1>
+			<p class="leading-6 text-grey_font_col lg:mb-8 mb-14">
+				Leveraging Rspack and Nx while working to increase build performance for NestJS
+			</p>
+			<a class="btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"
+			   routerLink="/press-release/nestjs-rspack-cicd-performance"
+			>Learn more
+			 <!-- <img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt=""> -->
+			</a>
+		</div>
 
-        <img src="assets/img/bg-img/main_page/main_page_bg_rspack.png" alt="Rspack mascot"
-            class="hidden lg:block h-full w-full max-h-700 object-contain lg:object-cover"
-            style="width: 100%; height: 100%">
-    </div>
+		<img src="assets/img/bg-img/main_page/main_page_bg_rspack.png" alt="Rspack mascot"
+		     class="hidden lg:block h-full w-full max-h-700 object-contain lg:object-cover"
+		     style="width: 100%; height: 100%">
+	</div>
 
 </section>
 
 <section class="landing-section pt-16 px-5 lg:!pt-0">
-    <h1 class="main-title">Priorities</h1>
-    <div class="md:max-w-[1296px] m-auto">
-        <expandable-card [cards]="cards"></expandable-card>
-    </div>
+	<h1 class="main-title">Priorities</h1>
+	<div class="md:max-w-[1296px] m-auto">
+		<expandable-card [cards]="cards"></expandable-card>
+	</div>
 </section>
 
 <section class="landing-section" id="technologies">
-    <h1 class="main-title">Technology</h1>
-    <div class="container flex justify-between flex-col lg:flex-row">
-        <div class="lg:bg-grey xl:py-16 xl:px-7 w-full max-w-455 bg-transparent mx-auto lg:mr-8">
-            <div class="grid grid-cols-4">
-                <div *ngFor="let technology of technologiesList; index as i"
-                    class="border-2 transition-all p-2.5 flex items-center mb-5 lg:mb-9 w-74 h-74"
-                    [ngClass]="{'active border-pink': technology.active, 'border-transparent': !technology.active, 'mr-5 xl:mr-7': !checkIndex(i), 'cursor-pointer': !technology.disabled, 'cursor-not-allowed': technology.disabled}"
-                    (click)="getSortProjects(technology.id)" changeSrcOnHover [check]="technology.active"
-                    [defaultSrc]="technology.disabled ? '' : technology.img"
-                    [activeSrc]="technology.disabled ? '' : technology.activeImg"
-                    (click)="setActiveTechnology(technology.id)">
-                    <img [src]="technology.disabled ? technology.blockedImg : technology.active ? technology.activeImg : technology.img"
-                        [alt]="technology.id" class="mx-auto" style="width: 100%">
-                </div>
-            </div>
-            <button class="mx-auto flex mt-8 mb-8 lg:mb-0 btn-pink justify-center items-center" routerLink="/"
-                fragment="open-source">
-                Check our open source Contributions<img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt="">
-            </button>
-        </div>
-        <div class="lg:max-w-735 w-full flex flex-col justify-between max-w-455 mx-auto">
-            <div class="flex flex-wrap justify-between gap-5">
-                <div *ngFor="let project of sortProjects"
-                    class="lg:w-48% w-full relative cursor-pointer lg:h-311 border-grey_bg border-2 hover:border-pink">
-                    <a href="javaScript:void(0)" [routerLink]="['projects', projectRoute(project.name)]">
-                        <img [src]="project.previewImg" [alt]="project.name" style="width: 100%; height: 100%"
-                            class="w-full h-full object-cover">
-                        <div class="absolute inset-0 flex flex-col justify-end p-6 w-full h-full"
-                            [style.background]="'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)'">
-                            <p class="font-bold text-light_title_col text-xl mb-2 text-center lg:text-left">
-                                {{project.name}}</p>
-                            <div class="hidden lg:flex flex-wrap">
+	<h1 class="main-title">Technology</h1>
+	<div class="container flex justify-between flex-col lg:flex-row">
+		<div class="lg:bg-grey xl:py-16 xl:px-7 w-full max-w-455 bg-transparent mx-auto lg:mr-8">
+			<div class="grid grid-cols-4">
+				<div *ngFor="let technology of technologiesList; index as i"
+				     class="border-2 transition-all p-2.5 flex items-center mb-5 lg:mb-9 w-74 h-74"
+				     [ngClass]="{'active border-pink': technology.active, 'border-transparent': !technology.active, 'mr-5 xl:mr-7': !checkIndex(i), 'cursor-pointer': !technology.disabled, 'cursor-not-allowed': technology.disabled}"
+				     (click)="getSortProjects(technology.id)" changeSrcOnHover [check]="technology.active"
+				     [defaultSrc]="technology.disabled ? '' : technology.img"
+				     [activeSrc]="technology.disabled ? '' : technology.activeImg"
+				     (click)="setActiveTechnology(technology.id)">
+					<img
+							[src]="technology.disabled ? technology.blockedImg : technology.active ? technology.activeImg : technology.img"
+							[alt]="technology.id" class="mx-auto" style="width: 100%">
+				</div>
+			</div>
+			<button class="mx-auto flex mt-8 mb-8 lg:mb-0 btn-pink justify-center items-center" routerLink="/"
+			        fragment="open-source">
+				Check our open source Contributions<img src="assets/img/icons/arrow.svg" class="ml-2 rotate-90" alt="">
+			</button>
+		</div>
+		<div class="lg:max-w-735 w-full flex flex-col justify-between max-w-455 mx-auto">
+			<div class="flex flex-wrap justify-between gap-5">
+				<div *ngFor="let project of sortProjects"
+				     class="lg:w-48% w-full relative cursor-pointer lg:h-311 border-grey_bg border-2 hover:border-pink">
+					<a href="javaScript:void(0)" [routerLink]="['projects', projectRoute(project.name)]">
+						<img [src]="project.previewImg" [alt]="project.name" style="width: 100%; height: 100%"
+						     class="w-full h-full object-cover">
+						<div class="absolute inset-0 flex flex-col justify-end p-6 w-full h-full"
+						     [style.background]="'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)'">
+							<p class="font-bold text-light_title_col text-xl mb-2 text-center lg:text-left">
+								{{project.name}}</p>
+							<div class="hidden lg:flex flex-wrap">
                                 <span *ngFor="let item of project.aspects.technology_stack | slice:0:3"
-                                    class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2 hover:text-grey_bg hover:bg-light_title_col transition-colors">{{item}}</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+                                      class="text-light_title_col text-sm px-3.5 py-1 border border-light_title_col rounded-20 mr-2 hover:text-grey_bg hover:bg-light_title_col transition-colors">{{item}}</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 <section class="landing-section">
-    <h1 class="main-title mt-0">Services</h1>
-    <div class="container">
-        <services-block [preview]="true"></services-block>
-    </div>
+	<h1 class="main-title mt-0">Services</h1>
+	<div class="container">
+		<services-block [preview]="true"></services-block>
+	</div>
 </section>
 
 <section class="landing-section">
-    <h1 class="main-title mt-0">Businesses</h1>
-    <div class="container">
-        <h3
-            class="w-10/12 md:font-40 tracking-tightest text-20 md:text-large text-light_title_col leading-28 md:leading-44 mb-10">
-            <span>Depending on </span>business <span>maturity, we try to </span>anticipate<span> and cover the most
+	<h1 class="main-title mt-0">Businesses</h1>
+	<div class="container">
+		<h3
+				class="w-10/12 md:font-40 tracking-tightest text-20 md:text-large text-light_title_col leading-28 md:leading-44 mb-10">
+			<span>Depending on </span>business <span>maturity, we try to </span>anticipate<span> and cover the most
                 common</span>
-            challenges
-            <span>companies face.</span>
-        </h3>
-        <businesses-card [cards]="businessList"></businesses-card>
-    </div>
+			                          challenges
+			<span>companies face.</span>
+		</h3>
+		<businesses-card [cards]="businessList"></businesses-card>
+	</div>
 </section>
 
 <section class="landing-section" id="medusa-banner">
-    <a target="_blank" href="https://www.medusa.codes/"> 
-        <img src="assets/img/bg-img/medusa-banner.svg" class="w-full" alt="medusa banner">
-    </a>
+	<a target="_blank" href="https://www.medusa.codes/">
+		<img src="assets/img/bg-img/medusa-banner.svg" class="w-full" alt="medusa banner">
+	</a>
 </section>
 
 <section class="landing-section" id="open-source">
-    <h1 class="main-title mt-0">Open Source</h1>
-    <div class="container flex flex-col flex-wrap lg:flex-row">
-        <h3 class="md:text-large text-32 lg:text-56 text-light_title_col lg:leading-66 leading-44 mb-8 w-full">
-            <span>Proudly</span> contributing<span> to</span> open source
-        </h3>
-        <p class="lg:w-10/12 text-grey_font_col tracking-tightest">We try to maintain equilibrium between the
-            value we take from
-            open-source and what we give back. So we proudly sponsor promising technologies, contribute with our
-            knowledge to make tools handier, and build open code solutions to ease engineers’ daily routines.</p>
+	<h1 class="main-title mt-0">Open Source</h1>
+	<div class="container flex flex-col flex-wrap lg:flex-row">
+		<h3 class="md:text-large text-32 lg:text-56 text-light_title_col lg:leading-66 leading-44 mb-8 w-full">
+			<span>Proudly</span> contributing<span> to</span> open source
+		</h3>
+		<p class="lg:w-10/12 text-grey_font_col tracking-tightest">
+			We try to maintain equilibrium between the value we take from open-source and what we give back. So we proudly
+			sponsor promising technologies, contribute with our knowledge to make tools handier, and build open code
+			solutions to ease engineers’ daily routines.</p>
 
-        <div [ngClass]="{'flex-row-reverse': slide.reverse } " class="flex flex-col lg:flex-row justify-between w-full h-full gap-14 mt-32" *ngFor="let slide of openSourceSlides">
-            <div class="leading-44 lg:w-10/12 h-full flex flex-col justify-between items-start ">
-                <div class="mb-8">
-                    <div class="w-full flex flex-col justify-center items-center text-light_title_col lg:hidden">
-                        <img [src]="slide.img" 
-                            style="width: 100%; height: 100%" [alt]="slide.name + 'icon'">
-                    </div>
-                    <p class="w-full font-40 font-bold text-large text-light_title_col mb-4" [innerHTML]="slide.title">
-                    </p>
-                    <p class="text-light_title_col text-xl mb-8 w-full">{{slide.description}}</p>
-                    <ul class="list-disc text-grey_font_col pl-5">
-                        <li class="leading-4 mb-4" *ngFor="let item of slide.list">{{item}}</li>
-                    </ul>
-                </div>
-                <button class="flex justify-center w-full lg:w-214">
-                    <a class="btn-pink flex justify-center items-center lg:w-214 w-full" [href]="slide.link" rel="noopener" target="_blank">
-                        <p class="tracking-tightest"> {{ slide.button || 'Visit ' + slide.name }}</p>
-                        <img src="assets/img/icons/arrow.svg" class="ml-2" alt="">
-                    </a>
-                </button>
-            </div>
-            <div class="w-full lg:flex flex-col justify-center text-center items-center text-light_title_col hidden">
-                <ng-container *ngIf="slide.downloads">
-                    <div class="m-auto w-5/12 border-2 p-2 rounded-md">
-                        <p class="text-xl">Monthly downloads</p>
-                        <p class="text-large" *ngIf="!slide.npmLink">{{slide.downloads | number}}</p>
-                        <p class="text-large cursor-pointer" *ngIf="slide.npmLink"><a [href]="slide.npmLink"
-                                rel="noopener" target="_blank">{{slide.downloads | number}}</a></p>
-                    </div>
-                </ng-container>
-                <img [src]="slide.img"  [ngClass]="{'relative bottom-24': slide.downloads }"
-                    style="width: 100%;" [alt]="slide.name + 'icon'">
-            </div>
-        </div>
-    </div>
+		<div [ngClass]="{'flex-row-reverse': slide.reverse } "
+		     class="flex flex-col lg:flex-row justify-between w-full h-full gap-14 mt-32"
+		     *ngFor="let slide of openSourceSlides">
+			<div class="leading-44 lg:w-10/12 h-full flex flex-col justify-between items-start ">
+				<div class="mb-8">
+					<div class="w-full flex flex-col justify-center items-center text-light_title_col lg:hidden">
+						<img [src]="slide.img"
+						     style="width: 100%; height: 100%" [alt]="slide.name + 'icon'">
+					</div>
+					<p class="w-full font-40 font-bold text-large text-light_title_col mb-4" [innerHTML]="slide.title">
+					</p>
+					<p class="text-light_title_col text-xl mb-8 w-full">{{slide.description}}</p>
+					<ul class="list-disc text-grey_font_col pl-5">
+						<li class="leading-4 mb-4" *ngFor="let item of slide.list">{{item}}</li>
+					</ul>
+				</div>
+				<button class="flex justify-center w-full lg:w-214">
+					<a class="btn-pink flex justify-center items-center lg:w-214 w-full" [href]="slide.link" rel="noopener"
+					   target="_blank">
+						<p class="tracking-tightest"> {{ slide.button || 'Visit ' + slide.name }}</p>
+						<img src="assets/img/icons/arrow.svg" class="ml-2" alt="">
+					</a>
+				</button>
+			</div>
+			<div class="w-full lg:flex flex-col justify-center text-center items-center text-light_title_col hidden">
+				<ng-container *ngIf="slide.downloads">
+					<div class="m-auto w-5/12 border-2 p-2 rounded-md">
+						<p class="text-xl">Monthly downloads</p>
+						<p class="text-large" *ngIf="!slide.npmLink">{{slide.downloads | number}}</p>
+						<p class="text-large cursor-pointer" *ngIf="slide.npmLink">
+							<a [href]="slide.npmLink"
+							   rel="noopener"
+							   target="_blank">{{slide.downloads | number}}
+							</a>
+						</p>
+					</div>
+				</ng-container>
+				<img [src]="slide.img" [ngClass]="{'relative bottom-24': slide.downloads }"
+				     style="width: 100%;" [alt]="slide.name + 'icon'">
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="landing-section" id="partners">
+	<h1 class="main-title">Partners</h1>
+	<div class="container lg:w-1400 lg:flex">
+
+		<div class="partners md:mb-6 md:mr-0" *ngFor="let partners of partnersList">
+			<a class="lg:w-50% cursor-pointer"
+			   [href]="partners.link"
+			   rel="noopener"
+			   target="_blank">
+				<div class="img-container-auto">
+					<img class="w-full h-full object-cover" [src]="partners.img" [alt]="''">
+				</div>
+			</a>
+		</div>
+
+	</div>
 </section>
 
 <section class="landing-section" id="feedback">
-    <h1 class="main-title ">Feedback</h1>
-    <div class="container lg:w-1400">
-        <feedback></feedback>
-    </div>
+	<h1 class="main-title ">Feedback</h1>
+	<div class="container lg:w-1400">
+		<feedback></feedback>
+	</div>
 </section>
