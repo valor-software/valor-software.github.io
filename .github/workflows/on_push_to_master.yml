@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.15.1'
+      - uses: actions/cache@v3
+        id: cache
       - run: yarn install
       - run: npx nx run valor-software-site:build-scully --prod
       - name: Deploy 🚀
