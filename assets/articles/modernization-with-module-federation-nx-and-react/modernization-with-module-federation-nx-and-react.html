@@ -1,0 +1,164 @@
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Many organizations are talking about how they are launching a modernization effort, but it seems as some organizations are struggling to move to React 18. It can be a challenge to get product teams to prioritize the upgrade from 16 or 17.</p>
+</div>
+<div class="paragraph">
+<p>There is a modernization strategy that can help make the transition without causing disruptions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_modernize_in_the_first_place">Why Modernize in the first place?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are several reasons why an organization should upgrade to React 18, beyond the basic fact that React 15 and 16 are no longer receiving security patches from the React team.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Performance, with each new version of React, performance increases. Users are demanding more snappiness, additionally SEO is becoming even more top of mind for many organizations. Performance gains and the revenue they can potentially generate are a huge driving factor.</p>
+</li>
+<li>
+<p>Developer productivity, moving outside of the current major version leads to a large decrease in availability of maintained third party packages. Most large OSS libraries support n-1 (current major version minus one), so the moment a team gets outside of that range they risk being deprecated and having to support the package on their own.</p>
+</li>
+<li>
+<p>New Features, for organizations using SSR in particular the server side suspense that comes with React 18 is a real boost for performance and reduction in code complexity.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_strategy">The Strategy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most of the organizations that we work with are rather large enterprises. Their development efforts typically consist of multiple teams, multiple backlogs, and multiple, sometimes competing, priorities. Trying to land complicated upgrades takes a rather large amount of effort just in coordination. This has an impact on overall delivery velocity as well since it distracts from feature work.</p>
+</div>
+<div class="paragraph">
+<p>We need to work in a way that is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><strong><em>Easily repeatable</em></strong></code></p>
+</li>
+<li>
+<p><code><strong><em>Automated</em></strong></code></p>
+</li>
+<li>
+<p><code><strong><em>Scalable</em></strong></code></p>
+</li>
+<li>
+<p><code><strong><em>Non-disruptive</em></strong></code></p>
+</li>
+<li>
+<p><code><strong><em>Incremental</em></strong></code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quick_note_regarding_supported_stacks">Quick note regarding supported stacks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While the main stack being mentioned in this article is React, it is important to mention that Module Federation as a strategy can be used with other frontend stacks; Angular, Next.js, Vue as well in Mobile with ReactNaive and NativeScript and backends with Node or Node with NestJS.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_decomposing_and_strategizing">Decomposing and strategizing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When starting a modernization effort that involves frontend development, one of the table stakes for Valor Software in its modernization efforts is the use of Nx.</p>
+</div>
+<div class="paragraph">
+<p>Too often when working with an organization there are undocumented requirements, configurations spread throughout the organization, or just high levels of repetitive boilerplate. One of the first things we do in an organization is create a series of generators based on their current architecture best practices.</p>
+</div>
+<div class="paragraph">
+<p>ESLint configs, docker compose configs, sonar-cube, whatever they may be using, we take it and wrap it into a nice enterprise workspace generator tailored to their specific needs.</p>
+</div>
+<div class="paragraph">
+<p>Having organizational consistency, particularly at the onset of a modernization effort helps ease the adoption curve later on.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_is_nx_table_stakes">Why is Nx table stakes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Changing methodologies is inherently challenging, while many developers will be able to adopt quickly, others benefit greatly from having guardrails. Codifying the existing architecture best practices allow for organizations to understand how those are evolving over time.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_incremental_demos">Creating incremental demos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Often organizations have their own, boutique, combinations of technologies they have built their application architecture ecosystem around. An organization using React 16 with Loadable Components, Apollo Client all requiring SSR and backed by Enzyme tests and built with Make is going to have some adventures moving to React 18 for a multitude of reasons.</p>
+</div>
+<div class="paragraph">
+<p>Creating incremental demos allows the team to start with the working reference architecture. These demos start by following the current organizational standards, with all of their niche complexities. Once the Nx workspace is able to generate that reference architecture properly the organization now has its starting point for each of the next stages of platform evolution.</p>
+</div>
+<div class="paragraph">
+<p>Nx shines again in the aspect that after the reference architecture can be generated, so can the migrations. For the most part the changes needed to add Module Federation to a React application is a known quantity. Which configurations to add, where to add them and which things to test afterwards is also known. With the reference architecture created Nx migrations to perform these known operations. For those unfamiliar, Nx migrations work a bit like code mods on steroids.</p>
+</div>
+<div class="paragraph">
+<p>Each migration becomes increasingly more challenging but also reveals more value to the platform. Typically Valor sees the following steps.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Move to Webpack 5</p>
+</li>
+<li>
+<p>Add Module Federation</p>
+</li>
+<li>
+<p>Create an application shell with target technology stack and methodologies that wraps the existing React 16 application and still loads them with an adaptor</p>
+</li>
+<li>
+<p>Migrate federated remotes to React 17 (this may be skipped sometimes)</p>
+</li>
+<li>
+<p>Migrate federated remotes to React 18</p>
+</li>
+<li>
+<p>Refactor SSR implementations to begin to use Suspense</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Most times there is also a migration to Typescript during one of these stages. This helps quite a bit with testability and reusability overall while also boosting developer productivity.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_power_of_module_federation_with_an_application_shell">Power of Module Federation with an Application Shell</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Adding an Application Shell around the existing application, then added module federation gives teams greater freedom. With this combination they are now able to incrementally upgrade each of the federated remotes with higher relative autonomy. This allows the team to decide how to prioritize migrating the rest of the application. With clear communication patterns and backwards compatibility in place the efforts required to coordinate are significantly lower.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_long_term_benefits">Long term benefits</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Architecture standards change, design systems get updated, and as with all software breaking changes are always potentially around the corner. By leveraging an enterprise Nx workspace those change can be propagated throughout the enterprise with a single command, which can also be automated.</p>
+</div>
+<div class="paragraph">
+<p>With the new Nx workspaces and usage of caching builds also become dramatically faster (typically on an order of 10-100x). We saw one customer&#8217;s builds go from zero cache-ability and taking 90+ minutes to run, to high cache-ability around 300-600 milliseconds.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_we_can_help">We can help!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Valor Software has worked with multiple organizations now begin this migration process and the results are, to put it blunt, astonishing. As partners with the team behind Nx, Nrwl, and the exclusive partners for Module Federation, we would love the opportunity to share specific details on how we can help your organization move to React 18 and Module Federation, <a href="https://calendly.com/zack-chapple/module-federation-intro?month=2023-01" target="_blank" rel="noopener">schedule</a> a call today!</p>
+</div>
+</div>
+</div>

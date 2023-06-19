@@ -1,6 +1,38 @@
-<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0">
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/avoiding-common-pitfalls-with-controlvalueaccessors-in-angular"
+            },
+            "headline": "Avoiding common pitfalls with ControlValueAccessors in Angular",
+            "description": "Variety of tools and solutions",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/avoiding-common-pitfalls-with-controlvalueaccessors-in-angular/pitfalls.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Dmitriy Stepanenko"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Tue Jan 17 2023 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
 	<meta charset="utf-8">
-	<title>404 error | Valor Software</title>
+	<title>Avoiding common pitfalls with ControlValueAccessors in Angular</title>
 	<base href="/">
 	<meta name="robots" content="all">
 	<meta property="og:type" content="website">
@@ -43,9 +75,341 @@
           }
       };
 	</script>
-<style>:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{--swiper-navigation-size:44px}:root{--swiper-theme-color:#007aff}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.9631d7aac7ff59b1.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.9631d7aac7ff59b1.css"></noscript><style>[_nghost-ng-c1371038418]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s _ngcontent-ng-c1371038418_fadein ease-in-out both}.btn[_ngcontent-ng-c1371038418]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes _ngcontent-ng-c1371038418_fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><script>window['ScullyIO']='generated';</script></head>
+<style>:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{--swiper-navigation-size:44px}:root{--swiper-theme-color:#007aff}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.f25768ec8b61cbe5.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.f25768ec8b61cbe5.css"></noscript><style>[_nghost-ng-c1371038418]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s _ngcontent-ng-c1371038418_fadein ease-in-out both}.btn[_ngcontent-ng-c1371038418]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes _ngcontent-ng-c1371038418_fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="Variety of tools and solutions"><meta property="og:title" content="Avoiding common pitfalls with ControlValueAccessors in Angular"><meta property="og:description" content="Variety of tools and solutions"><meta property="twitter:title" content="Avoiding common pitfalls with ControlValueAccessors in Angular"><meta property="twitter:description" content="Variety of tools and solutions"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
 <body scully-version="0.0.0">
-<valor-software-site-base-root _nghost-ng-c6223672="" ng-version="16.0.4"><!----><div _ngcontent-ng-c6223672="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ng-c6223672=""></router-outlet><app-not-found><section class="landing-section !pb-0" style="min-height: 100%; height: 100vh;"><div class="container flex justify-between pt-16 lg:pt-0" style="min-height: 100%;"><div class="lg:max-w-600 flex justify-center items-center lg:items-start flex-col"><h1 class="text-light_title_col text-8xl leading-100 md:text-250 md:leading-250 mb-4 font-bold">404</h1><p class="leading-40 text-grey_font_col text-center lg:text-left text-large font-bold mb-6">Ooops! You weren’t supposed to see this.</p><p class="text-base leading-6 text-light_title_col text-center lg:text-left">The page you’re looking for no longer exist. Return to the previous page and remember: you haven’t seen anything! </p><button class="w-full md:w-auto flex justify-center mt-8"><a class="btn-pink w-full flex justify-center items-center" href="/">Go to the main page <img src="assets/img/icons/arrow.svg" alt="" class="ml-2"></a></button></div><div class="hidden lg:flex items-end"><img src="assets/img/bg-img/404.svg" alt="not found page"></div></div></section></app-not-found><!----></div><!----><cookie-consent-banner _ngcontent-ng-c6223672="" _nghost-ng-c1371038418=""><div _ngcontent-ng-c1371038418="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-ng-c1371038418="" class="flex flex-col"><span _ngcontent-ng-c1371038418="" class="text-20">This website uses cookies.</span><span _ngcontent-ng-c1371038418="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-ng-c1371038418="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-ng-c1371038418="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-ng-c1371038418="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
+<valor-software-site-base-root _nghost-ng-c6223672="" ng-version="16.0.4"><top-menu _ngcontent-ng-c6223672=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-ng-c6223672="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ng-c6223672=""></router-outlet><general-item><article _nghost-ng-c198896663=""><section _ngcontent-ng-c198896663="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-ng-c198896663="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-ng-c198896663="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Avoiding Common Pitfalls With Controlvalueaccessors In Angular </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-ng-c198896663="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-ng-c198896663="" class="text-20 mb-4">January 17, 2023</p><p _ngcontent-ng-c198896663="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Avoiding common pitfalls with ControlValueAccessors in Angular</p><div _ngcontent-ng-c198896663="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-ng-c198896663="" class="w-full h-full object-cover" src="assets/articles/avoiding-common-pitfalls-with-controlvalueaccessors-in-angular/Dmitry_Stepanenko.png" alt="Dmitriy Stepanenko"></div><!----><!----><!----><p _ngcontent-ng-c198896663="" class="md:text-large text-24 mb-4">Dmitriy Stepanenko</p><!----><!----><!----><p _ngcontent-ng-c198896663="" class="text-20">Full Stack developer</p><!----></div></div></section><section _ngcontent-ng-c198896663="" class="landing-section"><div _ngcontent-ng-c198896663="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-ng-c198896663="" class="max-w-full"><div class="paragraph">
+<p>One of the biggest advantages of Angular is the variety of tools and solutions that are brought to developers out of the box. One of them is the <mark>@angular/forms</mark> package, which brings the solid experience of working with any kind of UI controls.
+But have you ever wondered, how exactly this works under the hood? The only thing that needs to be done in order to tie FormControl with, let’s say, a plain input is using a "formControl" binding on the input element, pointing that UI element to the instance of a FormControl.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">&lt;input type="text" [formControl]="ctrl" /&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And voila, everything works.</p>
+</div>
+<div class="paragraph">
+<p>But obviously, there should be a component or directive that Angular uses to make everything happen. And that "something" can be found <a href="https://github.com/angular/angular/tree/main/packages/forms/src/directives" target="_blank" rel="noopener">here</a>: Angular brings a set of directives like <a href="https://github.com/angular/angular/blob/main/packages/forms/src/directives/default_value_accessor.ts" target="_blank" rel="noopener">default_value_accessor.ts</a>, <a href="https://github.com/angular/angular/blob/main/packages/forms/src/directives/select_control_value_accessor.ts" target="_blank" rel="noopener">select_control_value_accessor.ts</a>, <a href="https://github.com/angular/angular/blob/main/packages/forms/src/directives/checkbox_value_accessor.ts" target="_blank" rel="noopener">checkbox_value_accessor.ts</a>, etc. All of them implement the ControlValueAccessor interface, which, according to docs: <em>"Defines an interface that acts as a bridge between the Angular forms API and a native element in the DOM."</em></p>
+</div>
+<div class="paragraph">
+<p>This means any component can be easily defined as a form control by implementing this interface and registering itself as an <mark>NG_VALUE_ACCESSOR</mark> provider. In practice, it requires you to define 4 methods:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">interface ControlValueAccessor {
+  writeValue(obj: any): void
+  registerOnChange(fn: any): void
+  registerOnTouched(fn: any): void
+  setDisabledState(isDisabled: boolean)?: void
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>*although setDisabledState is optional, there’re only a few rare scenarios when it’s indeed not needed</em></p>
+</div>
+<div class="paragraph">
+<p>To understand how exactly everything works, let’s have a look at the very basic counter component:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">&lt;lib-counter [formControl]="counter"&gt;&lt;/lib-counter&gt;
+&lt;div&gt;Counter Value: {{ counter.value }}&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/avoiding-common-pitfalls-with-controlvalueaccessors-in-angular/image1.gif" alt="image1">
+</div>
+</div>
+<div class="paragraph">
+<p>Here’s the code of the component itself:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+const COUNTER_CONTROL_ACCESSOR = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() =&gt; CounterControlComponent),
+    multi: true,
+};
+
+@Component({
+    selector: 'lib-counter',
+    template: `
+        &lt;button (click)="down()" [disabled]="disabled"&gt;Down&lt;/button&gt;
+        {{ value }}
+        &lt;button (click)="up()" [disabled]="disabled"&gt;Up&lt;/button&gt;
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [COUNTER_CONTROL_ACCESSOR],
+})
+export class CounterControlComponent implements ControlValueAccessor {
+    disabled = false;
+    value = 0;
+
+    protected onTouched: () =&gt; void;
+    protected onChange: (value: number) =&gt; void;
+
+    constructor(private _cdr: ChangeDetectorRef) {}
+
+    up() {
+        this.setValue(this.value + 1, true);
+    }
+
+    down() {
+        this.setValue(this.value - 1, true);
+    }
+
+    registerOnChange(fn: (value: number) =&gt; void) {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn: () =&gt; void) {
+        this.onTouched = fn;
+    }
+
+    setDisabledState(isDisabled: boolean) {
+        this.disabled = isDisabled;
+    }
+
+    writeValue(value: number) {
+        this.setValue(value, false);
+        this._cdr.markForCheck();
+    }
+
+    protected setValue(value: number, emitEvent: boolean) {
+        const parsed = parseInt(value as any);
+        this.value = isNaN(parsed) ? 0 : parsed;
+        if (emitEvent &amp;&amp; this.onChange) {
+            this.onChange(value);
+            this.onTouched();
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you see here we’re implementing 4 methods and providing <mark>COUNTER_CONTROL_ACCESSOR.</mark> This is needed in order to let Angular know it deals with an instance of a form control.</p>
+</div>
+<div class="paragraph">
+<p>So what’s happening with control is:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Once FormControl is initialised, it invokes <mark>writeValue</mark>, <mark>registerOnChange</mark> and registerOnTouched methods on the counter component. This syncs the initial state of the FormControl with our counter and also passes onTouched and onChanged methods into the counter, so it can talk back to the FormControl when the user interacts with it.<br></p>
+</li>
+<li>
+<p>When the value is changed, FormControl invokes the <mark>writeValue</mark> method, so counter updates its internal state without triggering the <mark>onChange</mark>/<mark>onTouched</mark> methods.<br></p>
+</li>
+<li>
+<p>When the user interacts with our counter, it’s required to not only update the internal state but also notify parent FormControl about this state change, thus <mark>onChange</mark>/<mark>onTouched</mark> methods are invoked.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Although that’s not really a lot going on here, it is worth taking a look at a few important implementation details. And this is actually what this article is about</p>
+</div>
+<div class="sect1">
+<h2 id="_common_pitfalls_with_cvas_and_how_to_avoid_them">Common pitfalls with CVAs and how to avoid them</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong><mark>onChange</mark> should be only triggered by an internal event!</strong></p>
+</div>
+<div class="paragraph">
+<p>It’s important to keep in mind that these methods should only be used to notify FormControl about the change that was triggered in the component internally. In other words, if FormControl changes the value of the component, it should never notify FormControl back about this change. This is a quite common mistake as it won’t break anything at the first glance, instead you’ll be able to notice it by subscribing to <mark>valueChanges</mark> of the bound FormControl:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export class AppComponent {
+  readonly animal = new FormControl(‘rabbit’);
+
+  constructor() {
+    ctrl.valueChanges.subscribe(console.log);
+    animal.setValue(‘hare’);
+    animal.setValue(‘cat’);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the normal scenario by executing the code above you will see only 2 logs: ‘hare’, ‘cat’. However, if your <mark>writeValue</mark> method ends up invoking <mark>onChange</mark> you will see doubled console logs in the output: ‘hare’, ’hare’, ‘cat’, ‘cat’.</p>
+</div>
+<div class="paragraph">
+<p>Here’s a modified code of <mark>CounterComponent</mark> where this issue can be seen, when FormControl invokes <mark>writeValue</mark> we notify it back with the <mark>onChange</mark> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">// ... code of CounterComponent
+writeValue(value: number) {
+    // it's convenient to reuse existing "setValue" method, right?
+    // however, this will lead to the incorrect behavior
+    this.setValue(value);
+    this._cdr.markForCheck();
+}
+
+protected setValue(value: number) {
+    const parsed = parseInt(value as any);
+    this.value = isNaN(parsed) ? 0 : parsed;
+    if (this.onChange) {
+        this.onChange(value);
+        this.onTouched();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong><mark>onChange</mark> and <mark>onTouched</mark> should not always be called together!</strong></p>
+</div>
+<div class="paragraph">
+<p><mark>onChange</mark>/<mark>onTouched</mark> methods actually serve completely different purposes. While <mark>onChange</mark> is used to pass data when a component’s state changed internally, <mark>onTouched</mark> should be invoked after the user interacts with the component. This doesn’t always mean the component’s value is changed.</p>
+</div>
+<div class="paragraph">
+<p><mark>onTouched</mark> method is used in 2 cases:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>by FormControl to update its touched state</p>
+</li>
+<li>
+<p>when you set up your control to use  <a href="https://angular.io/api/forms/AbstractControl" target="_blank" rel="noopener">updateOn: “blur"</a>, FormControl uses it to properly identify this blur event to apply the value to itself.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For the CounterComponent both touch and change events are combined because the only way to interact with it is by clicking the button. However, with other components, the flow will be different. For instance, a plain <mark>&lt;input /&gt;</mark> element with a tied FormControl (with DefaultValueAccessor under the hood) is expected to be marked as touched when the user interacts with the input even by focusing it. Thus, for this kind of components onTouched emission should be tied to the <mark>blur</mark> event from the input.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/avoiding-common-pitfalls-with-controlvalueaccessors-in-angular/image2.gif" alt="image2">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_handling_nulls_properly">Handling nulls properly</h3>
+<div class="paragraph">
+<p>With an introduction of typed forms, form controls can now either infer a type from the default value or be typed explicitly. There’s an interesting thing, though: if we define a control c#onst control = new FormControl&lt;string&gt;()# and then check its type, it will be <mark>string | null</mark>. And you might wonder: why does the type of this control include <mark>null</mark>? This is because the control can become null at any time, by calling the <mark>reset()</mark> method on it. Here’s an example from angular docs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const control = new FormControl('Hello, world!');
+control.reset();
+console.log(control.value); // null</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Although this becomes quite obvious with typed forms, this behavior was inherent in forms from the very beginning. And while new handy types may catch issues with control’s values, it doesn’t really save you from any issues with nulls inside your CVA. Moreover, since CVA component doesn’t have any control over the form it’s being used within and there’s no way to enforce certain types of control on the form, it’s possible to actually pass literally any value into the control. Hence this value will end up passing into the <mark>writeValue</mark>, which can potentially break your component.</p>
+</div>
+<div class="paragraph">
+<p>Let’s change our CounterComponent as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">// ... code of CounterComponent
+writeValue(value: number) {
+    // it's convenient to reuse existing "setValue" method, right?
+    // however, this will lead to the incorrect behavior
+    this.setValue(value, false);
+    this._cdr.markForCheck();
+}
+
+protected setValue(value: number, emitEvent: boolean) {
+    this.value = value;
+    if (emitEvent &amp;&amp; this.onChange) {
+        this.onChange(value);
+        this.onTouched();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/avoiding-common-pitfalls-with-controlvalueaccessors-in-angular/image3.gif" alt="image3">
+</div>
+</div>
+<div class="paragraph">
+<p>CounterComponent is too simple to have big issues with null because JavaScript will cast null into 0 (<mark>null + 1 = 1</mark>), but as you can see component is visually broken after <mark>reset()</mark> is called. So it’s very important to keep in mind this behavior and implement some value protections for the <mark>writeValue</mark> method.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_standardising_your_custom_ui_form_components_with_controlvalueaccessor_test_suite">Standardising your custom UI form components with ControlValueAccessor Test Suite</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Even if you keep in mind all the potential pitfalls listed above, there’s always a chance something will go wrong due to some change or enhancement in the future. The best way to maintain the valid behavior of a component is to have extensive unit test coverage. However, it might be annoying to write the same list of tests for all CVA components or some use cases can be accidentally left without coverage. So it should be much better to have one unified testing solution, that can keep your components safe.</p>
+</div>
+<div class="paragraph">
+<p>And there’s one called <a href="https://github.com/dmitry-stepanenko/ngx-cva-test-suite" target="_blank" rel="noopener">ngx-cva-test-suite</a>. It’s a small npm package, that provides an extensive set of test cases, ensuring your custom controls behave as intended. It is designed and tested to work properly with both Jest and Jasmine test runners.</p>
+</div>
+<div class="paragraph">
+<p>Among the main features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ensures the correct amount of calls for the <mark>onChange</mark> function (incorrect usage may result in extra emissions of <mark>valueChanges</mark> of formControl)</p>
+</li>
+<li>
+<p>ensures correct triggering of <mark>onTouched</mark> function (is needed for touched state of the control and <mark>updateOn: 'blur'</mark> <a href="https://angular.io/api/forms/AbstractControl" target="_blank" rel="noopener">strategy</a> to function properly)</p>
+</li>
+<li>
+<p>ensures that no extra emissions are present when control is disabled</p>
+</li>
+<li>
+<p>checks for control to be resettable using <mark>AbstractControl.reset()</mark></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It is quite easy to be configured, here’s the usage scenario for the CounterComponent we looked into within this article:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { runValueAccessorTests } from 'ngx-cva-test-suite';
+import { CounterControlComponent } from './counter.component';
+
+runValueAccessorTests({
+    /** Component, that is being tested */
+    component: CounterControlComponent,
+    /**
+     * All the metadata required for this test to run.
+     * Under the hood calls TestBed.configureTestingModule with provided config.
+     */
+    testModuleMetadata: {
+        declarations: [CounterControlComponent],
+    },
+    /** Whether component is able to track "onBlur" events separately */
+    supportsOnBlur: false,
+    /**
+     * Tests the correctness of an approach that is used to set value in the component,
+     * when the change is internal. It's optional and can be omitted by passing "null"
+     */
+    internalValueChangeSetter: null,
+    /** Function to get the value of a component in a runtime. */
+    getComponentValue: (fixture) =&gt; fixture.componentInstance.value,
+    /** When component is reset by FormControl, it should either get a certain default internal value or "null" */
+    resetCustomValue: { value: 0 },
+    /**
+     * This test suite applies up to 3 different values on the component to test different use cases.
+     * Values can be customized using this configuration option.
+     */
+    getValues: () =&gt; [1, 2, 3],
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can learn more about usage examples in the <a href="https://github.com/dmitry-stepanenko/ngx-cva-test-suite" target="_blank" rel="noopener">package’s repository</a> or get inspiration by looking at a few CVA components that are placed <a href="https://github.com/dmitry-stepanenko/ngx-cva-test-suite/tree/master/apps/integration/src/app/controls" target="_blank" rel="noopener">within the repository here</a>.</p>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-ng-c198896663="" class="landing-section"><h1 _ngcontent-ng-c198896663="" class="main-title">More Articles</h1><div _ngcontent-ng-c198896663="" class="container"><blog-preview _ngcontent-ng-c198896663=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/fostering-innovation-through-collaboration-outside-contributors-first-hand-experience" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/fostering-innovation-through-collaboration-outside-contributors-first-hand-experience/Main-fostering.png" alt="Fostering Innovation Through Collaboration: Outside Contributor's First-Hand Experience"></div><div class="text-container"><p>Fostering Innovation Through Collaboration: Outside Contributor's First-Hand Experience</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/Main_developing_via_rust.png" alt="Developing a Desktop Application via Rust and NextJS. The Tauri Way."></div><div class="text-container"><p>Developing a Desktop Application via Rust and NextJS. The Tauri Way.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/qwik-reaches-the-v1-so-does-qwik-nx" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/qwik-reaches-the-v1-so-does-qwik-nx/Main_qwik_reaches.png" alt="Qwik reaches the v1, so does qwik-nx!"></div><div class="text-container"><p>Qwik reaches the v1, so does qwik-nx!</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-ng-c6223672=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="flex flex-col justify-center mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2023, Valor Software All Rights Reserved</p><a routerlink="/privacy-policy" class="m-0 text-center text-header_font_col text-sm link" href="/privacy-policy">Privacy Policy </a></div></div></footer></app-footer><!----><cookie-consent-banner _ngcontent-ng-c6223672="" _nghost-ng-c1371038418=""><div _ngcontent-ng-c1371038418="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-ng-c1371038418="" class="flex flex-col"><span _ngcontent-ng-c1371038418="" class="text-20">This website uses cookies.</span><span _ngcontent-ng-c1371038418="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-ng-c1371038418="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-ng-c1371038418="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-ng-c1371038418="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
 <script async="" src="assets/js/prettify.min.js"></script>
 <script id="ScullyIO-transfer-state"></script><script src="runtime.1a675bc671258911.js" type="module"></script><script src="polyfills.2066255b7190fd43.js" type="module"></script><script src="main.32731a310b0a1bfc.js" type="module"></script>
 
