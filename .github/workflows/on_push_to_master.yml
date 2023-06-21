@@ -16,7 +16,15 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.15.1'
-      - run: yarn install
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: ${{ env.CACHE_NODE_MODULES_PATH }}
+          key: node_modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install --immutable --immutable-cache --check-cache
+        if: steps.cache.outputs.cache-hit != 'true'
+      # install patch-package
+      - run: yarn postinstall
       - run: npx nx run valor-software-site:build-scully --prod
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3

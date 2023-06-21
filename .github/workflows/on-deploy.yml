@@ -42,6 +42,8 @@ jobs:
           key: node_modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --immutable --immutable-cache --check-cache
         if: steps.cache.outputs.cache-hit != 'true'
+      # install patch-package
+      - run: yarn postinstall
 
   # build valor-software-site-base
   build:
