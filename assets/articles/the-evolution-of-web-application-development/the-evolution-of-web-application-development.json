@@ -1,0 +1,14 @@
+{
+"title": "The Evolution of Web Application Development",
+"order": 72,
+"domains": ["dev_quality_assurance"],
+"language": "en",
+"bgImg": "assets/articles/the-evolution-of-web-application-development/Main_Evolution_Web_Development.png",
+"authorImg": "assets/articles/the-evolution-of-web-application-development/Nikita_Demchenko.png" ,
+"secondAuthorImg": "assets/articles/the-evolution-of-web-application-development/Bruno_Silva.png",
+"author": "Nikita Demchenko",
+"secondAuthor": "Bruno Silva",
+"position": "Technical Writer, Next.js developer",
+"date": "Thu Apr 24 2023 10:45:55 GMT+0000 (Coordinated Universal Time)",
+"seoDescription": "Exploring the evolution of web application development"
+}

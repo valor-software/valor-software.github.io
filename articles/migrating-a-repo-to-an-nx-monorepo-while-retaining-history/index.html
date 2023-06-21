@@ -1,6 +1,38 @@
-<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0">
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/migrating-a-repo-to-an-nx-monorepo-while-retaining-history"
+            },
+            "headline": "Migrating a repo to an Nx monorepo while retaining history",
+            "description": "Why you should migrate and retain history",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/migrating-a-repo-to-an-nx-monorepo-while-retaining-history/migrating-a-repo-to-an-nx-monorepo-while-retaining-history.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Guilherme Tod"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Tue Mon 16 2023 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
 	<meta charset="utf-8">
-	<title>404 error | Valor Software</title>
+	<title>Migrating a repo to an Nx monorepo while retaining history</title>
 	<base href="/">
 	<meta name="robots" content="all">
 	<meta property="og:type" content="website">
@@ -43,9 +75,217 @@
           }
       };
 	</script>
-<style>:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{--swiper-navigation-size:44px}:root{--swiper-theme-color:#007aff}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.9631d7aac7ff59b1.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.9631d7aac7ff59b1.css"></noscript><style>[_nghost-ng-c1371038418]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s _ngcontent-ng-c1371038418_fadein ease-in-out both}.btn[_ngcontent-ng-c1371038418]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes _ngcontent-ng-c1371038418_fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><script>window['ScullyIO']='generated';</script></head>
+<style>:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{--swiper-navigation-size:44px}:root{--swiper-theme-color:#007aff}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.f25768ec8b61cbe5.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.f25768ec8b61cbe5.css"></noscript><style>[_nghost-ng-c1371038418]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s _ngcontent-ng-c1371038418_fadein ease-in-out both}.btn[_ngcontent-ng-c1371038418]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes _ngcontent-ng-c1371038418_fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="Why you should migrate and retain history"><meta property="og:title" content="Migrating a repo to an Nx monorepo while retaining history"><meta property="og:description" content="Why you should migrate and retain history"><meta property="twitter:title" content="Migrating a repo to an Nx monorepo while retaining history"><meta property="twitter:description" content="Why you should migrate and retain history"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
 <body scully-version="0.0.0">
-<valor-software-site-base-root _nghost-ng-c6223672="" ng-version="16.0.4"><!----><div _ngcontent-ng-c6223672="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ng-c6223672=""></router-outlet><app-not-found><section class="landing-section !pb-0" style="min-height: 100%; height: 100vh;"><div class="container flex justify-between pt-16 lg:pt-0" style="min-height: 100%;"><div class="lg:max-w-600 flex justify-center items-center lg:items-start flex-col"><h1 class="text-light_title_col text-8xl leading-100 md:text-250 md:leading-250 mb-4 font-bold">404</h1><p class="leading-40 text-grey_font_col text-center lg:text-left text-large font-bold mb-6">Ooops! You weren’t supposed to see this.</p><p class="text-base leading-6 text-light_title_col text-center lg:text-left">The page you’re looking for no longer exist. Return to the previous page and remember: you haven’t seen anything! </p><button class="w-full md:w-auto flex justify-center mt-8"><a class="btn-pink w-full flex justify-center items-center" href="/">Go to the main page <img src="assets/img/icons/arrow.svg" alt="" class="ml-2"></a></button></div><div class="hidden lg:flex items-end"><img src="assets/img/bg-img/404.svg" alt="not found page"></div></div></section></app-not-found><!----></div><!----><cookie-consent-banner _ngcontent-ng-c6223672="" _nghost-ng-c1371038418=""><div _ngcontent-ng-c1371038418="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-ng-c1371038418="" class="flex flex-col"><span _ngcontent-ng-c1371038418="" class="text-20">This website uses cookies.</span><span _ngcontent-ng-c1371038418="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-ng-c1371038418="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-ng-c1371038418="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-ng-c1371038418="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
+<valor-software-site-base-root _nghost-ng-c6223672="" ng-version="16.0.4"><top-menu _ngcontent-ng-c6223672=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-ng-c6223672="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ng-c6223672=""></router-outlet><general-item><article _nghost-ng-c198896663=""><section _ngcontent-ng-c198896663="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-ng-c198896663="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-ng-c198896663="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Migrating A Repo To An Nx Monorepo While Retaining History </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-ng-c198896663="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-ng-c198896663="" class="text-20 mb-4"></p><p _ngcontent-ng-c198896663="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Migrating a repo to an Nx monorepo while retaining history</p><div _ngcontent-ng-c198896663="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-ng-c198896663="" class="w-full h-full object-cover" src="assets/articles/migrating-a-repo-to-an-nx-monorepo-while-retaining-history/Guilherme_Tod.png" alt="Guilherme Tod"></div><!----><!----><!----><p _ngcontent-ng-c198896663="" class="md:text-large text-24 mb-4">Guilherme Tod</p><!----><!----><!----><p _ngcontent-ng-c198896663="" class="text-20">Software Developer</p><!----></div></div></section><section _ngcontent-ng-c198896663="" class="landing-section"><div _ngcontent-ng-c198896663="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-ng-c198896663="" class="max-w-full"><div class="sect1">
+<h2 id="_why_you_should_migrate_and_retain_history">Why you should migrate and retain history</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you reached this article, you are likely planning to either start using Nx monorepos, or to migrate an existing project into an existing monorepo.</p>
+</div>
+<div class="paragraph">
+<p>If you’re unfamiliar with Nx monorepos, make sure to <a href="https://nx.dev/more-concepts/why-monorepos" target="_blank" rel="noopener">check the many advantages</a> it can bring you, including better code reusability, dependency maintenance, and developer experience.</p>
+</div>
+<div class="paragraph">
+<p>Now, if you decided that you’re going to migrate your application into an existing monorepo, you might be wondering 1) how to do it the best possible way and 2) if it is possible and worth the effort to maintain your history at all.</p>
+</div>
+<div class="paragraph">
+<p>The short answer is simply git. Git will allow you to pull your changes automatically instead of requiring you to manually copy and paste all your files within a folder. Also, your history will be almost entirely preserved with minimal effort, which is an amazing benefit.</p>
+</div>
+<div class="paragraph">
+<p>Another benefit of using git is continuity. We’ll get into more detail later, but after you create the first pull request for the migration, your teammates will review it, you may go into a deep QA process and many other things can happen between the PR creation and the actual merge and release.</p>
+</div>
+<div class="paragraph">
+<p>What if during this process a teammate needs to push a fix or an important feature on the original repo? If you don’t use git, you’ll probably be left with the single alternative of finding and replicating every change manually and potentially creating another entire process of review.</p>
+</div>
+<div class="paragraph">
+<p>However, if you use git for the first step, you’ll see that you can later continuously pull the changes from one repo to another with the traditional <mark>git merge</mark> command. That not just speeds you up but is also much more reliable in terms of getting the new code correctly.</p>
+</div>
+<div class="sect2">
+<h3 id="_getting_ready_for_the_migration">Getting ready for the migration</h3>
+<div class="paragraph">
+<p>Migrating an entire app to another repo can be a pretty impactful change. That means that your first deployment from the monorepo will naturally be very hesitant.</p>
+</div>
+<div class="paragraph">
+<p>Before starting the actual migration, there are a few steps I recommend in order to have a smoother transition. The first deployment from the monorepo will likely be a very cautious one. After all, big changes like this always come with a bit of hesitance.</p>
+</div>
+<div class="paragraph">
+<p>To minimize the changes that will happen during the actual migration, we can anticipate some steps. You want to make sure that you break big changes into several smaller steps that will allow you to focus on making them completely ready. Also this way you solve potential issues gradually instead of dropping a massive change that can leave you with a pack of problems to solve.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_match_dependencies_within_the_repos">Match dependencies within the repos</h3>
+<div class="paragraph">
+<p>One of the most time-consuming tasks from the migration will potentially be matching dependencies. That is especially true if you have major version differences in significant packages, like your framework.</p>
+</div>
+<div class="paragraph">
+<p>To do that, you can use a <a href="https://www.jsondiff.com/" target="_blank" rel="noopener">JSON comparison</a> to see the differences between the two <mark>package.json</mark> files, specifically in the <mark>dependencies</mark> and <mark>devDependencies</mark> fields. Simply paste one file at each side and check the mismatched versions by taking semver’s resolution into account. For this step, you will not add any dependencies to either repo, as the goal here is to only make sure that both applications run correctly with the same dependencies.</p>
+</div>
+<div class="paragraph">
+<p>After you make sure that all the dependencies are matching, do a deployment for the affected repos and keep an eye out in the next few days for new bugs that might be related to the upgrades while you work on the next steps.</p>
+</div>
+<div class="paragraph">
+<p><strong>WARNING:</strong> <em>While it is possible to manage dependencies with multiple versions within a repo, Nx strongly discourages it, so consider making an effort to match dependencies before attempting to keep different versions.</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_if_possible_match_all_the_code_style">If possible, match all the code style</h3>
+<div class="paragraph">
+<p>If you have lint checks running on CI/CD, you’ll eventually need to adapt the to-be-migrated repo to the new code style in order to be able to push the new code on the monorepo.
+While it’s true that you can easily have a custom lint configuration for different projects within a monorepo, you likely want to follow a similar code style to guarantee consistency between your team. So while this is not mandatory, it is a good thing to consider. This step should take into consideration linting, formatting, and other project-specific settings like TypeScript strict mode.</p>
+</div>
+<div class="paragraph">
+<p>Once more, it’s recommended to do this before you start with the repo migration to ensure that the migration is restricted to its purpose and does not include any other side effects.</p>
+</div>
+<div class="paragraph">
+<p>This is also helpful for not running into conflicts when you continuously pull changes to the monorepo as you won’t have to deal with code style and formatting differences.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_raise_all_known_issues">Raise all known issues</h3>
+<div class="paragraph">
+<p>When you finally approach the moment of deployment, it is natural that your team will keep an eye out for any issues. This, however, may lead to teammates reporting existing issues as if they were related to the migration, which can lead to some tension by making others think that some bugs were introduced.</p>
+</div>
+<div class="paragraph">
+<p>Also, it’s common that every other team member has a few issues and problems tracked only in their mind that didn’t make it to a real ticket that then gets known to the entire team.</p>
+</div>
+<div class="paragraph">
+<p>To mitigate this, I encourage you to talk to the teammates and document all the small issues they can think of. This way, colleagues can be easily consulted, and issues solved before team raise their hands to report a bug caused by the migration.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_performing_the_migration">Performing the migration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_creating_the_project">Creating the project</h3>
+<div class="paragraph">
+<p>Once all the previous steps are done, it is time to work on the actual migration. This step is surprisingly easy since we’re using git to do the work for us.</p>
+</div>
+<div class="paragraph">
+<p>We’ll start by adding an Nx project that will later hold the migrated code. Assuming you’ll be migrating an Angular app named <mark>single-app-repo</mark>, simply run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">nx generate @nx/angular:application single-app-repo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>NOTE:</strong> <em>always check in the docs for the generator to see the options available</em></p>
+</div>
+<div class="paragraph">
+<p>You’ll get a new <mark>apps/single-apps-repo</mark> folder that contains a few configuration files at its root and a <mark>src</mark> directory, which will hold the implementation and contains an example app.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bringing_the_code">Bringing the code</h3>
+<div class="paragraph">
+<p>With the project setup, we can start bringing in the original repo code. Assuming the repo that will be migrated is named inside the org <mark>your-company</mark>, run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git remote add single-app-repo github.com/your-company/single-app-repo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will add a new origin that points to the existing repo, which you’ll use to perform the initial merge and to further update if that repo happens to have other activity prior to the first merge.</p>
+</div>
+<div class="paragraph">
+<p>After this, we’ll merge the code from the original repo. Assuming the latest changes you want to pull are on the <mark>main</mark> branch, run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git merge single-app-repo/main --allow-unrelated-histories</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will bring all your files to the root of the application and naturally result in some conflicts.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_solving_the_conflicts">Solving the conflicts</h3>
+<div class="paragraph">
+<p>You probably are facing conflicts in your <mark>package.json</mark> and <mark>package-lock.json</mark>/<mark>yarn.lock</mark> files. For these files specifically, you won’t be able to retain history as they will live on the same path on both repositories, so you can simply accept the current changes and discard the original repo’s changes.</p>
+</div>
+<div class="paragraph">
+<p>For any other conflicting files, it’s worth looking at each and handling them separately as you consider whether they should stay at the root of the monorepo or should be sent to the project’s directory. In either case, it’s recommended that you accept the current changes, but if the second one is the answer, you should create the file manually inside the dir after you solve the conflict.</p>
+</div>
+<div class="paragraph">
+<p>Now, lastly, you can take all the added files and move them to <mark>apps/single-app-repo</mark>. It’s important to adapt your structure to the Nx one, which means keeping the previously on root files inside the <mark>apps/single-app-repo</mark> and the actual source files inside <mark>apps/single-app-repo/src</mark>. If you already used Angular’s default structure, your work will probably be done by copying over the files to the indicated folder. Also, if you are creating an Angular app, it’s also required to adapt your <mark>angular.json</mark> file into the <mark>project.json</mark> file previously created by the NX generator.</p>
+</div>
+<div class="paragraph">
+<p>After everything is done and moved, do a last check to see if the history is correctly maintained. If you’re on VSCode, you can use <a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" target="_blank" rel="noopener">GitLens</a> and <a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph" target="_blank" rel="noopener">Git Graph</a> to have a better visualization of it.</p>
+</div>
+<div class="paragraph">
+<p>First, stage all your files. Then, go to a file from the new project that you are confident that should have kept history and see if the blame is being correctly displayed. Lastly, open Git Graph and try to find commits from the original repo to ensure they are being carried over too.</p>
+</div>
+<div class="paragraph">
+<p>If everything is well, you’re ready to finally merge with <mark>git merge --continue</mark> and start testing your brand new project.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wrapping_up">Wrapping up</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_clean_up_some_of_the_project_default_files">Clean up some of the project default files</h3>
+<div class="paragraph">
+<p>You probably overridden most of the files generated by Nx initially with your own implementation. Still, it’s possible that some files were left over. They won’t affect your application, but it’s good for housekeeping that you take a last look and try to remove files. Look for <mark>nx-welcome</mark> file, a <mark>favicon</mark> that you won’t use and even loose and unnecessary <mark>.gitkeep</mark> files.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_say_goodbye_to_the_old_repo">Say goodbye to the old repo</h3>
+<div class="paragraph">
+<p>Now that you finished migrating the old repo, you can safely remove it from the remote with <mark>git remote remove single-app-repo</mark>.</p>
+</div>
+<div class="paragraph">
+<p>Lastly, it might be a good idea to also tag your repository as deprecated and <a href="https://docs.github.com/en/repositories/archiving-a-github-repository/archiving-repositories" target="_blank" rel="noopener">archive</a> it to ensure no one keeps working on it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_things_to_watch_out_for">Things to watch out for</h3>
+<div class="paragraph">
+<p>After you perform the merge, you’ll need to start testing to see if everything is still working as expected. If your application is building and serving plus you performed the steps to avoid side effects, it’s safe to assume that your code will behave as expected since at the end of the day it’s the same code.</p>
+</div>
+<div class="paragraph">
+<p>However, there are a few spots where it’s worth taking a careful look since they can get more easily affected by the repository change, so make sure you double-check:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Environment settings</p>
+</li>
+<li>
+<p>All sort of assets, including images, icons and etc</p>
+</li>
+<li>
+<p>Localization files</p>
+</li>
+<li>
+<p>Path references for other directories, including <mark>node_modules</mark></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If all of those are fine, as well as your other tests, congratulations, you just migrated your entire repo to NX and can enjoy <a href="https://nx.dev/more-concepts/why-monorepos" target="_blank" rel="noopener">all of its benefits</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bonus_tip">Bonus tip</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If git isn’t correctly detecting a file’s history when you are continuously merging, abort your merge with git <mark>merge --abort</mark> and increase the <mark>renameLimit</mark> to make sure that git is more flexible for considering a file as renamed rather than moved. This is specially used if you weren’t able to keep the same formatting and linting and are now left with modified files due to these differences.</p>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-ng-c198896663="" class="landing-section"><h1 _ngcontent-ng-c198896663="" class="main-title">More Articles</h1><div _ngcontent-ng-c198896663="" class="container"><blog-preview _ngcontent-ng-c198896663=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/fostering-innovation-through-collaboration-outside-contributors-first-hand-experience" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/fostering-innovation-through-collaboration-outside-contributors-first-hand-experience/Main-fostering.png" alt="Fostering Innovation Through Collaboration: Outside Contributor's First-Hand Experience"></div><div class="text-container"><p>Fostering Innovation Through Collaboration: Outside Contributor's First-Hand Experience</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/Main_developing_via_rust.png" alt="Developing a Desktop Application via Rust and NextJS. The Tauri Way."></div><div class="text-container"><p>Developing a Desktop Application via Rust and NextJS. The Tauri Way.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/qwik-reaches-the-v1-so-does-qwik-nx" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/qwik-reaches-the-v1-so-does-qwik-nx/Main_qwik_reaches.png" alt="Qwik reaches the v1, so does qwik-nx!"></div><div class="text-container"><p>Qwik reaches the v1, so does qwik-nx!</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-ng-c6223672=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="flex flex-col justify-center mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2023, Valor Software All Rights Reserved</p><a routerlink="/privacy-policy" class="m-0 text-center text-header_font_col text-sm link" href="/privacy-policy">Privacy Policy </a></div></div></footer></app-footer><!----><cookie-consent-banner _ngcontent-ng-c6223672="" _nghost-ng-c1371038418=""><div _ngcontent-ng-c1371038418="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-ng-c1371038418="" class="flex flex-col"><span _ngcontent-ng-c1371038418="" class="text-20">This website uses cookies.</span><span _ngcontent-ng-c1371038418="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-ng-c1371038418="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-ng-c1371038418="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-ng-c1371038418="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
 <script async="" src="assets/js/prettify.min.js"></script>
 <script id="ScullyIO-transfer-state"></script><script src="runtime.1a675bc671258911.js" type="module"></script><script src="polyfills.2066255b7190fd43.js" type="module"></script><script src="main.32731a310b0a1bfc.js" type="module"></script>
 

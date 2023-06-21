@@ -1,0 +1,12 @@
+{
+"title": "React Native and CodePush",
+"order": 65,
+"domains": ["dev_quality_assurance"],
+"authorImg": "assets/articles/react-native-and-codepush/Denis_Belotserkovets.png",
+"language": "en",
+"bgImg": "assets/articles/react-native-and-codepush/MainReactNativeCodePush.png",
+"author": "Denis Belotserkovets",
+"position": "Tech Lead",
+"date": "Mon Feb 28 2023 10:45:55 GMT+0000 (Coordinated Universal Time)",
+"seoDescription": "How to make targeted releases and reduce the time of receiving updates"
+}

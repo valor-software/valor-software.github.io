@@ -1,0 +1,410 @@
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Module federation has been one of the most popular topics in development lately. People love the way it allows teams to develop applications independently and integrate them all into a single final application. While that seems good for the web, how could Module Federation look in a mobile native application?</p>
+</div>
+<div class="paragraph">
+<p>Let’s get the elephant out of the room first. The whole point of module federation is that teams can deploy their applications independently, but native apps have their bundles and code shipped holistically with the app. Even if they didn’t, having the user wait or be unable to load your app in bad or no connectivity would lead to terrible UX. Before going down this path, you need careful thought and a really good reason.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="assets/articles/module-federation-in-mobile-apps-powered-by-nativescript/jeff-goldblum-jurassic-park.gif" alt="jeff goldblum jurassic park">
+</div>
+</div>
+<div class="paragraph">
+<p>So let’s start with a use case. One of our large enterprise clients has a WYSIWYG editor for NativeScript, complete with their own native components library. They have their own SSO and app “shell” that is common to all of their apps, but their users are able to customize the content, including pushing changes only to specific screens. To generate this they needed to be able to generate bundles dynamically and push them to the application so they could easily switch between apps, and update only the user’s bundle.</p>
+</div>
+<div class="paragraph">
+<p>This application highlights one of the beauties of NativeScript. The users don’t need to have knowledge of native code at all, and if they need to extend something, they can do it directly in JavaScript or TypeScript, while also allowing them to add native code once they feel like they need it.</p>
+</div>
+<div class="paragraph">
+<p>Now back to the application. This was initially built before bundlers were widely used, and once bundlers became the norm, it became a tricky situation where they’d need to map the available modules and override the require functions to provide the user code with the expected module. A mess. Enter Webpack Module Federation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exposing_an_application">Exposing an application</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { Component, NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { NativeScriptCommonModule } from "@nativescript/angular";
+import { timer } from "rxjs";
+
+@Component({
+  template: `&lt;Label&gt;Hello from wmf! Here's a counter: {{ timer | async }}&lt;/Label&gt;`,
+})
+export class MyComponent {
+  timer = timer(0, 1000);
+}
+
+@NgModule({
+  declarations: [MyComponent],
+  imports: [NativeScriptCommonModule, RouterModule.forChild([{ path: "", component: MyComponent }])],
+  schemas: [NO_ERRORS_SCHEMA]
+})
+export class FederatedModule {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since we’ll need to download all the JS files anyway, for testing purposes, I’ve made it all compile to a single chunk and discard the non-remote entrypoint. To do this I used the default NativeScript webpack config and augmented with a few details to build it directly to my current app’s assets directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const webpack = require("@nativescript/webpack");
+const coreWebpack = require('webpack');
+const path = require(`path`);
+const NoEmitPlugin = require('no-emit-webpack-plugin');
+
+module.exports = (env) =&gt; {
+  webpack.init(env);
+
+  const packageJson = require('./package.json');
+
+  // Learn how to customize:
+  // &lt;https://docs.nativescript.org/webpack&gt;
+
+  webpack.chainWebpack((config, env) =&gt; {
+    config.entryPoints.clear();
+    config.resolve.alias.set('~', path.join(__dirname, 'federated-src'));
+    config.resolve.alias.set('@', path.join(__dirname, 'federated-src'));
+    config.plugins.delete('CopyWebpackPlugin');
+    config.output.path(path.join(__dirname, 'src', 'assets'));
+    config.optimization.runtimeChunk(true);
+    config.module.delete('bundle');
+    config.plugin('NoEmitPlugin').use(NoEmitPlugin, ['dummy.js']);
+    config.plugin('MaxChunks').use(coreWebpack.optimize.LimitChunkCountPlugin, [{ maxChunks: 1 }]);
+    config.plugin('WebpackModuleFederationPlugin').use(coreWebpack.container.ModuleFederationPlugin, [{
+      name: 'federated',
+      exposes: {
+        './federated.module': './federated-src/federated.module.ts'
+      },
+      library: {
+        type: 'commonjs'
+      },
+      shared: {
+        '@nativescript/core': { eager: true, singleton: true, requiredVersion: "*", import: false },
+        '@nativescript/angular': { eager: true, singleton: true, requiredVersion: "*", import: false },
+        '@angular/core': { eager: true, singleton: true, requiredVersion: "*", import: false },
+        '@angular/router': { eager: true, singleton: true, requiredVersion: "*", import: false },      }
+    }]);
+  });
+
+  const config = webpack.resolveConfig();
+  config.entry = { 'dummy': './federated-src/federated.module.ts' };
+  return config;
+};</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_loading_the_remote_entrypoint">Loading the remote entrypoint</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of the tricky parts of this whole process is that we can’t download the app piece by piece, as underneath we’re using commonjs (node’s require) to evaluate and load the modules into memory. To do this we need to download all of the output into the application and then we can load it.
+As a POC, we can start with a simple remote configuration which allows us to load the entrypoint as a normal module.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">// federated webpack config
+{
+  name: 'federated',
+  exposes: {
+    './federated.module': './federated-src/federated.module.ts'
+  },
+  library: {
+    type: 'commonjs'
+  },
+}
+
+// host config
+
+{
+  remoteType: "commonjs",
+  remotes: {
+    "federated": "~/assets/federated.js"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the import it as a route like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  path: 'federated', loadChildren: () =&gt;  import('federated/federated.module').then((m) =&gt; m.FederatedModule),
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unfortunately, we’d have to have all the federated modules shipped in the final application, so to load things dynamically, we should instead use the following code to load arbitrary entrypoints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">/// &lt;reference path="../../node_modules/webpack/module.d.ts" /&gt;
+
+type Factory = () =&gt; any;
+type ShareScope = typeof __webpack_share_scopes__[string];
+
+interface Container {
+  init(shareScope: ShareScope): void;
+
+  get(module: string): Factory;
+}
+
+export enum FileType {
+  Component = "Component",
+  Module = "Module",
+  Css = "CSS",
+  Html = "Html",
+}
+
+export interface LoadRemoteFileOptions {
+  // actual file being imported
+  remoteEntry: string;
+  // used as a "key" to store the file in the cache
+  remoteName: string;
+  // what file to import
+  // must match the "exposes" property of the federated bundle
+  // Example:
+  // exposes: {'.': './file.ts', './otherFile': './some/path/otherFile.ts'}
+  // calling this function with '.' will import './file.ts'
+  // calling this function with './otherFile' will import './some/path/otherFile.ts'
+  exposedFile: string;
+  // mostly unused for the moment, just use Module
+  // can be used in the future to change how to load specific files
+  exposeFileType: FileType;
+}
+
+export class MfeUtil {
+  // holds list of loaded script
+  private fileMap: Record&lt;string, boolean&gt; = {};
+  private moduleMap: Record&lt;string, Container&gt; = {};
+
+  findExposedModule = async &lt;T&gt;(
+    uniqueName: string,
+    exposedFile: string
+  ): Promise&lt;T | undefined&gt; =&gt; {
+    let Module: T | undefined;
+    // Initializes the shared scope. Fills it with known provided modules from this build and all remotes
+    await __webpack_init_sharing__("default");
+    const container = this.moduleMap[uniqueName];
+    // Initialize the container, it may provide shared modules
+    await container.init(__webpack_share_scopes__.default);
+    const factory = await container.get(exposedFile);
+    Module = factory();
+    return Module;
+  };
+
+  public loadRootFromFile(filePath: string) {
+    return this.loadRemoteFile({
+      exposedFile: ".",
+      exposeFileType: FileType.Module,
+      remoteEntry: filePath,
+      remoteName: filePath,
+    });
+  }
+
+  public loadRemoteFile = async (
+    loadRemoteModuleOptions: LoadRemoteFileOptions
+  ): Promise&lt;any&gt; =&gt; {
+    await this.loadRemoteEntry(
+      loadRemoteModuleOptions.remoteEntry,
+      loadRemoteModuleOptions.remoteName
+    );
+    return await this.findExposedModule&lt;any&gt;(
+      loadRemoteModuleOptions.remoteName,
+      loadRemoteModuleOptions.exposedFile
+    );
+  };
+
+  private loadRemoteEntry = async (
+    remoteEntry: string,
+    uniqueName?: string
+  ): Promise&lt;void&gt; =&gt; {
+    return new Promise&lt;void&gt;((resolve, reject) =&gt; {
+      if (this.fileMap[remoteEntry]) {
+        resolve();
+        return;
+      }
+
+      this.fileMap[remoteEntry] = true;
+
+      const required = __non_webpack_require__(remoteEntry);
+      this.moduleMap[uniqueName] = required as Container;
+      resolve();
+      return;
+    });
+  };
+}
+
+export const moduleFederationImporter = new MfeUtil();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code is able to load any .js file on the device, so it can be used in conjunction with a download strategy to download the files and then load them dynamically. For example, we can first download the full file, and then load it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">{
+ path: "federated",
+ loadChildren: async () =&gt; {
+   const file = await Http.getFile('http://127.0.0.1:3000/federated.js');
+
+   return (await moduleFederationImporter
+     .loadRemoteFile({
+       exposedFile: "./federated.module",
+       exposeFileType: FileType.Module,
+       remoteEntry: file.path,
+       remoteName: "federated",
+     })).FederatedModule;
+ },
+},</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, we could also download it as a zip and extract, or you could, theoretically, override the way that webpack loads the chunks in the federated module to download them piece by piece as needed.
+Sharing the common modules
+The complexity of sharing modules cannot be understated. The initial <a href="https://github.com/webpack/webpack/pull/10838" target="_blank" rel="noopener">Webpack Module Federation PR</a> that provided the full container and consumer API is smaller then the <a href="https://github.com/webpack/webpack/pull/10960" target="_blank" rel="noopener">PR that introduced version shared dependencies</a>.
+A native app is not just a webpage, but the full browser itself. While the web provides a lot of APIs directly, NativeScript provides a lot of them through the @nativescript/core package, so that’s one dependency that has to be a singleton and we can’t under any circumstance have multiple versions of it. In this example, we’re also using angular, so let’s share that as well:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">shared: {
+  '@nativescript/core': { eager: true, singleton: true, requiredVersion: "*" },
+  '@nativescript/angular': { eager: true, singleton: true, requiredVersion: "*" },
+  '@angular/core': { eager: true, singleton: true, requiredVersion: "*" },
+  '@angular/router': { eager: true, singleton: true, requiredVersion: "*" },
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here we also share them as eager, since those packages are critical to the bootstrap of the application. For example, @nativescript/core is responsible for calling UIApplicationMain on iOS, so if you fail to call it, the app will instantly close.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_result">Result</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, we create a simple standalone component that will show a Label and a nested page which will be loaded asynchronous:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { Component, NO_ERRORS_SCHEMA } from "@angular/core";
+import {
+ NativeScriptCommonModule,
+ NativeScriptRouterModule,
+} from "@nativescript/angular";
+
+@Component({
+ standalone: true,
+ template: `&lt;StackLayout&gt;
+   &lt;Label&gt;Hello from standalone component&lt;/Label&gt;
+   &lt;GridLayout&gt;&lt;page-router-outlet&gt;&lt;/page-router-outlet&gt;&lt;/GridLayout&gt;
+ &lt;/StackLayout&gt;`,
+ schemas: [NO_ERRORS_SCHEMA],
+ imports: [NativeScriptCommonModule, NativeScriptRouterModule],
+})
+export class ShellComponent {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then we can define the Federated Module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">@Component({
+ template: `&lt;Label&gt;Hello from wmf! Here's a counter: {{ timer | async }}&lt;/Label&gt;`,
+})
+export class MyComponent {
+ timer = timer(0, 1000);
+}
+
+@NgModule({
+ declarations: [MyComponent],
+ imports: [NativeScriptCommonModule, RouterModule.forChild([{ path: "", component: MyComponent }])],
+ schemas: [NO_ERRORS_SCHEMA]
+})
+export class FederatedModule {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, we can setup the routing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { NgModule } from "@angular/core";
+import { Routes } from "@angular/router";
+import { NativeScriptRouterModule } from "@nativescript/angular";
+import { FileType, moduleFederationImporter } from "./mfe.utils";
+import { Http } from "@nativescript/core";
+import { ShellComponent } from "./shell.component";
+
+const routes: Routes = [
+ { path: "", redirectTo: "/shell", pathMatch: "full" },
+ {
+   path: "shell",
+   component: ShellComponent,
+   loadChildren: async () =&gt; {
+     const file = await Http.getFile("http://127.0.0.1:3000/federated.js");
+
+     return (
+       await moduleFederationImporter.loadRemoteFile({
+         exposedFile: "./federated.module",
+         exposeFileType: FileType.Module,
+         remoteEntry: file.path,
+         remoteName: "federated",
+       })
+     ).FederatedModule;
+   },
+ },
+];
+
+@NgModule({
+ imports: [NativeScriptRouterModule.forRoot(routes), ShellComponent],
+ exports: [NativeScriptRouterModule],
+})
+export class AppRoutingModule {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which results in the following screen, fully working module federation in NativeScript!</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/module-federation-in-mobile-apps-powered-by-nativescript/img1.png" alt="img1">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Although Module Federations is still limited on the native application side, we’re already exploring possibilities on how to import modules from the web directly, instead of having to download them manually, giving it first class support and allowing full code splitted remote modules:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const entry = await import('https://example.com/remoteEntry.js');
+entry.get(...)
+// entry magically fetches https://example.com/chunk.0.js if needed</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Module Federation is very promising for creating distribution of efforts and on demand releases without having to go through the pain of constant app store approval processes. While not for everyone it is a very exciting opportunity for large teams.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_need_help">Need help?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Valor Software is both an official partner of both the NativeScript organization and Module Federation organization. If you&#8217;re looking at using Module Federation with your NativeScript application and would like some help. Reach out to our team, <a href="mailto:sales@valor-software.com">sales@valor-software.com</a></p>
+</div>
+</div>
+</div>
