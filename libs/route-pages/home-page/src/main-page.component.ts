@@ -338,15 +338,15 @@ export class MainPageComponent implements OnDestroy {
 
 	partnersList: Array<{ img: string, link: string }> = [
 		{
-			img: 'assets/img/technologies/active/nx.png',
+			img: 'assets/img/technologies/svg/nx.svg',
 			link: 'https://nx.dev/'
 		},
 		{
-			img: 'assets/img/technologies/active/netlify.png',
+			img: 'assets/img/technologies/svg/netlify.svg',
 			link: 'https://www.netlify.com/'
 		},
 		{
-			img: 'assets/img/technologies/active/builder_io.png',
+			img: 'assets/img/technologies/svg/builder_io.svg',
 			link: 'https://www.builder.io/'
 		}
 	];
