@@ -102,7 +102,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
 		this.$gaRouteEvents = this.router.events.subscribe((event) => {
 			if (event instanceof NavigationEnd) {
 				if (!configured) {
-					gtag('config', 'G-YD223JL5QN', { send_page_view: false });
+					gtag('config', 'G-8Z0HMZ2FH4', { send_page_view: false });
 					configured = true;
 				}
 				gtag('event', 'page_view', {
