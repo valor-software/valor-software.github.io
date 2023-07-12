@@ -49,7 +49,8 @@ import { Subscription, of } from "rxjs";
         text-align: right;
     }
     ::ng-deep.block-citation>blockquote {
-        border: 0px
+        border: 0px;
+        border-radius: 3rem;
     }
     ::ng-deep.block-citation>blockquote>.paragraph:first-of-type:before {
         content: open-quote;
