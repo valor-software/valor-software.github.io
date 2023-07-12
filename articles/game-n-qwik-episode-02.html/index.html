@@ -1,0 +1,755 @@
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/game-n-qwik-episode-02.html"
+            },
+            "headline": "Game-n-Qwik. Episode 02.",
+            "description": "I will explain how to start the game implementation on Qwik.",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/game-n-qwik-episode-02/Main-Game-n-qwik2.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Vyacheslav Chub"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Tue Jul 12 2023 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+	<meta charset="utf-8">
+	<title>Game-n-Qwik. Episode 02.</title>
+	<base href="/">
+	<meta name="robots" content="all">
+	<meta property="og:type" content="website">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:image" content="/assets/img/valor-img/valor_social.jpg">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@ValorSoft">
+	<meta name="twitter:creator" content="@ValorSoft">
+
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<script>
+      window.intercomSettings = {
+          app_id: "brxsww1a"
+      };
+	</script>
+	<script src="assets/js/intercom-facade.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN"></script>
+	<script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+	</script>
+	<script type="text/javascript">
+      window.onload = function () {
+          if (window.self !== window.top) {
+              document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+      };
+	</script>
+<style>:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{--swiper-navigation-size:44px}:root{--swiper-theme-color:#007aff}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.10d34ecbab5d2f65.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.10d34ecbab5d2f65.css"></noscript><style>[_nghost-ng-c1371038418]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s _ngcontent-ng-c1371038418_fadein ease-in-out both}.btn[_ngcontent-ng-c1371038418]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes _ngcontent-ng-c1371038418_fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px;border-radius:3rem}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="I will explain how to start the game implementation on Qwik."><meta property="og:title" content="Game-n-Qwik. Episode 02."><meta property="og:description" content="I will explain how to start the game implementation on Qwik."><meta property="twitter:title" content="Game-n-Qwik. Episode 02."><meta property="twitter:description" content="I will explain how to start the game implementation on Qwik."><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+<valor-software-site-base-root _nghost-ng-c6223672="" ng-version="16.0.4"><top-menu _ngcontent-ng-c6223672=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-ng-c6223672="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ng-c6223672=""></router-outlet><general-item><article _nghost-ng-c198896663=""><section _ngcontent-ng-c198896663="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-ng-c198896663="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-ng-c198896663="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Game-n-qwik. Episode 02. </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-ng-c198896663="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-ng-c198896663="" class="text-20 mb-4">July 12, 2023</p><p _ngcontent-ng-c198896663="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Game-n-Qwik. Episode 02.</p><div _ngcontent-ng-c198896663="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-ng-c198896663="" class="w-full h-full object-cover" src="assets/articles/game-n-qwik-episode-01/Slava_Chub.jpg" alt="Vyacheslav Chub"></div><!----><!----><!----><p _ngcontent-ng-c198896663="" class="md:text-large text-24 mb-4">Vyacheslav Chub</p><!----><!----><!----><p _ngcontent-ng-c198896663="" class="text-20">Full Stack Software Engineer</p><!----></div></div></section><section _ngcontent-ng-c198896663="" class="landing-section"><div _ngcontent-ng-c198896663="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-ng-c198896663="" class="max-w-full"><div class="sect1">
+<h2 id="_the_first_scratches">The First Scratches.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I introduced you to the general Columns Game idea in the <a href="https://valor-software.com/articles/game-n-qwik-episode-01" target="_blank" rel="noopener">previous episode</a>. And now, it’s time to move forward. This episode will explain how to start the game implementation on <a href="https://qwik.builder.io/" target="_blank" rel="noopener">Qwik</a>. The first steps will include the following points.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Bootstrapping.</p>
+</li>
+<li>
+<p>The first steps in gameplay.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>But before, I want to speculate a bit regarding the Web implementation of an Arcade Game and focus on one strategic topic. First, we must understand what issues to consider to implement the game successfully. They are the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Library or Framework. In this case, we talk about Qwik, as I explained in Episode 01.</p>
+</li>
+<li>
+<p>We need to choose an approach for graphical objects drawing. Of course, we can use a pure HTML canvas-based approach. But let’s not reinvent the wheel; let’s wear it out.</p>
+</li>
+<li>
+<p>It is also essential to determine which CSS framework we will use. In my mind, pure CSS usage is also not a good idea for the reason explained in the previous point.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It’s time to start our implementation with the points above covering.</p>
+</div>
+<div class="sect2">
+<h3 id="_bootstrapping">Bootstrapping.</h3>
+<div class="paragraph">
+<p>I recommend <a href="https://qwik.builder.io/docs/getting-started/" target="_blank" rel="noopener">Getting Started Qwikly</a> before we start.</p>
+</div>
+<div class="paragraph">
+<p>Please, run</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npx npm create qwik@latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and answer the following questions as:</p>
+</div>
+<div class="paragraph">
+<p><mark>Where would you like to create your new project?</mark><br>
+./qwik-columns<br>
+<mark>Select a starter</mark><br>
+Basic App<br>
+<mark>Would you like to install npm dependencies?</mark><br>
+Yes<br>
+<mark>Initialize a new git repository?</mark><br>
+Yes or No, it’s your choice…​<br></p>
+</div>
+<div class="paragraph">
+<p>Congratulations! We just successfully started bootstrapping.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd qwik-columns</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s return to the points above regarding Graphical Drawing and CSS.</p>
+</div>
+<div class="paragraph">
+<p>Before the first serious facing with <a href="https://d3js.org/" target="_blank" rel="noopener">D3</a>, I thought this beautiful library was just about charts. But as far as I implemented different custom charts, I found this is a delusion. One of the main pros of D3 is its universality. In the following episodes, I’ll prove it! Together we will implement the game via D3!</p>
+</div>
+<div class="paragraph">
+<p>Currently, I don’t see any alternative to the <a href="https://d3js.org/" target="_blank" rel="noopener">D3</a> drawing approach because:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It has powerful shape-drawing tools and color management.</p>
+</li>
+<li>
+<p>D3 is about vector graphics; also, this library is animation-friendly.</p>
+</li>
+<li>
+<p>It allows associating (or binding) data to the graphical representation.</p>
+</li>
+<li>
+<p>It has a lot of patterns, like different, even tricky chart types.</p>
+</li>
+<li>
+<p>D3 is well-documented and has a vast community.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Let’s install D3 dependencies.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm i d3 --save</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also, we need to install expected typings</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm i @types/d3 --save-dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s switch to CSS issue.</p>
+</div>
+<div class="paragraph">
+<p>The relationships between me and CSS are very pragmatic because I’m a full-stack guy and always don’t have much time for sophisticated dancing with CSS. Of course, I understand and respect the beauty of <a href="https://getbem.com/introduction/" target="_blank" rel="noopener">BEM</a> and <a href="https://www.arekibo.com/blog/popular-css-methodologies-for-scaling-web-projects/" target="_blank" rel="noopener">some other methodologies</a>. But I’m simultaneously thinking about architecture and design, the beauty of JS, TS, Go, Rust code, DB structure, etc. Moreover, some existing CSS-based implementations make me suffer and waste my time. A good example is <a href="https://chipperci.com/news/node-sass-node-gyp-nodejs-errors" target="_blank" rel="noopener">Node-sass and Node-gyp Errors</a>. That’s why I expect something powerful, easy, and lightweight. According to the <a href="https://www.webdesignerdepot.com/2021/09/the-pros-and-cons-of-tailwind-css/" target="_blank" rel="noopener">following points</a>, I think <a href="https://tailwindcss.com/" target="_blank" rel="noopener">Tailwindcss</a> is the best choice.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Control Over Styling</p>
+</li>
+<li>
+<p>Faster CSS Styling Process</p>
+</li>
+<li>
+<p>Responsiveness and Security</p>
+</li>
+<li>
+<p>Additional Features. Tailwind CSS works in the front end of a website. For this reason, it is reasonable for developers to demand ultimate responsiveness. Well, Tailwind provides the ability to create responsive themes for your web applications and remove all unused CSS classes. With PurgeCSS, Tailwind helps you keep your final CSS as small as possible.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Of course, it has <a href="https://www.webdesignerdepot.com/2021/09/the-pros-and-cons-of-tailwind-css/" target="_blank" rel="noopener">some cons</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Styling and HTML are Mixed</p>
+</li>
+<li>
+<p>Lack of Important Components</p>
+</li>
+<li>
+<p>It Takes Time to Learn</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Let’s analyze them. The first couple is only relevant when considering big or even enterprise projects. In that case, we could think about another framework. Regarding the third point, I agree only partially because Tailwind is well-documented, and you can also find many examples and valuable existing approaches. Our current project is not so large, and we can 100% use Tailwind which keeps our time and nervousness.</p>
+</div>
+<div class="paragraph">
+<p>Fortunately, Qwik is super friendly with Tailwind!</p>
+</div>
+<div class="paragraph">
+<p>Please, follow this <a href="https://qwik.builder.io/docs/integrations/tailwind/" target="_blank" rel="noopener">documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let’s do it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm run qwik add tailwind</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Answer "Yes." That’s it. Feel free to use Tailwind in the project!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_first_steps_in_gameplay">The first steps in Gameplay.</h3>
+<div class="paragraph">
+<p>It’s time to think about our first steps regarding gameplay. I want to take my time with this and pass it through the following steps.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make a working canvas.</p>
+</li>
+<li>
+<p>Implement an elementary moving shape, say, a square.</p>
+</li>
+<li>
+<p>Make the shape above also movable via keyboard events.</p>
+</li>
+<li>
+<p>These steps will efficiently introduce you to the future tricky gameplay.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Create a new folder: <mark>src/components/game-play</mark></p>
+</div>
+<div class="paragraph">
+<p>Put <mark>utils.ts</mark> there.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import type { Signal } from "@builder.io/qwik";
+import type { MainStore } from "./game";
+
+export function setSvgDimension(
+  svgRef: Signal&lt;Element | undefined&gt;,
+  store: MainStore
+) {
+  if (svgRef?.value) {
+    const { width, height } = svgRef.value.getBoundingClientRect();
+
+    store.width = width;
+    store.height = height;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main goal of <mark>setSvgDimensionis</mark> to set keep width and height of a component in the <a href="https://qwik.builder.io/tutorial/introduction/store/" target="_blank" rel="noopener">Qwik store</a>. The component is represented by svgRef as a <a href="https://qwik.builder.io/docs/components/state/" target="_blank" rel="noopener">Qwik Signal</a>. Please, look at a couple of links above if Qwik is something new to you.</p>
+</div>
+<div class="paragraph">
+<p>Put the following content into <mark>src/routes/index.tsx</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { component$ } from "@builder.io/qwik";
+import Game from "../components/game-play/game";
+
+export default component$(() =&gt; {
+  return &lt;Game /&gt;;
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Remove <mark>src/components/starter</mark> folder. Also, remove all files except <mark>src/routes/index.tsx</mark> from <mark>src/routes/</mark>. And finally, put <mark>game.tsx</mark> file into <mark>src/components/game-play</mark>.</p>
+</div>
+<div class="paragraph">
+<p><mark>game.tsx</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import type { Signal } from "@builder.io/qwik";
+import { useVisibleTask$ } from "@builder.io/qwik";
+import {
+  component$,
+  useStore,
+  useSignal,
+  useOnDocument,
+  useOnWindow,
+  $,
+} from "@builder.io/qwik";
+import * as d3 from "d3";
+import { setSvgDimension } from "./utils";
+
+export function render(
+  svgRef: Signal&lt;Element | undefined&gt;,
+  width: number,
+  height: number,
+  x: number,
+  y: number
+) {
+  if (!svgRef.value) {
+    return;
+  }
+
+  const svg = d3.select(svgRef.value);
+  svg.selectAll("*").remove();
+  svg
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(0,0)");
+
+  svg
+    .append("g")
+    .append("rect")
+    .attr("x", 0)
+    .attr("width", width)
+    .attr("y", 0)
+    .attr("height", height)
+    // @ts-ignore
+    .attr("fill", () =&gt; d3.color("#ffffff"));
+
+  const data = [{ x, y }];
+
+  svg
+    .selectAll()
+    .data(data)
+    .enter()
+    .append("g")
+    .append("rect")
+    .attr("x", (d) =&gt; d.x)
+    .attr("width", 15)
+    .attr("y", (d) =&gt; d.y)
+    .attr("height", 15)
+    // @ts-ignore
+    .attr("fill", () =&gt; d3.color("#ff0000"));
+}
+
+export interface MainStore {
+  width: number;
+  height: number;
+  horPos: number;
+  vertPos: number;
+}
+
+export default component$(() =&gt; {
+  const store = useStore&lt;MainStore&gt;({
+    width: 0,
+    height: 0,
+    horPos: 200,
+    vertPos: 0,
+  });
+  const containerRef = useSignal&lt;Element&gt;();
+  const svgRef = useSignal&lt;Element&gt;();
+
+  useOnWindow(
+    "resize",
+    $(() =&gt; {
+      setSvgDimension(containerRef, store);
+    })
+  );
+
+  useOnDocument(
+    "keypress",
+    $((event) =&gt; {
+      const keyEvent = event as KeyboardEvent;
+      if (keyEvent.code === "KeyA") {
+        store.horPos -= 10;
+      } else if (keyEvent.code === "KeyD") {
+        store.horPos += 10;
+      }
+    })
+  );
+
+  useVisibleTask$(({ cleanup }: { cleanup: Function }) =&gt; {
+    setSvgDimension(containerRef, store);
+    const intervalId = setInterval(() =&gt; {
+      store.vertPos += 10;
+      render(svgRef, store.width, store.height, store.horPos, store.vertPos);
+    }, 700);
+    cleanup(() =&gt; clearInterval(intervalId));
+  });
+
+  return (
+    &lt;div class="flex justify-center w-screen h-screen pt-5" ref={containerRef}&gt;
+      &lt;svg
+        class="game-area"
+        width={store.width}
+        height={store.height}
+        ref={svgRef}
+      /&gt;
+    &lt;/div&gt;
+  );
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It’s time to run the solution: <mark>npm start</mark>.</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-02/img1.gif" alt="img1">
+</div>
+</div>
+<div class="paragraph">
+<p>As we can see here, there is a moving square. You can move it left via the "A" key and right via "D."</p>
+</div>
+<div class="paragraph">
+<p>If you want to dig into this code immediately, please use <a href="https://github.com/buchslava/qwik-columns/tree/step-3" target="_blank" rel="noopener">this source</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_html_part">The HTML part</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="flex justify-center w-screen h-screen pt-5" ref={containerRef}&gt;
+  &lt;svg
+    class="game-area"
+    width={store.width}
+    height={store.height}
+    ref={svgRef}
+  /&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We use SVG as a game board container. It will be represented as a Qwik Signal.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_signals">The Signals</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Use <mark>useSignal()</mark> to create a reactive signal (a form of state). The <mark>useSignal()</mark> takes an initial value and returns a reactive signal.</p>
+</div>
+<div class="paragraph">
+<p>The reactive signal returned by <mark>useSignal()</mark> consists of an object with a single property .value. If you change the value property of the signal, any component that depends on it will be updated automatically.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>We use <mark>containerRef</mark> as a data associated with the root element. BTW, pay attention to the Tailwind-based 'class.' The aim of <mark>containerRef</mark> is to keep the dimension of the screen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const containerRef = useSignal&lt;Element&gt;();
+const svgRef = useSignal&lt;Element&gt;();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_store">The Store</h3>
+<div class="paragraph">
+<p>The heart of the component is a store.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export interface MainStore {
+  width: number;
+  height: number;
+  horPos: number;
+  vertPos: number;
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const store = useStore&lt;MainStore&gt;({
+  width: 0,
+  height: 0,
+  horPos: 200,
+  vertPos: 0,
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We keep the following data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Width and height of the component (root component dimension equals to the root’s)</p>
+</li>
+<li>
+<p>Horizontal and vertical positions of the square</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_initializingresuming">Initializing/resuming</h3>
+<div class="paragraph">
+<p><mark>useVisibleTask$</mark> hook is very important in Qwik because</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Use <a href="https://qwik.builder.io/tutorial/hooks/use-visible-task/" target="_blank" rel="noopener">useVisibleTask$()</a> to execute code after the component is resumed. This is useful for setting up timers or streams on the client when the application is resumed.</p>
+</div>
+</blockquote>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">useVisibleTask$(({ cleanup }: { cleanup: Function }) =&gt; {
+  setSvgDimension(containerRef, store);
+  const intervalId = setInterval(() =&gt; {
+    store.vertPos += 10;
+    render(svgRef, store.width, store.height, store.horPos, store.vertPos);
+  }, 700);
+  cleanup(() =&gt; clearInterval(intervalId));
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are two main activities above.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set the root component/board dimension: <mark>setSvgDimension(containerRef, store)</mark>;</p>
+</li>
+<li>
+<p>Provide a main loop of the game via <mark>setInterval</mark>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_main_loop">The main loop</h3>
+<div class="paragraph">
+<p>Let’s dig into the main loop. Moving down is represented by <mark>store.vertPos += 10;</mark>.
+We just adding 10 pixels every 700 millisecond.</p>
+</div>
+<div class="paragraph">
+<p>After, we should render the board and the square.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_render">The render</h3>
+<div class="paragraph">
+<p><mark>render</mark> function literally does the following things.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It takes the SVG-based component representation <mark>svgRef.value</mark> and binds it with <mark>svg</mark> variable via <mark>d3.select</mark> method. Clears all previous stuff in the SVG if it does exist.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const svg = d3.select(svgRef.value);
+svg.selectAll("*").remove();</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Draws a white rectangle due to the screen dimension. BTW, the <a href="https://stackoverflow.com/questions/42568992/how-to-draw-a-rectangle-in-d3-js-with-only-2-coordinates" target="_blank" rel="noopener">following link</a> will be useful.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-css" data-lang="css">svg
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .append("g")
+  .attr("transform", "translate(0,0)");
+
+svg
+  .append("g")
+  .append("rect")
+  .attr("x", 0)
+  .attr("width", width)
+  .attr("y", 0)
+  .attr("height", height)
+  // @ts-ignore
+  .attr("fill", () =&gt; d3.color("#ffffff"));</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Associate the SVG-based component with x and y (just one element) and draw it.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const data = [{ x, y }];
+
+svg
+  .selectAll()
+  .data(data)
+  .enter()
+  .append("g")
+  .append("rect")
+  .attr("x", (d) =&gt; d.x)
+  .attr("width", 15)
+  .attr("y", (d) =&gt; d.y)
+  .attr("height", 15)
+  // red
+  .attr("fill", () =&gt; d3.color("#ff0000"));</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_recalculate_the_board_dimension_and_keyboard_processing">Recalculate the board dimension and keyboard processing</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Use <mark>useOn()</mark> / <mark>useOnDocument()</mark> / <mark>useOnWindow()</mark> to programmatically set up listeners on host elements. This is useful when you are creating custom APIs and don’t have access to place these events in the JSX or if the events are not known ahead of time, such as if they are created based on component props.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>The following code allows us to resize the component during the window resizing.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">useOnWindow(
+  "resize",
+  $(() =&gt; {
+    setSvgDimension(containerRef, store);
+  })
+);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following code allows us to process keyboard events. In this example, a user moves the square left when the "A" key has been pressed and right if the "D" key has been pressed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">useOnDocument(
+  "keypress",
+  $((event) =&gt; {
+    const keyEvent = event as KeyboardEvent;
+    if (keyEvent.code === "KeyA") {
+      store.horPos -= 10;
+    } else if (keyEvent.code === "KeyD") {
+      store.horPos += 10;
+    }
+  })
+);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_process">Build process</h3>
+<div class="paragraph">
+<p>It’s time to build the solution.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm run build</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It seems we passed this step successfully. But please pay attention to the text at the bottom:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">Missing an integration
+
+・ Use npm run qwik add to add an integration
+・ Use npm run preview to preview the build</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As a result, you don’t see <mark>index.html</mark> in the <mark>dist</mark> folder. Let’s fix this issue.</p>
+</div>
+<div class="paragraph">
+<p>If you want to make this solution web-friendly, please run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm run qwik add</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>What integration would you like to add?</mark><br>
+Adapter: Static site (.html files)<br></p>
+</div>
+<div class="paragraph">
+<p><mark>Ready to apply the static updates to your app?</mark><br>
+Yes looks good, finish update!<br></p>
+</div>
+<div class="paragraph">
+<p>Let’s build the solution again…​
+And now we should see the expected <mark>index.html</mark>.</p>
+</div>
+<div class="paragraph">
+<p>Please, read <a href="https://qwik.builder.io/docs/deployments/" target="_blank" rel="noopener">Qwik Deployments</a> if you need to learn more about Qwik providers.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_whats_next">What’s next?</h3>
+<div class="paragraph">
+<p>I hope this episode was useful and informative. Feel free to read and run <a href="https://github.com/buchslava/qwik-columns/tree/step-3" target="_blank" rel="noopener">this solution</a>. But it is just preparation before the actual gameplay implementation. The next episode will disclose all the main secrets about the game! See you!</p>
+</div>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-ng-c198896663="" class="landing-section"><h1 _ngcontent-ng-c198896663="" class="main-title">More Articles</h1><div _ngcontent-ng-c198896663="" class="container"><blog-preview _ngcontent-ng-c198896663=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/game-n-qwik-episode-01" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/game-n-qwik-episode-01/Main_Game-n-qwik1.png" alt="Game-n-Qwik. Episode 01."></div><div class="text-container"><p>Game-n-Qwik. Episode 01.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/fostering-innovation-through-collaboration-outside-contributors-first-hand-experience" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/fostering-innovation-through-collaboration-outside-contributors-first-hand-experience/Main-fostering.png" alt="Fostering Innovation Through Collaboration: Outside Contributor's First-Hand Experience"></div><div class="text-container"><p>Fostering Innovation Through Collaboration: Outside Contributor's First-Hand Experience</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way/Main_developing_via_rust.png" alt="Developing a Desktop Application via Rust and NextJS. The Tauri Way."></div><div class="text-container"><p>Developing a Desktop Application via Rust and NextJS. The Tauri Way.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-ng-c6223672=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="flex flex-col justify-center mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2023, Valor Software All Rights Reserved</p><a routerlink="/privacy-policy" class="m-0 text-center text-header_font_col text-sm link" href="/privacy-policy">Privacy Policy </a></div></div></footer></app-footer><!----><cookie-consent-banner _ngcontent-ng-c6223672="" _nghost-ng-c1371038418=""><div _ngcontent-ng-c1371038418="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-ng-c1371038418="" class="flex flex-col"><span _ngcontent-ng-c1371038418="" class="text-20">This website uses cookies.</span><span _ngcontent-ng-c1371038418="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-ng-c1371038418="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-ng-c1371038418="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-ng-c1371038418="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
+<script async="" src="assets/js/prettify.min.js"></script>
+<script id="ScullyIO-transfer-state"></script><script src="runtime.4c7d92041b1852c4.js" type="module"></script><script src="polyfills.2066255b7190fd43.js" type="module"></script><script src="main.5ec7152d5e620967.js" type="module"></script>
+
+</body></html>
