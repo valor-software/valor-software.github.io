@@ -1,0 +1,748 @@
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/game-n-qwik-episode-03.html"
+            },
+            "headline": "Game-n-Qwik. Episode 03.",
+            "description": "Providing the game's basic functionality",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/game-n-qwik-episode-03/Main-Game-n-qwik3.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Vyacheslav Chub"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Wed Jul 19 2023 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+	<meta charset="utf-8">
+	<title>Game-n-Qwik. Episode 03.</title>
+	<base href="/">
+	<meta name="robots" content="all">
+	<meta property="og:type" content="website">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:image" content="/assets/img/valor-img/valor_social.jpg">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@ValorSoft">
+	<meta name="twitter:creator" content="@ValorSoft">
+
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<script>
+      window.intercomSettings = {
+          app_id: "brxsww1a"
+      };
+	</script>
+	<script src="assets/js/intercom-facade.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN"></script>
+	<script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+	</script>
+	<script type="text/javascript">
+      window.onload = function () {
+          if (window.self !== window.top) {
+              document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+      };
+	</script>
+<style>:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{--swiper-navigation-size:44px}:root{--swiper-theme-color:#007aff}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.10d34ecbab5d2f65.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.10d34ecbab5d2f65.css"></noscript><style>[_nghost-ng-c1371038418]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s _ngcontent-ng-c1371038418_fadein ease-in-out both}.btn[_ngcontent-ng-c1371038418]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes _ngcontent-ng-c1371038418_fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px;border-radius:3rem}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="Providing the game's basic functionality"><meta property="og:title" content="Game-n-Qwik. Episode 03."><meta property="og:description" content="Providing the game's basic functionality"><meta property="twitter:title" content="Game-n-Qwik. Episode 03."><meta property="twitter:description" content="Providing the game's basic functionality"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+<valor-software-site-base-root _nghost-ng-c6223672="" ng-version="16.0.4"><top-menu _ngcontent-ng-c6223672=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-ng-c6223672="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ng-c6223672=""></router-outlet><general-item><article _nghost-ng-c198896663=""><section _ngcontent-ng-c198896663="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-ng-c198896663="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-ng-c198896663="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Game-n-qwik. Episode 03. </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-ng-c198896663="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-ng-c198896663="" class="text-20 mb-4">July 19, 2023</p><p _ngcontent-ng-c198896663="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Game-n-Qwik. Episode 03.</p><div _ngcontent-ng-c198896663="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-ng-c198896663="" class="w-full h-full object-cover" src="assets/articles/game-n-qwik-episode-03/Slava_Chub.jpg" alt="Vyacheslav Chub"></div><!----><!----><!----><p _ngcontent-ng-c198896663="" class="md:text-large text-24 mb-4">Vyacheslav Chub</p><!----><!----><!----><p _ngcontent-ng-c198896663="" class="text-20">Full Stack Software Engineer</p><!----></div></div></section><section _ngcontent-ng-c198896663="" class="landing-section"><div _ngcontent-ng-c198896663="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-ng-c198896663="" class="max-w-full"><div class="sect1">
+<h2 id="_make_it_a_pure_game_the_main_changes">Make it a pure game! The main changes.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I’m glad to see you in Game-n-Qwik Episode 03. I appreciate your patience! In the <a href="https://valor-software.com/articles/game-n-qwik-episode-02" target="_blank" rel="noopener">past episode</a>, I explained what steps we should pass before implementing actual gameplay. I want to highlight some critical steps we passed there.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Bootstrapping. Qwik. Tailwind. D3.</p>
+</li>
+<li>
+<p>First scratches regarding gameplay.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Just to be sure that we are on the same page now, I’d like to recommend returning to the <a href="https://github.com/buchslava/qwik-columns/tree/step-3" target="_blank" rel="noopener">source</a> of the last episode, running it, and reading the <a href="https://valor-software.com/articles/game-n-qwik-episode-02" target="_blank" rel="noopener">explanation</a>.</p>
+</div>
+<div class="paragraph">
+<p>In a nutshell, we stopped at a simple example with a big white canvas and a red square that moves down. Also, the user can move it left and right via the keyboard. This example allows us to move forward. Please use <a href="https://github.com/buchslava/qwik-columns/tree/step-3" target="_blank" rel="noopener">this source</a> if you want to pass all future steps manually. For my impatient audience, I’d like to provide the <a href="https://github.com/buchslava/qwik-columns/tree/step-2" target="_blank" rel="noopener">final version of this episode’s code</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let’s move forward. Our aim, for now, is to provide the game’s basic functionality. Traditionally, I’ll give the code before and comment afterward.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_screen_management">The Screen Management</h3>
+<div class="paragraph">
+<p>First, let’s change <mark>src/components/game-play/utils.ts</mark> to…​</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import type { Signal } from "@builder.io/qwik";
+import type { MainStore } from "./game";
+
+export function setSvgDimension(
+  svgRef: Signal&lt;Element | undefined&gt;,
+  store: MainStore
+) {
+  if (svgRef?.value) {
+    const { height } = svgRef.value.getBoundingClientRect();
+    const rows = store.game.board.length;
+    const columns = store.game.board[0].length;
+
+    const newHeight = (height * 5) / 6;
+    const blockSize = newHeight / rows;
+    const newWidth = blockSize * columns;
+
+    store.width = newWidth;
+    store.height = newHeight;
+    store.blockSize = blockSize;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the last version of the game, board dimensions were equal to the root component’s dimensions. In this case, we need to provide trickier logic.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The height of the game’s canvas should be 5/6 of the root height</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>const newHeight = (height * 5) / 6;</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The width should relate to height and the horizontal number of the board’s cells. That’s why we must detect the cell size using the following formula.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>const blockSize = newHeight / rows;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One note regarding the board’s grid. As I explained in Episode 01, the game is represented by a grid-based canvas. Of course, the main attributes of each grid are rows and columns numbers. You can look at the initial state of the grid <a href="https://t.ly/SVeCg" target="_blank" rel="noopener">here</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export const COLOR_WHITE = "#ffffff";
+
+const w = COLOR_WHITE;
+// .......
+export const initData: ColumnsColor[][] = [
+  [w, w, w, w, w, w, w],
+  // .......
+  [w, w, w, w, w, w, w],
+];</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>According to the above information, we can calculate our columns and rows quantities using the following formulas.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const columnsQty = initData[0].length;
+const rowsQty = initData.length;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const columnsQty = board[0].length;
+const rowsQty = board.length;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is a <a href="https://t.ly/HjVPC" target="_blank" rel="noopener">good example</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>And calculate the width.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>const newWidth = blockSize * columns;</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>And finally, we can update the Qwik store. I’ll focus on it a bit later.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>store.width = newWidth;
+store.height = newHeight;
+store.blockSize = blockSize;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That’s it for <mark>setSvgDimension</mark>.</p>
+</div>
+<div class="paragraph">
+<p>The most important and complicated part of the game is <a href="https://github.com/buchslava/qwik-columns/blob/step-2/src/components/game-play/game-logic.ts" target="_blank" rel="noopener">this one</a>. I’ll break my tradition and ask you to put this file as it is to <mark>src/components/game-play</mark> without the source code provided. Also, I want to explain only some of the code because the all-code explanation will be too dull. You can dig into this outside this alone. The reason is quite simple. This file contains all of the logic details. Despite that, I’ll provide you with all exported functions and explain what they do because they are used in our Qwik part.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_phase">The Phase</h3>
+<div class="paragraph">
+<p>One of the basic definitions regarding gameplay is a <a href="https://t.ly/286Rg" target="_blank" rel="noopener">Phase</a>. The thing is that each game is a process that has one state per time. The following enum describes all possible states of our Columns. Please, read carefully the comments in the code below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export enum Phase {
+  INACTIVE, // Has not started or stopped
+  PAUSED, // On pause
+  MOVING, // An actor moves down
+  MATCH_REQUEST, // Checking process, see Episode 01
+  COLLAPSE_REQUEST, // Calls collapsing process after checking, see Episode 01
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_actor">The Actor</h3>
+<div class="paragraph">
+<p>The second important definition is regarding the <a href="https://t.ly/OoAbI" target="_blank" rel="noopener">Actor</a>. Please, read carefully the comments in the code below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export interface Actor {
+  state: ColumnsColor[]; // The actor's state is represented by 3 colored cells
+  column: number; // Actor's horizontal position
+  row: number; // Actor's vertical position
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_main_definition">The Main Definition</h3>
+<div class="paragraph">
+<p>The third and most important definition is the <a href="https://t.ly/eGN3l" target="_blank" rel="noopener">Game</a>. The following interface describes all information about our Columns. Please, read carefully the comments in the code below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export interface Game {
+  board: ColumnsColor[][]; // Current board state as a two-dimensional array (horizontal x vertical)
+  actor: Actor; // The actor; described above
+  phase: Phase; // Current phase; described above
+  nextActor: ColumnsColor[]; // We also need to display the next actor that's why we define it here
+  score: number; // Current score as a number
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exports">Exports</h3>
+<div class="paragraph">
+<p>I’d like to recommend you refresh your knowledge about the gameplay before you browse the following table. Please, look through Episode 01.</p>
+</div>
+<div class="paragraph">
+<p>The following calculations as a set of functions are directly related to the <a href="https://github.com/buchslava/qwik-columns/blob/step-2/src/components/game-play/game-logic.ts" target="_blank" rel="noopener">gameplay</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch turbo-table">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the function</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Purpose</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/EOl-r" target="_blank" rel="noopener">matching</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conducts checking process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/T5nZo" target="_blank" rel="noopener">collapse</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conducts collapsing process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/JqYIQ" target="_blank" rel="noopener">isNextMovePossible</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Answers, if the next actor’s moving down possible?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/GaI6u" target="_blank" rel="noopener">endActorSession</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Finalizes current actor’s moving down if it’s impossible due to <code>isNextMovePossible</code> above</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/dEEN3" target="_blank" rel="noopener">isFinish</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checks, is the game finished?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/o5sJD" target="_blank" rel="noopener">swapActorColors</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Swaps colors in the actor</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/QOOu9" target="_blank" rel="noopener">init</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Init a new game; resets a state of the game.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/n6DYK" target="_blank" rel="noopener">isActorEmpty</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Answers is the actor empty?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/Ay-vY" target="_blank" rel="noopener">isNextActorInit</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Answers, is the next actor colored?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/i8IkO" target="_blank" rel="noopener">randomColors</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides an array of random colors</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/-WCFn" target="_blank" rel="noopener">doNextActor</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bumps the new actor’s state due to the next one and init the new next state after that.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/cblmE" target="_blank" rel="noopener">actorDown</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves the actor down</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/cGCDj" target="_blank" rel="noopener">moveLeft</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves the actor one cell left</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/JNkg3" target="_blank" rel="noopener">moveLeftTo</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves the actor N cells left</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/WqtsN" target="_blank" rel="noopener">moveRight</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves the actor one cell right</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/Q9Xbj" target="_blank" rel="noopener">moveRightTo</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves the actor N cells right</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Please, don’t be scared by the list above. We will use all these functions, and I’ll describe how exactly.</p>
+</div>
+<div class="paragraph">
+<p>And now, I’m happy to give you the most exciting part of the code when we gather all previous knowledge: I’ve grouped all of them into the following features.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The store.</p>
+</li>
+<li>
+<p>Gameplay utilization functions.</p>
+</li>
+<li>
+<p>The heart of the game.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>All our future activities will be around <a href="https://github.com/buchslava/qwik-columns/blob/step-3/src/components/game-play/game.tsx" target="_blank" rel="noopener">the source of the game 1</a>. The related destination is placed in <a href="https://github.com/buchslava/qwik-columns/blob/step-2/src/components/game-play/game.tsx" target="_blank" rel="noopener">the source of the game 2</a>. All my future reasonings will reveal the source of the game transformation from state 1 to 2.</p>
+</div>
+<div class="paragraph">
+<p>Let’s get started!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_store">The store</h3>
+<div class="paragraph">
+<p>Let’s focus on the <a href="https://t.ly/-AXUp" target="_blank" rel="noopener">store definition</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export interface MainStore {
+  // Canvas width
+  width: number;
+  // Canvas height
+  height: number;
+  // We should keep the current state of the game. See "The Main Definition" above.
+  game: Game;
+  // We need to keep the size of the cell because if relates to the screen size
+  blockSize: number;
+  // The following field is an indicator of the finished game. I'll focus on it a bit later.
+  gameOverPopup: boolean;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And now, we are ready for the <a href="https://t.ly/WWtKJ" target="_blank" rel="noopener">store initialization</a>. I hope it helps you ultimately understand the declarative part of the game.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const store = useStore&lt;MainStore&gt;({
+  // Initially, we don't know about the screen dimensions
+  width: 0,
+  height: 0,
+  // The initial state of the game
+  game: {
+    // The current board should be a clone of initData
+    board: [...initData],
+    actor: {
+      // The current actor should be a clone of initActor
+      state: [...initActor],
+      // start actor's column (horizontal position) should be ±at the middle of the canvas
+      column: Math.floor(initData[0].length / 2),
+      // start actor's row (vertical position) should be outside the canvas
+      row: -2,
+    },
+    // Let's set Phase.MOVING
+    phase: Phase.MOVING,
+    // Set "nextActor" as a randomly generated
+    nextActor: randomColors(3),
+    score: 0,
+  },
+  // Initially, we don't know about the screen dimensions that's why blockSize = 0
+  blockSize: 0,
+  // The game is not over yet
+  gameOverPopup: false,
+});</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gameplay_utilization_functions">Gameplay utilization functions</h3>
+<div class="paragraph">
+<p>Let me introduce you to the "workhorse" of the game. The feature is that all UI stuff here is encapsulated in one function. Please, look at the <a href="https://t.ly/dv37z" target="_blank" rel="noopener">render</a> function and read carefully the comments there.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">export function render(
+  game: Game, // pass the state of the game; I'll focus on it a bit later
+  svgRef: Signal&lt;Element | undefined&gt;, // we also need the SVG representation
+  width: number, // tha shapes; see also "setSvgDimension"
+  height: number,
+  blockSize: number
+) {
+  if (!svgRef.value) {
+    return;
+  }
+
+  // Associate our SVG with D3; read also, https://github.com/d3/d3-selection
+  const svg = d3.select(svgRef.value);
+  // Remove all existing content from the SVG if it present.
+  // The reason is that all render calls should fully refresh the screen
+  svg.selectAll("*").remove();
+  // Append the root SVG element
+  svg
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(0,0)");
+  // Draw a white rectangle over ALL canvas
+  svg
+    .append("g")
+    .append("rect")
+    .attr("x", 0)
+    .attr("width", width)
+    .attr("y", 0)
+    .attr("height", height)
+    // @ts-ignore
+    .attr("fill", () =&gt; d3.color(COLOR_WHITE));
+
+  // Prepare board cells data by the game state (board).
+  // The data is represented by an array of objects.
+  // Each object contains
+  // x (horizontal coordinate of the cell),
+  // y (vertical coordinate of the cell)
+  // value - cell's color
+  const data = [];
+  for (let i = 0, x = 0, y = 0; i &lt; game.board.length; i++) {
+    x = 0;
+    for (let j = 0; j &lt; game.board[i].length; j++) {
+      data.push({ x, y, value: game.board[i][j] });
+      x += blockSize;
+    }
+    y += blockSize;
+  }
+
+  // Draw the current board
+  svg
+    .selectAll()
+    // Data binding allows us to draw each cell of the board
+    // It's a kind of declarative loop.
+    .data(data.filter((d) =&gt; d.value !== COLOR_WHITE))
+    .enter()
+    .append("g")
+    .append("rect")
+    // x is taken from the data; see data preparation above
+    .attr("x", (d) =&gt; d.x)
+    .attr("width", blockSize)
+    // y is taken from the data; see data preparation above
+    .attr("y", (d) =&gt; d.y)
+    .attr("height", blockSize)
+    // color/value is taken from the data; see data preparation above
+    // it represented by a hex value as a string and finally
+    // it should be transformed to the D3 compatible color: "d3.color(d.value)"
+    // @ts-ignore
+    .attr("fill", (d) =&gt; d3.color(d.value))
+    .attr("stroke", "#000000")
+    .attr("stroke-width", 1);
+
+  // We need to draw an actor only the actor should be moving (Phase.MOVING)
+  if (game.phase === Phase.MOVING) {
+    // Actor data preparation
+    const actorData = [];
+    for (let i = 0; i &lt; game.actor.state.length; i++) {
+      actorData.push({
+        x: game.actor.column * blockSize,
+        y: (game.actor.row + i - 1) * blockSize,
+        value: game.actor.state[i],
+      });
+    }
+
+    // Draw the actor according to the data above
+    // similarly to "Draw the current board" above
+    svg
+      .selectAll()
+      .data(actorData)
+      .enter()
+      .append("g")
+      .append("rect")
+      .attr("class", "could-fly")
+      .attr("x", (d) =&gt; d.x)
+      .attr("width", blockSize)
+      .attr("y", (d) =&gt; d.y)
+      .attr("height", blockSize)
+      // @ts-ignore
+      .attr("fill", (d) =&gt; d3.color(d.value))
+      .attr("stroke", "#000000")
+      .attr("stroke-width", 1);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following <a href="https://t.ly/uevbF" target="_blank" rel="noopener">functions</a> are responsible for the user’s actions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">//  Just call the render
+const reRender = $(() =&gt; {
+  render(store.game, svgRef, store.width, store.height, store.blockSize);
+});
+// Move left action handler
+const doLeft = $(() =&gt; {
+  // if the actor is moving then call "moveLeft" (see Exports above) and re-render
+  if (store.game.phase === Phase.MOVING) {
+    moveLeft(store.game);
+    reRender();
+  }
+});
+// Move right action handler
+const doRight = $(() =&gt; {
+  // if the actor is moving then call "moveRight" (see Exports above) and re-render
+  if (store.game.phase === Phase.MOVING) {
+    moveRight(store.game);
+    reRender();
+  }
+});
+// Swap colors in the actor action handler
+const doSwap = $(() =&gt; {
+  if (store.game.phase === Phase.MOVING) {
+    // if the actor is moving then call "swapActorColors" (see Exports above) and re-render
+    swapActorColors(store.game);
+    reRender();
+  }
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>An important note regarding Qwik</mark>
+I suppose you just noticed that the functions above are wrapped by <mark>$()</mark>. It could look weird for a non-Qwik guy. I want to explain the reason for <mark>$()</mark> usage because it’s essential if you want to understand the most essential part of Qwik.</p>
+</div>
+<div class="paragraph">
+<p>Let’s remove <mark>$()</mark> from, say, <mark>reRender</mark> and run the app…​ We will see the error below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const reRender = () =&gt; {
+  render(store.game, svgRef, store.width, store.height, store.blockSize);
+};</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">Captured variable in the closure can not be serialized because it's a function named "reRender". You might need to convert it to a QRL using $(fn):
+
+const reRender = $(()=&gt;{
+
+        render(store.game, svgRef, store.width, store.height, store.blockSize);
+    });
+
+Please check out https://qwik.builder.io/docs/advanced/qrl/ for more information.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If we refactor the function above the following way</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">function reRender() {
+  render(store.game, svgRef, store.width, store.height, store.blockSize);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>then we also get an error.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">Seems like you are referencing "reRender" inside a different scope ($), when this happens, Qwik needs to serialize the value, however it is a function, which is not serializable.
+Did you mean to wrap it in `$()`?
+
+The cause of the errors above is Qwik architecture. The fact is that Qwik is uniquely focused on performance, and I'd like to recommend that you dig into the QRL idea.
+
+QRL (Qwik URL) is a particular form of URL that Qwik uses to lazy load content.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this context, I recommend you read the following brief but eloquent explanations of Qwik fundamentals.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://qwik.builder.io/docs/advanced/qrl/" target="_blank" rel="noopener">QRL</a></p>
+</li>
+<li>
+<p><a href="https://qwik.builder.io/docs/advanced/dollar/" target="_blank" rel="noopener">The dollar $ sign</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In short, we must wrap our functions by <mark>$()</mark> to make them Qwik-friendly!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_heart_of_the_game">The heart of the game.</h3>
+<div class="paragraph">
+<p>Let’s dig into the heart of the game. I used a heart as allegory because our game looks like a living thing. In our case, we are talking about a 700-millisecond interval that keeps the gameplay. I intentionally don’t want to write comments in the code because it does not need extra explanations. Just read and <a href="https://t.ly/ObL4-" target="_blank" rel="noopener">enjoy it</a>!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">useVisibleTask$(({ cleanup }: { cleanup: Function }) =&gt; {
+  setSvgDimension(containerRef, store);
+  const intervalId = setInterval(() =&gt; {
+    const game = store.game;
+
+    if (game.phase === Phase.MOVING) {
+      if (isNextMovePossible(game)) {
+        actorDown(game);
+      } else {
+        endActorSession(game);
+        if (isFinish(game)) {
+          game.phase = Phase.INACTIVE;
+          store.gameOverPopup = true;
+        } else {
+          game.phase = Phase.MATCH_REQUEST;
+        }
+      }
+    } else if (game.phase === Phase.MATCH_REQUEST) {
+      const matched = matching(game, true);
+      if (matched) {
+        game.phase = Phase.COLLAPSE_REQUEST;
+      } else {
+        doNextActor(game);
+        game.phase = Phase.MOVING;
+      }
+    } else if (game.phase === Phase.COLLAPSE_REQUEST) {
+      collapse(game);
+      game.phase = Phase.MATCH_REQUEST;
+    }
+
+    reRender();
+  }, 700);
+  cleanup(() =&gt; clearInterval(intervalId));
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, there is a <a href="https://t.ly/54Rii" target="_blank" rel="noopener">small stitch</a> regarding the finished game criteria.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">useTask$(({ track }: { track: Function }) =&gt; {
+  track(() =&gt; store.gameOverPopup);
+
+  if (store.gameOverPopup) {
+    console.log("Game Over!");
+  }
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We need to track the <mark>gameOverPopup</mark> field and inform the user. Please, don’t worry about console.log. We will deal with it in the next episode.</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-03/img1.gif" alt="img1">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_whats_next">What’s next?</h3>
+<div class="paragraph">
+<p>I hope this episode was exciting despite its size ;) Feel free to read and run the <a href="https://github.com/buchslava/qwik-columns/tree/step-2" target="_blank" rel="noopener">related solution</a>.</p>
+</div>
+<div class="paragraph">
+<p>Are you worrying about the situations when you decide about the actor’s colors and need to move the actor somehow immediately to the bottom of the board? What about controls like "Start," "Stop," and "Pause"? What about the score and the speed of the actor’s movement?</p>
+</div>
+<div class="paragraph">
+<p>I’m going to reveal these points in the next episode. Stay in touch!</p>
+</div>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-ng-c198896663="" class="landing-section"><h1 _ngcontent-ng-c198896663="" class="main-title">More Articles</h1><div _ngcontent-ng-c198896663="" class="container"><blog-preview _ngcontent-ng-c198896663=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/game-n-qwik-episode-02" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/game-n-qwik-episode-02/Main-Game-n-qwik2.png" alt="Game-n-Qwik. Episode 02."></div><div class="text-container"><p>Game-n-Qwik. Episode 02.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/game-n-qwik-episode-01" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/game-n-qwik-episode-01/Main_Game-n-qwik1.png" alt="Game-n-Qwik. Episode 01."></div><div class="text-container"><p>Game-n-Qwik. Episode 01.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/fostering-innovation-through-collaboration-outside-contributors-first-hand-experience" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/fostering-innovation-through-collaboration-outside-contributors-first-hand-experience/Main-fostering.png" alt="Fostering Innovation Through Collaboration: Outside Contributor's First-Hand Experience"></div><div class="text-container"><p>Fostering Innovation Through Collaboration: Outside Contributor's First-Hand Experience</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-ng-c6223672=""><footer><div class="px-4 xl:px-28 pb-6"><div class="w-full flex flex-col-reverse md:flex-row items-center justify-between border-t-2 border-placeholder_col pt-6"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-14 w-70 md:w-full"></a></div><div class="hidden lg:flex items-center"><div class="leading-4 flex"><div class="lg:w-75 !mr-10"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">LinkedIn</a></div><div class="lg:w-75 !mr-10"><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Facebook</a></div><div class="lg:w-75 !mr-10"><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Twitter</a></div><div class="lg:w-75 !mr-10"><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Instagram</a></div><div class="lg:w-75 !mr-10"><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Dribbble</a></div><div class="lg:w-75 !mr-10"><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">Behance</a></div><div class="lg:w-75 !mr-10"><a href="https://github.com/valor-software" rel="noopener" class="block transition-all text-header_font_col hover:font-bold">GitHub</a></div><div class="lg:w-75 !mr-10"><a href="https://valorsoftware.medium.com/" class="block transition-all text-header_font_col hover:font-bold">Medium</a></div></div><div class="hidden 2xl:block 2xl:flex-1 2xl:flex-auto ml-10"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div><div class="flex flex-wrap lg:hidden mb-4 md:mb-0 justify-center md:justify-between w-full md:w-auto"><a href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="w-20% md:w-auto flex justify-center md:mr-10 text-header_font_co mb-4 md:mb-0"><img src="assets/img/icons/social/linkedin.svg" alt=""></a><a href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/instagram.svg" alt=""></a><a href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/twitter.svg" alt=""></a><a href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/dribble.svg" alt=""></a><a href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/behance.svg" alt=""></a><a href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block md:mr-10 text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/facebook.svg" alt=""></a><a href="https://github.com/valor-software" target="_blank" rel="noopener" class="flex justify-center md:mr-10 w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/github.svg" alt=""></a><a href="https://valorsoftware.medium.com/" target="_blank" rel="noopener" class="flex justify-center w-20% md:w-auto block text-header_font_col mb-4 md:mb-0"><img src="assets/img/icons/social/medium.svg" alt=""></a></div></div><div class="flex flex-col justify-center mt-4 md:mt-7"><p class="m-0 text-center text-header_font_col text-sm">© 2023, Valor Software All Rights Reserved</p><a routerlink="/privacy-policy" class="m-0 text-center text-header_font_col text-sm link" href="/privacy-policy">Privacy Policy </a></div></div></footer></app-footer><!----><cookie-consent-banner _ngcontent-ng-c6223672="" _nghost-ng-c1371038418=""><div _ngcontent-ng-c1371038418="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-ng-c1371038418="" class="flex flex-col"><span _ngcontent-ng-c1371038418="" class="text-20">This website uses cookies.</span><span _ngcontent-ng-c1371038418="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-ng-c1371038418="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-ng-c1371038418="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-ng-c1371038418="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
+<script async="" src="assets/js/prettify.min.js"></script>
+<script id="ScullyIO-transfer-state"></script><script src="runtime.4c7d92041b1852c4.js" type="module"></script><script src="polyfills.2066255b7190fd43.js" type="module"></script><script src="main.1239a99467ebcd9f.js" type="module"></script>
+
+</body></html>

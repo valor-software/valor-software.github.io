@@ -1,0 +1,661 @@
+<div class="sect1">
+<h2 id="_make_it_a_pure_game_the_main_changes">Make it a pure game! The main changes.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I&#8217;m glad to see you in Game-n-Qwik Episode 03. I appreciate your patience! In the <a href="https://valor-software.com/articles/game-n-qwik-episode-02" target="_blank" rel="noopener">past episode</a>, I explained what steps we should pass before implementing actual gameplay. I want to highlight some critical steps we passed there.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Bootstrapping. Qwik. Tailwind. D3.</p>
+</li>
+<li>
+<p>First scratches regarding gameplay.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Just to be sure that we are on the same page now, I&#8217;d like to recommend returning to the <a href="https://github.com/buchslava/qwik-columns/tree/step-3" target="_blank" rel="noopener">source</a> of the last episode, running it, and reading the <a href="https://valor-software.com/articles/game-n-qwik-episode-02" target="_blank" rel="noopener">explanation</a>.</p>
+</div>
+<div class="paragraph">
+<p>In a nutshell, we stopped at a simple example with a big white canvas and a red square that moves down. Also, the user can move it left and right via the keyboard. This example allows us to move forward. Please use <a href="https://github.com/buchslava/qwik-columns/tree/step-3" target="_blank" rel="noopener">this source</a> if you want to pass all future steps manually. For my impatient audience, I&#8217;d like to provide the <a href="https://github.com/buchslava/qwik-columns/tree/step-2" target="_blank" rel="noopener">final version of this episode&#8217;s code</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s move forward. Our aim, for now, is to provide the game&#8217;s basic functionality. Traditionally, I&#8217;ll give the code before and comment afterward.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_screen_management">The Screen Management</h3>
+<div class="paragraph">
+<p>First, let&#8217;s change <mark>src/components/game-play/utils.ts</mark> to&#8230;&#8203;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import type { Signal } from "@builder.io/qwik";
+import type { MainStore } from "./game";
+
+export function setSvgDimension(
+  svgRef: Signal&lt;Element | undefined&gt;,
+  store: MainStore
+) {
+  if (svgRef?.value) {
+    const { height } = svgRef.value.getBoundingClientRect();
+    const rows = store.game.board.length;
+    const columns = store.game.board[0].length;
+
+    const newHeight = (height * 5) / 6;
+    const blockSize = newHeight / rows;
+    const newWidth = blockSize * columns;
+
+    store.width = newWidth;
+    store.height = newHeight;
+    store.blockSize = blockSize;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the last version of the game, board dimensions were equal to the root component&#8217;s dimensions. In this case, we need to provide trickier logic.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The height of the game&#8217;s canvas should be 5/6 of the root height</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>const newHeight = (height * 5) / 6;</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The width should relate to height and the horizontal number of the board&#8217;s cells. That&#8217;s why we must detect the cell size using the following formula.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>const blockSize = newHeight / rows;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One note regarding the board&#8217;s grid. As I explained in Episode 01, the game is represented by a grid-based canvas. Of course, the main attributes of each grid are rows and columns numbers. You can look at the initial state of the grid <a href="https://t.ly/SVeCg" target="_blank" rel="noopener">here</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export const COLOR_WHITE = "#ffffff";
+
+const w = COLOR_WHITE;
+// .......
+export const initData: ColumnsColor[][] = [
+  [w, w, w, w, w, w, w],
+  // .......
+  [w, w, w, w, w, w, w],
+];</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>According to the above information, we can calculate our columns and rows quantities using the following formulas.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const columnsQty = initData[0].length;
+const rowsQty = initData.length;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const columnsQty = board[0].length;
+const rowsQty = board.length;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is a <a href="https://t.ly/HjVPC" target="_blank" rel="noopener">good example</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>And calculate the width.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>const newWidth = blockSize * columns;</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>And finally, we can update the Qwik store. I&#8217;ll focus on it a bit later.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>store.width = newWidth;
+store.height = newHeight;
+store.blockSize = blockSize;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it for <mark>setSvgDimension</mark>.</p>
+</div>
+<div class="paragraph">
+<p>The most important and complicated part of the game is <a href="https://github.com/buchslava/qwik-columns/blob/step-2/src/components/game-play/game-logic.ts" target="_blank" rel="noopener">this one</a>. I&#8217;ll break my tradition and ask you to put this file as it is to <mark>src/components/game-play</mark> without the source code provided. Also, I want to explain only some of the code because the all-code explanation will be too dull. You can dig into this outside this alone. The reason is quite simple. This file contains all of the logic details. Despite that, I&#8217;ll provide you with all exported functions and explain what they do because they are used in our Qwik part.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_phase">The Phase</h3>
+<div class="paragraph">
+<p>One of the basic definitions regarding gameplay is a <a href="https://t.ly/286Rg" target="_blank" rel="noopener">Phase</a>. The thing is that each game is a process that has one state per time. The following enum describes all possible states of our Columns. Please, read carefully the comments in the code below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export enum Phase {
+  INACTIVE, // Has not started or stopped
+  PAUSED, // On pause
+  MOVING, // An actor moves down
+  MATCH_REQUEST, // Checking process, see Episode 01
+  COLLAPSE_REQUEST, // Calls collapsing process after checking, see Episode 01
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_actor">The Actor</h3>
+<div class="paragraph">
+<p>The second important definition is regarding the <a href="https://t.ly/OoAbI" target="_blank" rel="noopener">Actor</a>. Please, read carefully the comments in the code below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export interface Actor {
+  state: ColumnsColor[]; // The actor's state is represented by 3 colored cells
+  column: number; // Actor's horizontal position
+  row: number; // Actor's vertical position
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_main_definition">The Main Definition</h3>
+<div class="paragraph">
+<p>The third and most important definition is the <a href="https://t.ly/eGN3l" target="_blank" rel="noopener">Game</a>. The following interface describes all information about our Columns. Please, read carefully the comments in the code below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export interface Game {
+  board: ColumnsColor[][]; // Current board state as a two-dimensional array (horizontal x vertical)
+  actor: Actor; // The actor; described above
+  phase: Phase; // Current phase; described above
+  nextActor: ColumnsColor[]; // We also need to display the next actor that's why we define it here
+  score: number; // Current score as a number
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exports">Exports</h3>
+<div class="paragraph">
+<p>I&#8217;d like to recommend you refresh your knowledge about the gameplay before you browse the following table. Please, look through Episode 01.</p>
+</div>
+<div class="paragraph">
+<p>The following calculations as a set of functions are directly related to the <a href="https://github.com/buchslava/qwik-columns/blob/step-2/src/components/game-play/game-logic.ts" target="_blank" rel="noopener">gameplay</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch turbo-table">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the function</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Purpose</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/EOl-r" target="_blank" rel="noopener">matching</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conducts checking process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/T5nZo" target="_blank" rel="noopener">collapse</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conducts collapsing process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/JqYIQ" target="_blank" rel="noopener">isNextMovePossible</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Answers, if the next actor&#8217;s moving down possible?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/GaI6u" target="_blank" rel="noopener">endActorSession</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Finalizes current actor&#8217;s moving down if it&#8217;s impossible due to <code>isNextMovePossible</code> above</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/dEEN3" target="_blank" rel="noopener">isFinish</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checks, is the game finished?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/o5sJD" target="_blank" rel="noopener">swapActorColors</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Swaps colors in the actor</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/QOOu9" target="_blank" rel="noopener">init</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Init a new game; resets a state of the game.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/n6DYK" target="_blank" rel="noopener">isActorEmpty</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Answers is the actor empty?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/Ay-vY" target="_blank" rel="noopener">isNextActorInit</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Answers, is the next actor colored?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/i8IkO" target="_blank" rel="noopener">randomColors</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides an array of random colors</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/-WCFn" target="_blank" rel="noopener">doNextActor</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bumps the new actor&#8217;s state due to the next one and init the new next state after that.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/cblmE" target="_blank" rel="noopener">actorDown</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves the actor down</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/cGCDj" target="_blank" rel="noopener">moveLeft</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves the actor one cell left</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/JNkg3" target="_blank" rel="noopener">moveLeftTo</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves the actor N cells left</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/WqtsN" target="_blank" rel="noopener">moveRight</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves the actor one cell right</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://t.ly/Q9Xbj" target="_blank" rel="noopener">moveRightTo</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves the actor N cells right</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Please, don’t be scared by the list above. We will use all these functions, and I&#8217;ll describe how exactly.</p>
+</div>
+<div class="paragraph">
+<p>And now, I&#8217;m happy to give you the most exciting part of the code when we gather all previous knowledge: I&#8217;ve grouped all of them into the following features.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The store.</p>
+</li>
+<li>
+<p>Gameplay utilization functions.</p>
+</li>
+<li>
+<p>The heart of the game.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>All our future activities will be around <a href="https://github.com/buchslava/qwik-columns/blob/step-3/src/components/game-play/game.tsx" target="_blank" rel="noopener">the source of the game 1</a>. The related destination is placed in <a href="https://github.com/buchslava/qwik-columns/blob/step-2/src/components/game-play/game.tsx" target="_blank" rel="noopener">the source of the game 2</a>. All my future reasonings will reveal the source of the game transformation from state 1 to 2.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s get started!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_store">The store</h3>
+<div class="paragraph">
+<p>Let&#8217;s focus on the <a href="https://t.ly/-AXUp" target="_blank" rel="noopener">store definition</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export interface MainStore {
+  // Canvas width
+  width: number;
+  // Canvas height
+  height: number;
+  // We should keep the current state of the game. See "The Main Definition" above.
+  game: Game;
+  // We need to keep the size of the cell because if relates to the screen size
+  blockSize: number;
+  // The following field is an indicator of the finished game. I'll focus on it a bit later.
+  gameOverPopup: boolean;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And now, we are ready for the <a href="https://t.ly/WWtKJ" target="_blank" rel="noopener">store initialization</a>. I hope it helps you ultimately understand the declarative part of the game.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const store = useStore&lt;MainStore&gt;({
+  // Initially, we don't know about the screen dimensions
+  width: 0,
+  height: 0,
+  // The initial state of the game
+  game: {
+    // The current board should be a clone of initData
+    board: [...initData],
+    actor: {
+      // The current actor should be a clone of initActor
+      state: [...initActor],
+      // start actor's column (horizontal position) should be ±at the middle of the canvas
+      column: Math.floor(initData[0].length / 2),
+      // start actor's row (vertical position) should be outside the canvas
+      row: -2,
+    },
+    // Let's set Phase.MOVING
+    phase: Phase.MOVING,
+    // Set "nextActor" as a randomly generated
+    nextActor: randomColors(3),
+    score: 0,
+  },
+  // Initially, we don't know about the screen dimensions that's why blockSize = 0
+  blockSize: 0,
+  // The game is not over yet
+  gameOverPopup: false,
+});</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gameplay_utilization_functions">Gameplay utilization functions</h3>
+<div class="paragraph">
+<p>Let me introduce you to the "workhorse" of the game. The feature is that all UI stuff here is encapsulated in one function. Please, look at the <a href="https://t.ly/dv37z" target="_blank" rel="noopener">render</a> function and read carefully the comments there.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">export function render(
+  game: Game, // pass the state of the game; I'll focus on it a bit later
+  svgRef: Signal&lt;Element | undefined&gt;, // we also need the SVG representation
+  width: number, // tha shapes; see also "setSvgDimension"
+  height: number,
+  blockSize: number
+) {
+  if (!svgRef.value) {
+    return;
+  }
+
+  // Associate our SVG with D3; read also, https://github.com/d3/d3-selection
+  const svg = d3.select(svgRef.value);
+  // Remove all existing content from the SVG if it present.
+  // The reason is that all render calls should fully refresh the screen
+  svg.selectAll("*").remove();
+  // Append the root SVG element
+  svg
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(0,0)");
+  // Draw a white rectangle over ALL canvas
+  svg
+    .append("g")
+    .append("rect")
+    .attr("x", 0)
+    .attr("width", width)
+    .attr("y", 0)
+    .attr("height", height)
+    // @ts-ignore
+    .attr("fill", () =&gt; d3.color(COLOR_WHITE));
+
+  // Prepare board cells data by the game state (board).
+  // The data is represented by an array of objects.
+  // Each object contains
+  // x (horizontal coordinate of the cell),
+  // y (vertical coordinate of the cell)
+  // value - cell's color
+  const data = [];
+  for (let i = 0, x = 0, y = 0; i &lt; game.board.length; i++) {
+    x = 0;
+    for (let j = 0; j &lt; game.board[i].length; j++) {
+      data.push({ x, y, value: game.board[i][j] });
+      x += blockSize;
+    }
+    y += blockSize;
+  }
+
+  // Draw the current board
+  svg
+    .selectAll()
+    // Data binding allows us to draw each cell of the board
+    // It's a kind of declarative loop.
+    .data(data.filter((d) =&gt; d.value !== COLOR_WHITE))
+    .enter()
+    .append("g")
+    .append("rect")
+    // x is taken from the data; see data preparation above
+    .attr("x", (d) =&gt; d.x)
+    .attr("width", blockSize)
+    // y is taken from the data; see data preparation above
+    .attr("y", (d) =&gt; d.y)
+    .attr("height", blockSize)
+    // color/value is taken from the data; see data preparation above
+    // it represented by a hex value as a string and finally
+    // it should be transformed to the D3 compatible color: "d3.color(d.value)"
+    // @ts-ignore
+    .attr("fill", (d) =&gt; d3.color(d.value))
+    .attr("stroke", "#000000")
+    .attr("stroke-width", 1);
+
+  // We need to draw an actor only the actor should be moving (Phase.MOVING)
+  if (game.phase === Phase.MOVING) {
+    // Actor data preparation
+    const actorData = [];
+    for (let i = 0; i &lt; game.actor.state.length; i++) {
+      actorData.push({
+        x: game.actor.column * blockSize,
+        y: (game.actor.row + i - 1) * blockSize,
+        value: game.actor.state[i],
+      });
+    }
+
+    // Draw the actor according to the data above
+    // similarly to "Draw the current board" above
+    svg
+      .selectAll()
+      .data(actorData)
+      .enter()
+      .append("g")
+      .append("rect")
+      .attr("class", "could-fly")
+      .attr("x", (d) =&gt; d.x)
+      .attr("width", blockSize)
+      .attr("y", (d) =&gt; d.y)
+      .attr("height", blockSize)
+      // @ts-ignore
+      .attr("fill", (d) =&gt; d3.color(d.value))
+      .attr("stroke", "#000000")
+      .attr("stroke-width", 1);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following <a href="https://t.ly/uevbF" target="_blank" rel="noopener">functions</a> are responsible for the user&#8217;s actions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">//  Just call the render
+const reRender = $(() =&gt; {
+  render(store.game, svgRef, store.width, store.height, store.blockSize);
+});
+// Move left action handler
+const doLeft = $(() =&gt; {
+  // if the actor is moving then call "moveLeft" (see Exports above) and re-render
+  if (store.game.phase === Phase.MOVING) {
+    moveLeft(store.game);
+    reRender();
+  }
+});
+// Move right action handler
+const doRight = $(() =&gt; {
+  // if the actor is moving then call "moveRight" (see Exports above) and re-render
+  if (store.game.phase === Phase.MOVING) {
+    moveRight(store.game);
+    reRender();
+  }
+});
+// Swap colors in the actor action handler
+const doSwap = $(() =&gt; {
+  if (store.game.phase === Phase.MOVING) {
+    // if the actor is moving then call "swapActorColors" (see Exports above) and re-render
+    swapActorColors(store.game);
+    reRender();
+  }
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>An important note regarding Qwik</mark>
+I suppose you just noticed that the functions above are wrapped by <mark>$()</mark>. It could look weird for a non-Qwik guy. I want to explain the reason for <mark>$()</mark> usage because it&#8217;s essential if you want to understand the most essential part of Qwik.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s remove <mark>$()</mark> from, say, <mark>reRender</mark> and run the app&#8230;&#8203; We will see the error below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const reRender = () =&gt; {
+  render(store.game, svgRef, store.width, store.height, store.blockSize);
+};</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">Captured variable in the closure can not be serialized because it's a function named "reRender". You might need to convert it to a QRL using $(fn):
+
+const reRender = $(()=&gt;{
+
+        render(store.game, svgRef, store.width, store.height, store.blockSize);
+    });
+
+Please check out https://qwik.builder.io/docs/advanced/qrl/ for more information.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If we refactor the function above the following way</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">function reRender() {
+  render(store.game, svgRef, store.width, store.height, store.blockSize);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>then we also get an error.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">Seems like you are referencing "reRender" inside a different scope ($), when this happens, Qwik needs to serialize the value, however it is a function, which is not serializable.
+Did you mean to wrap it in `$()`?
+
+The cause of the errors above is Qwik architecture. The fact is that Qwik is uniquely focused on performance, and I'd like to recommend that you dig into the QRL idea.
+
+QRL (Qwik URL) is a particular form of URL that Qwik uses to lazy load content.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this context, I recommend you read the following brief but eloquent explanations of Qwik fundamentals.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://qwik.builder.io/docs/advanced/qrl/" target="_blank" rel="noopener">QRL</a></p>
+</li>
+<li>
+<p><a href="https://qwik.builder.io/docs/advanced/dollar/" target="_blank" rel="noopener">The dollar $ sign</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In short, we must wrap our functions by <mark>$()</mark> to make them Qwik-friendly!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_heart_of_the_game">The heart of the game.</h3>
+<div class="paragraph">
+<p>Let&#8217;s dig into the heart of the game. I used a heart as allegory because our game looks like a living thing. In our case, we are talking about a 700-millisecond interval that keeps the gameplay. I intentionally don&#8217;t want to write comments in the code because it does not need extra explanations. Just read and <a href="https://t.ly/ObL4-" target="_blank" rel="noopener">enjoy it</a>!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">useVisibleTask$(({ cleanup }: { cleanup: Function }) =&gt; {
+  setSvgDimension(containerRef, store);
+  const intervalId = setInterval(() =&gt; {
+    const game = store.game;
+
+    if (game.phase === Phase.MOVING) {
+      if (isNextMovePossible(game)) {
+        actorDown(game);
+      } else {
+        endActorSession(game);
+        if (isFinish(game)) {
+          game.phase = Phase.INACTIVE;
+          store.gameOverPopup = true;
+        } else {
+          game.phase = Phase.MATCH_REQUEST;
+        }
+      }
+    } else if (game.phase === Phase.MATCH_REQUEST) {
+      const matched = matching(game, true);
+      if (matched) {
+        game.phase = Phase.COLLAPSE_REQUEST;
+      } else {
+        doNextActor(game);
+        game.phase = Phase.MOVING;
+      }
+    } else if (game.phase === Phase.COLLAPSE_REQUEST) {
+      collapse(game);
+      game.phase = Phase.MATCH_REQUEST;
+    }
+
+    reRender();
+  }, 700);
+  cleanup(() =&gt; clearInterval(intervalId));
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, there is a <a href="https://t.ly/54Rii" target="_blank" rel="noopener">small stitch</a> regarding the finished game criteria.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">useTask$(({ track }: { track: Function }) =&gt; {
+  track(() =&gt; store.gameOverPopup);
+
+  if (store.gameOverPopup) {
+    console.log("Game Over!");
+  }
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We need to track the <mark>gameOverPopup</mark> field and inform the user. Please, don&#8217;t worry about console.log. We will deal with it in the next episode.</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-03/img1.gif" alt="img1">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_whats_next">What&#8217;s next?</h3>
+<div class="paragraph">
+<p>I hope this episode was exciting despite its size ;) Feel free to read and run the <a href="https://github.com/buchslava/qwik-columns/tree/step-2" target="_blank" rel="noopener">related solution</a>.</p>
+</div>
+<div class="paragraph">
+<p>Are you worrying about the situations when you decide about the actor&#8217;s colors and need to move the actor somehow immediately to the bottom of the board? What about controls like "Start," "Stop," and "Pause"? What about the score and the speed of the actor&#8217;s movement?</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;m going to reveal these points in the next episode. Stay in touch!</p>
+</div>
+</div>
+</div>
+</div>
