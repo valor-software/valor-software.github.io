@@ -1,6 +1,14 @@
 .btn-pink-border {
   @apply bg-transparent border-pink text-pink rounded-20 py-1 px-2 md:px-4 hover:bg-pink hover:text-white transition-colors md:h-10 ;
   border-width: 1px;
+
+  &[disabled] {
+    @apply opacity-50;
+  }
+
+  &[disabled]:hover {
+    @apply bg-pink opacity-50;
+  }
 }
 
 .btn-pink {
