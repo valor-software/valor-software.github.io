@@ -16,17 +16,56 @@
 		<div class="flex flex-col items-center justify-center order-1 lg:order-2 w-full lg:w-2/6 mr-0 lg:mr-8">
 			<span class="subscribe-text w-full">Subscribe to our newsletter now</span>
 
-			<div class="flex flex-col lg:flex-row items-center mt-6 w-full">
+			<form
+					action="https://valor-software.us6.list-manage.com/subscribe/post?u=ec02b86e27ea826fc9590dc10&amp;id=a7fdce3c62&amp;f_id=00c82fe3f0"
+					method="post"
+					id="mc-embedded-subscribe-form"
+					name="mc-embedded-subscribe-form"
+					target="_blank"
+					class="flex flex-col items-start mt-6 w-full">
 
-				<input class="text-input w-full lg:w-9/12 mr-0 lg:mr-4 px-3 py-2"
-				       type="email"
-				       placeholder="Enter email">
-				<!--					formControlName="email"-->
+				<div class="flex flex-col lg:flex-row w-full">
+					<input class="text-input w-full lg:w-9/12 mr-0 lg:mr-4 px-3 py-2"
+					       type="email"
+					       [formControl]="emailControl"
+					       placeholder="Enter email"
+					       name="EMAIL"
+					       id="mce-EMAIL">
 
-				<button type="button"
-				        class="btn-pink-border w-full lg:w-auto text-base mt-4 lg:mt-0">Subscribe
-				</button>
-			</div>
+					<div hidden=""><input type="hidden" name="tags" value="3376148"></div>
+					<div aria-hidden="true" style="position: absolute; left: -5000px;">
+						<input type="text"
+						       name="b_ec02b86e27ea826fc9590dc10_a7fdce3c62"
+						       tabindex="-1">
+					</div>
+
+					<input type="submit"
+					       name="subscribe"
+					       id="mc-embedded-subscribe"
+					       class="btn-pink-border w-full lg:w-auto text-base mt-4 lg:mt-0"
+					       value="Subscribe"
+					       [disabled]="!emailControl.valid">
+				</div>
+
+				<small class="text-pink" *ngIf="hasEmailError()">
+					{{ validationMessage.message }}
+				</small>
+			</form>
+			<!--	Mailchimp scripts	-->
+			<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+			<script type="text/javascript">(function ($) {
+          window.fnames = new Array();
+          window.ftypes = new Array();
+          fnames[0] = 'EMAIL';
+          ftypes[0] = 'email';
+          fnames[1] = 'FNAME';
+          ftypes[1] = 'text';
+          fnames[2] = 'LNAME';
+          ftypes[2] = 'text';
+          fnames[6] = 'MMERGE6';
+          ftypes[6] = 'text';
+      }(jQuery));
+      var $mcj = jQuery.noConflict(true);</script>
 
 			<div class="flex items-center mt-10 w-full">
 				<button type="button"
