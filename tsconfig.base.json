@@ -16,6 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@valor-software/subscription-confirmed-page": [
+        "libs/route-pages/subscription-confirmed-page/src/index.ts"
+      ],
       "@valor-software/ashes-page": [
         "libs/route-pages/ashes-page/src/index.ts"
       ],

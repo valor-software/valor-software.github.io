@@ -39,6 +39,10 @@ export const routes: Routes = [
     loadChildren: () => import('@valor-software/privacy-policy-page').then(m => m.PrivacyPolicyPageModule)
   },
   {
+    path: 'subscription-confirmed',
+    loadComponent: () => import('@valor-software/subscription-confirmed-page').then(c => c.SubscriptionConfirmedPageComponent)
+  },
+  {
     path: 'all-vacancies',
     redirectTo: 'careers'
   },
@@ -60,7 +64,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundComponent
+    redirectTo: '404'
   }
 ];
 
