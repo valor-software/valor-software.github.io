@@ -48,6 +48,8 @@ MIT
 
 @valor-software/services-page
 
+@valor-software/subscription-confirmed-page
+
 @valor-software/tablesready-page
 
 @valor-software/terminus-page
