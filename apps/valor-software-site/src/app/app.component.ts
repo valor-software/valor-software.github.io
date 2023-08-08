@@ -6,6 +6,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 const notFoundPageUrl = '/404';
+const subscriptionConfirmedUrl = '/subscription-confirmed';
 declare const gtag: any;
 const isCookieAllowed = 'isCookieAllowed';
 
@@ -38,7 +39,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
 		this.$routerEventNavigationEnd = router.events.pipe(
 			filter(evt => evt instanceof NavigationEnd)
 		).subscribe(res => {
-			this.showFooterAndHeader = !!(this.router.url === notFoundPageUrl);
+			this.showFooterAndHeader = !(this.router.url === notFoundPageUrl || this.router.url === subscriptionConfirmedUrl);
 		});
 	}
 
