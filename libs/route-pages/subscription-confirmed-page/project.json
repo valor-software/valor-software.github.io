@@ -1,0 +1,44 @@
+{
+  "name": "route-pages-subscription-confirmed-page",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/route-pages/subscription-confirmed-page/src",
+  "prefix": "valor-software-site-base",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/route-pages/subscription-confirmed-page"],
+      "options": {
+        "project": "libs/route-pages/subscription-confirmed-page/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/route-pages/subscription-confirmed-page/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/route-pages/subscription-confirmed-page/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/route-pages/subscription-confirmed-page"],
+      "options": {
+        "jestConfig": "libs/route-pages/subscription-confirmed-page/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/route-pages/subscription-confirmed-page/**/*.ts",
+          "libs/route-pages/subscription-confirmed-page/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["common-docs"]
+}
