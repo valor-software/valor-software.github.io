@@ -1,5 +1,6 @@
-import { Routes } from '@angular/router';
+import { Router, Routes } from '@angular/router';
 import { NotFoundComponent } from './404.component';
+import { inject } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -8,7 +9,14 @@ export const routes: Routes = [
   },
   {
     path: '404',
-    component: NotFoundComponent
+    component: NotFoundComponent,
+    canMatch: [
+      () => {
+        // there is redirect from Mailchimp in the app where route not being found has custom handling,
+        // this allows to skip not found page
+        return !inject(Router).url?.includes('subscription-confirmed');
+      },
+    ],
   },
   {
     path: 'press-release',
@@ -64,7 +72,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '404'
+    redirectTo: '404',
   }
 ];
 
