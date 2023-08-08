@@ -654,7 +654,45 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			nameValue: 'title',
 			content: 'Privacy Policy - Valor Software'
 		}
-	]
+	],
+	'subscription-confirmed': [
+		{
+			nameType: 'meta',
+			name: 'name',
+			nameValue: 'description',
+			content: 'Subscription to newsletter confirmed.'
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:title',
+			content: 'Subscription Confirmed - Valor Software'
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:description',
+			content: 'Subscription to newsletter confirmed.'
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'twitter:title',
+			content: 'Subscription Confirmed - Valor Software'
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'twitter:description',
+			content: 'Subscription to newsletter confirmed.'
+		},
+		{
+			nameType: 'title',
+			name: 'title',
+			nameValue: 'title',
+			content: 'Subscription Confirmed - Valor Software'
+		}
+	],
 };
 
 @Injectable({ providedIn: 'platform' })
@@ -672,11 +710,13 @@ export class SeoService {
 		@Inject(OLD_ROUTES_FROM_OLD_SITE) linkList: { [key: string]: string },
 	) {
 		this.brokenArticlesRoutes = linkList;
-		this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
-			const url = this.router.parseUrl(this.router.url).root.children?.primary?.segments;
+		this.$routEvents = router.events.pipe(
+			filter(event => event instanceof NavigationEnd))
+			.subscribe((event) => {
+				const url = this.router.parseUrl(this.router.url).root.children?.primary?.segments;
 
-			this.initCurrentTags(this.editRouteUrl(url));
-		});
+				this.initCurrentTags(this.editRouteUrl(url));
+			});
 	}
 
 	editRouteUrl(value: UrlSegment[]): string {
