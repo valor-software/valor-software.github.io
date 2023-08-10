@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="flex flex-col items-center justify-center order-1 lg:order-2 w-full lg:w-2/6 mr-0 lg:mr-8">
-			<span class="subscribe-text w-full">Subscribe to our newsletter now</span>
+			<span class="subscribe-title w-full">Subscribe to our newsletter now</span>
 
 			<form
 					action="https://valor-software.us6.list-manage.com/subscribe/post?u=ec02b86e27ea826fc9590dc10&amp;id=a7fdce3c62&amp;f_id=00c82fe3f0"
@@ -43,12 +43,17 @@
 					       id="mc-embedded-subscribe"
 					       class="btn-pink-border w-full lg:w-auto text-base mt-4 lg:mt-0"
 					       value="Subscribe"
-					       [disabled]="!emailControl.valid">
+					       [disabled]="!emailControl.valid"
+					       (click)="onSubscribe()">
 				</div>
 
 				<small class="text-pink" *ngIf="hasEmailError()">
 					{{ validationMessage.message }}
 				</small>
+
+				<span *ngIf="!hasEmailError() && showSubscriptionSuccessMessage"
+				      class="subscribe-success-msg w-full">Subscription request has been successfully sent!</span>
+
 			</form>
 			<!--	Mailchimp scripts	-->
 			<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
