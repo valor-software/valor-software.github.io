@@ -11,12 +11,13 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class AppFooterComponent {
 	emailControl = new FormControl<string>(
-		'', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]
+		'', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]
 	);
 	readonly validationMessage = {
 		type: 'pattern',
 		message: 'Please enter a valid email'
 	};
+	showSubscriptionSuccessMessage = false;
 
 	constructor(
 		private modalService: ModalService<ContactModalComponent>
@@ -30,5 +31,9 @@ export class AppFooterComponent {
 	hasEmailError(): boolean {
 		return this.emailControl.hasError(this.validationMessage.type)
 			&& ((this.emailControl.dirty && this.emailControl.touched) || this.emailControl.dirty);
+	}
+
+	onSubscribe(): void {
+		this.showSubscriptionSuccessMessage = true;
 	}
 }
