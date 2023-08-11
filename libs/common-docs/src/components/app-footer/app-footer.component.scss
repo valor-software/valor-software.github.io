@@ -2,12 +2,21 @@ footer {
   font-family: 'Work Sans', 'Roboto', 'Arial', 'sans-serif';
 }
 
-.subscribe-text {
+.subscribe-title {
   font-weight: 700;
   font-size: 24px;
   line-height: 28px;
   color: #E3E3E3;
   text-align: center;
+}
+
+.subscribe-success-msg {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #E3E3E3;
+  text-align: center;
+  margin-top: 12px;
 }
 
 .img {

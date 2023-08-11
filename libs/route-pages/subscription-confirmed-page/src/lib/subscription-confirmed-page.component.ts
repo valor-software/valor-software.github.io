@@ -1,17 +1,28 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'subscription-confirmed',
-  templateUrl: './subscription-confirmed.component.html',
-  styleUrls: ['./subscription-confirmed.component.scss'],
-  standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CommonModule,
-    RouterLink,
-  ],
+	// eslint-disable-next-line @angular-eslint/component-selector
+	selector: 'subscription-confirmed',
+	templateUrl: './subscription-confirmed.component.html',
+	styleUrls: ['./subscription-confirmed.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SubscriptionConfirmedPageComponent {}
+export class SubscriptionConfirmedPageComponent {
+}
+
+@NgModule({
+	imports: [
+		CommonModule,
+		RouterModule.forChild([{
+			path: '',
+			component: SubscriptionConfirmedPageComponent
+		}])
+	],
+	declarations: [
+		SubscriptionConfirmedPageComponent
+	]
+})
+export class SubscriptionConfirmedPageModule {
+}
