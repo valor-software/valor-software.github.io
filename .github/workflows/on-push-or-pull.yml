@@ -9,6 +9,7 @@ env:
 
   CACHE_NODE_MODULES_PATH: |
     node_modules
+    dist/valor-software-site
 
   CACHE_DIST_PATH: |
     dist
