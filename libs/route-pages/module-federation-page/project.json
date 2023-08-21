@@ -1,0 +1,44 @@
+{
+  "name": "route-pages-module-federation-page",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/route-pages/module-federation-page/src",
+  "prefix": "valor-software-site-base",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/route-pages/module-federation-page"],
+      "options": {
+        "project": "libs/route-pages/module-federation-page/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/route-pages/module-federation-page/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/route-pages/module-federation-page/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/route-pages/module-federation-page"],
+      "options": {
+        "jestConfig": "libs/route-pages/module-federation-page/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/route-pages/module-federation-page/**/*.ts",
+          "libs/route-pages/module-federation-page/**/*.html"
+        ]
+      }
+    }
+  },
+  "implicitDependencies": ["common-docs"]
+}

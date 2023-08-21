@@ -44,6 +44,10 @@ export const routes: Routes = [
     loadChildren: () => import('@valor-software/subscription-confirmed-page').then(m => m.SubscriptionConfirmedPageModule)
   },
   {
+    path: 'module-federation',
+    loadChildren: () => import('@valor-software/module-federation-page').then(m => m.ModuleFederationPageModule)
+  },
+  {
     path: 'all-vacancies',
     redirectTo: 'careers'
   },

@@ -1,0 +1,97 @@
+<section class="first-section landing-section">
+	<div class="container pb-5 flex justify-between items-center pt-16 lg:pt-0" style="max-height: 100%;">
+		<div class="max-w-600">
+			<h1 class="text-light_title_col md:text-64 text-large md:leading-66 leading-44 mb-12 font-bold">We love Module
+			                                                                                                Federation</h1>
+			<p class="leading-normal text-grey_font_col lg:mb-8 mb-14">
+				We contribute to and heavily use this ground breaking methodology of sharing code between and within
+				applications.
+			</p>
+		</div>
+		<div class="hidden lg:block">
+			<img src="assets/img/bg-img/module-federation/header_bg.svg" alt="">
+		</div>
+	</div>
+</section>
+
+<section class="landing-section">
+	<h1 class="main-title mt-0 mb-10">Intro to Module Federation</h1>
+	<div class="container flex flex-col">
+		<p class="subheader mb-10">
+			<span class="subheader-bold">Module Federation,</span>
+			a groundbreaking technology, allows software
+			<span class="subheader-bold">to be built from independent, dynamic modules.</span>
+		</p>
+
+		<div class="flex justify-between">
+			<div class="intro__desc">
+				<span class="intro__desc-text mb-7">
+					This paves the way for flexible, easily updated applications without disturbing the entire codebase. It's based on the microservices principle, where each unit can operate independently.
+				</span>
+				<span class="intro__desc-text mb-7">
+					At Valor Software, we're thrilled to contribute to this Webpack 5 feature, which we believe is transforming web development by enabling scalable, resilient, and adaptable applications.
+				</span>
+				<span class="intro__desc-text">
+					Our involvement in the Module Federation carries a dual benefit. It not only enables us to use our firsthand experience to help clients achieve their goals faster but also allows us to enhance the open web, creating a more efficient digital environment for everyone on the web.
+				</span>
+			</div>
+
+			<div class="hidden lg:block">
+				<img src="assets/img/bg-img/module-federation/intro_bg.svg" alt="">
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="landing-section md:!pb-28">
+	<h1 class="main-title mt-0 mb-10">Why Valor Software</h1>
+	<div class="container flex flex-col">
+
+		<p class="subheader mb-10">
+			We're delighted to continue our strategic
+			<span class="subheader-bold"><u>partnership</u> with Zack Jackson,</span>
+			the mastermind behind
+			<span class="subheader-bold">Webpack Module Federation,</span>
+			initiated in 2022. This partnership allows us to influence
+			<span class="subheader-bold">Module Federation's evolution,</span>
+			always with the broader
+			<span class="subheader-bold">community's objectives in mind.</span>
+		</p>
+
+		<div class="flex flex-col">
+			<div *ngFor="let item of whyValorItems"
+			     class="bg-grey flex px-12 py-8 mb-6 justify-between items-center">
+				<div class="w-fit h-28 flex items-center justify-center">
+					<img [src]="item.img" alt="">
+				</div>
+
+				<p class="w-[90%] tracking-tighter text-grey_font_col">{{item.description}}</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="landing-section md:!pb-28">
+	<h1 class="main-title mt-0 mb-10">The Ripple Effect of Our Alliance</h1>
+	<div class="container md:grid grid-cols-2 gap-8">
+		<div *ngFor="let item of allianceEffects"
+		     class="bg-grey px-8 py-8 flex justify-between mb-8 md:mb-0">
+			<div class="w-1/5 h-28 flex items-center justify-center">
+				<img [src]="item.img" alt="">
+			</div>
+			<div class="flex flex-col w-9/12">
+				<p class="tracking-tighter text-light_title_col font-bold text-24">{{item.title}}</p>
+				<p class="tracking-tighter text-grey_font_col mt-3">{{item.description}}</p>
+
+				<a *ngIf="item.link"
+				   target="_blank"
+				   rel="noopener"
+				   class="flex link mt-3"
+				   [href]="item.link">{{item.linkText}}
+					<img src="assets/img/icons/arrow-red.svg"
+					     class="ml-2" alt="">
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
