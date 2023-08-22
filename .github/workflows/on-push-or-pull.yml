@@ -85,8 +85,6 @@ jobs:
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
-      - run: yarn install
-      - run: npx nx run valor-software-site:build-scully --prod
       - uses: FirebaseExtended/action-hosting-deploy@v0
         continue-on-error: true
         id: firebase_hosting_preview
