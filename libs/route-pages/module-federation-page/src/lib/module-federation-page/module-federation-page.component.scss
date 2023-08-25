@@ -29,5 +29,9 @@
   &-bold {
     font-weight: 700;
     color: #FFFFFFFF;
+
+    a {
+      text-decoration: underline;
+    }
   }
 }
