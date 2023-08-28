@@ -42,6 +42,8 @@ MIT
 
 @valor-software/liberty-flights-page
 
+@valor-software/module-federation-page
+
 @valor-software/press-release
 
 @valor-software/privacy-policy-page
