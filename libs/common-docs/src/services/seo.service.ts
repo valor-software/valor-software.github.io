@@ -693,6 +693,44 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			content: 'Subscription Confirmed - Valor Software'
 		}
 	],
+	'module-federation': [
+		{
+			nameType: 'meta',
+			name: 'name',
+			nameValue: 'description',
+			content: ''
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:title',
+			content: 'Module Federation - Valor Software'
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:description',
+			content: ''
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'twitter:title',
+			content: 'Module Federation - Valor Software'
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'twitter:description',
+			content: ''
+		},
+		{
+			nameType: 'title',
+			name: 'title',
+			nameValue: 'title',
+			content: 'Module Federation - Valor Software'
+		}
+	],
 };
 
 @Injectable({ providedIn: 'platform' })

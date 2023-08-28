@@ -241,8 +241,8 @@ const OpenSourceSlidesModel: IOpenSourceSlide[] = [
 		list: ['Better scalability', 'Independently-manageable apps', 'Reuse of apps, functions, components, or contents', 'No more divergent styles and duplicated components throughout parallel teams'],
 		name: 'Module Federation',
 		button: 'See what we\'re doing',
-		img: 'assets/img/bg-img/open-source/module_federation.svg',
-		link: 'https://valor-software.com/articles/announcing-strategic-partnership-with-zack-jackson-the-module-federation-inventor',
+		img: 'assets/img/bg-img/module-federation/header_bg.svg',
+		link: '/module-federation',
 		downloads: 0,
 		reverse: true
 	}

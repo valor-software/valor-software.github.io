@@ -16,8 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@valor-software/subscription-confirmed-page": [
-        "libs/route-pages/subscription-confirmed-page/src/index.ts"
+      "@valor-software/module-federation-page": [
+        "libs/route-pages/module-federation-page/src/index.ts"
       ],
       "@valor-software/ashes-page": [
         "libs/route-pages/ashes-page/src/index.ts"
@@ -56,6 +56,9 @@
       ],
       "@valor-software/software-engineering": [
         "libs/route-pages/software-engineering/src/index.ts"
+      ],
+      "@valor-software/subscription-confirmed-page": [
+        "libs/route-pages/subscription-confirmed-page/src/index.ts"
       ],
       "@valor-software/tablesready-page": [
         "libs/route-pages/tablesready-page/src/index.ts"
