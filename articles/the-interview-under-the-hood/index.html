@@ -1,0 +1,490 @@
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/the-interview-under-the-hood"
+            },
+            "headline": "The Interview Under the Hood",
+            "description": "Challenges of Technical Interviews",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/the-interview-under-the-hood/Main-the-interview-under-the-hood.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Vyacheslav Chub"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Thu Aug 31 2023 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+	<meta charset="utf-8">
+	<title>The Interview Under the Hood</title>
+	<base href="/">
+	<meta name="robots" content="all">
+	<meta property="og:type" content="website">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:image" content="/assets/img/valor-img/valor_social.jpg">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@ValorSoft">
+	<meta name="twitter:creator" content="@ValorSoft">
+
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<script>
+      window.intercomSettings = {
+          app_id: "brxsww1a"
+      };
+	</script>
+	<script src="assets/js/intercom-facade.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN"></script>
+	<script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+	</script>
+	<script type="text/javascript">
+      window.onload = function () {
+          if (window.self !== window.top) {
+              document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+      };
+	</script>
+<style>:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{--swiper-navigation-size:44px}:root{--swiper-theme-color:#007aff}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.b0b8cabf1f815825.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.b0b8cabf1f815825.css"></noscript><style>footer[_ngcontent-ng-c128174853]{font-family:Work Sans,Roboto,Arial,"sans-serif"}.subscribe-title[_ngcontent-ng-c128174853]{font-weight:700;font-size:24px;line-height:28px;color:#e3e3e3;text-align:center}.subscribe-success-msg[_ngcontent-ng-c128174853]{font-weight:700;font-size:16px;line-height:20px;color:#e3e3e3;text-align:center;margin-top:12px}.img[_ngcontent-ng-c128174853]{width:32px;height:32px}</style><style>[_nghost-ng-c1371038418]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s _ngcontent-ng-c1371038418_fadein ease-in-out both}.btn[_ngcontent-ng-c1371038418]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes _ngcontent-ng-c1371038418_fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px;border-radius:3rem}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="Challenges of Technical Interviews"><meta property="og:title" content="The Interview Under the Hood"><meta property="og:description" content="Challenges of Technical Interviews"><meta property="twitter:title" content="The Interview Under the Hood"><meta property="twitter:description" content="Challenges of Technical Interviews"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+<valor-software-site-base-root _nghost-ng-c6223672="" ng-version="16.0.4"><top-menu _ngcontent-ng-c6223672=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-ng-c6223672="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ng-c6223672=""></router-outlet><general-item><article _nghost-ng-c198896663=""><section _ngcontent-ng-c198896663="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-ng-c198896663="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-ng-c198896663="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> The Interview Under The Hood </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-ng-c198896663="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-ng-c198896663="" class="text-20 mb-4">August 31, 2023</p><p _ngcontent-ng-c198896663="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">The Interview Under the Hood</p><div _ngcontent-ng-c198896663="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-ng-c198896663="" class="w-full h-full object-cover" src="assets/articles/the-interview-under-the-hood/Slava_Chub.jpg" alt="Vyacheslav Chub"></div><!----><!----><!----><p _ngcontent-ng-c198896663="" class="md:text-large text-24 mb-4">Vyacheslav Chub</p><!----><!----><!----><p _ngcontent-ng-c198896663="" class="text-20">Full Stack Software Engineer</p><!----></div></div></section><section _ngcontent-ng-c198896663="" class="landing-section"><div _ngcontent-ng-c198896663="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-ng-c198896663="" class="max-w-full"><div class="sect1">
+<h2 id="_the_10_commandments_of_technical_interviewing">The 10 Commandments of Technical Interviewing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Technical interviewing in the lack of time always looks challenging because, as an interviewer, I mustn’t have room for mistakes. Probably not worth mentioning that a "question from a book" is often a false friend. Instead of the original answer, my interviewee could reproduce it mechanically, i.e., read from Wikipedia in the worst case or read before the interview without deep knowledge of the best one. But I’m not a judge. I’m just a searcher for my future colleague to join my team! I’m always trying to deal with a dilemma. The dilemma is that, on the one hand, the technical question should be less well-known because, in the case of a positive answer to the famous question, I can’t correctly estimate this answer due to the above. Let’s illustrate this case. Imagine you start asking about OOP.
+You asked, <mark>Please, tell me about the OOP principles?</mark> The candidate answered perfectly. What is your conclusion regarding the candidate’s knowledge? Are they firm or not? Does the candidate know the topic, or did he/she just read this answer on Wikipedia? Should I proceed with another similar question on this topic? The issue is that you don’t have enough time for that. Also, you shouldn’t spam the candidate with many such questions or waste time on irrelevant questions. How to fix this situation?</p>
+</div>
+<div class="paragraph">
+<p>I see only one promising approach. You need to ask indirect, preferably practical, questions instead. In this case, for example, you can ask the following. <mark>Does it possible to instantiate an abstract class?</mark> And after that, ask some other additional questions. I suppose after answers gathering, you understand the candidate’s knowledge.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, your "tricky" question should not be so tricky. It’s crucial because, imagine, the candidate didn’t answer. I want to ask the almost same as above. What is your conclusion regarding the candidate’s knowledge? Are they firm or not? Does the candidate know the topic, or was he/she confused due to lack of time and the complexity of the question? Is the question too contextual?</p>
+</div>
+<div class="paragraph">
+<p>A good interview question is always about the balance between simplicity and complexity, straightforward and contextuality. A good interview looks like art. Please, remember that the form of the question and the estimated answer could be variated due to the expected candidate level. Please, attend to every candidate more comprehensively and evaluate their skills more personally because he/she is possibly your colleague in the nearest future.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_nodejs_scratch">The NodeJS Scratch</h3>
+<div class="paragraph">
+<p>I want to switch to the most challenging part of this article and illustrate a more complicated case. Imagine you are an interviewer for a NodeJS developer position and need to cover some critical knowledge points.</p>
+</div>
+<div class="paragraph">
+<p>Let’s get started. As a technical interviewer, I prefer to start from the authentic code fragment. Here is the following one.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const p1 = new Promise(resolve =&gt; {
+  console.log('start first promise', new Date());
+  console.time('first');
+  for (let i = 0; i &lt; 9999999999; i++) {
+  }
+  resolve(1);
+  console.timeEnd('first');
+  console.log('finish first promise', new Date());
+});
+const p2 = new Promise(resolve =&gt; {
+  console.log('start second promise', new Date());
+  console.time('second');
+  setTimeout(() =&gt; {
+    resolve(2);
+    console.timeEnd('second');
+    console.log('finish second promise', new Date());
+  }, 2000)
+});
+const p3 = new Promise(resolve =&gt; {
+  console.log('start third promise', new Date());
+  console.time('third');
+  setTimeout(() =&gt; {
+    resolve(3);
+    console.timeEnd('third');
+    console.log('finish third promise', new Date());
+  }, 10000);
+});
+
+(async () =&gt; {
+  const r = await Promise.all([p1, p2, p3]);
+  console.log(r);
+})();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And here is the result.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">start first promise 2023-08-17T11:50:10.064Z
+first: 9.444s
+finish first promise 2023-08-17T11:50:19.513Z
+start second promise 2023-08-17T11:50:19.513Z
+start third promise 2023-08-17T11:50:19.514Z
+second: 2.002s
+finish second promise 2023-08-17T11:50:21.516Z
+third: 10.001s
+finish third promise 2023-08-17T11:50:29.515Z</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I’m not fond of the "interviewer-interviewee" style during our conversation. As I meant before, I’m searching for my future colleague. That’s why my first question will be the following. <mark>What do you think about the code above?</mark> I’m asking this way because I need to know how the interlocutor thinks and what parts of the topic are important to him/her, and depending on the first clues, I’ll build my future interview tactics.</p>
+</div>
+<div class="paragraph">
+<p>And now, it’s time for the interview’s most creative, exciting, and unpredictable part. Let me provide you with some possible scenarios as dialogs.</p>
+</div>
+<div class="paragraph">
+<p>Please, read my thoughts under the dialog details carefully. I provided them because <strong>I want to reveal the holy of holies of the dialog - my own thoughts</strong>! I hope it helps you understand my thinking and related future steps. It’s important because there is no "silver bullet" or generic pattern regarding the interview. That’s why it’s critically important to understand how I think here and adapt it to your practice.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scenario_1">Scenario 1.</h3>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> What do you think about the code above?</p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> Promise.all() static method takes an iterable of promises as input and returns a single Promise. This returned promise fulfills when all of the input’s promises fulfill (including when an empty iterable is passed), with an array of the fulfillment values.</p>
+</div>
+<div class="paragraph">
+<p><em>Oops N1! Looks like a Wikipedia-based answer.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Do you have nothing more to add?</p>
+</div>
+<div class="paragraph">
+<p><em>In this case, I prefer to ask brief, direct questions like the above.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> No</p>
+</div>
+<div class="paragraph">
+<p><em>Oops N2! Really? Are you kidding me? (Remember, it’s just a thought in my mind. Please don’t say this way in the interview!) There are two explanations for my interviewee’s behavior. The first one is a lack of knowledge, and the second one is about we are not on the same page or he/she is hesitating. Let’s understand the reason.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Could you explain why the result looks differently from, say, the following?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">start first promise ...
+start second promise ...
+start third promise ...
+finish second promise ...
+finish first promise ...
+finish third promise ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>In other words, I wondered whether my interlocutor could explain why the first promise works synchronously. This proposal above is quite provocative because it contains 100% incorrect flow. This question is the best indicator for understanding the candidate’s level. In other words, this is the catharsis of the interview. BTW, I recommend providing the candidate with some error-based code or results. This way is perfect from a technical and psychological point of view at the same time. The best way to unblock the candidate’s stuck brain is to discuss incorrect flow. Moreover, after the candidate successfully resolved the issue, he/she became more confident.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> First, Promises are not regarding multithreading. Second, if we face long-executing synchronous code, then this code will block the whole solution. In this example, the first promise starts and blocks others because the following code</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">console.log('start first promise', new Date());
+  console.time('first');
+  for (let i = 0; i &lt; 9999999999; i++) {
+  }
+  resolve(1);
+  console.timeEnd('first');
+  console.log('finish first promise', new Date());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>executes by the V8 engine consistently in the time, and no other code in the app can interrupt it internally. Moreover, I want to explain why the last couple of promises run "almost simultaneously." They start after the first one has been resolved. The difference is that a couple last have asynchronous code based on timers. That’s why no one from them blocks each other. Also, if we talk about I/O operations like fs.readFile then these operations will be executed in separate threads according to NodeJS architecture. That’s why if we have an array of promises only with similar (execution time) asynchronous I/O operations inside, then Promise.all details will be executed almost simultaneously.</p>
+</div>
+<div class="paragraph">
+<p><em>Cool! The candidate’s mind has been unblocked! It’s a pleasure to me cause this kind of situation. The answer above is not academic and is a bit compacted, but it shows me the candidate’s level. Additionally, I’d like to ask some questions regarding the history of NodeJS, Event Loop, and LibUV. But it’s optional stuff. Generally, I’m satisfied with the answers.</em></p>
+</div>
+<div class="paragraph">
+<p><em>I asked the additional question because the start of the answer looks like a definition from the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="noopener">well-known resource</a>, and as an interviewer, I need to be sure that the candidate’s words come from himself. It’s important!</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scenario_2">Scenario 2.</h3>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> What do you think about the code above?</p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> Well, we shouldn’t put such a heavyweight code into a promise like in Promise 1.</p>
+</div>
+<div class="paragraph">
+<p><em>I’m skeptical about this way of answering because a bit different question was responded to. I didn’t ask, "What should we do?" or "How can we fix it?" Even though the answer looks wise, I need to clarify the topic.</em></p>
+</div>
+<div class="paragraph">
+<p><em>If you get an inappropriate answer such above, please, don’t repeat the question or don’t tell the candidate that he/he has answered another question. It doesn’t work. Believe me! In my mind, it’s a bit impolite, and this way can ruin the relationship between your interlocutor and you. It’s important even if you are already decided regarding the candidate. Please, be intelligent and polite!</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> But what happens if we put the "lightweight" code?</p>
+</div>
+<div class="paragraph">
+<p><em>Attention! This is a psychological trick. I intentionally ignored the "heavyweight" definition and used the antonym blindly. It’s not important now. I need to 100% understand the candidate’s way of thinking.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> I guess the promises will run simultaneously in the case of Promise.all.</p>
+</div>
+<div class="paragraph">
+<p><em>Oops N1! I just caused him/her to give me the "real" answer and proceed with this topic.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Could you explain why?</p>
+</div>
+<div class="paragraph">
+<p><em>Let’s finish this topic. This point is the catharsis of the interview.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> In my last project, I implemented a similar code like the following, and all promises worked simultaneously.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const p1 = new Promise((resolve, reject) =&gt; {
+  fs.readFile('./test-1.txt', 'utf8', (err, data) =&gt; {
+    if (err) {
+      reject(err);
+      return;
+    }
+    resolve(data)
+  });
+});
+const p2 = new Promise((resolve, reject) =&gt; {
+  fs.readFile('./test-2.txt', 'utf8', (err, data) =&gt; {
+    if (err) {
+      reject(err);
+      return;
+    }
+    resolve(data)
+  });
+});
+const p3 = new Promise((resolve, reject) =&gt; {
+  fs.readFile('./test-3.txt', 'utf8', (err, data) =&gt; {
+    if (err) {
+      reject(err);
+      return;
+    }
+    resolve(data)
+  });
+});
+
+(async () =&gt; {
+  const r = await Promise.all([p1, p2, p3]);
+  console.log(r);
+})();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Let me explain what happens here. The candidate provided a 100% valid code with the correct result. Despite the similarity between this and the original example, the current example has another context. This kind of answer is a good indicator of the issues in the candidate’s knowledge. He/she provided this example mechanically due to lacking fundamental skills.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Could you explain why they work "simultaneously"?</p>
+</div>
+<div class="paragraph">
+<p><em>Oops N2! I’m generally disappointed about my candidate!</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> Oh, I didn’t have a chance to dig deeply. I’m not a theoretical guy. It’s a feature of Promise.all, I guess.</p>
+</div>
+<div class="paragraph">
+<p><em>Oops N3! I’m always disappointed about this kind of candidate because they spent some time for practice and have been working on real projects for some years. Although, my candidate hasn’t become a proper software developer. I’m always so sorry in this kind of situation.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Do you know the difference between fs.readFile and other code, for example, the plain loop (as in my original example), in terms of the code execution?</p>
+</div>
+<div class="paragraph">
+<p><em>The last chance! I must be 100% sure the candidate is unfamiliar with the topic.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> Unfortunately, no:(</p>
+</div>
+<div class="paragraph">
+<p>I suppose now you understand how a dialog is essential and how important to finish the answer logically. In this case, the candidate started the answer more optimistically than in the previous scenario. But in fact, he doesn’t match as a proper developer. The lack of knowledge here is critical, and I’m not satisfied with the answers.</p>
+</div>
+<div class="paragraph">
+<p>BTW, this kind of candidate is the most "dangerous" because, at first glance, he/she has substantial knowledge, especially practical skills. But gaps in the fundamental skills could cause severe troubles in the company, which will engage the candidate. This is why the interviewing experience in the company is so critical.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_golang_scratch">The Golang Scratch</h3>
+<div class="paragraph">
+<p>At this point, I want to proceed with another example of another technology from a different point of view. I want to share the Golang illustration that allows us to understand how important to count the technological specific during the mandatory question preparation.</p>
+</div>
+<div class="paragraph">
+<p>Let’s consider Golang. As a technical interviewer, I want to start with only one eloquent question covering many sensitive points. It will help me to ask my future questions more effectively. One of the most critical topics in Golang is goroutines and channels. Formally, there are a lot of points on this topic in literature and guides. The team will waste a lot of time in case of brute-force asking. Moreover, in this case, as a technical interviewer, you can estimate only book-based knowledge, not skills! And what about the candidate’s nerves?</p>
+</div>
+<div class="paragraph">
+<p>Let’s choose another way. There is the following minimalistic fragment of code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">package main
+
+import "fmt"
+
+func main() {
+    messages := make(chan string)
+
+    messages &lt;- "message 1"
+    messages &lt;- "message 2"
+
+    fmt.Println(&lt;-messages)
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_let_me_provide_you_with_a_happy_based_scenario">Let me provide you with a happy-based scenario.</h4>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> How could you fix the code above?</p>
+</div>
+<div class="paragraph">
+<p><em>Both of us, Gophers, understand that the code above contains a very silly mistake;)</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> There is a deadlock here because, first, we are working on the same thread, and second, the channel above is unbuffered. Let me provide you with the ways to fix it.</p>
+</div>
+<div class="paragraph">
+<p>The first approach is the simplest one. We need to make the channel buffered.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">package main
+
+import "fmt"
+
+func main() {
+    messages := make(chan string, 2)
+
+    messages &lt;- "message 1"
+    messages &lt;- "message 2"
+
+    fmt.Println(&lt;-messages)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Honestly, the original code above is unusual because channel approach usage is a good way to communicate between goroutines. Let me provide a proper way to use them.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    c := generator()
+    receiver(c)
+}
+
+func receiver(c &lt;-chan int) {
+    for v := range c {
+        fmt.Println(v)
+    }
+}
+
+func generator() &lt;-chan int {
+    c := make(chan int)
+
+    go func() {
+        for i := 0; i &lt; 10; i++ {
+            c &lt;- i
+        }
+        close(c)
+    }()
+
+    return c
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Brilliant! Well done.</p>
+</div>
+<div class="paragraph">
+<p>This question saved the team’s time because we partially covered two topics from Golang and got a positive result about the candidate’s practical skills.</p>
+</div>
+<div class="paragraph">
+<p>Are you feeling the difference between the question above and <mark>What pros and cons of Golang?</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">Conclusion</h3>
+<div class="paragraph">
+<p>Of course, I provided only a tiny slice of the imaginable interview as an illustration. There are more questions, interactions, and situations in real life. I offered just some of typical. But in any case, your interview should follow the principles below. They could be interesting outside of technical society only. That’s why I recommend reading the following to different roles including recruiters, HRs, PMs, etc. But stop, no principles! I’ll have the courage and say more…​</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_10_commandments_of_technical_interviewing_2">The 10 Commandments of Technical Interviewing</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prepare for the interview, including plan, code, and questions according to the candidate’s CV, position, and specific technology. Please, read the CV before. Imagine your candidate according to the CV and check if your imagination matches your feelings after the interview. 100% of the material should be at hand. It helps you decide what questions need to be taken from the pool. Any preparation during the interview is entirely unacceptable because time is valuable!</p>
+</li>
+<li>
+<p>Keep the dialog and collaboration. Be on the same page with the candidate. Be sophisticated.</p>
+</li>
+<li>
+<p>In the case of an unreasonably long answer, don’t hesitate to interrupt the candidate politely. Remember, your time and your colleagues` time is valuable!</p>
+</li>
+<li>
+<p>Follow the plan. Some questions should be mandatory. Your plan is a kind of pilot’s checklist. Any diversion could cause a crash in the future.</p>
+</li>
+<li>
+<p>Remember that practice is the criterion of the truth. Discuss actual code as often as possible.</p>
+</li>
+<li>
+<p>Creativity and variability. Don’t repeat the same questions. Don’t discuss the same subject too much. Other topics are valuable too. Change the plan (except for mandatories) on the fly if necessary; your deep knowledge will help you. Remember, you are an expert. Be flexible!</p>
+</li>
+<li>
+<p>Keep a pure mind and be pragmatic. Your emotions are your enemy. Objectivity is your friend, although you are not a judge. Even a person’s poor appearance at first glance tells you nothing regarding his/her IQ/EQ.</p>
+</li>
+<li>
+<p>Communicate productively with other team members like developers, recruiters, etc. Don’t try taking advantage. Give time to your colleagues. Analyze answers to their questions.</p>
+</li>
+<li>
+<p>Keep all essential points during the interview, even soft skill-related. Don’t miss this information during your result-making because you don’t know which point will be decisive when the CEO or someone else from superiors makes the final decision. Your goal is to provide as objective as possible information regarding the candidate.</p>
+</li>
+<li>
+<p>Try to ask about the candidate’s fate. Does the company offer him/her? Decline? Why? Does he/she approve the offer? First, because you are a part of the company. Second, this practice will broaden your horizons.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Offtopic! If you want to get pleasure from coding, please read my previous <a href="https://valor-software.com/articles/game-n-qwik-episode-01" target="_blank" rel="noopener">Game-n-Qwik series</a>.</p>
+</div>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-ng-c198896663="" class="landing-section"><h1 _ngcontent-ng-c198896663="" class="main-title">More Articles</h1><div _ngcontent-ng-c198896663="" class="container"><blog-preview _ngcontent-ng-c198896663=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/game-n-qwik-the-final-episode" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/game-n-qwik-the-final-episode/Main-game-n-qwik-the-final-episode.png" alt="Game-n-Qwik. The Final Episode."></div><div class="text-container"><p>Game-n-Qwik. The Final Episode.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/game-n-qwik-episode-03" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/game-n-qwik-episode-03/Main-Game-n-qwik3.png" alt="Game-n-Qwik. Episode 03."></div><div class="text-container"><p>Game-n-Qwik. Episode 03.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/game-n-qwik-episode-02" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/game-n-qwik-episode-02/Main-Game-n-qwik2.png" alt="Game-n-Qwik. Episode 02."></div><div class="text-container"><p>Game-n-Qwik. Episode 02.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-ng-c6223672="" _nghost-ng-c128174853=""><footer _ngcontent-ng-c128174853="" class="mx-11 xl:mx-28 mb-6"><div _ngcontent-ng-c128174853="" class="w-full flex flex-col lg:flex-row items-center lg:items-start border-t-2 border-placeholder_col pt-16 pb-10"><div _ngcontent-ng-c128174853="" class="flex flex-col items-center lg:items-start order-3 lg:order-1 w-full lg:w-2/6 mr-0 lg:mr-8 mt-10 lg:mt-0"><a _ngcontent-ng-c128174853="" routerlink="." class="cursor-pointer" href="/"><img _ngcontent-ng-c128174853="" src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-14 w-70 lg:w-full"></a><p _ngcontent-ng-c128174853="" class="m-0 text-center text-header_font_col text-sm pt-8">© 2023, Valor Software All Rights Reserved</p><a _ngcontent-ng-c128174853="" routerlink="/privacy-policy" class="m-0 text-center text-header_font_col text-sm link pt-3" href="/privacy-policy">Privacy Policy </a></div><div _ngcontent-ng-c128174853="" class="flex flex-col items-center justify-center order-1 lg:order-2 w-full lg:w-2/6 mr-0 lg:mr-8"><span _ngcontent-ng-c128174853="" class="subscribe-title w-full">Subscribe to our newsletter now</span><form _ngcontent-ng-c128174853="" novalidate="" action="https://valor-software.us6.list-manage.com/subscribe/post?u=ec02b86e27ea826fc9590dc10&amp;id=a7fdce3c62&amp;f_id=00c82fe3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="flex flex-col items-start mt-6 w-full"><div _ngcontent-ng-c128174853="" class="flex flex-col lg:flex-row w-full"><input _ngcontent-ng-c128174853="" type="email" placeholder="Enter email" name="EMAIL" id="mce-EMAIL" class="text-input w-full lg:w-9/12 mr-0 lg:mr-4 px-3 py-2 ng-untouched ng-pristine ng-invalid"><div _ngcontent-ng-c128174853="" hidden=""><input _ngcontent-ng-c128174853="" type="hidden" name="tags" value="3376148"></div><div _ngcontent-ng-c128174853="" aria-hidden="true" style="position: absolute; left: -5000px;"><input _ngcontent-ng-c128174853="" type="text" name="b_ec02b86e27ea826fc9590dc10_a7fdce3c62" tabindex="-1"></div><input _ngcontent-ng-c128174853="" type="submit" name="subscribe" id="mc-embedded-subscribe" value="Subscribe" class="btn-pink-border w-full lg:w-auto text-base mt-4 lg:mt-0" disabled=""></div><!----><!----></form><div _ngcontent-ng-c128174853="" class="flex items-center mt-10 w-full"><button _ngcontent-ng-c128174853="" type="button" class="btn-pink text-base flex items-center justify-center w-full"> Get in touch </button></div></div><div _ngcontent-ng-c128174853="" class="flex w-full lg:w-2/6 justify-center mt-11 lg:mt-0 order-2 lg:order-3"><div _ngcontent-ng-c128174853="" class="flex flex-wrap justify-center w-full lg:max-w-[240px]"><a _ngcontent-ng-c128174853="" href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="flex justify-center text-header_font_co mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/linkedin.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/instagram.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/twitter.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/dribble.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/behance.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/facebook.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://www.youtube.com/@valorsoftware?app=desktop" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/youtube.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://dev.to/valorsoftwaretech" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/devto.svg" alt="" class="img"></a></div></div></div></footer></app-footer><!----><cookie-consent-banner _ngcontent-ng-c6223672="" _nghost-ng-c1371038418=""><div _ngcontent-ng-c1371038418="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-ng-c1371038418="" class="flex flex-col"><span _ngcontent-ng-c1371038418="" class="text-20">This website uses cookies.</span><span _ngcontent-ng-c1371038418="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-ng-c1371038418="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-ng-c1371038418="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-ng-c1371038418="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
+<script async="" src="assets/js/prettify.min.js"></script>
+<script id="ScullyIO-transfer-state"></script><script src="runtime.adf7bc1f6f7a7273.js" type="module"></script><script src="polyfills.2066255b7190fd43.js" type="module"></script><script src="main.482d2361085120ae.js" type="module"></script>
+
+</body></html>
