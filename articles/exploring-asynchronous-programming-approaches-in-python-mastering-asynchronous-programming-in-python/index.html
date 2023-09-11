@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/exploring-asynchronous-programming-approaches-in-python-mastering-asynchronous-programming-in-python"
+            },
+            "headline": "Exploring Asynchronous Programming Approaches in Python (Mastering Asynchronous Programming in Python)",
+            "description": "Python Concurrency Techniques",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/exploring-asynchronous-programming-approaches-in-python-mastering-asynchronous-programming-in-python/Main_Asynchronous_programming.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Erik Sultanaliev"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Mon Sep 11 2023 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+	<meta charset="utf-8">
+	<title>Exploring Asynchronous Programming Approaches in Python (Mastering Asynchronous Programming in Python)</title>
+	<base href="/">
+	<meta name="robots" content="all">
+	<meta property="og:type" content="website">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:image" content="/assets/img/valor-img/valor_social.jpg">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@ValorSoft">
+	<meta name="twitter:creator" content="@ValorSoft">
+
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<script>
+      window.intercomSettings = {
+          app_id: "brxsww1a"
+      };
+	</script>
+	<script src="assets/js/intercom-facade.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN"></script>
+	<script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+	</script>
+	<script type="text/javascript">
+      window.onload = function () {
+          if (window.self !== window.top) {
+              document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+      };
+	</script>
+<style>:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{--swiper-navigation-size:44px}:root{--swiper-theme-color:#007aff}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.b0b8cabf1f815825.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.b0b8cabf1f815825.css"></noscript><style>footer[_ngcontent-ng-c128174853]{font-family:Work Sans,Roboto,Arial,"sans-serif"}.subscribe-title[_ngcontent-ng-c128174853]{font-weight:700;font-size:24px;line-height:28px;color:#e3e3e3;text-align:center}.subscribe-success-msg[_ngcontent-ng-c128174853]{font-weight:700;font-size:16px;line-height:20px;color:#e3e3e3;text-align:center;margin-top:12px}.img[_ngcontent-ng-c128174853]{width:32px;height:32px}</style><style>[_nghost-ng-c1371038418]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s _ngcontent-ng-c1371038418_fadein ease-in-out both}.btn[_ngcontent-ng-c1371038418]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes _ngcontent-ng-c1371038418_fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px;border-radius:3rem}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="Python Concurrency Techniques"><meta property="og:title" content="Exploring Asynchronous Programming Approaches in Python (Mastering Asynchronous Programming in Python)"><meta property="og:description" content="Python Concurrency Techniques"><meta property="twitter:title" content="Exploring Asynchronous Programming Approaches in Python (Mastering Asynchronous Programming in Python)"><meta property="twitter:description" content="Python Concurrency Techniques"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+<valor-software-site-base-root _nghost-ng-c6223672="" ng-version="16.0.4"><top-menu _ngcontent-ng-c6223672=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-ng-c6223672="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ng-c6223672=""></router-outlet><general-item><article _nghost-ng-c198896663=""><section _ngcontent-ng-c198896663="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-ng-c198896663="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-ng-c198896663="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Exploring Asynchronous Programming Approaches In Python (Mastering Asynchronous Programming In Python) </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-ng-c198896663="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-ng-c198896663="" class="text-20 mb-4">September 11, 2023</p><p _ngcontent-ng-c198896663="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Exploring Asynchronous Programming Approaches in Python (Mastering Asynchronous Programming in Python)</p><div _ngcontent-ng-c198896663="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-ng-c198896663="" class="w-full h-full object-cover" src="assets/articles/exploring-asynchronous-programming-approaches-in-python-mastering-asynchronous-programming-in-python/Erik_Sultanaliev.png" alt="Erik Sultanaliev"></div><!----><!----><!----><p _ngcontent-ng-c198896663="" class="md:text-large text-24 mb-4">Erik Sultanaliev</p><!----><!----><!----><p _ngcontent-ng-c198896663="" class="text-20">Software Developer </p><!----></div></div></section><section _ngcontent-ng-c198896663="" class="landing-section"><div _ngcontent-ng-c198896663="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-ng-c198896663="" class="max-w-full"><div class="paragraph">
+<p>Python provides a range of tools and libraries for performing programming, which are designed to cater to various needs and levels of complexity. It is crucial to have an understanding of these tools in order to develop applications that are both efficient and responsive. Now let’s delve into the details of the tools, for this purpose.</p>
+</div>
+<div class="sect1">
+<h2 id="_multithreading">Multithreading</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Introduction to Multithreading
+Multithreading allows concurrent execution of multiple threads within a single process. Threads share the same memory space, making it suitable for I/O bound tasks.</p>
+</div>
+<div class="paragraph">
+<p>Threading Module
+The threading module facilitates working with threads in Python. Let’s create a simple example to demonstrate multithreading:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import threading
+
+def print_numbers():
+    for i in range(1, 6):
+        print(f"Number {i}")
+
+def print_letters():
+    for letter in 'abcde':
+        print(f"Letter {letter}")
+
+if __name__ == "__main__":
+    thread1 = threading.Thread(target=print_numbers)
+    thread2 = threading.Thread(target=print_letters)
+
+    thread1.start() # Start the thread to run the 'print_numbers' function concurrently
+    thread2.start() # Start another thread to run the 'print_letters' function concurrently
+
+    thread1.join() # Wait for thread1 to complete its task before moving on
+    thread2.join() # Wait for thread2 to complete its task before moving on
+
+
+# Number 1
+# Letter a
+# Letter b
+# Number 2
+# Number 3
+# Number 4
+# Number 5
+# Letter c
+# Letter d
+# Letter e</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It’s important to understand that while you have two threads (<mark>thread1</mark> and <mark>thread2</mark>) that are executing concurrently, the order in which they execute their tasks is not guaranteed. This lack of ordering is due to the nature of threading and how operating systems schedule threads for execution. Here’s why you see the output in a seemingly random order:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Thread Scheduling: The operating system’s thread scheduler determines when and in what order threads run. Threads can be preempted and paused at any time, and the scheduler decides which thread to execute next based on factors like thread priorities and time slices.</p>
+</li>
+<li>
+<p>Non-Atomic Print Operation: The print operation itself is not atomic, meaning it’s not a single, uninterrupted action. When you print something, it involves multiple steps like acquiring the console output lock, formatting the output, and releasing the lock. Between these steps, other threads can run, which can result in interleaved output.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For example, consider this possible order of execution:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><mark>thread1</mark> starts and prints "Number 1".</p>
+</li>
+<li>
+<p><mark>thread2</mark> starts and prints "Letter a" and "Letter b".</p>
+</li>
+<li>
+<p><mark>thread1</mark> continues and prints "Number 2", "Number 3", "Number 4", "Number 5".</p>
+</li>
+<li>
+<p><mark>thread2</mark> continues and prints "Letter c", "Letter d", "Letter e".</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_example_downloading_files_concurrently_with_multithreading">Example: Downloading Files Concurrently with Multithreading</h3>
+<div class="paragraph">
+<p>In this example, we’ll use multithreading to download files concurrently from different URLs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import threading
+import requests
+
+def download_file(url, filename):
+    response = requests.get(url)
+    with open(filename, "wb") as file:
+        file.write(response.content)
+    print(f"Downloaded {filename}")
+
+if __name__ == "__main__":
+    urls = [
+        "https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.6.zip",
+        "https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.2.1.zip",
+        "https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.3.1.zip",
+    ]
+    threads = []
+    for i, url in enumerate(urls):
+        thread = threading.Thread(target=download_file, args=(url, f"file_{i}.txt"))
+        thread.start()
+        threads.append(thread)
+
+    for thread in threads:
+        thread.join()
+
+
+# Downloaded https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.3.1.zip
+# Downloaded https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.2.1.zip
+# Downloaded https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.6.zip</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you observed that downloading files without using threads (i.e., in a sequential or synchronous manner) took less time than downloading them with threads, there are a few potential reasons for this counterintuitive behavior:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Global Interpreter Lock (GIL): Python has a Global Interpreter Lock (GIL) that allows only one thread to execute Python bytecode at a time, even on multi-core processors. This means that in a multithreaded Python program, threads can be limited by the GIL, especially if the tasks involve CPU bound operations. In the case of downloading files, which is typically I/O bound (waiting for data to be transferred over the network), using threads may not provide a significant advantage, and it could even introduce some overhead.</p>
+</li>
+<li>
+<p>Network Bound: If the download speed is limited by the network bandwidth, using multiple threads might not lead to a significant improvement because the bottleneck is the network speed, not the CPU. In such cases, the overhead of managing multiple threads can outweigh any potential gains.</p>
+</li>
+<li>
+<p>Thread Overhead: Creating and managing threads in Python comes with some overhead. If the tasks are relatively simple, such as downloading files, the overhead of creating and managing threads can outweigh the benefits of concurrency.</p>
+</li>
+<li>
+<p>Resource Contention: When using threads, there can be contention for system resources like CPU and memory. If the system becomes saturated with threads, context switching and resource contention may slow down the overall performance.</p>
+</li>
+<li>
+<p>Thread Management: The example code provided for multithreading may not be optimized for maximum concurrency. In a real-world scenario, optimizing thread management, such as using thread pools or asyncio for I/O bound operations, can yield better results.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multiprocessing">Multiprocessing</h3>
+<div class="paragraph">
+<p>Introduction to Multiprocessing
+Multiprocessing allows parallel execution of multiple processes, each with its own memory space. It’s suitable for CPU-bound tasks.</p>
+</div>
+<div class="paragraph">
+<p>Multiprocessing Module
+The multiprocessing module supports multiprocessing in Python. Let’s create an example demonstrating multiprocessing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import multiprocessing
+
+def worker(number):
+    result = number * number
+    print(f"Result: {result}")
+
+if __name__ == "__main__":
+    processes = []
+    for i in range(1, 6):
+        process = multiprocessing.Process(target=worker, args=(i,))
+        processes.append(process)
+        process.start()
+
+    for process in processes:
+        process.join()
+
+
+# Result: 4
+# Result: 9
+# Result: 1
+# Result: 25
+# Result: 16</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Explanation: In this multiprocessing example, we’re creating multiple processes to perform a CPU-bound task, which is calculating the square of a number. However, the order in which the results are printed may not necessarily match the order of the input values.</p>
+</div>
+<div class="paragraph">
+<p>This is because the individual processes run concurrently and independently of each other. They may complete their tasks in a different order, depending on factors like the CPU’s availability and scheduling. As a result, the printed results can appear in a random or unordered fashion.</p>
+</div>
+<div class="paragraph">
+<p>Multiprocessing is ideal for parallelizing CPU bound tasks to leverage multiple CPU cores effectively. However, it doesn’t guarantee a specific order of execution or results, as the processes run in parallel and their completion times can vary.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_event_loop_asyncio">Event Loop (Asyncio)</h3>
+<div class="paragraph">
+<p>Introduction to Asynchronous I/O
+Asynchronous I/O enables non-blocking concurrency. The event loop manages tasks, making it suitable for I/O-bound operations.</p>
+</div>
+<div class="paragraph">
+<p>Asyncio Module
+The asyncio module provides tools for asynchronous programming. Let’s create an example to illustrate asyncio:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import asyncio
+
+async def print_numbers():
+    for i in range(1, 6):
+        print(f"Number {i}")
+        await asyncio.sleep(1)
+
+async def print_letters():
+    for letter in 'abcde':
+        print(f"Letter {letter}")
+        await asyncio.sleep(1)
+
+async def main():
+    task1 = asyncio.create_task(print_numbers())
+    task2 = asyncio.create_task(print_letters())
+
+    await task1
+    await task2
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+
+
+# Number 1
+# Letter a
+# Number 2
+# Letter b
+# Number 3
+# Letter c
+# Number 4
+# Letter d
+# Number 5
+# Letter e</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the code, you are using asyncio to create two asynchronous tasks (<mark>print_numbers</mark> and <mark>print_letters</mark>) and running them concurrently. Each task includes an <mark>await asyncio.sleep(1)</mark> statement, which effectively suspends the execution of the task for 1 second before continuing.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <mark>main</mark> coroutine is executed when you run the program.</p>
+</li>
+<li>
+<p>Inside main, you create two tasks: <mark>task1</mark> (for print_numbers) and <mark>task2</mark> (for print_letters). These tasks are started concurrently.</p>
+</li>
+<li>
+<p><mark>task1</mark> starts executing the print_numbers coroutine. It prints "Number 1" and then hits the <mark>await asyncio.sleep(1)</mark> line. While it sleeps, the event loop continues.</p>
+</li>
+<li>
+<p>Simultaneously, <mark>task2</mark> starts executing the print_letters coroutine. It prints <mark>"Letter a"</mark> and then awaits for 1 second.</p>
+</li>
+<li>
+<p>After 1 second, task1 resumes execution, printing <mark>"Number 2"</mark> and then sleeping again.</p>
+</li>
+<li>
+<p><mark>task2</mark> also resumes after 1 second, printing <mark>"Letter b"</mark> and then sleeping.</p>
+</li>
+<li>
+<p>This pattern continues until both <mark>task1</mark> and <mark>task2</mark> have completed their respective loops. The await statements within each coroutine introduce pauses, allowing the other task to make progress while the first one sleeps.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>As a result, you see an interleaved output where <mark>"Number"</mark> and <mark>"Letter"</mark> lines are mixed together because both tasks are running concurrently and asynchronously, each yielding to the event loop during the <mark>await asyncio.sleep(1)</mark> calls. This allows for a more responsive and non-blocking execution of tasks in an event-driven manner, which is one of the key benefits of asyncio.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">Conclusion</h3>
+<div class="paragraph">
+<p>In this article we have introduced the principles of programming in Python using three primary methods: multithreading, multiprocessing and asyncio. We have discussed how each approach caters to scenarios, such as improving tasks that involve input/output operations handling intensive tasks or efficiently managing network operations. As you continue your journey into the world of programming in Python these fundamental techniques will serve as tools for creating responsive and high performing applications.</p>
+</div>
+<div class="paragraph">
+<p>In our articles of the "Mastering Asynchronous Programming, in Python" series we will delve deeper into strategies, best practices and real world applications of these asynchronous Python programming techniques. Whether you want to optimize web scraping processes, develop web services or improve data processing pipelines, our comprehensive series will provide you with the knowledge and skills needed to excel in the field of Python development. Stay tuned for content and practical examples that will help take your Python programming skills to new heights.</p>
+</div>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-ng-c198896663="" class="landing-section"><h1 _ngcontent-ng-c198896663="" class="main-title">More Articles</h1><div _ngcontent-ng-c198896663="" class="container"><blog-preview _ngcontent-ng-c198896663=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/the-interview-under-the-hood" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/the-interview-under-the-hood/Main-the-interview-under-the-hood.png" alt="The Interview Under the Hood"></div><div class="text-container"><p>The Interview Under the Hood</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/game-n-qwik-the-final-episode" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/game-n-qwik-the-final-episode/Main-game-n-qwik-the-final-episode.png" alt="Game-n-Qwik. The Final Episode."></div><div class="text-container"><p>Game-n-Qwik. The Final Episode.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/game-n-qwik-episode-03" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/game-n-qwik-episode-03/Main-Game-n-qwik3.png" alt="Game-n-Qwik. Episode 03."></div><div class="text-container"><p>Game-n-Qwik. Episode 03.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----><!----><!----></general-item><!----></div><app-footer _ngcontent-ng-c6223672="" _nghost-ng-c128174853=""><footer _ngcontent-ng-c128174853="" class="mx-11 xl:mx-28 mb-6"><div _ngcontent-ng-c128174853="" class="w-full flex flex-col lg:flex-row items-center lg:items-start border-t-2 border-placeholder_col pt-16 pb-10"><div _ngcontent-ng-c128174853="" class="flex flex-col items-center lg:items-start order-3 lg:order-1 w-full lg:w-2/6 mr-0 lg:mr-8 mt-10 lg:mt-0"><a _ngcontent-ng-c128174853="" routerlink="." class="cursor-pointer" href="/"><img _ngcontent-ng-c128174853="" src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-14 w-70 lg:w-full"></a><p _ngcontent-ng-c128174853="" class="m-0 text-center text-header_font_col text-sm pt-8">© 2023, Valor Software All Rights Reserved</p><a _ngcontent-ng-c128174853="" routerlink="/privacy-policy" class="m-0 text-center text-header_font_col text-sm link pt-3" href="/privacy-policy">Privacy Policy </a></div><div _ngcontent-ng-c128174853="" class="flex flex-col items-center justify-center order-1 lg:order-2 w-full lg:w-2/6 mr-0 lg:mr-8"><span _ngcontent-ng-c128174853="" class="subscribe-title w-full">Subscribe to our newsletter now</span><form _ngcontent-ng-c128174853="" novalidate="" action="https://valor-software.us6.list-manage.com/subscribe/post?u=ec02b86e27ea826fc9590dc10&amp;id=a7fdce3c62&amp;f_id=00c82fe3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="flex flex-col items-start mt-6 w-full"><div _ngcontent-ng-c128174853="" class="flex flex-col lg:flex-row w-full"><input _ngcontent-ng-c128174853="" type="email" placeholder="Enter email" name="EMAIL" id="mce-EMAIL" class="text-input w-full lg:w-9/12 mr-0 lg:mr-4 px-3 py-2 ng-untouched ng-pristine ng-invalid"><div _ngcontent-ng-c128174853="" hidden=""><input _ngcontent-ng-c128174853="" type="hidden" name="tags" value="3376148"></div><div _ngcontent-ng-c128174853="" aria-hidden="true" style="position: absolute; left: -5000px;"><input _ngcontent-ng-c128174853="" type="text" name="b_ec02b86e27ea826fc9590dc10_a7fdce3c62" tabindex="-1"></div><input _ngcontent-ng-c128174853="" type="submit" name="subscribe" id="mc-embedded-subscribe" value="Subscribe" class="btn-pink-border w-full lg:w-auto text-base mt-4 lg:mt-0" disabled=""></div><!----><!----></form><div _ngcontent-ng-c128174853="" class="flex items-center mt-10 w-full"><button _ngcontent-ng-c128174853="" type="button" class="btn-pink text-base flex items-center justify-center w-full"> Get in touch </button></div></div><div _ngcontent-ng-c128174853="" class="flex w-full lg:w-2/6 justify-center mt-11 lg:mt-0 order-2 lg:order-3"><div _ngcontent-ng-c128174853="" class="flex flex-wrap justify-center w-full lg:max-w-[240px]"><a _ngcontent-ng-c128174853="" href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="flex justify-center text-header_font_co mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/linkedin.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/instagram.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/twitter.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/dribble.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/behance.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/facebook.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://www.youtube.com/@valorsoftware?app=desktop" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/youtube.svg" alt="" class="img"></a><a _ngcontent-ng-c128174853="" href="https://dev.to/valorsoftwaretech" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c128174853="" src="assets/img/icons/social/devto.svg" alt="" class="img"></a></div></div></div></footer></app-footer><!----><cookie-consent-banner _ngcontent-ng-c6223672="" _nghost-ng-c1371038418=""><div _ngcontent-ng-c1371038418="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-ng-c1371038418="" class="flex flex-col"><span _ngcontent-ng-c1371038418="" class="text-20">This website uses cookies.</span><span _ngcontent-ng-c1371038418="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-ng-c1371038418="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-ng-c1371038418="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-ng-c1371038418="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
+<script async="" src="assets/js/prettify.min.js"></script>
+<script id="ScullyIO-transfer-state"></script><script src="runtime.adf7bc1f6f7a7273.js" type="module"></script><script src="polyfills.2066255b7190fd43.js" type="module"></script><script src="main.be5bdb18b6799945.js" type="module"></script>
+
+</body></html>
