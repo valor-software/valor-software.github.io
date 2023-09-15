@@ -13,7 +13,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class ModalService<T> {
     private componentRef: ComponentRef<T> | undefined;
-    state: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    modalDisplayState: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
@@ -32,14 +32,14 @@ export class ModalService<T> {
 
         this.appRef.attachView(this.componentRef.hostView);
         document.body.appendChild(this.componentRef.location.nativeElement);
-        this.state.next(true);
+        this.modalDisplayState.next(true);
     }
 
     close(): void {
         if (!this.componentRef) {
             return;
         }
-        this.state.next(false);
+        this.modalDisplayState.next(false);
         setTimeout(()=> {
             if(this.componentRef) {
                 this.appRef.detachView(this.componentRef.hostView);

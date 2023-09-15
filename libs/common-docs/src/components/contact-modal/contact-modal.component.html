@@ -1,0 +1,242 @@
+<div class="contact-modal overflow-y-hidden lg:max-h-screen"
+     [class.opacity-100]="(modalService.modalDisplayState | async) === true"
+     [class.opacity-0]="(modalService.modalDisplayState | async) === false"
+     style="transition: opacity ease-in .3s">
+	<div class="backdrop backdrop_show grey" (click)="closeModal()"></div>
+
+	<div
+			class="pink-scroll bg-grey_bg lg:bg-grey_2727_bg lg:mx-auto rounded z-10 p-10 lg:max-w-90% lg:max-h-90% xl:max-w-1010 absolute lg:relative top-0 overflow-y-auto overflow-x-hidden w-full h-full">
+
+		<div class="flex items-center text-center mb-10">
+			<h3 class="font-bold text-light_title_col text-3xl lg:text-large leading-44 w-full">We'd love to hear from
+			                                                                                    you!</h3>
+
+			<div class="flex justify-end w-6">
+				<img src="assets/img/icons/close.png" alt="close icon" class="cursor-pointer w-4 h-4 lg:w-auto lg:h-auto"
+				     (click)="closeModal()">
+			</div>
+		</div>
+
+		<div *ngIf="!showSuccessModalState && !showErrorModalState"
+		     class="flex flex-col items-center justify-center">
+
+			<div [formGroup]="form"
+			     class="flex flex-col lg:max-w-2xl w-full">
+
+				<div class="w-full">
+
+					<div class="row mb-8">
+						<div class="form-control-wrapper">
+							<span class="text-grey_font_col text-sm mb-2">First Name</span>
+							<input class="form-control"
+							       formControlName="firstName"
+							       type="text"
+							       placeholder="Enter first name"
+							       required>
+
+							<ng-container *ngFor="let validation of validationMessages.firstName;">
+								<small class="text-pink"
+								       *ngIf="hasFieldError(validation.type, 'firstName')">
+									{{ validation.message }}
+								</small>
+							</ng-container>
+						</div>
+
+						<div class="form-control-wrapper">
+							<p class="text-grey_font_col text-sm mb-2">Last Name</p>
+							<input class="form-control"
+							       formControlName="lastName"
+							       type="text"
+							       placeholder="Enter last name"
+							       required>
+
+							<ng-container *ngFor="let validation of validationMessages.lastName;">
+								<small class="text-pink"
+								       *ngIf="hasFieldError(validation.type, 'lastName')">
+									{{ validation.message }}
+								</small>
+							</ng-container>
+						</div>
+
+					</div>
+
+					<div class="row mb-8">
+						<div class="form-control-wrapper">
+							<p class="text-grey_font_col text-sm mb-2">Work Email</p>
+							<input class="form-control"
+							       type="email"
+							       formControlName="email"
+							       placeholder="Enter email"
+							       required>
+
+							<ng-container *ngFor="let validation of validationMessages.email;">
+								<small class="text-pink" *ngIf="hasFieldError(validation.type, 'email')">
+									{{ validation.message }}
+								</small>
+							</ng-container>
+						</div>
+
+						<div class="form-control-wrapper">
+							<p class="text-grey_font_col text-sm mb-2">Company name (optional)</p>
+							<input class="form-control"
+							       formControlName="companyName"
+							       type="text"
+							       placeholder="Enter company name">
+						</div>
+					</div>
+
+					<div class="row mb-8">
+						<div class="form-control-wrapper">
+							<p class="text-grey_font_col text-sm mb-2">Your job role (optional)</p>
+							<input class="form-control"
+							       formControlName="jobRole"
+							       type="text"
+							       placeholder="Enter your job">
+						</div>
+
+						<div class="form-control-wrapper">
+							<p class="text-grey_font_col text-sm mb-2">Size of the company (optional)</p>
+							<input class="form-control"
+							       formControlName="companySize"
+							       type="text"
+							       placeholder="Enter size of the company">
+						</div>
+					</div>
+
+					<div class="flex flex-col mb-6">
+						<p class="text-light_title_col text-xl mb-6">How can we help you?</p>
+
+						<div class="row mb-4">
+							<label for="service"
+							       class="text-input radio-input">
+								<input class="opacity-0 w-px h-px"
+								       type="radio"
+								       id="service"
+								       formControlName="companyServiceName"
+								       [value]="CompanyServiceName.Service">
+								<div class="radio-button"
+								     [class.checked]="form.controls.companyServiceName.value === CompanyServiceName.Service"></div>
+								<p class="ml-2.5">Services</p>
+							</label>
+
+							<label for="career"
+							       class="text-input radio-input ">
+								<input class="opacity-0 w-px h-px"
+								       type="radio"
+								       id="career"
+								       formControlName="companyServiceName"
+								       [value]="CompanyServiceName.Career">
+								<div class="radio-button" [class.checked]="form.controls.companyServiceName.value === CompanyServiceName.Career"></div>
+								<p class="ml-2.5">Careers</p>
+							</label>
+						</div>
+
+						<div class="row">
+							<label for="partner"
+							       class="text-input radio-input ">
+								<input class="opacity-0 w-px h-px"
+								       type="radio"
+								       id="partner"
+								       formControlName="companyServiceName"
+								       [value]="CompanyServiceName.Partner">
+								<div class="radio-button" [class.checked]="form.controls.companyServiceName.value === CompanyServiceName.Partner"></div>
+								<p class="ml-2.5">Partnerships & Sales</p>
+							</label>
+
+							<label for="other"
+							       class="text-input radio-input ">
+								<input class="opacity-0 w-px h-px"
+								       type="radio"
+								       id="other"
+								       formControlName="companyServiceName"
+								       [value]="CompanyServiceName.Other">
+								<div class="radio-button" [class.checked]="form.controls.companyServiceName.value === CompanyServiceName.Other"></div>
+								<p class="ml-2.5">Other</p>
+							</label>
+						</div>
+
+					</div>
+
+					<div class="flex flex-col">
+						<p class="text-grey_font_col text-sm mb-2.5">Comment (optional)</p>
+						<textarea class="text-input h-22 resize-none"
+						          formControlName="comment"
+						          placeholder="Your comment"
+						></textarea>
+						<ng-container *ngFor="let validation of validationMessages.message;">
+							<small class="text-pink" *ngIf="hasFieldError(validation.type, 'message')">
+								{{ validation.message }}
+							</small>
+						</ng-container>
+					</div>
+
+					<div class="mt-6">
+						<label for="privacy-policy"
+						       class="checkbox-label">
+							<input class="checkbox"
+							       type="checkbox"
+							       id="privacy-policy"
+							       formControlName="hasAcceptedPrivacyPolicy"
+							       required>
+							<p class="ml-2.5">I accept your
+								<a class="link"
+								   href="https://valor-software.com/privacy-policy"
+								   target="_blank">Privacy policy
+								</a>
+							</p>
+						</label>
+
+						<label for="contact-agreement"
+						       class="checkbox-label mt-4">
+							<input class="checkbox"
+							       type="checkbox"
+							       id="contact-agreement"
+							       formControlName="hasAcceptedContactAgreement"
+							       required>
+							<p class="ml-2.5">I agree to be contacted by provided email</p>
+						</label>
+					</div>
+
+					<button class="g-recaptcha btn-pink m-auto flex justify-center w-full mt-10"
+					        (click)="onSubmit()"
+					        [disabled]="!form.valid">Submit
+					</button>
+				</div>
+
+				<div class="flex flex-col items-start mt-10 md:flex-row md:justify-between">
+					<div class="flex flex-col mb-4 md:mb-0">
+						<span class="text-xl text-grey_font_col">Careers:</span>
+						<span class="hover:text-pink text-xl cursor-pointer text-light_font_col">
+                  <a href="mailto:careers@valor-software.com">careers@valor-software.com</a>
+					</span>
+					</div>
+
+					<div class="flex flex-col">
+						<span class="text-xl text-grey_font_col">Sales:</span>
+						<span class="hover:text-pink text-xl underline cursor-pointer text-light_font_col">
+                  <a href="mailto:sales@valor-software.com">sales@valor-software.com</a>
+					</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+		<div *ngIf="showSuccessModalState || showErrorModalState"
+		     class="w-full h-full md:h-5/6 flex flex-col place-content-around items-center">
+			<div class="invisible"></div>
+			<result-modal [type]="showSuccessModalState ? 'success' : 'error'"
+			              [errorMessage]="submitErrorMessage">
+			</result-modal>
+			<button *ngIf="showSuccessModalState"
+			        class="btn-pink-border text-xs md:text-base"
+			        (click)="closeModal()">Done</button>
+			<button *ngIf="showErrorModalState"
+			        class="btn-pink-border text-xs md:text-base"
+			        (click)="resetError()">Try Again</button>
+		</div>
+	</div>
+</div>
