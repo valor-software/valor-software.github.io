@@ -1,4 +1,4 @@
-import { GeneralPageComponent } from "./genral-page.component";
+import { GeneralPageComponent } from "./general-page.component";
 import { GeneralItemComponent } from "./general-item.component";
 import { Routes } from "@angular/router";
 
