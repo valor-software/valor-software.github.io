@@ -30,8 +30,7 @@ export class SendEmailService {
 
 	public sendSalesEmail(body: ContactData): Observable<any> {
 		return this.http
-			// https://formspree.io/f/xeqnjork
-			.post('https://formspree.io/f/mbjvkglj', body, {
+			.post('https://formspree.io/f/xeqbrkvo', body, {
 				headers: new HttpHeaders({
 					'Accept': 'application/json'
 				})
@@ -40,7 +39,7 @@ export class SendEmailService {
 
 	public sendCareersEmail(body: ContactData): Observable<any> {
 		return this.http
-			.post('https://formspree.io/f/mgejzapp', body, {
+			.post('https://formspree.io/f/xgejnyra', body, {
 				headers: new HttpHeaders({
 					'Accept': 'application/json'
 				})
