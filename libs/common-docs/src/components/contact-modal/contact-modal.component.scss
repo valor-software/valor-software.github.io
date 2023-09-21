@@ -1,4 +1,6 @@
-@import 'apps/valor-software-site/src/assets/styles/styles';
+// ToDo: add base styles import
+$bp-small: 640px;
+$bp-medium: 768px;
 
 :host {
   font-family: 'Work Sans', 'Roboto', 'Arial', 'sans-serif';
@@ -10,8 +12,6 @@
   overflow-x: hidden;
   overflow-y: auto;
   top: 0;
-
-
 }
 
 .row {
@@ -48,12 +48,6 @@
       margin-bottom: 16px;
     }
   }
-}
-
-.form-control {
-  @extend .text-input;
-
-  padding: 12px;
 }
 
 .radio-input {
