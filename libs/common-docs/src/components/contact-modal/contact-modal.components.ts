@@ -23,6 +23,7 @@ interface ContactModalForm {
 }
 
 const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+const textRegex = /^[a-zA-Z0-9\-_ ']+$/;
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -40,17 +41,38 @@ export class ContactModalComponent implements OnDestroy {
 	readonly validationMessages = {
 		firstName: [
 			{ type: 'required', message: 'This field is required field' },
+			{ type: 'minlength', message: 'Field must be longer than 2 characters' },
+			{ type: 'maxlength', message: 'Field must be less than 30 characters' },
+			{ type: 'pattern', message: 'Please enter valid data' }
 		],
 		lastName: [
 			{ type: 'required', message: 'This field is required field' },
+			{ type: 'minlength', message: 'Field must be longer than 2 characters' },
+			{ type: 'maxlength', message: 'Field must be less than 30 characters' },
+			{ type: 'pattern', message: 'Please enter valid data' }
+		],
+		companyName: [
+			{ type: 'minlength', message: 'Field must be longer than 2 characters' },
+			{ type: 'maxlength', message: 'Field must be less than 30 characters' },
+			{ type: 'pattern', message: 'Please enter valid data' }
+		],
+		jobRole: [
+			{ type: 'minlength', message: 'Field must be longer than 2 characters' },
+			{ type: 'maxlength', message: 'Field must be less than 30 characters' },
+			{ type: 'pattern', message: 'Please enter valid data' }
+		],
+		companySize: [
+			{ type: 'minlength', message: 'Field must be longer than 2 characters' },
+			{ type: 'maxlength', message: 'Field must be less than 30 characters' },
+			{ type: 'pattern', message: 'Please enter valid data' }
 		],
 		email: [
 			{ type: 'required', message: 'This field is required field' },
 			{ type: 'pattern', message: 'Please enter a valid email' }
 		],
-		message: [
-			{ type: 'minlength', message: 'Comment must be longer than 5 characters' },
-			{ type: 'maxlength', message: 'Comment must be less than 1000 characters' }
+		comment: [
+			{ type: 'minlength', message: 'Field must be longer than 5 characters' },
+			{ type: 'maxlength', message: 'Field must be less than 1000 characters' }
 		],
 		hasAcceptedPrivacyPolicy: [
 			{ type: 'required', message: 'This field is required field' },
@@ -148,14 +170,40 @@ export class ContactModalComponent implements OnDestroy {
 
 	private _createForm() {
 		return new FormGroup<ContactModalForm>({
-			firstName: new FormControl<string>('', [Validators.required]),
-			lastName: new FormControl<string>('', [Validators.required]),
-			email: new FormControl<string>('', [Validators.required, Validators.pattern(emailRegex)]),
-			companyName: new FormControl<string>('',),
-			jobRole: new FormControl<string>('',),
-			companySize: new FormControl<string>('',),
+			firstName: new FormControl<string>('', [
+				Validators.required,
+				Validators.maxLength(30),
+				Validators.minLength(2),
+				Validators.pattern(textRegex)
+			]),
+			lastName: new FormControl<string>('', [
+				Validators.required,
+				Validators.maxLength(30),
+				Validators.minLength(2),
+				Validators.pattern(textRegex)
+			]),
+			email: new FormControl<string>('', [
+				Validators.required, Validators.pattern(emailRegex)
+			]),
+			companyName: new FormControl<string>('', [
+				Validators.maxLength(30),
+				Validators.minLength(2),
+				Validators.pattern(textRegex)
+			]),
+			jobRole: new FormControl<string>('', [
+				Validators.maxLength(30),
+				Validators.minLength(2),
+				Validators.pattern(textRegex)
+			]),
+			companySize: new FormControl<string>('', [
+				Validators.maxLength(30),
+				Validators.minLength(2),
+				Validators.pattern(textRegex)
+			]),
 			companyServiceName: new FormControl<CompanyServiceName>(this._getDefaultCompanyServiceName()),
-			comment: new FormControl<string>('', [Validators.maxLength(1000), Validators.minLength(5)]),
+			comment: new FormControl<string>('', [
+				Validators.maxLength(2000), Validators.minLength(5)
+			]),
 			hasAcceptedPrivacyPolicy: new FormControl<boolean>(false, [Validators.required]),
 			hasAcceptedContactAgreement: new FormControl<boolean>(false, [Validators.required]),
 			'g-recaptcha-response': new FormControl<string>('')
@@ -174,16 +222,16 @@ export class ContactModalComponent implements OnDestroy {
 		const data = this.form.getRawValue();
 
 		return {
-			firstName: data.firstName ?? '',
-			lastName: data.lastName ?? '',
-			email: data.email ?? '',
+			firstName: data.firstName?.trim() ?? '',
+			lastName: data.lastName?.trim() ?? '',
+			email: data.email?.trim() ?? '',
 			companyServiceName: data.companyServiceName ?? CompanyServiceName.Service,
 			'g-recaptcha-response': data['g-recaptcha-response'] ?? '',
 			// optional fields
-			...(data.companyName && { companyName: data.companyName }),
-			...(data.jobRole && { jobRole: data.jobRole }),
-			...(data.companySize && { companySize: data.companySize }),
-			...(data.comment && { comment: data.comment }),
+			...(data.companyName && { companyName: data.companyName?.trim() }),
+			...(data.jobRole && { jobRole: data.jobRole?.trim() }),
+			...(data.companySize && { companySize: data.companySize?.trim() }),
+			...(data.comment && { comment: data.comment?.trim() }),
 		};
 	}
 }

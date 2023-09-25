@@ -82,6 +82,13 @@
 							       formControlName="companyName"
 							       type="text"
 							       placeholder="Enter company name">
+
+							<ng-container *ngFor="let validation of validationMessages.companyName;">
+								<small class="text-pink"
+								       *ngIf="hasFieldError(validation.type, 'companyName')">
+									{{ validation.message }}
+								</small>
+							</ng-container>
 						</div>
 					</div>
 
@@ -92,6 +99,13 @@
 							       formControlName="jobRole"
 							       type="text"
 							       placeholder="Enter your job">
+
+							<ng-container *ngFor="let validation of validationMessages.jobRole;">
+								<small class="text-pink"
+								       *ngIf="hasFieldError(validation.type, 'jobRole')">
+									{{ validation.message }}
+								</small>
+							</ng-container>
 						</div>
 
 						<div class="form-control-wrapper">
@@ -100,6 +114,13 @@
 							       formControlName="companySize"
 							       type="text"
 							       placeholder="Enter size of the company">
+
+							<ng-container *ngFor="let validation of validationMessages.companySize;">
+								<small class="text-pink"
+								       *ngIf="hasFieldError(validation.type, 'companySize')">
+									{{ validation.message }}
+								</small>
+							</ng-container>
 						</div>
 					</div>
 
@@ -126,7 +147,8 @@
 								       id="career"
 								       formControlName="companyServiceName"
 								       [value]="CompanyServiceName.Career">
-								<div class="radio-button" [class.checked]="form.controls.companyServiceName.value === CompanyServiceName.Career"></div>
+								<div class="radio-button"
+								     [class.checked]="form.controls.companyServiceName.value === CompanyServiceName.Career"></div>
 								<p class="ml-2.5">Careers</p>
 							</label>
 						</div>
@@ -139,7 +161,8 @@
 								       id="partner"
 								       formControlName="companyServiceName"
 								       [value]="CompanyServiceName.Partner">
-								<div class="radio-button" [class.checked]="form.controls.companyServiceName.value === CompanyServiceName.Partner"></div>
+								<div class="radio-button"
+								     [class.checked]="form.controls.companyServiceName.value === CompanyServiceName.Partner"></div>
 								<p class="ml-2.5">Partnerships & Sales</p>
 							</label>
 
@@ -150,7 +173,8 @@
 								       id="other"
 								       formControlName="companyServiceName"
 								       [value]="CompanyServiceName.Other">
-								<div class="radio-button" [class.checked]="form.controls.companyServiceName.value === CompanyServiceName.Other"></div>
+								<div class="radio-button"
+								     [class.checked]="form.controls.companyServiceName.value === CompanyServiceName.Other"></div>
 								<p class="ml-2.5">Other</p>
 							</label>
 						</div>
@@ -163,8 +187,8 @@
 						          formControlName="comment"
 						          placeholder="Your comment"
 						></textarea>
-						<ng-container *ngFor="let validation of validationMessages.message;">
-							<small class="text-pink" *ngIf="hasFieldError(validation.type, 'message')">
+						<ng-container *ngFor="let validation of validationMessages.comment;">
+							<small class="text-pink" *ngIf="hasFieldError(validation.type, 'comment')">
 								{{ validation.message }}
 							</small>
 						</ng-container>
@@ -223,8 +247,6 @@
 		</div>
 
 
-
-
 		<div *ngIf="showSuccessModalState || showErrorModalState"
 		     class="w-full h-full md:h-5/6 flex flex-col place-content-around items-center">
 			<div class="invisible"></div>
@@ -233,10 +255,12 @@
 			</result-modal>
 			<button *ngIf="showSuccessModalState"
 			        class="btn-pink-border text-xs md:text-base"
-			        (click)="closeModal()">Done</button>
+			        (click)="closeModal()">Done
+			</button>
 			<button *ngIf="showErrorModalState"
 			        class="btn-pink-border text-xs md:text-base"
-			        (click)="resetError()">Try Again</button>
+			        (click)="resetError()">Try Again
+			</button>
 		</div>
 	</div>
 </div>
