@@ -228,10 +228,10 @@ export class ContactModalComponent implements OnDestroy {
 			companyServiceName: data.companyServiceName ?? CompanyServiceName.Service,
 			'g-recaptcha-response': data['g-recaptcha-response'] ?? '',
 			// optional fields
-			...(data.companyName && { companyName: data.companyName?.trim() }),
-			...(data.jobRole && { jobRole: data.jobRole?.trim() }),
-			...(data.companySize && { companySize: data.companySize?.trim() }),
-			...(data.comment && { comment: data.comment?.trim() }),
+			...(data.companyName?.trim() && { companyName: data.companyName?.trim() }),
+			...(data.jobRole?.trim() && { jobRole: data.jobRole?.trim() }),
+			...(data.companySize?.trim() && { companySize: data.companySize?.trim() }),
+			...(data.comment?.trim() && { comment: data.comment?.trim() }),
 		};
 	}
 }
