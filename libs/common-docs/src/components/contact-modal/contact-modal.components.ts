@@ -23,7 +23,8 @@ interface ContactModalForm {
 }
 
 const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-const textRegex = /^[a-zA-Z0-9\-_ ']+$/;
+const textRegex = /^(?! +$)[a-zA-Z0-9\-_ ']+$/;
+const commentRegex = /^(?!\s*$).+/;
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -72,7 +73,8 @@ export class ContactModalComponent implements OnDestroy {
 		],
 		comment: [
 			{ type: 'minlength', message: 'Field must be longer than 5 characters' },
-			{ type: 'maxlength', message: 'Field must be less than 1000 characters' }
+			{ type: 'maxlength', message: 'Field must be less than 1000 characters' },
+			{ type: 'pattern', message: 'Please enter valid data' }
 		],
 		hasAcceptedPrivacyPolicy: [
 			{ type: 'required', message: 'This field is required field' },
@@ -202,7 +204,9 @@ export class ContactModalComponent implements OnDestroy {
 			]),
 			companyServiceName: new FormControl<CompanyServiceName>(this._getDefaultCompanyServiceName()),
 			comment: new FormControl<string>('', [
-				Validators.maxLength(2000), Validators.minLength(5)
+				Validators.maxLength(2000),
+				Validators.minLength(5),
+				Validators.pattern(commentRegex)
 			]),
 			hasAcceptedPrivacyPolicy: new FormControl<boolean>(false, [Validators.required]),
 			hasAcceptedContactAgreement: new FormControl<boolean>(false, [Validators.required]),
