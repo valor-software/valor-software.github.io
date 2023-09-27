@@ -1,0 +1,100 @@
+// ToDo: add base styles import
+$bp-small: 640px;
+$bp-medium: 768px;
+
+:host {
+  font-family: 'Work Sans', 'Roboto', 'Arial', 'sans-serif';
+}
+
+.contact-body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  top: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (max-width: $bp-small) {
+    flex-direction: column;
+    justify-content: start;
+  }
+}
+
+.option-background {
+  width: 100%;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  border-color: transparent;
+  background-color: rgba(52, 52, 52, var(--tw-bg-opacity));
+  padding: 1rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.form-control-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+
+  @media (max-width: $bp-small) {
+    width: 100%;
+
+    &:first-child {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.radio-input {
+  width: 48%;
+  display: flex;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  padding: 12px;
+
+  @media (max-width: $bp-small) {
+    width: 100%;
+
+    &:first-child {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 55%;
+  color: white;
+
+  @media (max-width: $bp-medium) {
+    width: 70%;
+  }
+
+  @media (max-width: $bp-small) {
+    width: 100%;
+  }
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  background-color: #272727;
+  border: 1px solid #E24E63;
+  border-radius: 10%;
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &:checked {
+    background-color: #E24E63 !important;
+  }
+}

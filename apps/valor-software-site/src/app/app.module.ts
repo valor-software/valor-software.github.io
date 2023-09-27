@@ -17,6 +17,7 @@ import { articlesList, articlesRefactoringTitlesList } from '../../../../assets/
 import { projectsList } from '../assets/portfolio/portfolio.list';
 import { linksFromOldSite } from '../../../../assets/articles/brokenRoutes';
 import { NotFoundComponent } from './404.component';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 
 @NgModule({
 	declarations: [
@@ -29,6 +30,7 @@ import { NotFoundComponent } from './404.component';
 		CommonDocsModule,
 		BrowserAnimationsModule,
 		ScullyLibModule,
+		RecaptchaV3Module,
 	],
 	providers: [
 		SeoService,
@@ -36,6 +38,7 @@ import { NotFoundComponent } from './404.component';
 		{ provide: ARTICLES_REFACTORED_TITLE_LIST, useValue: articlesRefactoringTitlesList },
 		{ provide: PORTFOLIO_LIST, useValue: projectsList },
 		{ provide: OLD_ROUTES_FROM_OLD_SITE, useValue: linksFromOldSite },
+		{ provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LeXDiUoAAAAABZ2FU4l2GZTJ0v5otDAQkC3UZxs' }
 	],
 	bootstrap: [AppComponent],
 })

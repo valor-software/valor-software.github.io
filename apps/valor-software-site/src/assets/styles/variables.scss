@@ -1,6 +1,13 @@
 $light_font_col: #E1E1E1;
 $light_title_col: #E3E3E3;
 
+/* Breakpoints */
+$bp-small: 640px;
+$bp-medium: 768px;
+$bp-large: 1024px;
+$bp-xlarge: 1280px;
+$bp-2xlarge: 1536px;
+
 :root {
   --light_font_col: #E1E1E1;
 }
