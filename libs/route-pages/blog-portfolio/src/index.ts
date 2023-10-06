@@ -1,3 +1,2 @@
-
-        export * from './blog-portfolio.module';
+export * from './blog-portfolio.module';
         

@@ -5,8 +5,8 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 
 getTestBed().resetTestEnvironment();
 getTestBed().initTestEnvironment(
-	BrowserDynamicTestingModule,
-	platformBrowserDynamicTesting(),
-	{ teardown: { destroyAfterEach: false } },
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting(),
+  { teardown: { destroyAfterEach: false } },
 );
     

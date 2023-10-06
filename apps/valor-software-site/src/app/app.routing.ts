@@ -33,7 +33,7 @@ export const routes: Routes = [
   },
   {
     path: 'projects',
-    loadChildren: () => import('@valor-software/blog-portfolio').then(m => m.BlogPortfolioModule)
+    loadChildren: () => import('@valor-software/projects').then(m => m.ProjectsModule)
   },
   {
     path: 'privacy-policy',

@@ -1,6 +1,6 @@
-import { GeneralPageComponent } from './general-page.component';
-import { GeneralItemComponent } from './general-item.component';
 import { Routes } from '@angular/router';
+import { ProjectComponent } from './components';
+import { ProjectsPageComponent } from './projects-page.component';
 
 
 export const routes: Routes = [
@@ -10,7 +10,7 @@ export const routes: Routes = [
 			{
 				path: '',
 				pathMatch: 'full',
-				component: GeneralPageComponent
+				component: ProjectsPageComponent
 			},
 			{
 				path: 'booking',
@@ -42,7 +42,7 @@ export const routes: Routes = [
 			},
 			{
 				path: ':id',
-				component: GeneralItemComponent
+				component: ProjectComponent
 			}
 		]
 	}

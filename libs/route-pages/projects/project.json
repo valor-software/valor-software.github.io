@@ -1,24 +1,25 @@
 {
-  "name": "route-pages-blog-portfolio",
+  "name": "route-pages-projects",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "sourceRoot": "libs/route-pages/blog-portfolio/src",
+  "sourceRoot": "libs/route-pages/projects/src",
   "prefix": "valor-software-site-base",
+  "tags": [],
+  "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
       "outputs": [
-        "dist/libs/route-pages/blog-portfolio"
+        "dist/libs/route-pages/projects"
       ],
       "options": {
-        "project": "libs/route-pages/blog-portfolio/ng-package.json"
+        "project": "libs/route-pages/projects/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/route-pages/blog-portfolio/tsconfig.lib.prod.json"
+          "tsConfig": "libs/route-pages/projects/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "libs/route-pages/blog-portfolio/tsconfig.lib.json"
+          "tsConfig": "libs/route-pages/projects/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -26,10 +27,10 @@
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": [
-        "coverage/libs/route-pages/blog-portfolio"
+        "coverage/libs/route-pages/projects"
       ],
       "options": {
-        "jestConfig": "libs/route-pages/blog-portfolio/jest.config.ts",
+        "jestConfig": "libs/route-pages/projects/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -37,13 +38,12 @@
       "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "libs/route-pages/blog-portfolio/src/**/*.ts",
-          "libs/route-pages/blog-portfolio/src/**/*.html"
+          "libs/route-pages/projects/**/*.ts",
+          "libs/route-pages/projects/**/*.html"
         ]
       }
     }
   },
-  "tags": [],
   "implicitDependencies": [
     "common-docs",
     "feedback"

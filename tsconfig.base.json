@@ -10,15 +10,17 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
-    "types": ["node"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "types": [
+      "node"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@valor-software/module-federation-page": [
-        "libs/route-pages/module-federation-page/src/index.ts"
-      ],
       "@valor-software/ashes-page": [
         "libs/route-pages/ashes-page/src/index.ts"
       ],
@@ -31,22 +33,38 @@
       "@valor-software/breethe-page": [
         "libs/route-pages/breethe-page/src/index.ts"
       ],
-      "@valor-software/careers": ["libs/route-pages/careers/src/index.ts"],
-      "@valor-software/common-docs": ["libs/common-docs/src/index.ts"],
+      "@valor-software/careers": [
+        "libs/route-pages/careers/src/index.ts"
+      ],
+      "@valor-software/common-docs": [
+        "libs/common-docs/src/index.ts"
+      ],
       "@valor-software/dollar-street-page": [
         "libs/route-pages/dollar-street-page/src/index.ts"
       ],
-      "@valor-software/feedback": ["libs/feedback/src/index.ts"],
-      "@valor-software/file-uploader": ["libs/file-uploader/src/index.ts"],
+      "@valor-software/feedback": [
+        "libs/feedback/src/index.ts"
+      ],
+      "@valor-software/file-uploader": [
+        "libs/file-uploader/src/index.ts"
+      ],
       "@valor-software/for-clients": [
         "libs/route-pages/for-clients/src/index.ts"
       ],
-      "@valor-software/home-page": ["libs/route-pages/home-page/src/index.ts"],
+      "@valor-software/home-page": [
+        "libs/route-pages/home-page/src/index.ts"
+      ],
       "@valor-software/liberty-flights-page": [
         "libs/route-pages/liberty-flights-page/src/index.ts"
       ],
+      "@valor-software/module-federation-page": [
+        "libs/route-pages/module-federation-page/src/index.ts"
+      ],
       "@valor-software/press-release": [
         "libs/route-pages/press-release/src/index.ts"
+      ],
+      "@valor-software/projects": [
+        "libs/route-pages/projects/src/index.ts"
       ],
       "@valor-software/privacy-policy-page": [
         "libs/route-pages/privacy-policy-page/src/index.ts"
@@ -68,5 +86,8 @@
       ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
