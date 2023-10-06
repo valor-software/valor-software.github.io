@@ -63,8 +63,8 @@ libs/file-uploader/src/**/*.js
 libs/file-uploader/src/**/*.js.map
 libs/portfolio/src/**/*.js
 libs/portfolio/src/**/*.js.map
-libs/route-pages/blog-portfolio/src/**/*.js
-libs/route-pages/blog-portfolio/src/**/*.js.map
+libs/route-pages/blog/src/**/*.js
+libs/route-pages/blog/src/**/*.js.map
 libs/route-pages/careers/src/**/*.js
 libs/route-pages/careers/src/**/*.js.map
 libs/route-pages/for-clients/src/**/*.js

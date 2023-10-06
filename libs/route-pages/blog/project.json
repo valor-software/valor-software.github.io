@@ -1,24 +1,24 @@
 {
-  "name": "route-pages-blog-portfolio",
+  "name": "route-pages-blog",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/route-pages/blog-portfolio/src",
+  "sourceRoot": "libs/route-pages/blog/src",
   "prefix": "valor-software-site-base",
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
       "outputs": [
-        "dist/libs/route-pages/blog-portfolio"
+        "dist/libs/route-pages/blog"
       ],
       "options": {
-        "project": "libs/route-pages/blog-portfolio/ng-package.json"
+        "project": "libs/route-pages/blog/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/route-pages/blog-portfolio/tsconfig.lib.prod.json"
+          "tsConfig": "libs/route-pages/blog/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "libs/route-pages/blog-portfolio/tsconfig.lib.json"
+          "tsConfig": "libs/route-pages/blog/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -26,10 +26,10 @@
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": [
-        "coverage/libs/route-pages/blog-portfolio"
+        "coverage/libs/route-pages/blog"
       ],
       "options": {
-        "jestConfig": "libs/route-pages/blog-portfolio/jest.config.ts",
+        "jestConfig": "libs/route-pages/blog/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -37,8 +37,8 @@
       "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "libs/route-pages/blog-portfolio/src/**/*.ts",
-          "libs/route-pages/blog-portfolio/src/**/*.html"
+          "libs/route-pages/blog/src/**/*.ts",
+          "libs/route-pages/blog/src/**/*.html"
         ]
       }
     }

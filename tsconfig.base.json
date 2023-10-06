@@ -24,8 +24,8 @@
       "@valor-software/ashes-page": [
         "libs/route-pages/ashes-page/src/index.ts"
       ],
-      "@valor-software/blog-portfolio": [
-        "libs/route-pages/blog-portfolio/src/index.ts"
+      "@valor-software/blog": [
+        "libs/route-pages/blog/src/index.ts"
       ],
       "@valor-software/booking-page": [
         "libs/route-pages/booking-page/src/index.ts"
