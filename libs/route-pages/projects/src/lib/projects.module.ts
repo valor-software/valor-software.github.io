@@ -7,7 +7,6 @@ import { SwiperModule } from 'swiper/angular';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { ProjectsPageComponent } from './projects-page.component';
-import { SortDirective } from './directives/sort.directive';
 
 @NgModule({
 	imports: [
@@ -21,7 +20,6 @@ import { SortDirective } from './directives/sort.directive';
 		ProjectsPageComponent,
 		ProjectComponent,
 		ProjectsBlockComponent,
-		SortDirective
 	]
 })
 export class ProjectsModule {
