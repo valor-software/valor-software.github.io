@@ -7,7 +7,7 @@ import { IPortfolio } from "../../models/portfolio.interface";
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'blog-portfolio-item',
     template:`
-        <div class="article-item">
+        <div class="article-item"> 	        
             <div class="img-container-auto zoom-img-scale">
                 <img 
                   class="w-full h-full object-cover" 

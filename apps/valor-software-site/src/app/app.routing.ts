@@ -29,11 +29,11 @@ export const routes: Routes = [
   },
   {
     path: 'articles',
-    loadChildren: () => import('@valor-software/blog-portfolio').then(m => m.BlogPortfolioModule)
+    loadChildren: () => import('@valor-software/blog').then(m => m.BlogModule)
   },
   {
     path: 'projects',
-    loadChildren: () => import('@valor-software/blog-portfolio').then(m => m.BlogPortfolioModule)
+    loadChildren: () => import('@valor-software/projects').then(m => m.ProjectsModule)
   },
   {
     path: 'privacy-policy',
