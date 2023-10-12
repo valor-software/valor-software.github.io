@@ -20,7 +20,7 @@ MIT
 
 @valor-software/ashes-page
 
-@valor-software/blog-portfolio
+@valor-software/blog
 
 @valor-software/booking-page
 
@@ -47,6 +47,8 @@ MIT
 @valor-software/press-release
 
 @valor-software/privacy-policy-page
+
+@valor-software/projects
 
 @valor-software/services-page
 
