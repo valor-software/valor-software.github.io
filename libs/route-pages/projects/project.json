@@ -1,0 +1,51 @@
+{
+  "name": "route-pages-projects",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/route-pages/projects/src",
+  "prefix": "valor-software-site-base",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": [
+        "dist/libs/route-pages/projects"
+      ],
+      "options": {
+        "project": "libs/route-pages/projects/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/route-pages/projects/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/route-pages/projects/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "coverage/libs/route-pages/projects"
+      ],
+      "options": {
+        "jestConfig": "libs/route-pages/projects/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/route-pages/projects/**/*.ts",
+          "libs/route-pages/projects/**/*.html"
+        ]
+      }
+    }
+  },
+  "implicitDependencies": [
+    "common-docs",
+    "feedback"
+  ]
+}

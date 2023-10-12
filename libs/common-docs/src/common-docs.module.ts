@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { PopoverComponent } from './components/popover/popover.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { RouterModule } from '@angular/router';
-import { ImgHoverDirective } from './directives/img-hover.directive';
 import { ContactModalComponent } from './components/contact-modal/contact-modal.components';
 import { ModalService } from './services/modal.service';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +13,7 @@ import { ResultModalComponent } from './components/result-modal/result-modal.com
 import { AppFooterComponent } from './components/app-footer/app-footer.component';
 import { ServicesBlockComponent } from './components/services_block/services-block.component';
 import { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.component';
-import { ShowHideDirective } from './directives/showHide.directive';
+import { ShowHideDirective, ImgHoverDirective, SortDirective } from './directives';
 import { SwiperModule } from 'swiper/angular';
 import { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
 import { BlogPortfolioItemComponent } from './components/blog-preview/blog-portfolio-item.component';
@@ -34,13 +33,12 @@ import { CookieConsentBannerComponent } from './components/cookie-consent-banner
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
-export { ImgHoverDirective } from './directives/img-hover.directive';
+export { ShowHideDirective, ImgHoverDirective, SortDirective } from './directives';
 export { AppFooterComponent } from './components/app-footer/app-footer.component';
 export { ServicesBlockComponent } from './components/services_block/services-block.component';
 export { ContactModalComponent } from './components/contact-modal/contact-modal.components';
 export { ModalService } from './services/modal.service';
 export { BreadCrumbsComponent } from './components/breadCrumbs/breadCrumbs.component';
-export { ShowHideDirective } from './directives/showHide.directive';
 export { GetArticlesService } from './services/getArticles.service';
 export { IArticle } from './models/article.interface';
 export { BlogPreviewComponent } from './components/blog-preview/blog-preview.component';
@@ -87,7 +85,8 @@ export { CookieConsentBannerComponent } from './components/cookie-consent-banner
 		ChallengeCardComponent,
 		TechnologiesCardComponent,
 		TechnologiesComponent,
-		CookieConsentBannerComponent
+		CookieConsentBannerComponent,
+		SortDirective
 	],
 	imports: [
 		CommonModule,
@@ -116,7 +115,8 @@ export { CookieConsentBannerComponent } from './components/cookie-consent-banner
 		ChallengeCardComponent,
 		TechnologiesCardComponent,
 		TechnologiesComponent,
-		CookieConsentBannerComponent
+		CookieConsentBannerComponent,
+		SortDirective
 	],
 	providers: [
 		ModalService,
