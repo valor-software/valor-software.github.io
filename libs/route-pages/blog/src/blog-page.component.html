@@ -23,7 +23,7 @@
 					<ng-container *ngIf="activeArticle && activeArticle.title">
 						<a href="javascript:void(0)" [routerLink]="[getRouteLink(activeArticle.title)]"
 						   class="block zoom-img-scale">
-							<img [src]="'https://valor-software.com/' + activeArticle.bgImg"
+							<img [src]="valorAssetsUrl + '/' + activeArticle.bgImg"
 							     [alt]="activeArticle.title + 'image'">
 						</a>
 					</ng-container>

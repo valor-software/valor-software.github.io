@@ -47,6 +47,7 @@ export { ARTICLES_LIST, ARTICLES_REFACTORED_TITLE_LIST } from './tokens/articles
 export { SeoService } from './services/seo.service';
 export { CustomSlicePipe } from './pipes/customSlice.pipe';
 export { PORTFOLIO_LIST } from './tokens/portfolioList.token';
+export { VALOR_ASSETS_URL } from './tokens/valor-assets-url.token';
 export { IPortfolio } from './models/portfolio.interface';
 export { GetPortfolioService } from './services/getPortfolio.service';
 export { titleRefactoring, checkHTMLExtension } from './utils/titleRefactoringUtil';
