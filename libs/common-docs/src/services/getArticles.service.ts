@@ -18,8 +18,6 @@ export class GetArticlesService {
 		@Inject(ARTICLES_REFACTORED_TITLE_LIST) articlesRefactoredTitlesList: string[],
 		@Inject(VALOR_ASSETS_URL) private readonly valorAssetsUrl: string,
 	) {
-		console.log('GetArticlesService', valorAssetsUrl);
-
 		this.articlesList = articlesList;
 		this.articlesRefactoredTitlesList = articlesRefactoredTitlesList;
 		this.apiArray = this.articlesRefactoredTitlesList.map((art) => {
@@ -28,7 +26,7 @@ export class GetArticlesService {
 	}
 
 	getArticleRequest(art: string): Observable<IArticle> {
-		return this.http.get(`${this.valorAssetsUrl}/assets/articles/${art}/${art}.json`) as Observable<IArticle>;
+		return this.http.get(`assets/articles/${art}/${art}.json`) as Observable<IArticle>;
 	}
 
 	getPreviewArticle(): Observable<any>[] | undefined {

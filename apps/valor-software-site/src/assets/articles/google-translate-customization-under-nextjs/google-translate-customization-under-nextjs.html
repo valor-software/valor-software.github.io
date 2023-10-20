@@ -1,0 +1,551 @@
+<div class="paragraph">
+<p>Traditionally, I&#8217;d like to start the article with the following. A few months ago, I faced a situation when my customer asked for a multi-language feature on a NextJS-based solution. The issue is that providing all local content with its vast volume and limited budget is impossible.</p>
+</div>
+<div class="paragraph">
+<p>In other words, we have only one local version, say, English, and we need to translate it automatically to some others, say, Italian, Spanish, French, etc. But this isn&#8217;t over. The future language switcher should be friendly with the current UI and 100% under the developer&#8217;s control.</p>
+</div>
+<div class="paragraph">
+<p>I started thinking and found that only <a href="https://stackoverflow.com/questions/12243818/adding-google-translate-to-a-web-site" target="_blank" rel="noopener">one approach</a> was suitable. It doesn&#8217;t require additional settings on the Google Console side and allows us to translate to any language without pain.</p>
+</div>
+<div class="paragraph">
+<p>You can <a href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_google_translate" target="_blank" rel="noopener">try the solution</a>, by the way.</p>
+</div>
+<div class="paragraph">
+<p>However, the following problems still need to be solved.</p>
+</div>
+<div class="paragraph">
+<p>Not the fact that the solution above, as it is, matched with NextJS specific.
+The standard dropdown component looks too generic and is not customizable as the customer requested.
+I don&#8217;t want to put my routine of the research process on your plate, but describe the final decision step by step. If you want to face with my final solution now, please look at <a href="https://github.com/buchslava/nextjs-gtrans-demo" class="bare">https://github.com/buchslava/nextjs-gtrans-demo</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s get started with the explanation!</p>
+</div>
+<div class="sect1">
+<h2 id="_bootstrapping">Bootstrapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a new NextJS project.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npx create-next-app@latest</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">What is your project named? -&gt; nextjs-gtrans-demo
+Would you like to use TypeScript? -&gt; Yes
+Would you like to use ESLint? -&gt; No
+Would you like to use Tailwind CSS? -&gt; Yes
+Would you like to use `src/` directory? -&gt; Yes
+Would you like to use App Router? -&gt; No
+Would you like to customize the default import alias? -&gt; No</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also, install one extra dependency.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm i nookies --save</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can run the app</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm run dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s time to implement the solution into the app. Please don&#8217;t worry if you don&#8217;t find some expected components during placing the code. Future steps will resolve it.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_main_part">The main part</h3>
+<div class="paragraph">
+<p>Let&#8217;s change content in <a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/pages/index.tsx" target="_blank" rel="noopener">src/pages/index.tsx</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { LanguageSwitcher } from "./lang-switcher";
+
+export default function Home() {
+  return (
+    &lt;div className="h-screen flex flex-col"&gt;
+      &lt;header className="w-full pt-4"&gt;
+        &lt;LanguageSwitcher /&gt;
+      &lt;/header&gt;
+      &lt;div className="flex flex-col flex-1 overflow-auto"&gt;
+        &lt;hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" /&gt;
+        &lt;article&gt;
+          &lt;h2 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl dark:text-white"&gt;
+            What is Lorem Ipsum?
+          &lt;/h2&gt;
+          &lt;p className="mb-7"&gt;
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry....
+          &lt;/p&gt;
+        &lt;/article&gt;
+        // This is a part of the content. Please take the full version for the original solution!
+      &lt;/div&gt;
+      &lt;footer&gt;
+        &lt;p className="mt-3"&gt;
+          &lt;a
+            href="https://www.lipsum.com/"
+            target="_blank"
+            className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+          &gt;
+            Source
+            &lt;svg
+              className="w-3.5 h-3.5 ml-2"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            &gt;
+              &lt;path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I recommend temporarily forgetting the <mark>LanguageSwitcher</mark> component and focusing on the content mentioned above. The file contains three logical parts.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The header includes the language switcher component (will be described later)</p>
+</li>
+<li>
+<p>The central part includes four paragraphs regarding Lorem Ipsum explanation</p>
+</li>
+<li>
+<p>The footer contains a button as a link to the source of the content</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s change <a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/pages/_document.tsx" target="_blank" rel="noopener">src/pages/_document.tsx</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
+
+export default function Document() {
+  return (
+    &lt;Html&gt;
+      &lt;Head&gt;
+        &lt;Script
+          src="/assets/scripts/lang-config.js"
+          strategy="beforeInteractive"
+        /&gt;
+        &lt;Script
+          src="/assets/scripts/translation.js"
+          strategy="beforeInteractive"
+        /&gt;
+        &lt;Script
+          src="//translate.google.com/translate_a/element.js?cb=TranslateInit"
+          strategy="afterInteractive"
+        /&gt;
+      &lt;/Head&gt;
+      &lt;body&gt;
+        &lt;Main /&gt;
+        &lt;NextScript /&gt;
+      &lt;/body&gt;
+    &lt;/Html&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main difference between this file and the default one is a set of three scripts below.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/public/assets/scripts/lang-config.js" target="_blank" rel="noopener">public/assets/scripts/lang-config.js</a> contains custom languages settings</p>
+</li>
+<li>
+<p><a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/public/assets/scripts/translation.js" target="_blank" rel="noopener">public/assets/scripts/translation.js</a> contains <mark>TranslateInit</mark> callback function definition that will be used as a parameter to the main translation script</p>
+</li>
+<li>
+<p><mark>//translate.google.com/translate_a/element.js?cb=TranslateInit</mark> - the main translation script by Google. Pay attention on <mark>cb=TranslateInit</mark>. The callback function must be passed here.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_scripts">The scripts</h3>
+<div class="paragraph">
+<p>It&#8217;s time to provide the code of the scripts mentioned above.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/public/assets/scripts/lang-config.js" target="_blank" rel="noopener">public/assets/scripts/lang-config.js</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">window.__GOOGLE_TRANSLATION_CONFIG__ = {
+  languages: [
+    { title: "English", name: "en" },
+    { title: "Deutsch", name: "de" },
+    { title: "Español", name: "es" },
+    { title: "Français", name: "fr" },
+  ],
+  defaultLanguage: "en",
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, we declared four languages to use.
+<a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/public/assets/scripts/translation.js" target="_blank" rel="noopener">public/assets/scripts/translation.js</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">function TranslateInit() {
+  if (!window.__GOOGLE_TRANSLATION_CONFIG__) {
+    return;
+  }
+  new google.translate.TranslateElement({
+    pageLanguage: window.__GOOGLE_TRANSLATION_CONFIG__.defaultLanguage,
+  });
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is a callback definition that includes <mark>google.translate.TranslateElement</mark> call. If we don&#8217;t have the configuration, we pass it to Google&#8217;s script nothing i.e. an empty callback. Otherwise, we call <mark>google.translate.TranslateElement</mark> and pass the original content language.</p>
+</div>
+<div class="paragraph">
+<p>And it&#8217;s finally time to provide and explain the most critical part of the solution. I&#8217;m talking about the <mark>LanguageSwitcher</mark> mentioned before.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_languageswitcher_component">The LanguageSwitcher component</h3>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/components/lang-switcher.tsx" target="_blank" rel="noopener">src/components/lang-switcher.tsx</a>
+Please, pay attention to the comments inside the code below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { useEffect, useState } from "react";
+import { parseCookies, setCookie } from "nookies";
+
+// The following cookie name is important because it's Google-predefined for the translation engine purpose
+const COOKIE_NAME = "googtrans";
+
+// We should know a predefined nickname of a language and provide its title (the name for displaying)
+interface LanguageDescriptor {
+  name: string;
+  title: string;
+}
+
+// The following definition describes typings for JS-based declarations in public/assets/scripts/lang-config.js
+declare global {
+  namespace globalThis {
+    var __GOOGLE_TRANSLATION_CONFIG__: {
+      languages: LanguageDescriptor[];
+      defaultLanguage: string;
+    };
+  }
+}
+
+const LanguageSwitcher = () =&gt; {
+  const [currentLanguage, setCurrentLanguage] = useState&lt;string&gt;();
+  const [languageConfig, setLanguageConfig] = useState&lt;any&gt;();
+
+  // When the component has initialized, we must activate the translation engine the following way.
+  useEffect(() =&gt; {
+    // 1. Read the cookie
+    const cookies = parseCookies()
+    const existingLanguageCookieValue = cookies[COOKIE_NAME];
+
+    let languageValue;
+    if (existingLanguageCookieValue) {
+      // 2. If the cookie is defined, extract a language nickname from there.
+      const sp = existingLanguageCookieValue.split("/");
+      if (sp.length &gt; 2) {
+        languageValue = sp[2];
+      }
+    }
+    // 3. If __GOOGLE_TRANSLATION_CONFIG__ is defined and we still not decided about languageValue, let's take a current language from the predefined defaultLanguage below.
+    if (global.__GOOGLE_TRANSLATION_CONFIG__ &amp;&amp; !languageValue) {
+      languageValue = global.__GOOGLE_TRANSLATION_CONFIG__.defaultLanguage;
+    }
+    if (languageValue) {
+      // 4. Set the current language if we have a related decision.
+      setCurrentLanguage(languageValue);
+    }
+    // 5. Set the language config.
+    if (global.__GOOGLE_TRANSLATION_CONFIG__) {
+      setLanguageConfig(global.__GOOGLE_TRANSLATION_CONFIG__);
+    }
+  }, []);
+
+  // Don't display anything if current language information is unavailable.
+  if (!currentLanguage || !languageConfig) {
+    return null;
+  }
+
+  // The following function switches the current language
+  const switchLanguage = (lang: string) =&gt; () =&gt; {
+    // We just need to set the related cookie and reload the page
+    // "/auto/" prefix is Google's definition as far as a cookie name
+    setCookie(null, COOKIE_NAME, "/auto/" + lang)
+    window.location.reload();
+  };
+
+  return (
+    &lt;div className="text-center notranslate"&gt;
+      {languageConfig.languages.map((ld: LanguageDescriptor, i: number) =&gt; (
+        &lt;&gt;
+          {currentLanguage === ld.name ||
+          (currentLanguage === "auto" &amp;&amp;
+            languageConfig.defaultLanguage === ld) ? (
+            &lt;span key={`l_s_${ld}`} className="mx-3 text-orange-300"&gt;
+              {ld.title}
+            &lt;/span&gt;
+          ) : (
+            &lt;a
+              key={`l_s_${ld}`}
+              onClick={switchLanguage(ld.name)}
+              className="mx-3 text-blue-300 cursor-pointer hover:underline"
+            &gt;
+              {ld.title}
+            &lt;/a&gt;
+          )}
+        &lt;/&gt;
+      ))}
+    &lt;/div&gt;
+  );
+};
+
+export { LanguageSwitcher, COOKIE_NAME };</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pay attention to <mark>notranslate</mark> class in the root div before. This is also Google&#8217;s definition. It means that all of the content inside should not be translated. It&#8217;s crucial because language titles should stay untouched, i.e., as they are.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_working_principles">Working principles</h3>
+<div class="paragraph">
+<p>It&#8217;s time to gather all the information above and explain how the solution works.
+The start point is placed in <a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/pages/_document.tsx" target="_blank" rel="noopener">src/pages/_document.tsx</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
+
+export default function Document() {
+  return (
+    &lt;Html&gt;
+      &lt;Head&gt;
+        &lt;Script
+          src="/assets/scripts/lang-config.js"
+          strategy="beforeInteractive"
+        /&gt;
+        &lt;Script
+          src="/assets/scripts/translation.js"
+          strategy="beforeInteractive"
+        /&gt;
+        &lt;Script
+          src="//translate.google.com/translate_a/element.js?cb=TranslateInit"
+          strategy="afterInteractive"
+        /&gt;
+      &lt;/Head&gt;
+      &lt;body&gt;
+        &lt;Main /&gt;
+        &lt;NextScript /&gt;
+      &lt;/body&gt;
+    &lt;/Html&gt;
+  );
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_there_are_three_scripts_there">There are three scripts there</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The first one contains language configuration</p>
+</li>
+<li>
+<p>The second one contains a callback with the translation logic runner</p>
+</li>
+<li>
+<p>Standard Google&#8217;s script gets the callback described before and runs it.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Pay attention to the following facts.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We use Script tag from <mark>next/script</mark> because of NextJS ;)</p>
+</li>
+<li>
+<p>We use <mark>strategy="beforeInteractive"</mark> for a couple of first scripts</p>
+</li>
+<li>
+<p>We use <mark>strategy="afterInteractive"</mark> for the last one</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It&#8217;s important. More information regarding the above you can find <a href="https://nextjs.org/docs/pages/building-your-application/optimizing/scripts" target="_blank" rel="noopener">here</a>. Let me provide you some related theory.</p>
+</div>
+<div class="paragraph">
+<p>beforeInteractive: Load the script before any Next.js code and before any page hydration occurs.</p>
+</div>
+<div class="paragraph">
+<p>afterInteractive: (default) Load the script early but after some hydration on the page occurs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_happens_if_the_user_presses_a_language_on_languageswitcher">What happens if the user presses a language on <mark>LanguageSwitcher</mark>?</h3>
+<div class="paragraph">
+<p>It&#8217;s very easy. When the user presses a new language link, say, for Spanish language, <mark>switchLanguage</mark> function described above sets <mark>/auto/es</mark> value for <mark>googtrans</mark> cookie. This is a message to the translation engine that Spain-translated content is expected. After that <mark>switchLanguage</mark> reloads the page, and we will see the Spanish content. Google Translate did this job!</p>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it regarding the main flow. But let me focus on some additional important stuff.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">Conclusion</h3>
+<div class="paragraph">
+<p>Let&#8217;s run the solution</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm run dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and switch the language, say, Deutsch. However, the issue is that the standard Google Translate bar is still on top.</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/google-translate-customization-under-nextjs/img1.png" alt="img1">
+</div>
+</div>
+<div class="paragraph">
+<p>We definitely ought to fix it. Let&#8217;s add a couple of the following changes to <a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/styles/globals.css" target="_blank" rel="noopener">src/styles/globals.css</a></p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/google-translate-customization-under-nextjs/img2.png" alt="img2">
+</div>
+</div>
+<div class="paragraph">
+<p>Much better now!</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/google-translate-customization-under-nextjs/img3.png" alt="img3">
+</div>
+</div>
+<div class="paragraph">
+<p>One of the tastiest features of NextJS is <a href="https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation" target="_blank" rel="noopener">Static Site Generation (SSG)</a>. Let&#8217;s test SSG on this solution.</p>
+</div>
+<div class="paragraph">
+<p>We need to add <mark>ssg</mark> script into <mark>package.json</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code"> "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "ssg": "next build &amp;&amp; next export",
+    "start": "next start",
+    "lint": "next lint"
+  },</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s build a static version.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm run ssg
+
+&gt; nextjs-gtrans-demo@0.1.0 ssg
+&gt; next build &amp;&amp; next export
+
+ ✓ Linting and checking validity of types
+ ✓ Creating an optimized production build
+ ✓ Compiled successfully
+ ✓ Collecting page data
+ ✓ Generating static pages (3/3)
+ ✓ Finalizing page optimization
+
+Route (pages)                              Size     First Load JS
+┌ ○ /                                      4.24 kB        82.1 kB
+├   /_app                                  0 B            77.9 kB
+├ ○ /404                                   181 B            78 kB
+└ λ /api/hello                             0 B            77.9 kB
++ First Load JS shared by all              80.1 kB
+  ├ chunks/framework-66d32731bdd20e83.js   45.2 kB
+  ├ chunks/main-12e9c77dbbe57e7c.js        31.5 kB
+  ├ chunks/pages/_app-3cfebadf4e2e7ae1.js  298 B
+  ├ chunks/webpack-5c046346608af636.js     807 B
+  └ css/24fee595fee43abd.css               2.29 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+...........
+   Copying "public" directory
+ ✓ Exporting (3/3)
+Export successful. Files written to /Users/slava/Desktop/projects11/nextjs-gtrans-demo/out</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can find the static version in <mark>out</mark> folder.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s test it. If don&#8217;t have <mark>http-server</mark> installed, please install it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm i -g http-server</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">cd ./out
+http-server</code></pre>
+</div>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/google-translate-customization-under-nextjs/img4.gif" alt="img4">
+</div>
+</div>
+<div class="paragraph">
+<p>The final solution is <a href="https://github.com/buchslava/nextjs-gtrans-demohttps://github.com/buchslava/nextjs-gtrans-demo" target="_blank" rel="noopener">here</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_may_the_google_translate_nextjs_and_force_be_with_you">May the Google Translate, NextJS, and Force be with you!</h2>
+<div class="sectionbody">
+
+</div>
+</div>

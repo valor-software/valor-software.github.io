@@ -1,0 +1,651 @@
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s no secret that the rules on pure React solutions are pretty simple. We just need to properly use all React inventory like useState, useEffect, useMemo, and useCallback. There are many intelligent articles, guides, and examples on the topic. But let&#8217;s answer the following question.</p>
+</div>
+<div class="paragraph">
+<p><em>How many "pure" projects did you tackle?</em></p>
+</div>
+<div class="paragraph">
+<p>A pure React (Angular, NodeJS, etc.) project could look like nonsense in real life. Customers expect complicated solutions, including different 3-rd party stuff like Payment Systems, Graphical Libraries, CRM integrations, Tracking Tools, etc. Obviously, not all of them are React-friendly, so we should count these libraries' features in most cases and try to perfect React code simultaneously.</p>
+</div>
+<div class="paragraph">
+<p>Today I want to tell you some performance specifics across React and D3.</p>
+</div>
+<div class="paragraph">
+<p>I wrote several articles on the D3 topics before, and I guess it will also be interesting for you. There are the following related articles.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://valor-software.com/articles/tasty-recipes-for-react-d3-the-ranking-bar" target="_blank" rel="noopener">Tasty Recipes for React &amp; D3. The Ranking Bar</a>.</p>
+</li>
+<li>
+<p><a href="https://valor-software.com/articles/a-qwik-view-of-the-ranking-bar" target="_blank" rel="noopener">A Qwik View of the Ranking Bar</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>But let&#8217;s focus on the current topic.</p>
+</div>
+<div class="paragraph">
+<p><em><a href="https://d3js.org/" target="_blank" rel="noopener">D3.js</a> is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. D3’s emphasis on web standards gives you the full capabilities of modern browsers without tying yourself to a proprietary framework, combining powerful visualization components and a data-driven approach to DOM manipulation.</em></p>
+</div>
+<div class="paragraph">
+<p>D3 is great! I&#8217;m fond of this beautiful library. But it lives its own life. That&#8217;s why we need to remember this fact when we work with D3 outside Vanilla JS, say, in React.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_objective">The Objective</h3>
+<div class="paragraph">
+<p>The goal is a simple D3 line chart implemented with dynamic guideline movement every second.</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;m pretty sure the best way to understand what&#8217;s good is to explain what&#8217;s wrong. That&#8217;s why I will start my solutions from the worst example. I&#8217;m also going to explain why the example is so wrong, and after that, I&#8217;ll propose to you the best way of implementation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_worst_solution">The Worst Solution</h3>
+<div class="paragraph">
+<p>There is the following component represents a <a href="https://stackblitz.com/edit/react-d3-zero-cost?file=src%2FLineChart.jsx" target="_blank" rel="noopener">line chart</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import React, { useEffect, useRef } from "react";
+import * as d3 from "d3";
+
+const transform = "translate(50,50)";
+
+export default function LineChart({ data, width, height, marker }) {
+  const svgRef = useRef();
+
+  const renderSvg = () =&gt; {
+    const chartWidth = width - 200;
+    const chartHeight = height - 200;
+
+    const svg = d3.select(svgRef.current);
+
+    svg.selectAll("*").remove();
+
+    const xScale = d3.scaleLinear().domain([0, 100]).range([0, chartWidth]);
+    const yScale = d3.scaleLinear().domain([0, 200]).range([chartHeight, 0]);
+
+    const g = svg.append("g").attr("transform", transform);
+
+    g.append("g")
+      .attr("transform", "translate(0," + chartHeight + ")")
+      .call(d3.axisBottom(xScale));
+
+    g.append("g").call(d3.axisLeft(yScale));
+
+    svg
+      .append("g")
+      .selectAll("dot")
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("cx", function (d) {
+        return xScale(d[0]);
+      })
+      .attr("cy", function (d) {
+        return yScale(d[1]);
+      })
+      .attr("r", 3)
+      .attr("transform", transform)
+      .style("fill", "#CC0000");
+
+    const line = d3
+      .line()
+      .x(function (d) {
+        return xScale(d[0]);
+      })
+      .y(function (d) {
+        return yScale(d[1]);
+      })
+      .curve(d3.curveMonotoneX);
+
+    svg
+      .append("path")
+      .datum(data)
+      .attr("class", "line")
+      .attr("transform", transform)
+      .attr("d", line)
+      .style("fill", "none")
+      .style("stroke", "#CC0000")
+      .style("stroke-width", "2");
+
+    if (marker) {
+      svg
+        .append("svg:line")
+        .attr("transform", transform)
+        .attr("stroke", "#00ff00")
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
+        .attr("stroke-width", 2)
+        .attr("x1", xScale(marker))
+        .attr("y1", 200)
+        .attr("x2", xScale(marker))
+        .attr("y2", 0);
+    }
+  };
+
+  useEffect(() =&gt; {
+    renderSvg();
+  }, [width, height, data, marker]);
+
+  if (!width || !height || !data) {
+    return &lt;&gt;&lt;/&gt;;
+  }
+
+  return &lt;svg ref={svgRef} width={width} height={height} /&gt;;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This component takes the following props.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>data - chart data as a two-dimensional array of x and y</p>
+</li>
+<li>
+<p><mark>width</mark> - with of the chart</p>
+</li>
+<li>
+<p><mark>height</mark> - height of the chart</p>
+</li>
+<li>
+<p><mark>marker</mark> - X axis of a guideline</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>And there is a related <a href="https://stackblitz.com/edit/react-d3-zero-cost?file=src%2FApp.js" target="_blank" rel="noopener">parent component</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import React, { useState, useEffect } from "react";
+import LineChart from "./LineChart";
+import "./style.css";
+
+const data = [
+  [1, 1],
+  [12, 20],
+  [24, 36],
+  [32, 50],
+  [40, 70],
+  [50, 100],
+  [55, 106],
+  [65, 123],
+  [73, 130],
+  [78, 134],
+  [83, 136],
+  [89, 138],
+  [100, 140],
+];
+
+export default function App() {
+  const [marker, setMarker] = useState(10);
+
+  useEffect(() =&gt; {
+    const intervalId = setInterval(() =&gt; {
+      setMarker((prevMarker) =&gt; (prevMarker + 10 &gt; 100 ? 10 : prevMarker + 10));
+    }, 1000);
+
+    return () =&gt; {
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  return (
+    &lt;div id="root-container"&gt;
+      &lt;LineChart data={data} width={500} height={400} marker={marker} /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There is an interval refresh a marker value every second and pass it as a chat&#8217;s prop.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/zero-cost-way-on-react-d3/img1.gif" alt="img1">
+</div>
+</div>
+<div class="paragraph">
+<p>You can play with the complete example <a href="https://stackblitz.com/edit/react-d3-zero-cost?file=src%2FApp.js" target="_blank" rel="noopener">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>It seems it&#8217;s nothing foreshadowing the issue. I want to modify the code above. The aim is to show the issue eloquently.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_number_of_renders">The Number of Renders</h3>
+<div class="paragraph">
+<p>First, I&#8217;ll add a global <mark>renders</mark> and <mark>timeStart</mark> variables to <a href="https://stackblitz.com/edit/react-d3-zero-cost-hqxk3a?file=public%2Findex.html" target="_blank" rel="noopener">public/index.html</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">&lt;script&gt;
+  var renders = 0;
+  var timeStart = new Date().toISOString();
+&lt;/script&gt;
+&lt;div id="root"&gt;&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Second, I increase <mark>renders</mark> every <mark>LineChart</mark> render.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export default function LineChart({ data, width, height, marker }) {
+  // no changes here ...
+
+  renders++;
+
+  useEffect(() =&gt; {
+    renderSvg();
+  }, [width, height, data, marker]);
+
+  if (!width || !height || !data) {
+    return &lt;&gt;&lt;/&gt;;
+  }
+
+  return &lt;svg ref={svgRef} width={width} height={height} /&gt;;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, I changed the parent component the following way.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export default function App() {
+  const [marker, setMarker] = useState(10);
+
+  useEffect(() =&gt; {
+    const intervalId = setInterval(() =&gt; {
+      setMarker((prevMarker) =&gt; (prevMarker + 10 &gt; 100 ? 10 : prevMarker + 10));
+    }, 1000);
+
+    return () =&gt; {
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  const currentTime = new Date().toISOString();
+
+  return (
+    &lt;div id="root-container"&gt;
+      &lt;div style={{ marginTop: 20, marginLeft: 20 }}&gt;
+        renders: {renders}
+        &lt;br /&gt;
+        start: {timeStart}
+        &lt;br /&gt;
+        now: {currentTime}
+      &lt;/div&gt;
+      &lt;LineChart data={data} width={500} height={400} marker={marker} /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main goal is to display three metrics: the number of renderings, start time, and current time.
+Let&#8217;s run the <a href="https://stackblitz.com/edit/react-d3-zero-cost-hqxk3a?file=src%2FApp.js" target="_blank" rel="noopener">modified example</a>.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/zero-cost-way-on-react-d3/img2.gif" alt="img2">
+</div>
+</div>
+<div class="paragraph">
+<p>As far as we can see, each marker change causes LineChart component to render. If the result above doesn&#8217;t persuade you, I have prepared the experiment below. I left the working example for a few minutes and drank coffee.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/zero-cost-way-on-react-d3/img3.jpeg" alt="img3">
+</div>
+</div>
+<div class="paragraph">
+<p>When I returned, I saw the following.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/zero-cost-way-on-react-d3/img4.png" alt="img4">
+</div>
+</div>
+<div class="paragraph">
+<p><strong><mark>948</mark> render per cup of coffee! Looks awful&#8230;&#8203;</strong>
+Moreover, a bunch of D3 heavyweight operations covers each render!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_best_solution">The Best Solution</h3>
+<div class="paragraph">
+<p>It&#8217;s time to fix the issue above.</p>
+</div>
+<div class="paragraph">
+<p>First, let me provide you the final <a href="https://stackblitz.com/edit/react-d3-zero-cost-d5kyuq?file=src%2FLineChart.jsx" target="_blank" rel="noopener">LineChart version</a> and explain what&#8217;s changed there step by step.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import React, {
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from "react";
+import * as d3 from "d3";
+
+const transform = "translate(50,50)";
+
+const LineChart = forwardRef(({ data, width, height }, ref) =&gt; {
+  const svgRef = useRef();
+  let svg;
+  let xScale;
+
+  useImperativeHandle(ref, () =&gt; ({
+    setMarker: (value) =&gt; {
+      if (isNaN(value)) {
+        return;
+      }
+      svg.selectAll(".marker").remove();
+
+      svg
+        .append("svg:line")
+        .attr("transform", transform)
+        .attr("class", "marker")
+        .attr("stroke", "#00ff00")
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
+        .attr("stroke-width", 2)
+        .attr("x1", xScale(value))
+        .attr("y1", 200)
+        .attr("x2", xScale(value))
+        .attr("y2", 0);
+    },
+  }));
+
+  const renderSvg = () =&gt; {
+    const chartWidth = width - 200;
+    const chartHeight = height - 200;
+
+    svg = d3.select(svgRef.current);
+
+    svg.selectAll("*").remove();
+
+    xScale = d3.scaleLinear().domain([0, 100]).range([0, chartWidth]);
+    const yScale = d3.scaleLinear().domain([0, 200]).range([chartHeight, 0]);
+
+    const g = svg.append("g").attr("transform", transform);
+
+    g.append("g")
+      .attr("transform", "translate(0," + chartHeight + ")")
+      .call(d3.axisBottom(xScale));
+
+    g.append("g").call(d3.axisLeft(yScale));
+
+    svg
+      .append("g")
+      .selectAll("dot")
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("cx", function (d) {
+        return xScale(d[0]);
+      })
+      .attr("cy", function (d) {
+        return yScale(d[1]);
+      })
+      .attr("r", 3)
+      .attr("transform", transform)
+      .style("fill", "#CC0000");
+
+    const line = d3
+      .line()
+      .x(function (d) {
+        return xScale(d[0]);
+      })
+      .y(function (d) {
+        return yScale(d[1]);
+      })
+      .curve(d3.curveMonotoneX);
+
+    svg
+      .append("path")
+      .datum(data)
+      .attr("class", "line")
+      .attr("transform", transform)
+      .attr("d", line)
+      .style("fill", "none")
+      .style("stroke", "#CC0000")
+      .style("stroke-width", "2");
+  };
+
+  renders++;
+
+  useEffect(() =&gt; {
+    renderSvg();
+  }, [width, height, data]);
+
+  if (!width || !height || !data) {
+    return &lt;&gt;&lt;/&gt;;
+  }
+
+  return &lt;svg ref={svgRef} width={width} height={height} /&gt;;
+});
+
+export default LineChart;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>forwardRef</strong>
+Now LineChart&#8217;s parent is able to work with the related component reference.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const LineChart = forwardRef(({ data, width, height }, ref) =&gt; {</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>useImperativeHandle</strong>
+During some interviews, I ask my interviewees this question. I&#8217;m surprised because most of them can&#8217;t answer it. In my opinion, <a href="https://react.dev/reference/react/useImperativeHandle" target="_blank" rel="noopener">this hook</a> is as important as the basic like useState and useEffect because it makes your code more flexible and performative.</p>
+</div>
+<div class="paragraph">
+<p>Here is the exposed code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">useImperativeHandle(ref, () =&gt; ({
+  setMarker: (value) =&gt; {
+    if (isNaN(value)) {
+      return;
+    }
+    svg.selectAll(".marker").remove();
+
+    svg
+      .append("svg:line")
+      .attr("transform", transform)
+      .attr("class", "marker")
+      .attr("stroke", "#00ff00")
+      .attr("stroke-linejoin", "round")
+      .attr("stroke-linecap", "round")
+      .attr("stroke-width", 2)
+      .attr("x1", xScale(value))
+      .attr("y1", 200)
+      .attr("x2", xScale(value))
+      .attr("y2", 0);
+  },
+}));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I moved it from the end of <mark>renderSvg</mark> function. See the <a href="https://stackblitz.com/edit/react-d3-zero-cost-hqxk3a?file=src%2FLineChart.jsx" target="_blank" rel="noopener">previous example</a>.
+Let&#8217;s focus on the <a href="https://stackblitz.com/edit/react-d3-zero-cost-d5kyuq?file=src%2FApp.js" target="_blank" rel="noopener">parent component</a>. Please, read comments there.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import React, { useState, useEffect, useMemo, useRef } from 'react';
+import LineChart from './LineChart';
+import './style.css';
+
+const data = [
+  // no changes
+];
+
+export default function App() {
+  const [marker, setMarker] = useState(10);
+  // Provide a reference for LineChart
+  const chartRef = useRef();
+
+  useEffect(() =&gt; {
+    // If the marker has been changed set it on LineChart directly, see useImperativeHandle
+    chartRef.current.setMarker(marker);
+  }, [marker]);
+
+  useEffect(() =&gt; {
+    const intervalId = setInterval(() =&gt; {
+      setMarker((prevMarker) =&gt; (prevMarker + 10 &gt; 100 ? 10 : prevMarker + 10));
+    }, 1000);
+
+    return () =&gt; {
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  const currentTime = new Date().toISOString();
+
+  // There is a trick because we don't need to render LineChart after every App state variable change
+  // As you can see we don't pass the marker here.
+  const chart = useMemo(() =&gt; {
+    return &lt;LineChart ref={chartRef} data={data} width={500} height={400} /&gt;;
+  }, [data]);
+
+  return (
+    &lt;div id="root-container"&gt;
+      &lt;div style={{ marginTop: 20, marginLeft: 20 }}&gt;
+        renders: {renders}
+        &lt;br /&gt;
+        start: {timeStart}
+        &lt;br /&gt;
+        now: {currentTime}
+      &lt;/div&gt;
+      {chart}
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>According to the comments above, there are three points of change.
+1. Provide a reference for LineChart
+2. Marker direct setting via <mark>useImperativeHandle</mark>. Pay attention to the fact that every useImperativeHandle-based call doesn&#8217;t cause the component to render. It&#8217;s super important!
+3. Memoise the <mark>LineChart</mark> component. We don&#8217;t need to refresh it with each <mark>App</mark> state change.</p>
+</div>
+<div class="paragraph">
+<p>Finally, the most tricky stuff has remained.</p>
+</div>
+<div class="paragraph">
+<p>After attentional looks at the code above, you could ask a question.</p>
+</div>
+<div class="paragraph">
+<p><em>On the one hand, now the component shouldn&#8217;t be re-rendered. On the other hand, the guideline moves from point A to point B. Of course, c#hartRef.current.setMarker(marker);# direct call allows us to set the guideline in the new position. But what approach allows us to remove the previous guideline from point A?</em></p>
+</div>
+<div class="paragraph">
+<p>At the start of the article, I meant that we need to count D3 library features. In this case, we should know two facts below.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>D3 objects are stateful, so we can operate them whenever needed. In this context, please look at the following code.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">  let svg;
+
+  const renderSvg = () =&gt; {
+    // ...
+    svg = d3.select(svgRef.current);
+    //All futures results of modifications will be present persistently in SVG object
+};</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>According to the feature above, we can change the D3 object every time without re-rendering. Moreover, we can manipulate different chart parts via fake CSS classes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Look at the following code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">    setMarker: (value) =&gt; {
+      if (isNaN(value)) {
+        return;
+      }
+      svg.selectAll('.marker').remove();
+
+      svg
+        .append('svg:line')
+        .attr('transform', transform)
+        .attr('class', 'marker')
+        .attr('stroke', '#00ff00')
+        .attr('stroke-linejoin', 'round')
+        .attr('stroke-linecap', 'round')
+        .attr('stroke-width', 2)
+        .attr('x1', xScale(value))
+        .attr('y1', 200)
+        .attr('x2', xScale(value))
+        .attr('y2', 0);
+    },
+  }));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When we add a guideline, we add a special fake class into it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">.attr('class', 'marker')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But before we remove the previous guideline via</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">svg.selectAll('.marker').remove();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s all for today about the secrets of D3.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s time to run the final example! You can play with the complete final example <a href="https://stackblitz.com/edit/react-d3-zero-cost-d5kyuq?file=src%2FApp.js" target="_blank" rel="noopener">here</a>.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/zero-cost-way-on-react-d3/img5.gif" alt="img5">
+</div>
+</div>
+<div class="paragraph">
+<p>Only <mark>two renders</mark> per all time. Looks cool!
+That’s like music to the ears of React developer!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_happy_coding">Happy coding!</h3>
+<div class="paragraph">
+<p>PS: If you are wondering why two renders, please read about <a href="https://legacy.reactjs.org/docs/strict-mode.html" target="_blank" rel="noopener">React Strict Mode</a>.</p>
+</div>
+</div>
+</div>
+</div>

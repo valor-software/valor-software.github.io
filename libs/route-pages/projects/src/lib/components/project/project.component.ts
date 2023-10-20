@@ -44,7 +44,6 @@ export class ProjectComponent implements OnDestroy {
 			}];
 			this.project = res;
 		}, error => {
-			console.log('error', error);
 			this.router.navigate(['/404']);
 		});
 	}

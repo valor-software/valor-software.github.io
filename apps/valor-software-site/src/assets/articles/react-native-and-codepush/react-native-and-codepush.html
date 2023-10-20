@@ -1,0 +1,250 @@
+<div class="paragraph">
+<p><em>"CodePush is an App Center cloud service that enables React Native developers to deploy mobile app updates directly to their users’ devices. It works by acting as a central repository that developers can publish certain updates to (for example, JS, HTML, CSS and image changes), and apps can query for updates from (using the provided client SDKs). This allows you to have a more deterministic and direct engagement model with your end users while addressing bugs, adding small features that don’t require you to rebuild a binary, or redistributing it through any public app stores"</em></p>
+</div>
+<div class="paragraph">
+<p>That&#8217;s how Microsoft described CodePush in their documentation.</p>
+</div>
+<div class="paragraph">
+<p>CodePush is not a new equivalent of TestFlight or Firebase Distribution. It’s a tool for delivering your builds to the end user not just beta delivery tool. In easy words, CodePush is an instrument that gives us the ability to replace JS bundle OTA and avoid the bottleneck of releasing via App Store and Play market. With CodePush you can achieve more web-like release behavior for mobile apps.</p>
+</div>
+<div class="paragraph">
+<p>Why did I come up with this tool? We needed to make targeted releases and reduce the time of receiving updates. So we gave it a try because we were already users of AppCenter for managing beta releases.</p>
+</div>
+<div class="paragraph">
+<p>CodePush is located inside AppCenter Dashboard.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/react-native-and-codepush/image.png" alt="image">
+</div>
+</div>
+<div class="paragraph">
+<p>There’re you can manage your builds.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/react-native-and-codepush/image1.png" alt="image1">
+</div>
+</div>
+<div class="paragraph">
+<p>And configure your deployment keys.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/react-native-and-codepush/image2.png" alt="image2">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_first_steps">First steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I don&#8217;t want to waste a lot of time on detailed instructions for setting up CodePush SDK, so we have <a href="https://learn.microsoft.com/en-us/appcenter/distribution/codepush/rn-get-started" target="_blank" rel="noopener">documentation</a> with all steps. So let&#8217;s move on more interesting things.</p>
+</div>
+<div class="paragraph">
+<p>Firstly, we need to specify the strategy for updating rollout targets and how we will force users to get these updates.</p>
+</div>
+<div class="paragraph">
+<p>By rollout targets we mean that we can decide who and how can get our updates, and we can get there using deployment keys.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rollout_targets">Rollout targets</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>CodePush gives us a flexible tool for targeting.
+By default, we have 2 deployment keys, one for Production, and the other for staging. It&#8217;s the easiest option.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/react-native-and-codepush/image3.png" alt="image3">
+</div>
+</div>
+<div class="paragraph">
+<p>But we can build a fully custom system over these keys. You can create the deployment key for each situation that you need.
+Example:
+In your app, you have 3 types of users: admins, managers, and customers. With admins and managers, you have a direct channel of communication. So you&#8217;re creating 3 keys:</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/react-native-and-codepush/image4.png" alt="image4">
+</div>
+</div>
+<div class="paragraph">
+<p>Save it in locally or put into your DB, CMS etc. Voilà! Now you can start collecting feedback if everything is okay with your app without touching the most fragile group of users.</p>
+</div>
+<div class="paragraph">
+<p>How it will look in your app? Easy!</p>
+</div>
+<div class="paragraph">
+<p>You just need to provide the key that you saved for user to codePush library using <mark>sync</mark> method</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/react-native-and-codepush/image5.png" alt="image5">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_updates">Getting updates</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ok, we decided how we will send updates to users, but the next question how do they get it?</p>
+</div>
+<div class="paragraph">
+<p>Initially you will have similar a config in your entry file</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/react-native-and-codepush/image6.png" alt="image6">
+</div>
+</div>
+<div class="paragraph">
+<p>Here we also have interesting things to play with.
+We have 2 parameters that we can use to achieve the result: <mark>checkFrequency</mark> and <mark>installMode</mark>.</p>
+</div>
+<div class="sect2">
+<h3 id="_default_values">Default values</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  checkFrequency: codePush.CheckFrequency.ON_APP_START,
+  installMode: codePush.InstallMode.ON_NEXT_RESTART,
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>According to docs:</p>
+</div>
+<div class="paragraph">
+<p><em>Your app will automatically download available updates, and apply them the next time the app restarts (like the OS or end user killed it, or the device was restarted). This way, the entire update experience is “silent” to the end user, since they don’t see any update prompt and/or “synthetic” app restarts.
+The main problem with this strategy is that the user may not close the application, and you can&#8217;t predict when they will get your updates.</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_background_updates">Background updates</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
+  installMode: codePush.InstallMode.ON_NEXT_RESUME,
+  minimumBackgroundDuration: 30*60 // 30 minutes
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here with <mark>minimumBackgroundDuration</mark> parameter we specify how long the application will wait until it will be considered as restarted. So we avoid the case when users don&#8217;t close their apps for years. But we are still not sure that users have the latest versions. Because they need to put their app in the background for the time specified in the <mark>minimumBackgroundDuration</mark> parameter.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_immediate_updates">Immediate updates</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
+  installMode: codePush.InstallMode.IMMEDIATE,
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main difference is that each time when the app is resumed it will be updated. The concern is that it could look clunky because the application will restart on the user&#8217;s eyes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_manual">Manual</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  checkFrequency: codePush.CheckFrequency.MANUAL,
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Last but not least is manual updates, here we can trigger updates programmatically when and how we want. We just need to trigger <mark>codePush.sync</mark> method.</p>
+</div>
+<div class="paragraph">
+<p>Example with updateDialog and production/staging keys:</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/react-native-and-codepush/image7.png" alt="image7">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lets_see_how_it_works">Let’s see how it works!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For example, I’ll choose Manual updates</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const codePushOptions = {
+  checkFrequency: codePush.CheckFrequency.MANUAL,
+};
+
+const AppWithCodePush = codePush(codePushOptions)(App);
+
+AppRegistry.registerComponent('CodePushPoc', () =&gt; AppWithCodePush);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And our app will be look like</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/react-native-and-codepush/image8.png" alt="image8">
+</div>
+</div>
+<div class="paragraph">
+<p>Using a switcher we will choose our environment.
+Then we need to push our first bundle to the CodePush using the AppCenter CLI</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">appcenter codepush release-react -a YOUR_ORG_NAME/YOR_APP_NAME -d Prod</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And you’ll get your build online:</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/react-native-and-codepush/image9.png" alt="image9">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lets_change_something">Let’s change something</h3>
+<div class="paragraph">
+<p>We can modify our code somehow and push it to the stage environment.</p>
+</div>
+<div class="paragraph">
+<p>I’ll create a new branch with the name <mark>feature/new-bg-color</mark> and let’s change <mark>backgroundColor</mark> to <mark>#6b5b95</mark> and push it to the Stage environment</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">appcenter codepush release-react -a YOUR_ORG_NAME/YOR_APP_NAME -d Stage</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We will be able to see this:</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/react-native-and-codepush/image10.gif" alt="image10">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_last_words">Last words…</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>CodePush is a great tool that helps you to improve and speed up your releases but it requires you to be more focused cause the chance of mistakes increases too. You can check the example app in the <a href="https://github.com/Thegrep01/code-push-example/tree/main" target="_blank" rel="noopener">repo</a> (note it is configured only for Android).</p>
+</div>
+</div>
+</div>

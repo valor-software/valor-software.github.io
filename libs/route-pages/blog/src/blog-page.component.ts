@@ -1,8 +1,8 @@
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { forkJoin, Subscription } from 'rxjs';
-import { GetArticlesService, IArticle, titleRefactoring, VALOR_ASSETS_URL } from '@valor-software/common-docs';
+import { GetArticlesService, IArticle, titleRefactoring } from '@valor-software/common-docs';
 import SwiperCore, { Pagination, SwiperOptions } from 'swiper';
 
 SwiperCore.use([Pagination]);
@@ -32,9 +32,7 @@ export class BlogPageComponent implements OnDestroy {
 	constructor(
 		private readonly router: Router,
 		private readonly getArticlesServ: GetArticlesService,
-		@Inject(VALOR_ASSETS_URL) public readonly valorAssetsUrl: string,
 	) {
-		console.log('BlogPageComponent', valorAssetsUrl);
 		this.$generalSubscription.add(
 			this.router.events.pipe(
 				filter(event => event instanceof NavigationEnd)

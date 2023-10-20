@@ -1,0 +1,278 @@
+<div class="paragraph">
+<p>Python provides a range of tools and libraries for performing programming, which are designed to cater to various needs and levels of complexity. It is crucial to have an understanding of these tools in order to develop applications that are both efficient and responsive. Now let’s delve into the details of the tools, for this purpose.</p>
+</div>
+<div class="sect1">
+<h2 id="_multithreading">Multithreading</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Introduction to Multithreading
+Multithreading allows concurrent execution of multiple threads within a single process. Threads share the same memory space, making it suitable for I/O bound tasks.</p>
+</div>
+<div class="paragraph">
+<p>Threading Module
+The threading module facilitates working with threads in Python. Let&#8217;s create a simple example to demonstrate multithreading:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import threading
+
+def print_numbers():
+    for i in range(1, 6):
+        print(f"Number {i}")
+
+def print_letters():
+    for letter in 'abcde':
+        print(f"Letter {letter}")
+
+if __name__ == "__main__":
+    thread1 = threading.Thread(target=print_numbers)
+    thread2 = threading.Thread(target=print_letters)
+
+    thread1.start() # Start the thread to run the 'print_numbers' function concurrently
+    thread2.start() # Start another thread to run the 'print_letters' function concurrently
+
+    thread1.join() # Wait for thread1 to complete its task before moving on
+    thread2.join() # Wait for thread2 to complete its task before moving on
+
+
+# Number 1
+# Letter a
+# Letter b
+# Number 2
+# Number 3
+# Number 4
+# Number 5
+# Letter c
+# Letter d
+# Letter e</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s important to understand that while you have two threads (<mark>thread1</mark> and <mark>thread2</mark>) that are executing concurrently, the order in which they execute their tasks is not guaranteed. This lack of ordering is due to the nature of threading and how operating systems schedule threads for execution. Here&#8217;s why you see the output in a seemingly random order:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Thread Scheduling: The operating system&#8217;s thread scheduler determines when and in what order threads run. Threads can be preempted and paused at any time, and the scheduler decides which thread to execute next based on factors like thread priorities and time slices.</p>
+</li>
+<li>
+<p>Non-Atomic Print Operation: The print operation itself is not atomic, meaning it&#8217;s not a single, uninterrupted action. When you print something, it involves multiple steps like acquiring the console output lock, formatting the output, and releasing the lock. Between these steps, other threads can run, which can result in interleaved output.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For example, consider this possible order of execution:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><mark>thread1</mark> starts and prints "Number 1".</p>
+</li>
+<li>
+<p><mark>thread2</mark> starts and prints "Letter a" and "Letter b".</p>
+</li>
+<li>
+<p><mark>thread1</mark> continues and prints "Number 2", "Number 3", "Number 4", "Number 5".</p>
+</li>
+<li>
+<p><mark>thread2</mark> continues and prints "Letter c", "Letter d", "Letter e".</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_example_downloading_files_concurrently_with_multithreading">Example: Downloading Files Concurrently with Multithreading</h3>
+<div class="paragraph">
+<p>In this example, we&#8217;ll use multithreading to download files concurrently from different URLs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import threading
+import requests
+
+def download_file(url, filename):
+    response = requests.get(url)
+    with open(filename, "wb") as file:
+        file.write(response.content)
+    print(f"Downloaded {filename}")
+
+if __name__ == "__main__":
+    urls = [
+        "https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.6.zip",
+        "https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.2.1.zip",
+        "https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.3.1.zip",
+    ]
+    threads = []
+    for i, url in enumerate(urls):
+        thread = threading.Thread(target=download_file, args=(url, f"file_{i}.txt"))
+        thread.start()
+        threads.append(thread)
+
+    for thread in threads:
+        thread.join()
+
+
+# Downloaded https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.3.1.zip
+# Downloaded https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.2.1.zip
+# Downloaded https://github.com/wkhtmltopdf/wkhtmltopdf/archive/refs/tags/0.12.6.zip</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you observed that downloading files without using threads (i.e., in a sequential or synchronous manner) took less time than downloading them with threads, there are a few potential reasons for this counterintuitive behavior:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Global Interpreter Lock (GIL): Python has a Global Interpreter Lock (GIL) that allows only one thread to execute Python bytecode at a time, even on multi-core processors. This means that in a multithreaded Python program, threads can be limited by the GIL, especially if the tasks involve CPU bound operations. In the case of downloading files, which is typically I/O bound (waiting for data to be transferred over the network), using threads may not provide a significant advantage, and it could even introduce some overhead.</p>
+</li>
+<li>
+<p>Network Bound: If the download speed is limited by the network bandwidth, using multiple threads might not lead to a significant improvement because the bottleneck is the network speed, not the CPU. In such cases, the overhead of managing multiple threads can outweigh any potential gains.</p>
+</li>
+<li>
+<p>Thread Overhead: Creating and managing threads in Python comes with some overhead. If the tasks are relatively simple, such as downloading files, the overhead of creating and managing threads can outweigh the benefits of concurrency.</p>
+</li>
+<li>
+<p>Resource Contention: When using threads, there can be contention for system resources like CPU and memory. If the system becomes saturated with threads, context switching and resource contention may slow down the overall performance.</p>
+</li>
+<li>
+<p>Thread Management: The example code provided for multithreading may not be optimized for maximum concurrency. In a real-world scenario, optimizing thread management, such as using thread pools or asyncio for I/O bound operations, can yield better results.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multiprocessing">Multiprocessing</h3>
+<div class="paragraph">
+<p>Introduction to Multiprocessing
+Multiprocessing allows parallel execution of multiple processes, each with its own memory space. It&#8217;s suitable for CPU-bound tasks.</p>
+</div>
+<div class="paragraph">
+<p>Multiprocessing Module
+The multiprocessing module supports multiprocessing in Python. Let&#8217;s create an example demonstrating multiprocessing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import multiprocessing
+
+def worker(number):
+    result = number * number
+    print(f"Result: {result}")
+
+if __name__ == "__main__":
+    processes = []
+    for i in range(1, 6):
+        process = multiprocessing.Process(target=worker, args=(i,))
+        processes.append(process)
+        process.start()
+
+    for process in processes:
+        process.join()
+
+
+# Result: 4
+# Result: 9
+# Result: 1
+# Result: 25
+# Result: 16</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Explanation: In this multiprocessing example, we&#8217;re creating multiple processes to perform a CPU-bound task, which is calculating the square of a number. However, the order in which the results are printed may not necessarily match the order of the input values.</p>
+</div>
+<div class="paragraph">
+<p>This is because the individual processes run concurrently and independently of each other. They may complete their tasks in a different order, depending on factors like the CPU&#8217;s availability and scheduling. As a result, the printed results can appear in a random or unordered fashion.</p>
+</div>
+<div class="paragraph">
+<p>Multiprocessing is ideal for parallelizing CPU bound tasks to leverage multiple CPU cores effectively. However, it doesn&#8217;t guarantee a specific order of execution or results, as the processes run in parallel and their completion times can vary.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_event_loop_asyncio">Event Loop (Asyncio)</h3>
+<div class="paragraph">
+<p>Introduction to Asynchronous I/O
+Asynchronous I/O enables non-blocking concurrency. The event loop manages tasks, making it suitable for I/O-bound operations.</p>
+</div>
+<div class="paragraph">
+<p>Asyncio Module
+The asyncio module provides tools for asynchronous programming. Let&#8217;s create an example to illustrate asyncio:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import asyncio
+
+async def print_numbers():
+    for i in range(1, 6):
+        print(f"Number {i}")
+        await asyncio.sleep(1)
+
+async def print_letters():
+    for letter in 'abcde':
+        print(f"Letter {letter}")
+        await asyncio.sleep(1)
+
+async def main():
+    task1 = asyncio.create_task(print_numbers())
+    task2 = asyncio.create_task(print_letters())
+
+    await task1
+    await task2
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+
+
+# Number 1
+# Letter a
+# Number 2
+# Letter b
+# Number 3
+# Letter c
+# Number 4
+# Letter d
+# Number 5
+# Letter e</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the code, you are using asyncio to create two asynchronous tasks (<mark>print_numbers</mark> and <mark>print_letters</mark>) and running them concurrently. Each task includes an <mark>await asyncio.sleep(1)</mark> statement, which effectively suspends the execution of the task for 1 second before continuing.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <mark>main</mark> coroutine is executed when you run the program.</p>
+</li>
+<li>
+<p>Inside main, you create two tasks: <mark>task1</mark> (for print_numbers) and <mark>task2</mark> (for print_letters). These tasks are started concurrently.</p>
+</li>
+<li>
+<p><mark>task1</mark> starts executing the print_numbers coroutine. It prints "Number 1" and then hits the <mark>await asyncio.sleep(1)</mark> line. While it sleeps, the event loop continues.</p>
+</li>
+<li>
+<p>Simultaneously, <mark>task2</mark> starts executing the print_letters coroutine. It prints <mark>"Letter a"</mark> and then awaits for 1 second.</p>
+</li>
+<li>
+<p>After 1 second, task1 resumes execution, printing <mark>"Number 2"</mark> and then sleeping again.</p>
+</li>
+<li>
+<p><mark>task2</mark> also resumes after 1 second, printing <mark>"Letter b"</mark> and then sleeping.</p>
+</li>
+<li>
+<p>This pattern continues until both <mark>task1</mark> and <mark>task2</mark> have completed their respective loops. The await statements within each coroutine introduce pauses, allowing the other task to make progress while the first one sleeps.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>As a result, you see an interleaved output where <mark>"Number"</mark> and <mark>"Letter"</mark> lines are mixed together because both tasks are running concurrently and asynchronously, each yielding to the event loop during the <mark>await asyncio.sleep(1)</mark> calls. This allows for a more responsive and non-blocking execution of tasks in an event-driven manner, which is one of the key benefits of asyncio.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">Conclusion</h3>
+<div class="paragraph">
+<p>In this article we have introduced the principles of programming in Python using three primary methods: multithreading, multiprocessing and asyncio. We have discussed how each approach caters to scenarios, such as improving tasks that involve input/output operations handling intensive tasks or efficiently managing network operations. As you continue your journey into the world of programming in Python these fundamental techniques will serve as tools for creating responsive and high performing applications.</p>
+</div>
+<div class="paragraph">
+<p>In our articles of the "Mastering Asynchronous Programming, in Python" series we will delve deeper into strategies, best practices and real world applications of these asynchronous Python programming techniques. Whether you want to optimize web scraping processes, develop web services or improve data processing pipelines, our comprehensive series will provide you with the knowledge and skills needed to excel in the field of Python development. Stay tuned for content and practical examples that will help take your Python programming skills to new heights.</p>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,173 @@
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At the NextJS <a href="https://nextjs.org/conf" target="_blank" rel="noopener">conference</a> there were a lot of really exciting things that were announced, while a lot of the new functionality centered around Vercel-centric offerings which will greatly improve the developer experience and performance there was one new project that was talked about a good amount and that was Turbopack.  Created by Tobias and the team at Vercel, Turbopack was advertised as the “next evolution of Webpack” and the “Twilight of Webpack”, the conversations in Discord during the presentation bounced between “Webpack Killer” and the more cautionary “This is still alpha should we use it”, which seems about on par with what to expect from developers seeing a new shiny tool.</p>
+</div>
+<div class="paragraph">
+<p>This post is not intended to detract from anything the Vercel / Next team is doing with Turbopack, nor detract from the Next.js conference itself. A conference that had one of the best overall event production and fluidity I’ve seen outside of Apple events.</p>
+</div>
+<div class="paragraph">
+<p>During her conference <a href="https://youtu.be/pC2dl8hNVGg?t=1074" target="_blank" rel="noopener">presentation</a> on stage J, Maia Tegarden shared that Turbo is 700x faster than Webpack and 10x faster than Vite, the main differences being the advanced caching mechanisms and the build platform moving to Rust. There was one large comparison that I believe the presentation left out, most likely intentionally, comparing Tunrbopack to Webpack with <a href="https://nx.dev/" target="_blank" rel="noopener">Nx</a>. Nx has its own caching mechanisms both locally and in the cloud (which organizationally would be more beneficial for enterprises with heavily distributed teams).</p>
+</div>
+<div class="paragraph">
+<p>In order to do some testing and benchmarking, I decided to follow the guide on starting a project with turbo. Luckily the Vercel team makes it super easy to get started.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_turbo">Next Turbo</h2>
+<div class="sectionbody">
+<div class="sect3">
+<h4 id="_startup">Startup</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">npx create-next-app --example with-turbopack</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This single command scaffolded the demo application easily and running <mark>npm run build</mark> the initial compilation is 2.19ms which is surprisingly fast. Opening the URL that was output by the command, the first-page load event took 1.57s and the CLI itself mentioned that the output was updated in 960ms. Refreshing the page multiple times took between 311ms and 374ms to load and triggered two updated events averaging between 107ms and 154ms.
+<br>
+<br></p>
+</div>
+<div class="paragraph">
+<p>In general a very fast experience.
+<br>
+<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_development_flow_updates">Development Flow Updates</h4>
+<div class="paragraph">
+<p>Updating a CSS class on the layout.tsx to change the y spacing ( a very simple action ), triggered two update events that took roughly 200ms each. A page refresh took 583ms on the browser and triggered two events taking 390ms and 784ms respectively. Oddly sometimes refreshing the page would take several seconds on the event timings with some instances taking 800ms to 3400ms and up.
+<br>
+<br></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_nx">Nx</h3>
+<div class="paragraph">
+<p>Now for Nx we have a very similar command that we can run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">npx create-nx-workspace@latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This single command kicks off a CLI wizard where I selected Next and CSS as the options. The default project builds and serves extremely fast, but this project is not a fair comparison because the example from Vercel uses Tailwind and more complex component architecture, as well as Next 13.  After copying in all of the application code from the Next example into the Nx workspace, I also had to configure the application to use PostCSS and ran the same page refreshes and changes. The example repo is found <a href="https://github.com/zackarychapple/next-nx-demo" target="_blank" rel="noopener">here</a>. Because the official next template has not yet been updated to Next 13 (which was just released) you will have to do a force install.
+<br>
+<br></p>
+</div>
+<div class="sect3">
+<h4 id="_startup_2">Startup</h4>
+<div class="paragraph">
+<p>Starting the application with <mark>npm run start</mark> took roughly 773ms, and opening the application with the link triggered 3 events, each of those events took between 254ms to 914ms. The page load event took 1.16s. Refreshing the page multiple times took on average: 516ms and 612ms for the load event. No CLI events were triggered during the page refresh.<br>
+<br>
+The experience was feeling equally fast even though they are in reality different by a few hundred milliseconds.
+<br>
+<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_development_flow_updates_2">Development Flow Updates</h4>
+<div class="paragraph">
+<p>Doing the updates of the exact same CSS classes triggered a single event that took between 153ms to 442ms. Reloading the page triggered an additional two events which took 95ms and 250ms respectively.
+<br>
+<br></p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_results">The Results</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Turbopack looks promising but still has some room for improvement from a performance standpoint. I’d love to see what is coming with the next version of Nx and the updates made to better support Next 13. However, outside of the initial startup, the actual development activity and JIT updates appears to be faster with Webpack and Nx than with Turbopack.</p>
+</div>
+<div class="paragraph">
+<p>Because Nx also can leverage multiple builders, including esbuild, I’d also be interested to see Nx working directly with Turbopack itself and how to replace the local cache being used by Turbopack with the cloud cache from Nx.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch turbo-table">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-center valign-top" colspan="2">Turbopack</th>
+<th class="tableblock halign-center valign-top" colspan="2">Nx + Webpack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Min</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Max</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Min</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Max</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initial Startup (CLI)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~2ms</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">773ms</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">First Page Load (Browser)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~1.6s</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2s</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">First Page Load Events (CLI)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~960ms</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~914ms</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Page Refresh (Browser)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~300ms</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">516ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">612ms</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Page Refresh (CLI)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~100ms</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">none*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">none*</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTML Class Updates (CLI)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~580ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;1.5s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">95ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">250ms</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTML Class Updates (Browser)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 400ms (two events ~200ms each)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 3s (two events 800ms - 3.5s each)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">150ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">442ms</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><em>*no compile events were reported, however that does not mean none were potentially executed due to possibly being swallowed by Nx</em><br>
+<em>note: these tests were all performed on a 16” MBP with a M1 Max and 64 GB memory</em></p>
+</div>
+</div>
+</div>

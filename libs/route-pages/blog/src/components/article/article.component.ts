@@ -5,10 +5,10 @@ import {
 	checkHTMLExtension,
 	GetArticlesService,
 	IArticle,
-	OLD_ROUTES_FROM_OLD_SITE, VALOR_ASSETS_URL
+	OLD_ROUTES_FROM_OLD_SITE
 } from '@valor-software/common-docs';
-import { filter, switchMap, catchError } from 'rxjs/operators';
-import { Subscription, of } from 'rxjs';
+import { catchError, filter, switchMap } from 'rxjs/operators';
+import { of, Subscription } from 'rxjs';
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
@@ -91,13 +91,11 @@ export class ArticleComponent implements OnDestroy {
 	$routEvents?: Subscription;
 	linksFromOldSite?: { [key: string]: string };
 
-
 	constructor(
 		private router: Router,
 		private getArticleServ: GetArticlesService,
 		private sanitizer: DomSanitizer,
 		@Inject(OLD_ROUTES_FROM_OLD_SITE) linkList: { [key: string]: string },
-		@Inject(VALOR_ASSETS_URL) public readonly valorAssetsUrl: string,
 	) {
 		this.linksFromOldSite = linkList;
 		this.$routEvents = router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {

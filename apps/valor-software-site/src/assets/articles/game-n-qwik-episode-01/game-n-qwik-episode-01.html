@@ -1,0 +1,114 @@
+<div class="sect1">
+<h2 id="_the_columns_game">The Columns Game</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_preface">Preface</h3>
+<div class="paragraph">
+<p>This story started in 1991 when I had just finished high school and began studying at Kharkiv Polytechnic University. During my first face with IBM PC, I faced this beautiful game, and since then, I can&#8217;t get it out of my head. I want to tell you about the Columns game. This game is a perfect example of an arcade game. Although it has many different implementations, including <a href="https://www.youtube.com/watch?v=gx3VSzKMxb8" target="_blank" rel="noopener">Sega version</a>, my favorite one is <a href="https://archive.org/details/columns_ms-dos" target="_blank" rel="noopener">Nathan Meyers 1989 MS-DOS port</a>. I&#8217;m keen on its coloristic, minimalistic, and aesthetic.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-01/img1.png" alt="img1">
+</div>
+</div>
+<div class="paragraph">
+<p>I&#8217;m a person who follows traditions, and this game has become one of them. Whenever an interesting UI-related technology emerges or when I begin using one, I implement my Columns solution using that particular technology. For example 2007, I created the Adobe Flash version, and in 2019, I provided a Flutter-based one.</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-01/img2.png" alt="img2">
+</div>
+</div>
+<div class="paragraph">
+<p>But let&#8217;s stop digging into the history and focus on today.</p>
+</div>
+<div class="paragraph">
+<p>The <a href="https://qwik.builder.io/" target="_blank" rel="noopener">Qwik web framework</a> was released in 2021 and, in my mind, became one of the most ambitious competitors in the UI area. A few months ago, I provided <a href="https://valor-software.com/articles/a-qwik-view-of-the-ranking-bar" target="_blank" rel="noopener">an article</a> regarding Qwik.</p>
+</div>
+<div class="paragraph">
+<p>However, in retrospect, I realize that I didn’t provide as much information as I intended to. The best way to disclose an essential topic is to provide a real-life example. And then, I remembered my old tradition and decided that the Web-based Columns game could be a great option if I want to improve my Qwik skills and tell this story to you, my dear reader.</p>
+</div>
+<div class="paragraph">
+<p>Looking ahead, I&#8217;m glad to introduce you <a href="https://buchslava.github.io/qwik-columns/" target="_blank" rel="noopener">Qwik Columns</a>!</p>
+</div>
+<div class="paragraph">
+<p>Most of my friends compare this game with Tetris. At first glance, it really looks like Tetris. But this game is a bit different because it forces you to think differently than you do it playing Tetris. The main point is that colors are valuable in Columns. I&#8217;ll explain the rules a bit later.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_aim">The Aim</h3>
+<div class="paragraph">
+<p>I guess you noticed "Episode 01" in the title. This topic, frankly, could not be represented as an article due to the number of points to be covered. That&#8217;s why I decided to split my telling into chunks and provide you with episodes. Each episode will focus on a subtopic, including Gameplay Architecture, Animation, Vector graphics via the D3 library, and, of course, Qwik. The current episode is just an introduction.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_rules">The Rules</h3>
+<div class="paragraph">
+<p>There is a rectangle-based area that contains squares. It will be empty (white) before playing. A shape (actor) consists of three vertically arranged squares with different colors. It moves down until possible; that is, it reaches the bottom of the area or is faced with the next cell as a colored one. After, the related cells become colored according to the actor&#8217;s colors. And then, a new actor appears at the top of the area. There is a checking process before the new actor appears. If colored squares are three or more equal colors on horizontal, vertical, and diagonal, then they should be demolished with increasing scores, and gaps will be collapsed. These are the original rules. Please look at the illustrations below.</p>
+</div>
+<div class="paragraph">
+<p><mark>Diagonal</mark></p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-01/img3.gif" alt="img3">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>Vertical and Horizontal</mark></p>
+</div>
+<div class="paragraph">
+<p>Checking and collapsing works till all of the same-colored verticals, horizontals, and diagonals are demolished.</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-01/img4.gif" alt="img4">
+</div>
+</div>
+<div class="paragraph">
+<p>But it would not be me if I implemented the rules as they are. I decided to add a couple of extra points.</p>
+</div>
+<div class="paragraph">
+<p><mark>1. If a square containing 4 squares appears, this shape should
+be demolished.</mark></p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-01/img5.gif" alt="img5">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>2. If a square containing 2 + 2 squares like the one below appears, this shape should be demolished.</mark></p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-01/img6.gif" alt="img6">
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s <a href="https://buchslava.github.io/qwik-columns/" target="_blank" rel="noopener">enjoy the game</a>!</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-01/img7.gif" alt="img7">
+</div>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-01/img8.gif" alt="img8">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whats_next">What&#8217;s next?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As I mentioned earlier, this article is the start of the episodes that reveal the exciting game creation process. Step by step, we will reach the <a href="https://github.com/buchslava/qwik-columns/tree/final-devto-edition" target="_blank" rel="noopener">final solution</a>!</p>
+</div>
+<div class="paragraph">
+<p>In the next episode, I will explain how to bootstrap the project and make the first scratches via Qwik and D3.</p>
+</div>
+</div>
+</div>
