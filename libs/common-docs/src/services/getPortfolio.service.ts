@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import { IPortfolio } from '../models/portfolio.interface';
 import { PORTFOLIO_LIST } from '../tokens/portfolioList.token';
 import { titleRefactoring, checkHTMLExtension } from '../utils/titleRefactoringUtil';
-import { VALOR_ASSETS_URL } from '../tokens/valor-assets-url.token';
-
 
 @Injectable({ providedIn: 'platform' })
 export class GetPortfolioService {
@@ -16,7 +14,6 @@ export class GetPortfolioService {
 	constructor(
 		private http: HttpClient,
 		@Inject(PORTFOLIO_LIST) portfolioList: string[],
-		@Inject(VALOR_ASSETS_URL) private readonly valorAssetsUrl: string,
 	) {
 		this.portfolioList = portfolioList;
 		if (!this.refactoredList?.length) {
@@ -29,7 +26,7 @@ export class GetPortfolioService {
 	}
 
 	getPortfolioRequest(art: string): Observable<any> {
-		return this.http.get(`${this.valorAssetsUrl}/assets/portfolio/clients/${art}.json`);
+		return this.http.get(`assets/portfolio/clients/${art}.json`);
 	}
 
 	getFullListOfPortfolio(): Observable<IPortfolio>[] | undefined {

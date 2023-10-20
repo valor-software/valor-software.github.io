@@ -1,4 +1,4 @@
-import { InjectionToken, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
@@ -10,7 +10,6 @@ import {
 	OLD_ROUTES_FROM_OLD_SITE,
 	PORTFOLIO_LIST,
 	SeoService,
-	VALOR_ASSETS_URL
 } from '@valor-software/common-docs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScullyLibModule } from '@scullyio/ng-lib';
@@ -19,7 +18,6 @@ import { projectsList } from '../assets/portfolio/portfolio.list';
 import { linksFromOldSite } from '../../../../assets/articles/brokenRoutes';
 import { NotFoundComponent } from './404.component';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
-import { environment } from '../environments/environment';
 
 @NgModule({
 	declarations: [
@@ -41,7 +39,6 @@ import { environment } from '../environments/environment';
 		{ provide: PORTFOLIO_LIST, useValue: projectsList },
 		{ provide: OLD_ROUTES_FROM_OLD_SITE, useValue: linksFromOldSite },
 		{ provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LeXDiUoAAAAABZ2FU4l2GZTJ0v5otDAQkC3UZxs' },
-		{ provide: VALOR_ASSETS_URL, useValue: environment.VALOR_ASSETS_DOMAIN }
 	],
 	bootstrap: [AppComponent],
 })
