@@ -6,7 +6,7 @@
     "nx": "nx",
     "postinstall": "patch-package",
     "start": "nx serve",
-    "build": "nx build && yarn run scully",
+    "build": "nx run valor-software-site:build-scully -c stage",
     "test": "nx test",
     "lint": "nx run-many --all --target=lint",
     "runAnotherHost": "nx serve --host=127.0.0.1",

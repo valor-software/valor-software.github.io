@@ -1,0 +1,403 @@
+<div class="sect1">
+<h2 id="_the_10_commandments_of_technical_interviewing">The 10 Commandments of Technical Interviewing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Technical interviewing in the lack of time always looks challenging because, as an interviewer, I mustn&#8217;t have room for mistakes. Probably not worth mentioning that a "question from a book" is often a false friend. Instead of the original answer, my interviewee could reproduce it mechanically, i.e., read from Wikipedia in the worst case or read before the interview without deep knowledge of the best one. But I&#8217;m not a judge. I&#8217;m just a searcher for my future colleague to join my team! I&#8217;m always trying to deal with a dilemma. The dilemma is that, on the one hand, the technical question should be less well-known because, in the case of a positive answer to the famous question, I can&#8217;t correctly estimate this answer due to the above. Let&#8217;s illustrate this case. Imagine you start asking about OOP.
+You asked, <mark>Please, tell me about the OOP principles?</mark> The candidate answered perfectly. What is your conclusion regarding the candidate&#8217;s knowledge? Are they firm or not? Does the candidate know the topic, or did he/she just read this answer on Wikipedia? Should I proceed with another similar question on this topic? The issue is that you don&#8217;t have enough time for that. Also, you shouldn&#8217;t spam the candidate with many such questions or waste time on irrelevant questions. How to fix this situation?</p>
+</div>
+<div class="paragraph">
+<p>I see only one promising approach. You need to ask indirect, preferably practical, questions instead. In this case, for example, you can ask the following. <mark>Does it possible to instantiate an abstract class?</mark> And after that, ask some other additional questions. I suppose after answers gathering, you understand the candidate&#8217;s knowledge.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, your "tricky" question should not be so tricky. It&#8217;s crucial because, imagine, the candidate didn&#8217;t answer. I want to ask the almost same as above. What is your conclusion regarding the candidate&#8217;s knowledge? Are they firm or not? Does the candidate know the topic, or was he/she confused due to lack of time and the complexity of the question? Is the question too contextual?</p>
+</div>
+<div class="paragraph">
+<p>A good interview question is always about the balance between simplicity and complexity, straightforward and contextuality. A good interview looks like art. Please, remember that the form of the question and the estimated answer could be variated due to the expected candidate level. Please, attend to every candidate more comprehensively and evaluate their skills more personally because he/she is possibly your colleague in the nearest future.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_nodejs_scratch">The NodeJS Scratch</h3>
+<div class="paragraph">
+<p>I want to switch to the most challenging part of this article and illustrate a more complicated case. Imagine you are an interviewer for a NodeJS developer position and need to cover some critical knowledge points.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s get started. As a technical interviewer, I prefer to start from the authentic code fragment. Here is the following one.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const p1 = new Promise(resolve =&gt; {
+  console.log('start first promise', new Date());
+  console.time('first');
+  for (let i = 0; i &lt; 9999999999; i++) {
+  }
+  resolve(1);
+  console.timeEnd('first');
+  console.log('finish first promise', new Date());
+});
+const p2 = new Promise(resolve =&gt; {
+  console.log('start second promise', new Date());
+  console.time('second');
+  setTimeout(() =&gt; {
+    resolve(2);
+    console.timeEnd('second');
+    console.log('finish second promise', new Date());
+  }, 2000)
+});
+const p3 = new Promise(resolve =&gt; {
+  console.log('start third promise', new Date());
+  console.time('third');
+  setTimeout(() =&gt; {
+    resolve(3);
+    console.timeEnd('third');
+    console.log('finish third promise', new Date());
+  }, 10000);
+});
+
+(async () =&gt; {
+  const r = await Promise.all([p1, p2, p3]);
+  console.log(r);
+})();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And here is the result.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">start first promise 2023-08-17T11:50:10.064Z
+first: 9.444s
+finish first promise 2023-08-17T11:50:19.513Z
+start second promise 2023-08-17T11:50:19.513Z
+start third promise 2023-08-17T11:50:19.514Z
+second: 2.002s
+finish second promise 2023-08-17T11:50:21.516Z
+third: 10.001s
+finish third promise 2023-08-17T11:50:29.515Z</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I&#8217;m not fond of the "interviewer-interviewee" style during our conversation. As I meant before, I&#8217;m searching for my future colleague. That&#8217;s why my first question will be the following. <mark>What do you think about the code above?</mark> I&#8217;m asking this way because I need to know how the interlocutor thinks and what parts of the topic are important to him/her, and depending on the first clues, I&#8217;ll build my future interview tactics.</p>
+</div>
+<div class="paragraph">
+<p>And now, it&#8217;s time for the interview&#8217;s most creative, exciting, and unpredictable part. Let me provide you with some possible scenarios as dialogs.</p>
+</div>
+<div class="paragraph">
+<p>Please, read my thoughts under the dialog details carefully. I provided them because <strong>I want to reveal the holy of holies of the dialog - my own thoughts</strong>! I hope it helps you understand my thinking and related future steps. It&#8217;s important because there is no "silver bullet" or generic pattern regarding the interview. That&#8217;s why it&#8217;s critically important to understand how I think here and adapt it to your practice.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scenario_1">Scenario 1.</h3>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> What do you think about the code above?</p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> Promise.all() static method takes an iterable of promises as input and returns a single Promise. This returned promise fulfills when all of the input&#8217;s promises fulfill (including when an empty iterable is passed), with an array of the fulfillment values.</p>
+</div>
+<div class="paragraph">
+<p><em>Oops N1! Looks like a Wikipedia-based answer.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Do you have nothing more to add?</p>
+</div>
+<div class="paragraph">
+<p><em>In this case, I prefer to ask brief, direct questions like the above.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> No</p>
+</div>
+<div class="paragraph">
+<p><em>Oops N2! Really? Are you kidding me? (Remember, it&#8217;s just a thought in my mind. Please don&#8217;t say this way in the interview!) There are two explanations for my interviewee&#8217;s behavior. The first one is a lack of knowledge, and the second one is about we are not on the same page or he/she is hesitating. Let&#8217;s understand the reason.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Could you explain why the result looks differently from, say, the following?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">start first promise ...
+start second promise ...
+start third promise ...
+finish second promise ...
+finish first promise ...
+finish third promise ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>In other words, I wondered whether my interlocutor could explain why the first promise works synchronously. This proposal above is quite provocative because it contains 100% incorrect flow. This question is the best indicator for understanding the candidate&#8217;s level. In other words, this is the catharsis of the interview. BTW, I recommend providing the candidate with some error-based code or results. This way is perfect from a technical and psychological point of view at the same time. The best way to unblock the candidate&#8217;s stuck brain is to discuss incorrect flow. Moreover, after the candidate successfully resolved the issue, he/she became more confident.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> First, Promises are not regarding multithreading. Second, if we face long-executing synchronous code, then this code will block the whole solution. In this example, the first promise starts and blocks others because the following code</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">console.log('start first promise', new Date());
+  console.time('first');
+  for (let i = 0; i &lt; 9999999999; i++) {
+  }
+  resolve(1);
+  console.timeEnd('first');
+  console.log('finish first promise', new Date());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>executes by the V8 engine consistently in the time, and no other code in the app can interrupt it internally. Moreover, I want to explain why the last couple of promises run "almost simultaneously." They start after the first one has been resolved. The difference is that a couple last have asynchronous code based on timers. That&#8217;s why no one from them blocks each other. Also, if we talk about I/O operations like fs.readFile then these operations will be executed in separate threads according to NodeJS architecture. That&#8217;s why if we have an array of promises only with similar (execution time) asynchronous I/O operations inside, then Promise.all details will be executed almost simultaneously.</p>
+</div>
+<div class="paragraph">
+<p><em>Cool! The candidate&#8217;s mind has been unblocked! It&#8217;s a pleasure to me cause this kind of situation. The answer above is not academic and is a bit compacted, but it shows me the candidate&#8217;s level. Additionally, I&#8217;d like to ask some questions regarding the history of NodeJS, Event Loop, and LibUV. But it&#8217;s optional stuff. Generally, I&#8217;m satisfied with the answers.</em></p>
+</div>
+<div class="paragraph">
+<p><em>I asked the additional question because the start of the answer looks like a definition from the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="noopener">well-known resource</a>, and as an interviewer, I need to be sure that the candidate&#8217;s words come from himself. It&#8217;s important!</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scenario_2">Scenario 2.</h3>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> What do you think about the code above?</p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> Well, we shouldn&#8217;t put such a heavyweight code into a promise like in Promise 1.</p>
+</div>
+<div class="paragraph">
+<p><em>I&#8217;m skeptical about this way of answering because a bit different question was responded to. I didn&#8217;t ask, "What should we do?" or "How can we fix it?" Even though the answer looks wise, I need to clarify the topic.</em></p>
+</div>
+<div class="paragraph">
+<p><em>If you get an inappropriate answer such above, please, don&#8217;t repeat the question or don&#8217;t tell the candidate that he/he has answered another question. It doesn&#8217;t work. Believe me! In my mind, it&#8217;s a bit impolite, and this way can ruin the relationship between your interlocutor and you. It&#8217;s important even if you are already decided regarding the candidate. Please, be intelligent and polite!</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> But what happens if we put the "lightweight" code?</p>
+</div>
+<div class="paragraph">
+<p><em>Attention! This is a psychological trick. I intentionally ignored the "heavyweight" definition and used the antonym blindly. It&#8217;s not important now. I need to 100% understand the candidate&#8217;s way of thinking.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> I guess the promises will run simultaneously in the case of Promise.all.</p>
+</div>
+<div class="paragraph">
+<p><em>Oops N1! I just caused him/her to give me the "real" answer and proceed with this topic.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Could you explain why?</p>
+</div>
+<div class="paragraph">
+<p><em>Let&#8217;s finish this topic. This point is the catharsis of the interview.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> In my last project, I implemented a similar code like the following, and all promises worked simultaneously.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const p1 = new Promise((resolve, reject) =&gt; {
+  fs.readFile('./test-1.txt', 'utf8', (err, data) =&gt; {
+    if (err) {
+      reject(err);
+      return;
+    }
+    resolve(data)
+  });
+});
+const p2 = new Promise((resolve, reject) =&gt; {
+  fs.readFile('./test-2.txt', 'utf8', (err, data) =&gt; {
+    if (err) {
+      reject(err);
+      return;
+    }
+    resolve(data)
+  });
+});
+const p3 = new Promise((resolve, reject) =&gt; {
+  fs.readFile('./test-3.txt', 'utf8', (err, data) =&gt; {
+    if (err) {
+      reject(err);
+      return;
+    }
+    resolve(data)
+  });
+});
+
+(async () =&gt; {
+  const r = await Promise.all([p1, p2, p3]);
+  console.log(r);
+})();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Let me explain what happens here. The candidate provided a 100% valid code with the correct result. Despite the similarity between this and the original example, the current example has another context. This kind of answer is a good indicator of the issues in the candidate&#8217;s knowledge. He/she provided this example mechanically due to lacking fundamental skills.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Could you explain why they work "simultaneously"?</p>
+</div>
+<div class="paragraph">
+<p><em>Oops N2! I&#8217;m generally disappointed about my candidate!</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> Oh, I didn&#8217;t have a chance to dig deeply. I&#8217;m not a theoretical guy. It&#8217;s a feature of Promise.all, I guess.</p>
+</div>
+<div class="paragraph">
+<p><em>Oops N3! I&#8217;m always disappointed about this kind of candidate because they spent some time for practice and have been working on real projects for some years. Although, my candidate hasn&#8217;t become a proper software developer. I&#8217;m always so sorry in this kind of situation.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Do you know the difference between fs.readFile and other code, for example, the plain loop (as in my original example), in terms of the code execution?</p>
+</div>
+<div class="paragraph">
+<p><em>The last chance! I must be 100% sure the candidate is unfamiliar with the topic.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> Unfortunately, no:(</p>
+</div>
+<div class="paragraph">
+<p>I suppose now you understand how a dialog is essential and how important to finish the answer logically. In this case, the candidate started the answer more optimistically than in the previous scenario. But in fact, he doesn&#8217;t match as a proper developer. The lack of knowledge here is critical, and I&#8217;m not satisfied with the answers.</p>
+</div>
+<div class="paragraph">
+<p>BTW, this kind of candidate is the most "dangerous" because, at first glance, he/she has substantial knowledge, especially practical skills. But gaps in the fundamental skills could cause severe troubles in the company, which will engage the candidate. This is why the interviewing experience in the company is so critical.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_golang_scratch">The Golang Scratch</h3>
+<div class="paragraph">
+<p>At this point, I want to proceed with another example of another technology from a different point of view. I want to share the Golang illustration that allows us to understand how important to count the technological specific during the mandatory question preparation.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s consider Golang. As a technical interviewer, I want to start with only one eloquent question covering many sensitive points. It will help me to ask my future questions more effectively. One of the most critical topics in Golang is goroutines and channels. Formally, there are a lot of points on this topic in literature and guides. The team will waste a lot of time in case of brute-force asking. Moreover, in this case, as a technical interviewer, you can estimate only book-based knowledge, not skills! And what about the candidate&#8217;s nerves?</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s choose another way. There is the following minimalistic fragment of code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">package main
+
+import "fmt"
+
+func main() {
+    messages := make(chan string)
+
+    messages &lt;- "message 1"
+    messages &lt;- "message 2"
+
+    fmt.Println(&lt;-messages)
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_let_me_provide_you_with_a_happy_based_scenario">Let me provide you with a happy-based scenario.</h4>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> How could you fix the code above?</p>
+</div>
+<div class="paragraph">
+<p><em>Both of us, Gophers, understand that the code above contains a very silly mistake;)</em></p>
+</div>
+<div class="paragraph">
+<p><mark>Candidate:</mark> There is a deadlock here because, first, we are working on the same thread, and second, the channel above is unbuffered. Let me provide you with the ways to fix it.</p>
+</div>
+<div class="paragraph">
+<p>The first approach is the simplest one. We need to make the channel buffered.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">package main
+
+import "fmt"
+
+func main() {
+    messages := make(chan string, 2)
+
+    messages &lt;- "message 1"
+    messages &lt;- "message 2"
+
+    fmt.Println(&lt;-messages)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Honestly, the original code above is unusual because channel approach usage is a good way to communicate between goroutines. Let me provide a proper way to use them.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    c := generator()
+    receiver(c)
+}
+
+func receiver(c &lt;-chan int) {
+    for v := range c {
+        fmt.Println(v)
+    }
+}
+
+func generator() &lt;-chan int {
+    c := make(chan int)
+
+    go func() {
+        for i := 0; i &lt; 10; i++ {
+            c &lt;- i
+        }
+        close(c)
+    }()
+
+    return c
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>Interviewer:</mark> Brilliant! Well done.</p>
+</div>
+<div class="paragraph">
+<p>This question saved the team&#8217;s time because we partially covered two topics from Golang and got a positive result about the candidate&#8217;s practical skills.</p>
+</div>
+<div class="paragraph">
+<p>Are you feeling the difference between the question above and <mark>What pros and cons of Golang?</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">Conclusion</h3>
+<div class="paragraph">
+<p>Of course, I provided only a tiny slice of the imaginable interview as an illustration. There are more questions, interactions, and situations in real life. I offered just some of typical. But in any case, your interview should follow the principles below. They could be interesting outside of technical society only. That&#8217;s why I recommend reading the following to different roles including recruiters, HRs, PMs, etc. But stop, no principles! I&#8217;ll have the courage and say more&#8230;&#8203;</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_10_commandments_of_technical_interviewing_2">The 10 Commandments of Technical Interviewing</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prepare for the interview, including plan, code, and questions according to the candidate&#8217;s CV, position, and specific technology. Please, read the CV before. Imagine your candidate according to the CV and check if your imagination matches your feelings after the interview. 100% of the material should be at hand. It helps you decide what questions need to be taken from the pool. Any preparation during the interview is entirely unacceptable because time is valuable!</p>
+</li>
+<li>
+<p>Keep the dialog and collaboration. Be on the same page with the candidate. Be sophisticated.</p>
+</li>
+<li>
+<p>In the case of an unreasonably long answer, don&#8217;t hesitate to interrupt the candidate politely. Remember, your time and your colleagues` time is valuable!</p>
+</li>
+<li>
+<p>Follow the plan. Some questions should be mandatory. Your plan is a kind of pilot&#8217;s checklist. Any diversion could cause a crash in the future.</p>
+</li>
+<li>
+<p>Remember that practice is the criterion of the truth. Discuss actual code as often as possible.</p>
+</li>
+<li>
+<p>Creativity and variability. Don&#8217;t repeat the same questions. Don&#8217;t discuss the same subject too much. Other topics are valuable too. Change the plan (except for mandatories) on the fly if necessary; your deep knowledge will help you. Remember, you are an expert. Be flexible!</p>
+</li>
+<li>
+<p>Keep a pure mind and be pragmatic. Your emotions are your enemy. Objectivity is your friend, although you are not a judge. Even a person&#8217;s poor appearance at first glance tells you nothing regarding his/her IQ/EQ.</p>
+</li>
+<li>
+<p>Communicate productively with other team members like developers, recruiters, etc. Don&#8217;t try taking advantage. Give time to your colleagues. Analyze answers to their questions.</p>
+</li>
+<li>
+<p>Keep all essential points during the interview, even soft skill-related. Don&#8217;t miss this information during your result-making because you don&#8217;t know which point will be decisive when the CEO or someone else from superiors makes the final decision. Your goal is to provide as objective as possible information regarding the candidate.</p>
+</li>
+<li>
+<p>Try to ask about the candidate&#8217;s fate. Does the company offer him/her? Decline? Why? Does he/she approve the offer? First, because you are a part of the company. Second, this practice will broaden your horizons.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Offtopic! If you want to get pleasure from coding, please read my previous <a href="https://valor-software.com/articles/game-n-qwik-episode-01" target="_blank" rel="noopener">Game-n-Qwik series</a>.</p>
+</div>
+</div>
+</div>
+</div>

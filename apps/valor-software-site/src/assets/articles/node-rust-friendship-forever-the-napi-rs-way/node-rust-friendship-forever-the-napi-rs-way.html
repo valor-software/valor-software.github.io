@@ -1,0 +1,550 @@
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s no secret that NodeJS solutions are not so performative, especially if we consider a solution with a bunch of synchronous operations or vice versa - we work with a tricky multi-thread solution. A good example is image processing or cipher. Despite some performance issues, NodeJS retains its reputation as a mainstream. Moreover, NodeJS tries to be more flexible. A powerful <a href="https://nodejs.org/api/addons.html" target="_blank" rel="noopener">NodeJS Addons</a> functionality allows developers to write some NodeJS functionalities on C++. <a href="https://blog.logrocket.com/rust-and-node-js-a-match-made-in-heaven/" target="_blank" rel="noopener">Node.js with Rust</a> became popular last time. I meant this technique because I will discuss Rust programming language integration with NodeJS. Why Rust? It&#8217;s a good question&#8230;&#8203; I want to provide some essential facts regarding Rust briefly.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Memory-safe approach preventing memory leaks.</p>
+</li>
+<li>
+<p>Type-safe syntax control.</p>
+</li>
+<li>
+<p>No "Data race" issue owing to concurrency management.</p>
+</li>
+<li>
+<p>Programs are compiled in the "ahead-of-time" manner.</p>
+</li>
+<li>
+<p>Utilizes and promotes zero-cost abstractions.</p>
+</li>
+<li>
+<p>No resource-consuming "garbage collectors", no JIT compiler, no virtual machine.</p>
+</li>
+<li>
+<p>Minimal runtime and memory footprint.</p>
+</li>
+<li>
+<p>Very good dependency management tool.</p>
+</li>
+<li>
+<p>Helpful compiler errors with clear and doable recommendations.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Apart from that, Rust is multithread friendly and it has a much simpler syntax compared with C/C++.</p>
+</div>
+<div class="paragraph">
+<p>You can find the <a href="https://www.ideamotive.co/blog/rust-vs-cpp-which-technology-should-you-choose" target="_blank" rel="noopener">following resource</a> valuable. <a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-gpp.html" target="_blank" rel="noopener">This resource</a> will persuade you regarding Rust Performance.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s еasy to see that the Rust integration described above is a bit difficult. Fortunately, evolution does not come to a halt. Today I&#8217;m glad to introduce a new Animal to our Technological Zoo.</p>
+</div>
+<div class="sect2">
+<h3 id="_meet_napi_rs">Meet NAPI-RS!</h3>
+<div class="paragraph">
+<p><a href="https://napi.rs/" target="_blank" rel="noopener">NAPI-RS</a> is a framework for building pre-compiled Node.js addons in Rust.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s jump off the bat!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_aim">The Aim</h3>
+<div class="paragraph">
+<p>Of course, the article aims to introduce you <mark>napi-rs</mark> as the easiest way to integrate NodeJS with Rust. The best way to do it is to provide a more complicated example than a standard one.</p>
+</div>
+<div class="paragraph">
+<p>I will provide a NodeJS application that gets a file, uploads it, and transforms it afterward. Let’s say it is reducing the saturation. The image operation above should be provided on the Rust side.</p>
+</div>
+<div class="paragraph">
+<p>But before that, let&#8217;s try the standard functionality.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_package_template">Package Template</h3>
+<div class="paragraph">
+<p>First, you need to <a href="https://www.rust-lang.org/tools/install" target="_blank" rel="noopener">install Rust</a>. <mark>Cargo</mark> builder is included there.</p>
+</div>
+<div class="paragraph">
+<p>Second, I recommend creating a new project via the following <a href="https://github.com/napi-rs/package-template" target="_blank" rel="noopener">template</a>.
+Third, <mark>yarn</mark> is recommended here.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s time to cover all essential points.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation_of_nodejs_dependencies_and_build">Installation of NodeJS dependencies and build</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">yarn install
+yarn build</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rust_part">Rust Part</h3>
+<div class="paragraph">
+<p><mark>Cargo.toml</mark> contains all information regarding the Rust package, including dependencies. This file is similar to package.json in NodeJS.</p>
+</div>
+<div class="paragraph">
+<p><strong><mark>src/lib.rs</mark></strong></p>
+</div>
+<div class="paragraph">
+<p>The file above contains Rust-defined functions for future exporting. In this example, a defined function #plus_100 #adds 100 to the input parameter.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">#![deny(clippy::all)]
+
+use napi_derive::napi;
+
+#[napi]
+pub fn plus_100(input: u32) -&gt; u32 {
+  input + 100
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nodejs_part">NodeJS part</h3>
+<div class="paragraph">
+<p>It&#8217;s obvious to see <mark>package.json</mark> and other JS stuff here because we are talking about Rust and NodeJS integration. <mark>package.json</mark> contains required dependencies like <mark>@napi-rs/cli</mark> that allow you to build the solution. Also, pay attention to the following files.</p>
+</div>
+<div class="paragraph">
+<p><strong><mark>./index.js</mark></strong></p>
+</div>
+<div class="paragraph">
+<p>This file contains your library binding with its exporting. Please look at the last lines of code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const { plus100 } = nativeBinding;
+
+module.exports.plus100 = plus100;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Do you remember Rust&#8217;s <mark>plus100</mark> definition above? These lines
+precisely represent a bridge between Rust and NodeJS.</p>
+</div>
+<div class="paragraph">
+<p><strong><mark>./index.d.ts</mark></strong></p>
+</div>
+<div class="paragraph">
+<p>This file contains Typescript definitions (signatures) of your Rust functionality.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">/* tslint:disable */
+/* eslint-disable */
+
+/* auto-generated by NAPI-RS */
+
+export function plus100(input: number): number</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Important note! You shouldn&#8217;t edit the files above because they are autogenerated and change every Rust definition update after completing the <mark>yarn build</mark> command.</p>
+</div>
+<div class="paragraph">
+<p><strong><mark>./simple-test.js</mark></strong></p>
+</div>
+<div class="paragraph">
+<p>The following code illustrates how to run a Rust-defined function. Pay attention to the first line. You should import the function from <mark>./index.js</mark> (see above).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const { plus100 } = require("./index");
+
+console.assert(plus100(0) === 100, "Simple test failed");
+
+console.info("Simple test passed");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s run it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">node simple-test</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_image_processing">Image processing</h3>
+<div class="paragraph">
+<p>After we are sure your solution works well, let&#8217;s make the solution image-processing friendly. Let&#8217;s pass the following steps.</p>
+</div>
+<div class="paragraph">
+<p><strong>Change</strong> <strong><mark>./Cargo.toml</mark></strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">[lib]
+crate-type = ["cdylib"]
+path = "lib/lib.rs"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>path = "lib/lib.rs"</mark> has been added. Now we use the <mark>lib</mark> folder instead <mark>src</mark> for Rust code. <mark>src</mark> folder could be reserved for future JS/TS code. Let&#8217;s remove the <mark>src</mark> folder for now.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rust_stuff">Rust Stuff</h3>
+<div class="paragraph">
+<p>First, install the expected Rust dependency (<mark>image</mark> package).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cargo add image</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Second, create <a href="https://github.com/buchslava/napi-rs-images/blob/main/lib/lib.rs" target="_blank" rel="noopener">lib/lib.rs</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">#![deny(clippy::all)]
+
+use image::{GenericImageView, ImageBuffer, Pixel};
+
+use napi_derive::napi;
+
+#[napi]
+pub fn darker(filename: String, saturation: u8) {
+  let img = image::open(filename.clone()).expect("File not found!");
+  let (w, h) = img.dimensions();
+  let mut output = ImageBuffer::new(w, h);
+
+  for (x, y, pixel) in img.pixels() {
+    output.put_pixel(x, y, pixel.map(|p| p.saturating_sub(saturation)));
+  }
+
+  output.save(filename).unwrap();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong><mark>#[napi]</mark></strong> attribute is a marker that the function should be used in JS/TS code.</p>
+</div>
+<div class="paragraph">
+<p>The function above takes the filename and saturation, reads the file, applies the saturation, and rewrites the file.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s rebuild&#8230;&#8203;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">yarn build</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As a result, <mark>index.js</mark> and <mark>index.d.ts</mark> should be updated.</p>
+</div>
+<div class="paragraph">
+<p>Copy <a href="https://github.com/buchslava/napi-rs-images/blob/main/cube.png" target="_blank" rel="noopener">this picture</a> to the root of the project.</p>
+</div>
+<div class="paragraph">
+<p>Also, let&#8217;s change <a href="https://github.com/buchslava/napi-rs-images/blob/main/simple-test.js" target="_blank" rel="noopener">simple-test.js</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const { darker } = require("./index");
+
+darker("./cube.png", 50);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s time to run it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">node simple-test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or run the commands below if you want to reproduce all the steps from the start.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git clone git@github.com:buchslava/napi-rs-images.git
+cd napi-rs-images
+yarn
+yarn build
+node simple-test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Look at the following changes</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/node-rust-friendship-forever-the-napi-rs-way/img1.png" alt="img1">
+</div>
+</div>
+<div class="paragraph">
+<p>Our Rust part is ready and it&#8217;s time to implement a web application that allows us to upload/desaturate the file and show it after.</p>
+</div>
+<div class="paragraph">
+<p>If you want to try the application immediately you can play with <a href="https://github.com/buchslava/napi-rs-images" target="_blank" rel="noopener">napi-rs images</a>. Otherwise, please read my explanations below.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_final_stitches">The Final Stitches</h3>
+<div class="paragraph">
+<p>First we need to install expected NodeJS dependencies.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">yarn add ejs
+yarn add express
+yarn add express-ejs-layouts
+yarn add express-fileupload
+yarn add uuid</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Make <mark>storage</mark> folder under the root of the project and add it to <mark>./.gitignore</mark>.</p>
+</div>
+<div class="paragraph">
+<p>Add the <a href="https://github.com/buchslava/napi-rs-images/blob/main/server.js" target="_blank" rel="noopener">./server.js</a> to the root of the project.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const fs = require("fs");
+const path = require("path");
+
+const express = require("express");
+const ejsLayouts = require("express-ejs-layouts");
+const fileUpload = require("express-fileupload");
+const uuidv4 = require("uuid").v4;
+
+const { darker } = require("./index");
+
+const STORAGE_DIR = "storage";
+
+const app = express();
+
+app.use(fileUpload());
+app.set("view engine", "ejs");
+app.use(ejsLayouts);
+app.use("/storage", express.static(path.join(__dirname, STORAGE_DIR)));
+app.use(express.urlencoded({ extended: true }));
+
+app.get("/", async (req, res) =&gt; {
+  let files = await fs.promises.readdir(path.join(__dirname, STORAGE_DIR));
+  files = files
+    .map((fileName) =&gt; ({
+      name: fileName,
+      time: fs
+        .statSync(path.join(__dirname, STORAGE_DIR, fileName))
+        .mtime.getTime(),
+    }))
+    .sort((a, b) =&gt; a.time - b.time)
+    .map((v) =&gt; v.name);
+  return res.render("upload", { files: files.reverse() });
+});
+
+app.post("/uploads", function (req, res) {
+  const file = req.files.upload;
+  const extname = path.extname(file.name);
+  const uuid = uuidv4();
+  const filePath = path.join(__dirname, STORAGE_DIR, `${uuid}${extname}`);
+
+  file.mv(filePath, (err) =&gt; {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    try {
+      darker(filePath, +req.body.saturation);
+    } catch (e) {
+      return res.status(500).send(e);
+    }
+    res.redirect("/");
+  });
+});
+
+app.listen(3000);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also, add <mark>"start": "node server"</mark>, to the <mark>scripts</mark> section in .<mark>/package.json</mark>.</p>
+</div>
+<div class="paragraph">
+<p>I don&#8217;t want to explain many of the solutions above because it&#8217;s obvious for a NodeJS folk. I just want to pay attention to the points below.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>There are two endpoints: <mark>/</mark> and <mark>/upload</mark>.</p>
+</li>
+<li>
+<p><mark>/</mark> provides us with an upload form and a list of the uploaded and desaturated images.</p>
+</li>
+<li>
+<p><mark>/upload</mark> uploads and desaturates an uploaded image and redirects to <mark>/</mark>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Also, please look at image desaturation</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">try {
+  darker(filePath, +req.body.saturation);
+} catch (e) {
+  return res.status(500).send(e);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and the fact that we take the Saturation Value from the request <mark>+req.body.saturation</mark> as a number, and</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">let files = await fs.promises.readdir(path.join(__dirname, STORAGE_DIR));
+files = files
+  .map((fileName) =&gt; ({
+    name: fileName,
+    time: fs
+      .statSync(path.join(__dirname, STORAGE_DIR, fileName))
+      .mtime.getTime(),
+  }))
+  .sort((a, b) =&gt; a.time - b.time)
+  .map((v) =&gt; v.name);
+return res.render("upload", { files: files.reverse() });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where STORAGE_DIR is <mark>storage</mark> (see above) and we pass a sorted list of the uploaded files to the related EJS template.</p>
+</div>
+<div class="paragraph">
+<p>Related EJS templates are below.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/napi-rs-images/blob/main/views/layout.ejs" target="_blank" rel="noopener">views/layout.ejs</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+
+    &lt;link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    /&gt;
+    &lt;title&gt;Uploads&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;%- body %&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/napi-rs-images/blob/main/views/upload.ejs" target="_blank" rel="noopener">views/upload.ejs</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="container"&gt;
+  &lt;form
+    class="w-50 mx-auto my-3"
+    action="/uploads"
+    method="post"
+    enctype="multipart/form-data"
+  &gt;
+    &lt;div class="mb-3"&gt;
+      &lt;input class="form-control" type="file" name="upload" required /&gt;
+    &lt;/div&gt;
+    &lt;div class="w-50 d-flex form-outline align-middle"&gt;
+      &lt;label class="form-label text-nowrap pr-3" for="saturation"
+        &gt;% saturation&amp;nbsp;&lt;/label
+      &gt;
+      &lt;input
+        name="saturation"
+        value="65"
+        type="number"
+        id="saturation"
+        class="form-control"
+      /&gt;
+    &lt;/div&gt;
+    &lt;button class="btn btn-primary"&gt;Upload&lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;div class="container"&gt;
+    &lt;% for (const file of files){ %&gt;
+    &lt;div class="row mb-3"&gt;
+      &lt;img src="/storage/&lt;%= file %&gt;" class="card-img-top" alt="Image" /&gt;
+    &lt;/div&gt;
+    &lt;% } %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s time to test the whole solution.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">yarn start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and try <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a></p>
+</div>
+<div class="paragraph">
+<p>Finally, let&#8217;s upload a couple of images.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/node-rust-friendship-forever-the-napi-rs-way/img2.png" alt="img2">
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/node-rust-friendship-forever-the-napi-rs-way/img3.png" alt="img3">
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/node-rust-friendship-forever-the-napi-rs-way/img4.png" alt="img4">
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/node-rust-friendship-forever-the-napi-rs-way/img5.png" alt="img5">
+</div>
+</div>
+<div class="paragraph">
+<p>I guess you will satisfy your curiosity about performance if you upload and process bigger images.</p>
+</div>
+<div class="paragraph">
+<p>In conclusion, I want to mean a fact from <a href="https://github.com/napi-rs/napi-rs" target="_blank" rel="noopener">here</a>.</p>
+</div>
+<div class="paragraph">
+<p><em>"One nice feature is that this crate allows you to build add-ons purely with the Rust/JavaScript toolchain and without involving node-gyp."</em></p>
+</div>
+<div class="paragraph">
+<p>That’s like music to the ears of Node Folks.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_happy_coding">Happy coding!</h2>
+<div class="sectionbody">
+
+</div>
+</div>

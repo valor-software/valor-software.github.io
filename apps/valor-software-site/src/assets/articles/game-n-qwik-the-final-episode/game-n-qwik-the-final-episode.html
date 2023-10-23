@@ -1,0 +1,969 @@
+<div class="sect1">
+<h2 id="_the_final_stitches">The Final Stitches.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Congratulations! We are in the final stretch! Let&#8217;s summarize our previous points.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In <a href="https://valor-software.com/articles/game-n-qwik-episode-01" target="_blank" rel="noopener">Episode 01</a>, I introduced you to the Columns Game history and concept.</p>
+</li>
+<li>
+<p><a href="https://valor-software.com/articles/game-n-qwik-episode-02" target="_blank" rel="noopener">Episode 02</a> is devoted to initial technical points like Bootstrapping, Libraries, and gameplay&#8217;s first steps.</p>
+</li>
+<li>
+<p><a href="https://valor-software.com/articles/game-n-qwik-episode-03" target="_blank" rel="noopener">Episode 03</a> is the most complicated and exciting. In this episode, we passed all the mandatory steps to get the natural Qwik Columns gameplay.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-the-final-episode/img1.gif" alt="img1">
+</div>
+</div>
+<div class="paragraph">
+<p>Despite the above, our current solution still needs to be finished for the reasons below.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A player can set the game on pause.</p>
+</li>
+<li>
+<p>Move the actor somehow immediately to the bottom of the board. This feature is essential because, in many cases, a player has decided on the final actor&#8217;s color combination, and the player wants to drop it to the bottom immediately. Moreover, the dropping above is preferable to be animated.</p>
+</li>
+<li>
+<p>Provide visual controls "Start," "Stop," and "Pause" as a set of buttons.</p>
+</li>
+<li>
+<p>Provide different customized speeds for the moving actor, like "Slow," "Normal," and "Fast," with related score calculation. Slow speed gives us less score; Fast pace gives us more.</p>
+</li>
+<li>
+<p>Visual end of the game. Currently, we have only "console.log" when the game has finished.</p>
+</li>
+<li>
+<p>UI footer, preferably UI responsive.
+Traditionally I&#8217;ll explain all my modifications step by step. My impatient readers can read and run the final working <a href="https://github.com/buchslava/qwik-columns/tree/final-devto-edition" target="_blank" rel="noopener">solution</a>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If you want to trace future steps with me, please use <a href="https://github.com/buchslava/qwik-columns/tree/step-1" target="_blank" rel="noopener">the destination code from the previous episode</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s get started!</p>
+</div>
+<div class="sect2">
+<h3 id="_gameplay_changes">Gameplay changes</h3>
+<div class="paragraph">
+<p>First, let&#8217;s deal with <a href="https://github.com/buchslava/qwik-columns/blob/final-devto-edition/src/components/game-play/game-logic.ts" target="_blank" rel="noopener">src/components/game-play/game-logic.ts</a>. Please, read my comments in the code!</p>
+</div>
+<div class="paragraph">
+<p>Pay attention to the new <a href="https://t.ly/0h3Zo" target="_blank" rel="noopener">Phase</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">export enum Phase {
+  INACTIVE,
+  // Pause is ON
+  PAUSED,
+  MOVING,
+  // Drop is requested
+  DROP,
+  // Drop action is under progress
+  FLYING,
+  MATCH_REQUEST,
+  COLLAPSE_REQUEST,
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and change the main game definition.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">export interface Game {
+  board: ColumnsColor[][];
+  actor: Actor;
+  phase: Phase;
+  // we need to save our current phase before pause
+  savedPhase: Phase;
+  nextActor: ColumnsColor[];
+  score: number;
+  // this is a key/value-based score descriptors
+  // key describes type of speed, Slow, Normal, Fast
+  // value is a related score extent
+  scores: { [key: string]: number };
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pass current speed (Level) to <a href="https://t.ly/shR-j" target="_blank" rel="noopener">matching function</a>. It&#8217;s needed for score calculation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">export function matching(
+  game: Game,
+  // new parameter
+  level: Level,
+  mark: boolean,
+  customBoard?: ColumnsColor[][]
+) {
+  // ...
+  function checkCollapsed(match: boolean[][], mark: boolean): boolean {
+    let result = false;
+    for (let row = 0; row &lt; rowsQty; row++) {
+      for (let col = 0; col &lt; columnsQty; col++) {
+        if (match[row][col]) {
+          if (mark) {
+            board[row][col] = colorsToDisappearHash[board[row][col]];
+            // calculate the score according to the level
+            game.score += game.scores[level];
+          }
+          result = true;
+        }
+      }
+    }
+    return result;
+  }
+
+  // ...
+  return checkCollapsed(match, mark);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://t.ly/5EsED" target="_blank" rel="noopener">isFinish</a> should also know about the <mark>level</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">export function isFinish(game: Game, level: Level): boolean {
+  // ...
+  if (matching(game, level, false, getNextBoard())) {
+    return false;
+  }
+  // ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Add <a href="https://t.ly/1_Ko4" target="_blank" rel="noopener">pause</a> implementation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">export function pause(game: Game) {
+  if (game.phase === Phase.PAUSED) {
+    game.phase = game.savedPhase;
+  } else {
+    game.savedPhase = game.phase;
+    game.phase = Phase.PAUSED;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it regarding the gameplay definitions. It&#8217;s time to focus on <a href="https://github.com/buchslava/qwik-columns/blob/final-devto-edition/src/components/game-play/game.tsx" target="_blank" rel="noopener">src/components/game-play/game.tsx</a></p>
+</div>
+<div class="paragraph">
+<p>There are the expected definitions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">// Levels definitions
+export enum Level {
+  SLOW = "SLOW",
+  NORMAL = "NORMAL",
+  FAST = "FAST",
+}
+// Connects levels with the interval speeds in milliseconds
+export const SPEEDS = {
+  [Level.SLOW]: 1000,
+  [Level.NORMAL]: 500,
+  [Level.FAST]: 200,
+};
+// Connects levels with the scores
+export const SCORES = {
+  [Level.SLOW]: 1,
+  [Level.NORMAL]: 2,
+  [Level.FAST]: 3,
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please, look at the following <a href="https://t.ly/C1JUS" target="_blank" rel="noopener">fragment of code</a>. We need to draw the actor also if the phase is <mark>PAUSED</mark> and <mark>DROP</mark>.</p>
+</div>
+<div class="paragraph">
+<p>There are the following changes in the <a href="https://t.ly/QuEWP" target="_blank" rel="noopener">store</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">export interface MainStore {
+  width: number;
+  height: number;
+  game: Game;
+  blockSize: number;
+  // Add the level
+  level: Level;
+  // We need to control intervalId (start, stop).
+  // It's important in the context of Controls (see above).
+  intervalId: any | null;
+  gameOverPopup: boolean;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and related changed for the initial state.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const store = useStore&lt;MainStore&gt;({
+  width: 0,
+  height: 0,
+  game: {
+    board: [...initData],
+    actor: {
+      state: [...initActor],
+      column: Math.floor(initData[0].length / 2),
+      row: -2,
+    },
+    // Start from INACTIVE instead MOVING.
+    // Now the game is inactive and the user should press Play button.
+    phase: Phase.INACTIVE,
+    // add this one...
+    savedPhase: Phase.INACTIVE,
+    nextActor: randomColors(3),
+    score: 0,
+    scores: SCORES,
+  },
+  blockSize: 0,
+  // initial level will be NORMAL
+  level: Level.NORMAL,
+  // add this one...
+  intervalId: null,
+  gameOverPopup: false,
+});</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_an_important_note_regarding_qwik">An important note regarding Qwik!</h3>
+<div class="paragraph">
+<p>At this point, I&#8217;d like to interrupt my telling and share one tricky Qwik feature with you. The following information has been taken from the official Qwik documentation.</p>
+</div>
+<div class="paragraph">
+<p>According to <a href="https://t.ly/JFZ6I" target="_blank" rel="noopener">Qwik Deep Objects</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">export const MyComp = component$(() =&gt; {
+  const store = useStore({
+    person: { first: null, last: null },
+    location: null,
+  });
+
+  store.location = { street: "main st" };
+
+  return (
+    &lt;section&gt;
+      &lt;p&gt;
+        {store.person.last}, {store.person.first}
+      &lt;/p&gt;
+      &lt;p&gt;{store.location.street}&lt;/p&gt;
+    &lt;/section&gt;
+  );
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above examples, Qwik will automatically wrap child objects person and location into a proxy and correctly create subscriptions on all deep properties.</p>
+</div>
+<div class="paragraph">
+<p>The wrapping behavior described above has one surprising side-effect. Writing and reading from a proxy auto wraps the object, which means that the identity of the object changes. This should normally not be an issue, but it is something that the developer should keep in mind.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">export const MyComp = component$(() =&gt; {
+  const store = useStore({ person: null });
+  const person = { first: "John", last: "Smith" };
+  store.person = person; // store.person auto wraps object into proxy
+
+  if (store.person !== person) {
+    // The consequence of auto wrapping is that the object identity changes.
+    console.log("store auto-wrapped person into a proxy");
+  }
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s continue and move all core logic to a separate <a href="https://t.ly/-JXhE" target="_blank" rel="noopener">moveTick function</a>. Please, read my comments there. Uncommented logic is the same as in the previous episode.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">// Create a separate function
+const moveTick = $(() =&gt; {
+  const game = store.game;
+
+  // Do nothing if the actor is under dropping, I'll explain it below.
+  if (game.phase === Phase.FLYING) {
+    return;
+  }
+
+  if (game.phase === Phase.MOVING) {
+    if (isNextMovePossible(game)) {
+      actorDown(game);
+    } else {
+      endActorSession(game);
+      // Pass the level.
+      if (isFinish(game, store.level)) {
+        game.phase = Phase.INACTIVE;
+        store.gameOverPopup = true;
+      } else {
+        game.phase = Phase.MATCH_REQUEST;
+      }
+    }
+    // If the current phase is DROP.
+  } else if (game.phase === Phase.DROP) {
+    // We actually don't need to change the current state of the game
+    // that's why we create a clone of the game
+    const gameClone = clone(game);
+
+    // Calculate how many steps should be passed to reach the bottom.
+    let steps = 0;
+    // Iterate until the next move is possible.
+    while (isNextMovePossible(gameClone)) {
+      // Move the actor (on the cloned game) one step down.
+      actorDown(gameClone);
+      // Increase the steps counter
+      steps++;
+    }
+    // Pass the related steps to the "render" function.
+    // It causes the DROP animation running. I'll explain it a bit later.
+    reRender(steps);
+    return;
+  } else if (game.phase === Phase.MATCH_REQUEST) {
+    // Pass the level
+    const matched = matching(game, store.level, true);
+    if (matched) {
+      game.phase = Phase.COLLAPSE_REQUEST;
+    } else {
+      doNextActor(game);
+      game.phase = Phase.MOVING;
+    }
+  } else if (game.phase === Phase.COLLAPSE_REQUEST) {
+    collapse(game);
+    game.phase = Phase.MATCH_REQUEST;
+  }
+
+  reRender();
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Add <a href="https://t.ly/9tYvP" target="_blank" rel="noopener">doDrop</a> function</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">  const doDrop = $(() =&gt; {
+    if (store.game.phase === Phase.MOVING) {
+      store.game.phase = Phase.DROP;
+    }
+  });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and add the related keys binding</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">  useOnDocument(
+    "keypress",
+    $((event) =&gt; {
+      const keyEvent = event as KeyboardEvent;
+      const { phase } = store.game;
+      if (phase !== Phase.MOVING) {
+        return;
+      }
+      if (keyEvent.code === "KeyA") {
+      // ...
+      } else if (keyEvent.code === "KeyS" || keyEvent.code === "Space") {
+        doDrop();
+      }
+      // ...
+    })
+  );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Attention! The part below is the most tricky here. Please, read my comments in the code carefully!</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s time to focus on modifications in <a href="https://t.ly/erc7E" target="_blank" rel="noopener">reRender</a> and <a href="https://t.ly/2BaRQ" target="_blank" rel="noopener">render</a> functions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">// Just added steps as an optional parameter.
+const reRender = $((steps?: number) =&gt; {
+  render(store.game, svgRef, store.width, store.height, store.blockSize, steps);
+});</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">export function render(
+  game: Game,
+  svgRef: Signal&lt;Element | undefined&gt;,
+  width: number,
+  height: number,
+  blockSize: number,
+  // New parameter
+  passThroughSteps?: number
+) {
+  // ...
+  // Also, render the actor if the current phase is PAUSED or DROP
+  if (
+    game.phase === Phase.MOVING ||
+    game.phase === Phase.PAUSED ||
+    game.phase === Phase.DROP
+  ) {
+    // ...
+    svg
+      .selectAll()
+      .data(actorData)
+      .enter()
+      .append("g")
+      .append("rect")
+      // All shapes related to the actor should have "could-fly" class.
+      // This class is a fake one and we use it for future animation
+      .attr("class", "could-fly")
+      // ...
+      .attr("stroke-width", 1);
+
+    // We need to run "flying" process if passThroughSteps is existing
+    if (passThroughSteps) {
+      // Set the phase.
+      // Now "flying process" will be simultaneous with the current interval,
+      // but the current interval's handler will ignore any activity;
+      // see the code under the following comment: "if the current phase is DROP"
+      game.phase = Phase.FLYING;
+
+      // This is a good example of D3 animation.
+      svg
+        // We need to select all shapes includes "could-fly" fake class (the whole actor)
+        .selectAll(".could-fly")
+        // Run animation.
+        // Pay attention! This process is asynchronous!
+        .transition()
+        // with 700ms duration
+        .duration(700)
+        // This aim of animation is moving the current actor
+        // to the Y-axis destination that equals
+        // current actor's Y + passThroughSteps * blockSize.
+        .attr("y", (d: any) =&gt; d.y + passThroughSteps * blockSize)
+        // don't mix with on('end', ...); it doesn't work in this case (D3 feature)
+        .end()
+        .then(() =&gt; {
+          // change the state of the game
+          // when asynchronous animation process has been finished
+          // move the actor down passThroughSteps for the current game
+          actorDown(game, passThroughSteps);
+          // let's move!
+          game.phase = Phase.MOVING;
+        });
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s briefly repeat the <mark>DROP animation</mark> concept.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the <mark>DROP</mark> action happens, we need to calculate how many steps the actor should fly (animation distance) to reach the bottom.</p>
+</li>
+<li>
+<p>Set the current phase to <mark>FLYING</mark>.</p>
+</li>
+<li>
+<p>Run animation when <mark>Y axis destination (vertical)</mark> of the actor equals <mark>current actor&#8217;s Y + passThroughSteps * blockSize</mark></p>
+</li>
+<li>
+<p>Wait for the end of the animation and move the actor down <mark>passThroughSteps</mark></p>
+</li>
+<li>
+<p>Set the phase back to <mark>MOVING</mark>
+That&#8217;s it about DROP.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a href="https://t.ly/aTel-" target="_blank" rel="noopener">useVisibleTask$</a> became much simpler because we moved all of the logic there to <mark>moveTick function</mark> above!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">useVisibleTask$(({ cleanup }: { cleanup: Function }) =&gt; {
+  setSvgDimension(containerRef, store);
+  // create the interval an save it in the store
+  // because we should be able to control this interval outside useVisibleTask$
+  // SPEEDS[store.level] describes the current game speed by the level
+  store.intervalId = setInterval(moveTick, SPEEDS[store.level]);
+  cleanup(() =&gt; clearInterval(store.intervalId));
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Some notes regarding <a href="https://t.ly/aAV2a" target="_blank" rel="noopener">the end</a> of the game.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">useTask$(({ track }: { track: Function }) =&gt; {
+  track(() =&gt; store.gameOverPopup);
+
+  // track gameOverPopup, if it fires then hide it (the related popup) after 5 seconds
+  if (store.gameOverPopup) {
+    setTimeout(() =&gt; {
+      store.gameOverPopup = false;
+    }, 5000);
+  }
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please, also, look at the related UI part of the code. The HTML block appears only if <mark>store.gameOverPopup</mark> is true. I guess, React guys should be familiar with this technique.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">{
+  store.gameOverPopup &amp;&amp; (
+    &lt;div class="fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 w-72 text-center max-w-sm p-6 bg-white text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-50"&gt;
+      GAME OVER
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The time finally came, and I&#8217;m glad to provide <a href="https://t.ly/3dF3a" target="_blank" rel="noopener">the way</a> how to use <mark>Controls</mark> components. Don&#8217;t worry. I&#8217;ll focus on the component&#8217;s details a bit later.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">&lt;Controls
+  game={store.game}
+  blockSize={15}
+  level={store.level}
+  onStart$={() =&gt; {
+    // start the game
+    init(store.game);
+    store.gameOverPopup = false;
+    store.game.phase = Phase.MOVING;
+  }}
+  onPause$={() =&gt; {
+    // pause the game
+    pause(store.game);
+  }}
+  onStop$={() =&gt; {
+    // stop the game
+    store.game.phase = Phase.INACTIVE;
+    store.gameOverPopup = true;
+  }}
+  // and also pass other activities
+  onLeft$={doLeft}
+  onRight$={doRight}
+  onSwap$={doSwap}
+  onDrop$={doDrop}
+  // including the level switching
+  onLevel$={(level: Level) =&gt; {
+    // update the level
+    store.level = level;
+    // clear the current interval if it's exists
+    if (store.intervalId !== null) {
+      clearInterval(store.intervalId);
+    }
+    // re-create the interval
+    store.intervalId = setInterval(moveTick, SPEEDS[store.level]);
+  }}
+/&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is <a href="https://github.com/buchslava/qwik-columns/blob/final-devto-edition/src/components/game-play/controls.tsx" target="_blank" rel="noopener">Controls</a> component.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import type { PropFunction, Signal } from "@builder.io/qwik";
+import { useSignal } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
+import * as d3 from "d3";
+import type { Game } from "./game-logic";
+import { Phase } from "./game-logic";
+import { Level } from "./game";
+
+interface ControlsProps {
+  game: Game;
+  onStart$: PropFunction&lt;() =&gt; void&gt;;
+  onPause$: PropFunction&lt;() =&gt; void&gt;;
+  onStop$: PropFunction&lt;() =&gt; void&gt;;
+  onLeft$: PropFunction&lt;() =&gt; void&gt;;
+  onRight$: PropFunction&lt;() =&gt; void&gt;;
+  onSwap$: PropFunction&lt;() =&gt; void&gt;;
+  onDrop$: PropFunction&lt;() =&gt; void&gt;;
+  onLevel$: PropFunction&lt;(level: Level) =&gt; void&gt;;
+  blockSize: number;
+  level: Level;
+}
+
+// This function is responsible for the "next actor" rendering
+export function renderNextActor(
+  data: string[],
+  size: number,
+  svgRef: Signal&lt;Element | undefined&gt;
+) {
+  // this logic is similar to the logic from
+  // https://github.com/buchslava/qwik-columns/blob/final-devto-edition/src/components/game-play/game.tsx#L56
+  if (!svgRef.value) {
+    return;
+  }
+  const svg = d3.select(svgRef.value);
+
+  svg.selectAll("*").remove();
+
+  svg
+    .append("svg")
+    .attr("width", size)
+    .attr("height", size * data.length)
+    .append("g")
+    .attr("transform", "translate(0,0)");
+
+  const displayData = data.map((d, i) =&gt; ({
+    value: d,
+    y: i * size,
+    size,
+  }));
+
+  svg
+    .selectAll()
+    .data(displayData)
+    .enter()
+    .append("g")
+    .append("rect")
+    .attr("x", 0)
+    .attr("width", (d) =&gt; d.size)
+    .attr("y", (d) =&gt; d.y)
+    .attr("height", (d) =&gt; d.size)
+    // @ts-ignore
+    .attr("fill", (d) =&gt; d3.color(d.value))
+    .attr("stroke", "#000000")
+    .attr("stroke-width", 1);
+}
+
+export default component$&lt;ControlsProps&gt;(
+  ({
+    onStart$,
+    onPause$,
+    onStop$,
+    onLeft$,
+    onRight$,
+    onSwap$,
+    onDrop$,
+    onLevel$,
+    game,
+    blockSize,
+    level,
+  }) =&gt; {
+    const svgRef = useSignal&lt;Element&gt;();
+
+    // run next actor rendering
+    renderNextActor(game.nextActor, blockSize, svgRef);
+
+    return (
+      &lt;div class="relative text-white w-72 h-48"&gt;
+        &lt;div class="pl-3 inset-x-0 top-0"&gt;
+          &lt;div class="mb-5 text-base lg:text-2xl md:text-xl font-extrabold font-mono"&gt;
+            SCORE: {game.score}
+          &lt;/div&gt;
+          &lt;div class="mb-5"&gt;
+            &lt;div class="bg-white w-32 pt-2 pb-2 flex justify-center"&gt;
+              // this is a SVG for the next actor rendering
+              &lt;svg
+                width={blockSize}
+                height={blockSize * game.nextActor.length}
+                ref={svgRef}
+              /&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          // We need to show "Start" button only if the phase is INACTIVE
+          {game.phase === Phase.INACTIVE &amp;&amp; (
+            &lt;div class="mb-5"&gt;
+              &lt;button
+                // use the passed (input property) function
+                onClick$={onStart$}
+                type="button"
+                class="font-mono px-8 py-3 w-32 text-white bg-pink-300 rounded focus:outline-none"
+              &gt;
+                START
+              &lt;/button&gt;
+            &lt;/div&gt;
+          )}
+          // We need to show "Stop" and "Pause" button only if the phase is NOT
+          INACTIVE
+          {game.phase !== Phase.INACTIVE &amp;&amp; (
+            &lt;div class="mb-5"&gt;
+              &lt;button
+                // use the passed (input property) function
+                onClick$={onPause$}
+                type="button"
+                class="font-mono px-8 py-3 w-32 text-white bg-blue-300 rounded focus:outline-none"
+              &gt;
+                {game.phase === Phase.PAUSED ? "GO" : "PAUSE"}
+              &lt;/button&gt;
+            &lt;/div&gt;
+          )}
+          {game.phase !== Phase.INACTIVE &amp;&amp; (
+            &lt;div class="mb-5"&gt;
+              &lt;button
+                // use the passed (input property) function
+                onClick$={onStop$}
+                type="button"
+                class="font-mono px-8 py-3 w-32 text-white bg-gray-300 rounded focus:outline-none"
+              &gt;
+                STOP
+              &lt;/button&gt;
+            &lt;/div&gt;
+          )}
+        &lt;/div&gt;
+        &lt;div class="pl-3 mb-5 flex w-36 justify-between"&gt;
+          // 1-st Slow level
+          &lt;button
+            onClick$={() =&gt; {
+              // pass SLOW to the function in the parent component
+              onLevel$(Level.SLOW);
+            }}
+            type="button"
+            // we use dynamic class with Tailwind-based classes to highlight the current level
+            class={[
+              "w-10 py-3 text-white rounded focus:outline-none",
+              level === Level.SLOW ? "bg-green-700" : "bg-yellow-500",
+            ]}
+            disabled={level === Level.SLOW}
+          &gt;
+            1
+          &lt;/button&gt;
+          // 2-nd Normal level
+          &lt;button
+            onClick$={() =&gt; {
+              // pass NORMAL to the function in the parent component
+              onLevel$(Level.NORMAL);
+            }}
+            type="button"
+            class={[
+              "w-10 py-3 text-white rounded focus:outline-none",
+              level === Level.NORMAL ? "bg-green-700" : "bg-yellow-500",
+            ]}
+            disabled={level === Level.NORMAL}
+          &gt;
+            2
+          &lt;/button&gt;
+          // 3-rd Fast level
+          &lt;button
+            onClick$={() =&gt; {
+              // pass FAST to the function in the parent component
+              onLevel$(Level.FAST);
+            }}
+            type="button"
+            class={[
+              "w-10 py-3 text-white rounded focus:outline-none",
+              level === Level.FAST ? "bg-green-700" : "bg-yellow-500",
+            ]}
+            disabled={level === Level.FAST}
+          &gt;
+            3
+          &lt;/button&gt;
+        &lt;/div&gt;
+        // Display other control buttons if the phase is NOT INACTIVE
+        {game.phase !== Phase.INACTIVE &amp;&amp; (
+          &lt;div class="pl-3 grid grid-rows-3 grid-cols-2 gap-4"&gt;
+            // Swap the actor colors (alternative "W" key)
+            &lt;div class="col-span-2"&gt;
+              &lt;button
+                onClick$={onSwap$}
+                type="button"
+                class="text-2xl py-3 w-32 text-white bg-gray-400 rounded focus:outline-none"
+              &gt;
+                W
+              &lt;/button&gt;
+            &lt;/div&gt;
+            // Move the actor left (alternative "A" key)
+            &lt;div class="w-32 grid grid-flow-col justify-stretch"&gt;
+              &lt;button
+                onClick$={onLeft$}
+                type="button"
+                class="text-2xl mr-2 py-3 text-white bg-green-300 rounded focus:outline-none"
+              &gt;
+                A
+              &lt;/button&gt;
+              // Move the actor right (alternative "D" key)
+              &lt;button
+                onClick$={onRight$}
+                type="button"
+                class="text-2xl ml-2 py-3 text-white bg-green-300 rounded focus:outline-none"
+              &gt;
+                D
+              &lt;/button&gt;
+            &lt;/div&gt;
+            // Drop the actor (alternative "W" key)
+            &lt;div class="col-span-2"&gt;
+              &lt;button
+                onClick$={onDrop$}
+                type="button"
+                class="text-2xl py-3 w-32 text-white bg-gray-400 rounded focus:outline-none"
+              &gt;
+                S
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        )}
+      &lt;/div&gt;
+    );
+  }
+);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_footer">The Footer</h3>
+<div class="paragraph">
+<p>Finally, lets make the last stitch. We need to set the <a href="https://t.ly/FuIn3" target="_blank" rel="noopener">footer</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">return (
+  &lt;div class="flex justify-center w-screen h-screen pt-5" ref={containerRef}&gt;
+    {store.gameOverPopup &amp;&amp; (
+      &lt;div class="fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 w-72 text-center max-w-sm p-6 bg-white text-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 z-50"&gt;
+        GAME OVER
+      &lt;/div&gt;
+    )}
+    &lt;div&gt;
+      &lt;svg
+        class="game-area"
+        width={store.width}
+        height={store.height}
+        ref={svgRef}
+      /&gt;
+    &lt;/div&gt;
+    &lt;Controls
+    // ...
+    /&gt;
+    &lt;Footer /&gt;
+  &lt;/div&gt;
+);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here the component&#8217;s code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { component$ } from "@builder.io/qwik";
+
+export default component$(() =&gt; {
+  // The year of copyright should be dynamic.
+  const year = new Date().getFullYear();
+
+  return (
+    &lt;div class="fixed bottom-0 left-0 w-full h-8 text-center text-white bg-gray-600"&gt;
+      // see my comment below
+      &lt;span class="hidden lg:inline"&gt;
+        &lt;span class="text-red-500 font-bold font-mono text-xl pr-2"&gt;C&lt;/span&gt;
+        &lt;span class="text-yellow-500 font-bold font-mono text-xl pr-2"&gt;O&lt;/span&gt;
+        &lt;span class="text-green-500 font-bold font-mono text-xl pr-2"&gt;L&lt;/span&gt;
+        &lt;span class="text-blue-500 font-bold font-mono text-xl pr-2"&gt;U&lt;/span&gt;
+        &lt;span class="text-teal-500 font-bold font-mono text-xl pr-2"&gt;M&lt;/span&gt;
+        &lt;span class="text-fuchsia-500 font-bold font-mono text-xl pr-2"&gt;N&lt;/span&gt;
+        &lt;span class="text-lime-500 font-bold font-mono text-xl pr-7"&gt;S&lt;/span&gt;
+      &lt;/span&gt;
+      &lt;span class="text-sm text-white"&gt;
+        &lt;a
+          href="https://valor-software.com/"
+          class="no-underline hover:underline"
+          target="_blank"
+        &gt;
+          Valor Software
+        &lt;/a&gt;{" "}
+        edition. (C) {year},{" "}
+        &lt;a
+          href="https://dev.to/buchslava"
+          class="no-underline hover:underline"
+          target="_blank"
+        &gt;
+          Vyacheslav Chub
+        &lt;/a&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+  );
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Tailwind classes `hidden lg:inline' there means that we show "C O L U M N S" spans only on large screens. You can gain more knowledge on Tailwind Responsive Design <a href="https://tailwindcss.com/docs/responsive-design" target="_blank" rel="noopener">here</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_its_time_to_summarize_our_decisions">It&#8217;s time to summarize our decisions!</h3>
+<div class="paragraph">
+<p><mark>git clone <a href="mailto:git@github.com">git@github.com</a>:buchslava/qwik-columns.git
+cd qwik-columns
+git checkout final-devto-edition
+npm ci
+npm start</mark></p>
+</div>
+<div class="paragraph">
+<p><mark>Start the game. Switch the speed</mark></p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-the-final-episode/img2.gif" alt="img2">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>Core controls</mark></p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-the-final-episode/img3.gif" alt="img3">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>The end of the game</mark></p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-the-final-episode/img4.gif" alt="img4">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>The responsive footer</mark></p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-the-final-episode/img5.gif" alt="img5">
+</div>
+</div>
+<div class="paragraph">
+<p>Enjoy the <a href="https://github.com/buchslava/qwik-columns/tree/final-devto-edition" target="_blank" rel="noopener">source</a>
+Enjoy the <a href="https://buchslava.github.io/qwik-columns/" target="_blank" rel="noopener">game</a></p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-the-final-episode/img6.jpeg" alt="img6">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ps_during_the_game_implementation_i_got_pleasure_every_moment_i_faced_qwik_functionality_and_documentation_thats_why_i_want_to_thank_builder_io_for_the_perfect_solution">PS: During the game implementation, I got pleasure every moment I faced <a href="https://qwik.builder.io/" target="_blank" rel="noopener">Qwik</a> functionality and documentation. That&#8217;s why I want to thank <a href="https://www.builder.io/Builder.io" target="_blank" rel="noopener">Builder.io</a> for the perfect solution!</h4>
+
+</div>
+</div>
+</div>
+</div>
