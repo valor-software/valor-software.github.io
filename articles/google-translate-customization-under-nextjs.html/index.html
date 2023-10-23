@@ -1,0 +1,640 @@
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/google-translate-customization-under-nextjs.html"
+            },
+            "headline": "Google Translate customization under NextJS",
+            "description": "Multilingual Implementation in NextJS Solution",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/google-translate-customization-under-nextjs/main_google_translate_customization_under_nextjs.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Vyacheslav Chub"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Mon Oct 23 2023 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+	<meta charset="utf-8">
+	<title>Google Translate customization under NextJS</title>
+	<base href="/">
+	<meta name="robots" content="all">
+	<meta property="og:type" content="website">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:image" content="/assets/img/valor-img/valor_social.jpg">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@ValorSoft">
+	<meta name="twitter:creator" content="@ValorSoft">
+
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<script>
+      window.intercomSettings = {
+          app_id: "brxsww1a"
+      };
+	</script>
+	<script src="assets/js/intercom-facade.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN"></script>
+	<script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+	</script>
+	<script type="text/javascript">
+      window.onload = function () {
+          if (window.self !== window.top) {
+              document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+      };
+	</script>
+<style>:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{--swiper-navigation-size:44px}:root{--swiper-theme-color:#007aff}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.7040e243e9713576.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.7040e243e9713576.css"></noscript><style>footer[_ngcontent-ng-c3396914408]{font-family:Work Sans,Roboto,Arial,"sans-serif"}.subscribe-title[_ngcontent-ng-c3396914408]{font-weight:700;font-size:24px;line-height:28px;color:#e3e3e3;text-align:center}.subscribe-success-msg[_ngcontent-ng-c3396914408]{font-weight:700;font-size:16px;line-height:20px;color:#e3e3e3;text-align:center;margin-top:12px}.img[_ngcontent-ng-c3396914408]{width:32px;height:32px}</style><style>[_nghost-ng-c1371038418]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s _ngcontent-ng-c1371038418_fadein ease-in-out both}.btn[_ngcontent-ng-c1371038418]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes _ngcontent-ng-c1371038418_fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px;border-radius:3rem}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}</style><meta name="description" content="Multilingual Implementation in NextJS Solution"><meta property="og:title" content="Google Translate customization under NextJS"><meta property="og:description" content="Multilingual Implementation in NextJS Solution"><meta property="twitter:title" content="Google Translate customization under NextJS"><meta property="twitter:description" content="Multilingual Implementation in NextJS Solution"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+<valor-software-site-base-root _nghost-ng-c6223672="" ng-version="16.0.4"><top-menu _ngcontent-ng-c6223672=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-ng-c6223672="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ng-c6223672=""></router-outlet><article _nghost-ng-c198896663=""><section _ngcontent-ng-c198896663="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-ng-c198896663="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-ng-c198896663="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Google Translate Customization Under Nextjs </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-ng-c198896663="" class="w-full flex flex-col items-center md:mt-12 lg:mt-32 max-w-full lg:max-w-75% text-center text-light_title_col"><p _ngcontent-ng-c198896663="" class="text-20 mb-4">October 23, 2023</p><p _ngcontent-ng-c198896663="" class="text-large font-bold md:text-64 leading-66 mb-8 md:mb-14">Google Translate customization under NextJS</p><div _ngcontent-ng-c198896663="" class="w-70 h-70 rounded-full overflow-hidden mb-4"><img _ngcontent-ng-c198896663="" class="w-full h-full object-cover" src="assets/articles/google-translate-customization-under-nextjs/Slava_Chub.jpg" alt="Vyacheslav Chub"></div><!----><!----><!----><p _ngcontent-ng-c198896663="" class="md:text-large text-24 mb-4">Vyacheslav Chub</p><!----><!----><!----><p _ngcontent-ng-c198896663="" class="text-20">Full Stack Software Engineer</p><!----></div></div></section><section _ngcontent-ng-c198896663="" class="landing-section"><div _ngcontent-ng-c198896663="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-ng-c198896663="" class="max-w-full"><div class="paragraph">
+<p>Traditionally, I’d like to start the article with the following. A few months ago, I faced a situation when my customer asked for a multi-language feature on a NextJS-based solution. The issue is that providing all local content with its vast volume and limited budget is impossible.</p>
+</div>
+<div class="paragraph">
+<p>In other words, we have only one local version, say, English, and we need to translate it automatically to some others, say, Italian, Spanish, French, etc. But this isn’t over. The future language switcher should be friendly with the current UI and 100% under the developer’s control.</p>
+</div>
+<div class="paragraph">
+<p>I started thinking and found that only <a href="https://stackoverflow.com/questions/12243818/adding-google-translate-to-a-web-site" target="_blank" rel="noopener">one approach</a> was suitable. It doesn’t require additional settings on the Google Console side and allows us to translate to any language without pain.</p>
+</div>
+<div class="paragraph">
+<p>You can <a href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_google_translate" target="_blank" rel="noopener">try the solution</a>, by the way.</p>
+</div>
+<div class="paragraph">
+<p>However, the following problems still need to be solved.</p>
+</div>
+<div class="paragraph">
+<p>Not the fact that the solution above, as it is, matched with NextJS specific.
+The standard dropdown component looks too generic and is not customizable as the customer requested.
+I don’t want to put my routine of the research process on your plate, but describe the final decision step by step. If you want to face with my final solution now, please look at <a href="https://github.com/buchslava/nextjs-gtrans-demo" class="bare">https://github.com/buchslava/nextjs-gtrans-demo</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let’s get started with the explanation!</p>
+</div>
+<div class="sect1">
+<h2 id="_bootstrapping">Bootstrapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a new NextJS project.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npx create-next-app@latest</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">What is your project named? -&gt; nextjs-gtrans-demo
+Would you like to use TypeScript? -&gt; Yes
+Would you like to use ESLint? -&gt; No
+Would you like to use Tailwind CSS? -&gt; Yes
+Would you like to use `src/` directory? -&gt; Yes
+Would you like to use App Router? -&gt; No
+Would you like to customize the default import alias? -&gt; No</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also, install one extra dependency.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm i nookies --save</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can run the app</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm run dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It’s time to implement the solution into the app. Please don’t worry if you don’t find some expected components during placing the code. Future steps will resolve it.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_main_part">The main part</h3>
+<div class="paragraph">
+<p>Let’s change content in <a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/pages/index.tsx" target="_blank" rel="noopener">src/pages/index.tsx</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { LanguageSwitcher } from "./lang-switcher";
+
+export default function Home() {
+  return (
+    &lt;div className="h-screen flex flex-col"&gt;
+      &lt;header className="w-full pt-4"&gt;
+        &lt;LanguageSwitcher /&gt;
+      &lt;/header&gt;
+      &lt;div className="flex flex-col flex-1 overflow-auto"&gt;
+        &lt;hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" /&gt;
+        &lt;article&gt;
+          &lt;h2 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl dark:text-white"&gt;
+            What is Lorem Ipsum?
+          &lt;/h2&gt;
+          &lt;p className="mb-7"&gt;
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry....
+          &lt;/p&gt;
+        &lt;/article&gt;
+        // This is a part of the content. Please take the full version for the original solution!
+      &lt;/div&gt;
+      &lt;footer&gt;
+        &lt;p className="mt-3"&gt;
+          &lt;a
+            href="https://www.lipsum.com/"
+            target="_blank"
+            className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+          &gt;
+            Source
+            &lt;svg
+              className="w-3.5 h-3.5 ml-2"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            &gt;
+              &lt;path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I recommend temporarily forgetting the <mark>LanguageSwitcher</mark> component and focusing on the content mentioned above. The file contains three logical parts.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The header includes the language switcher component (will be described later)</p>
+</li>
+<li>
+<p>The central part includes four paragraphs regarding <mark>Lorem Ipsum</mark> explanation</p>
+</li>
+<li>
+<p>The footer contains a button as a link to the source of the content</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let’s change <a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/pages/_document.tsx" target="_blank" rel="noopener">src/pages/_document.tsx</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
+
+export default function Document() {
+  return (
+    &lt;Html&gt;
+      &lt;Head&gt;
+        &lt;Script
+          src="/assets/scripts/lang-config.js"
+          strategy="beforeInteractive"
+        /&gt;
+        &lt;Script
+          src="/assets/scripts/translation.js"
+          strategy="beforeInteractive"
+        /&gt;
+        &lt;Script
+          src="//translate.google.com/translate_a/element.js?cb=TranslateInit"
+          strategy="afterInteractive"
+        /&gt;
+      &lt;/Head&gt;
+      &lt;body&gt;
+        &lt;Main /&gt;
+        &lt;NextScript /&gt;
+      &lt;/body&gt;
+    &lt;/Html&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main difference between this file and the default one is a set of three scripts below.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/public/assets/scripts/lang-config.js" target="_blank" rel="noopener">public/assets/scripts/lang-config.js</a> contains custom languages settings</p>
+</li>
+<li>
+<p><a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/public/assets/scripts/translation.js" target="_blank" rel="noopener">public/assets/scripts/translation.js</a> contains <mark>TranslateInit</mark> callback function definition that will be used as a parameter to the main translation script</p>
+</li>
+<li>
+<p><mark>//translate.google.com/translate_a/element.js?cb=TranslateInit</mark> - the main translation script by Google. Pay attention on <mark>cb=TranslateInit</mark>. The callback function must be passed here.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_scripts">The scripts</h3>
+<div class="paragraph">
+<p>It’s time to provide the code of the scripts mentioned above.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/public/assets/scripts/lang-config.js" target="_blank" rel="noopener">public/assets/scripts/lang-config.js</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">window.__GOOGLE_TRANSLATION_CONFIG__ = {
+  languages: [
+    { title: "English", name: "en" },
+    { title: "Deutsch", name: "de" },
+    { title: "Español", name: "es" },
+    { title: "Français", name: "fr" },
+  ],
+  defaultLanguage: "en",
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, we declared four languages to use.
+<a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/public/assets/scripts/translation.js" target="_blank" rel="noopener">public/assets/scripts/translation.js</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">function TranslateInit() {
+  if (!window.__GOOGLE_TRANSLATION_CONFIG__) {
+    return;
+  }
+  new google.translate.TranslateElement({
+    pageLanguage: window.__GOOGLE_TRANSLATION_CONFIG__.defaultLanguage,
+  });
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is a callback definition that includes <mark>google.translate.TranslateElement</mark> call. If we don’t have the configuration, we pass it to Google’s script nothing i.e. an empty callback. Otherwise, we call <mark>google.translate.TranslateElement</mark> and pass the original content language.</p>
+</div>
+<div class="paragraph">
+<p>And it’s finally time to provide and explain the most critical part of the solution. I’m talking about the <mark>LanguageSwitcher</mark> mentioned before.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_languageswitcher_component">The LanguageSwitcher component</h3>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/components/lang-switcher.tsx" target="_blank" rel="noopener">src/components/lang-switcher.tsx</a>
+Please, pay attention to the comments inside the code below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { useEffect, useState } from "react";
+import { parseCookies, setCookie } from "nookies";
+
+// The following cookie name is important because it's Google-predefined for the translation engine purpose
+const COOKIE_NAME = "googtrans";
+
+// We should know a predefined nickname of a language and provide its title (the name for displaying)
+interface LanguageDescriptor {
+  name: string;
+  title: string;
+}
+
+// The following definition describes typings for JS-based declarations in public/assets/scripts/lang-config.js
+declare global {
+  namespace globalThis {
+    var __GOOGLE_TRANSLATION_CONFIG__: {
+      languages: LanguageDescriptor[];
+      defaultLanguage: string;
+    };
+  }
+}
+
+const LanguageSwitcher = () =&gt; {
+  const [currentLanguage, setCurrentLanguage] = useState&lt;string&gt;();
+  const [languageConfig, setLanguageConfig] = useState&lt;any&gt;();
+
+  // When the component has initialized, we must activate the translation engine the following way.
+  useEffect(() =&gt; {
+    // 1. Read the cookie
+    const cookies = parseCookies()
+    const existingLanguageCookieValue = cookies[COOKIE_NAME];
+
+    let languageValue;
+    if (existingLanguageCookieValue) {
+      // 2. If the cookie is defined, extract a language nickname from there.
+      const sp = existingLanguageCookieValue.split("/");
+      if (sp.length &gt; 2) {
+        languageValue = sp[2];
+      }
+    }
+    // 3. If __GOOGLE_TRANSLATION_CONFIG__ is defined and we still not decided about languageValue, let's take a current language from the predefined defaultLanguage below.
+    if (global.__GOOGLE_TRANSLATION_CONFIG__ &amp;&amp; !languageValue) {
+      languageValue = global.__GOOGLE_TRANSLATION_CONFIG__.defaultLanguage;
+    }
+    if (languageValue) {
+      // 4. Set the current language if we have a related decision.
+      setCurrentLanguage(languageValue);
+    }
+    // 5. Set the language config.
+    if (global.__GOOGLE_TRANSLATION_CONFIG__) {
+      setLanguageConfig(global.__GOOGLE_TRANSLATION_CONFIG__);
+    }
+  }, []);
+
+  // Don't display anything if current language information is unavailable.
+  if (!currentLanguage || !languageConfig) {
+    return null;
+  }
+
+  // The following function switches the current language
+  const switchLanguage = (lang: string) =&gt; () =&gt; {
+    // We just need to set the related cookie and reload the page
+    // "/auto/" prefix is Google's definition as far as a cookie name
+    setCookie(null, COOKIE_NAME, "/auto/" + lang)
+    window.location.reload();
+  };
+
+  return (
+    &lt;div className="text-center notranslate"&gt;
+      {languageConfig.languages.map((ld: LanguageDescriptor, i: number) =&gt; (
+        &lt;&gt;
+          {currentLanguage === ld.name ||
+          (currentLanguage === "auto" &amp;&amp;
+            languageConfig.defaultLanguage === ld) ? (
+            &lt;span key={`l_s_${ld}`} className="mx-3 text-orange-300"&gt;
+              {ld.title}
+            &lt;/span&gt;
+          ) : (
+            &lt;a
+              key={`l_s_${ld}`}
+              onClick={switchLanguage(ld.name)}
+              className="mx-3 text-blue-300 cursor-pointer hover:underline"
+            &gt;
+              {ld.title}
+            &lt;/a&gt;
+          )}
+        &lt;/&gt;
+      ))}
+    &lt;/div&gt;
+  );
+};
+
+export { LanguageSwitcher, COOKIE_NAME };</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pay attention to <mark>notranslate</mark> class in the root div before. This is also Google’s definition. It means that all of the content inside should not be translated. It’s crucial because language titles should stay untouched, i.e., as they are.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_working_principles">Working principles</h3>
+<div class="paragraph">
+<p>It’s time to gather all the information above and explain how the solution works.</p>
+</div>
+<div class="paragraph">
+<p><strong>The start point is placed in <a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/pages/_document.tsx" target="_blank" rel="noopener">src/pages/_document.tsx</a></strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
+
+export default function Document() {
+  return (
+    &lt;Html&gt;
+      &lt;Head&gt;
+        &lt;Script
+          src="/assets/scripts/lang-config.js"
+          strategy="beforeInteractive"
+        /&gt;
+        &lt;Script
+          src="/assets/scripts/translation.js"
+          strategy="beforeInteractive"
+        /&gt;
+        &lt;Script
+          src="//translate.google.com/translate_a/element.js?cb=TranslateInit"
+          strategy="afterInteractive"
+        /&gt;
+      &lt;/Head&gt;
+      &lt;body&gt;
+        &lt;Main /&gt;
+        &lt;NextScript /&gt;
+      &lt;/body&gt;
+    &lt;/Html&gt;
+  );
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_there_are_three_scripts_there">There are three scripts there</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The first one contains language configuration</p>
+</li>
+<li>
+<p>The second one contains a callback with the translation logic runner</p>
+</li>
+<li>
+<p>Standard Google’s script gets the callback described before and runs it.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Pay attention to the following facts.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We use Script tag from <mark>next/script</mark> because of NextJS ;)</p>
+</li>
+<li>
+<p>We use <mark>strategy="beforeInteractive"</mark> for a couple of first scripts</p>
+</li>
+<li>
+<p>We use <mark>strategy="afterInteractive"</mark> for the last one</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It’s important. More information regarding the above you can find <a href="https://nextjs.org/docs/pages/building-your-application/optimizing/scripts" target="_blank" rel="noopener">here</a>. Let me provide you some related theory.</p>
+</div>
+<div class="paragraph">
+<p><strong>beforeInteractive: Load the script before any Next.js code and before any page hydration occurs.</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>afterInteractive: (default) Load the script early but after some hydration on the page occurs.</strong></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_happens_if_the_user_presses_a_language_on_languageswitcher">What happens if the user presses a language on <mark>LanguageSwitcher</mark>?</h3>
+<div class="paragraph">
+<p>It’s very easy. When the user presses a new language link, say, for Spanish language, <mark>switchLanguage</mark> function described above sets <mark>/auto/es</mark> value for <mark>googtrans</mark> cookie. This is a message to the translation engine that Spain-translated content is expected. After that <mark>switchLanguage</mark> reloads the page, and we will see the Spanish content. Google Translate did this job!</p>
+</div>
+<div class="paragraph">
+<p>That’s it regarding the main flow. But let me focus on some additional important stuff.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">Conclusion</h3>
+<div class="paragraph">
+<p>Let’s run the solution</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm run dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and switch the language, say, Deutsch. However, the issue is that the standard Google Translate bar is still on top.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/google-translate-customization-under-nextjs/img1.png" alt="img1">
+</div>
+</div>
+<div class="paragraph">
+<p>We definitely ought to fix it. Let’s add a couple of the following changes to <a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/styles/globals.css" target="_blank" rel="noopener">src/styles/globals.css</a></p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/google-translate-customization-under-nextjs/img2.png" alt="img2">
+</div>
+</div>
+<div class="paragraph">
+<p>Much better now!</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/google-translate-customization-under-nextjs/img3.png" alt="img3">
+</div>
+</div>
+<div class="paragraph">
+<p>One of the tastiest features of NextJS is <a href="https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation" target="_blank" rel="noopener">Static Site Generation (SSG)</a>. Let’s test SSG on this solution.</p>
+</div>
+<div class="paragraph">
+<p>We need to add <mark>ssg</mark> script into <mark>package.json</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code"> "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "ssg": "next build &amp;&amp; next export",
+    "start": "next start",
+    "lint": "next lint"
+  },</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s build a static version.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm run ssg
+
+&gt; nextjs-gtrans-demo@0.1.0 ssg
+&gt; next build &amp;&amp; next export
+
+ ✓ Linting and checking validity of types
+ ✓ Creating an optimized production build
+ ✓ Compiled successfully
+ ✓ Collecting page data
+ ✓ Generating static pages (3/3)
+ ✓ Finalizing page optimization
+
+Route (pages)                              Size     First Load JS
+┌ ○ /                                      4.24 kB        82.1 kB
+├   /_app                                  0 B            77.9 kB
+├ ○ /404                                   181 B            78 kB
+└ λ /api/hello                             0 B            77.9 kB
++ First Load JS shared by all              80.1 kB
+  ├ chunks/framework-66d32731bdd20e83.js   45.2 kB
+  ├ chunks/main-12e9c77dbbe57e7c.js        31.5 kB
+  ├ chunks/pages/_app-3cfebadf4e2e7ae1.js  298 B
+  ├ chunks/webpack-5c046346608af636.js     807 B
+  └ css/24fee595fee43abd.css               2.29 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+...........
+   Copying "public" directory
+ ✓ Exporting (3/3)
+Export successful. Files written to /Users/slava/Desktop/projects11/nextjs-gtrans-demo/out</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can find the static version in <mark>out</mark> folder.</p>
+</div>
+<div class="paragraph">
+<p>Let’s test it. If don’t have <mark>http-server</mark> installed, please install it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm i -g http-server</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">cd ./out
+http-server</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/google-translate-customization-under-nextjs/img4.gif" alt="img4">
+</div>
+</div>
+<div class="paragraph">
+<p>The final solution is <a href="https://github.com/buchslava/nextjs-gtrans-demo" target="_blank" rel="noopener">here</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_may_the_google_translate_nextjs_and_force_be_with_you">May the Google Translate, NextJS, and Force be with you!</h2>
+<div class="sectionbody">
+
+</div>
+</div></div></div></section><!----><section _ngcontent-ng-c198896663="" class="landing-section"><h1 _ngcontent-ng-c198896663="" class="main-title">More Articles</h1><div _ngcontent-ng-c198896663="" class="container"><blog-preview _ngcontent-ng-c198896663=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/exploring-asynchronous-programming-approaches-in-python-mastering-asynchronous-programming-in-python" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/exploring-asynchronous-programming-approaches-in-python-mastering-asynchronous-programming-in-python/Main_Asynchronous_programming.png" alt="Exploring Asynchronous Programming Approaches in Python (Mastering Asynchronous Programming in Python)"></div><div class="text-container"><p>Exploring Asynchronous Programming Approaches in Python (Mastering Asynchronous Programming in Python)</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/the-interview-under-the-hood" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/the-interview-under-the-hood/Main-the-interview-under-the-hood.png" alt="The Interview Under the Hood"></div><div class="text-container"><p>The Interview Under the Hood</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/game-n-qwik-the-final-episode" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/game-n-qwik-the-final-episode/Main-game-n-qwik-the-final-episode.png" alt="Game-n-Qwik. The Final Episode."></div><div class="text-container"><p>Game-n-Qwik. The Final Episode.</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----></div><app-footer _ngcontent-ng-c6223672="" _nghost-ng-c3396914408=""><footer _ngcontent-ng-c3396914408="" class="mx-11 xl:mx-28 mb-6"><div _ngcontent-ng-c3396914408="" class="w-full flex flex-col lg:flex-row items-center lg:items-start border-t-2 border-placeholder_col pt-16 pb-10"><div _ngcontent-ng-c3396914408="" class="flex flex-col items-center lg:items-start order-3 lg:order-1 w-full lg:w-2/6 mr-0 lg:mr-8 mt-10 lg:mt-0"><a _ngcontent-ng-c3396914408="" routerlink="." class="cursor-pointer" href="/"><img _ngcontent-ng-c3396914408="" src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-14 w-70 lg:w-full"></a><span _ngcontent-ng-c3396914408="" class="m-0 text-header_font_col text-sm pt-4">Valor Labs Inc.</span><span _ngcontent-ng-c3396914408="" class="m-0 text-center text-header_font_col text-sm pt-3 w-48 lg:text-left">8 The Green, Suite 300 Dover DE 19901</span><span _ngcontent-ng-c3396914408="" class="m-0 text-header_font_col text-sm pt-3">© 2023, Valor Software All Rights Reserved</span><a _ngcontent-ng-c3396914408="" routerlink="/privacy-policy" class="m-0 text-header_font_col text-sm link pt-3" href="/privacy-policy">Privacy Policy </a></div><div _ngcontent-ng-c3396914408="" class="flex flex-col items-center justify-center order-1 lg:order-2 w-full lg:w-2/6 mr-0 lg:mr-8"><span _ngcontent-ng-c3396914408="" class="subscribe-title w-full">Subscribe to our newsletter now</span><form _ngcontent-ng-c3396914408="" novalidate="" action="https://valor-software.us6.list-manage.com/subscribe/post?u=ec02b86e27ea826fc9590dc10&amp;id=a7fdce3c62&amp;f_id=00c82fe3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="flex flex-col items-start mt-6 w-full"><div _ngcontent-ng-c3396914408="" class="flex flex-col lg:flex-row w-full"><input _ngcontent-ng-c3396914408="" type="email" placeholder="Enter email" name="EMAIL" id="mce-EMAIL" class="text-input w-full lg:w-9/12 mr-0 lg:mr-4 px-3 py-2 ng-untouched ng-pristine ng-invalid"><div _ngcontent-ng-c3396914408="" hidden=""><input _ngcontent-ng-c3396914408="" type="hidden" name="tags" value="3376148"></div><div _ngcontent-ng-c3396914408="" aria-hidden="true" style="position: absolute; left: -5000px;"><input _ngcontent-ng-c3396914408="" type="text" name="b_ec02b86e27ea826fc9590dc10_a7fdce3c62" tabindex="-1"></div><input _ngcontent-ng-c3396914408="" type="submit" name="subscribe" id="mc-embedded-subscribe" value="Subscribe" class="btn-pink-border w-full lg:w-auto text-base mt-4 lg:mt-0" disabled=""></div><!----><!----></form><div _ngcontent-ng-c3396914408="" class="flex items-center mt-10 w-full"><button _ngcontent-ng-c3396914408="" type="button" class="btn-pink text-base flex items-center justify-center w-full"> Get in touch </button></div></div><div _ngcontent-ng-c3396914408="" class="flex w-full lg:w-2/6 justify-center mt-11 lg:mt-0 order-2 lg:order-3"><div _ngcontent-ng-c3396914408="" class="flex flex-wrap justify-center w-full lg:max-w-[240px]"><a _ngcontent-ng-c3396914408="" href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="flex justify-center text-header_font_co mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/linkedin.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/instagram.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/twitter.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/dribble.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/behance.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/facebook.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.youtube.com/@valorsoftware?app=desktop" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/youtube.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://dev.to/valorsoftwaretech" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/devto.svg" alt="" class="img"></a></div></div></div></footer></app-footer><!----><cookie-consent-banner _ngcontent-ng-c6223672="" _nghost-ng-c1371038418=""><div _ngcontent-ng-c1371038418="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-ng-c1371038418="" class="flex flex-col"><span _ngcontent-ng-c1371038418="" class="text-20">This website uses cookies.</span><span _ngcontent-ng-c1371038418="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-ng-c1371038418="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-ng-c1371038418="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-ng-c1371038418="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
+<script async="" src="assets/js/prettify.min.js"></script>
+<script id="ScullyIO-transfer-state"></script><script src="runtime.712a59ccfefbc239.js" type="module"></script><script src="polyfills.2066255b7190fd43.js" type="module"></script><script src="main.54cffa34e22a5883.js" type="module"></script>
+
+</body></html>
