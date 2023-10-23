@@ -1,0 +1,12 @@
+{
+"title": "The Interview Under the Hood",
+"order": 80,
+"domains": ["dev_quality_assurance"],
+"language": "en",
+"bgImg": "assets/articles/the-interview-under-the-hood/Main-the-interview-under-the-hood.png",
+"authorImg": "assets/articles/the-interview-under-the-hood/Slava_Chub.jpg" ,
+"author": "Vyacheslav Chub",
+"position": "Full Stack Software Engineer",
+"date": "Thu Aug 31 2023 10:45:55 GMT+0000 (Coordinated Universal Time)",
+"seoDescription": "Challenges of Technical Interviews"
+}

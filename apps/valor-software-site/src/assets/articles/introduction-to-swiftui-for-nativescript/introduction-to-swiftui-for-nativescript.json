@@ -1,0 +1,12 @@
+{
+  "title": "Introduction to SwiftUI for NativeScript",
+  "order": 47,
+  "domains": ["dev_quality_assurance"],
+  "authorImg": "assets/articles/introduction-to-swiftui-for-nativescript/douglas.jpg",
+  "language": "en",
+  "bgImg": "assets/articles/introduction-to-swiftui-for-nativescript/title_image.png",
+  "author": "Douglas Machado",
+  "position": "JS Developer",
+  "date": "Fri Dec 23 2022 10:45:55 GMT+0000 (Coordinated Universal Time)",
+  "seoDescription": "We collaborated with nStudio to provide an effective and enjoyable SwiftUI integration for iOS apps driven by NativeScript."
+}

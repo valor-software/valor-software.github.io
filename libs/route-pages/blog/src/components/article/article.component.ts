@@ -7,8 +7,8 @@ import {
 	IArticle,
 	OLD_ROUTES_FROM_OLD_SITE
 } from '@valor-software/common-docs';
-import { filter, switchMap, catchError } from 'rxjs/operators';
-import { Subscription, of } from 'rxjs';
+import { catchError, filter, switchMap } from 'rxjs/operators';
+import { of, Subscription } from 'rxjs';
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector

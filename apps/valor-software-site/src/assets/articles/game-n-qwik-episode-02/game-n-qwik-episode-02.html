@@ -1,0 +1,668 @@
+<div class="sect1">
+<h2 id="_the_first_scratches">The First Scratches.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I introduced you to the general Columns Game idea in the <a href="https://valor-software.com/articles/game-n-qwik-episode-01" target="_blank" rel="noopener">previous episode</a>. And now, it&#8217;s time to move forward. This episode will explain how to start the game implementation on <a href="https://qwik.builder.io/" target="_blank" rel="noopener">Qwik</a>. The first steps will include the following points.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Bootstrapping.</p>
+</li>
+<li>
+<p>The first steps in gameplay.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>But before, I want to speculate a bit regarding the Web implementation of an Arcade Game and focus on one strategic topic. First, we must understand what issues to consider to implement the game successfully. They are the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Library or Framework. In this case, we talk about Qwik, as I explained in Episode 01.</p>
+</li>
+<li>
+<p>We need to choose an approach for graphical objects drawing. Of course, we can use a pure HTML canvas-based approach. But let&#8217;s not reinvent the wheel; let&#8217;s wear it out.</p>
+</li>
+<li>
+<p>It is also essential to determine which CSS framework we will use. In my mind, pure CSS usage is also not a good idea for the reason explained in the previous point.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It&#8217;s time to start our implementation with the points above covering.</p>
+</div>
+<div class="sect2">
+<h3 id="_bootstrapping">Bootstrapping.</h3>
+<div class="paragraph">
+<p>I recommend <a href="https://qwik.builder.io/docs/getting-started/" target="_blank" rel="noopener">Getting Started Qwikly</a> before we start.</p>
+</div>
+<div class="paragraph">
+<p>Please, run</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npx npm create qwik@latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and answer the following questions as:</p>
+</div>
+<div class="paragraph">
+<p><mark>Where would you like to create your new project?</mark><br>
+./qwik-columns<br>
+<mark>Select a starter</mark><br>
+Basic App<br>
+<mark>Would you like to install npm dependencies?</mark><br>
+Yes<br>
+<mark>Initialize a new git repository?</mark><br>
+Yes or No, it&#8217;s your choice&#8230;&#8203;<br></p>
+</div>
+<div class="paragraph">
+<p>Congratulations! We just successfully started bootstrapping.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd qwik-columns</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s return to the points above regarding Graphical Drawing and CSS.</p>
+</div>
+<div class="paragraph">
+<p>Before the first serious facing with <a href="https://d3js.org/" target="_blank" rel="noopener">D3</a>, I thought this beautiful library was just about charts. But as far as I implemented different custom charts, I found this is a delusion. One of the main pros of D3 is its universality. In the following episodes, I&#8217;ll prove it! Together we will implement the game via D3!</p>
+</div>
+<div class="paragraph">
+<p>Currently, I don&#8217;t see any alternative to the <a href="https://d3js.org/" target="_blank" rel="noopener">D3</a> drawing approach because:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It has powerful shape-drawing tools and color management.</p>
+</li>
+<li>
+<p>D3 is about vector graphics; also, this library is animation-friendly.</p>
+</li>
+<li>
+<p>It allows associating (or binding) data to the graphical representation.</p>
+</li>
+<li>
+<p>It has a lot of patterns, like different, even tricky chart types.</p>
+</li>
+<li>
+<p>D3 is well-documented and has a vast community.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s install D3 dependencies.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm i d3 --save</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also, we need to install expected typings</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm i @types/d3 --save-dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s switch to CSS issue.</p>
+</div>
+<div class="paragraph">
+<p>The relationships between me and CSS are very pragmatic because I&#8217;m a full-stack guy and always don&#8217;t have much time for sophisticated dancing with CSS. Of course, I understand and respect the beauty of <a href="https://getbem.com/introduction/" target="_blank" rel="noopener">BEM</a> and <a href="https://www.arekibo.com/blog/popular-css-methodologies-for-scaling-web-projects/" target="_blank" rel="noopener">some other methodologies</a>. But I&#8217;m simultaneously thinking about architecture and design, the beauty of JS, TS, Go, Rust code, DB structure, etc. Moreover, some existing CSS-based implementations make me suffer and waste my time. A good example is <a href="https://chipperci.com/news/node-sass-node-gyp-nodejs-errors" target="_blank" rel="noopener">Node-sass and Node-gyp Errors</a>. That&#8217;s why I expect something powerful, easy, and lightweight. According to the <a href="https://www.webdesignerdepot.com/2021/09/the-pros-and-cons-of-tailwind-css/" target="_blank" rel="noopener">following points</a>, I think <a href="https://tailwindcss.com/" target="_blank" rel="noopener">Tailwindcss</a> is the best choice.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Control Over Styling</p>
+</li>
+<li>
+<p>Faster CSS Styling Process</p>
+</li>
+<li>
+<p>Responsiveness and Security</p>
+</li>
+<li>
+<p>Additional Features. Tailwind CSS works in the front end of a website. For this reason, it is reasonable for developers to demand ultimate responsiveness. Well, Tailwind provides the ability to create responsive themes for your web applications and remove all unused CSS classes. With PurgeCSS, Tailwind helps you keep your final CSS as small as possible.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Of course, it has <a href="https://www.webdesignerdepot.com/2021/09/the-pros-and-cons-of-tailwind-css/" target="_blank" rel="noopener">some cons</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Styling and HTML are Mixed</p>
+</li>
+<li>
+<p>Lack of Important Components</p>
+</li>
+<li>
+<p>It Takes Time to Learn</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s analyze them. The first couple is only relevant when considering big or even enterprise projects. In that case, we could think about another framework. Regarding the third point, I agree only partially because Tailwind is well-documented, and you can also find many examples and valuable existing approaches. Our current project is not so large, and we can 100% use Tailwind which keeps our time and nervousness.</p>
+</div>
+<div class="paragraph">
+<p>Fortunately, Qwik is super friendly with Tailwind!</p>
+</div>
+<div class="paragraph">
+<p>Please, follow this <a href="https://qwik.builder.io/docs/integrations/tailwind/" target="_blank" rel="noopener">documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s do it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm run qwik add tailwind</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Answer "Yes." That&#8217;s it. Feel free to use Tailwind in the project!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_first_steps_in_gameplay">The first steps in Gameplay.</h3>
+<div class="paragraph">
+<p>It&#8217;s time to think about our first steps regarding gameplay. I want to take my time with this and pass it through the following steps.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make a working canvas.</p>
+</li>
+<li>
+<p>Implement an elementary moving shape, say, a square.</p>
+</li>
+<li>
+<p>Make the shape above also movable via keyboard events.</p>
+</li>
+<li>
+<p>These steps will efficiently introduce you to the future tricky gameplay.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Create a new folder: <mark>src/components/game-play</mark></p>
+</div>
+<div class="paragraph">
+<p>Put <mark>utils.ts</mark> there.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import type { Signal } from "@builder.io/qwik";
+import type { MainStore } from "./game";
+
+export function setSvgDimension(
+  svgRef: Signal&lt;Element | undefined&gt;,
+  store: MainStore
+) {
+  if (svgRef?.value) {
+    const { width, height } = svgRef.value.getBoundingClientRect();
+
+    store.width = width;
+    store.height = height;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main goal of <mark>setSvgDimensionis</mark> to set keep width and height of a component in the <a href="https://qwik.builder.io/tutorial/introduction/store/" target="_blank" rel="noopener">Qwik store</a>. The component is represented by svgRef as a <a href="https://qwik.builder.io/docs/components/state/" target="_blank" rel="noopener">Qwik Signal</a>. Please, look at a couple of links above if Qwik is something new to you.</p>
+</div>
+<div class="paragraph">
+<p>Put the following content into <mark>src/routes/index.tsx</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { component$ } from "@builder.io/qwik";
+import Game from "../components/game-play/game";
+
+export default component$(() =&gt; {
+  return &lt;Game /&gt;;
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Remove <mark>src/components/starter</mark> folder. Also, remove all files except <mark>src/routes/index.tsx</mark> from <mark>src/routes/</mark>. And finally, put <mark>game.tsx</mark> file into <mark>src/components/game-play</mark>.</p>
+</div>
+<div class="paragraph">
+<p><mark>game.tsx</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import type { Signal } from "@builder.io/qwik";
+import { useVisibleTask$ } from "@builder.io/qwik";
+import {
+  component$,
+  useStore,
+  useSignal,
+  useOnDocument,
+  useOnWindow,
+  $,
+} from "@builder.io/qwik";
+import * as d3 from "d3";
+import { setSvgDimension } from "./utils";
+
+export function render(
+  svgRef: Signal&lt;Element | undefined&gt;,
+  width: number,
+  height: number,
+  x: number,
+  y: number
+) {
+  if (!svgRef.value) {
+    return;
+  }
+
+  const svg = d3.select(svgRef.value);
+  svg.selectAll("*").remove();
+  svg
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(0,0)");
+
+  svg
+    .append("g")
+    .append("rect")
+    .attr("x", 0)
+    .attr("width", width)
+    .attr("y", 0)
+    .attr("height", height)
+    // @ts-ignore
+    .attr("fill", () =&gt; d3.color("#ffffff"));
+
+  const data = [{ x, y }];
+
+  svg
+    .selectAll()
+    .data(data)
+    .enter()
+    .append("g")
+    .append("rect")
+    .attr("x", (d) =&gt; d.x)
+    .attr("width", 15)
+    .attr("y", (d) =&gt; d.y)
+    .attr("height", 15)
+    // @ts-ignore
+    .attr("fill", () =&gt; d3.color("#ff0000"));
+}
+
+export interface MainStore {
+  width: number;
+  height: number;
+  horPos: number;
+  vertPos: number;
+}
+
+export default component$(() =&gt; {
+  const store = useStore&lt;MainStore&gt;({
+    width: 0,
+    height: 0,
+    horPos: 200,
+    vertPos: 0,
+  });
+  const containerRef = useSignal&lt;Element&gt;();
+  const svgRef = useSignal&lt;Element&gt;();
+
+  useOnWindow(
+    "resize",
+    $(() =&gt; {
+      setSvgDimension(containerRef, store);
+    })
+  );
+
+  useOnDocument(
+    "keypress",
+    $((event) =&gt; {
+      const keyEvent = event as KeyboardEvent;
+      if (keyEvent.code === "KeyA") {
+        store.horPos -= 10;
+      } else if (keyEvent.code === "KeyD") {
+        store.horPos += 10;
+      }
+    })
+  );
+
+  useVisibleTask$(({ cleanup }: { cleanup: Function }) =&gt; {
+    setSvgDimension(containerRef, store);
+    const intervalId = setInterval(() =&gt; {
+      store.vertPos += 10;
+      render(svgRef, store.width, store.height, store.horPos, store.vertPos);
+    }, 700);
+    cleanup(() =&gt; clearInterval(intervalId));
+  });
+
+  return (
+    &lt;div class="flex justify-center w-screen h-screen pt-5" ref={containerRef}&gt;
+      &lt;svg
+        class="game-area"
+        width={store.width}
+        height={store.height}
+        ref={svgRef}
+      /&gt;
+    &lt;/div&gt;
+  );
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s time to run the solution: <mark>npm start</mark>.</p>
+</div>
+<div class="imageblock small-img">
+<div class="content">
+<img src="assets/articles/game-n-qwik-episode-02/img1.gif" alt="img1">
+</div>
+</div>
+<div class="paragraph">
+<p>As we can see here, there is a moving square. You can move it left via the "A" key and right via "D."</p>
+</div>
+<div class="paragraph">
+<p>If you want to dig into this code immediately, please use <a href="https://github.com/buchslava/qwik-columns/tree/step-3" target="_blank" rel="noopener">this source</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_html_part">The HTML part</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="flex justify-center w-screen h-screen pt-5" ref={containerRef}&gt;
+  &lt;svg
+    class="game-area"
+    width={store.width}
+    height={store.height}
+    ref={svgRef}
+  /&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We use SVG as a game board container. It will be represented as a Qwik Signal.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_signals">The Signals</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Use <mark>useSignal()</mark> to create a reactive signal (a form of state). The <mark>useSignal()</mark> takes an initial value and returns a reactive signal.</p>
+</div>
+<div class="paragraph">
+<p>The reactive signal returned by <mark>useSignal()</mark> consists of an object with a single property .value. If you change the value property of the signal, any component that depends on it will be updated automatically.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>We use <mark>containerRef</mark> as a data associated with the root element. BTW, pay attention to the Tailwind-based 'class.' The aim of <mark>containerRef</mark> is to keep the dimension of the screen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const containerRef = useSignal&lt;Element&gt;();
+const svgRef = useSignal&lt;Element&gt;();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_store">The Store</h3>
+<div class="paragraph">
+<p>The heart of the component is a store.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export interface MainStore {
+  width: number;
+  height: number;
+  horPos: number;
+  vertPos: number;
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const store = useStore&lt;MainStore&gt;({
+  width: 0,
+  height: 0,
+  horPos: 200,
+  vertPos: 0,
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We keep the following data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Width and height of the component (root component dimension equals to the root&#8217;s)</p>
+</li>
+<li>
+<p>Horizontal and vertical positions of the square</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_initializingresuming">Initializing/resuming</h3>
+<div class="paragraph">
+<p><mark>useVisibleTask$</mark> hook is very important in Qwik because</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Use <a href="https://qwik.builder.io/tutorial/hooks/use-visible-task/" target="_blank" rel="noopener">useVisibleTask$()</a> to execute code after the component is resumed. This is useful for setting up timers or streams on the client when the application is resumed.</p>
+</div>
+</blockquote>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">useVisibleTask$(({ cleanup }: { cleanup: Function }) =&gt; {
+  setSvgDimension(containerRef, store);
+  const intervalId = setInterval(() =&gt; {
+    store.vertPos += 10;
+    render(svgRef, store.width, store.height, store.horPos, store.vertPos);
+  }, 700);
+  cleanup(() =&gt; clearInterval(intervalId));
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are two main activities above.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set the root component/board dimension: <mark>setSvgDimension(containerRef, store)</mark>;</p>
+</li>
+<li>
+<p>Provide a main loop of the game via <mark>setInterval</mark>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_main_loop">The main loop</h3>
+<div class="paragraph">
+<p>Let&#8217;s dig into the main loop. Moving down is represented by <mark>store.vertPos += 10;</mark>.
+We just adding 10 pixels every 700 millisecond.</p>
+</div>
+<div class="paragraph">
+<p>After, we should render the board and the square.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_render">The render</h3>
+<div class="paragraph">
+<p><mark>render</mark> function literally does the following things.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It takes the SVG-based component representation <mark>svgRef.value</mark> and binds it with <mark>svg</mark> variable via <mark>d3.select</mark> method. Clears all previous stuff in the SVG if it does exist.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const svg = d3.select(svgRef.value);
+svg.selectAll("*").remove();</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Draws a white rectangle due to the screen dimension. BTW, the <a href="https://stackoverflow.com/questions/42568992/how-to-draw-a-rectangle-in-d3-js-with-only-2-coordinates" target="_blank" rel="noopener">following link</a> will be useful.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-css" data-lang="css">svg
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .append("g")
+  .attr("transform", "translate(0,0)");
+
+svg
+  .append("g")
+  .append("rect")
+  .attr("x", 0)
+  .attr("width", width)
+  .attr("y", 0)
+  .attr("height", height)
+  // @ts-ignore
+  .attr("fill", () =&gt; d3.color("#ffffff"));</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Associate the SVG-based component with x and y (just one element) and draw it.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">const data = [{ x, y }];
+
+svg
+  .selectAll()
+  .data(data)
+  .enter()
+  .append("g")
+  .append("rect")
+  .attr("x", (d) =&gt; d.x)
+  .attr("width", 15)
+  .attr("y", (d) =&gt; d.y)
+  .attr("height", 15)
+  // red
+  .attr("fill", () =&gt; d3.color("#ff0000"));</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_recalculate_the_board_dimension_and_keyboard_processing">Recalculate the board dimension and keyboard processing</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Use <mark>useOn()</mark> / <mark>useOnDocument()</mark> / <mark>useOnWindow()</mark> to programmatically set up listeners on host elements. This is useful when you are creating custom APIs and don&#8217;t have access to place these events in the JSX or if the events are not known ahead of time, such as if they are created based on component props.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>The following code allows us to resize the component during the window resizing.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">useOnWindow(
+  "resize",
+  $(() =&gt; {
+    setSvgDimension(containerRef, store);
+  })
+);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following code allows us to process keyboard events. In this example, a user moves the square left when the "A" key has been pressed and right if the "D" key has been pressed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">useOnDocument(
+  "keypress",
+  $((event) =&gt; {
+    const keyEvent = event as KeyboardEvent;
+    if (keyEvent.code === "KeyA") {
+      store.horPos -= 10;
+    } else if (keyEvent.code === "KeyD") {
+      store.horPos += 10;
+    }
+  })
+);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_process">Build process</h3>
+<div class="paragraph">
+<p>It&#8217;s time to build the solution.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm run build</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It seems we passed this step successfully. But please pay attention to the text at the bottom:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">Missing an integration
+
+・ Use npm run qwik add to add an integration
+・ Use npm run preview to preview the build</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As a result, you don&#8217;t see <mark>index.html</mark> in the <mark>dist</mark> folder. Let&#8217;s fix this issue.</p>
+</div>
+<div class="paragraph">
+<p>If you want to make this solution web-friendly, please run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npm run qwik add</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>What integration would you like to add?</mark><br>
+Adapter: Static site (.html files)<br></p>
+</div>
+<div class="paragraph">
+<p><mark>Ready to apply the static updates to your app?</mark><br>
+Yes looks good, finish update!<br></p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s build the solution again&#8230;&#8203;
+And now we should see the expected <mark>index.html</mark>.</p>
+</div>
+<div class="paragraph">
+<p>Please, read <a href="https://qwik.builder.io/docs/deployments/" target="_blank" rel="noopener">Qwik Deployments</a> if you need to learn more about Qwik providers.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_whats_next">What&#8217;s next?</h3>
+<div class="paragraph">
+<p>I hope this episode was useful and informative. Feel free to read and run <a href="https://github.com/buchslava/qwik-columns/tree/step-3" target="_blank" rel="noopener">this solution</a>. But it is just preparation before the actual gameplay implementation. The next episode will disclose all the main secrets about the game! See you!</p>
+</div>
+</div>
+</div>
+</div>

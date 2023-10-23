@@ -1,0 +1,571 @@
+<div class="paragraph">
+<p><a href="https://nx.dev/" target="_blank" rel="noopener">The Nx ecosystem</a> is excellent because, on the one hand, it allows different teams to work under the same monorepo and build robust enterprise solutions. On the other hand, the basic Nx functionality is relatively easy. That&#8217;s why Nx-based solutions turned out more popular last time. Consequently, increasing monorepos include technologies such as React, Angular, NestJS, and even Golang. Moreover, these libraries and frameworks are not alone under the monorepos. They often use a lot of 3-d party libraries and custom modules. One of the most painful topics regarding software development, including Nx, is managing dependency updates. Especially dependencies with breaking changes that need to be resolved in order to get the application back into a working state. This article proposes one possible solution. It is not meant as a final solution and or source of truth. These are only initial thoughts about the topic.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://nx.dev/" target="_blank" rel="noopener">Nx official documentation</a> tells us regarding migrations the following.</p>
+</div>
+<div class="paragraph">
+<p>"Not only does nx migrate update you to the latest version of Nx, but it also updates the versions of dependencies that we support and test, such as Jest and Cypress. You can also use the migrate command to update any Nx plugin."</p>
+</div>
+<div class="paragraph">
+<p>The Nx team did a great job because you can update the whole solution as efficiently as possible. That&#8217;s why I recommend the <a href="https://nx.dev/core-features/automate-updating-dependencies" target="_blank" rel="noopener">following reading</a>. Many packages have supported it. But "many" is not equal to "all." Let&#8217;s look at the following case.</p>
+</div>
+<div class="paragraph">
+<p>There is a <a href="https://github.com/buchslava/nx-custom-migration-demo" target="_blank" rel="noopener">demo monorepo</a>. It contains a <a href="https://github.com/buchslava/nx-custom-migration-demo/tree/main/apps/client" target="_blank" rel="noopener">React Application</a>. Also, it includes a <a href="https://github.com/buchslava/nx-custom-migration-demo/tree/main/libs/common-lib" target="_blank" rel="noopener">common lib</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s dig into the demo functionality and code specific.</p>
+</div>
+<div class="sect1">
+<h2 id="_the_client">The Client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The client React app is quite simple. Let&#8217;s run it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git clone git@github.com:buchslava/nx-custom-migration-demo.git
+npm i
+npx nx run client:serve</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tackling-breaking-changes-using-nx-workspace-generators/image1.png" alt="image1">
+</div>
+</div>
+<div class="paragraph">
+<p>The behavior of a couple of forms above is similar. They demonstrate the sum of two numbers. Related code is placed <a href="https://github.com/buchslava/nx-custom-migration-demo/blob/main/apps/client/src/app/app.tsx" target="_blank" rel="noopener">here</a>. Let&#8217;s look at the code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { sumProxy } from '@nx-custom-migration-demo/common-lib';
+import { useState } from 'react';
+import { deprecatedSum } from 'try-lib';
+
+export function App() {
+  const [a, setA] = useState&lt;number&gt;(0);
+  const [b, setB] = useState&lt;number&gt;(0);
+  const [c, setC] = useState&lt;number&gt;();
+
+  const [d, setD] = useState&lt;number&gt;(0);
+  const [e, setE] = useState&lt;number&gt;(0);
+  const [f, setF] = useState&lt;number&gt;();
+
+  return (
+    &lt;&gt;
+      &lt;div&gt;
+        &lt;h2&gt;Using internal lib&lt;/h2&gt;
+        &lt;div&gt;
+          &lt;input
+            value={a}
+            onChange={(e) =&gt; {
+              setA(+e.target.value);
+            }}
+          /&gt;
+          +
+          &lt;input
+            value={b}
+            onChange={(e) =&gt; {
+              setB(+e.target.value);
+            }}
+          /&gt;
+          &lt;button
+            onClick={() =&gt; {
+              setC(sumProxy(a, b));
+            }}
+          &gt;
+            is
+          &lt;/button&gt;
+          &lt;span&gt;{c}&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div&gt;
+        &lt;h2&gt;Using external lib&lt;/h2&gt;
+        &lt;div&gt;
+          &lt;input
+            value={d}
+            onChange={(e) =&gt; {
+              setD(+e.target.value);
+            }}
+          /&gt;
+          +
+          &lt;input
+            value={e}
+            onChange={(e) =&gt; {
+              setE(+e.target.value);
+            }}
+          /&gt;
+          &lt;button
+            onClick={() =&gt; {
+              setF(deprecatedSum(d, e));
+            }}
+          &gt;
+            is
+          &lt;/button&gt;
+          &lt;span&gt;{f}&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  );
+}
+
+export default App;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pay attention to the following points.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">&lt;button
+  onClick={() =&gt; {
+    setC(sumProxy(a, b));
+  }}
+&gt;
+  is
+&lt;/button&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code above describes the result calculation for the first form. We take <mark>sumProxy</mark> from the internal library <mark>@nx-custom-migration-demo/common-lib.</mark></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">&lt;button
+  onClick={() =&gt; {
+    setF(deprecatedSum(d, e));
+  }}
+&gt;
+  is
+&lt;/button&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code above describes the result calculation for the second form. We take <mark>deprecatedSum</mark> from the external library <mark>try-lib</mark>.
+If we look at <mark>package.json</mark> we can find the library.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">"try-lib": "^1.0.1",</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_internal_common_library">The Internal (Common) Library</h3>
+<div class="paragraph">
+<p>The library is placed <a href="https://github.com/buchslava/nx-custom-migration-demo/tree/main/libs/common-lib" target="_blank" rel="noopener">here</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { deprecatedSum } from "try-lib";
+
+export function sumProxy(a: number, b: number): number {
+  return deprecatedSum(a, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It looks similar to the calculation for the second form on the client because of <mark>deprecatedSum</mark> from <mark>try-lib</mark>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_external_library">The external Library</h3>
+<div class="paragraph">
+<p>It&#8217;s time to look at the external library. You can find the library on <a href="https://github.com/buchslava/try-lib" target="_blank" rel="noopener">github</a> and <a href="https://www.npmjs.com/package/try-lib" target="_blank" rel="noopener">npm</a>.
+There is a couple of versions.</p>
+</div>
+<div class="sect3">
+<h4 id="_version_1_0_1">Version <mark>1.0.1</mark></h4>
+<div class="paragraph">
+<p>This version is based on the following code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export function deprecatedSum(a: number, b: number): number {
+  return a + b;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_version_2_0_0">Version <mark>2.0.0</mark></h4>
+<div class="paragraph">
+<p>The main feature of this version is that this version contains a breaking change. The breaking change is that <mark>deprecatedSum</mark> has changed to <mark>sum</mark>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">export function sum(a: number, b: number): number {
+  return a + b;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_issue">The Issue</h3>
+<div class="paragraph">
+<p>Pay attention that now we use <mark>try-lib@1.0.1</mark>. A couple of important places look the following.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tackling-breaking-changes-using-nx-workspace-generators/image2.png" alt="image2">
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s change it to <mark>version 2.0.0</mark> and run <mark>npm i</mark>.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tackling-breaking-changes-using-nx-workspace-generators/image3.png" alt="image3">
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s easy to predict the result.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tackling-breaking-changes-using-nx-workspace-generators/image4.png" alt="image4">
+</div>
+</div>
+<div class="paragraph">
+<p>We have a broken solution because <mark>try-lib</mark> has a breaking change.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_solution">The Solution</h3>
+<div class="paragraph">
+<p>Of course, we can fix the breaking changes manually and forget this story. But this approach is suitable mainly for Ad hoc or for individual developers. We need to count the following factors when discussing teams or enterprise solutions.</p>
+</div>
+<div class="sect3">
+<h4 id="_factor_1_time">Factor 1. Time.</h4>
+<div class="paragraph">
+<p>We don&#8217;t know when we should apply the changes. Let&#8217;s imagine a team has decided to bump the library version. One of the developers provides a new branch, including fixes. But the manager postponed this branch merging, and the team had no idea when the team would continue with this task. What happens there? The team wasted time because the branch was outdated, and in most cases reasonable to forget the branch and repeat breaking changes and fixing again. Another option is Version Control System (VCS) conflict resolution. But this approach is the worst because we risk damaging the solution. Of course, it depends on the number of new modifications and breaking changes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_factor_2_history">Factor 2. History.</h4>
+<div class="paragraph">
+<p>Of course, the VCS (say, Git) can log the changes. Despite this, information could be lost due to rebasing. Perhaps we must invent a new approach to log the changes more efficiently.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_factor_3_independence">Factor 3. Independence.</h4>
+<div class="paragraph">
+<p>As I previously told you, Nx has a powerful migration functionality that allows upgrading Nx with other dependencies it supports. But let&#8217;s imagine the situation when we don&#8217;t need to upgrade the Nx version. Still, at the same time, we need to upgrade an individual dependency by automatically breaking changes and fixing them exactly as Nx migration does.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requirements">Requirements.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Analyzing the above, let&#8217;s gather the requirements for the task.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We need to upgrade an individual dependency at any time. That&#8217;s why the following approach makes sense. A developer or a team doesn&#8217;t work with the result code; on the contrary, they prepare an algorithm (functionality) that transforms the solution according to the expected dependency version. It allows the team to apply the changes at any time when needed. On the one hand, it makes the project more expensive. On the other hand, it decreases many risks. We have a predictable flow because we know what happens (the result of applying) and how it happens (the algorithm/functionality). Also, there is one more important thing. If something wrong happens, we can roll back the changes and repeat them easily because we don&#8217;t need to provide manual jobs.<br></p>
+</li>
+<li>
+<p>We need to deal with different versions of the package.<br></p>
+</li>
+<li>
+<p>The functionality above should be Nx-friendly.<br></p>
+</li>
+<li>
+<p>The most important thing here is that the functionality above could be shared between Nx society and used as a part of a future Nx plugin. More information <a href="https://nx.dev/packages/nx-plugin" target="_blank" rel="noopener">here</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implementation">Implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When I was thinking about the implementation thoughts above, I faced with <a href="https://blog.nrwl.io/using-nx-workspace-generators-to-scaffold-new-blog-posts-8c8162cf857b" target="_blank" rel="noopener">Using Nx Workspace generators to scaffold</a> new blog posts by <a href="https://medium.com/@juristr" target="_blank" rel="noopener">Juri Strumpflohner</a>. I recommend this article because I found this helpful approach to resolving my task there. Briefly, my plan is about a new workspace generator creation. The workspace generator should get the related package name and modify the source code afterward.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s time to dig into the solution.</p>
+</div>
+<div class="paragraph">
+<p>First, I created the new workspace generator with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npx nx g @nx/workspace:workspace-generator code-transformer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This creates a new folder in <mark>tools/generators/code-transformer</mark> with an <mark>index.ts</mark> and a <mark>schema.json</mark> file.</p>
+</div>
+<div class="sect2">
+<h3 id="_adjusting_the_schema_json">Adjusting the <mark>schema.json</mark></h3>
+<div class="paragraph">
+<p>This file describes the metadata of our generator. It allows Nx to discover the generator and provides metadata such as the possible argument the generator takes for validation purposes or dynamically rendering a UI like Nx Console does.</p>
+</div>
+<div class="paragraph">
+<p>In our case, we have only one input parameter for the generator, and we need to pass a related dependency name.</p>
+</div>
+<div class="paragraph">
+<p>I opened the <mark>tools/generators/code-transformer/schema.json</mark> and adjusted the schema to match our requirements.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "code-transformer",
+  "type": "object",
+  "properties": {
+    "package": {
+      "type": "string",
+      "description": "Package",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    }
+  },
+  "required": ["package"]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code_transformation_runner">Code transformation runner</h3>
+<div class="paragraph">
+<p>Next, I opened the <mark>tools/generators/code-transformer/index.ts</mark> and put my solution there.
+Please, read the comments in the code. It will help you to understand the solution.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { Tree } from '@nrwl/devkit';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as semver from 'semver';
+import * as util from 'util';
+import { Project } from 'ts-morph';
+import compile from './compiler';
+
+const readFile = util.promisify(fs.readFile);
+
+export default async function (tree: Tree, schema: any) {
+  // Get "package.json"
+  const packageJson: any = JSON.parse(
+    (await readFile('package.json')).toString()
+  );
+  // "schema.package" contains the related dependency name
+  // if it does not exist in "package.json" then
+  // throw an error and stop the generator
+  if (!packageJson.dependencies[schema.package]) {
+    throw Error(`Dependency "${schema.package}" is not found in package.json`);
+  }
+  // Get an existing version of the related dependency
+  const existingVersion = packageJson.dependencies[schema.package].replace(
+    /^[\D]{1}/,
+    ''
+  );
+  // Get `updates.json` config
+  const updatesJson: any = JSON.parse(
+    (await readFile('tools/updates/updates.json')).toString()
+  );
+  const activities: string[] = [];
+  // Iterate over `updates` array
+  for (const record of updatesJson.updates) {
+    // if the existing (bumped) version from the package is more than "changes"-based and the package is expected
+    // add the related function to activities
+    if (schema.package === record.package &amp;&amp; semver.gte(existingVersion, record.version)) {
+      activities.push(path.resolve(process.cwd(), record.implementation));
+    }
+  }
+  // Compile the related TS files
+  compile(activities, {});
+
+  // In this example, we use only "ts-morph" for the source code transformation
+  const project = new Project();
+  // Pass expected paths of source code
+  const sources = [
+    'libs/**/*.ts',
+    'libs/**/*.tsx',
+    'apps/client/**/*.ts',
+    'apps/client/**/*.tsx',
+  ];
+
+  for (const activity of activities) {
+    // Get related transformer-function
+    const fn = require(activity).default;
+    // Run it
+    fn(project, sources);
+  }
+  // Save the changes
+  await project.save();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can read explained source code above <a href="https://github.com/buchslava/nx-custom-migration-demo/tree/main/tools/generators/code-transformer" target="_blank" rel="noopener">here</a>.
+It&#8217;s time to dig into the "Updates" concept. There is the following structure:</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tackling-breaking-changes-using-nx-workspace-generators/image5.png" alt="image5">
+</div>
+</div>
+<div class="paragraph">
+<p>File <a href="https://github.com/buchslava/nx-custom-migration-demo/blob/main/tools/updates/updates.json" target="_blank" rel="noopener">update/update.json</a> represents a configuration regarding all updates.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <mark>updates</mark> value is an array of records.<br></p>
+</li>
+<li>
+<p>Each record contains the following data: <mark>package</mark> (dependency name), <mark>description</mark> (change), and <mark>version</mark>. But the most important data here is <mark>implementation</mark>. It represents a file name containing the transformation&#8217;s code.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In our case, the <mark>try-lib</mark> dependency contains changes for version <mark>2.0.0</mark> or more than this version.</p>
+</div>
+<div class="paragraph">
+<p>Likewise, as in the previous code, I will explain how transformation works as in the previous code. Please, read the comments.</p>
+</div>
+<div class="paragraph">
+<p>One important note. The following Typescript transformations idea is based on <mark>ts-morph</mark> library. Please, read <a href="https://ts-morph.com/" target="_blank" rel="noopener">ts-morph documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s look at <mark>tools/changes-registry/index.ts</mark> (you can find the related source <a href="https://github.com/buchslava/nx-custom-migration-demo/blob/main/tools/updates/try-lib.2.0.0.fix-deprecated-sum.ts" target="_blank" rel="noopener">here</a>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">import { Project, SyntaxKind, Node } from 'ts-morph';
+
+// This is a recursive function that changes
+// some code fragments ("oldName" to "newName")
+// according to its Node Type
+function walkAndChange(
+  node: Node,
+  nodeKinds: SyntaxKind[],
+  oldName: string,
+  newName: string
+) {
+  // criteria matching
+  if (
+    nodeKinds.includes(node.getKind()) &amp;&amp;
+    node.getFullText().trim() === oldName
+  ) {
+    node.replaceWithText(newName);
+    return;
+  }
+  // recursive call
+  node.forEachChild((c) =&gt; walkAndChange(c, nodeKinds, oldName, newName));
+}
+
+// Function-transformer takes Ts-morph project and related paths
+export default function (project: Project, sources: string[]) {
+  project.addSourceFilesAtPaths(sources);
+  const files = project.getSourceFiles();
+
+  // iterate the related source files
+  for (const file of files) {
+    // change "deprecatedSum" to "sum" in
+    // imports (SyntaxKind.ImportSpecifier) and
+    // in the rest (SyntaxKind.Identifier) of the code
+    walkAndChange(
+      file,
+      [SyntaxKind.Identifier, SyntaxKind.ImportSpecifier],
+      'deprecatedSum',
+      'sum'
+    );
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Of course, the example above provides a fundamental transformation, and this logic could be much more difficult in real life.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_the_solution">Use the solution</h3>
+<div class="paragraph">
+<p>It&#8217;s time to use the solution, and let&#8217;s repeat it from the beginning</p>
+</div>
+<div class="sect3">
+<h4 id="_the_bump">The bump</h4>
+<div class="paragraph">
+<p>Change the version of <mark>try-lib</mark> from <mark>1.0.1</mark> to <mark>2.0.0</mark> and run <mark>npm i</mark>.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tackling-breaking-changes-using-nx-workspace-generators/image6.png" alt="image6">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_breaking_changes">The breaking changes</h4>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tackling-breaking-changes-using-nx-workspace-generators/image7.png" alt="image7">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fixing">Fixing</h4>
+<div class="paragraph">
+<p>Run the following command.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npx nx workspace-generator code-transformer -- try-lib --dry-run</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_voilà">Voilà!</h4>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tackling-breaking-changes-using-nx-workspace-generators/image8.png" alt="image8">
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s run the app to make sure that it works well.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">npx nx run client:serve</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tackling-breaking-changes-using-nx-workspace-generators/image9.png" alt="image9">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_roadmap">The Roadmap</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Because this article represents only an idea or a concept, I&#8217;d like to focus on points that would be nice to consider in the future.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The first helpful thing is to store information about past updates, and we don&#8217;t need to repeat transformations that were passed before.<br></p>
+</li>
+<li>
+<p>We need to deal with other languages, not only Typescript.<br></p>
+</li>
+<li>
+<p>Finally, we need to have a more flexible set of the generator&#8217;s input parameters.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>

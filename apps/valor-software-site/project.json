@@ -10,6 +10,9 @@
       "options": {
         "command": "npx scully --prod --scanRoutes --project=valor-software-site"
       },
+      "configurations": {
+        "uat": {}
+      },
       "dependsOn": [
         {
           "target": "build",
@@ -44,6 +47,12 @@
       },
       "configurations": {
         "production": {
+          "optimization": true,
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
           "budgets": [
             {
               "type": "initial",
@@ -71,6 +80,32 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "stage": {
+          "fileReplacements": [
+            {
+              "replace": "apps/valor-software-site/src/environments/environment.ts",
+              "with": "apps/valor-software-site/src/environments/environment.stage.ts"
+            }
+          ],
+          "optimization": true,
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"
@@ -83,6 +118,9 @@
         },
         "development": {
           "browserTarget": "valor-software-site:build:development"
+        },
+        "stage": {
+          "browserTarget": "valor-software-site:build:stage"
         }
       },
       "defaultConfiguration": "development"

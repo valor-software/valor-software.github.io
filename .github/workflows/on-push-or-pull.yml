@@ -59,7 +59,7 @@ jobs:
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
-      - run: npx nx run valor-software-site:build-scully --prod
+      - run: npx nx run valor-software-site:build-scully -c stage
 
   # run linting
   linting:

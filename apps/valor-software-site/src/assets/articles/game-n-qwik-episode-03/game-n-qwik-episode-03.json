@@ -1,0 +1,12 @@
+{
+"title": "Game-n-Qwik. Episode 03.",
+"order": 78,
+"domains": ["dev_quality_assurance"],
+"language": "en",
+"bgImg": "assets/articles/game-n-qwik-episode-03/Main-Game-n-qwik3.png",
+"authorImg": "assets/articles/game-n-qwik-episode-03/Slava_Chub.jpg" ,
+"author": "Vyacheslav Chub",
+"position": "Full Stack Software Engineer",
+"date": "Wed Jul 19 2023 10:45:55 GMT+0000 (Coordinated Universal Time)",
+"seoDescription": "Providing the game's basic functionality"
+}
