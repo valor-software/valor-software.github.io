@@ -130,7 +130,7 @@ export default function Home() {
 <p>The header includes the language switcher component (will be described later)</p>
 </li>
 <li>
-<p>The central part includes four paragraphs regarding Lorem Ipsum explanation</p>
+<p>The central part includes four paragraphs regarding <mark>Lorem Ipsum</mark> explanation</p>
 </li>
 <li>
 <p>The footer contains a button as a link to the source of the content</p>
@@ -342,8 +342,10 @@ export { LanguageSwitcher, COOKIE_NAME };</code></pre>
 <div class="sect2">
 <h3 id="_working_principles">Working principles</h3>
 <div class="paragraph">
-<p>It&#8217;s time to gather all the information above and explain how the solution works.
-The start point is placed in <a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/pages/_document.tsx" target="_blank" rel="noopener">src/pages/_document.tsx</a></p>
+<p>It&#8217;s time to gather all the information above and explain how the solution works.</p>
+</div>
+<div class="paragraph">
+<p><strong>The start point is placed in <a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/pages/_document.tsx" target="_blank" rel="noopener">src/pages/_document.tsx</a></strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -412,10 +414,10 @@ export default function Document() {
 <p>It&#8217;s important. More information regarding the above you can find <a href="https://nextjs.org/docs/pages/building-your-application/optimizing/scripts" target="_blank" rel="noopener">here</a>. Let me provide you some related theory.</p>
 </div>
 <div class="paragraph">
-<p>beforeInteractive: Load the script before any Next.js code and before any page hydration occurs.</p>
+<p><strong>beforeInteractive: Load the script before any Next.js code and before any page hydration occurs.</strong></p>
 </div>
 <div class="paragraph">
-<p>afterInteractive: (default) Load the script early but after some hydration on the page occurs.</p>
+<p><strong>afterInteractive: (default) Load the script early but after some hydration on the page occurs.</strong></p>
 </div>
 </div>
 <div class="sect2">
@@ -440,7 +442,7 @@ export default function Document() {
 <div class="paragraph">
 <p>and switch the language, say, Deutsch. However, the issue is that the standard Google Translate bar is still on top.</p>
 </div>
-<div class="imageblock small-img">
+<div class="imageblock img">
 <div class="content">
 <img src="assets/articles/google-translate-customization-under-nextjs/img1.png" alt="img1">
 </div>
@@ -448,7 +450,7 @@ export default function Document() {
 <div class="paragraph">
 <p>We definitely ought to fix it. Let&#8217;s add a couple of the following changes to <a href="https://github.com/buchslava/nextjs-gtrans-demo/blob/main/src/styles/globals.css" target="_blank" rel="noopener">src/styles/globals.css</a></p>
 </div>
-<div class="imageblock small-img">
+<div class="imageblock img">
 <div class="content">
 <img src="assets/articles/google-translate-customization-under-nextjs/img2.png" alt="img2">
 </div>
@@ -456,7 +458,7 @@ export default function Document() {
 <div class="paragraph">
 <p>Much better now!</p>
 </div>
-<div class="imageblock small-img">
+<div class="imageblock img">
 <div class="content">
 <img src="assets/articles/google-translate-customization-under-nextjs/img3.png" alt="img3">
 </div>
@@ -532,13 +534,13 @@ Export successful. Files written to /Users/slava/Desktop/projects11/nextjs-gtran
 http-server</code></pre>
 </div>
 </div>
-<div class="imageblock small-img">
+<div class="imageblock img">
 <div class="content">
 <img src="assets/articles/google-translate-customization-under-nextjs/img4.gif" alt="img4">
 </div>
 </div>
 <div class="paragraph">
-<p>The final solution is <a href="https://github.com/buchslava/nextjs-gtrans-demohttps://github.com/buchslava/nextjs-gtrans-demo" target="_blank" rel="noopener">here</a>.</p>
+<p>The final solution is <a href="https://github.com/buchslava/nextjs-gtrans-demo" target="_blank" rel="noopener">here</a>.</p>
 </div>
 </div>
 </div>
