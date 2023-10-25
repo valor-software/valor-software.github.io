@@ -1,0 +1,222 @@
+You know, sometimes our first feelings let us down because the world around us is not so simple. I was going to stop with https://valor-software.com/articles/google-translate-customization-under-nextjs[Google Translate customization under NextJS, window=_blank]. This article reveals an approach to translate any content freely without pain via Google Translate on a NextJS-based project. But a couple of occasions became a game changer.
+
+First, I found one essential improvement regarding language configuration. Second, my colleague https://github.com/brunos3d[Bruno Silva, window=_blank] provided me with valuable code improvements. I decided to make a new series by analyzing the factors above. I recommend reading https://valor-software.com/articles/google-translate-customization-under-nextjs[the previous series, window=_blank] if you want to understand my following thoughts.
+
+Let's get started.
+
+The central part of the previous solution is https://github.com/buchslava/nextjs-gtrans-demo/blob/main/public/assets/scripts/lang-config.js[public/assets/scripts/lang-config.js, window=_blank] contains custom languages settings
+
+[, code]
+----
+window.__GOOGLE_TRANSLATION_CONFIG__ = {
+  languages: [
+    { title: "English", name: "en" },
+    { title: "Deutsch", name: "de" },
+    { title: "Español", name: "es" },
+    { title: "Français", name: "fr" },
+  ],
+  defaultLanguage: "en",
+};
+----
+
+The solution above is legal, but it doesn't look like a NextJS-pure. I found a more elegant way to define global data through NextJS config. Let's add #env# section to https://github.com/buchslava/nextjs-gtrans-demo/blob/improved/next.config.js[next.config.js, window=_blank] and remove #public/assets/scripts/lang-config.js#
+
+[, code]
+----
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  env: {
+    GOOGLE_TRANSLATION_CONFIG: JSON.stringify({
+      languages: [
+        { title: "English", name: "en" },
+        { title: "Deutsch", name: "de" },
+        { title: "Español", name: "es" },
+        { title: "Français", name: "fr" },
+      ],
+      defaultLanguage: "en",
+    }),
+  },
+};
+
+module.exports = nextConfig;
+----
+
+I also changed https://github.com/buchslava/nextjs-gtrans-demo/blob/main/public/assets/scripts/translation.js[public/assets/scripts/translation.js, window=_blank] the following way because #pageLanguage# parameter is not mandatory.
+
+[, code]
+----
+function TranslateInit() {
+  new google.translate.TranslateElement();
+}
+----
+
+According to Bruno's proposal, I encapsulated most of the logic into a custom hook, https://github.com/buchslava/nextjs-gtrans-demo/blob/improved/src/hooks/useLanguageSwitcher.ts[src/hooks/useLanguageSwitcher.ts, window=_blank].
+
+[, code]
+----
+import { useEffect, useState } from "react";
+import { parseCookies, setCookie } from "nookies";
+import { NextPageContext } from "next";
+
+export const COOKIE_NAME = "googtrans";
+
+export interface LanguageDescriptor {
+  name: string;
+  title: string;
+}
+
+export interface LanguageConfig {
+  languages: LanguageDescriptor[];
+  defaultLanguage: string;
+}
+
+export type UseLanguageSwitcherResult = {
+  currentLanguage: string;
+  switchLanguage: (lang: string) => () => void;
+  languageConfig: LanguageConfig | undefined;
+};
+
+export type UseLanguageSwitcherOptions = {
+  context?: NextPageContext;
+};
+
+export const getLanguageConfig = (): LanguageConfig | undefined => {
+  let cfg: LanguageConfig | undefined;
+
+  if (process.env.GOOGLE_TRANSLATION_CONFIG) {
+    try {
+      cfg = JSON.parse(process.env.GOOGLE_TRANSLATION_CONFIG ?? "{}");
+    } catch (e) {}
+  }
+
+  return cfg;
+};
+
+export const useLanguageSwitcher = ({
+  context,
+}: UseLanguageSwitcherOptions = {}): UseLanguageSwitcherResult => {
+  const [currentLanguage, setCurrentLanguage] = useState<string>("");
+
+  useEffect(() => {
+    const cfg = getLanguageConfig();
+    const cookies = parseCookies(context);
+    const existingLanguageCookieValue = cookies[COOKIE_NAME];
+
+    let languageValue = "";
+    if (existingLanguageCookieValue) {
+      const sp = existingLanguageCookieValue.split("/");
+      if (sp.length > 2) {
+        languageValue = sp[2];
+      }
+    }
+    if (cfg && !languageValue) {
+      languageValue = cfg.defaultLanguage;
+    }
+    setCurrentLanguage(languageValue);
+  }, []);
+
+  const switchLanguage = (lang: string) => () => {
+    setCookie(context, COOKIE_NAME, "/auto/" + lang);
+    window.location.reload();
+  };
+
+  return {
+    currentLanguage,
+    switchLanguage,
+    languageConfig: getLanguageConfig(),
+  };
+};
+
+export default useLanguageSwitcher;
+----
+
+*Important note.* #process.env.GOOGLE_TRANSLATION_CONFIG# allows us to get #GOOGLE_TRANSLATION_CONFIG# variable from the above mentioned NextJS config.
+
+A couple of final stitches.
+
+==== https://github.com/buchslava/nextjs-gtrans-demo/blob/improved/src/components/lang-switcher.tsx[src/components/lang-switcher.tsx, window=_blank]
+
+[, code]
+----
+import { NextPageContext } from "next";
+import useLanguageSwitcher, {
+  LanguageDescriptor,
+} from "@/hooks/useLanguageSwitcher";
+import React from "react";
+
+export type LanguageSwitcherProps = {
+  context?: NextPageContext;
+};
+
+export const LanguageSwitcher = ({ context }: LanguageSwitcherProps = {}) => {
+  const { currentLanguage, switchLanguage, languageConfig } =
+    useLanguageSwitcher({ context });
+
+  if (!languageConfig) {
+    return null;
+  }
+
+  return (
+    <div className="text-center notranslate">
+      {languageConfig.languages.map((ld: LanguageDescriptor, i: number) => (
+        <React.Fragment key={`l_s_${ld}`}>
+          {currentLanguage === ld.name ||
+          (currentLanguage === "auto" &&
+            languageConfig.defaultLanguage === ld.name) ? (
+            <span className="mx-3 text-orange-300">{ld.title}</span>
+          ) : (
+            <a
+              onClick={switchLanguage(ld.name)}
+              className="mx-3 text-blue-300 cursor-pointer hover:underline"
+            >
+              {ld.title}
+            </a>
+          )}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
+
+export default LanguageSwitcher;
+----
+
+#useLanguageSwitcher# looks elegant :)
+
+==== https://github.com/buchslava/nextjs-gtrans-demo/blob/improved/src/pages/_document.tsx[src/pages/_document.tsx, window=_blank]
+
+[, code]
+----
+import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
+
+export default function Document() {
+  return (
+    <Html>
+      <Head>
+        <Script
+          src="/assets/scripts/translation.js"
+          strategy="beforeInteractive"
+        />
+        {process.env.GOOGLE_TRANSLATION_CONFIG && (
+          <Script
+            src="//translate.google.com/translate_a/element.js?cb=TranslateInit"
+            strategy="afterInteractive"
+          />
+        )}
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+}
+----
+
+We don't even physically include the translation engine if the config is missing.
+
+You can find the final solution https://github.com/buchslava/nextjs-gtrans-demo/tree/improved[here, window=_blank].
+
+=== May the Google Translate, NextJS, and Force be with you!
