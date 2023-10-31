@@ -1,0 +1,38 @@
+// ToDo: add base styles import
+$bp-small: 640px;
+$bp-medium: 768px;
+$bp-large: 1024px;
+
+.main-image {
+  width: 65%;
+  display: flex;
+  margin-right: 40px;
+  max-height: 100%;
+
+  @media (max-width: $bp-large) {
+    width: 100%;
+  }
+}
+
+.first-articles {
+  width: 30%;
+  display: none;
+  flex-direction: column;
+  max-height: 100%;
+
+  @media (min-width: $bp-large) {
+    display: flex;
+  }
+}
+
+::ng-deep .swiper-slide {
+  padding-top: 0;
+}
+
+::ng-deep .pink_swiper .swiper-pagination {
+  margin-top: 16px;
+}
+
+::ng-deep .pink_swiper .swiper-slide {
+  padding-top: 0;
+}

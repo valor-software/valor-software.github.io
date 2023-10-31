@@ -1,0 +1,42 @@
+$grey: #8C8C8C;
+$red: #E24E63;
+
+:host {
+  font-family: 'Work Sans', 'sans-serif';
+}
+
+.blog-item {
+  flex-direction: column;
+
+  .text-container {
+    font-size: 28px;
+
+    @apply w-full text-light_title_col leading-40 font-bold;
+  }
+}
+
+.grey-color {
+  color: $grey;
+}
+
+.domains {
+  color: $red;
+  font-size: 14px;
+
+  .vertical-separator {
+    color: $grey;
+  }
+}
+
+.arrow-down {
+  position: relative;
+  top: -3px;
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid white;
+  border-top: 2px solid white;
+  transform: rotate(135deg);
+  margin-left: 16px;
+}

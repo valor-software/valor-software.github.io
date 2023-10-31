@@ -1,0 +1,69 @@
+<section class="landing-section !pt-24 lg:!pt-40 !pb-0">
+	<div *ngIf="firstArticles.length > 0 && activeArticle"
+	     class="container flex flex-col lg:flex-row">
+		<blog-item
+				*ngIf="activeArticle?.title"
+				class="main-image lg:pt-0"
+				[showActiveArticle]="true"
+				[article]="activeArticle">
+
+			<button class="w-full lg:w-auto flex justify-center lg:justify-self-start">
+				<a href="javascript:void(0)"
+				   [routerLink]="[getRouteLink(activeArticle.title)]"
+				   class="btn-pink flex justify-center w-full">Check this article
+					<img src="assets/img/icons/arrow.svg" class="ml-2" alt="">
+				</a>
+			</button>
+		</blog-item>
+
+		<div class="first-articles">
+			<ng-container *ngFor="let article of firstArticles">
+				<a
+						href="javascript:void(0)"
+						[routerLink]="[getRouteLink(article.title)]"
+						class="w-full cursor-pointer smaller-article-item mb-8">
+					<blog-item
+							*ngIf="article?.title !== activeArticle?.title"
+							[showLatestArticles]="true"
+							[article]="article"
+					></blog-item>
+				</a>
+			</ng-container>
+		</div>
+
+		<div class="block lg:hidden mt-4 lg:mt-0">
+			<h1 class="main-title mb-4">Latest Articles</h1>
+
+			<swiper
+					[config]="swiperConfig"
+					class="pink_swiper transparent_slides">
+				<ng-template swiperSlide *ngFor="let article of firstArticles">
+					<a href="javascript:void(0)" [routerLink]="[getRouteLink(article.title)]"
+					   class="w-full lg:max-w-380 lg:w-31% cursor-pointer smaller-article-item">
+						<blog-item
+								*ngIf="article?.title !== activeArticle?.title"
+								[showLatestArticles]="true"
+								[article]="article">
+						</blog-item>
+					</a>
+				</ng-template>
+
+			</swiper>
+		</div>
+	</div>
+</section>
+
+<section class="landing-section pt-0">
+	<div class="container pb-5 flex flex-col">
+		<h1 class="main-title mt-10 mb-4 lg:mb-12">All Articles</h1>
+
+		<div *ngIf="articles.length > 0"
+		     class="flex justify-between items-center"
+		     style="max-height: 100%;">
+			<blog-block [_articles]="articles"></blog-block>
+		</div>
+	</div>
+
+</section>
+
+
