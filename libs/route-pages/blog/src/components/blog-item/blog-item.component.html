@@ -9,8 +9,8 @@
 					[alt]="_article.title">
 		</div>
 
-		<div class="text-container mt-6">
-			<p>{{_article.title | customSlice: 80}}</p>
+		<div class="text-2xl w-full text-light_title_col leading-40 font-bold mt-6 two-line-limit">
+			<p>{{_article.title}}</p>
 		</div>
 
 		<div *ngIf="_article.readingTime || _article.languages?.length"
@@ -27,8 +27,8 @@
 			      class="grey-color">{{_article?.readingTime + ' read'}}</span>
 		</div>
 
-		<div class="mt-4">
-			<span>{{_article.seoDescription | customSlice: 180}}</span>
+		<div class="mt-4 four-line-limit">
+			<span>{{_article.seoDescription}}</span>
 		</div>
 
 		<div class="mt-4">
@@ -49,8 +49,8 @@
 					[alt]="_article.title">
 		</div>
 
-		<div class="text-2xl w-full text-light_title_col leading-40 font-bold mt-6">
-			<p>{{_article?.title | customSlice: 80}}</p>
+		<div class="text-2xl w-full text-light_title_col leading-40 font-bold mt-6 two-line-limit">
+			<p>{{_article?.title}}</p>
 		</div>
 
 	</ng-container>
@@ -63,8 +63,9 @@
 					[alt]="_article.title">
 		</div>
 
-		<div class="text-4xl lg:text-5xl w-full text-light_title_col leading-44 lg:leading-56 font-bold mt-8 lg:mt-12">
-			<p>{{_article.title | customSlice: 80}}</p>
+		<div
+				class="text-4xl lg:text-5xl w-full text-light_title_col leading-44 lg:leading-56 font-bold mt-8 lg:mt-12 two-line-limit">
+			<p>{{_article.title}}</p>
 		</div>
 
 		<div *ngIf="_article.readingTime || _article.languages?.length"
@@ -81,8 +82,8 @@
 			      class="grey-color">{{_article?.readingTime + ' read'}}</span>
 		</div>
 
-		<div class="mt-6">
-			<span>{{_article.seoDescription | customSlice: 180}}</span>
+		<div class="mt-6 four-line-limit">
+			<span>{{_article.seoDescription}}</span>
 		</div>
 
 		<div class="mt-6">

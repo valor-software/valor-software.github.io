@@ -1,20 +1,25 @@
 <section class="landing-section !pt-24 lg:!pt-40 !pb-0">
 	<div *ngIf="firstArticles.length > 0 && activeArticle"
 	     class="container flex flex-col lg:flex-row">
-		<blog-item
-				*ngIf="activeArticle?.title"
-				class="main-image lg:pt-0"
-				[showActiveArticle]="true"
-				[article]="activeArticle">
 
-			<button class="w-full lg:w-auto flex justify-center lg:justify-self-start">
-				<a href="javascript:void(0)"
-				   [routerLink]="[getRouteLink(activeArticle.title)]"
-				   class="btn-pink flex justify-center w-full">Check this article
-					<img src="assets/img/icons/arrow.svg" class="ml-2" alt="">
-				</a>
-			</button>
-		</blog-item>
+		<a *ngIf="activeArticle?.title"
+		   href="javascript:void(0)"
+		   [routerLink]="[getRouteLink(activeArticle.title)]"
+		   class="cursor-pointer main-image">
+			<blog-item
+					class="w-full lg:pt-0"
+					[showActiveArticle]="true"
+					[article]="activeArticle">
+
+				<button class="w-full lg:w-auto flex justify-center lg:justify-self-start">
+					<a href="javascript:void(0)"
+					   [routerLink]="[getRouteLink(activeArticle.title)]"
+					   class="btn-pink flex justify-center w-full">Check this article
+						<img src="assets/img/icons/arrow.svg" class="ml-2" alt="">
+					</a>
+				</button>
+			</blog-item>
+		</a>
 
 		<div class="first-articles">
 			<ng-container *ngFor="let article of firstArticles">
