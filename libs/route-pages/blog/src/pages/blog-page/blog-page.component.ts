@@ -10,7 +10,8 @@ SwiperCore.use([Pagination]);
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: 'blog-page',
-	templateUrl: './blog-page.component.html'
+	templateUrl: './blog-page.component.html',
+	styleUrls: ['./blog-page.component.scss']
 })
 export class BlogPageComponent implements OnDestroy {
 	routeUrl = '';
@@ -50,12 +51,6 @@ export class BlogPageComponent implements OnDestroy {
 		return titleRefactoring(link);
 	}
 
-	filterFirstItems() {
-		if (this.activeArticle) {
-			this.firstArticles = this.firstArticles?.filter(item => item !== this.activeArticle);
-		}
-	}
-
 	ngOnDestroy() {
 		this.$generalSubscription.unsubscribe();
 	}
@@ -73,5 +68,11 @@ export class BlogPageComponent implements OnDestroy {
 				}
 			})
 		);
+	}
+
+	private filterFirstItems() {
+		if (this.activeArticle) {
+			this.firstArticles = this.firstArticles?.filter(item => item !== this.activeArticle);
+		}
 	}
 }

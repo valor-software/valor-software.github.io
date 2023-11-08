@@ -1,0 +1,52 @@
+$grey: #8C8C8C;
+$red: #E24E63;
+
+:host {
+  font-family: 'Work Sans', 'sans-serif';
+}
+
+.blog-item {
+  flex-direction: column;
+}
+
+.grey-color {
+  color: $grey;
+}
+
+.domains {
+  color: $red;
+  font-size: 14px;
+
+  .vertical-separator {
+    color: $grey;
+  }
+}
+
+.arrow-down {
+  position: relative;
+  top: -3px;
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid white;
+  border-top: 2px solid white;
+  transform: rotate(135deg);
+  margin-left: 16px;
+}
+
+.two-line-limit {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.four-line-limit {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}

@@ -1,14 +1,15 @@
 <ng-container *ngIf="articles?.length">
-    <swiper
-            [config]="swiperConfig"
-            class="article_swiper"
-    >
-        <ng-template swiperSlide *ngFor="let article of articles">
-            <ng-container *ngIf="article && article.title">
-                <a class="block w-full cursor-pointer" href="javascript:void(0)" [routerLink]="['/articles', getRouteLink(article.title)]">
-                    <blog-portfolio-item [article]="article"></blog-portfolio-item>
-                </a>
-            </ng-container>
-        </ng-template>
-    </swiper>
+	<swiper
+			[config]="swiperConfig"
+			class="article_swiper"
+	>
+		<ng-template swiperSlide *ngFor="let article of articles">
+			<ng-container *ngIf="article && article.title">
+				<a class="block w-full cursor-pointer" href="javascript:void(0)"
+				   [routerLink]="['/articles', getRouteLink(article.title)]">
+					<blog-portfolio-item [article]="article"></blog-portfolio-item>
+				</a>
+			</ng-container>
+		</ng-template>
+	</swiper>
 </ng-container>

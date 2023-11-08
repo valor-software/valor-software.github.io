@@ -1,86 +1,30 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
-import { GetArticlesService, titleRefactoring } from '@valor-software/common-docs';
-import { Subscription } from 'rxjs';
-import { IArticle } from '@valor-software/common-docs';
-import { Router } from '@angular/router';
-
-export const Domains = {
-	business_analysis: 'Business Analysis',
-	user_research_design: 'User Research & Design',
-	dev_quality_assurance: 'Development & Quality Assurance',
-	devops_cloud: 'DevOps & Cloud',
-	recruitment_pm: 'Recruitment & Project Mgmt.',
-	sales_marketing: 'Sales & Marketing',
-	module_federation: 'Module Federation',
-	other: 'Other'
-};
-
-export const Languages = {
-	en: 'English',
-	pt: 'Portuguese'
-};
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { IArticle, titleRefactoring } from '@valor-software/common-docs';
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: 'blog-block',
-	templateUrl: './blog.component.html'
+	styleUrls: ['./blog.component.scss'],
+	templateUrl: './blog.component.html',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BlogComponent implements OnDestroy, AfterViewInit {
-	sortList: string[] = [];
-	sortLang: string[] = [];
-	$articles?: Subscription;
-	articles?: IArticle[];
-	sortArticles?: IArticle[] = [];
-	activeIndex: string[] = [];
+export class BlogComponent {
+	articles: IArticle[] = [];
 	showAll = false;
-	isCollapsed = true;
+	maxArticlesLength = 9;
 
-	@Input() set _articles(value: IArticle[]) {
-		this.articles = Object.assign(value);
-		this.sortArticles = Object.assign(value);
+	@Input() set _articles(values: IArticle[]) {
+		this.articles = Object.assign(values);
 	}
 
-	constructor(
-		private router: Router,
-		private getArticles: GetArticlesService,
-		private cdr: ChangeDetectorRef,
-	) {
-		this.getSortKeys();
-	}
-
-	ngAfterViewInit(): void {
+	// TODO: remove or rework this code while switch language implementation
+	/*ngAfterViewInit(): void {
 		this.toggleLanguage('en');
-	}
-
-	getSortKeys() {
-		const sortSet = new Set<string>();
-		Object.keys(Domains).map(key => sortSet.add(key));
-		this.sortList = [...sortSet];
-
-		const sortLang = new Set<string>();
-		Object.keys(Languages).map(key => sortLang.add(key));
-		this.sortLang = [...sortLang];
-	}
-
-	getDomainTitle(key: string) {
-		const resKey = key as keyof typeof Domains;
-		return Domains[resKey];
 	}
 
 	getLanguageTitle(key: string) {
 		const resKey = key as keyof typeof Languages;
 		return Languages[resKey];
-	}
-
-	toggleActiveIndex(key: string) {
-		if (this.activeIndex.includes(key)) {
-			this.activeIndex = this.activeIndex.filter(item => item !== key);
-			this.showAll = false;
-			return;
-		}
-
-		this.activeIndex = [...this.activeIndex, key];
-		this.showAll = false;
 	}
 
 	toggleLanguage(key: string) {
@@ -90,27 +34,9 @@ export class BlogComponent implements OnDestroy, AfterViewInit {
 		}
 
 		this.showAll = false;
-	}
+	}*/
 
-	updateArticles(articles: IArticle[] | []) {
-		this.sortArticles = articles;
-		this.cdr.detectChanges();
-	}
-
-	resetAll() {
-		const lang = this.activeIndex.includes('pt') ? 'pt' : 'en';
-		this.activeIndex = [lang];
-	}
-
-	getRouteLink(link: string): any {
+	getRouteLink(link: string): string {
 		return titleRefactoring(link);
-	}
-
-	checkLength(): boolean {
-		return !!(this.sortArticles?.length && this.sortArticles?.length > 8);
-	}
-
-	ngOnDestroy() {
-		this.$articles?.unsubscribe();
 	}
 }
