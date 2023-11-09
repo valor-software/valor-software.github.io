@@ -1,4 +1,4 @@
-import { BlogPageComponent } from './blog-page.component';
+import { BlogPageComponent } from './pages/blog-page/blog-page.component';
 import { Routes } from '@angular/router';
 import { ArticleComponent } from './components';
 

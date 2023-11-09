@@ -13,76 +13,7 @@ import { of, Subscription } from 'rxjs';
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: 'article',
-	styles: [`
-      ::ng-deep.turbo-table {
-          margin-top: 25px;
-      }
-
-      ::ng-deep.turbo-table tbody tr:not(:first-of-type) {
-          border-top: 1px solid gray;
-      }
-
-      ::ng-deep.turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type) {
-          border-right: 1px solid gray
-      }
-
-      ::ng-deep.turbo-table tbody tr:not(:first-of-type) td {
-          padding: 5px 10px;
-      }
-
-      ::ng-deep tbody tr:first-of-type {
-          text-align: center;
-      }
-
-      ::ng-deep mark {
-          background-color: #A9A9A9;
-          color: #383838;
-          border-radius: 0.3em;
-          padding: 0.1em 0.25em;
-      }
-
-      ::ng-deep.white {
-          color: #ffffff;
-      }
-
-      ::ng-deep.small-img {
-          margin: auto;
-          width: 40%
-      }
-
-      ::ng-deep.block-citation {
-          border-left-width: 8px;
-          --tw-border-opacity: 1;
-          border-color: rgba(32, 32, 32, var(--tw-border-opacity));
-          --tw-bg-opacity: 1;
-          background-color: #2c2c2d;
-      }
-
-      ::ng-deep.block-citation > .attribution {
-          padding: 0 16px 16px 16px;
-          text-align: right;
-      }
-
-      ::ng-deep.block-citation > blockquote {
-          border: 0px;
-          border-radius: 3rem;
-      }
-
-      ::ng-deep.block-citation > blockquote > .paragraph:first-of-type:before {
-          content: open-quote;
-          float: left;
-          font-size: 3em;
-          margin-right: 4px;
-          font-weight: 700;
-          line-height: 0.6em;
-          color: rgba(226, 78, 99, var(--tw-text-opacity));
-      }
-
-      ::ng-deep.block-citation > blockquote > .paragraph:first-of-type:after {
-          content: no-close-quote;
-      }
-
-	`],
+	styleUrls: ['./article.component.scss'],
 	templateUrl: './article.component.html'
 })
 export class ArticleComponent implements OnDestroy {
