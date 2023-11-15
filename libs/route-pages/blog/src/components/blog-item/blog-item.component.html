@@ -1,5 +1,4 @@
 <div class="blog-item text-light_title_col" *ngIf="_article">
-
 	<ng-container *ngIf="!showLatestArticles && !showActiveArticle">
 
 		<div class="img-container-auto zoom-img-scale">
@@ -9,36 +8,34 @@
 					[alt]="_article.title">
 		</div>
 
-		<div class="text-2xl w-full text-light_title_col leading-40 font-bold mt-6 two-line-limit">
-			<p>{{_article.title}}</p>
-		</div>
+		<div class="flex flex-col card-background justify-between">
+			<div class="flex flex-col">
+				<div class="text-2xl w-full text-light_title_col leading-7 font-bold mt-4 two-line-limit">
+					<p>{{_article.title}}</p>
+				</div>
 
-		<div *ngIf="_article.readingTime || _article.languages?.length"
-		     class="flex mt-6"
-		     [ngClass]="_article.languages?.length ? 'justify-between' : 'justify-end'">
-			<div *ngIf="_article.languages?.length"
-			     class="flex items-center">
-				<span class="mr-2 grey-color">Also Available:</span>
-				<span>English</span>
-				<span class="arrow-down"></span>
+				<div *ngIf="_article.readingTime"
+				     class="flex mt-2 justify-end">
+					<span class="grey-color">{{_article?.readingTime + ' read'}}</span>
+				</div>
+
+				<div class="mt-2 three-line-limit"
+				     [ngClass]="_article?.readingTime ? 'mt-2' : 'mt-4'">
+					<span>{{_article.seoDescription}}</span>
+				</div>
 			</div>
 
-			<span *ngIf="_article.readingTime"
-			      class="grey-color">{{_article?.readingTime + ' read'}}</span>
+			<div class="flex flex-col mt-2">
+				<span class="domains" [innerHtml]="_article.domains | domainName"></span>
+
+				<div class="flex items-center mt-2">
+					<span class="mr-4 text-lg">By {{_article.author}}</span>
+					<span class="grey-color text-base">{{_article.date ?? '' | date}}</span>
+				</div>
+			</div>
+
 		</div>
 
-		<div class="mt-4 four-line-limit">
-			<span>{{_article.seoDescription}}</span>
-		</div>
-
-		<div class="mt-4">
-			<span class="domains" [innerHtml]="_article.domains | domainName"></span>
-		</div>
-
-		<div class="flex items-center mt-4">
-			<span class="mr-4 text-lg">By {{_article.author}}</span>
-			<span class="grey-color text-base">{{_article.date ?? '' | date}}</span>
-		</div>
 	</ng-container>
 
 	<ng-container *ngIf="showLatestArticles && _article.title">
@@ -49,10 +46,9 @@
 					[alt]="_article.title">
 		</div>
 
-		<div class="text-2xl w-full text-light_title_col leading-40 font-bold mt-6 two-line-limit">
+		<div class="text-2xl w-full text-light_title_col leading-7 font-bold mt-4 two-line-limit">
 			<p>{{_article?.title}}</p>
 		</div>
-
 	</ng-container>
 
 	<ng-container *ngIf="showActiveArticle">
@@ -64,33 +60,24 @@
 		</div>
 
 		<div
-				class="text-4xl lg:text-5xl w-full text-light_title_col leading-32 lg:leading-46 font-bold mt-8 lg:mt-12 two-line-limit">
+				class="text-4xl lg:text-5xl w-full text-light_title_col leading-32 lg:leading-46 font-bold mt-8 three-line-limit">
 			<p>{{_article.title}}</p>
 		</div>
 
-		<div *ngIf="_article.readingTime || _article.languages?.length"
-		     class="flex mt-6 lg:mt-10"
-		     [ngClass]="_article.languages?.length ? 'justify-between' : 'justify-end'">
-			<div *ngIf="_article.languages?.length"
-			     class="flex items-center">
-				<span class="mr-2 grey-color">Also Available:</span>
-				<span>English</span>
-				<span class="arrow-down"></span>
-			</div>
-
-			<span *ngIf="_article.readingTime"
-			      class="grey-color">{{_article?.readingTime + ' read'}}</span>
+		<div *ngIf="_article.readingTime"
+		     class="flex mt-4 justify-end">
+			<span class="grey-color">{{_article?.readingTime + ' read'}}</span>
 		</div>
 
-		<div class="mt-6 four-line-limit">
+		<div class="mt-4 three-line-limit">
 			<span>{{_article.seoDescription}}</span>
 		</div>
 
-		<div class="mt-6">
+		<div class="mt-4">
 			<span class="domains" [innerHtml]="_article.domains | domainName"></span>
 		</div>
 
-		<div class="flex items-center mt-8">
+		<div class="flex items-center mt-4">
 			<span class="mr-4 text-lg">By {{_article.author}}</span>
 			<span class="grey-color text-base">{{_article.date ?? '' | date}}</span>
 		</div>
