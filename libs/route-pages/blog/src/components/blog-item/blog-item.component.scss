@@ -43,10 +43,24 @@ $red: #E24E63;
   -webkit-box-orient: vertical;
 }
 
+.three-line-limit {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 .four-line-limit {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 4; /* number of lines to show */
   line-clamp: 4;
   -webkit-box-orient: vertical;
+}
+
+.card-background {
+  background-color: #2C2C2D;
+  padding: 0 8px 16px 8px;
+  height: 265px;
 }

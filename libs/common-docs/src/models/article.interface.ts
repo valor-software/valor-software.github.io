@@ -3,6 +3,7 @@ export interface IArticle {
 	authorImg?: string;
 	secondAuthor?: string;
 	secondAuthorImg?: string;
+	secondAuthorPosition?: string;
 	domains: string[];
 	language: string;
 	bgImg: string;
@@ -13,7 +14,4 @@ export interface IArticle {
 	seoDescription?: string;
 	order?: number;
 	readingTime: string;
-
-	// ToDO: implement change of the languages
-	languages?: string[];
 }
