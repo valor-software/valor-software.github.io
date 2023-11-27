@@ -95,32 +95,25 @@
 					<div class="row mb-8">
 						<div class="form-control-wrapper">
 							<p class="text-grey_font_col text-sm mb-2">Your job role (optional)</p>
-							<input class="text-input p-4"
-							       formControlName="jobRole"
-							       type="text"
-							       placeholder="Enter your job">
 
-							<ng-container *ngFor="let validation of validationMessages.jobRole;">
-								<small class="text-pink"
-								       *ngIf="hasFieldError(validation.type, 'jobRole')">
-									{{ validation.message }}
-								</small>
-							</ng-container>
+							<select class="text-input p-4"
+							        formControlName="jobRole">
+								<option value="" selected hidden>Your Job Title</option>
+								<option [value]="option.value"
+								        *ngFor="let option of jobTitleOptions">{{option.value}}</option>
+							</select>
+
 						</div>
 
 						<div class="form-control-wrapper">
 							<p class="text-grey_font_col text-sm mb-2">Size of the company (optional)</p>
-							<input class="text-input p-4"
-							       formControlName="companySize"
-							       type="text"
-							       placeholder="Enter size of the company">
 
-							<ng-container *ngFor="let validation of validationMessages.companySize;">
-								<small class="text-pink"
-								       *ngIf="hasFieldError(validation.type, 'companySize')">
-									{{ validation.message }}
-								</small>
-							</ng-container>
+							<select class="text-input p-4"
+							        formControlName="companySize">
+								<option value="" selected hidden>Select size of the company</option>
+								<option [value]="option.value"
+								        *ngFor="let option of sizeOfCompanyOptions">{{option.value}}</option>
+							</select>
 						</div>
 					</div>
 
