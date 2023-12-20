@@ -95,25 +95,28 @@
 					<div class="row mb-8">
 						<div class="form-control-wrapper">
 							<p class="text-grey_font_col text-sm mb-2">Your job role (optional)</p>
-
-							<select class="text-input p-4"
-							        formControlName="jobRole">
-								<option value="" selected hidden>Your Job Title</option>
-								<option [value]="option.value"
-								        *ngFor="let option of jobTitleOptions">{{option.value}}</option>
-							</select>
-
+							<mat-select class="placeholder text-input  p-4" disableRipple
+							            placeholder="Your Job Title"
+							            formControlName="jobRole">
+								<mat-option>None</mat-option>
+								<mat-option [value]="option.value"
+								            *ngFor="let option of jobTitleOptions">
+									{{option.value}}
+								</mat-option>
+							</mat-select>
 						</div>
 
 						<div class="form-control-wrapper">
 							<p class="text-grey_font_col text-sm mb-2">Size of the company (optional)</p>
-
-							<select class="text-input p-4"
-							        formControlName="companySize">
-								<option value="" selected hidden>Select size of the company</option>
-								<option [value]="option.value"
-								        *ngFor="let option of sizeOfCompanyOptions">{{option.value}}</option>
-							</select>
+							<mat-select class="placeholder text-input p-4" disableRipple
+							            placeholder="Select size of the company"
+							            formControlName="companySize">
+								<mat-option>None</mat-option>
+								<mat-option [value]="option.value"
+								            *ngFor="let option of sizeOfCompanyOptions">
+									{{option.value}}
+								</mat-option>
+							</mat-select>
 						</div>
 					</div>
 

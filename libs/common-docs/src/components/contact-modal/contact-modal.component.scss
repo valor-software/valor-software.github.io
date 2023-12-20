@@ -98,3 +98,26 @@ $bp-medium: 768px;
     background-color: #E24E63 !important;
   }
 }
+
+::ng-deep .cdk-overlay-pane .mat-mdc-select-panel {
+  --tw-bg-opacity: 1;
+  background-color: rgba(39, 39, 39, var(--tw-bg-opacity));
+
+  mat-option {
+    color: white;
+  }
+}
+
+::ng-deep .mat-mdc-select-value {
+  color: white;
+
+  .mat-mdc-select-placeholder {
+    opacity: 0.4;
+    color: #a1a1aa;
+  }
+}
+
+::ng-deep .mat-mdc-select-arrow svg {
+  opacity: 0.4;
+  color: #a1a1aa;
+}
