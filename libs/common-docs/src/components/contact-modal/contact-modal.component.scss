@@ -121,3 +121,13 @@ $bp-medium: 768px;
   opacity: 0.4;
   color: #a1a1aa;
 }
+
+::ng-deep .mat-mdc-select-trigger {
+  padding: 16px;
+}
+
+.select {
+  .text-input {
+    padding: 0;
+  }
+}
