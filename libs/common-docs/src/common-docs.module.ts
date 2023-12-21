@@ -30,6 +30,7 @@ import { UtilService } from './services/utils.service';
 import { TechnologiesCardComponent } from './components/technologies-card/technologies-card.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
 import { CookieConsentBannerComponent } from './components/cookie-consent-banner/cookie-consent-banner.component';
+import { MatSelectModule } from '@angular/material/select';
 
 export { PopoverComponent } from './components/popover/popover.component';
 export { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -95,7 +96,8 @@ export { CookieConsentBannerComponent } from './components/cookie-consent-banner
 		HttpClientModule,
 		FileUploaderModule,
 		SwiperModule,
-		RecaptchaV3Module
+		RecaptchaV3Module,
+		MatSelectModule
 	],
 	exports: [
 		TopMenuComponent,
