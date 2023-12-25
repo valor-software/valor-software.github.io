@@ -40,6 +40,7 @@
           "apps/valor-software-site/src/sitemap.xml"
         ],
         "styles": [
+          "@angular/material/prebuilt-themes/indigo-pink.css",
           "apps/valor-software-site/src/assets/styles/styles.scss",
           "apps/valor-software-site/src/assets/styles/prettify-angulario.css"
         ],

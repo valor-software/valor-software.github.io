@@ -22,6 +22,10 @@ interface ContactModalForm {
 	['g-recaptcha-response']: FormControl<string | null>;
 }
 
+interface Option {
+	value: string;
+}
+
 const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const textRegex = /^(?! +$)[a-zA-Z0-9\-_ ']+$/;
 const commentRegex = /^(?!\s*$).+/;
@@ -37,8 +41,49 @@ export class ContactModalComponent implements OnDestroy {
 	showSuccessModalState = false;
 	showErrorModalState = false;
 	submitErrorMessage = '';
+	jobTitleOptions: Option[] = [
+		{
+			value: 'Sales Manager'
+		},
+		{
+			value: 'Product Manager'
+		},
+		{
+			value: 'Project Manager'
+		},
+		{
+			value: 'HR'
+		},
+		{
+			value: 'Designer'
+		},
+		{
+			value: 'Engineer'
+		},
+		{
+			value: 'CEO'
+		},
+		{
+			value: 'Other'
+		},
+	];
+	sizeOfCompanyOptions: Option[] = [
+		{
+			value: '0-50'
+		},
+		{
+			value: '50-200'
+		},
+		{
+			value: '200-500'
+		},
+		{
+			value: '500+'
+		}
+	];
 
 	form = this._createForm();
+	private _isFormSubmitted = false;
 	readonly validationMessages = {
 		firstName: [
 			{ type: 'required', message: 'This field is required field' },
@@ -53,16 +98,6 @@ export class ContactModalComponent implements OnDestroy {
 			{ type: 'pattern', message: 'Please enter valid data' }
 		],
 		companyName: [
-			{ type: 'minlength', message: 'Field must be longer than 2 characters' },
-			{ type: 'maxlength', message: 'Field must be less than 30 characters' },
-			{ type: 'pattern', message: 'Please enter valid data' }
-		],
-		jobRole: [
-			{ type: 'minlength', message: 'Field must be longer than 2 characters' },
-			{ type: 'maxlength', message: 'Field must be less than 30 characters' },
-			{ type: 'pattern', message: 'Please enter valid data' }
-		],
-		companySize: [
 			{ type: 'minlength', message: 'Field must be longer than 2 characters' },
 			{ type: 'maxlength', message: 'Field must be less than 30 characters' },
 			{ type: 'pattern', message: 'Please enter valid data' }
@@ -100,7 +135,7 @@ export class ContactModalComponent implements OnDestroy {
 		private readonly sendEmailService: SendEmailService,
 		private readonly recaptchaV3Service: ReCaptchaV3Service,
 		private readonly router: Router,
-		private readonly _cdRef: ChangeDetectorRef
+		private readonly _cdRef: ChangeDetectorRef,
 	) {
 		const element = document.body.querySelector('.grecaptcha-badge') as HTMLElement;
 		if (element) {
@@ -114,11 +149,19 @@ export class ContactModalComponent implements OnDestroy {
 			element.style.display = 'none';
 		}
 
+		this._isFormSubmitted = false;
 		this._internalSub.unsubscribe();
 	}
 
 	closeModal() {
-		this.modalService.close();
+		if (this._isFormSubmitted) {
+			this.modalService.close();
+			return;
+		}
+
+		if (!this._isFormSubmitted && window.confirm('Are you sure you want to close this window? All unsaved data will be lost?')) {
+			this.modalService.close();
+		}
 	}
 
 	onSubmit() {
@@ -132,6 +175,7 @@ export class ContactModalComponent implements OnDestroy {
 				)
 			).subscribe(() => {
 				this.form.reset();
+				this._isFormSubmitted = true;
 				this.showSuccessModal();
 				this.recaptchaV3Service.execute('');
 			}, (error: IError) => {
@@ -192,16 +236,8 @@ export class ContactModalComponent implements OnDestroy {
 				Validators.minLength(2),
 				Validators.pattern(textRegex)
 			]),
-			jobRole: new FormControl<string>('', [
-				Validators.maxLength(30),
-				Validators.minLength(2),
-				Validators.pattern(textRegex)
-			]),
-			companySize: new FormControl<string>('', [
-				Validators.maxLength(30),
-				Validators.minLength(2),
-				Validators.pattern(textRegex)
-			]),
+			jobRole: new FormControl<string>(''),
+			companySize: new FormControl<string>(''),
 			companyServiceName: new FormControl<CompanyServiceName>(this._getDefaultCompanyServiceName()),
 			comment: new FormControl<string>('', [
 				Validators.maxLength(2000),
