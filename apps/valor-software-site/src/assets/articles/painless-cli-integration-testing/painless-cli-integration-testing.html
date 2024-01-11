@@ -1,0 +1,540 @@
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most of my articles describe stories from my routine software development. This particular article continues that pattern. Some time ago, I was given a task that forced me to think conceptually. Apart from that, the task contained some challenging aspects that I hadn&#8217;t faced before. That&#8217;s why I have decided to share my knowledge after completing the task.</p>
+</div>
+<div class="paragraph">
+<p>There is a <a href="https://www.w3schools.com/whatis/whatis_cli.asp" target="_blank" rel="noopener">CLI</a> application based on <a href="https://www.npmjs.com/package/inquirer" target="_blank" rel="noopener">Inquirer</a>. Potentially, it could be another CLI library, say something from the <a href="https://byby.dev/node-command-line-libraries" target="_blank" rel="noopener">following list</a>. Our goal is to provide integration tests. But before that, let&#8217;s look at the related terminology.</p>
+</div>
+<div class="paragraph">
+<p>According to <a href="https://katalon.com/resources-center/blog/integration-testing" target="_blank" rel="noopener">Integration Testing</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Integration testing is a type of software testing where components of the software are gradually integrated and then tested as a unified group. Usually, these components are already working well individually, but they may break when integrated with other components. With integration testing, testers want to find defects that surface due to code conflicts between software modules when they are integrated with each other.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I like integration testing because it&#8217;s always about balance between something small and something big. <a href="https://mike-bland.com/2011/11/01/small-medium-large.html" target="_blank" rel="noopener">Google terminology</a> defines it as 'medium' for a reason.</p>
+</div>
+<div class="paragraph">
+<p>In short, we need to test the user&#8217;s input from one hand simultaneously and the result of the input processing on the other.</p>
+</div>
+<div class="paragraph">
+<p>The second question is quite the opposite. What we shouldn&#8217;t test? We can answer it only considering the solution because our code is not a black box in the case of integration tests.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_original_solution">The original solution</h3>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/cli-testing/blob/main/original.ts" target="_blank" rel="noopener">original.ts</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { prompt, Answers } from "inquirer";
+import { writeFile } from "fs";
+
+async function sleep(time: number) {
+  return new Promise((resolve) =&gt; setTimeout(resolve, time));
+}
+
+prompt([
+  {
+    name: "name",
+    type: "input",
+    message: "What's your name?",
+    validate: async function (input: string) {
+      await sleep(1500);
+      if (input === "wrong") {
+        return "Incorrect user!";
+      }
+      return true;
+    },
+  },
+  {
+    name: "iceCream",
+    type: "list",
+    message: "Which is your favorite of the following ice cream flavors?",
+    choices: ["Green tea", "Strawberry", "Blackberry", "Chile", "Vanilla"],
+  },
+  {
+    name: "programmingLanguage",
+    type: "list",
+    message: "What programming language do you prefer?",
+    choices: ["Basic", "Golang", "Javascript", "Cobol", "Java", "Rust", "C++"],
+  },
+]).then((answers: Answers) =&gt; {
+  writeFile(
+    `result-${new Date().toISOString()}.json`,
+    JSON.stringify(answers, null, 2),
+    (err) =&gt; {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log("Done...");
+    }
+  );
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I intentionally skipped some apparent technological aspects because it&#8217;s off-topic. Despite that, I&#8217;ll provide you with some mandatory thoughts and commands. First, you can find the solution <a href="https://github.com/buchslava/cli-testing" target="_blank" rel="noopener">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Please download and <mark>npm ci</mark>, and <mark>npm start</mark> or <mark>npm test</mark> it.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s run and test the solution manually.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">➜  cli-testing git:(main) ✗ npm start
+
+&gt; cli-testing@1.0.0 start
+&gt; ts-node app.ts
+
+? What's your name? Test name
+? Which is your favorite of the following ice cream flavors? Blackberry
+? What programming language do you prefer? Javascript
+Done...
+➜  cli-testing git:(main) ✗ ls
+README.md                            eslintrc.js                          node_modules                         package.json
+app.spec.ts                          jest.config.ts                       original.ts                          result-2023-12-19T11:02:52.815Z.json
+app.ts                               lib.ts                               package-lock.json                    tsconfig.json
+➜  cli-testing git:(main) ✗ cat result-2023-12-19T11:02:52.815Z.json
+{
+  "name": "Test name",
+  "iceCream": "Blackberry",
+  "programmingLanguage": "Javascript"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It proposes three questions, and after answering, it writes the answers into a separate file containing a JSON-based result. Also, pay attention to the <mark>validate</mark> function in the code above. It&#8217;s a powerful mechanism to make additional checks before the answer is accepted. I put a delay there.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">    validate: async function (input: string) {
+      await sleep(1500);
+      if (input === "wrong") {
+        return "Incorrect user!";
+      }
+      return true;
+    },
+  },</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But it could be an API call or tricky logic in real life. There are no prizes for guessing that we don&#8217;t need to test this functionality in case of integration tests. Also, we shouldn&#8217;t test external file writing functionality.</p>
+</div>
+<div class="paragraph">
+<p>The solution above looks like a monolith. That&#8217;s why integration testing testing is impossible here. To reach our goal, we must split the following logic into separate external modules or functionalities.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Validator&#8217;s logic.</p>
+</li>
+<li>
+<p>Result writing.</p>
+</li>
+<li>
+<p>The rest. It means the central part, including the user&#8217;s input.
+Based on the following, we need to refactor the code above. Let&#8217;s do our solution in a test-friendly way.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_make_the_solution_test_friendly">Make the solution test-friendly</h3>
+<div class="paragraph">
+<p>Please don&#8217;t hesitate to read the comments in the code below. It will be helpful.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/cli-testing/blob/main/lib.ts" target="_blank" rel="noopener">lib.ts</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { prompt, Answers } from "inquirer";
+
+async function sleep(time: number) {
+  return new Promise((resolve) =&gt; setTimeout(resolve, time));
+}
+
+// Validator's logic.
+export const nameValidator = async (input: string) =&gt; {
+  await sleep(1500);
+  if (input === "wrong") {
+    return "Incorrect user!";
+  }
+  return true;
+};
+
+// The central part, including the user's input.
+export default function cli(resultHandler: (answers: Answers) =&gt; void) {
+  prompt([
+    {
+      name: "name",
+      type: "input",
+      message: "What's your name?",
+      validate: nameValidator,
+    },
+    {
+      name: "iceCream",
+      type: "list",
+      message: "Which is your favorite of the following ice cream flavors?",
+      choices: ["Green tea", "Strawberry", "Blackberry", "Chile", "Vanilla"],
+    },
+    {
+      name: "programmingLanguage",
+      type: "list",
+      message: "What programming language do you prefer?",
+      choices: [
+        "Basic",
+        "Golang",
+        "Javascript",
+        "Cobol",
+        "Java",
+        "Rust",
+        "C++",
+      ],
+    },
+  ]).then(resultHandler);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and use it as</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/cli-testing/blob/main/app.ts" target="_blank" rel="noopener">app.ts</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { Answers } from "inquirer";
+import { writeFile } from "fs";
+import cli from "./lib";
+
+cli((answers: Answers) =&gt; {
+  // Result writing
+  writeFile(
+    `result-${new Date().toISOString()}.json`,
+    JSON.stringify(answers, null, 2),
+    (err) =&gt; {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log("Done...");
+      process.exit(0);
+    }
+  );
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As a result of the above, we have the essential decisions below.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Now, <mark>nameValidator</mark> is external, and we can mock it.</p>
+</li>
+<li>
+<p>The main <mark>cli</mark> part is encapsulated in the external function, and we can use it in both the app and tests.</p>
+</li>
+<li>
+<p>We separated the main logic from file writing functionality.
+The points above give us the opportunity to test the solution as easily as possible.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Before test writing, I want to focus on the central moment of the article. There are the following main conceptual approaches to test the CLI.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run the CLI as a separate process and intercommunicate with them.</p>
+</li>
+<li>
+<p>Run the CLI functionality inside the tests.
+I chose the second one because it&#8217;s more suitable for integration testing. The first is mostly regarding e2e or Big (Google definitions) tests. Also, the second approach is much more straightforward in implementation. But there is one critical answer here. We must pass the input data (key presses) to the CLI.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If we talk about the first approach, the following approaches will be useful: <a href="https://stackoverflow.com/questions/13230370/nodejs-child-process-write-to-stdin-from-an-already-initialised-process" target="_blank" rel="noopener">Nodejs Child Process: write to stdin from an already initialised process</a>. It makes sense to note here that the approaches above are rather for e2e testing than integration.</p>
+</div>
+<div class="paragraph">
+<p>If we work with the integration tests, <a href="https://github.com/caitp/node-mock-stdin" target="_blank" rel="noopener">node-mock-stdin</a> is mandatory! It provides a mock readable stream, useful for testing interactive CLI applications. It allows to put the different data to the stdin the following way.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">var stdin = require('mock-stdin').stdin();
+stdin.send("Some text", "ascii");
+stdin.send(Buffer("Some text", "Some optional encoding"));
+stdin.send([
+  "Array of lines",
+  "  which are joined with a linefeed."
+]);
+
+// sending a null will trigger EOF and dispatch an 'end' event.
+stdin.send(null);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing">Testing</h3>
+<div class="paragraph">
+<p>We use <a href="https://jestjs.io/" target="_blank" rel="noopener">Jest Framework</a> for testing. Jest is not a dogma, and, of course, in its place can be any other test runner, such as <a href="https://mochajs.org/" target="_blank" rel="noopener">Mocha</a> or <a href="https://github.com/avajs/ava" target="_blank" rel="noopener">Ava</a>. Let&#8217;s focus on tests. I&#8217;ll provide a short example because I don’t want to waste your time. You can find the full version <a href="https://github.com/buchslava/cli-testing/blob/main/app.spec.ts" target="_blank" rel="noopener">here</a>. It&#8217;s crucial to read the comments in the code below. Let&#8217;s go!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  afterEach,
+  jest,
+} from "@jest/globals";
+
+import { Answers } from "inquirer";
+import { stdin } from "mock-stdin";
+
+import cli from "./lib";
+
+// We need to import the whole lib module for future mocking.
+import * as funcModule from "./lib";
+
+// There are key press code sequences to pass them to mocked stdin.
+const DOWN = "\x1B\x5B\x42";
+const ENTER = "\x0D";
+
+describe("Cli", () =&gt; {
+  let mockStdin: any;
+  let validatorSpy: any;
+
+  // Let's spy nameValidator function.
+  const getValidatorSpy = () =&gt; jest.spyOn(funcModule, "nameValidator");
+
+  // This is a util function
+  const pauseAndSend = async (data: string): Promise&lt;void&gt; =&gt;
+    new Promise((resolve) =&gt; {
+      process.nextTick(() =&gt; {
+        mockStdin.send(data);
+        resolve();
+      });
+    });
+
+  beforeEach(async () =&gt; {
+    // According to https://github.com/caitp/node-mock-stdin?tab=readme-ov-file#modulestdin
+    mockStdin = stdin();
+  });
+
+  afterEach(async () =&gt; {
+    // According to https://github.com/caitp/node-mock-stdin?tab=readme-ov-file#mockstdinrestore
+    mockStdin.restore();
+    validatorSpy.mockRestore();
+  });
+
+  it("should get the correct data on happy flow 1", (done: () =&gt; void) =&gt; {
+    // The mocked implementation returns valid. It means the validator has been passed the imagined input data.
+    validatorSpy = getValidatorSpy().mockImplementationOnce(() =&gt;
+      Promise.resolve(true)
+    );
+
+    // Call the main functionality. It expects keyboard input, in this case, from mockStdin's side.
+    // It waits for the input provided in the next block of code. That's why, without this block, the "cli" call below never ends.
+    cli((answers: Answers) =&gt; {
+      expect(answers).toStrictEqual({
+        // The expected result should match with the input below.
+        name: "Foo Bar",
+        iceCream: "Chile",
+        programmingLanguage: "Javascript",
+      });
+      done();
+    });
+
+    // This block pushes the keyboard input to mocked stdin and allows to finish the block above.
+    (async () =&gt; {
+      // Pass
+      for (const command of [
+        // Enter "Foo Bar" text and press Enter as an answer to the "name" question.
+        "Foo Bar",
+        ENTER,
+        // DOWNx3 and press Enter means "Chile" option for the "iceCream" question.
+        DOWN,
+        DOWN,
+        DOWN,
+        ENTER,
+        // DOWNx2 and press Enter means "Javascript" option for the "programmingLanguage" question
+        DOWN,
+        DOWN,
+        ENTER,
+      ]) {
+        await pauseAndSend(command);
+      }
+    })();
+  });
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can understand the comments above much better if you run and test manually the app.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The video below will be helpful, too.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s summarize crucial points regarding the code above.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Test only <mark>cli</mark> function, not file writing.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import cli from "./lib";</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mock the <mark>nameValidator</mark> the following way. We don&#8217;t need to count it in integration tests. At least we can provide related unit tests.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const getValidatorSpy = () =&gt; jest.spyOn(funcModule, "nameValidator");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">validatorSpy = getValidatorSpy().mockImplementationOnce(() =&gt;
+  Promise.resolve(true)
+);</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Call the main functionality to test. It is worth noting that the callback in the code below will be called after all the questions have been answered, i.e., all data has been entered. That&#8217;s why if we don&#8217;t enter the data into <mark>stdin</mark>, the <mark>cli</mark> call will wait infinitely or break after the timeout if we talk about Jest.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">cli((answers: Answers) =&gt; {
+  expect(answers).toStrictEqual({
+    name: "Foo Bar",
+    iceCream: "Chile",
+    programmingLanguage: "Javascript",
+  });
+  done();
+});</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>According to the thoughts above, we need to push the whole expected data into mocked stdin. After the data has been accepted the test can compare the actual result with the expected one.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">(async () =&gt; {
+  for (const command of [
+    "Foo Bar",
+    ENTER,
+    DOWN,
+    DOWN,
+    DOWN,
+    ENTER,
+    DOWN,
+    DOWN,
+    ENTER,
+  ]) {
+    await pauseAndSend(command);
+  }
+})();</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pay attention to the <mark>pauseAndSend</mark> call, especially on the <mark>process.nextTick</mark> inside the function.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const pauseAndSend = async (data: string): Promise&lt;void&gt; =&gt;
+  new Promise((resolve) =&gt; {
+    process.nextTick(() =&gt; {
+      mockStdin.send(data);
+      resolve();
+    });
+  });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We need to interrupt the current tick because the Inquirer needs some time for input processing. It could turn out that <mark>process.nextTick</mark> is not enough for the proper pause; that&#8217;s why in other cases, say, we use another library instead of Inquirer, I&#8217;d like to recommend using <mark>setTimeout</mark> instead of <mark>process.nextTick</mark>.</p>
+</div>
+<div class="paragraph">
+<p>The best illustration of the boring points above is the video below. Enjoy :)</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/painless-cli-integration-testing/img1.gif" alt="img1">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_geeks_post_scriptum">Geeks' Post Scriptum</h3>
+<div class="paragraph">
+<p>Now, I want to provide some knowledge related to real geeks. I&#8217;m fond of libraries like <a href="https://github.com/caitp/node-mock-stdin" target="_blank" rel="noopener">node-mock-stdin</a>. And so, I firmly intend to share some exciting points regarding the amazing library above. But first, I&#8217;d like to remind you of some knowledge regarding <a href="https://nodejs.org/api/process.html" target="_blank" rel="noopener">process.stdin</a>. So, <mark>node-mock-stdin</mark> substitutes <mark>process.stdin</mark> the <a href="https://github.com/caitp/node-mock-stdin/blob/dev/lib/mock/stdin.js" target="_blank" rel="noopener">following way</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">function mock() {
+  var mock = new MockSTDIN(process.stdin);
+  Object.defineProperty(process, 'stdin', {
+    value: mock,
+    configurable: true,
+    writable: false
+  });
+  return mock;
+}
+
+mock.Class = MockSTDIN;
+
+module.exports = mock;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The approach above allows us to automate the <a href="https://github.com/caitp/node-mock-stdin/blob/dev/lib/mock/stdin.js" target="_blank" rel="noopener">data input</a>.</p>
+</div>
+<div class="paragraph">
+<p>I hope it helps you to understand the CLI testing concept under the hood. Happy testing!</p>
+</div>
+</div>
+</div>
+</div>

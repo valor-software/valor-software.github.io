@@ -1,0 +1,13 @@
+{
+"title": "Painless CLI integration testing",
+"order": 84,
+"domains": ["dev_quality_assurance"],
+"language": "en",
+"bgImg": "assets/articles/painless-cli-integration-testing/main-painless-cli-integration-testing.png",
+"authorImg": "assets/articles/painless-cli-integration-testing/Slava_Chub.jpg" ,
+"author": "Vyacheslav Chub",
+"position": "Full Stack Software Engineer",
+"date": "Wed Jan 11 2024 10:45:55 GMT+0000 (Coordinated Universal Time)",
+"seoDescription": "Providing integration tests on the CLI application based on Inquirer",
+"readingTime": "~14 min"
+}
