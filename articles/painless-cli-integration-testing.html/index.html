@@ -1,0 +1,629 @@
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/painless-cli-integration-testing.html"
+            },
+            "headline": "Painless CLI integration testing",
+            "description": "Providing integration tests on the CLI application based on Inquirer",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/painless-cli-integration-testing/main-painless-cli-integration-testing.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Vyacheslav Chub"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Wed Jan 11 2024 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+	<meta charset="utf-8">
+	<title>Painless CLI integration testing</title>
+	<base href="/">
+	<meta name="robots" content="all">
+	<meta property="og:type" content="website">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:image" content="/assets/img/valor-img/valor_social.jpg">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@ValorSoft">
+	<meta name="twitter:creator" content="@ValorSoft">
+
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<script>
+      window.intercomSettings = {
+          app_id: "brxsww1a"
+      };
+	</script>
+	<script src="assets/js/intercom-facade.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN"></script>
+	<script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+	</script>
+	<script type="text/javascript">
+      window.onload = function () {
+          if (window.self !== window.top) {
+              document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+      };
+	</script>
+<style>html{--mat-option-selected-state-label-text-color:#3f51b5;--mat-option-label-text-color:rgba(0, 0, 0, .87);--mat-option-hover-state-layer-color:rgba(0, 0, 0, .04);--mat-option-focus-state-layer-color:rgba(0, 0, 0, .04);--mat-option-selected-state-layer-color:rgba(0, 0, 0, .04)}html{--mat-optgroup-label-text-color:rgba(0, 0, 0, .87)}html{--mat-option-label-text-font:Roboto, sans-serif;--mat-option-label-text-line-height:24px;--mat-option-label-text-size:16px;--mat-option-label-text-tracking:.03125em;--mat-option-label-text-weight:400;--mat-optgroup-label-text-font:Roboto, sans-serif;--mat-optgroup-label-text-line-height:24px;--mat-optgroup-label-text-size:16px;--mat-optgroup-label-text-tracking:.03125em;--mat-optgroup-label-text-weight:400}html{--mdc-filled-text-field-caret-color:#3f51b5;--mdc-filled-text-field-focus-active-indicator-color:#3f51b5;--mdc-filled-text-field-focus-label-text-color:rgba(63, 81, 181, .87);--mdc-filled-text-field-container-color:whitesmoke;--mdc-filled-text-field-disabled-container-color:#fafafa;--mdc-filled-text-field-label-text-color:rgba(0, 0, 0, .6);--mdc-filled-text-field-disabled-label-text-color:rgba(0, 0, 0, .38);--mdc-filled-text-field-input-text-color:rgba(0, 0, 0, .87);--mdc-filled-text-field-disabled-input-text-color:rgba(0, 0, 0, .38);--mdc-filled-text-field-input-text-placeholder-color:rgba(0, 0, 0, .6);--mdc-filled-text-field-error-focus-label-text-color:#f44336;--mdc-filled-text-field-error-label-text-color:#f44336;--mdc-filled-text-field-error-caret-color:#f44336;--mdc-filled-text-field-active-indicator-color:rgba(0, 0, 0, .42);--mdc-filled-text-field-disabled-active-indicator-color:rgba(0, 0, 0, .06);--mdc-filled-text-field-hover-active-indicator-color:rgba(0, 0, 0, .87);--mdc-filled-text-field-error-active-indicator-color:#f44336;--mdc-filled-text-field-error-focus-active-indicator-color:#f44336;--mdc-filled-text-field-error-hover-active-indicator-color:#f44336;--mdc-outlined-text-field-caret-color:#3f51b5;--mdc-outlined-text-field-focus-outline-color:#3f51b5;--mdc-outlined-text-field-focus-label-text-color:rgba(63, 81, 181, .87);--mdc-outlined-text-field-label-text-color:rgba(0, 0, 0, .6);--mdc-outlined-text-field-disabled-label-text-color:rgba(0, 0, 0, .38);--mdc-outlined-text-field-input-text-color:rgba(0, 0, 0, .87);--mdc-outlined-text-field-disabled-input-text-color:rgba(0, 0, 0, .38);--mdc-outlined-text-field-input-text-placeholder-color:rgba(0, 0, 0, .6);--mdc-outlined-text-field-error-caret-color:#f44336;--mdc-outlined-text-field-error-focus-label-text-color:#f44336;--mdc-outlined-text-field-error-label-text-color:#f44336;--mdc-outlined-text-field-outline-color:rgba(0, 0, 0, .38);--mdc-outlined-text-field-disabled-outline-color:rgba(0, 0, 0, .06);--mdc-outlined-text-field-hover-outline-color:rgba(0, 0, 0, .87);--mdc-outlined-text-field-error-focus-outline-color:#f44336;--mdc-outlined-text-field-error-hover-outline-color:#f44336;--mdc-outlined-text-field-error-outline-color:#f44336;--mat-form-field-disabled-input-text-placeholder-color:rgba(0, 0, 0, .38)}html{--mdc-filled-text-field-label-text-font:Roboto, sans-serif;--mdc-filled-text-field-label-text-size:16px;--mdc-filled-text-field-label-text-tracking:.03125em;--mdc-filled-text-field-label-text-weight:400;--mdc-outlined-text-field-label-text-font:Roboto, sans-serif;--mdc-outlined-text-field-label-text-size:16px;--mdc-outlined-text-field-label-text-tracking:.03125em;--mdc-outlined-text-field-label-text-weight:400;--mat-form-field-container-text-font:Roboto, sans-serif;--mat-form-field-container-text-line-height:24px;--mat-form-field-container-text-size:16px;--mat-form-field-container-text-tracking:.03125em;--mat-form-field-container-text-weight:400;--mat-form-field-outlined-label-text-populated-size:16px;--mat-form-field-subscript-text-font:Roboto, sans-serif;--mat-form-field-subscript-text-line-height:20px;--mat-form-field-subscript-text-size:12px;--mat-form-field-subscript-text-tracking:.0333333333em;--mat-form-field-subscript-text-weight:400;--mat-select-panel-background-color:white;--mat-select-enabled-trigger-text-color:rgba(0, 0, 0, .87);--mat-select-disabled-trigger-text-color:rgba(0, 0, 0, .38);--mat-select-placeholder-text-color:rgba(0, 0, 0, .6);--mat-select-enabled-arrow-color:rgba(0, 0, 0, .54);--mat-select-disabled-arrow-color:rgba(0, 0, 0, .38);--mat-select-focused-arrow-color:rgba(63, 81, 181, .87);--mat-select-invalid-arrow-color:rgba(244, 67, 54, .87)}html{--mat-select-trigger-text-font:Roboto, sans-serif;--mat-select-trigger-text-line-height:24px;--mat-select-trigger-text-size:16px;--mat-select-trigger-text-tracking:.03125em;--mat-select-trigger-text-weight:400;--mat-autocomplete-background-color:white}html{--mat-menu-item-label-text-color:rgba(0, 0, 0, .87);--mat-menu-item-icon-color:rgba(0, 0, 0, .87);--mat-menu-item-hover-state-layer-color:rgba(0, 0, 0, .04);--mat-menu-item-focus-state-layer-color:rgba(0, 0, 0, .04);--mat-menu-container-color:white;--mat-menu-item-label-text-font:Roboto, sans-serif;--mat-menu-item-label-text-size:16px;--mat-menu-item-label-text-tracking:.03125em;--mat-menu-item-label-text-line-height:24px;--mat-menu-item-label-text-weight:400}html{--mat-paginator-container-text-color:rgba(0, 0, 0, .87);--mat-paginator-container-background-color:white;--mat-paginator-enabled-icon-color:rgba(0, 0, 0, .54);--mat-paginator-disabled-icon-color:rgba(0, 0, 0, .12);--mat-paginator-container-size:56px}html{--mat-paginator-container-text-font:Roboto, sans-serif;--mat-paginator-container-text-line-height:20px;--mat-paginator-container-text-size:12px;--mat-paginator-container-text-tracking:.0333333333em;--mat-paginator-container-text-weight:400;--mat-paginator-select-trigger-text-size:12px}html{--mdc-checkbox-disabled-selected-icon-color:rgba(0, 0, 0, .38);--mdc-checkbox-disabled-unselected-icon-color:rgba(0, 0, 0, .38);--mdc-checkbox-selected-checkmark-color:#fff;--mdc-checkbox-selected-focus-icon-color:#ff4081;--mdc-checkbox-selected-hover-icon-color:#ff4081;--mdc-checkbox-selected-icon-color:#ff4081;--mdc-checkbox-selected-pressed-icon-color:#ff4081;--mdc-checkbox-unselected-focus-icon-color:#212121;--mdc-checkbox-unselected-hover-icon-color:#212121;--mdc-checkbox-unselected-icon-color:rgba(0, 0, 0, .54);--mdc-checkbox-unselected-pressed-icon-color:rgba(0, 0, 0, .54);--mdc-checkbox-selected-focus-state-layer-color:#ff4081;--mdc-checkbox-selected-hover-state-layer-color:#ff4081;--mdc-checkbox-selected-pressed-state-layer-color:#ff4081;--mdc-checkbox-unselected-focus-state-layer-color:black;--mdc-checkbox-unselected-hover-state-layer-color:black;--mdc-checkbox-unselected-pressed-state-layer-color:black}html{--mdc-checkbox-state-layer-size:40px}html{--mat-table-background-color:white;--mat-table-header-headline-color:rgba(0, 0, 0, .87);--mat-table-row-item-label-text-color:rgba(0, 0, 0, .87);--mat-table-row-item-outline-color:rgba(0, 0, 0, .12);--mat-table-header-container-height:56px;--mat-table-footer-container-height:52px;--mat-table-row-item-container-height:52px;--mat-table-header-headline-font:Roboto, sans-serif;--mat-table-header-headline-line-height:22px;--mat-table-header-headline-size:14px;--mat-table-header-headline-weight:500;--mat-table-header-headline-tracking:.0071428571em;--mat-table-row-item-label-text-font:Roboto, sans-serif;--mat-table-row-item-label-text-line-height:20px;--mat-table-row-item-label-text-size:14px;--mat-table-row-item-label-text-weight:400;--mat-table-row-item-label-text-tracking:.0178571429em;--mat-table-footer-supporting-text-font:Roboto, sans-serif;--mat-table-footer-supporting-text-line-height:20px;--mat-table-footer-supporting-text-size:14px;--mat-table-footer-supporting-text-weight:400;--mat-table-footer-supporting-text-tracking:.0178571429em}html{--mat-badge-background-color:#3f51b5;--mat-badge-text-color:white;--mat-badge-disabled-state-background-color:#b9b9b9;--mat-badge-disabled-state-text-color:rgba(0, 0, 0, .38)}html{--mat-badge-text-font:Roboto, sans-serif;--mat-badge-text-size:12px;--mat-badge-text-weight:600;--mat-badge-small-size-text-size:9px;--mat-badge-large-size-text-size:24px;--mat-bottom-sheet-container-text-color:rgba(0, 0, 0, .87);--mat-bottom-sheet-container-background-color:white;--mat-bottom-sheet-container-text-font:Roboto, sans-serif;--mat-bottom-sheet-container-text-line-height:20px;--mat-bottom-sheet-container-text-size:14px;--mat-bottom-sheet-container-text-tracking:.0178571429em;--mat-bottom-sheet-container-text-weight:400;--mat-legacy-button-toggle-text-color:rgba(0, 0, 0, .38);--mat-legacy-button-toggle-state-layer-color:rgba(0, 0, 0, .12);--mat-legacy-button-toggle-selected-state-text-color:rgba(0, 0, 0, .54);--mat-legacy-button-toggle-selected-state-background-color:#e0e0e0;--mat-legacy-button-toggle-disabled-state-text-color:rgba(0, 0, 0, .26);--mat-legacy-button-toggle-disabled-state-background-color:#eeeeee;--mat-legacy-button-toggle-disabled-selected-state-background-color:#bdbdbd;--mat-standard-button-toggle-text-color:rgba(0, 0, 0, .87);--mat-standard-button-toggle-background-color:white;--mat-standard-button-toggle-state-layer-color:black;--mat-standard-button-toggle-selected-state-background-color:#e0e0e0;--mat-standard-button-toggle-selected-state-text-color:rgba(0, 0, 0, .87);--mat-standard-button-toggle-disabled-state-text-color:rgba(0, 0, 0, .26);--mat-standard-button-toggle-disabled-state-background-color:white;--mat-standard-button-toggle-disabled-selected-state-text-color:rgba(0, 0, 0, .87);--mat-standard-button-toggle-disabled-selected-state-background-color:#bdbdbd;--mat-standard-button-toggle-divider-color:#e0e0e0;--mat-standard-button-toggle-height:48px;--mat-legacy-button-toggle-text-font:Roboto, sans-serif;--mat-standard-button-toggle-text-font:Roboto, sans-serif;--mat-datepicker-calendar-date-selected-state-text-color:white;--mat-datepicker-calendar-date-selected-state-background-color:#3f51b5;--mat-datepicker-calendar-date-selected-disabled-state-background-color:rgba(63, 81, 181, .4);--mat-datepicker-calendar-date-today-selected-state-outline-color:white;--mat-datepicker-calendar-date-focus-state-background-color:rgba(63, 81, 181, .3);--mat-datepicker-calendar-date-hover-state-background-color:rgba(63, 81, 181, .3);--mat-datepicker-toggle-active-state-icon-color:#3f51b5;--mat-datepicker-calendar-date-in-range-state-background-color:rgba(63, 81, 181, .2);--mat-datepicker-calendar-date-in-comparison-range-state-background-color:rgba(249, 171, 0, .2);--mat-datepicker-calendar-date-in-overlap-range-state-background-color:#a8dab5;--mat-datepicker-calendar-date-in-overlap-range-selected-state-background-color:#46a35e;--mat-datepicker-toggle-icon-color:rgba(0, 0, 0, .54);--mat-datepicker-calendar-body-label-text-color:rgba(0, 0, 0, .54);--mat-datepicker-calendar-period-button-icon-color:rgba(0, 0, 0, .54);--mat-datepicker-calendar-navigation-button-icon-color:rgba(0, 0, 0, .54);--mat-datepicker-calendar-header-divider-color:rgba(0, 0, 0, .12);--mat-datepicker-calendar-header-text-color:rgba(0, 0, 0, .54);--mat-datepicker-calendar-date-today-outline-color:rgba(0, 0, 0, .38);--mat-datepicker-calendar-date-today-disabled-state-outline-color:rgba(0, 0, 0, .18);--mat-datepicker-calendar-date-text-color:rgba(0, 0, 0, .87);--mat-datepicker-calendar-date-outline-color:transparent;--mat-datepicker-calendar-date-disabled-state-text-color:rgba(0, 0, 0, .38);--mat-datepicker-calendar-date-preview-state-outline-color:rgba(0, 0, 0, .24);--mat-datepicker-range-input-separator-color:rgba(0, 0, 0, .87);--mat-datepicker-range-input-disabled-state-separator-color:rgba(0, 0, 0, .38);--mat-datepicker-range-input-disabled-state-text-color:rgba(0, 0, 0, .38);--mat-datepicker-calendar-container-background-color:white;--mat-datepicker-calendar-container-text-color:rgba(0, 0, 0, .87)}html{--mat-datepicker-calendar-text-font:Roboto, sans-serif;--mat-datepicker-calendar-text-size:13px;--mat-datepicker-calendar-body-label-text-size:14px;--mat-datepicker-calendar-body-label-text-weight:500;--mat-datepicker-calendar-period-button-text-size:14px;--mat-datepicker-calendar-period-button-text-weight:500;--mat-datepicker-calendar-header-text-size:11px;--mat-datepicker-calendar-header-text-weight:400;--mat-divider-color:rgba(0, 0, 0, .12);--mat-expansion-container-background-color:white;--mat-expansion-container-text-color:rgba(0, 0, 0, .87);--mat-expansion-actions-divider-color:rgba(0, 0, 0, .12);--mat-expansion-header-hover-state-layer-color:rgba(0, 0, 0, .04);--mat-expansion-header-focus-state-layer-color:rgba(0, 0, 0, .04);--mat-expansion-header-disabled-state-text-color:rgba(0, 0, 0, .26);--mat-expansion-header-text-color:rgba(0, 0, 0, .87);--mat-expansion-header-description-color:rgba(0, 0, 0, .54);--mat-expansion-header-indicator-color:rgba(0, 0, 0, .54);--mat-expansion-header-collapsed-state-height:48px;--mat-expansion-header-expanded-state-height:64px;--mat-expansion-header-text-font:Roboto, sans-serif;--mat-expansion-header-text-size:14px;--mat-expansion-header-text-weight:500;--mat-expansion-header-text-line-height:inherit;--mat-expansion-header-text-tracking:inherit;--mat-expansion-container-text-font:Roboto, sans-serif;--mat-expansion-container-text-line-height:20px;--mat-expansion-container-text-size:14px;--mat-expansion-container-text-tracking:.0178571429em;--mat-expansion-container-text-weight:400;--mat-grid-list-tile-header-primary-text-size:14px;--mat-grid-list-tile-header-secondary-text-size:12px;--mat-grid-list-tile-footer-primary-text-size:14px;--mat-grid-list-tile-footer-secondary-text-size:12px;--mat-icon-color:inherit}html{--mat-sidenav-container-divider-color:rgba(0, 0, 0, .12);--mat-sidenav-container-background-color:white;--mat-sidenav-container-text-color:rgba(0, 0, 0, .87);--mat-sidenav-content-background-color:#fafafa;--mat-sidenav-content-text-color:rgba(0, 0, 0, .87);--mat-sidenav-scrim-color:rgba(0, 0, 0, .6);--mat-stepper-header-icon-foreground-color:white;--mat-stepper-header-selected-state-icon-background-color:#3f51b5;--mat-stepper-header-selected-state-icon-foreground-color:white;--mat-stepper-header-done-state-icon-background-color:#3f51b5;--mat-stepper-header-done-state-icon-foreground-color:white;--mat-stepper-header-edit-state-icon-background-color:#3f51b5;--mat-stepper-header-edit-state-icon-foreground-color:white;--mat-stepper-container-color:white;--mat-stepper-line-color:rgba(0, 0, 0, .12);--mat-stepper-header-hover-state-layer-color:rgba(0, 0, 0, .04);--mat-stepper-header-focus-state-layer-color:rgba(0, 0, 0, .04);--mat-stepper-header-label-text-color:rgba(0, 0, 0, .54);--mat-stepper-header-optional-label-text-color:rgba(0, 0, 0, .54);--mat-stepper-header-selected-state-label-text-color:rgba(0, 0, 0, .87);--mat-stepper-header-error-state-label-text-color:#f44336;--mat-stepper-header-icon-background-color:rgba(0, 0, 0, .54);--mat-stepper-header-error-state-icon-foreground-color:#f44336;--mat-stepper-header-error-state-icon-background-color:transparent}html{--mat-stepper-header-height:72px;--mat-stepper-container-text-font:Roboto, sans-serif;--mat-stepper-header-label-text-font:Roboto, sans-serif;--mat-stepper-header-label-text-size:14px;--mat-stepper-header-label-text-weight:400;--mat-stepper-header-error-state-label-text-size:16px;--mat-stepper-header-selected-state-label-text-size:16px;--mat-stepper-header-selected-state-label-text-weight:400}html{--mat-toolbar-container-background-color:whitesmoke;--mat-toolbar-container-text-color:rgba(0, 0, 0, .87)}html{--mat-toolbar-standard-height:64px;--mat-toolbar-mobile-height:56px;--mat-toolbar-title-text-font:Roboto, sans-serif;--mat-toolbar-title-text-line-height:32px;--mat-toolbar-title-text-size:20px;--mat-toolbar-title-text-tracking:.0125em;--mat-toolbar-title-text-weight:500}:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{--swiper-navigation-size:44px}:root{--swiper-theme-color:#007aff}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.f7f33ac168c1767e.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.f7f33ac168c1767e.css"></noscript><style type="text/css"></style><style>footer[_ngcontent-ng-c3396914408]{font-family:Work Sans,Roboto,Arial,"sans-serif"}.subscribe-title[_ngcontent-ng-c3396914408]{font-weight:700;font-size:24px;line-height:28px;color:#e3e3e3;text-align:center}.subscribe-success-msg[_ngcontent-ng-c3396914408]{font-weight:700;font-size:16px;line-height:20px;color:#e3e3e3;text-align:center;margin-top:12px}.img[_ngcontent-ng-c3396914408]{width:32px;height:32px}</style><style>[_nghost-ng-c1371038418]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s _ngcontent-ng-c1371038418_fadein ease-in-out both}.btn[_ngcontent-ng-c1371038418]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes _ngcontent-ng-c1371038418_fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px;border-radius:3rem}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}.article-info[_ngcontent-ng-c329879809]{width:47%;display:flex;flex-direction:column;align-items:start}@media (max-width: 1024px){.article-info[_ngcontent-ng-c329879809]{width:100%}}.article-image[_ngcontent-ng-c329879809]{height:100%;width:47%}@media (max-width: 1024px){.article-image[_ngcontent-ng-c329879809]{width:100%}}.author-background[_ngcontent-ng-c329879809]{background-color:#161617;padding:4px 12px 4px 6px;border-radius:73px}</style><meta name="description" content="Providing integration tests on the CLI application based on Inquirer"><meta property="og:title" content="Painless CLI integration testing"><meta property="og:description" content="Providing integration tests on the CLI application based on Inquirer"><meta property="twitter:title" content="Painless CLI integration testing"><meta property="twitter:description" content="Providing integration tests on the CLI application based on Inquirer"><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+<valor-software-site-base-root _nghost-ng-c6223672="" ng-version="16.0.4"><top-menu _ngcontent-ng-c6223672=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-ng-c6223672="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ng-c6223672=""></router-outlet><article _nghost-ng-c329879809=""><section _ngcontent-ng-c329879809="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-ng-c329879809="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-ng-c329879809="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Painless Cli Integration Testing </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-ng-c329879809="" class="flex flex-col-reverse lg:flex-row md:mt-12 lg:mt-32 justify-between"><div _ngcontent-ng-c329879809="" class="article-info text-light_title_col"><p _ngcontent-ng-c329879809="" class="text-20 mb-4 mt-4 lg:mt-0">January 11, 2024</p><p _ngcontent-ng-c329879809="" class="text-4xl leading-[40px] font-bold lg:text-48 lg:leading-[48px] text-left">Painless CLI integration testing</p><div _ngcontent-ng-c329879809="" class="flex flex-col md:flex-row mt-4 lg:mt-8"><div _ngcontent-ng-c329879809="" class="flex author-background items-center"><div _ngcontent-ng-c329879809="" class="w-10 h-10 rounded-full overflow-hidden"><img _ngcontent-ng-c329879809="" class="w-full h-full object-cover" src="assets/articles/painless-cli-integration-testing/Slava_Chub.jpg" alt="Vyacheslav Chub"></div><!----><div _ngcontent-ng-c329879809="" class="flex flex-col items-start ml-4"><span _ngcontent-ng-c329879809="" class="text-lg">Vyacheslav Chub</span><span _ngcontent-ng-c329879809="" class="text-sm">Full Stack Software Engineer</span><!----></div></div><!----></div></div><div _ngcontent-ng-c329879809="" class="img-container-auto zoom-img-scale article-image"><img _ngcontent-ng-c329879809="" class="w-full h-full object-cover" src="assets/articles/painless-cli-integration-testing/main-painless-cli-integration-testing.png" alt="Painless CLI integration testing"></div></div></div></section><section _ngcontent-ng-c329879809="" class="landing-section"><div _ngcontent-ng-c329879809="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-ng-c329879809="" class="max-w-full"><div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most of my articles describe stories from my routine software development. This particular article continues that pattern. Some time ago, I was given a task that forced me to think conceptually. Apart from that, the task contained some challenging aspects that I hadn’t faced before. That’s why I have decided to share my knowledge after completing the task.</p>
+</div>
+<div class="paragraph">
+<p>There is a <a href="https://www.w3schools.com/whatis/whatis_cli.asp" target="_blank" rel="noopener">CLI</a> application based on <a href="https://www.npmjs.com/package/inquirer" target="_blank" rel="noopener">Inquirer</a>. Potentially, it could be another CLI library, say something from the <a href="https://byby.dev/node-command-line-libraries" target="_blank" rel="noopener">following list</a>. Our goal is to provide integration tests. But before that, let’s look at the related terminology.</p>
+</div>
+<div class="paragraph">
+<p>According to <a href="https://katalon.com/resources-center/blog/integration-testing" target="_blank" rel="noopener">Integration Testing</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Integration testing is a type of software testing where components of the software are gradually integrated and then tested as a unified group. Usually, these components are already working well individually, but they may break when integrated with other components. With integration testing, testers want to find defects that surface due to code conflicts between software modules when they are integrated with each other.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I like integration testing because it’s always about balance between something small and something big. <a href="https://mike-bland.com/2011/11/01/small-medium-large.html" target="_blank" rel="noopener">Google terminology</a> defines it as 'medium' for a reason.</p>
+</div>
+<div class="paragraph">
+<p>In short, we need to test the user’s input from one hand simultaneously and the result of the input processing on the other.</p>
+</div>
+<div class="paragraph">
+<p>The second question is quite the opposite. What we shouldn’t test? We can answer it only considering the solution because our code is not a black box in the case of integration tests.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_original_solution">The original solution</h3>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/cli-testing/blob/main/original.ts" target="_blank" rel="noopener">original.ts</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { prompt, Answers } from "inquirer";
+import { writeFile } from "fs";
+
+async function sleep(time: number) {
+  return new Promise((resolve) =&gt; setTimeout(resolve, time));
+}
+
+prompt([
+  {
+    name: "name",
+    type: "input",
+    message: "What's your name?",
+    validate: async function (input: string) {
+      await sleep(1500);
+      if (input === "wrong") {
+        return "Incorrect user!";
+      }
+      return true;
+    },
+  },
+  {
+    name: "iceCream",
+    type: "list",
+    message: "Which is your favorite of the following ice cream flavors?",
+    choices: ["Green tea", "Strawberry", "Blackberry", "Chile", "Vanilla"],
+  },
+  {
+    name: "programmingLanguage",
+    type: "list",
+    message: "What programming language do you prefer?",
+    choices: ["Basic", "Golang", "Javascript", "Cobol", "Java", "Rust", "C++"],
+  },
+]).then((answers: Answers) =&gt; {
+  writeFile(
+    `result-${new Date().toISOString()}.json`,
+    JSON.stringify(answers, null, 2),
+    (err) =&gt; {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log("Done...");
+    }
+  );
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I intentionally skipped some apparent technological aspects because it’s off-topic. Despite that, I’ll provide you with some mandatory thoughts and commands. First, you can find the solution <a href="https://github.com/buchslava/cli-testing" target="_blank" rel="noopener">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Please download and <mark>npm ci</mark>, and <mark>npm start</mark> or <mark>npm test</mark> it.</p>
+</div>
+<div class="paragraph">
+<p>Let’s run and test the solution manually.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">➜  cli-testing git:(main) ✗ npm start
+
+&gt; cli-testing@1.0.0 start
+&gt; ts-node app.ts
+
+? What's your name? Test name
+? Which is your favorite of the following ice cream flavors? Blackberry
+? What programming language do you prefer? Javascript
+Done...
+➜  cli-testing git:(main) ✗ ls
+README.md                            eslintrc.js                          node_modules                         package.json
+app.spec.ts                          jest.config.ts                       original.ts                          result-2023-12-19T11:02:52.815Z.json
+app.ts                               lib.ts                               package-lock.json                    tsconfig.json
+➜  cli-testing git:(main) ✗ cat result-2023-12-19T11:02:52.815Z.json
+{
+  "name": "Test name",
+  "iceCream": "Blackberry",
+  "programmingLanguage": "Javascript"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It proposes three questions, and after answering, it writes the answers into a separate file containing a JSON-based result. Also, pay attention to the <mark>validate</mark> function in the code above. It’s a powerful mechanism to make additional checks before the answer is accepted. I put a delay there.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">    validate: async function (input: string) {
+      await sleep(1500);
+      if (input === "wrong") {
+        return "Incorrect user!";
+      }
+      return true;
+    },
+  },</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But it could be an API call or tricky logic in real life. There are no prizes for guessing that we don’t need to test this functionality in case of integration tests. Also, we shouldn’t test external file writing functionality.</p>
+</div>
+<div class="paragraph">
+<p>The solution above looks like a monolith. That’s why integration testing testing is impossible here. To reach our goal, we must split the following logic into separate external modules or functionalities.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Validator’s logic.</p>
+</li>
+<li>
+<p>Result writing.</p>
+</li>
+<li>
+<p>The rest. It means the central part, including the user’s input.
+Based on the following, we need to refactor the code above. Let’s do our solution in a test-friendly way.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_make_the_solution_test_friendly">Make the solution test-friendly</h3>
+<div class="paragraph">
+<p>Please don’t hesitate to read the comments in the code below. It will be helpful.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/cli-testing/blob/main/lib.ts" target="_blank" rel="noopener">lib.ts</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { prompt, Answers } from "inquirer";
+
+async function sleep(time: number) {
+  return new Promise((resolve) =&gt; setTimeout(resolve, time));
+}
+
+// Validator's logic.
+export const nameValidator = async (input: string) =&gt; {
+  await sleep(1500);
+  if (input === "wrong") {
+    return "Incorrect user!";
+  }
+  return true;
+};
+
+// The central part, including the user's input.
+export default function cli(resultHandler: (answers: Answers) =&gt; void) {
+  prompt([
+    {
+      name: "name",
+      type: "input",
+      message: "What's your name?",
+      validate: nameValidator,
+    },
+    {
+      name: "iceCream",
+      type: "list",
+      message: "Which is your favorite of the following ice cream flavors?",
+      choices: ["Green tea", "Strawberry", "Blackberry", "Chile", "Vanilla"],
+    },
+    {
+      name: "programmingLanguage",
+      type: "list",
+      message: "What programming language do you prefer?",
+      choices: [
+        "Basic",
+        "Golang",
+        "Javascript",
+        "Cobol",
+        "Java",
+        "Rust",
+        "C++",
+      ],
+    },
+  ]).then(resultHandler);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and use it as</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/buchslava/cli-testing/blob/main/app.ts" target="_blank" rel="noopener">app.ts</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { Answers } from "inquirer";
+import { writeFile } from "fs";
+import cli from "./lib";
+
+cli((answers: Answers) =&gt; {
+  // Result writing
+  writeFile(
+    `result-${new Date().toISOString()}.json`,
+    JSON.stringify(answers, null, 2),
+    (err) =&gt; {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log("Done...");
+      process.exit(0);
+    }
+  );
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As a result of the above, we have the essential decisions below.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Now, <mark>nameValidator</mark> is external, and we can mock it.</p>
+</li>
+<li>
+<p>The main <mark>cli</mark> part is encapsulated in the external function, and we can use it in both the app and tests.</p>
+</li>
+<li>
+<p>We separated the main logic from file writing functionality.
+The points above give us the opportunity to test the solution as easily as possible.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Before test writing, I want to focus on the central moment of the article. There are the following main conceptual approaches to test the CLI.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run the CLI as a separate process and intercommunicate with them.</p>
+</li>
+<li>
+<p>Run the CLI functionality inside the tests.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>I chose the second one because it’s more suitable for integration testing. The first is mostly regarding e2e or Big (Google definitions) tests. Also, the second approach is much more straightforward in implementation. But there is one critical answer here. We must pass the input data (key presses) to the CLI.</p>
+</div>
+<div class="paragraph">
+<p>If we talk about the first approach, the following approaches will be useful: <a href="https://stackoverflow.com/questions/13230370/nodejs-child-process-write-to-stdin-from-an-already-initialised-process" target="_blank" rel="noopener">Nodejs Child Process: write to stdin from an already initialised process</a>. It makes sense to note here that the approaches above are rather for e2e testing than integration.</p>
+</div>
+<div class="paragraph">
+<p>If we work with the integration tests, <a href="https://github.com/caitp/node-mock-stdin" target="_blank" rel="noopener">node-mock-stdin</a> is mandatory! It provides a mock readable stream, useful for testing interactive CLI applications. It allows to put the different data to the stdin the following way.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">var stdin = require('mock-stdin').stdin();
+stdin.send("Some text", "ascii");
+stdin.send(Buffer("Some text", "Some optional encoding"));
+stdin.send([
+  "Array of lines",
+  "  which are joined with a linefeed."
+]);
+
+// sending a null will trigger EOF and dispatch an 'end' event.
+stdin.send(null);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing">Testing</h3>
+<div class="paragraph">
+<p>We use <a href="https://jestjs.io/" target="_blank" rel="noopener">Jest Framework</a> for testing. Jest is not a dogma, and, of course, in its place can be any other test runner, such as <a href="https://mochajs.org/" target="_blank" rel="noopener">Mocha</a> or <a href="https://github.com/avajs/ava" target="_blank" rel="noopener">Ava</a>. Let’s focus on tests. I’ll provide a short example because I don’t want to waste your time. You can find the full version <a href="https://github.com/buchslava/cli-testing/blob/main/app.spec.ts" target="_blank" rel="noopener">here</a>. It’s crucial to read the comments in the code below. Let’s go!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  afterEach,
+  jest,
+} from "@jest/globals";
+
+import { Answers } from "inquirer";
+import { stdin } from "mock-stdin";
+
+import cli from "./lib";
+
+// We need to import the whole lib module for future mocking.
+import * as funcModule from "./lib";
+
+// There are key press code sequences to pass them to mocked stdin.
+const DOWN = "\x1B\x5B\x42";
+const ENTER = "\x0D";
+
+describe("Cli", () =&gt; {
+  let mockStdin: any;
+  let validatorSpy: any;
+
+  // Let's spy nameValidator function.
+  const getValidatorSpy = () =&gt; jest.spyOn(funcModule, "nameValidator");
+
+  // This is a util function
+  const pauseAndSend = async (data: string): Promise&lt;void&gt; =&gt;
+    new Promise((resolve) =&gt; {
+      process.nextTick(() =&gt; {
+        mockStdin.send(data);
+        resolve();
+      });
+    });
+
+  beforeEach(async () =&gt; {
+    // According to https://github.com/caitp/node-mock-stdin?tab=readme-ov-file#modulestdin
+    mockStdin = stdin();
+  });
+
+  afterEach(async () =&gt; {
+    // According to https://github.com/caitp/node-mock-stdin?tab=readme-ov-file#mockstdinrestore
+    mockStdin.restore();
+    validatorSpy.mockRestore();
+  });
+
+  it("should get the correct data on happy flow 1", (done: () =&gt; void) =&gt; {
+    // The mocked implementation returns valid. It means the validator has been passed the imagined input data.
+    validatorSpy = getValidatorSpy().mockImplementationOnce(() =&gt;
+      Promise.resolve(true)
+    );
+
+    // Call the main functionality. It expects keyboard input, in this case, from mockStdin's side.
+    // It waits for the input provided in the next block of code. That's why, without this block, the "cli" call below never ends.
+    cli((answers: Answers) =&gt; {
+      expect(answers).toStrictEqual({
+        // The expected result should match with the input below.
+        name: "Foo Bar",
+        iceCream: "Chile",
+        programmingLanguage: "Javascript",
+      });
+      done();
+    });
+
+    // This block pushes the keyboard input to mocked stdin and allows to finish the block above.
+    (async () =&gt; {
+      // Pass
+      for (const command of [
+        // Enter "Foo Bar" text and press Enter as an answer to the "name" question.
+        "Foo Bar",
+        ENTER,
+        // DOWNx3 and press Enter means "Chile" option for the "iceCream" question.
+        DOWN,
+        DOWN,
+        DOWN,
+        ENTER,
+        // DOWNx2 and press Enter means "Javascript" option for the "programmingLanguage" question
+        DOWN,
+        DOWN,
+        ENTER,
+      ]) {
+        await pauseAndSend(command);
+      }
+    })();
+  });
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can understand the comments above much better if you run and test manually the app.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The video below will be helpful, too.</p>
+</div>
+<div class="paragraph">
+<p>Let’s summarize crucial points regarding the code above.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Test only <mark>cli</mark> function, not file writing.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import cli from "./lib";</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mock the <mark>nameValidator</mark> the following way. We don’t need to count it in integration tests. At least we can provide related unit tests.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const getValidatorSpy = () =&gt; jest.spyOn(funcModule, "nameValidator");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">validatorSpy = getValidatorSpy().mockImplementationOnce(() =&gt;
+  Promise.resolve(true)
+);</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Call the main functionality to test. It is worth noting that the callback in the code below will be called after all the questions have been answered, i.e., all data has been entered. That’s why if we don’t enter the data into <mark>stdin</mark>, the <mark>cli</mark> call will wait infinitely or break after the timeout if we talk about Jest.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">cli((answers: Answers) =&gt; {
+  expect(answers).toStrictEqual({
+    name: "Foo Bar",
+    iceCream: "Chile",
+    programmingLanguage: "Javascript",
+  });
+  done();
+});</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>According to the thoughts above, we need to push the whole expected data into mocked stdin. After the data has been accepted the test can compare the actual result with the expected one.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">(async () =&gt; {
+  for (const command of [
+    "Foo Bar",
+    ENTER,
+    DOWN,
+    DOWN,
+    DOWN,
+    ENTER,
+    DOWN,
+    DOWN,
+    ENTER,
+  ]) {
+    await pauseAndSend(command);
+  }
+})();</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pay attention to the <mark>pauseAndSend</mark> call, especially on the <mark>process.nextTick</mark> inside the function.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const pauseAndSend = async (data: string): Promise&lt;void&gt; =&gt;
+  new Promise((resolve) =&gt; {
+    process.nextTick(() =&gt; {
+      mockStdin.send(data);
+      resolve();
+    });
+  });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We need to interrupt the current tick because the Inquirer needs some time for input processing. It could turn out that <mark>process.nextTick</mark> is not enough for the proper pause; that’s why in other cases, say, we use another library instead of Inquirer, I’d like to recommend using <mark>setTimeout</mark> instead of <mark>process.nextTick</mark>.</p>
+</div>
+<div class="paragraph">
+<p>The best illustration of the boring points above is the video below. Enjoy :)</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/painless-cli-integration-testing/img1.gif" alt="img1">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_geeks_post_scriptum">Geeks' Post Scriptum</h3>
+<div class="paragraph">
+<p>Now, I want to provide some knowledge related to real geeks. I’m fond of libraries like <a href="https://github.com/caitp/node-mock-stdin" target="_blank" rel="noopener">node-mock-stdin</a>. And so, I firmly intend to share some exciting points regarding the amazing library above. But first, I’d like to remind you of some knowledge regarding <a href="https://nodejs.org/api/process.html" target="_blank" rel="noopener">process.stdin</a>. So, <mark>node-mock-stdin</mark> substitutes <mark>process.stdin</mark> the <a href="https://github.com/caitp/node-mock-stdin/blob/dev/lib/mock/stdin.js" target="_blank" rel="noopener">following way</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">function mock() {
+  var mock = new MockSTDIN(process.stdin);
+  Object.defineProperty(process, 'stdin', {
+    value: mock,
+    configurable: true,
+    writable: false
+  });
+  return mock;
+}
+
+mock.Class = MockSTDIN;
+
+module.exports = mock;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The approach above allows us to automate the <a href="https://github.com/caitp/node-mock-stdin/blob/dev/lib/mock/stdin.js" target="_blank" rel="noopener">data input</a>.</p>
+</div>
+<div class="paragraph">
+<p>I hope it helps you to understand the CLI testing concept under the hood. Happy testing!</p>
+</div>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-ng-c329879809="" class="landing-section"><h1 _ngcontent-ng-c329879809="" class="main-title">More Articles</h1><div _ngcontent-ng-c329879809="" class="container"><blog-preview _ngcontent-ng-c329879809=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/google-translate-customization-2-under-nextjs" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/google-translate-customization-2-under-nextjs/main_google-translate-customization-2-under-nextjs.png" alt="Google Translate customization#2 under NextJS"></div><div class="text-container"><p>Google Translate customization#2 under NextJS</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/google-translate-customization-under-nextjs" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/google-translate-customization-under-nextjs/main_google_translate_customization_under_nextjs.png" alt="Google Translate customization under NextJS"></div><div class="text-container"><p>Google Translate customization under NextJS</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/exploring-asynchronous-programming-approaches-in-python-mastering-asynchronous-programming-in-python" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/exploring-asynchronous-programming-approaches-in-python-mastering-asynchronous-programming-in-python/Main_Asynchronous_programming.png" alt="Exploring Asynchronous Programming Approaches in Python (Mastering Asynchronous Programming in Python)"></div><div class="text-container"><p>Exploring Asynchronous Programming Approaches in Python (Mastering Asynchronous Programming in Python)</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----></div><app-footer _ngcontent-ng-c6223672="" _nghost-ng-c3396914408=""><footer _ngcontent-ng-c3396914408="" class="mx-11 xl:mx-28 mb-6"><div _ngcontent-ng-c3396914408="" class="w-full flex flex-col lg:flex-row items-center lg:items-start border-t-2 border-placeholder_col pt-16 pb-10"><div _ngcontent-ng-c3396914408="" class="flex flex-col items-center lg:items-start order-3 lg:order-1 w-full lg:w-2/6 mr-0 lg:mr-8 mt-10 lg:mt-0"><a _ngcontent-ng-c3396914408="" routerlink="." class="cursor-pointer" href="/"><img _ngcontent-ng-c3396914408="" src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-14 w-70 lg:w-full"></a><span _ngcontent-ng-c3396914408="" class="m-0 text-header_font_col text-sm pt-4">Valor Labs Inc.</span><span _ngcontent-ng-c3396914408="" class="m-0 text-center text-header_font_col text-sm pt-3 w-48 lg:text-left">8 The Green, Suite 300 Dover DE 19901</span><span _ngcontent-ng-c3396914408="" class="m-0 text-header_font_col text-sm pt-3">© 2023, Valor Software All Rights Reserved</span><a _ngcontent-ng-c3396914408="" routerlink="/privacy-policy" class="m-0 text-header_font_col text-sm link pt-3" href="/privacy-policy">Privacy Policy </a></div><div _ngcontent-ng-c3396914408="" class="flex flex-col items-center justify-center order-1 lg:order-2 w-full lg:w-2/6 mr-0 lg:mr-8"><span _ngcontent-ng-c3396914408="" class="subscribe-title w-full">Subscribe to our newsletter now</span><form _ngcontent-ng-c3396914408="" novalidate="" action="https://valor-software.us6.list-manage.com/subscribe/post?u=ec02b86e27ea826fc9590dc10&amp;id=a7fdce3c62&amp;f_id=00c82fe3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="flex flex-col items-start mt-6 w-full"><div _ngcontent-ng-c3396914408="" class="flex flex-col lg:flex-row w-full"><input _ngcontent-ng-c3396914408="" type="email" placeholder="Enter email" name="EMAIL" id="mce-EMAIL" class="text-input w-full lg:w-9/12 mr-0 lg:mr-4 px-3 py-2 ng-untouched ng-pristine ng-invalid"><div _ngcontent-ng-c3396914408="" hidden=""><input _ngcontent-ng-c3396914408="" type="hidden" name="tags" value="3376148"></div><div _ngcontent-ng-c3396914408="" aria-hidden="true" style="position: absolute; left: -5000px;"><input _ngcontent-ng-c3396914408="" type="text" name="b_ec02b86e27ea826fc9590dc10_a7fdce3c62" tabindex="-1"></div><input _ngcontent-ng-c3396914408="" type="submit" name="subscribe" id="mc-embedded-subscribe" value="Subscribe" class="btn-pink-border w-full lg:w-auto text-base mt-4 lg:mt-0" disabled=""></div><!----><!----></form><div _ngcontent-ng-c3396914408="" class="flex items-center mt-10 w-full"><button _ngcontent-ng-c3396914408="" type="button" class="btn-pink text-base flex items-center justify-center w-full"> Get in touch </button></div></div><div _ngcontent-ng-c3396914408="" class="flex w-full lg:w-2/6 justify-center mt-11 lg:mt-0 order-2 lg:order-3"><div _ngcontent-ng-c3396914408="" class="flex flex-wrap justify-center w-full lg:max-w-[240px]"><a _ngcontent-ng-c3396914408="" href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="flex justify-center text-header_font_co mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/linkedin.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/instagram.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/twitter.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/dribble.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/behance.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/facebook.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.youtube.com/@valorsoftware?app=desktop" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/youtube.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://dev.to/valorsoftwaretech" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/devto.svg" alt="" class="img"></a></div></div></div></footer></app-footer><!----><cookie-consent-banner _ngcontent-ng-c6223672="" _nghost-ng-c1371038418=""><div _ngcontent-ng-c1371038418="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-ng-c1371038418="" class="flex flex-col"><span _ngcontent-ng-c1371038418="" class="text-20">This website uses cookies.</span><span _ngcontent-ng-c1371038418="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-ng-c1371038418="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-ng-c1371038418="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-ng-c1371038418="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
+<script async="" src="assets/js/prettify.min.js"></script>
+<script id="ScullyIO-transfer-state"></script><script src="runtime.e6ce9664179b5c62.js" type="module"></script><script src="polyfills.2066255b7190fd43.js" type="module"></script><script src="main.10eee1429d4fd323.js" type="module"></script>
+
+</body></html>
