@@ -1,52 +1,85 @@
-<section class="landing-section !pt-24 lg:!pt-40 !pb-0">
-	<div *ngIf="firstArticles.length > 0 && activeArticle"
-	     class="container flex flex-col lg:flex-row">
+<section class="landing-section !pt-24 !pb-0">
+	<div class="container flex flex-col items-end">
+		<mat-form-field *ngIf="articles.length > 0"
+		                class="search">
+			<input type="text"
+			       matInput
+			       [placeholder]="'Search'"
+			       [formControl]="searchTermControl"
+			       [matAutocomplete]="autoGroup">
+			<mat-autocomplete [disableRipple]="true"
+			                  #autoGroup="matAutocomplete">
+				<mat-optgroup *ngFor="let group of groupedAndFilteredArticles" [label]="group.tag">
+					<mat-option *ngFor="let article of group.articles" [value]="article.title"
+											(click)="navigateToArticle(article.title)"
+											(onSelectionChange)="navigateToArticle(article.title)">
+						<span class="cursor-pointer"
+						      [innerHtml]="article.title | highlightMatchingLetters: searchTermControl.value"></span>
+					</mat-option>
+				</mat-optgroup>
+			</mat-autocomplete>
 
-		<a *ngIf="activeArticle?.title"
-		   href="javascript:void(0)"
-		   [routerLink]="[getRouteLink(activeArticle.title)]"
-		   class="cursor-pointer main-image">
-			<blog-item
-					class="w-full lg:pt-0"
-					[showActiveArticle]="true"
-					[article]="activeArticle">
-			</blog-item>
-		</a>
+			<mat-icon matPrefix>search</mat-icon>
+			<button *ngIf="searchTermControl?.value?.length ?? 0 > 0"
+			        [disableRipple]="true"
+			        mat-icon-button
+			        (click)="searchTermControl.reset()"
+			        matSuffix>
+				<mat-icon>close</mat-icon>
+			</button>
+		</mat-form-field>
 
-		<div class="first-articles">
-			<ng-container *ngFor="let article of firstArticles">
-				<a
-						href="javascript:void(0)"
-						[routerLink]="[getRouteLink(article.title)]"
-						class="w-full cursor-pointer smaller-article-item mb-8">
-					<blog-item
-							*ngIf="article?.title !== activeArticle?.title"
-							[showLatestArticles]="true"
-							[article]="article"
-					></blog-item>
-				</a>
-			</ng-container>
-		</div>
 
-		<div class="block lg:hidden mt-4 lg:mt-0">
-			<h1 class="main-title mb-4">Latest Articles</h1>
+		<div class="flex flex-col lg:flex-row mt-7"
+		     *ngIf="firstArticles.length > 0 && activeArticle">
 
-			<swiper
-					[config]="swiperConfig"
-					class="pink_swiper transparent_slides">
-				<ng-template swiperSlide *ngFor="let article of firstArticles">
-					<a href="javascript:void(0)" [routerLink]="[getRouteLink(article.title)]"
-					   class="w-full lg:max-w-380 lg:w-31% cursor-pointer smaller-article-item">
+			<a *ngIf="activeArticle?.title"
+			   href="javascript:void(0)"
+			   [routerLink]="[getRouteLink(activeArticle.title)]"
+			   class="cursor-pointer main-image">
+				<blog-item
+						class="w-full lg:pt-0"
+						[showActiveArticle]="true"
+						[article]="activeArticle">
+				</blog-item>
+			</a>
+
+			<div class="first-articles">
+				<ng-container *ngFor="let article of articles | slice : 0: 4">
+					<a
+							href="javascript:void(0)"
+							[routerLink]="[getRouteLink(article.title)]"
+							class="w-full cursor-pointer smaller-article-item">
 						<blog-item
 								*ngIf="article?.title !== activeArticle?.title"
 								[showLatestArticles]="true"
-								[article]="article">
-						</blog-item>
+								[article]="article"
+						></blog-item>
 					</a>
-				</ng-template>
+				</ng-container>
+			</div>
 
-			</swiper>
+			<div class="block lg:hidden mt-4 lg:mt-0">
+				<h1 class="main-title mb-4">Latest Articles</h1>
+
+				<swiper
+						[config]="swiperConfig"
+						class="pink_swiper transparent_slides">
+					<ng-template swiperSlide *ngFor="let article of firstArticles">
+						<a href="javascript:void(0)" [routerLink]="[getRouteLink(article.title)]"
+						   class="w-full lg:max-w-380 lg:w-31% cursor-pointer smaller-article-item">
+							<blog-item
+									*ngIf="article?.title !== activeArticle?.title"
+									[showLatestArticles]="true"
+									[article]="article">
+							</blog-item>
+						</a>
+					</ng-template>
+
+				</swiper>
+			</div>
 		</div>
+
 	</div>
 </section>
 

@@ -15,7 +15,7 @@ $bp-large: 1024px;
 }
 
 .first-articles {
-  width: 30%;
+  width: 32%;
   display: none;
   flex-direction: column;
   max-height: 100%;
@@ -35,4 +35,82 @@ $bp-large: 1024px;
 
 ::ng-deep .pink_swiper .swiper-slide {
   padding-top: 0;
+}
+
+.search {
+  width: 32%;
+}
+
+::ng-deep .cdk-overlay-pane {
+  .mat-mdc-autocomplete-panel {
+    background-color: #515151;
+    padding-top: 0;
+    padding-bottom: 16px;
+    max-height: 306px
+  }
+
+  .mat-mdc-optgroup {
+    color: #E3E3E3;
+  }
+
+  .mat-mdc-optgroup-label {
+    min-height: auto;
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+
+  .mat-mdc-option {
+    background-color: #343434;
+    margin: 0 16px 4px;
+    color: #E3E3E3;
+    border-radius: 4px;
+  }
+
+  .mat-mdc-optgroup .mat-mdc-option:not(.mat-mdc-option-multiple) {
+    padding: 10px 12px;
+  }
+
+  .mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+    background-color: rgba(226, 78, 99, 1) !important;
+    color: rgba(255, 255, 255, 1) !important;
+  }
+
+  .mat-mdc-option:focus:not(.mdc-list-item--disabled) {
+    background-color: rgba(226, 78, 99, 1) !important;
+    color: rgba(255, 255, 255, 1) !important;
+  }
+
+  .mat-mdc-option:active:not(.mdc-list-item--disabled) {
+    background-color: rgba(226, 78, 99, 1) !important;
+    color: rgba(255, 255, 255, 1) !important;
+  }
+
+  .mat-mdc-option:focus.mdc-list-item, .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+    background-color: rgba(226, 78, 99, 1) !important;
+    color: rgba(255, 255, 255, 1) !important;
+  }
+}
+
+::ng-deep .mat-icon {
+  color: #8C8C8C;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #515151 !important;
+}
+
+::ng-deep .mdc-text-field__input:focus {
+  box-shadow: none;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+  border-bottom-color: transparent !important;
+}
+
+::ng-deep .mat-mdc-autocomplete-trigger {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  caret-color: white !important;
 }
