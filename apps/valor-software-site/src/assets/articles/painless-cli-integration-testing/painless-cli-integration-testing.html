@@ -261,10 +261,12 @@ The points above give us the opportunity to test the solution as easily as possi
 <p>Run the CLI as a separate process and intercommunicate with them.</p>
 </li>
 <li>
-<p>Run the CLI functionality inside the tests.
-I chose the second one because it&#8217;s more suitable for integration testing. The first is mostly regarding e2e or Big (Google definitions) tests. Also, the second approach is much more straightforward in implementation. But there is one critical answer here. We must pass the input data (key presses) to the CLI.</p>
+<p>Run the CLI functionality inside the tests.</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>I chose the second one because it&#8217;s more suitable for integration testing. The first is mostly regarding e2e or Big (Google definitions) tests. Also, the second approach is much more straightforward in implementation. But there is one critical answer here. We must pass the input data (key presses) to the CLI.</p>
 </div>
 <div class="paragraph">
 <p>If we talk about the first approach, the following approaches will be useful: <a href="https://stackoverflow.com/questions/13230370/nodejs-child-process-write-to-stdin-from-an-already-initialised-process" target="_blank" rel="noopener">Nodejs Child Process: write to stdin from an already initialised process</a>. It makes sense to note here that the approaches above are rather for e2e testing than integration.</p>
