@@ -114,3 +114,7 @@ $bp-large: 1024px;
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
   caret-color: white !important;
 }
+
+::ng-deep .mat-mdc-input-element::placeholder{
+  color: #8C8C8C !important;
+}

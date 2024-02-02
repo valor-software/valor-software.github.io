@@ -15,7 +15,7 @@ export class HighlightMatchingLettersPipe implements PipeTransform {
 
 		const regex = new RegExp(searchTerm, 'gi');
 		const highlightedValue = value.replace(regex,
-			match => `<span style="color: rgba(226, 78, 99, 1)">${match}</span>`
+			match => `<span style="color: rgb(46,79,213)">${match}</span>`
 		);
 
 		return this.domSanitizer.bypassSecurityTrustHtml(highlightedValue);
