@@ -37,6 +37,7 @@
     "asciidoctor": "^2.2.6",
     "glob": "^8.0.3",
     "img-comparison-slider": "^7.6.0",
+    "material-icons": "^1.13.12",
     "ng-recaptcha": "^9.0.0",
     "ngx-cookie-service": "^15.0.0",
     "rxjs": "~6.6.3",
