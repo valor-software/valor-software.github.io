@@ -10,6 +10,8 @@
 // swiper core styles
 @import 'swiper/css';
 
+@import 'material-icons/iconfont/material-icons.scss';
+
 body, html {
   @apply bg-grey_bg h-full;
   scroll-behavior: smooth;
