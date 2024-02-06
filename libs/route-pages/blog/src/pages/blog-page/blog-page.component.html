@@ -1,5 +1,5 @@
 <section class="landing-section !pt-24 !pb-0">
-	<div class="container flex flex-col items-end">
+	<div class="container flex flex-col lg:items-end">
 		<mat-form-field *ngIf="articles.length > 0"
 		                class="search">
 			<input type="text"
@@ -30,7 +30,7 @@
 		</mat-form-field>
 
 
-		<div class="flex flex-col lg:flex-row mt-7"
+		<div class="flex flex-col lg:flex-row lg:mt-7"
 		     *ngIf="firstArticles.length > 0 && activeArticle">
 
 			<a *ngIf="activeArticle?.title"
