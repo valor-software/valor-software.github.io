@@ -39,6 +39,14 @@ $bp-large: 1024px;
 
 .search {
   width: 32%;
+
+  @media (max-width: $bp-large) {
+    width: 50%;
+  }
+
+  @media (max-width: $bp-medium) {
+    width: 100%;
+  }
 }
 
 ::ng-deep .cdk-overlay-pane {
