@@ -1,10 +1,10 @@
 <div *ngIf="comparisonImg" class="mb-10 md:mb-0">
   <img-comparison-slider class="img-comparison-slider">
     <figure slot="first" class="before m-0 ">
-      <img width="100%" [src]="comparisonImg.beforeImg">
+      <img width="100%" [src]="comparisonImg.beforeImg" alt="">
     </figure>
     <figure slot="second" class="after m-0 ">
-      <img width="100%" [src]="comparisonImg.afterImg">
+      <img width="100%" [src]="comparisonImg.afterImg" alt="">
     </figure>
     <img slot="handle" class="self-center left-0 top-0 text-center max-w-140 pointer-events-auto cursor-pointer"
          src="assets/img/icons/arrow-circle.svg">

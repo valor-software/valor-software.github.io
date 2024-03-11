@@ -128,7 +128,7 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			nameType: 'meta',
 			name: 'name',
 			nameValue: 'description',
-			content: 'We provide enterprise-level service, covering all areas of software development: iOS, Android, and Web, as well as offering professional UX/UI expertise'
+			content: 'As the development world is getting even more agile, organizations need to follow to keep pace with the users’ expectations and needs.'
 		},
 		{
 			nameType: 'meta',
@@ -731,6 +731,44 @@ const ex: { [key: string]: { nameType: 'meta' | 'title', name: string, nameValue
 			content: 'Module Federation - Valor Software'
 		}
 	],
+	'press-release/nestjs-rspack-cicd-performance': [
+		{
+			nameType: 'meta',
+			name: 'name',
+			nameValue: 'description',
+			content: 'Leveraging Rspack and Nx while working to increase build performance for NestJS applications'
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:title',
+			content: 'Extreme build performance NestJS'
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'og:description',
+			content: 'Leveraging Rspack and Nx while working to increase build performance for NestJS applications'
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'twitter:title',
+			content: 'Extreme build performance NestJS'
+		},
+		{
+			nameType: 'meta',
+			name: 'property',
+			nameValue: 'twitter:description',
+			content: 'Leveraging Rspack and Nx while working to increase build performance for NestJS applications'
+		},
+		{
+			nameType: 'title',
+			name: 'title',
+			nameValue: 'title',
+			content: 'Extreme build performance NestJS'
+		}
+	],
 };
 
 @Injectable({ providedIn: 'platform' })
@@ -776,7 +814,7 @@ export class SeoService {
 			if (value[0].path === 'projects') {
 				this.getProjectInfo(value[1].path)?.subscribe(res => {
 					this.initCurrentTagsWithParams({
-						title: res.name,
+						title: res.name + ' Project',
 						description: res.description
 					});
 				});
