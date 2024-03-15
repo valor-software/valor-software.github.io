@@ -36,7 +36,7 @@
 </section>
 
 <section class="landing-section py-0 mb-6 lg:mb-12 lg:ml-12 lg:mr-5 mx-0">
-    <h1 class="main-title lg:mb-10 ">Background</h1>
+    <span class="main-title block lg:mb-10 ">Background</span>
     <div class="container ">
         <div class="lg:flex flex-column justify-between lg:gap-72 mb-10">
             <img class="m-auto" src="assets/img/bg-img/dollar_street_page/dollar_street_bg.png" alt="">
@@ -78,7 +78,7 @@
 </section>
 
 <section class="landing-section py-0 mb-6 lg:mb-12 md:ml-12 mr-5 md:mx-0">
-    <h1 class="main-title lg:mb-10 ">Deliverables</h1>
+    <span class="main-title block lg:mb-10 ">Deliverables</span>
     <div class="container">
         <div class="lg:px-4 lg:flex flex-column justify-between  mb-10 gap-72">
             <div>
@@ -193,7 +193,7 @@
 </section>
 
 <section *ngIf="(project$ | async)?.feedback as feedback">
-    <h1 class="main-title">Feedback</h1>
+    <span class="main-title block">Feedback</span>
     <div class="container">
         <feedback [startFrom]="feedback"></feedback>
     </div>
