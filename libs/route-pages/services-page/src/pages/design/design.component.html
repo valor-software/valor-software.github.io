@@ -35,7 +35,7 @@
 </section>
 
 <section class="mt-32">
-  <h1 class="main-title lg:mb-10">Tools</h1>
+  <span class="main-title block lg:mb-10">Tools</span>
   <div class="container ">
     <div class="grid grid-cols-1 md:grid-cols-3 md:gap-6 lg:gap-8 h-full md:auto-rows-fr">
       <technologies-card *ngFor="let card of toolsCards" [technologiesCards]="[card]"></technologies-card>
@@ -44,7 +44,7 @@
 </section>
 
 <section class="mt-32">
-  <h1 class="main-title lg:mb-10">Valor’s Traits</h1>
+  <span class="main-title block lg:mb-10">Valor’s Traits</span>
   <div class="container">
     <div class="flex flex-col gap-8 m-auto">
       <traits-cards *ngFor="let card of traitsCard" [traitCard]="card"></traits-cards>
@@ -54,7 +54,7 @@
 <core-team></core-team>
 
 <section class="landing-section">
-  <h1 class="main-title double">Articles</h1>
+  <span class="main-title block double">Articles</span>
   <div class="container">
     <blog-preview></blog-preview>
   </div>

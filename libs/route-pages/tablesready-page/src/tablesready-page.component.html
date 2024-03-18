@@ -33,7 +33,7 @@
             <img class="m-auto" src="assets/img/portfolio/tablesReady_header_resp.png" alt="">
         </div>
     </div>
-    <h1 class="main-title lg:mb-10 ">Background</h1>
+    <span class="main-title block lg:mb-10 ">Background</span>
     <div class="container ">
         <div class="flex lg:flex-row flex-col justify-between md:gap-72 gap-8 mb-10">
             <div class="m-auto ">
@@ -71,7 +71,7 @@
 </section>
 
 <section class="mb-28">
-    <h1 class="main-title mb-10">Deliverables</h1>
+    <span class="main-title block mb-10">Deliverables</span>
     <div class="container">
         <h2
             class="text-dar_grey_font_col text-left text-24 lg:text-40 lg:mb-16 mb-18 m-auto lg:-ml-5 lg:-ml-14 lg:w-10/12 leading-44 tracking-tightest mb-8">
@@ -169,7 +169,7 @@
 </section>
 
 <section class="lg:mb-28 mb-8">
-    <h1 class="main-title mb-10">Future</h1>
+    <span class="main-title block mb-10">Future</span>
     <div class="container">
         <div class="flex lg:flex-row flex-col justify-between">
             <p class="text-grey_font_col text-left text-16 tracking-tightest lg:w-7/12">
@@ -186,7 +186,7 @@
 </section>
 
 <section *ngIf="(project$ | async)?.feedback as feedback">
-    <h1 class="main-title">Feedback</h1>
+    <span class="main-title block ">Feedback</span>
     <div class="container">
         <feedback [startFrom]="feedback"></feedback>
     </div>

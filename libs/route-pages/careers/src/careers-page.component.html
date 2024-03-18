@@ -13,7 +13,7 @@
     </div>
 </section>
 <section class="landing-section">
-    <h1 class="main-title">Our Values</h1>
+    <span class="main-title block">Our Values</span>
     <div class="container flex justify-between">
         <div class="px-5 lg:px-0">
             <div *ngFor="let item of valuesList;let i = index" class="pb-6 md:pb-10 relative" [class.border-l-2]="i<valuesList.length-1" [class.border-l-green]="i<valuesList.length-1">
@@ -30,7 +30,7 @@
     </div>
 </section>
 <section class="landing-section">
-    <h1 class="main-title">We Offer</h1>
+    <span class="main-title block">We Offer</span>
     <div class="container md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-3 lg:gap-6">
        <div *ngFor="let item of offers" class="bg-grey mb-4 md:mb-0 px-6 py-8 mx-auto md:mx-0">
            <div class="w-28 h-28 flex items-center justify-center">
