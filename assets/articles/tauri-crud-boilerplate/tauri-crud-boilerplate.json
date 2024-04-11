@@ -1,0 +1,13 @@
+{
+"title": "Tauri CRUD Boilerplate",
+"order": 85,
+"domains": ["dev_quality_assurance"],
+"language": "en",
+"bgImg": "assets/articles/tauri-crud-boilerplate/main-tauri-crud-boilerplate.png",
+"authorImg": "assets/articles/tauri-crud-boilerplate/Slava_Chub.jpg" ,
+"author": "Vyacheslav Chub",
+"position": "Full Stack Software Engineer",
+"date": "Wed Apr 11 2024 10:45:55 GMT+0000 (Coordinated Universal Time)",
+"seoDescription": "Discover the Tauri CRUD Boilerplate for rapid development of DB-based UI projects",
+"readingTime": "~15 min"
+}

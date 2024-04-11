@@ -1,0 +1,720 @@
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta name="generator" content="Scully 0.0.0"><script id="article-micro-data" type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://valor-software.com/articles/tauri-crud-boilerplate.html"
+            },
+            "headline": "Tauri CRUD Boilerplate",
+            "description": "Discover the Tauri CRUD Boilerplate for rapid development of DB-based UI projects",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/articles/tauri-crud-boilerplate/main-tauri-crud-boilerplate.png",
+                "width": "",
+                "height": ""
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Vyacheslav Chub"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Valor Software",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://valor-software.com/assets/img/valor_img/valor-logo.svg",
+                "width": "",
+                "height": ""
+                }
+            },
+            "datePublished": "Wed Apr 11 2024 10:45:55 GMT+0000 (Coordinated Universal Time)"
+            }
+        </script>
+	<meta charset="utf-8">
+	<base href="/">
+	<meta name="robots" content="all">
+	<meta property="og:type" content="website">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:image" content="/assets/img/valor-img/valor_social.jpg">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@ValorSoft">
+	<meta name="twitter:creator" content="@ValorSoft">
+
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<script>
+      window.intercomSettings = {
+          app_id: "brxsww1a"
+      };
+	</script>
+	<script src="assets/js/intercom-facade.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YD223JL5QN"></script>
+	<script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+	</script>
+	<script type="text/javascript">
+      window.onload = function () {
+          if (window.self !== window.top) {
+              document.body.innerHTML = `
+                <div>
+                  <h1>If you see this page, the valor site link you have clicked on is under Clickjacking security attack.</h1>
+                  <h2>Please inform our team with the reference of the application from where you clicked this link.</h2>
+                  <h2>Click <a href="https://valor-software.com" title='Valor site' target='blank'>here</a> to access valor site safely.</h2>
+                </div>
+              `;
+          }
+      };
+	</script>
+<style>html{--mat-option-selected-state-label-text-color:#3f51b5;--mat-option-label-text-color:rgba(0, 0, 0, .87);--mat-option-hover-state-layer-color:rgba(0, 0, 0, .04);--mat-option-focus-state-layer-color:rgba(0, 0, 0, .04);--mat-option-selected-state-layer-color:rgba(0, 0, 0, .04)}html{--mat-optgroup-label-text-color:rgba(0, 0, 0, .87)}html{--mat-option-label-text-font:Roboto, sans-serif;--mat-option-label-text-line-height:24px;--mat-option-label-text-size:16px;--mat-option-label-text-tracking:.03125em;--mat-option-label-text-weight:400;--mat-optgroup-label-text-font:Roboto, sans-serif;--mat-optgroup-label-text-line-height:24px;--mat-optgroup-label-text-size:16px;--mat-optgroup-label-text-tracking:.03125em;--mat-optgroup-label-text-weight:400}html{--mdc-filled-text-field-caret-color:#3f51b5;--mdc-filled-text-field-focus-active-indicator-color:#3f51b5;--mdc-filled-text-field-focus-label-text-color:rgba(63, 81, 181, .87);--mdc-filled-text-field-container-color:whitesmoke;--mdc-filled-text-field-disabled-container-color:#fafafa;--mdc-filled-text-field-label-text-color:rgba(0, 0, 0, .6);--mdc-filled-text-field-disabled-label-text-color:rgba(0, 0, 0, .38);--mdc-filled-text-field-input-text-color:rgba(0, 0, 0, .87);--mdc-filled-text-field-disabled-input-text-color:rgba(0, 0, 0, .38);--mdc-filled-text-field-input-text-placeholder-color:rgba(0, 0, 0, .6);--mdc-filled-text-field-error-focus-label-text-color:#f44336;--mdc-filled-text-field-error-label-text-color:#f44336;--mdc-filled-text-field-error-caret-color:#f44336;--mdc-filled-text-field-active-indicator-color:rgba(0, 0, 0, .42);--mdc-filled-text-field-disabled-active-indicator-color:rgba(0, 0, 0, .06);--mdc-filled-text-field-hover-active-indicator-color:rgba(0, 0, 0, .87);--mdc-filled-text-field-error-active-indicator-color:#f44336;--mdc-filled-text-field-error-focus-active-indicator-color:#f44336;--mdc-filled-text-field-error-hover-active-indicator-color:#f44336;--mdc-outlined-text-field-caret-color:#3f51b5;--mdc-outlined-text-field-focus-outline-color:#3f51b5;--mdc-outlined-text-field-focus-label-text-color:rgba(63, 81, 181, .87);--mdc-outlined-text-field-label-text-color:rgba(0, 0, 0, .6);--mdc-outlined-text-field-disabled-label-text-color:rgba(0, 0, 0, .38);--mdc-outlined-text-field-input-text-color:rgba(0, 0, 0, .87);--mdc-outlined-text-field-disabled-input-text-color:rgba(0, 0, 0, .38);--mdc-outlined-text-field-input-text-placeholder-color:rgba(0, 0, 0, .6);--mdc-outlined-text-field-error-caret-color:#f44336;--mdc-outlined-text-field-error-focus-label-text-color:#f44336;--mdc-outlined-text-field-error-label-text-color:#f44336;--mdc-outlined-text-field-outline-color:rgba(0, 0, 0, .38);--mdc-outlined-text-field-disabled-outline-color:rgba(0, 0, 0, .06);--mdc-outlined-text-field-hover-outline-color:rgba(0, 0, 0, .87);--mdc-outlined-text-field-error-focus-outline-color:#f44336;--mdc-outlined-text-field-error-hover-outline-color:#f44336;--mdc-outlined-text-field-error-outline-color:#f44336;--mat-form-field-disabled-input-text-placeholder-color:rgba(0, 0, 0, .38)}html{--mdc-filled-text-field-label-text-font:Roboto, sans-serif;--mdc-filled-text-field-label-text-size:16px;--mdc-filled-text-field-label-text-tracking:.03125em;--mdc-filled-text-field-label-text-weight:400;--mdc-outlined-text-field-label-text-font:Roboto, sans-serif;--mdc-outlined-text-field-label-text-size:16px;--mdc-outlined-text-field-label-text-tracking:.03125em;--mdc-outlined-text-field-label-text-weight:400;--mat-form-field-container-text-font:Roboto, sans-serif;--mat-form-field-container-text-line-height:24px;--mat-form-field-container-text-size:16px;--mat-form-field-container-text-tracking:.03125em;--mat-form-field-container-text-weight:400;--mat-form-field-outlined-label-text-populated-size:16px;--mat-form-field-subscript-text-font:Roboto, sans-serif;--mat-form-field-subscript-text-line-height:20px;--mat-form-field-subscript-text-size:12px;--mat-form-field-subscript-text-tracking:.0333333333em;--mat-form-field-subscript-text-weight:400;--mat-select-panel-background-color:white;--mat-select-enabled-trigger-text-color:rgba(0, 0, 0, .87);--mat-select-disabled-trigger-text-color:rgba(0, 0, 0, .38);--mat-select-placeholder-text-color:rgba(0, 0, 0, .6);--mat-select-enabled-arrow-color:rgba(0, 0, 0, .54);--mat-select-disabled-arrow-color:rgba(0, 0, 0, .38);--mat-select-focused-arrow-color:rgba(63, 81, 181, .87);--mat-select-invalid-arrow-color:rgba(244, 67, 54, .87)}html{--mat-select-trigger-text-font:Roboto, sans-serif;--mat-select-trigger-text-line-height:24px;--mat-select-trigger-text-size:16px;--mat-select-trigger-text-tracking:.03125em;--mat-select-trigger-text-weight:400;--mat-autocomplete-background-color:white}html{--mat-menu-item-label-text-color:rgba(0, 0, 0, .87);--mat-menu-item-icon-color:rgba(0, 0, 0, .87);--mat-menu-item-hover-state-layer-color:rgba(0, 0, 0, .04);--mat-menu-item-focus-state-layer-color:rgba(0, 0, 0, .04);--mat-menu-container-color:white;--mat-menu-item-label-text-font:Roboto, sans-serif;--mat-menu-item-label-text-size:16px;--mat-menu-item-label-text-tracking:.03125em;--mat-menu-item-label-text-line-height:24px;--mat-menu-item-label-text-weight:400}html{--mat-paginator-container-text-color:rgba(0, 0, 0, .87);--mat-paginator-container-background-color:white;--mat-paginator-enabled-icon-color:rgba(0, 0, 0, .54);--mat-paginator-disabled-icon-color:rgba(0, 0, 0, .12);--mat-paginator-container-size:56px}html{--mat-paginator-container-text-font:Roboto, sans-serif;--mat-paginator-container-text-line-height:20px;--mat-paginator-container-text-size:12px;--mat-paginator-container-text-tracking:.0333333333em;--mat-paginator-container-text-weight:400;--mat-paginator-select-trigger-text-size:12px}html{--mdc-checkbox-disabled-selected-icon-color:rgba(0, 0, 0, .38);--mdc-checkbox-disabled-unselected-icon-color:rgba(0, 0, 0, .38);--mdc-checkbox-selected-checkmark-color:#fff;--mdc-checkbox-selected-focus-icon-color:#ff4081;--mdc-checkbox-selected-hover-icon-color:#ff4081;--mdc-checkbox-selected-icon-color:#ff4081;--mdc-checkbox-selected-pressed-icon-color:#ff4081;--mdc-checkbox-unselected-focus-icon-color:#212121;--mdc-checkbox-unselected-hover-icon-color:#212121;--mdc-checkbox-unselected-icon-color:rgba(0, 0, 0, .54);--mdc-checkbox-unselected-pressed-icon-color:rgba(0, 0, 0, .54);--mdc-checkbox-selected-focus-state-layer-color:#ff4081;--mdc-checkbox-selected-hover-state-layer-color:#ff4081;--mdc-checkbox-selected-pressed-state-layer-color:#ff4081;--mdc-checkbox-unselected-focus-state-layer-color:black;--mdc-checkbox-unselected-hover-state-layer-color:black;--mdc-checkbox-unselected-pressed-state-layer-color:black}html{--mdc-checkbox-state-layer-size:40px}html{--mat-table-background-color:white;--mat-table-header-headline-color:rgba(0, 0, 0, .87);--mat-table-row-item-label-text-color:rgba(0, 0, 0, .87);--mat-table-row-item-outline-color:rgba(0, 0, 0, .12);--mat-table-header-container-height:56px;--mat-table-footer-container-height:52px;--mat-table-row-item-container-height:52px;--mat-table-header-headline-font:Roboto, sans-serif;--mat-table-header-headline-line-height:22px;--mat-table-header-headline-size:14px;--mat-table-header-headline-weight:500;--mat-table-header-headline-tracking:.0071428571em;--mat-table-row-item-label-text-font:Roboto, sans-serif;--mat-table-row-item-label-text-line-height:20px;--mat-table-row-item-label-text-size:14px;--mat-table-row-item-label-text-weight:400;--mat-table-row-item-label-text-tracking:.0178571429em;--mat-table-footer-supporting-text-font:Roboto, sans-serif;--mat-table-footer-supporting-text-line-height:20px;--mat-table-footer-supporting-text-size:14px;--mat-table-footer-supporting-text-weight:400;--mat-table-footer-supporting-text-tracking:.0178571429em}html{--mat-badge-background-color:#3f51b5;--mat-badge-text-color:white;--mat-badge-disabled-state-background-color:#b9b9b9;--mat-badge-disabled-state-text-color:rgba(0, 0, 0, .38)}html{--mat-badge-text-font:Roboto, sans-serif;--mat-badge-text-size:12px;--mat-badge-text-weight:600;--mat-badge-small-size-text-size:9px;--mat-badge-large-size-text-size:24px;--mat-bottom-sheet-container-text-color:rgba(0, 0, 0, .87);--mat-bottom-sheet-container-background-color:white;--mat-bottom-sheet-container-text-font:Roboto, sans-serif;--mat-bottom-sheet-container-text-line-height:20px;--mat-bottom-sheet-container-text-size:14px;--mat-bottom-sheet-container-text-tracking:.0178571429em;--mat-bottom-sheet-container-text-weight:400;--mat-legacy-button-toggle-text-color:rgba(0, 0, 0, .38);--mat-legacy-button-toggle-state-layer-color:rgba(0, 0, 0, .12);--mat-legacy-button-toggle-selected-state-text-color:rgba(0, 0, 0, .54);--mat-legacy-button-toggle-selected-state-background-color:#e0e0e0;--mat-legacy-button-toggle-disabled-state-text-color:rgba(0, 0, 0, .26);--mat-legacy-button-toggle-disabled-state-background-color:#eeeeee;--mat-legacy-button-toggle-disabled-selected-state-background-color:#bdbdbd;--mat-standard-button-toggle-text-color:rgba(0, 0, 0, .87);--mat-standard-button-toggle-background-color:white;--mat-standard-button-toggle-state-layer-color:black;--mat-standard-button-toggle-selected-state-background-color:#e0e0e0;--mat-standard-button-toggle-selected-state-text-color:rgba(0, 0, 0, .87);--mat-standard-button-toggle-disabled-state-text-color:rgba(0, 0, 0, .26);--mat-standard-button-toggle-disabled-state-background-color:white;--mat-standard-button-toggle-disabled-selected-state-text-color:rgba(0, 0, 0, .87);--mat-standard-button-toggle-disabled-selected-state-background-color:#bdbdbd;--mat-standard-button-toggle-divider-color:#e0e0e0;--mat-standard-button-toggle-height:48px;--mat-legacy-button-toggle-text-font:Roboto, sans-serif;--mat-standard-button-toggle-text-font:Roboto, sans-serif;--mat-datepicker-calendar-date-selected-state-text-color:white;--mat-datepicker-calendar-date-selected-state-background-color:#3f51b5;--mat-datepicker-calendar-date-selected-disabled-state-background-color:rgba(63, 81, 181, .4);--mat-datepicker-calendar-date-today-selected-state-outline-color:white;--mat-datepicker-calendar-date-focus-state-background-color:rgba(63, 81, 181, .3);--mat-datepicker-calendar-date-hover-state-background-color:rgba(63, 81, 181, .3);--mat-datepicker-toggle-active-state-icon-color:#3f51b5;--mat-datepicker-calendar-date-in-range-state-background-color:rgba(63, 81, 181, .2);--mat-datepicker-calendar-date-in-comparison-range-state-background-color:rgba(249, 171, 0, .2);--mat-datepicker-calendar-date-in-overlap-range-state-background-color:#a8dab5;--mat-datepicker-calendar-date-in-overlap-range-selected-state-background-color:#46a35e;--mat-datepicker-toggle-icon-color:rgba(0, 0, 0, .54);--mat-datepicker-calendar-body-label-text-color:rgba(0, 0, 0, .54);--mat-datepicker-calendar-period-button-icon-color:rgba(0, 0, 0, .54);--mat-datepicker-calendar-navigation-button-icon-color:rgba(0, 0, 0, .54);--mat-datepicker-calendar-header-divider-color:rgba(0, 0, 0, .12);--mat-datepicker-calendar-header-text-color:rgba(0, 0, 0, .54);--mat-datepicker-calendar-date-today-outline-color:rgba(0, 0, 0, .38);--mat-datepicker-calendar-date-today-disabled-state-outline-color:rgba(0, 0, 0, .18);--mat-datepicker-calendar-date-text-color:rgba(0, 0, 0, .87);--mat-datepicker-calendar-date-outline-color:transparent;--mat-datepicker-calendar-date-disabled-state-text-color:rgba(0, 0, 0, .38);--mat-datepicker-calendar-date-preview-state-outline-color:rgba(0, 0, 0, .24);--mat-datepicker-range-input-separator-color:rgba(0, 0, 0, .87);--mat-datepicker-range-input-disabled-state-separator-color:rgba(0, 0, 0, .38);--mat-datepicker-range-input-disabled-state-text-color:rgba(0, 0, 0, .38);--mat-datepicker-calendar-container-background-color:white;--mat-datepicker-calendar-container-text-color:rgba(0, 0, 0, .87)}html{--mat-datepicker-calendar-text-font:Roboto, sans-serif;--mat-datepicker-calendar-text-size:13px;--mat-datepicker-calendar-body-label-text-size:14px;--mat-datepicker-calendar-body-label-text-weight:500;--mat-datepicker-calendar-period-button-text-size:14px;--mat-datepicker-calendar-period-button-text-weight:500;--mat-datepicker-calendar-header-text-size:11px;--mat-datepicker-calendar-header-text-weight:400;--mat-divider-color:rgba(0, 0, 0, .12);--mat-expansion-container-background-color:white;--mat-expansion-container-text-color:rgba(0, 0, 0, .87);--mat-expansion-actions-divider-color:rgba(0, 0, 0, .12);--mat-expansion-header-hover-state-layer-color:rgba(0, 0, 0, .04);--mat-expansion-header-focus-state-layer-color:rgba(0, 0, 0, .04);--mat-expansion-header-disabled-state-text-color:rgba(0, 0, 0, .26);--mat-expansion-header-text-color:rgba(0, 0, 0, .87);--mat-expansion-header-description-color:rgba(0, 0, 0, .54);--mat-expansion-header-indicator-color:rgba(0, 0, 0, .54);--mat-expansion-header-collapsed-state-height:48px;--mat-expansion-header-expanded-state-height:64px;--mat-expansion-header-text-font:Roboto, sans-serif;--mat-expansion-header-text-size:14px;--mat-expansion-header-text-weight:500;--mat-expansion-header-text-line-height:inherit;--mat-expansion-header-text-tracking:inherit;--mat-expansion-container-text-font:Roboto, sans-serif;--mat-expansion-container-text-line-height:20px;--mat-expansion-container-text-size:14px;--mat-expansion-container-text-tracking:.0178571429em;--mat-expansion-container-text-weight:400;--mat-grid-list-tile-header-primary-text-size:14px;--mat-grid-list-tile-header-secondary-text-size:12px;--mat-grid-list-tile-footer-primary-text-size:14px;--mat-grid-list-tile-footer-secondary-text-size:12px;--mat-icon-color:inherit}html{--mat-sidenav-container-divider-color:rgba(0, 0, 0, .12);--mat-sidenav-container-background-color:white;--mat-sidenav-container-text-color:rgba(0, 0, 0, .87);--mat-sidenav-content-background-color:#fafafa;--mat-sidenav-content-text-color:rgba(0, 0, 0, .87);--mat-sidenav-scrim-color:rgba(0, 0, 0, .6);--mat-stepper-header-icon-foreground-color:white;--mat-stepper-header-selected-state-icon-background-color:#3f51b5;--mat-stepper-header-selected-state-icon-foreground-color:white;--mat-stepper-header-done-state-icon-background-color:#3f51b5;--mat-stepper-header-done-state-icon-foreground-color:white;--mat-stepper-header-edit-state-icon-background-color:#3f51b5;--mat-stepper-header-edit-state-icon-foreground-color:white;--mat-stepper-container-color:white;--mat-stepper-line-color:rgba(0, 0, 0, .12);--mat-stepper-header-hover-state-layer-color:rgba(0, 0, 0, .04);--mat-stepper-header-focus-state-layer-color:rgba(0, 0, 0, .04);--mat-stepper-header-label-text-color:rgba(0, 0, 0, .54);--mat-stepper-header-optional-label-text-color:rgba(0, 0, 0, .54);--mat-stepper-header-selected-state-label-text-color:rgba(0, 0, 0, .87);--mat-stepper-header-error-state-label-text-color:#f44336;--mat-stepper-header-icon-background-color:rgba(0, 0, 0, .54);--mat-stepper-header-error-state-icon-foreground-color:#f44336;--mat-stepper-header-error-state-icon-background-color:transparent}html{--mat-stepper-header-height:72px;--mat-stepper-container-text-font:Roboto, sans-serif;--mat-stepper-header-label-text-font:Roboto, sans-serif;--mat-stepper-header-label-text-size:14px;--mat-stepper-header-label-text-weight:400;--mat-stepper-header-error-state-label-text-size:16px;--mat-stepper-header-selected-state-label-text-size:16px;--mat-stepper-header-selected-state-label-text-weight:400}html{--mat-toolbar-container-background-color:whitesmoke;--mat-toolbar-container-text-color:rgba(0, 0, 0, .87)}html{--mat-toolbar-standard-height:64px;--mat-toolbar-mobile-height:56px;--mat-toolbar-title-text-font:Roboto, sans-serif;--mat-toolbar-title-text-line-height:32px;--mat-toolbar-title-text-size:20px;--mat-toolbar-title-text-tracking:.0125em;--mat-toolbar-title-text-weight:500}:root{--light_font_col:#E1E1E1}*,:before,:after{box-sizing:border-box}html{tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}*,:before,:after{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));border-color:currentColor;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-blur:var(--tw-empty, );--tw-brightness:var(--tw-empty, );--tw-contrast:var(--tw-empty, );--tw-grayscale:var(--tw-empty, );--tw-hue-rotate:var(--tw-empty, );--tw-invert:var(--tw-empty, );--tw-saturate:var(--tw-empty, );--tw-sepia:var(--tw-empty, );--tw-drop-shadow:var(--tw-empty, );--tw-filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{--swiper-navigation-size:44px}:root{--swiper-theme-color:#007aff}body,html{height:100%;--tw-bg-opacity:1;background-color:rgba(22,22,23,var(--tw-bg-opacity));scroll-behavior:smooth}</style><link rel="stylesheet" href="styles.247ab0f92a1e5690.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.247ab0f92a1e5690.css"></noscript><style type="text/css"></style><style>footer[_ngcontent-ng-c3396914408]{font-family:Work Sans,Roboto,Arial,"sans-serif"}.subscribe-title[_ngcontent-ng-c3396914408]{font-weight:700;font-size:24px;line-height:28px;color:#e3e3e3;text-align:center}.subscribe-success-msg[_ngcontent-ng-c3396914408]{font-weight:700;font-size:16px;line-height:20px;color:#e3e3e3;text-align:center;margin-top:12px}.img[_ngcontent-ng-c3396914408]{width:32px;height:32px}</style><style>[_nghost-ng-c1371038418]{position:fixed;bottom:0;left:0;right:0;z-index:10000;width:100%;background:#252829;color:#fff;overflow:hidden;box-sizing:border-box;line-height:24px;display:flex;flex-wrap:nowrap;padding:16px 29px;align-items:center;animation:1s _ngcontent-ng-c1371038418_fadein ease-in-out both}.btn[_ngcontent-ng-c1371038418]{display:block;padding:.4em .8em;font-size:.9em;font-weight:700;border-width:2px;border-style:solid;text-align:center;white-space:nowrap;border-color:transparent}@keyframes _ngcontent-ng-c1371038418_fadein{0%{opacity:0}to{opacity:1}}</style><style>.turbo-table{margin-top:25px}  .turbo-table tbody tr:not(:first-of-type){border-top:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td:not(:last-of-type){border-right:1px solid gray}  .turbo-table tbody tr:not(:first-of-type) td{padding:5px 10px}  tbody tr:first-of-type{text-align:center}  mark{background-color:#a9a9a9;color:#383838;border-radius:.3em;padding:.1em .25em}  .white{color:#fff}  .small-img{margin:auto;width:40%}  .block-citation{border-left-width:8px;--tw-border-opacity: 1;border-color:rgba(32,32,32,var(--tw-border-opacity));--tw-bg-opacity: 1;background-color:#2c2c2d}  .block-citation>.attribution{padding:0 16px 16px;text-align:right}  .block-citation>blockquote{border:0px;border-radius:3rem}  .block-citation>blockquote>.paragraph:first-of-type:before{content:open-quote;float:left;font-size:3em;margin-right:4px;font-weight:700;line-height:.6em;color:rgba(226,78,99,var(--tw-text-opacity))}  .block-citation>blockquote>.paragraph:first-of-type:after{content:no-close-quote}.article-info[_ngcontent-ng-c1648468352]{width:47%;display:flex;flex-direction:column;align-items:start}@media (max-width: 1024px){.article-info[_ngcontent-ng-c1648468352]{width:100%}}.article-image[_ngcontent-ng-c1648468352]{height:100%;width:47%}@media (max-width: 1024px){.article-image[_ngcontent-ng-c1648468352]{width:100%}}.author-background[_ngcontent-ng-c1648468352]{background-color:#161617;padding:4px 12px 4px 6px;border-radius:73px}</style><meta name="description" content="Discover the Tauri CRUD Boilerplate for rapid development of DB-based UI projects"><meta property="og:title" content="Tauri CRUD Boilerplate"><meta property="og:description" content="Discover the Tauri CRUD Boilerplate for rapid development of DB-based UI projects"><meta property="twitter:title" content="Tauri CRUD Boilerplate"><meta property="twitter:description" content="Discover the Tauri CRUD Boilerplate for rapid development of DB-based UI projects"><title>Tauri CRUD Boilerplate</title><style>
+      swiper {
+        display: block;
+      }
+    </style><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+<valor-software-site-base-root _nghost-ng-c6223672="" ng-version="16.0.4"><top-menu _ngcontent-ng-c6223672=""><nav class="bg-grey_bg font-workSans text-base fixed top-0 w-full z-10"><div class="px-4 xl:px-28 lg:py-2.5"><div class="flex items-center justify-between h-16"><div class="flex-1 lg:flex-auto lg:hidden"><img src="assets/img/icons/burger-menu.svg" alt="burger menu icon"></div><!----><!----><div class="lg:flex flex-1 lg:flex-auto items-center"><div class="flex-shrink-0"><a routerlink="." class="cursor-pointer block justify-center flex" href="/"><img src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-6 w-auto sm:h-14"></a></div><div class="hidden lg:block relative ml-20"><div class="flex space-x-2 leading-4"><div class="menu-item">For clients <div class="light-arrow"></div></div><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div><menu-popover class="hidden lg:block"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover></div></div><div class="lg:block flex-1 lg:flex-auto"><div class="flex items-end justify-end"><button type="button" class="btn-pink-border text-xs md:text-base"> Get in touch </button></div></div></div></div><div id="mobile-menu" class="adaptive-menu"><div class="px-2 pt-2 pb-3 space-y-1"><div class="menu-item">For clients <div class="light-arrow big"></div></div><menu-popover class="block lg:hidden !m-0"><div class="hidden lg:block"><div class="popover pt-10 px-10 z-20"><div class="arrow"></div><div class="flex justify-between flex-wrap"><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/startups"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5">Startups</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Software development from scratch to market launch</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/enterprises"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5">Enterprises</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Future-oriented solutions to solve today's problems and anticipate tomorrow’s needs</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/smbs"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5">SMBs</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Budget-wise solutions for small to medium-sized businesses</p></div></a></div><div changesrconhover="" class="w-45% cursor-pointer text-light_font_col mb-12"><a href="/clients/non-profit"><div class="flex mb-2.5"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5">Non-profits</h3></div><!----></div><div><p class="text-grey_font_col text-sm">Technology solutions for non-governmental organizations</p></div></a></div><!----></div></div><div class="backdrop"></div></div><div class="adaptive-popover"><div><a href="/clients/startups"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/startups.svg"><h3 class="ml-2.5 text-xl">Startups</h3></div><!----></div></a></div><div><a href="/clients/enterprises"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/enterprises.svg"><h3 class="ml-2.5 text-xl">Enterprises</h3></div><!----></div></a></div><div><a href="/clients/smbs"><div class="flex mb-7"><div class="flex items-center"><img src="/assets/img/icons/smbs.svg"><h3 class="ml-2.5 text-xl">SMBs</h3></div><!----></div></a></div><div><a href="/clients/non-profit"><div class="flex"><div class="flex items-center"><img src="/assets/img/icons/non-profits.svg"><h3 class="ml-2.5 text-xl">Non-profits</h3></div><!----></div></a></div><!----></div></menu-popover><a routerlink="/services" class="menu-item" href="/services">Services</a><a routerlink="/projects" class="menu-item" href="/projects">Portfolio</a><a routerlink="/careers" class="menu-item" href="/careers">Careers</a><a routerlink="/articles" class="menu-item active-route" href="/articles">Blog</a></div></div></nav></top-menu><!----><div _ngcontent-ng-c6223672="" class="font-workSans" style="min-height: 100%;"><router-outlet _ngcontent-ng-c6223672=""></router-outlet><article _nghost-ng-c1648468352=""><section _ngcontent-ng-c1648468352="" class="first-section-half landing-section mt-4 bg-dark_title_col lg:!pb-32 !pb:8"><div _ngcontent-ng-c1648468352="" class="container flex items-center flex-col"><breadcrumbs _ngcontent-ng-c1648468352="" class="w-full hidden md:block"><div><div class="flex text-grey_font_col"><a href="/" class="underline cursor-pointer">Home</a><span>&nbsp;&gt;&nbsp;</span><a href="/articles" class="underline cursor-pointer"> Articles </a><!----><!----><!----><span>&nbsp;&gt;&nbsp;</span><a href="/" class="disabled"> Tauri Crud Boilerplate </a><!----><!----><!----><!----></div></div><!----></breadcrumbs><!----><!----><div _ngcontent-ng-c1648468352="" class="flex flex-col-reverse lg:flex-row md:mt-12 lg:mt-32 justify-between"><div _ngcontent-ng-c1648468352="" class="article-info text-light_title_col"><p _ngcontent-ng-c1648468352="" class="text-20 mb-4 mt-4 lg:mt-0">April 11, 2024</p><p _ngcontent-ng-c1648468352="" class="text-4xl leading-[40px] font-bold lg:text-48 lg:leading-[48px] text-left">Tauri CRUD Boilerplate</p><div _ngcontent-ng-c1648468352="" class="flex flex-col md:flex-row mt-4 lg:mt-8"><div _ngcontent-ng-c1648468352="" class="flex author-background items-center"><div _ngcontent-ng-c1648468352="" class="w-10 h-10 rounded-full overflow-hidden"><img _ngcontent-ng-c1648468352="" class="w-full h-full object-cover" src="assets/articles/tauri-crud-boilerplate/Slava_Chub.jpg" alt="Vyacheslav Chub"></div><!----><div _ngcontent-ng-c1648468352="" class="flex flex-col items-start ml-4"><span _ngcontent-ng-c1648468352="" class="text-lg">Vyacheslav Chub</span><span _ngcontent-ng-c1648468352="" class="text-sm">Full Stack Software Engineer</span><!----></div></div><!----></div></div><div _ngcontent-ng-c1648468352="" class="img-container-auto zoom-img-scale article-image"><img _ngcontent-ng-c1648468352="" class="w-full h-full object-cover" src="assets/articles/tauri-crud-boilerplate/main-tauri-crud-boilerplate.png" alt="Tauri CRUD Boilerplate"></div></div></div></section><section _ngcontent-ng-c1648468352="" class="landing-section"><div _ngcontent-ng-c1648468352="" class="container pt-4 md:pt-12 flex items-center flex-col article-box !max-w-1010"><div _ngcontent-ng-c1648468352="" class="max-w-full"><div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Hi, dear <a href="https://tauri.app" target="_blank" rel="noopener">Tauri</a>! Long time no see. I published my first post, <a href="https://valor-software.com/articles/developing-a-desktop-application-via-rust-and-nextjs-the-tauri-way" target="_blank" rel="noopener">Developing a Desktop Application via Rust and NextJS. The Tauri Way</a> almost a year ago. Since then, Tauri has become stronger. I’m happy about that! And now, I am very pleased to make a useful contribution to the Tauri community. As a full-stack developer, I frequently face situations where I need to start a DB-based UI project as fast as possible. It’s stressful if I need to start the project from 100% scratch. I prefer to keep some boilerplates on hand, which will save me time and nerves and will be the subject of this article.</p>
+</div>
+<div class="paragraph">
+<p>I want to present you with my first version of the <a href="https://github.com/buchslava/tauri-crud-boilerplate" target="_blank" rel="noopener">Tauri CRUD Boilerplate</a>, which will help you bootstrap and prototype a new Tauri project from scratch. Let me focus on explanations in a What-Where-When style.</p>
+</div>
+<div class="paragraph">
+<p>My <mark>Tauri CRUD Boilerplate</mark> is not a silver bullet; it’s just a set of valuable scratches that help you build and connect the DB and UI parts via Tauri. Also, the Tauri CRUD Boilerplate is useful primarily for fast prototyping because it contains React and Ant Design as UI players inside, and, of course, you can substitute them with another library or framework or even provide your custom solution instead. If we focus on the DB part, I use SQLite due to its simplicity and portability. In the future, you can change SQLite. As a roadmap, I’ll think about the second version of the bootstrap when DB will be substituted with the equivalent REST API plus authentication.</p>
+</div>
+<div class="paragraph">
+<p>Let’s get started.</p>
+</div>
+<div class="paragraph">
+<p>There are a couple of <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/crud/data.rs" target="_blank" rel="noopener">tables</a>, <mark>person</mark> and <mark>todo</mark>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">CREATE TABLE IF NOT EXISTS person (
+    id INTEGER PRIMARY KEY NOT NULL,
+    name VARCHAR(250) NOT NULL
+);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">CREATE TABLE IF NOT EXISTS todo (
+    id INTEGER PRIMARY KEY NOT NULL,
+    date VARCHAR(20) NOT NULL,
+    notes TEXT,
+    person_id INTEGER NOT NULL,
+    completed INTEGER NOT NULL,
+    FOREIGN KEY(person_id) REFERENCES person(id)
+);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As we can see, each person can contain a set of todos. <mark>person_id</mark> is a foreign key here.</p>
+</div>
+<div class="paragraph">
+<p>I implemented the following functionality.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Data management (see <mark>Data</mark> tab below). The main aim is to create an empty SQLite DB (according to the definitions above) and fill it with the test data.</p>
+</li>
+<li>
+<p>The Persons tab contains a table that shows a set of persons and provides functionality for adding, editing, and deleting them.</p>
+</li>
+<li>
+<p>The Todos tab contains two related widgets: Persons as a read-only list and a table that shows a set of person-related todos. It provides functionality for adding, editing, and deleting them.</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_data">Data</h3>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tauri-crud-boilerplate/img1.png" alt="img1">
+</div>
+</div>
+<div class="paragraph">
+<p>Let me highlight some essential points in the <mark>Data</mark> tab code.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can find <mark>Create DB</mark>-related DB code <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/crud/data.rs" target="_blank" rel="noopener">here(#L6-L38)</a> and UI code <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Data.tsx" target="_blank" rel="noopener">here(#L25)</a>.</p>
+</li>
+<li>
+<p>You can find <mark>Fill DB</mark>-related DB code <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Data.tsx" target="_blank" rel="noopener">here(#L26)</a> and UI code <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Data.tsx" target="_blank" rel="noopener">here(#L26)</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It’s important to have test data and the ability to recreate it when needed (via <mark>Create DB</mark>). If you want to remove the DB, you can just delete a related file.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_db_connect">DB connect</h3>
+<div class="paragraph">
+<p>It’s time to know how the connection with the DB works. First, we need to get the <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/util/db.rs" target="_blank" rel="noopener">SQLite DB path(#L7)</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">fn get_database_path() -&gt; io::Result&lt;PathBuf&gt; {
+    let mut exe = env::current_exe()?;
+    exe.set_file_name("./db");
+    #[cfg(dev)]
+    exe.set_file_name("../../../db");
+    Ok(exe)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In production mode, we use the current folder to keep the DB, and the DB will be kept in the same folder as the executable file. But in the case of the debug mode, I prefer to keep the database file at the root of the project. Because the executable file in debug mode is placed in <mark>[project folder]/src-tauri/target/debug</mark>, we conditionally use the <mark>../../../</mark> path that’s equal to the project folder in debug mode. Fortunately, the <a href="https://doc.rust-lang.org/rust-by-example/attribute/cfg.html" target="_blank" rel="noopener">cfg</a> attribute helps us to do that. BTW, you can change this logic if needed.</p>
+</div>
+<div class="paragraph">
+<p>After we have a DB part, we need to get a <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/util/db.rs" target="_blank" rel="noopener">path as a string</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">pub fn get_database() -&gt; String {
+    let db_url = match get_database_path() {
+        Ok(path) =&gt; path.into_os_string().into_string().unwrap(),
+        Err(e) =&gt; e.to_string(),
+    };
+    return db_url;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We use the util function above in other functions the following way. For example, when we need to <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/crud/person.rs" target="_blank" rel="noopener">insert a new record into the person table(#L14)</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">#[tauri::command]
+pub async fn person_insert(name: &amp;str) -&gt; Result&lt;i64, String&gt; {
+    // get DB url as a string
+    let db_url = util::db::get_database();
+    // Connect with the DB; get connection from the pool
+    let db = SqlitePool::connect(&amp;db_url).await.unwrap();
+    // Do all needed DB stuff
+    let query_result = sqlx
+        ::query("INSERT INTO person (name) VALUES (?)")
+        .bind(name)
+        .execute(&amp;db).await;
+    if query_result.is_err() {
+        db.close().await;
+        return Err(format!("{:?}", query_result.err()));
+    }
+
+    let id = query_result.unwrap().last_insert_rowid();
+    // Close the connection
+    db.close().await;
+    Ok(id)
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_persons">Persons</h3>
+<div class="paragraph">
+<p>It’s time to understand how our first CRUD works on the example of <mark>Persons</mark>.</p>
+</div>
+<div class="paragraph">
+<p>Let’s dig into the UI part. You can read full text of the component <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Person.tsx" target="_blank" rel="noopener">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Also, let’s dig into the <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Person.tsx" target="_blank" rel="noopener">data loading(#L41-L58)</a>. Please, read comment in the following code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">const load = async () =&gt; {
+    try {
+      // get the data
+      const result = await apiCall("person_select");
+      // make it as a JSON
+      const items = JSON.parse(JSON.parse(result as unknown as string));
+      // set the related React state variable
+      setData(
+        items.map((item: any) =&gt; ({
+          key: item.id,
+          ...item,
+        }))
+      );
+    } catch (e) {
+      console.error(e);
+      errorMessage.open({
+        type: "error",
+        content: "Can't load the person list",
+      });
+    }
+  };</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s focus on <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/util.ts" target="_blank" rel="noopener">apiCall</a> function. This function is important because it’s a link between React and Rust parts.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { InvokeArgs, invoke } from "@tauri-apps/api/tauri";
+
+export const apiCall = async &lt;T&gt;(
+  name: string,
+  parameters?: InvokeArgs
+): Promise&lt;T&gt; =&gt;
+  new Promise((resolve, reject) =&gt;
+    invoke(name, parameters)
+      .then(resolve as (value: unknown) =&gt; PromiseLike&lt;T&gt;)
+      .catch(reject)
+  );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We import <mark>invoke</mark> function from <mark>@tauri-apps/api/tauri</mark> and just call the following functionality in Rust part. In this example we are talking about <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/crud/person.rs" target="_blank" rel="noopener">person_select(#L61-L76)</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">#[tauri::command]
+pub async fn person_select() -&gt; Result&lt;String, String&gt; {
+    let db_url = util::db::get_database();
+    let db = SqlitePool::connect(&amp;db_url).await.unwrap();
+    let query_result = sqlx
+        ::query_as::&lt;_, Person&gt;("SELECT id, name FROM person ORDER BY id DESC")
+        .fetch_all(&amp;db).await;
+    if query_result.is_err() {
+        db.close().await;
+        return Err(format!("{:?}", query_result.err()));
+    }
+    let results = query_result.unwrap();
+    let encoded_message = serde_json::to_string(&amp;results).unwrap();
+    db.close().await;
+    Ok(format!("{:?}", encoded_message))
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also, I’d like to focus your attention on the <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/crud/person.rs" target="_blank" rel="noopener">following data structure(#L7-L11)</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">#[derive(Serialize, Clone, FromRow, Debug)]
+pub struct Person {
+    id: i64,
+    name: String,
+}</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tauri-crud-boilerplate/img2.png" alt="img2">
+</div>
+</div>
+<div class="paragraph">
+<p>After that, I intend to be brief because I don’t want to waste your time. That’s why I am providing you with some significant points regarding the code.</p>
+</div>
+<div class="paragraph">
+<p>Let’s look at <mark>Insert</mark> and <mark>Edit</mark>…​</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tauri-crud-boilerplate/img3.png" alt="img3">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Press <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Person.tsx" target="_blank" rel="noopener">New Person(#L140)</a> button or <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Person.tsx" target="_blank" rel="noopener">Edit(#L80)</a> button on each row of data.</p>
+</li>
+<li>
+<p>Both of <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Person.tsx" target="_blank" rel="noopener">addNewRow(#L130)</a> and <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Person.tsx" target="_blank" rel="noopener">doEdit(#L36-L39)</a> works with the modal window <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Person.tsx" target="_blank" rel="noopener">here(#L36-L39)</a> that use <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/PersonEdit.tsx" target="_blank" rel="noopener">PersonEdit</a> component.</p>
+</li>
+<li>
+<p>The <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Person.tsx" target="_blank" rel="noopener">following logic(#L103-L125)</a> works when the form from the component above has been submitted. Its main goal is to make all expected changes (call Rust code), hide the modal window, or show the error if it is not OK.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_todos">Todos</h3>
+<div class="paragraph">
+<p><mark>Todos</mark> functionality is a bit more complicated than <mark>Persons</mark> because it contains <mark>Persons</mark> and is represented by <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/TodoContainer.tsx" target="_blank" rel="noopener">TodoContainer</a> component that you see below. Let’s focus on how TodoContainer works.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It based on a <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/TodoContainer.tsx" target="_blank" rel="noopener">Antd’s Tab(#L39)</a> component.</p>
+</li>
+<li>
+<p>Tab’s <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/TodoContainer.tsx" target="_blank" rel="noopener">items are persons(#L14)</a>.</p>
+</li>
+<li>
+<p>Each Tab-person has its own <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/TodoContainer.tsx" target="_blank" rel="noopener">Todo(#L20)</a> table that also contains adding and editing functionalities.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tauri-crud-boilerplate/img4.png" alt="img4">
+</div>
+</div>
+<div class="paragraph">
+<p>Focusing on the <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Todo.tsx" target="_blank" rel="noopener">Todo</a> and <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/TodoEdit.tsx" target="_blank" rel="noopener">TodoEdit</a> components doesn’t matter because their logic is similar to that of Person and PersonEdit.</p>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tauri-crud-boilerplate/img5.png" alt="img5">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use">How to use</h3>
+<div class="paragraph">
+<p>I want to stop discussing the code and focus on some practical aspects. Let’s run the app in dev mode.</p>
+</div>
+<div class="paragraph">
+<p>Traditionally,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm ci</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run in dev mode</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm run tauri dev</code></pre>
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tauri-crud-boilerplate/img6.gif" alt="img6">
+</div>
+</div>
+<div class="imageblock img">
+<div class="content">
+<img src="assets/articles/tauri-crud-boilerplate/img7.gif" alt="img7">
+</div>
+</div>
+<div class="paragraph">
+<p>In production mode:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">npm run tauri build</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can found:</p>
+</div>
+<div class="paragraph">
+<p>An installer-based (dmg) app in <mark>[project root]/src-tauri/target/release/bundle/dmg</mark> if you want to run the installer
+Or just the app in <mark>[project root]/src-tauri/target/release/bundle/macos</mark> if you want to run the app directly</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_components_refreshing">Components refreshing</h3>
+<div class="paragraph">
+<p>The app’s most tricky part concerns data synchronization. Imagine we just added a new person to the <mark>Persons</mark> tab and moved them to the <mark>Todo</mark> tab. The person list on the left side should be refreshed, shouldn’t it? Let me share some thoughts about data synchronization.</p>
+</div>
+<div class="paragraph">
+<p>I provided <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/GlobalContext.tsx" target="_blank" rel="noopener">a context</a> that contains the following data.</p>
+</div>
+<div class="paragraph">
+<p>*https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/GlobalContext.tsx[refreshDescriptor(#L9), window=_blank] that contains a couple of fields <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/GlobalContext.tsx" target="_blank" rel="noopener">person(#L4)</a> and <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/GlobalContext.tsx" target="_blank" rel="noopener">todo(#L5)</a>.
+* A set of methods for the state refreshing: <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/GlobalContext.tsx" target="_blank" rel="noopener">refreshPerson(#L10)</a> and <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/GlobalContext.tsx" target="_blank" rel="noopener">refreshTodo(#L11)</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import React, { createContext, useContext, useState } from "react";
+
+export interface DataRefreshDescriptor {
+  person: Date;
+  todo: Date;
+}
+
+type GlobalContextProps = {
+  refreshDescriptor: DataRefreshDescriptor;
+  refreshPerson: () =&gt; void;
+  refreshTodo: () =&gt; void;
+};
+
+const GlobalContext = createContext({} as GlobalContextProps);
+
+export type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
+
+export const GlobalProvider = ({ children }: { children: React.ReactNode }) =&gt; {
+  const now = new Date();
+  const [refreshDescriptor, setRefreshDescriptor] =
+    useState&lt;DataRefreshDescriptor&gt;({
+      person: now,
+      todo: now,
+    });
+
+  const refreshPerson = () =&gt; {
+    setRefreshDescriptor({ ...refreshDescriptor, person: new Date() });
+  };
+
+  const refreshTodo = () =&gt; {
+    setRefreshDescriptor({ ...refreshDescriptor, todo: new Date() });
+  };
+
+  return (
+    &lt;GlobalContext.Provider
+      value={{
+        refreshDescriptor,
+        refreshPerson,
+        refreshTodo,
+      }}
+    &gt;
+      {children}
+    &lt;/GlobalContext.Provider&gt;
+  );
+};
+
+export const useGlobalContext = () =&gt; useContext(GlobalContext);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following fragment of code illustrates us how to use the <mark>refreshDescriptor</mark>. Please, read comments there.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">// let's skip imports
+export default function TodoContainer() {
+  // get the refreshDescriptor
+  const { refreshDescriptor } = useGlobalContext();
+  const [errorMessage, errorMessageHolder] = message.useMessage();
+  const [tabs, setTabs] = useState&lt;TabsProps["items"]&gt;([]);
+
+  const loadPersons = async () =&gt; {
+    // let's skip the details
+  };
+
+  useEffect(() =&gt; {
+    // if refreshDescriptor.person has been changed, we need to reload the person list
+    loadPersons();
+  }, [refreshDescriptor.person]);
+
+  return (
+    &lt;&gt;
+      {errorMessageHolder}
+      &lt;Tabs tabPosition={"left"} items={tabs} /&gt;
+    &lt;/&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please, look at another example of refreshing. You can find the full version <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Person.tsx" target="_blank" rel="noopener">here</a>. Please, read comments.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">// imports ...
+
+export default function Person() {
+  const { refreshDescriptor, refreshPerson } = useGlobalContext();
+  // skip...
+
+  const doDelete = async (id: number) =&gt; {
+    try {
+      await apiCall("person_delete", { id });
+      // change the 'person' field of the descriptor if a new person was deleted
+      refreshPerson();
+    } catch (e) {
+      // skip...
+    }
+  };
+
+  // skip...
+
+  const load = async () =&gt; {
+    // skip...
+  };
+
+  useEffect(() =&gt; {
+    load();
+    const columns: ColumnsType&lt;DataType&gt; = [
+      /// skip...
+    ];
+    setColumns(columns);
+  }, [refreshDescriptor.person]);
+
+  const doEditOk = () =&gt; {
+    editFormRef.current.submit();
+  };
+
+  const handleEditOk = async (formData: DataType) =&gt; {
+    try {
+      if (currentRecord?.id) {
+        await apiCall("person_update", {
+          name: formData.name,
+          id: currentRecord.id,
+        });
+      } else {
+        await apiCall("person_insert", {
+          name: formData.name,
+        });
+      }
+      setEditVisible(false);
+      // change the 'person' field of the descriptor if a new person was added or changed
+      refreshPerson();
+    } catch (e) {
+      setEditVisible(false);
+      // skip...
+    }
+  };
+
+  // skip...
+
+  return !columns ? (
+    &lt;&gt;&lt;/&gt;
+  ) : (
+    &lt;div&gt;
+      {errorMessageHolder}
+      &lt;Button onClick={addNewRow} style={{ margin: 10 }}&gt;
+        New Person
+      &lt;/Button&gt;
+      &lt;Table
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+        scroll={{ y: "calc(100vh - 200px)" }}
+      /&gt;
+      &lt;Modal
+        title="Person"
+        open={editVisible}
+        onOk={doEditOk}
+        onCancel={handleEditCancel}
+      &gt;
+        &lt;PersonEdit
+          ref={editFormRef}
+          currentRecord={currentRecord}
+          handleEditOk={handleEditOk}
+        &gt;&lt;/PersonEdit&gt;
+      &lt;/Modal&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We call <mark>refreshPerson</mark> if we expect another or the current widget refreshing. If you add some new functionality in the future, you need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>add new fields to <mark>refreshDescriptor</mark></p>
+</li>
+<li>
+<p>provide the related functions and add them to the context</p>
+</li>
+<li>
+<p>use them the way described above</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_app_component">The App component</h3>
+<div class="paragraph">
+<p>I suppose it’s the simplest part of the solution.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-code" data-lang="code">import { Tabs, TabsProps } from "antd";
+import "./App.css";
+import Person from "./Person";
+import TodoContainer from "./TodoContainer";
+import Data from "./Data";
+import { useGlobalContext } from "./GlobalContext";
+
+const tabs: TabsProps["items"] = [
+  {
+    key: "persons",
+    label: "Persons",
+    children: &lt;Person /&gt;,
+  },
+  {
+    key: "todo",
+    label: "Todo",
+    children: &lt;TodoContainer /&gt;,
+  },
+  {
+    key: "data",
+    label: "Data",
+    children: &lt;Data /&gt;,
+  },
+];
+
+function App() {
+  const { refreshPerson, refreshTodo } = useGlobalContext();
+
+  return (
+    &lt;Tabs
+      items={tabs}
+      onTabClick={(key: string) =&gt; {
+        if (key === "persons") {
+          refreshPerson();
+        }
+        if (key === "todo") {
+          refreshTodo();
+        }
+      }}
+    /&gt;
+  );
+}
+
+export default App;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please pay attention to the <mark>onTabClick</mark> handler. We change the related fields of <mark>refreshDescriptor</mark> every time we open a related tab.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_recommendations">The recommendations</h3>
+<div class="paragraph">
+<p>This part is essential because all that I just told you should be continued with your, my dear reader, part. I aim to summarize and guide you regarding your future steps with the boilerplate. Of course, all that I intend to share with you is not dogma; it’s just my subjective opinion that I hope will help you.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>I recommend starting with the Rust part.</p>
+</li>
+<li>
+<p>You could create a separate rs-file. This is a good <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/crud/person.rs" target="_blank" rel="noopener">example</a>. Also, don’t forget to add it to <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/crud/mod.rs" target="_blank" rel="noopener">mod.rs</a></p>
+</li>
+<li>
+<p>After you need to make the following changes in <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/main.rs" target="_blank" rel="noopener">main.rs</a>: <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/main.rs" target="_blank" rel="noopener">use the module(#L6)</a> and <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src-tauri/src/main.rs" target="_blank" rel="noopener">tell Tauri about the new functionality(#L16-L19)</a>. That’s it regarding Rust-part. It’s time to code in React.</p>
+</li>
+<li>
+<p>Create a table-based component like the <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/Person.tsx" target="_blank" rel="noopener">following</a></p>
+</li>
+<li>
+<p>Create a form-based component like the <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/PersonEdit.tsx" target="_blank" rel="noopener">following</a></p>
+</li>
+<li>
+<p>Use the table-based component in the <a href="https://github.com/buchslava/tauri-crud-boilerplate/blob/devto-article/src/App.tsx" target="_blank" rel="noopener">following way(#L12)</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>PS: It’s important to note that the solution above is just one of my first attempts at the topic; therefore, do not judge strictly. Also, I’d like to know how this solution works under Windows. Anyway, happy hacking, guys ;)</p>
+</div>
+</div>
+</div>
+</div></div></div></section><!----><section _ngcontent-ng-c1648468352="" class="landing-section"><span _ngcontent-ng-c1648468352="" class="main-title block">More Articles</span><div _ngcontent-ng-c1648468352="" class="container"><blog-preview _ngcontent-ng-c1648468352=""><swiper class="article_swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events"><!----><!----><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div><!----><div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);"><!----><!----><div data-swiper-slide-index="0" class="swiper-slide swiper-slide-active" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/painless-cli-integration-testing" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/painless-cli-integration-testing/main-painless-cli-integration-testing.png" alt="Painless CLI integration testing"></div><div class="text-container"><p>Painless CLI integration testing</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="1" class="swiper-slide swiper-slide-next" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/google-translate-customization-2-under-nextjs" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/google-translate-customization-2-under-nextjs/main_google-translate-customization-2-under-nextjs.png" alt="Google Translate customization#2 under NextJS"></div><div class="text-container"><p>Google Translate customization#2 under NextJS</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><div data-swiper-slide-index="2" class="swiper-slide" style="width: 733px; margin-right: 40px;"><!----><a href="/articles/google-translate-customization-under-nextjs" class="block w-full cursor-pointer"><blog-portfolio-item><div class="article-item"><div class="img-container-auto zoom-img-scale"><img class="w-full h-full object-cover" src="assets/articles/google-translate-customization-under-nextjs/main_google_translate_customization_under_nextjs.png" alt="Google Translate customization under NextJS"></div><div class="text-container"><p>Google Translate customization under NextJS</p></div></div></blog-portfolio-item></a><!----><!----><!----><!----><!----></div><!----><!----><!----><!----></div><!----></swiper><!----><!----></blog-preview></div></section><!----><!----></article><!----></div><app-footer _ngcontent-ng-c6223672="" _nghost-ng-c3396914408=""><footer _ngcontent-ng-c3396914408="" class="mx-11 xl:mx-28 mb-6"><div _ngcontent-ng-c3396914408="" class="w-full flex flex-col lg:flex-row items-center lg:items-start border-t-2 border-placeholder_col pt-16 pb-10"><div _ngcontent-ng-c3396914408="" class="flex flex-col items-center lg:items-start order-3 lg:order-1 w-full lg:w-2/6 mr-0 lg:mr-8 mt-10 lg:mt-0"><a _ngcontent-ng-c3396914408="" routerlink="." class="cursor-pointer" href="/"><img _ngcontent-ng-c3396914408="" src="/assets/img/valor-img/valor-logo.svg" alt="Workflow" class="h-14 w-70 lg:w-full"></a><span _ngcontent-ng-c3396914408="" class="m-0 text-header_font_col text-sm pt-4">Valor Labs Inc.</span><span _ngcontent-ng-c3396914408="" class="m-0 text-center text-header_font_col text-sm pt-3 w-48 lg:text-left">8 The Green, Suite 300 Dover DE 19901</span><span _ngcontent-ng-c3396914408="" class="m-0 text-header_font_col text-sm pt-3">© 2024, Valor Software All Rights Reserved</span><a _ngcontent-ng-c3396914408="" routerlink="/privacy-policy" class="m-0 text-header_font_col text-sm link pt-3" href="/privacy-policy">Privacy Policy </a></div><div _ngcontent-ng-c3396914408="" class="flex flex-col items-center justify-center order-1 lg:order-2 w-full lg:w-2/6 mr-0 lg:mr-8"><span _ngcontent-ng-c3396914408="" class="subscribe-title w-full">Subscribe to our newsletter now</span><form _ngcontent-ng-c3396914408="" novalidate="" action="https://valor-software.us6.list-manage.com/subscribe/post?u=ec02b86e27ea826fc9590dc10&amp;id=a7fdce3c62&amp;f_id=00c82fe3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="flex flex-col items-start mt-6 w-full"><div _ngcontent-ng-c3396914408="" class="flex flex-col lg:flex-row w-full"><input _ngcontent-ng-c3396914408="" type="email" placeholder="Enter email" name="EMAIL" id="mce-EMAIL" class="text-input w-full lg:w-9/12 mr-0 lg:mr-4 px-3 py-2 ng-untouched ng-pristine ng-invalid"><div _ngcontent-ng-c3396914408="" hidden=""><input _ngcontent-ng-c3396914408="" type="hidden" name="tags" value="3376148"></div><div _ngcontent-ng-c3396914408="" aria-hidden="true" style="position: absolute; left: -5000px;"><input _ngcontent-ng-c3396914408="" type="text" name="b_ec02b86e27ea826fc9590dc10_a7fdce3c62" tabindex="-1"></div><input _ngcontent-ng-c3396914408="" type="submit" name="subscribe" id="mc-embedded-subscribe" value="Subscribe" class="btn-pink-border w-full lg:w-auto text-base mt-4 lg:mt-0" disabled=""></div><!----><!----></form><div _ngcontent-ng-c3396914408="" class="flex items-center mt-10 w-full"><button _ngcontent-ng-c3396914408="" type="button" class="btn-pink text-base flex items-center justify-center w-full"> Get in touch </button></div></div><div _ngcontent-ng-c3396914408="" class="flex w-full lg:w-2/6 justify-center mt-11 lg:mt-0 order-2 lg:order-3"><div _ngcontent-ng-c3396914408="" class="flex flex-wrap justify-center w-full lg:max-w-[240px]"><a _ngcontent-ng-c3396914408="" href="https://www.linkedin.com/company/valor-software/about/" target="_blank" rel="noopener" class="flex justify-center text-header_font_co mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/linkedin.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.instagram.com/valor.software/" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/instagram.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://twitter.com/ValorSoft" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/twitter.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://dribbble.com/valor-labs" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/dribble.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.behance.net/ValorSoftware" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/behance.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.facebook.com/valorsoftware/" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/facebook.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://www.youtube.com/@valorsoftware?app=desktop" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/youtube.svg" alt="" class="img"></a><a _ngcontent-ng-c3396914408="" href="https://dev.to/valorsoftwaretech" target="_blank" rel="noopener" class="flex justify-center text-header_font_col mb-5 mr-5"><img _ngcontent-ng-c3396914408="" src="assets/img/icons/social/devto.svg" alt="" class="img"></a></div></div></div></footer></app-footer><!----><cookie-consent-banner _ngcontent-ng-c6223672="" _nghost-ng-c1371038418=""><div _ngcontent-ng-c1371038418="" class="banner flex flex-col items-center lg:flex-row justify-between px-4 xl:px-20 font-workSans !w-full"><div _ngcontent-ng-c1371038418="" class="flex flex-col"><span _ngcontent-ng-c1371038418="" class="text-20">This website uses cookies.</span><span _ngcontent-ng-c1371038418="" id="cookieconsent:desc" class="leading-18"> We use cookies to make sure this website can function. By continuing to browse this website, you agree to our use of cookies. <a _ngcontent-ng-c1371038418="" aria-label="learn more about our privacy policy" href="https://valor-software.com/privacy-policy" target="_blank" class="text-center text-header_font_col text-sm link">Learn more </a></span></div><div _ngcontent-ng-c1371038418="" class="flex items-center pt-5 lg:pt-0"><button _ngcontent-ng-c1371038418="" class="btn btn-pink flex md:justify-between justify-center py-5 px-10 w-full lg:w-auto"> Accept all cookies </button></div></div></cookie-consent-banner><!----></valor-software-site-base-root>
+<script async="" src="assets/js/prettify.min.js"></script>
+<script id="ScullyIO-transfer-state"></script><script src="runtime.7c8a6e208965e71a.js" type="module"></script><script src="polyfills.2066255b7190fd43.js" type="module"></script><script src="main.677566ac83c62828.js" type="module"></script>
+
+</body></html>
