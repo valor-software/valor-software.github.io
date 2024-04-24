@@ -227,7 +227,7 @@ I hope this article has given you some clarity on Artillery’s software, and he
 the performance testing tool you want to work with.
 
 In case you’re looking for help in software testing, or your project needs an advanced quality assurance pipeline
-– https://valor-software.com/contact.html[drop us a line^]!
+– drop us a line!
 
 == *Useful Links*
 

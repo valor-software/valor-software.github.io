@@ -130,6 +130,6 @@ stay with your project for as long as needed.
 Compare the approaches, consider the most suitable one, and go with it, knowing the consequences. I hope after reading all the above, you'll come to the same conclusion as me: if your desired solution is more complicated than a non-interactive landing page or a blog, leave yourself a space for change.
 
 You've got to have enough vision and responsibility to take care about the way your solution is born and
-developed. Follow the link to get a fact-driven estimate from my colleagues at Valor Software: https://valor-software.com/contact.html[https://valor-software.com/contact.html^]
+developed. Follow the link to get a fact-driven estimate from my colleagues at Valor Software:
 
 Special thanks to contributors and reviewers of the article: https://www.linkedin.com/in/valorkin/[Dmitriy Shekhovtsov^], https://www.linkedin.com/in/zackarychapple/[Zackary Chapple^], https://www.linkedin.com/in/nikitanuts/[Nikita Demchenko^], https://www.linkedin.com/in/viktoria-lurye-4b7b41155/[Viktoria Lurye^].
