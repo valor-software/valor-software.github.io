@@ -2,7 +2,7 @@
   <div class="w-full bg-grey p-4 lg:p-8 lg:m-0 mb-11 " *ngFor="let card of technologiesCards">
     <div class=" lg:mb-0 lg:min-h-50 flex justify-between w-full flex-col w-full">
 
-      <p class="font-bold text-light_title_col lg:text-32 block mr-3.5 text-20 text-left mt-6 mt-0  md:leading-44 mb-6">
+      <p class="font-bold text-light_title_col lg:text-32 block mr-3.5 text-20 text-left mt-6 mt-0  md:leading-44 mb-6" *ngIf="card.title">
         {{card.title}}</p>
       <div class="flex flex-wrap items-center lg:gap-6"
         [ngClass]="[ card.lgJustify ? 'lg:justify-' + card.lgJustify : '', card.mdJustify ? 'md:justify-' + card.mdJustify : '', card.smJustify ? 'justify-' + card.smJustify : '']">
