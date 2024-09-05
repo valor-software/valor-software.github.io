@@ -33,6 +33,9 @@
       "@valor-software/breethe-page": [
         "libs/route-pages/breethe-page/src/index.ts"
       ],
+      "@valor-software/zephyr-page": [
+        "libs/route-pages/zephyr-page/src/index.ts"
+      ],
       "@valor-software/careers": [
         "libs/route-pages/careers/src/index.ts"
       ],

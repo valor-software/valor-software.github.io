@@ -41,6 +41,10 @@ export const routes: Routes = [
 				loadChildren: () => import('@valor-software/breethe-page').then(m => m.BreethePageModule)
 			},
 			{
+				path: 'zephyr',
+				loadChildren: () => import('@valor-software/zephyr-page').then(m => m.ZephyrPageModule)
+			},
+			{
 				path: ':id',
 				component: ProjectComponent
 			}

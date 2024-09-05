@@ -1,0 +1,214 @@
+<section class="first-section landing-section pb-0  mx-5 lg:mx-0">
+	<div class="container">
+		<div class="flex-column lg:flex justify-center lg:justify-between items-center mb-18 pt-16 lg:pt-0"
+		     style="max-height: 100%;">
+
+			<div class="lg:w-10/12 lg:mx-auto md:mt-0 mb-18">
+				<ng-container *ngIf="changeBreadCrumbTitle?.length">
+					<breadCrumbs [changeTitle]="changeBreadCrumbTitle" class="w-full hidden lg:block lg:mb-24">
+					</breadCrumbs>
+				</ng-container>
+				<h1 class="text-light_title_col tracking-tightest lg:text-64 text-40 lg:leading-66 leading-44 mb-10 lg:mb-12 font-bold">
+                    Zephyr
+                </h1>
+				<p class="leading-6 text-grey_font_col text-20 mb-10">
+                    Zephyr Cloud is a cutting-edge platform that offers seamless integration across any cloud provider,
+                    framework, or bundler, enabling developers to deploy and manage applications in seconds.
+                    It is designed to accelerate development workflows with unparalleled ease of application
+                    deployment and management. With Zephyr Cloud, your team can preview and test applications in
+                    a real-world environment before going live, turning "testing in production" into a practical reality.
+                    Once ready, applications can be promoted with just a single click.
+
+                </p>
+
+			</div>
+			<div class="lg:block m-auto w-9/12 ml-4">
+				<img src="assets/img/bg-img/zephyr_page/header_bg.png" alt="">
+			</div>
+			<div class="block lg:hidden m-auto ">
+				<img class="m-auto" src="assets/img/bg-img/zephyr_page/header_bg.png" alt="">
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="lg:mb-[132px]">
+	<span class="main-title block lg:mb-10 ">Background</span>
+	<div class="container">
+		<div class="flex flex-col lg:flex-row gap-10 items-center">
+			<img class="m-auto md:w-[45%]" src="assets/img/bg-img/zephyr_page/background.png" alt="">
+			<div class="m-auto md:w-[100%]">
+				<p class="mb-4 text-grey_font_col text-left text-20 tracking-tightest">
+                    The inception of Zephyr Cloud stemmed from Valor Software's commitment to advancing software
+                    development through open-source contributions, particularly in Module Federation. Building on the
+                    success of its predecessor, Medusa—a pivotal tool for Federated Micro Frontends—Valor Software
+                    recognized an opportunity to push the boundaries further. Driven by insights from clients and the
+                    community, our CEO Dmitriy Shekhovtsov together with trusted co-partner Zackary Chapple, in
+                    collaboration with Module Federation creator Zackary Jackson, conceived Zephyr Cloud to empower
+                    developers to "Innovate With Confidence" throughout the entire software development lifecycle.
+
+                </p>
+			</div>
+		</div>
+        <h2 class="mt-[72px] text-light_title_col text-left leading-56 mb-6 text-20 lg:text-40 font-bold">
+            Technologies & services:
+        </h2>
+        <technologies-card [technologiesCards]="technologiesCards"></technologies-card>
+	</div>
+</section>
+
+<section class="landing-section py-0 mb-6 lg:mb-12 md:mx-0">
+	<span class="main-title block le lg:mb-10 ">Deliverables</span>
+	<div class="container ">
+		<div
+				class="mt-10 bg-grey  p-2 md:p-10 md:w-[95%] text-grey_font_col tracking-tightest leading-[30px] text-20">
+            <p class="text-grey_font_col tracking-tightest leading-6 ">
+                At Valor, we’ve dedicated our expertise and resources to create a platform that embodies the pinnacle
+                of modern deployment solutions. Drawing on years of hands-on experience with module federation and
+                cutting-edge technology, we have engineered Zephyr to offer unmatched speed and flexibility. Our team,
+                fueled by a deep understanding of micro-frontends and extensive field experience, has carefully crafted
+                a solution that exceeds the demands of today’s dynamic development environments. Zephyr represents the
+                culmination of our commitment to innovation and excellence, making sure that every deployment is faster,
+                more efficient, and seamlessly integrated into any workflow.
+            </p>
+            <br/>
+            <ul class="list-disc  lg:list-outside list-inside leading-normal text-grey_font_col text-16 md:text-20 w-9/12">
+                <li class="mt-10">
+                    <strong class="text-white">Zephyr Cloud Platform:</strong> A cutting-edge cloud-agnostic, framework-agnostic platform
+                    designed for ultra-fast deployments, featuring robust support for micro-frontends and module federation.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Project Website:</strong> A professionally designed landing page and comprehensive project
+                    website that includes information about Zephyr Cloud, its features, and benefits. The site also
+                    houses the documentation, making it easy for users to access setup guides, integration instructions,
+                    and support resources.
+                    <img src="assets/img/bg-img/zephyr_page/cover_1.png" alt="" class="mt-10">
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Comprehensive Documentation:</strong> Detailed guides and reference materials covering
+                    installation, configuration, and usage of Zephyr, including setup for various frameworks and
+                    bundlers, and a curated collection of example configurations and practical use cases showcasing
+                    Zephyr’s flexibility across different environments.
+                    <img src="assets/img/bg-img/zephyr_page/documentation.png" alt="" class="mt-10">
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Chrome Extension:</strong> The Zephyr Mission Control Chrome extension for managing and
+                    previewing deployed application versions, offering real-time visibility and control directly
+                    from the browser.
+
+                    <img src="assets/img/bg-img/zephyr_page/chrome_extension.png" alt="" class="mt-10">
+                </li>
+            </ul>
+		</div>
+	</div>
+</section>
+
+<section class="landing-section py-0 mb-6 lg:mb-12 md:mx-0">
+    <span class="main-title block le lg:mb-10 ">Challenges</span>
+    <div class="container">
+        <h2 class="mt-[72px] text-light_title_col text-left leading-56 mb-6 text-20 lg:text-40 font-bold">
+            Zephyr Cloud addresses several critical challenges:
+        </h2>
+        <div class="mt-10 bg-grey  p-2 md:p-10 md:w-[95%] text-grey_font_col tracking-tightest leading-[30px] text-20">
+            <ul class="list-disc  lg:list-outside list-inside leading-normal text-grey_font_col text-16 md:text-20 w-9/12">
+                <li class="mt-10">
+                    <strong class="text-white">Enhancing Developer Experience:</strong> Companies must streamline the developer experience
+                    by integrating daily engineering tasks and applications across the SDLC. Delays in CI/CD pipelines
+                    or changes lead to substantial organizational costs.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Managing Multiple Third-Party Applications:</strong> With developers using numerous
+                    applications daily, consolidating data and making it actionable is challenging. There is a need
+                    to leverage third-party data from cloud services and error-tracking tools to generate valuable
+                    insights.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Supporting Organizational Growth:</strong> As organizations expand, they need solutions
+                    that transition from mere website deployment to efficiently building and managing platforms with
+                    extensive developer teams.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Achieving Rapid Time to Market:</strong> Rapid time to market is essential, necessitating
+                    quick iteration through immediate deployment and availability.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Heavy Vendor Lock-In:</strong> Existing CI/CD tools often lead to vendor lock-in, making
+                    it challenging to experiment with or transition to newer, more advanced tools and solutions.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">High Learning Overhead:</strong> The sophisticated nature of modern tools involves a steep
+                    learning curve, requiring lengthy training that can impact team productivity and project momentum.
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="landing-section py-0 mb-6 lg:mb-12 md:mx-0">
+    <span class="main-title block le lg:mb-10 ">Our Solutions</span>
+    <div class="container">
+        <h2 class="mt-[72px] text-light_title_col text-left leading-56 mb-6 text-20 lg:text-40 font-bold">
+            Zephyr Cloud's innovative features tackle these challenges head-on:
+        </h2>
+        <div class="mt-10 bg-grey  p-2 md:p-10 md:w-[95%] text-grey_font_col tracking-tightest leading-[30px] text-20">
+            <ul class="list-disc  lg:list-outside list-inside leading-normal text-grey_font_col text-16 md:text-20 w-9/12">
+                <li class="mt-10">
+                    <strong class="text-white">Version Control:</strong> Deploy unlimited application versions with access through a
+                    Chrome extension and dashboard.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Rollback and Forward:</strong> WEnsure stability with the ability to instantly roll back
+                    or forward releases as needed.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Sub-Second Deployment:</strong> Achieve lightning-fast deployment for both production and
+                    preview versions in literal seconds.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Long-Lived Preview Links:</strong> Keep deployed versions live indefinitely unless manually
+                    deleted.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Smart Dependency Management:</strong> Monitor and visualize all application's dependencies,
+                    from remote modules in Module Federation apps to npm packages, ensuring everything stays in sync
+                    and optimized.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Concurrent Integration:</strong> Zephyr’s design ensures it can be set up and run in
+                    parallel with any existing cloud services, frameworks, or bundlers, enabling seamless and
+                    non-disruptive operation.
+                </li>
+                <li class="mt-10">
+                    <strong class="text-white">Speed of Integration:</strong> From its inception, Zephyr Cloud has prioritized speed.
+                    Thanks to its speed-centric design it can be integrated into the existing systems in only an
+                    afternoon, minimizing downtime.
+                </li>
+                <img class="mt-10" src="assets/img/bg-img/zephyr_page/future.png" alt="">
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<section class="landing-section p-0">
+	<span class="main-title block mb-0">Future</span>
+	<div class="container">
+		<div class="flex flex-col lg:flex-row gap-10 items-center">
+			<div class="lg:w-[100%]">
+				<p class="leading-6 text-20 tracking-tightest text-grey_font_col lg:mb-8 mb-14 ">
+                    Zephyr Cloud is currently in public alpha and has already achieved significant milestones,
+                    including securing $3M in Seed funding. We are exceptionally confident in the platform's
+                    transformative potential and its ability to revolutionize development workflows. Our ongoing
+                    development focuses on enhancing rapid deployment capabilities and adding innovative features.
+                </p>
+				<p class="leading-6 text-20 tracking-tightest text-grey_font_col">
+                    We invite you to experience Zephyr Cloud’s game-changing capabilities firsthand. Contact us today
+                    to schedule a personalized demo and see for yourself how our platform can redefine your development
+                    process. Stay tuned for exciting updates as we continue to advance and refine our offerings.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<next-project></next-project>
